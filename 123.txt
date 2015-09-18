@@ -1,3 +1,11 @@
 Amazing! We finally learned how to use github!
+<<<<<<< HEAD
 
 9-18
+=======
+<<<<<<< HEAD
+第一次提交，如何装作经常提交的样子？
+=======
+what an amazing B sc has zhuanged!
+>>>>>>> origin/master
+>>>>>>> origin/master
