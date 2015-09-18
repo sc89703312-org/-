@@ -1,1 +1,2 @@
 Amazing! We finally learned how to use github!
+第一次提交，如何装作经常提交的样子？
