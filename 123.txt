@@ -4,11 +4,12 @@ Amazing! We finally learned how to use github!
 9-18
 =======
 <<<<<<< HEAD
-µÚÒ»´ÎÌá½»£¬ÈçºÎ×°×÷¾­³£Ìá½»µÄÑù×Ó£¿
+ç¬¬ä¸€æ¬¡æäº¤ï¼Œå¦‚ä½•è£…ä½œç»å¸¸æäº¤çš„æ ·å­ï¼Ÿ
 =======
 what an amazing B sc has zhuanged!
 >>>>>>> origin/master
 >>>>>>> origin/master
 
 
-ÎªºÎÒª×°±Æ
+ä¸ºä½•è¦è£…é€¼
+æŒ¤æŒ¤
