@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+<<<<<<< HEAD:ExpressSystem/.classpath
+	<classpathentry excluding="src/|Client/|Server/" kind="src" path="src"/>
+=======
+	<classpathentry excluding="Client/|client/" kind="src" path="src"/>
+>>>>>>> origin/master:Express/.classpath
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
