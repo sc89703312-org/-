@@ -1,14 +1,18 @@
 package server.po;
 
-import client.ResultMessage;
+import java.io.Serializable;
+import server.po.ReceiptState;
 
-public abstract class ReceiptPOBase {
+public abstract class ReceiptPOBase implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String id;
 	protected String date;
-	private ReceiptState state;
+	private ReceiptState state = ReceiptState.SUBMITTED;
 
-	public abstract ResultMessage show();
 	public void approve(){
 		this.state = ReceiptState.APPROVED;
 	}
@@ -24,3 +28,4 @@ public abstract class ReceiptPOBase {
 	}
 
 }
+
