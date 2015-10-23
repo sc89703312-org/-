@@ -2,7 +2,7 @@ package client.blservice.StrategyBlService;
 
 import client.ResultMessage;
 
-public interface ConstantSettingService{
+public interface ConstantSettingBlService{
 
 	//设置各城市距离
 	public ResultMessage setDistance(String id1, String id2, double distance);

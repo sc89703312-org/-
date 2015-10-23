@@ -13,7 +13,7 @@ public class OrganizationBlService_Stub implements OrganizationBlService{
 	public ArrayList<StationVO> viewStationList() {
 		System.out.println("Show the list of all the stations");
 		ArrayList<StationVO> list = new ArrayList<StationVO>();
-		list.add(new StationVO());
+		list.add(new StationVO("025", "Nanjing"));
 		return list;
 	}
 
@@ -37,7 +37,7 @@ public class OrganizationBlService_Stub implements OrganizationBlService{
 	public ArrayList<HallVO> viewHallList() {
 		System.out.println("Show the list of all the halls");
 		ArrayList<HallVO> list = new ArrayList<HallVO>();
-		list.add(new HallVO());
+		list.add(new HallVO("025001","Gulou","025"));
 		return list;
 	}
 

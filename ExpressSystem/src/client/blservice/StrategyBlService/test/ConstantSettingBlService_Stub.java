@@ -1,9 +1,9 @@
 package client.blservice.StrategyBlService.test;
 
 import client.ResultMessage;
-import client.blservice.StrategyBlService.ConstantSettingService;
+import client.blservice.StrategyBlService.ConstantSettingBlService;
 
-public class ConstantSettingBlService_Stub implements ConstantSettingService{
+public class ConstantSettingBlService_Stub implements ConstantSettingBlService{
 
 	@Override
 	public ResultMessage setDistance(String id1, String id2, double distance) {
