@@ -8,14 +8,12 @@ public abstract class ReceiptPOBase {
 	protected String date;
 	private ReceiptState state;
 	
-	public abstract ResultMessage modify();
 	public abstract ResultMessage show();
 	public void approve(){
 		this.state = ReceiptState.APPROVED;
 	}
 	
 	public String getId() {
-		System.out.println("test");
 		return id;
 	}
 	public String getDate() {
