@@ -1,14 +1,14 @@
 package client.blservice.paymentblservice;
 
 import client.ResultMessage;
-import client.vo.paymentvo.paymentvo;
+import client.vo.paymentvo.Paymentvo;
 
 
-public interface paymentblservice {
+public interface Paymentblservice {
 
-	public ResultMessage  createReceipt(paymentvo vo);
+	public ResultMessage  createReceipt(Paymentvo vo);
 	
-	public paymentvo getPayment(String id);
+	public Paymentvo getPayment(String id);
 	
 	public void endPayment();
 }
