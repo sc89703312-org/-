@@ -15,6 +15,7 @@ public abstract class ReceiptPOBase {
 	}
 	
 	public String getId() {
+		System.out.println("test");
 		return id;
 	}
 	public String getDate() {
