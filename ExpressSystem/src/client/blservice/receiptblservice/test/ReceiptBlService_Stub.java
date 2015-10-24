@@ -8,6 +8,8 @@ import client.vo.ReceiptVOBase;
 
 public class ReceiptBlService_Stub implements ReceiptBlService{
 
+	
+	
 	@Override
 	public ArrayList<ReceiptVOBase> view() {
 		System.out.println("Show the list of receipts.");
@@ -25,5 +27,7 @@ public class ReceiptBlService_Stub implements ReceiptBlService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

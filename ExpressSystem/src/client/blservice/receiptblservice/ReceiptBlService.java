@@ -7,6 +7,9 @@ import client.vo.ReceiptVOBase;
 
 public interface ReceiptBlService{
 
+	
+
+	
 	public ArrayList<ReceiptVOBase> view();
 	
 	public void approve(ArrayList<ReceiptVOBase> list);

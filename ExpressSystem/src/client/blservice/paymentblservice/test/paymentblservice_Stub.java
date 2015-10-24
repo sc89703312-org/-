@@ -2,10 +2,16 @@ package client.blservice.paymentblservice.test;
 
 import client.ResultMessage;
 import client.blservice.paymentblservice.Paymentblservice;
+import client.blservice.receiptblservice.ReceiptBlService;
 import client.vo.paymentvo.Paymentvo;
 
 public class paymentblservice_Stub implements Paymentblservice {
 
+
+	
+	
+	
+	
 	@Override
 	public ResultMessage createReceipt(Paymentvo vo) {
 		// TODO Auto-generated method stub
@@ -46,8 +52,7 @@ public class paymentblservice_Stub implements Paymentblservice {
 		
 		
 		
-		
-		
+
 		
 		return temp;
 	}

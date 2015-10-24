@@ -1,7 +1,9 @@
 package client.vo.paymentvo;
 
+import client.vo.ReceiptVOBase;
 
-public class Paymentvo {
+
+public class Paymentvo extends ReceiptVOBase {
 
 	
 	
@@ -42,5 +44,10 @@ public class Paymentvo {
 	public String getBankaccount()
 	{
 		return bankaccount;
+	}
+	
+	public String toString(){
+		return "Date :"+date+"  Payment :"+payment+"  Courier_id:"+courier_id+"  Order_id:"+
+	                        order_id+"   BankAccount:"+bankaccount;
 	}
 }

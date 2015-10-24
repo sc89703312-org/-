@@ -1,6 +1,17 @@
 package client.blservice.balanceblservice;
 
+import java.util.ArrayList;
 
-public interface balanceblservice {
+import client.vo.balancevo.Balancevo;
+import client.vo.paymentvo.Paymentvo;
 
+
+public interface Balanceblservice {
+
+	public ArrayList<Double> viewBalance();
+	public ArrayList<Paymentvo>viewReport(String start ,String end);
+	public ArrayList<Balancevo> viewCost(String start,String end);
+	
+	
+	public void endBalance();
 }
