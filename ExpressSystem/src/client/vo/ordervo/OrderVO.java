@@ -2,6 +2,9 @@ package client.vo.ordervo;
 
 import java.io.Serializable;
 
+import client.po.orderpo.ArrivalState;
+import client.po.orderpo.Etype;
+
 
 
 public class OrderVO implements Serializable{
@@ -36,7 +39,7 @@ public class OrderVO implements Serializable{
 
 	public OrderVO(String sname,String saddress,String spost,String stel,String sphone,String rname,String raddress
 			,String rpost,String rtel,String rphone,int num,double w,double v,String gname,double size,double pkgCost
-			,double totalCost, String id,Etype t,ArrivalState arrivalState,String expected,String currentSpot){
+			,double totalCost, String id,Etype fast,ArrivalState no,String expected,String currentSpot){
 		this.senderName=sname;
 		this.senderAddress=saddress;
 		this.senderPost=spost;
@@ -55,8 +58,8 @@ public class OrderVO implements Serializable{
 		this.pkgCost=pkgCost;
 		this.totalCost=totalCost;
 		this.id=id;
-		this.type=t;
-		this.arrivalState=arrivalState;
+		this.type=fast;
+		this.arrivalState=no;
 		this.expectedTime=expected;
 		this.currentSpot=currentSpot;
 	}
