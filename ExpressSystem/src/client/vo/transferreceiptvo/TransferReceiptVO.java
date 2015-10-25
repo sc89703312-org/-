@@ -1,10 +1,10 @@
-package client.po.transferreceiptpo;
+package client.vo.transferreceiptvo;
 
 import java.util.List;
 
-import client.po.ReceiptPOBase;
+import client.vo.ReceiptVOBase;
 
-public class TransferReceiptPO extends ReceiptPOBase{
+public class TransferReceiptVO extends ReceiptVOBase{
 
 	/**
 	 * 
@@ -18,7 +18,7 @@ public class TransferReceiptPO extends ReceiptPOBase{
 	private String guard;
 	private List<String> orderlist;
 	
-	public TransferReceiptPO(String hallID,String transportID,String to, String carID,
+	public TransferReceiptVO(String hallID,String transportID,String to, String carID,
 			String supervisor,String guard,List<String> list){
 		this.hallID=hallID;
 		this.transportID=transportID;

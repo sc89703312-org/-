@@ -11,7 +11,7 @@ public abstract class ReceiptPOBase implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected String id;
 	protected String date;
-	private ReceiptState state = ReceiptState.SUBMITTED;
+	protected ReceiptState state = ReceiptState.SUBMITTED;
 
 	public void approve(){
 		this.state = ReceiptState.APPROVED;
