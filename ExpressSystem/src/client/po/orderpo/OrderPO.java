@@ -28,10 +28,12 @@ public class OrderPO implements Serializable{
 	String id;
 	Etype type;
 	ArrivalState arrivalState;
+	String expectedTime;
+	String currentSpot;
 	
 	public OrderPO(String sname,String saddress,String spost,String stel,String sphone,String rname,String raddress
 			,String rpost,String rtel,String rphone,int num,double w,double v,String gname,double size,double pkgCost
-			,double totalCost, String id,Etype t,ArrivalState arrivalState){
+			,double totalCost, String id,Etype t,ArrivalState arrivalState,String expectedTime,String currentSpot){
 		this.senderName=sname;
 		this.senderAddress=saddress;
 		this.senderPost=spost;
@@ -52,6 +54,8 @@ public class OrderPO implements Serializable{
 		this.id=id;
 		this.type=t;
 		this.arrivalState=arrivalState;
+		this.expectedTime=expectedTime;
+		this.currentSpot=currentSpot;
 	}
 	
 	
@@ -134,5 +138,13 @@ public class OrderPO implements Serializable{
 	
 	public ArrivalState getState(){
 		return this.arrivalState;
+	}
+	
+	public String getExpectedTime(){
+		return this.expectedTime;
+	}
+	
+	public String getCurrentSpot(){
+		return this.currentSpot;
 	}
 }
