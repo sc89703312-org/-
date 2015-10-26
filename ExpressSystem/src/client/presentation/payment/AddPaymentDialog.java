@@ -29,7 +29,7 @@ public class AddPaymentDialog extends JDialog {
         this.parent = parent;
     	
         this.setContentPane(new AddPaymentPanel());
-        this.setSize(500, 600);
+        this.setSize(500, 300);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 	
@@ -76,17 +76,17 @@ public class AddPaymentDialog extends JDialog {
 	
 	
 	    final int LEFT_PADDING = 20;
-	    final int TOP_PADDING = 15;
+	    final int TOP_PADDING = 35;
 	    final int LABEL_COMPONENT_PADDING = 10;
-	    final int PADDING_VERTICAL = 5;
+	    final int PADDING_VERTICAL = 35;
 	    final int PADDING_HORIZATION = 20;
 	    
 	    final int LABEL_WIDTH = 80;
-	    final int LABEL_HEIGHT = 20;
+	    final int LABEL_HEIGHT = 30;
 	    
 	    
 	    final int TEXTFILED_WIDTH = 100;
-	    final int TEXTFILED_HEIGHT = 20;
+	    final int TEXTFILED_HEIGHT = 30;
 	
 	
 	

@@ -1,4 +1,4 @@
-package server.dataservice.Server;
+package server.main;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

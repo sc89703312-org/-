@@ -1,4 +1,4 @@
-package client.dataservice.client;
+package client.main;
 
 import java.awt.List;
 import java.rmi.RemoteException;

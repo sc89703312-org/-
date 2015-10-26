@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.paymentblservice.Paymentblservice;
-import client.dataservice.client.RMIHelper;
 import client.dataservice.paymentdataservice.Paymentdataservice;
+import client.main.RMIHelper;
 import client.po.paymentpo.Paymentpo;
 import client.vo.paymentvo.Paymentvo;
 
