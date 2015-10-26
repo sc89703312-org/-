@@ -48,7 +48,7 @@ public class ShowOrderPanel extends JPanel{
     public void refresh() {
 		Object[][] orders = getOrders();
 		defaultTableModel.setDataVector(orders, TABLE_HEADER);
-//		this.validate();
+	    this.validate();
 	}
 
     private Object[][] getOrders() {

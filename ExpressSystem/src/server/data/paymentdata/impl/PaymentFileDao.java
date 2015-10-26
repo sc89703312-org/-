@@ -118,6 +118,9 @@ public class PaymentFileDao implements PaymentDao {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println("All the list is :"+list.size());
+		
 		return list;
 	}
 	
@@ -125,7 +128,7 @@ public class PaymentFileDao implements PaymentDao {
 	
 	
 	
-	class MyObjectOutputStream extends ObjectOutputStream {
+	public class MyObjectOutputStream extends ObjectOutputStream {
 		public MyObjectOutputStream() throws IOException {
 			super();
 		}

@@ -1,5 +1,7 @@
 package client.blservice.paymentblservice.test;
 
+import java.util.ArrayList;
+
 import client.ResultMessage;
 import client.blservice.paymentblservice.Paymentblservice;
 import client.blservice.receiptblservice.ReceiptBlService;
@@ -81,6 +83,15 @@ public class paymentblservice_Stub implements Paymentblservice {
 	public void endPayment() {
 		// TODO Auto-generated method stub
 		System.out.println("Payment ends");
+	}
+
+
+
+
+	@Override
+	public ArrayList<Paymentvo> viewAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

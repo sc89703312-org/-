@@ -98,6 +98,9 @@ public class AddOrderDialog extends JDialog{
 			
 			ExpressOrder order = new ExpressOrder(barcode, sender, receiver, commodity, type, fee, totalPrice);
 			
+			
+			
+			
 			OrderService service = RMIHelper.getOrderService();
 			service.addExpressOrder(order);
 			parent.refresh();
@@ -141,6 +144,8 @@ public class AddOrderDialog extends JDialog{
             		TEXTFILED_WIDTH, 
             		TEXTFILED_HEIGHT
             	);
+            
+            
             addressLabel.setBounds(
             		nameTextField.getX() + nameTextField.getWidth() + PADDING_HORIZATION, 
             		nameLabel.getY(), 

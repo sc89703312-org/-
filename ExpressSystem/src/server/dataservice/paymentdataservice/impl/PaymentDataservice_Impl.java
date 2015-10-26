@@ -71,7 +71,7 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	@Override
 	public ArrayList<Paymentpo> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("Show all the po");
+		System.out.println("Show all the po and the length is "+paymentDao.getAll().size());
 		return paymentDao.getAll();
 	}
 

@@ -41,7 +41,7 @@ public class OrderFileDAO implements OrderDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return;
+	
 	}
 
 	@Override

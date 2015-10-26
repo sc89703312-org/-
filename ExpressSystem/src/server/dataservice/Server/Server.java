@@ -1,4 +1,5 @@
-package server.dataservice.paymentdataservice.Server;
+package server.dataservice.Server;
+
 
 public class Server {
 
