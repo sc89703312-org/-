@@ -2,7 +2,9 @@ package client.vo.transferreceiptvo;
 
 import java.util.List;
 
+import client.po.ReceiptState;
 import client.vo.ReceiptVOBase;
+import client.vo.ordervo.OrderVO;
 
 public class TransferReceiptVO extends ReceiptVOBase{
 
@@ -16,10 +18,13 @@ public class TransferReceiptVO extends ReceiptVOBase{
 	private String carID;
 	private String supervisor;
 	private String guard;
-	private List<String> orderlist;
+	private List<OrderVO> orderlist;
 	
-	public TransferReceiptVO(String hallID,String transportID,String to, String carID,
-			String supervisor,String guard,List<String> list){
+	public TransferReceiptVO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
+			String supervisor,String guard,List<OrderVO> list){
+		
+		this.date=date;
+		this.state=state;
 		this.hallID=hallID;
 		this.transportID=transportID;
 		this.to=to;
