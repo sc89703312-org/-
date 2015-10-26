@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import client.ResultMessage;
 import client.blservice.paymentblservice.Paymentblservice;
 import client.vo.paymentvo.Paymentvo;
 
@@ -107,11 +108,21 @@ public class AddPaymentDialog extends JDialog {
 			
 			Paymentvo vo = new Paymentvo(date, pay, courierid, orderid, bankaccount);			
 			
-			paymentblservice.createReceipt(vo);
 			
-			parent.refresh(vo);
 			
-			AddPaymentDialog.this.dispose();
+			ResultMessage temp= paymentblservice.createReceipt(vo);
+			
+			
+			if(temp==ResultMessage.VALID){
+				parent.refresh(vo);
+				AddPaymentDialog.this.dispose();
+			}else {
+				JOptionPane.showMessageDialog(null,"BankAccount Error");
+			}
+			
+			
+			
+		
 		}
 		
 	}
@@ -220,6 +231,11 @@ public class AddPaymentDialog extends JDialog {
           
 		}
 	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -30,7 +30,12 @@ public class paymentbl implements Paymentblservice {
 	@Override
 	public ResultMessage createReceipt(Paymentvo vo) {
 		// TODO Auto-generated method stub
+		 
+		if (!(vo.getBankaccount().equals("sc")||vo.getBankaccount().equals("a")||vo.getBankaccount().equals("sc89703312"))) {
+			return ResultMessage.INVALID;
+		}
 		
+		else{
 		try {
 			paymentDataService.insert(convertVO(vo));
 		} catch (RemoteException e) {
@@ -40,7 +45,7 @@ public class paymentbl implements Paymentblservice {
 		
 		return ResultMessage.VALID;
 	}
-
+	}
 	@Override
 	public Paymentvo getPayment(String id) {
 		// TODO Auto-generated method stub

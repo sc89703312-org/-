@@ -1,6 +1,22 @@
 package client.dataservice.balancedataservice;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public interface balancedataservice {
+import client.po.balancepo.Balancepo;
 
+
+public interface balancedataservice extends Remote {
+
+	public void insert(Balancepo po) throws RemoteException;
+	
+	public ArrayList<Balancepo > find(String date) throws RemoteException;
+	
+	public void delete(Balancepo po) throws RemoteException;
+	
+	public void update(Balancepo po)throws RemoteException;
+	
+	public ArrayList<Balancepo> getAll() throws RemoteException;
+	
 }

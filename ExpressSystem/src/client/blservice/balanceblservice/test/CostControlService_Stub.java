@@ -1,5 +1,7 @@
 package client.blservice.balanceblservice.test;
 
+import java.util.ArrayList;
+
 import client.ResultMessage;
 import client.blservice.balanceblservice.CostControlService;
 import client.po.balancepo.Item;
@@ -46,6 +48,12 @@ public class CostControlService_Stub implements CostControlService{
 	public void endCostControl() {
 		// TODO Auto-generated method stub
 		System.out.println("CostControl ends");
+	}
+
+	@Override
+	public ArrayList<Balancevo> viewAllCost() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
