@@ -21,4 +21,13 @@ public class ComZoneVO {
 		
 	}
 	
+	public int[] getSpace(){
+		int[] space = new int[4];
+		space[0] = planeSpace;
+		space[1] = trainSpace;
+		space[2] = carSpace;
+		space[3] = temSpace;
+		return space;
+	}
+	
 }
