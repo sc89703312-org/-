@@ -1,11 +1,11 @@
-package client.blservice.hallservice;
+package client.blservice.hallblservice;
 
 import client.ResultMessage;
 import client.vo.arrivalreceiptvo.ArrivalReceiptVO;
 import client.vo.deliverreceiptvo.DeliverReceiptVO;
 import client.vo.transferreceiptvo.TransferReceiptVO;
 
-public interface HallService {
+public interface HallBLService {
 
 	public ResultMessage createArrivalReceipt(ArrivalReceiptVO vo);
 	

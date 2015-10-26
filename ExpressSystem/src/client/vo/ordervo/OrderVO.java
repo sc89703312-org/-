@@ -60,6 +60,10 @@ public class OrderVO implements Serializable{
 		this.expectedTime=expected;
 		this.currentSpot=currentSpot;
 	}
+	
+	public void setArrivalState(ArrivalState arrivalState){
+		this.arrivalState=arrivalState;
+	}
 
 	public String getSenderName(){
 		return this.senderName;

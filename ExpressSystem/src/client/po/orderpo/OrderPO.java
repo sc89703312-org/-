@@ -2,6 +2,8 @@ package client.po.orderpo;
 
 import java.io.Serializable;
 
+import client.vo.ordervo.ArrivalState;
+
 public class OrderPO implements Serializable{
 
 	/**
@@ -58,6 +60,10 @@ public class OrderPO implements Serializable{
 		this.currentSpot=currentSpot;
 	}
 	
+	public void setArrivalState(ArrivalState arrivalState){
+		this.arrivalState=arrivalState;
+	}
+
 	
 	public String getSenderName(){
 		return this.senderName;

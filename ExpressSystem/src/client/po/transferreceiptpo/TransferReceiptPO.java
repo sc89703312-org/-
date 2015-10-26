@@ -3,6 +3,8 @@ package client.po.transferreceiptpo;
 import java.util.List;
 
 import client.po.ReceiptPOBase;
+import client.po.ReceiptState;
+import client.vo.ordervo.OrderVO;
 
 public class TransferReceiptPO extends ReceiptPOBase{
 
@@ -16,10 +18,13 @@ public class TransferReceiptPO extends ReceiptPOBase{
 	private String carID;
 	private String supervisor;
 	private String guard;
-	private List<String> orderlist;
+	private List<OrderVO> orderlist;
 	
-	public TransferReceiptPO(String hallID,String transportID,String to, String carID,
-			String supervisor,String guard,List<String> list){
+	public TransferReceiptPO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
+			String supervisor,String guard,List<OrderVO> list){
+		
+		this.date=date;
+		this.state=state;
 		this.hallID=hallID;
 		this.transportID=transportID;
 		this.to=to;
