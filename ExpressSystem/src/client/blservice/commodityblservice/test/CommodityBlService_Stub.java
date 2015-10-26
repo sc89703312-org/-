@@ -4,23 +4,31 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.commodityblservice.CommodityBlService;
-import client.vo.ordervo.ArrivalState;
-import client.vo.ordervo.Etype;
 import client.vo.commodityvo.ComGoodsVO;
 import client.vo.commodityvo.ComZoneVO;
 import client.vo.commodityvo.EnterReceiptVO;
 import client.vo.commodityvo.ExitReceiptVO;
 import client.vo.stationvo.ArriveReceiptVO;
 import client.vo.stationvo.TransferReceiptVO;
+import client.vo.ordervo.ArrivalState;
+import client.vo.ordervo.Etype;
 import client.vo.ordervo.OrderVO;
 
 public class CommodityBlService_Stub implements CommodityBlService{
+
+	public void remindEnter(ArriveReceiptVO vo){
+		
+	}
+	
+	public void remindExit(TransferReceiptVO vo){
+		
+	}
 	
 	//入库管理部分
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList(){
 		
 		ArrayList<ArriveReceiptVO> list = new ArrayList<ArriveReceiptVO>();
-		list.add(new ArriveReceiptVO("100","2015/10/25","Shanghai","Nanjing",new ArrayList<OrderVO>()));
+		list.add(new ArriveReceiptVO("100","2015/10/25","Nanjing",new ArrayList<OrderVO>()));
 		return list;
 		
 	}
@@ -32,7 +40,7 @@ public class CommodityBlService_Stub implements CommodityBlService{
 		
 	}
 	
-	public ResultMessage editEnterReceipt(EnterReceiptVO vo, String orderID){
+	public ResultMessage editEnterReceipt(EnterReceiptVO vo, String orderID, String location){
 		
 		ResultMessage result;
 		
@@ -77,9 +85,8 @@ public class CommodityBlService_Stub implements CommodityBlService{
 	public ArrayList<ComGoodsVO> showInventory(){
 		
 		ArrayList<ComGoodsVO> goods_list = new ArrayList<ComGoodsVO>();
-		goods_list.add(new ComGoodsVO(new OrderVO("SHRF","NJU","NJU","025-83621002","13900001234","SC","NJU",
-				"NJU","025-83621001","13900001231",1,20.5,30.0,"book",10.0*20.0,5.0,15.0,"1234567890",Etype.FAST,
-				ArrivalState.NO,"2 days","Nanjing"), "Train-A-23"));
+		goods_list.add(new ComGoodsVO(new OrderVO("SHRF","NJU","NJU","025-83621002","13900001234","SC","NJU","NJU","025-83621001","13900001231",1,20.5,30.0,"book",10*20,5.0,15.0,"1234567890",Etype.FAST,ArrivalState.NO,"2 days","Nanjing"
+), "Train-A-23"));
 		
 		return goods_list;
 		

@@ -14,12 +14,4 @@ public class ComGoodsVO {
 		
 	}
 	
-	public OrderVO getOrder(){
-		return order;
-	}
-	
-	public String getComLocation(){
-		return comLocation;
-	}
-	
 }

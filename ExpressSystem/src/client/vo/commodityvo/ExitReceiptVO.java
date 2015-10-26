@@ -20,20 +20,4 @@ public class ExitReceiptVO {
 		
 	}
 	
-	public String getID(){
-		return this.id;
-	}
-	
-	public String getDate(){
-		return this.date;
-	}
-	
-	public String getLocation(){
-		return this.location;
-	}
-	
-	public ArrayList<ComGoodsVO> getList(){
-		return this.list;
-	}
-	
 }
