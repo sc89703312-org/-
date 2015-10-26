@@ -2,7 +2,7 @@ package client.po.commoditypo;
 
 import java.util.ArrayList;
 
-public class EnterReceiptPO {
+public class ExitReceiptPO {
 
 	String id;
 	String location;
@@ -12,7 +12,7 @@ public class EnterReceiptPO {
 	
 	ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
 	
-	public EnterReceiptPO(ArrayList<ComGoodsPO> list, String id, String date, String location){
+	public ExitReceiptPO(ArrayList<ComGoodsPO> list, String id, String date, String location){
 		this.id = id;
 		this.date = date;
 		this.location = location;
@@ -37,17 +37,6 @@ public class EnterReceiptPO {
 	public void approve(){
 		isApprove = true;
 	}
-	
-	public void changeComLocation(String orderID, String newComLocation){
 		
-		int length = goods_list.size();
-		
-		for(int i=0;i<length;i++){
-			if(goods_list.get(i).getOrder().getID()==orderID)
-				goods_list.get(i).modifyComLocation(newComLocation);
-		}
-		
-	}
-	
 	
 }

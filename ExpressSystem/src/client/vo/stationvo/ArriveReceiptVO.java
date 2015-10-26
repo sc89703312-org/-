@@ -1,11 +1,10 @@
 package client.vo.stationvo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import client.vo.ordervo.OrderVO;
 
-public class ArriveReceiptVO implements Serializable{
+public class ArriveReceiptVO {
 
 	String id;
 	String date;
