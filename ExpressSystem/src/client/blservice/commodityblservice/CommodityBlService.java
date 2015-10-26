@@ -10,14 +10,11 @@ import client.vo.commodityvo.ExitReceiptVO;
 import client.vo.stationvo.*;
 
 public interface CommodityBlService {
-
-	public void remindEnter(ArriveReceiptVO vo);
-	public void remindExit(TransferReceiptVO vo);
 	
 	//入库管理部分
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList();
 	public EnterReceiptVO showEnterReceipt(ArriveReceiptVO vo);
-	public ResultMessage editEnterReceipt(EnterReceiptVO vo, String orderID, String location);
+	public ResultMessage editEnterReceipt(EnterReceiptVO vo, String orderID);
 	public void subEnterReceipt(EnterReceiptVO vo);
 	
 	//出库管理部分
