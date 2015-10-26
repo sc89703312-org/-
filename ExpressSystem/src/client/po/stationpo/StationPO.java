@@ -17,7 +17,6 @@ public class StationPO implements Serializable{
 	ArrayList<TransferReceiptPO> transfer_list;
 	
 	public StationPO(String id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 		

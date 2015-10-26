@@ -1,9 +1,15 @@
 package client.po.commoditypo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExitReceiptPO {
+public class ExitReceiptPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	String id;
 	String location;
 	String date;

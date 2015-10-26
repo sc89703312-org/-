@@ -1,9 +1,15 @@
 package client.po.commoditypo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ComInfoPO {
+public class ComInfoPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	String comID;
 	String location;
 	ArrayList<ComGoodsPO> goods_list;

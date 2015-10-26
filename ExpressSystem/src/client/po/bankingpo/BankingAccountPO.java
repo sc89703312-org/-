@@ -1,7 +1,14 @@
 package client.po.bankingpo;
 
-public class BankingAccountPO {
+import java.io.Serializable;
 
+public class BankingAccountPO  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	String name;
 	int money;
 	

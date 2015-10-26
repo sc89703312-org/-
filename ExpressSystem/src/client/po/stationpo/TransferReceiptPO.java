@@ -1,10 +1,16 @@
 package client.po.stationpo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import client.po.orderpo.OrderPO;
 
-public class TransferReceiptPO {
+public class TransferReceiptPO implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	String id;
 	String date;
