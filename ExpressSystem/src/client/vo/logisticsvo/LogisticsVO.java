@@ -10,9 +10,14 @@ public class LogisticsVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String currentLoca;
+	private String currentLoca;
 	
-	List<String> history;
+	private List<String> history;
+	
+	public LogisticsVO(String currentLocation,List<String> history){
+		this.currentLoca=currentLocation;
+		this.history=history;
+	}
 	
 	public String getCurrentLoca(){
 		return this.currentLoca;
