@@ -4,6 +4,7 @@ import java.util.List;
 
 import client.po.ReceiptPOBase;
 import client.po.ReceiptState;
+import client.vo.ReceiptVOBase;
 import client.vo.ordervo.OrderVO;
 
 public class TransferReceiptPO extends ReceiptPOBase{
@@ -58,7 +59,7 @@ public class TransferReceiptPO extends ReceiptPOBase{
 		return guard;
 	}
 	
-	public List<String> getOrderlist(){
+	public List<OrderVO> getOrderlist(){
 		return orderlist;
 	}
 }

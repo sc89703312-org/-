@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.commodityblservice.CommodityBlService;
-import client.po.orderpo.ArrivalState;
-import client.po.orderpo.Etype;
 import client.vo.commodityvo.ComGoodsVO;
 import client.vo.commodityvo.ComZoneVO;
 import client.vo.commodityvo.EnterReceiptVO;
 import client.vo.commodityvo.ExitReceiptVO;
 import client.vo.stationvo.ArriveReceiptVO;
 import client.vo.stationvo.TransferReceiptVO;
+import client.vo.ordervo.ArrivalState;
+import client.vo.ordervo.Etype;
 import client.vo.ordervo.OrderVO;
 
 public class CommodityBlService_Stub implements CommodityBlService{

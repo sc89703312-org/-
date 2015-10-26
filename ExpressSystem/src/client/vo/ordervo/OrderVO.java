@@ -2,8 +2,6 @@ package client.vo.ordervo;
 
 import java.io.Serializable;
 
-import client.po.orderpo.ArrivalState;
-import client.po.orderpo.Etype;
 
 
 
@@ -64,8 +62,8 @@ public class OrderVO implements Serializable{
 		this.currentSpot=currentSpot;
 	}
 	
-	public void setArrivalState(ArrivalState arrivalState){
-		this.arrivalState=arrivalState;
+	public void setArrivalState(ArrivalState yes){
+		this.arrivalState=yes;
 	}
 
 	public String getSenderName(){

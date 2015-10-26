@@ -4,12 +4,23 @@ import client.po.ReceiptState;
 
 public abstract class ReceiptVOBase {
 
-	ReceiptState state = ReceiptState.SUBMITTED;
-	
+	protected ReceiptState state = ReceiptState.SUBMITTED;
+	protected String id;
+	protected String date;
 	
 	public ReceiptState getState(){
 		return state ;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+
 	
 	
 }
