@@ -4,10 +4,15 @@ import java.awt.List;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import client.businesslogic.vehiclebl.CarControl;
+import client.businesslogic.vehiclebl.Vehiclebl;
 import client.po.carpo.Carpo;
+import client.po.driverpo.Driverpo;
 import client.po.paymentpo.Paymentpo;
 import client.presentation.payment.PaymentPanel;
 import client.presentation.payment.paymentui;
+import client.vo.carvo.Carvo;
+import client.vo.drivervo.Drivervo;
 import client.vo.paymentvo.Paymentvo;
 
 public class client {
@@ -16,6 +21,18 @@ public class client {
 		RMIHelper.init();
 		System.out.println("Client creates!");
 		
+
+		
+		
+//		try {
+//			RMIHelper.getVehicleDataService().insertDri(new Driverpo(025000001, "XiaoLiu",
+//															 "1996/1/3", "321283",
+//															 "89703312", "025000",
+//															 true, "2016/1/2"));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 //  	try {
@@ -48,8 +65,8 @@ public class client {
 //		}
 //	paymentui ui = new paymentui();
 	
-		
-		try {
+//		
+//		try {
 //			RMIHelper.getVehicleDataService().findCar(02500020);
 			
 //			RMIHelper.getVehicleDataService().deleteCar(RMIHelper.getVehicleDataService().findCar(02500021));
@@ -58,12 +75,12 @@ public class client {
 //            "Su-A 0523", "base-1", 
 //            "2016/1/3", 1));
 			
-			RMIHelper.getVehicleDataService().deleteCar(02500021);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			System.out.println("error");
-			e.printStackTrace();
-		}
+//			RMIHelper.getVehicleDataService().findCar(02500021);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("error");
+//			e.printStackTrace();
+//		}
 		
 	}
 }

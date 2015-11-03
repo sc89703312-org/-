@@ -44,7 +44,8 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 	@Override
 	public void updateCar(int number, Carpo po) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("prepares to update");
+		vehicleDao.updateCar(number, po);
 	}
 
 	@Override
@@ -58,20 +59,22 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 	public void insertDri(Driverpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		
-		
+		System.out.println("Prepares to insert a po");
 		vehicleDao.insertDri(po);
 	}
 
 	@Override
-	public void deleteDri(Driverpo po) throws RemoteException {
+	public void deleteDri(int id) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("prepares to delete a po");
+		vehicleDao.deleteDri(id);
 	}
 
 	@Override
 	public void updateDri(int number, Driverpo po) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("prepares to update");
+		vehicleDao.updateDri(number, po);
 	}
 
 	@Override

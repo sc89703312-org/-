@@ -15,7 +15,7 @@ public interface VehicleDao {
 	public Carpo findCar(int id) ;
 	
 	public void insertDri(Driverpo po) ;
-	public void deleteDri(Driverpo po) ;
+	public void deleteDri(int id) ;
 	public void updateDri(int number ,Driverpo po) ;
 	public Driverpo findDri(int id) ;
 	

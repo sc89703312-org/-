@@ -35,10 +35,7 @@ public class VehicleFileDao implements VehicleDao {
 	@Override
 	public void insertCar(Carpo po) {
 		// TODO Auto-generated method stub
-		
-//		cars.add(po);
-		
-		
+	
 		try {
 			ObjectOutputStream os;
 			File file = new File("vehicle.txt");
@@ -94,7 +91,9 @@ public class VehicleFileDao implements VehicleDao {
 	@Override
 	public void updateCar(int number, Carpo po) {
 		// TODO Auto-generated method stub
-		
+		   
+		deleteCar(number);
+		insertCar(po);
 	}
 
 	@Override
@@ -122,7 +121,7 @@ public class VehicleFileDao implements VehicleDao {
 	public void insertDri(Driverpo po) {
 		// TODO Auto-generated method stub
 		
-	drivers.add(po);
+	
 		
 		
 		try {
@@ -147,28 +146,58 @@ public class VehicleFileDao implements VehicleDao {
 	}
 
 	@Override
-	public void deleteDri(Driverpo po) {
+	public void deleteDri(int id) {
 		// TODO Auto-generated method stub
+		getAllDrivers();
 		
+		   
+		   System.out.println("Before delete " +drivers.size());
+			for(int i=0;i<drivers.size();i++){
+				
+				if(drivers.get(i).getId()==id){
+					drivers.remove(i);
+					break;
+			}
+			}
+		
+			System.out.println("After delete "+drivers.size());
+			
+	      try {
+			File f = new File("driver.txt");
+			FileWriter fw =  new FileWriter(f);
+			fw.write("");
+			fw.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	      for(int q=0;q<drivers.size();q++){
+	    	  insertDri(drivers.get(q));
+	      }
 	}
 
 	@Override
 	public void updateDri(int number, Driverpo po) {
 		// TODO Auto-generated method stub
-		
+		deleteDri(number);
+		insertDri(po);
 	}
 
 	@Override
 	public Driverpo findDri(int id) {
 		// TODO Auto-generated method stub
 		
+		
+       getAllDrivers();
+		
 		for(int i=0;i<drivers.size();i++){
+			
 			if(drivers.get(i).getId()==id){
-				System.out.println("find it !");
+				System.out.println("Find");
 				return drivers.get(i);
 		}
 		}
-		System.out.println("Can't find");
+		System.out.println("Miss");
 		return null;
 	}
 
@@ -230,6 +259,32 @@ public class VehicleFileDao implements VehicleDao {
 	@Override
 	public ArrayList<Driverpo> getAllDrivers() {
 		// TODO Auto-generated method stub
-		return null;
+		drivers.clear();
+		ObjectInputStream is = null;
+		File file = new File("driver.txt");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+				return drivers;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			is = new ObjectInputStream(new FileInputStream(file));
+			while (true) {
+				Driverpo temp = (Driverpo) is.readObject();
+				drivers.add(temp);
+			}
+		} catch (Exception ex) {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return drivers;
 	}
 }

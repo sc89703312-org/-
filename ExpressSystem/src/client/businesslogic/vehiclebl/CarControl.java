@@ -25,7 +25,16 @@ public class CarControl implements CarControlService{
 	public ResultMessage addCar(Carvo vo) {
 		// TODO Auto-generated method stub
 		try {
-			vehicledataservice.insertCar(convertVO(vo));
+			if(vehicledataservice.findCar(vo.getId())!=null){
+				System.out.println("Sorry the id of car has been exsited");
+				return ResultMessage.INVALID;
+			}else {
+				System.out.println("The id is valid");
+				vehicledataservice.insertCar(convertVO(vo));
+			}
+			  
+			
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,6 +50,7 @@ public class CarControl implements CarControlService{
 		
 		try {
 			if(vehicledataservice.findCar(id)!=null){
+				System.out.println("The id of car exsits");
 				vehicledataservice.deleteCar(id);
 			}else {
 				System.out.println("The id of car doesn't exsit");
@@ -57,7 +67,21 @@ public class CarControl implements CarControlService{
 	@Override
 	public ResultMessage modifyCar(int id, Carvo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			if(vehicledataservice.findCar(id)!=null){
+				vehicledataservice.updateCar(id, convertVO(vo));
+			}else {
+				System.out.println("The id doesn't exsit");
+				return ResultMessage.INVALID;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ResultMessage.VALID;
 	}
 
 	@Override
@@ -67,9 +91,9 @@ public class CarControl implements CarControlService{
 		Carvo tempCarvo = null;
 		
 		try {
-			if(vehicledataservice.findCar(id)!=null)
-				tempCarvo = convertPO(vehicledataservice.findCar(id));
-			else {
+			if(vehicledataservice.findCar(id)!=null){
+				tempCarvo = convertPO(vehicledataservice.findCar(id));			
+			}else {
 				System.out.println("The id of car doesn't exsit");
 				return null;
 			}
@@ -84,7 +108,7 @@ public class CarControl implements CarControlService{
 	@Override
 	public void endCar() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("End the car control");
 	}
 	
 	

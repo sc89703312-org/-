@@ -17,7 +17,7 @@ public interface vehicledataservice extends Remote {
 	public Carpo findCar(int id) throws RemoteException;
 	
 	public void insertDri(Driverpo po) throws RemoteException;
-	public void deleteDri(Driverpo po) throws RemoteException;
+	public void deleteDri(int id) throws RemoteException;
 	public void updateDri(int number ,Driverpo po) throws RemoteException;
 	public Driverpo findDri(int id) throws RemoteException;
 	
