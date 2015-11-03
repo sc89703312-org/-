@@ -12,7 +12,7 @@ public interface vehicledataservice extends Remote {
 	
 	
 	public void insertCar(Carpo po) throws RemoteException;
-	public void deleteCar(Carpo po) throws RemoteException;
+	public void deleteCar(int id) throws RemoteException;
 	public void updateCar(int number,Carpo po) throws RemoteException;
 	public Carpo findCar(int id) throws RemoteException;
 	

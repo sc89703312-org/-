@@ -67,6 +67,26 @@ public class paymentbl implements Paymentblservice {
 		
 	}
 
+	@Override
+	public ArrayList<Paymentvo> viewAll() {
+		// TODO Auto-generated method stub
+		
+		try {
+			 tempArrayList=paymentDataService.getAll();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<tempArrayList.size();i++){
+			tempVoList.add(convertPO(tempArrayList.get(i)));
+		}
+		
+		
+		
+		return tempVoList;
+	}
+	
 	
 	
 	
@@ -89,23 +109,5 @@ public class paymentbl implements Paymentblservice {
 
 
 
-	@Override
-	public ArrayList<Paymentvo> viewAll() {
-		// TODO Auto-generated method stub
-		
-		try {
-			 tempArrayList=paymentDataService.getAll();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i=0;i<tempArrayList.size();i++){
-			tempVoList.add(convertPO(tempArrayList.get(i)));
-		}
-		
-		
-		
-		return tempVoList;
-	}
+	
 }

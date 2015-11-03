@@ -53,6 +53,13 @@ public class PaymentFileDao implements PaymentDao {
 	public void delete(Paymentpo po) {
 		// TODO Auto-generated method stub
 		
+		list.remove(po);
+		ArrayList<Paymentpo> tempList = list;
+		list.clear();
+		
+		for(int i=0;i<tempList.size();i++)
+			insert(tempList.get(i));
+		
 	}
 
 	@Override

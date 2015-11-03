@@ -46,7 +46,24 @@ public class client {
 //			// TODO Auto-generated catch block
 //		e.printStackTrace();
 //		}
-	paymentui ui = new paymentui();
+//	paymentui ui = new paymentui();
 	
+		
+		try {
+//			RMIHelper.getVehicleDataService().findCar(02500020);
+			
+//			RMIHelper.getVehicleDataService().deleteCar(RMIHelper.getVehicleDataService().findCar(02500021));
+			
+//		RMIHelper.getVehicleDataService().insertCar(new Carpo(02500022, "motor-1",
+//            "Su-A 0523", "base-1", 
+//            "2016/1/3", 1));
+			
+			RMIHelper.getVehicleDataService().deleteCar(02500021);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error");
+			e.printStackTrace();
+		}
+		
 	}
 }

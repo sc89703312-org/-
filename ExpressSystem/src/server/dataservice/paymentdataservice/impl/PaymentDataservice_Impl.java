@@ -40,6 +40,7 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	@Override
 	public void delete(Paymentpo po) throws RemoteException {
 		// TODO Auto-generated method stub
+		paymentDao.delete(po);
 		System.out.println("A po has been deleted");
 	}
 

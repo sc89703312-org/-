@@ -1,6 +1,8 @@
 package server.data.vehicledata;
 
 
+import java.util.ArrayList;
+
 import client.po.carpo.Carpo;
 import client.po.driverpo.Driverpo;
 
@@ -8,7 +10,7 @@ import client.po.driverpo.Driverpo;
 public interface VehicleDao {
 
 	public void insertCar(Carpo po) ;
-	public void deleteCar(Carpo po) ;
+	public void deleteCar(int id) ;
 	public void updateCar(int number,Carpo po) ;
 	public Carpo findCar(int id) ;
 	
@@ -17,5 +19,8 @@ public interface VehicleDao {
 	public void updateDri(int number ,Driverpo po) ;
 	public Driverpo findDri(int id) ;
 	
+
+	public ArrayList<Carpo> getAllCars();
+	public ArrayList<Driverpo> getAllDrivers();
 	
 }
