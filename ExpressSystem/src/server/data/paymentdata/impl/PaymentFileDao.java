@@ -27,7 +27,7 @@ public class PaymentFileDao implements PaymentDao {
 	@Override
 	public void insert(Paymentpo po) {
 		// TODO Auto-generated method stub
-		list.add(po);
+//		list.add(po);
 		
 		
 		try {
@@ -52,15 +52,7 @@ public class PaymentFileDao implements PaymentDao {
 	@Override
 	public void delete(Paymentpo po) {
 		// TODO Auto-generated method stub
-		
-		list.remove(po);
-		ArrayList<Paymentpo> tempList = list;
-		list.clear();
-		
-		for(int i=0;i<tempList.size();i++)
-			insert(tempList.get(i));
-		
-	}
+		}
 
 	@Override
 	public void update(Paymentpo po) {
@@ -86,13 +78,30 @@ public class PaymentFileDao implements PaymentDao {
 	@Override
 	public ArrayList<Paymentpo> viewByHall(String number) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<Paymentpo> tempList = new ArrayList<Paymentpo>();
+		getAll();
+		
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getCourier_id().substring(0, 6).equals(number))
+				tempList.add(list.get(i));
+		}
+		
+		return tempList;
 	}
 
 	@Override
 	public ArrayList<Paymentpo> viewByDate(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Paymentpo> tempList = new ArrayList<Paymentpo>();
+		getAll();
+		
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getDate().equals(date))
+				tempList.add(list.get(i));
+		}
+		
+		return tempList;
 	}
 
 	
@@ -125,8 +134,6 @@ public class PaymentFileDao implements PaymentDao {
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("All the list is :"+list.size());
 		
 		return list;
 	}

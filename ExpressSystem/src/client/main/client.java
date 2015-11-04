@@ -21,8 +21,28 @@ public class client {
 		RMIHelper.init();
 		System.out.println("Client creates!");
 		
-
 		
+//		try {
+//			
+//			ArrayList<Paymentpo> temp =RMIHelper.getPaymentDataService().viewByDate("2014/1/3");
+//		
+//			for(int i=0;i<temp.size();i++){
+//				System.out.println(temp.get(i).getId());
+//			}
+//		
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+
+//		try {
+//			System.out.println(RMIHelper.getPaymentDataService().find("0000000001").getCourier_id().substring(0, 6));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 		
 //		try {
 //			RMIHelper.getVehicleDataService().insertDri(new Driverpo(025000001, "XiaoLiu",

@@ -16,7 +16,7 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	String courier_id;
 	String order_id;
 	String bankaccount;
-	
+	String hall_id;
 	
 	String id ;
 	
@@ -30,7 +30,7 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	bankaccount = b;
 	//to define the id of payment  which composites of date and the id of order
 	id = date+" "+order_id;
-	
+	hall_id = courier_id.substring(0, 6);
 	}
 	
 	@Override
@@ -63,5 +63,10 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	@Override
 	public String getId(){
 		return id;
+	}
+	
+	public String getHall_Id()
+	{
+		return hall_id;
 	}
 }
