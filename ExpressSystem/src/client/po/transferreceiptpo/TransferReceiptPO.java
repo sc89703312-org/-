@@ -4,8 +4,8 @@ import java.util.List;
 
 import client.po.ReceiptPOBase;
 import client.po.ReceiptState;
+import client.po.orderpo.OrderPO;
 import client.vo.ReceiptVOBase;
-import client.vo.ordervo.OrderVO;
 
 public class TransferReceiptPO extends ReceiptPOBase{
 
@@ -19,10 +19,10 @@ public class TransferReceiptPO extends ReceiptPOBase{
 	private String carID;
 	private String supervisor;
 	private String guard;
-	private List<OrderVO> orderlist;
+	private List<OrderPO> orderlist;
 	
 	public TransferReceiptPO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
-			String supervisor,String guard,List<OrderVO> list){
+			String supervisor,String guard){
 		
 		this.date=date;
 		this.state=state;
@@ -32,7 +32,6 @@ public class TransferReceiptPO extends ReceiptPOBase{
 		this.carID=carID;
 		this.supervisor=supervisor;
 		this.guard=guard;
-		this.orderlist=list;
 	}
 	
 	public String getHallID(){
@@ -59,7 +58,11 @@ public class TransferReceiptPO extends ReceiptPOBase{
 		return guard;
 	}
 	
-	public List<OrderVO> getOrderlist(){
+	public List<OrderPO> getOrderlist(){
 		return orderlist;
+	}
+	
+	public void addOrderItem(OrderPO po){
+		orderlist.add(po);
 	}
 }

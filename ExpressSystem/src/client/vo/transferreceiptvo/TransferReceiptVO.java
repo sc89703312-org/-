@@ -21,7 +21,7 @@ public class TransferReceiptVO extends ReceiptVOBase{
 	private List<OrderVO> orderlist;
 	
 	public TransferReceiptVO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
-			String supervisor,String guard,List<OrderVO> list){
+			String supervisor,String guard){
 		
 		this.date=date;
 		this.state=state;
@@ -31,7 +31,6 @@ public class TransferReceiptVO extends ReceiptVOBase{
 		this.carID=carID;
 		this.supervisor=supervisor;
 		this.guard=guard;
-		this.orderlist=list;
 	}
 	
 	public String getHallID(){
@@ -60,5 +59,9 @@ public class TransferReceiptVO extends ReceiptVOBase{
 	
 	public List<OrderVO> getOrderlist(){
 		return orderlist;
+	}
+	
+	public void addOrderItem(OrderVO vo){
+		orderlist.add(vo);
 	}
 }

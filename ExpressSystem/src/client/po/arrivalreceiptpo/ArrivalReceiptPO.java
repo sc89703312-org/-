@@ -1,8 +1,11 @@
 package client.po.arrivalreceiptpo;
 
+import java.util.List;
+
 import client.po.GoodsState;
 import client.po.ReceiptPOBase;
 import client.po.ReceiptState;
+import client.po.orderpo.OrderPO;
 
 public class ArrivalReceiptPO extends ReceiptPOBase{
 
@@ -14,6 +17,7 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 //	protected String date;
 	private String from;
 	private GoodsState goodsState;
+	private List<OrderPO> orderList;
 	
 	public ArrivalReceiptPO(String id, String date, String from, GoodsState gstate,ReceiptState state){
 		this.id=id;
@@ -31,6 +35,10 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 	
 	public GoodsState getGoodsState(){
 		return goodsState;
+	}
+	
+	public void addOrderItem(OrderPO po){
+		orderList.add(po);
 	}
 
 }

@@ -1,8 +1,11 @@
 package client.vo.arrivalreceiptvo;
 
+import java.util.List;
+
 import client.po.GoodsState;
 import client.po.ReceiptState;
 import client.vo.ReceiptVOBase;
+import client.vo.ordervo.OrderVO;
 
 public class ArrivalReceiptVO extends ReceiptVOBase{
 
@@ -15,6 +18,7 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 	 */
 	private String from;
 	private GoodsState goodsState;
+	private List<OrderVO> list;
 	
 	public ArrivalReceiptVO(String id, String date, String from, GoodsState gstate,ReceiptState state){
 		this.id=id;
@@ -32,6 +36,10 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 	
 	public GoodsState getGoodsState(){
 		return goodsState;
+	}
+	
+	public void addOrderItem(OrderVO vo){
+		list.add(vo);
 	}
 
 }
