@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,7 +20,7 @@ public class PaymentFileDao implements PaymentDao {
 	
 	public PaymentFileDao() {
 		// TODO Auto-generated constructor stub
-	   list = new ArrayList<Paymentpo>();
+	   list = getAll();
 	}
 	
 	
@@ -27,31 +28,32 @@ public class PaymentFileDao implements PaymentDao {
 	@Override
 	public void insert(Paymentpo po) {
 		// TODO Auto-generated method stub
-//		list.add(po);
+		list.add(po);
 		
 		
-		try {
-			ObjectOutputStream os;
-			File file = new File("payment.txt");
-			FileOutputStream fos = new FileOutputStream(file, true);
-			if (file.length() < 1) {
-				os = new ObjectOutputStream(fos);
-			} else {
-				os = new MyObjectOutputStream(fos);
-			}
-			os.writeObject(po);
-			os.flush();
-			os.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			ObjectOutputStream os;
+//			File file = new File("payment.txt");
+//			FileOutputStream fos = new FileOutputStream(file, true);
+//			if (file.length() < 1) {
+//				os = new ObjectOutputStream(fos);
+//			} else {
+//				os = new MyObjectOutputStream(fos);
+//			}
+//			os.writeObject(po);
+//			os.flush();
+//			os.close();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
 	public void delete(Paymentpo po) {
 		// TODO Auto-generated method stub
+		list.remove(po);
 		}
 
 	@Override
@@ -63,11 +65,11 @@ public class PaymentFileDao implements PaymentDao {
 	@Override
 	public Paymentpo find(String id) {
 		// TODO Auto-generated method stub
-		ArrayList<Paymentpo> templist = getAll();
 		
-		for(int i=0;i<templist.size();i++){
-			if(templist.get(i).getId().equals(id))
-				return templist.get(i);
+		
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getId().equals(id))
+				return list.get(i);
 		}
 		
 		
@@ -139,7 +141,40 @@ public class PaymentFileDao implements PaymentDao {
 	}
 	
 	
-	
+	public void flush(){
+		 try {
+				File f = new File("payment.txt");
+				FileWriter fw =  new FileWriter(f);
+				fw.write("");
+				fw.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		 
+		 
+		 for(int i=0;i<list.size();i++){
+		 try {
+			 
+			 Paymentpo po = list.get(i);
+			 
+				ObjectOutputStream os;
+				File file = new File("payment.txt");
+				FileOutputStream fos = new FileOutputStream(file, true);
+				if (file.length() < 1) {
+					os = new ObjectOutputStream(fos);
+				} else {
+					os = new MyObjectOutputStream(fos);
+				}
+				os.writeObject(po);
+				os.flush();
+				os.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		 }
+	}
 	
 	
 	public class MyObjectOutputStream extends ObjectOutputStream {
