@@ -18,15 +18,15 @@ import server.data.vehicledata.VehicleDao;
 
 public class VehicleFileDao implements VehicleDao {
 
-	ArrayList<Carpo> cars ;
-	ArrayList<Driverpo> drivers;
+	ArrayList<Carpo> cars  = new ArrayList<Carpo>();
+	ArrayList<Driverpo> drivers = new ArrayList<Driverpo>();
 	
 	
 	public VehicleFileDao() {
 		// TODO Auto-generated constructor stub
 	
-	cars = new ArrayList<Carpo>();
-	drivers = new ArrayList<Driverpo>();
+	cars = getAllCars();
+	drivers = getAllDrivers();
 
 	}
 	
@@ -34,35 +34,16 @@ public class VehicleFileDao implements VehicleDao {
 	
 	@Override
 	public void insertCar(Carpo po) {
-		// TODO Auto-generated method stub
-	
-		try {
-			ObjectOutputStream os;
-			File file = new File("vehicle.txt");
-			FileOutputStream fos = new FileOutputStream(file, true);
-			if (file.length() < 1) {
-				os = new ObjectOutputStream(fos);
-			} else {
-				os = new MyObjectOutputStream(fos);
-			}
-			os.writeObject(po);
-			os.flush();
-			os.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		// TODO Auto-generated method stub	
+		cars.add(po);
 	}
 
+	
 	@Override
 	public void deleteCar(int id) {
 		// TODO Auto-generated method stub
-	   getAllCars();
-		
-	   
-	   System.out.println("Before delete " +cars.size());
+
+		System.out.println("Before delete " +cars.size());
 		for(int i=0;i<cars.size();i++){
 			
 			if(cars.get(i).getId()==id){
@@ -72,20 +53,6 @@ public class VehicleFileDao implements VehicleDao {
 		}
 	
 		System.out.println("After delete "+cars.size());
-		
-      try {
-		File f = new File("vehicle.txt");
-		FileWriter fw =  new FileWriter(f);
-		fw.write("");
-		fw.close();
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-	
-      for(int q=0;q<cars.size();q++){
-    	  insertCar(cars.get(q));
-      }
-	
 	}
 
 	@Override
@@ -96,10 +63,12 @@ public class VehicleFileDao implements VehicleDao {
 		insertCar(po);
 	}
 
+	
+	
 	@Override
 	public Carpo findCar(int id) {
 		// TODO Auto-generated method stub
-		getAllCars();
+
 		
 		for(int i=0;i<cars.size();i++){
 			
@@ -120,40 +89,18 @@ public class VehicleFileDao implements VehicleDao {
 	@Override
 	public void insertDri(Driverpo po) {
 		// TODO Auto-generated method stub
-		
-	
-		
-		
-		try {
-			ObjectOutputStream os;
-			File file = new File("driver.txt");
-			FileOutputStream fos = new FileOutputStream(file, true);
-			if (file.length() < 1) {
-				os = new ObjectOutputStream(fos);
-			} else {
-				os = new MyObjectOutputStream(fos);
-			}
-			os.writeObject(po);
-			os.flush();
-			os.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
+    	drivers.add(po);  
 	}
 
+	
+	
 	@Override
 	public void deleteDri(int id) {
 		// TODO Auto-generated method stub
-		getAllDrivers();
 		
 		   
 		   System.out.println("Before delete " +drivers.size());
-			for(int i=0;i<drivers.size();i++){
-				
+			for(int i=0;i<drivers.size();i++){				
 				if(drivers.get(i).getId()==id){
 					drivers.remove(i);
 					break;
@@ -162,18 +109,7 @@ public class VehicleFileDao implements VehicleDao {
 		
 			System.out.println("After delete "+drivers.size());
 			
-	      try {
-			File f = new File("driver.txt");
-			FileWriter fw =  new FileWriter(f);
-			fw.write("");
-			fw.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	      for(int q=0;q<drivers.size();q++){
-	    	  insertDri(drivers.get(q));
-	      }
+	     
 	}
 
 	@Override
@@ -186,9 +122,7 @@ public class VehicleFileDao implements VehicleDao {
 	@Override
 	public Driverpo findDri(int id) {
 		// TODO Auto-generated method stub
-		
-		
-       getAllDrivers();
+ 
 		
 		for(int i=0;i<drivers.size();i++){
 			
@@ -286,5 +220,88 @@ public class VehicleFileDao implements VehicleDao {
 		
 		
 		return drivers;
+	}
+
+
+
+	@Override
+	public void flushCars() {
+		// TODO Auto-generated method stub
+		
+		 try {
+				File f = new File("vehicle.txt");
+				FileWriter fw =  new FileWriter(f);
+				fw.write("");
+				fw.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		
+		
+		
+		for(int i=0;i<cars.size();i++){
+			try {
+				
+				
+				Carpo po = cars.get(i);
+				
+				ObjectOutputStream os;
+				File file = new File("vehicle.txt");
+				FileOutputStream fos = new FileOutputStream(file, true);
+				if (file.length() < 1) {
+					os = new ObjectOutputStream(fos);
+				} else {
+					os = new MyObjectOutputStream(fos);
+				}
+				os.writeObject(po);
+				os.flush();
+				os.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+
+
+	@Override
+	public void flushDrivers() {
+		// TODO Auto-generated method stub
+		
+		 try {
+				File f = new File("driver.txt");
+				FileWriter fw =  new FileWriter(f);
+				fw.write("");
+				fw.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		
+		for(int i=0;i<drivers.size();i++){
+			Driverpo po = drivers.get(i);
+			
+			try {
+			ObjectOutputStream os;
+			File file = new File("driver.txt");
+			FileOutputStream fos = new FileOutputStream(file, true);
+			if (file.length() < 1) {
+				os = new ObjectOutputStream(fos);
+			} else {
+				os = new MyObjectOutputStream(fos);
+			}
+			os.writeObject(po);
+			os.flush();
+			os.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
+		
+		
 	}
 }

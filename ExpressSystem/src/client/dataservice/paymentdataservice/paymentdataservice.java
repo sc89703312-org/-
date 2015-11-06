@@ -10,7 +10,7 @@ import client.po.paymentpo.Paymentpo;
 public interface Paymentdataservice extends Remote{
 
 	public void insert(Paymentpo po) throws RemoteException;
-	public void delete(Paymentpo po) throws RemoteException;
+	public void delete(String id) throws RemoteException;
 	public void update(Paymentpo po) throws RemoteException;
 	public Paymentpo find(String id) throws RemoteException;
 	
@@ -20,4 +20,6 @@ public interface Paymentdataservice extends Remote{
 	
 	public ArrayList<Paymentpo> getAll() throws RemoteException;
 	
+	
+	public void flush() throws RemoteException;
 }

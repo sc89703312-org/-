@@ -23,4 +23,8 @@ public interface VehicleDao {
 	public ArrayList<Carpo> getAllCars();
 	public ArrayList<Driverpo> getAllDrivers();
 	
+	
+	public void flushCars();
+	
+	public void flushDrivers();
 }

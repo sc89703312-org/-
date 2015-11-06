@@ -22,6 +22,17 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+
+		
+		
+//		try {
+//			RMIHelper.getPaymentDataService().delete("2014/9/11 1234567890");
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
 //		try {
 //			
 //			ArrayList<Paymentpo> temp =RMIHelper.getPaymentDataService().viewByDate("2014/1/3");

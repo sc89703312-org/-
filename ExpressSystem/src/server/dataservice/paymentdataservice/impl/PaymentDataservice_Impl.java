@@ -38,9 +38,9 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	}
 
 	@Override
-	public void delete(Paymentpo po) throws RemoteException {
+	public void delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		paymentDao.delete(po);
+		paymentDao.delete(id);
 		System.out.println("A po has been deleted");
 	}
 
@@ -76,5 +76,13 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 		System.out.println("Show all the po and the length is "+paymentDao.getAll().size());
 		return paymentDao.getAll();
 	}
+
+	@Override
+	public void flush() throws RemoteException {
+		// TODO Auto-generated method stub
+		paymentDao.flush();
+	}
+	
+	
 
 }

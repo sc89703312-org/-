@@ -84,4 +84,22 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 		return vehicleDao.findDri(id);
 	}
 
+
+
+
+	@Override
+	public void flushCars() {
+		// TODO Auto-generated method stub
+		vehicleDao.flushCars();
+	}
+
+
+
+
+	@Override
+	public void flushDrivers() {
+		// TODO Auto-generated method stub
+		vehicleDao.flushDrivers();
+	}
+
 }

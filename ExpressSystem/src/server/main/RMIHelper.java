@@ -15,13 +15,17 @@ import client.dataservice.vehicledataservice.vehicledataservice;
 
 public class RMIHelper {
 
+	
+	private static Paymentdataservice paymentdataservice;
+	private static vehicledataservice vehicledataservice;
+	
 	 public static void init() {
 	        try {
 	            LocateRegistry.createRegistry(1099);
 
-	            Paymentdataservice paymentdataservice = new PaymentDataservice_Impl();
+	             paymentdataservice = new PaymentDataservice_Impl();
 	            
-	            vehicledataservice vehicledataservice = new VehicleDataService_Impl();
+	             vehicledataservice = new VehicleDataService_Impl();
 
 	            balancedataservice balancedataservice = new BalanceDataService_Impl();
 	            
@@ -43,6 +47,17 @@ public class RMIHelper {
 
 	
 
+	 
+	 public static void end(){
+		 try {
+			paymentdataservice.flush();
+			vehicledataservice.flushCars();
+			vehicledataservice.flushDrivers();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
 
 	
 	

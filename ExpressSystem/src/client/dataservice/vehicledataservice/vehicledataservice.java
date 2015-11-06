@@ -21,5 +21,8 @@ public interface vehicledataservice extends Remote {
 	public void updateDri(int number ,Driverpo po) throws RemoteException;
 	public Driverpo findDri(int id) throws RemoteException;
 	
+	public void flushCars() throws RemoteException;
+	
+	public void flushDrivers() throws RemoteException;
 	
 }

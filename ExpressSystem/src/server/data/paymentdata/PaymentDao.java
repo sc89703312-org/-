@@ -8,7 +8,7 @@ import client.po.paymentpo.Paymentpo;
 public interface PaymentDao {
 
 	public void insert(Paymentpo po);
-	public void delete(Paymentpo po);
+	public void delete(String id);
 	public void update(Paymentpo po);
 	public Paymentpo find(String id);
 	
@@ -17,4 +17,7 @@ public interface PaymentDao {
 	
 	
 	public ArrayList<Paymentpo> getAll();
+	
+	
+	public void flush();
 }

@@ -16,7 +16,7 @@ import server.data.paymentdata.PaymentDao;
 
 public class PaymentFileDao implements PaymentDao {
 
-	ArrayList<Paymentpo> list;
+	ArrayList<Paymentpo> list = new ArrayList<Paymentpo>();
 	
 	public PaymentFileDao() {
 		// TODO Auto-generated constructor stub
@@ -29,31 +29,19 @@ public class PaymentFileDao implements PaymentDao {
 	public void insert(Paymentpo po) {
 		// TODO Auto-generated method stub
 		list.add(po);
-		
-		
-//		try {
-//			ObjectOutputStream os;
-//			File file = new File("payment.txt");
-//			FileOutputStream fos = new FileOutputStream(file, true);
-//			if (file.length() < 1) {
-//				os = new ObjectOutputStream(fos);
-//			} else {
-//				os = new MyObjectOutputStream(fos);
-//			}
-//			os.writeObject(po);
-//			os.flush();
-//			os.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	@Override
-	public void delete(Paymentpo po) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
-		list.remove(po);
+//		list.remove(po);
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getId().equals(id)){
+				System.out.println("find and delete");
+				list.remove(i);
+				break;
+		}
+		}
 		}
 
 	@Override
@@ -82,7 +70,7 @@ public class PaymentFileDao implements PaymentDao {
 		// TODO Auto-generated method stub
 		
 		ArrayList<Paymentpo> tempList = new ArrayList<Paymentpo>();
-		getAll();
+		
 		
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getCourier_id().substring(0, 6).equals(number))
@@ -96,7 +84,6 @@ public class PaymentFileDao implements PaymentDao {
 	public ArrayList<Paymentpo> viewByDate(String date) {
 		// TODO Auto-generated method stub
 		ArrayList<Paymentpo> tempList = new ArrayList<Paymentpo>();
-		getAll();
 		
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getDate().equals(date))
@@ -140,7 +127,7 @@ public class PaymentFileDao implements PaymentDao {
 		return list;
 	}
 	
-	
+	@Override
 	public void flush(){
 		 try {
 				File f = new File("payment.txt");
