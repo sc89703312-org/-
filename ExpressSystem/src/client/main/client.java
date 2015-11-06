@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import client.businesslogic.vehiclebl.CarControl;
 import client.businesslogic.vehiclebl.Vehiclebl;
+import client.po.balancepo.Balancepo;
 import client.po.carpo.Carpo;
 import client.po.driverpo.Driverpo;
 import client.po.paymentpo.Paymentpo;
@@ -21,8 +22,13 @@ public class client {
 		RMIHelper.init();
 		System.out.println("Client creates!");
 		
-		
-
+	
+		try {
+			RMIHelper.getBalanceDataService().delete("2015/11/5");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 //		try {

@@ -18,6 +18,7 @@ public class RMIHelper {
 	
 	private static Paymentdataservice paymentdataservice;
 	private static vehicledataservice vehicledataservice;
+	private static balancedataservice balancedataservice;
 	
 	 public static void init() {
 	        try {
@@ -27,7 +28,7 @@ public class RMIHelper {
 	            
 	             vehicledataservice = new VehicleDataService_Impl();
 
-	            balancedataservice balancedataservice = new BalanceDataService_Impl();
+	             balancedataservice = new BalanceDataService_Impl();
 	            
 	            
 	            Naming.rebind("payment-service",paymentdataservice);
@@ -53,6 +54,7 @@ public class RMIHelper {
 			paymentdataservice.flush();
 			vehicledataservice.flushCars();
 			vehicledataservice.flushDrivers();
+			balancedataservice.flush();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

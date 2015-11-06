@@ -13,10 +13,11 @@ public interface balancedataservice extends Remote {
 	
 	public ArrayList<Balancepo > find(String date) throws RemoteException;
 	
-	public void delete(Balancepo po) throws RemoteException;
+	public void delete(String id) throws RemoteException;
 	
-	public void update(Balancepo po)throws RemoteException;
+	public void update(Balancepo po,String id)throws RemoteException;
 	
 	public ArrayList<Balancepo> getAll() throws RemoteException;
 	
+	public void flush() throws RemoteException;
 }

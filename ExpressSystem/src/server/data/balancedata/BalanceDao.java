@@ -12,9 +12,11 @@ public interface BalanceDao {
 	
 	public ArrayList<Balancepo > find(String date) ;
 	
-	public void delete(Balancepo po) ;
+	public void delete(String id) ;
 	
-	public void update(Balancepo po);
+	public void update(Balancepo po,String id);
 	
 	public ArrayList<Balancepo> getAll() ;
+	
+	public void flush();
 }

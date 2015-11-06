@@ -37,19 +37,22 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 	@Override
 	public ArrayList<Balancepo> find(String date) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Prepares to get some po");
+		return balanceDao.find(date);
 	}
 
 	@Override
-	public void delete(Balancepo po) throws RemoteException {
+	public void delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("prepares to delete a po");
+		balanceDao.delete(id);
 	}
 
 	@Override
-	public void update(Balancepo po) throws RemoteException {
+	public void update(Balancepo po,String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("prepares to update a po");
+		balanceDao.update(po, id);
 	}
 
 	@Override
@@ -57,6 +60,12 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 		// TODO Auto-generated method stub
 		System.out.println("Show All");
 		return balanceDao.getAll();
+	}
+
+	@Override
+	public void flush() throws RemoteException {
+		// TODO Auto-generated method stub
+		balanceDao.flush();
 	}
 
 }
