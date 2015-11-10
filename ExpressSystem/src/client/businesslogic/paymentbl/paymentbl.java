@@ -17,12 +17,13 @@ public class paymentbl implements Paymentblservice {
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
 	Paymentdataservice paymentDataService ;
 	private Paymentpo temp;
+	MockBanking account;
 	
-	public paymentbl() {
+	public paymentbl(MockBanking account) {
 		// TODO Auto-generated constructor stub
 	
 	paymentDataService =RMIHelper.getPaymentDataService();
-	
+	this.account = account;
 	}
 	
 	
@@ -36,12 +37,18 @@ public class paymentbl implements Paymentblservice {
 		}
 		
 		else{
-		try {
-			paymentDataService.insert(convertVO(vo));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			System.out.println("Bingo!");
+			modify((int)vo.getPay(),vo.getBankaccount());
+			
+			
+			
+			
+//		try {
+//			paymentDataService.insert(convertVO(vo));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		return ResultMessage.VALID;
 	}
@@ -109,5 +116,10 @@ public class paymentbl implements Paymentblservice {
 
 
 
+	
+	
+	public void modify(int pay,String name){
+		this.account.modify(pay,name);
+	}
 	
 }
