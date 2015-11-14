@@ -1,4 +1,4 @@
-package client.po.arrivalreceiptpo;
+package client.po.HallPo;
 
 import java.util.List;
 
