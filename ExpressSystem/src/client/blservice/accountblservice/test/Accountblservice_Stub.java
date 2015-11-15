@@ -69,4 +69,10 @@ public class Accountblservice_Stub implements Accountblservice{
 		System.out.println("Account Control ends");
 	}
 
+	@Override
+	public void createAccount() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

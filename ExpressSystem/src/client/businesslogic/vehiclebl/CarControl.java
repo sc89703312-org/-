@@ -1,6 +1,7 @@
 package client.businesslogic.vehiclebl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.vehicleblservice.CarControlService;
@@ -111,6 +112,10 @@ public class CarControl implements CarControlService{
 		System.out.println("End the car control");
 	}
 	
+	
+	public ArrayList<Carvo> getAll(){
+		return null;
+	}
 	
 	
 	

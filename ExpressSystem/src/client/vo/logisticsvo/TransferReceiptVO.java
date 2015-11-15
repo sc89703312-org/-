@@ -57,7 +57,7 @@ public class TransferReceiptVO extends ReceiptVOBase{
 		return guard;
 	}
 	
-	public List<OrderVO> getOrderlist(){
+	public ArrayList<OrderVO> getOrderlist(){
 		return orderlist;
 	}
 	
