@@ -1,10 +1,16 @@
 package client.po.userpo;
 
+import java.io.Serializable;
+
 import client.po.Role;
 import client.po.StaffChange;
 
-public class UserMessagePO {
+public class UserMessagePO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7595964527752101953L;
 	private StaffChange operation;
 	private String id;
 	private String name;
