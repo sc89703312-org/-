@@ -1,11 +1,12 @@
 package client.vo.ordervo;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 
 
 
-public class OrderVO implements Serializable{
+public class OrderVO extends Observable implements Serializable{
 
 
 	/**
@@ -63,12 +64,26 @@ public class OrderVO implements Serializable{
 		this.currentSpot=currentSpot;
 	}
 	
+	public void stateChanged(){
+		setChanged();
+		notifyObservers();
+	}
+	
+	
+	
+	public void setCurrentSpot(String spot){
+		this.currentSpot=spot;
+		stateChanged();
+	}
+	
 	public void setArrivalState(ArrivalState yes){
 		this.arrivalState=yes;
+		stateChanged();
 	}
 	
 	public void setDeliver(String name){
 		this.Deliver=name;
+		stateChanged();
 	}
 
 	public String getSenderName(){
