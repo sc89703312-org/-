@@ -11,9 +11,9 @@ public class Balanceblservice_Driver {
 	public void drive(Balanceblservice b){
 		
 		
-		ArrayList<Double> temp =b.viewBalance();
-		for(int i=0;i<temp.size();i++){
-			System.out.print(temp.get(i)+" ");
+		double[] temp =b.viewBalance();
+		for(int i=0;i<3;i++){
+			System.out.print(temp[i]+" ");
 		}
 		System.out.println();
 		System.out.println();

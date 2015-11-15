@@ -11,18 +11,18 @@ public class Balanceblservice_Stub implements Balanceblservice{
 
 	
 	@Override
-	public ArrayList<Double> viewBalance() {
+	public double[] viewBalance() {
 		// TODO Auto-generated method stub
 		
 		
-		ArrayList<Double>  temp= new ArrayList<>();
+		double[]  temp= new double[3];
 		double pay = 1000000;
 		double cost = 500000;
 		double benefit = pay - cost ;
 		
-		temp.add(pay);
-		temp.add(cost);
-		temp.add(benefit);
+		temp[0] = pay;
+		temp[1] = cost;
+		temp[2] = benefit;
 		
 		
 		

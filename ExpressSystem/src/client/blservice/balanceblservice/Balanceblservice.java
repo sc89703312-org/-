@@ -8,7 +8,7 @@ import client.vo.paymentvo.Paymentvo;
 
 public interface Balanceblservice {
 
-	public ArrayList<Double> viewBalance();
+	public double[] viewBalance();
 	public ArrayList<Paymentvo>viewReport(String start ,String end);
 	public ArrayList<Balancevo> viewCost(String start,String end);
 	

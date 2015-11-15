@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.blservice.paymentblservice.Paymentblservice;
 import client.businesslogic.paymentbl.MockBanking;
-import client.businesslogic.paymentbl.paymentbl;
+import client.businesslogic.paymentbl.Paymentbl;
 import client.vo.paymentvo.Paymentvo;
 
 public class PaymentPanel extends JPanel {
@@ -22,7 +22,7 @@ public class PaymentPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	
-	Paymentblservice paymentblservice = new paymentbl(new MockBanking());
+	Paymentblservice paymentblservice = new Paymentbl(new MockBanking());
 	
 	 private static final String[] TABLE_HEADER = new String[] {
           "Date","Pay","Courier_ID","Order_ID","Bank Account","State"};
