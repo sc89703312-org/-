@@ -1,10 +1,12 @@
-package client.businesslogic.paymentbl;
+package client.businesslogic.paymentbl.Mock_Test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import client.businesslogic.balancebl.CostControlbl;
+import client.businesslogic.balancebl.CreateCost.CostControlbl;
+import client.businesslogic.bankingbl.Bankingbl;
+import client.businesslogic.paymentbl.Paymentbl;
 import client.po.balancepo.Item;
 import client.vo.balancevo.Balancevo;
 import client.vo.paymentvo.Paymentvo;
@@ -14,7 +16,7 @@ public class ModifyMoneyTest {
 	@Test
 	
 	public void testPay(){
-		MockBanking banking =new MockBanking();
+		Bankingbl banking =new MockBanking();
 		
 		
 		Paymentbl payment = new Paymentbl(banking);

@@ -1,6 +1,8 @@
-package client.businesslogic.paymentbl;
+package client.businesslogic.paymentbl.Mock_Test;
 
-public class MockBanking {
+import client.businesslogic.bankingbl.Bankingbl;
+
+public class MockBanking extends Bankingbl {
 
 	String[] accountNames =new String[3];
 	
@@ -21,6 +23,7 @@ public class MockBanking {
 		
 		
 	}
+	
 	
 	public void modify(int modify,String name){
 		

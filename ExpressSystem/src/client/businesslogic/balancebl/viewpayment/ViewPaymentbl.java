@@ -1,4 +1,4 @@
-package client.businesslogic.balancebl;
+package client.businesslogic.balancebl.viewpayment;
 
 import java.util.ArrayList;
 

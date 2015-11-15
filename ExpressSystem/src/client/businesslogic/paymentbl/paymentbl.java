@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.paymentblservice.Paymentblservice;
+import client.businesslogic.bankingbl.Bankingbl;
 import client.dataservice.paymentdataservice.Paymentdataservice;
 import client.main.RMIHelper;
 import client.po.paymentpo.Paymentpo;
@@ -17,9 +18,9 @@ public class Paymentbl implements Paymentblservice {
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
 	Paymentdataservice paymentDataService ;
 	private Paymentpo temp;
-	MockBanking account;
+	Bankingbl account;
 	
-	public Paymentbl(MockBanking account) {
+	public Paymentbl(Bankingbl account) {
 		// TODO Auto-generated constructor stub
 	
 	paymentDataService =RMIHelper.getPaymentDataService();
@@ -38,6 +39,8 @@ public class Paymentbl implements Paymentblservice {
 		
 		else{
 			System.out.println("Bingo!");
+			
+			
 			modify((int)vo.getPay(),vo.getBankaccount());
 			
 			

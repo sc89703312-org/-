@@ -1,4 +1,4 @@
-package client.businesslogic.balancebl;
+package client.businesslogic.balancebl.CreateCost;
 
 import java.util.ArrayList;
 

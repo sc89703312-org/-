@@ -10,8 +10,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import client.blservice.paymentblservice.Paymentblservice;
-import client.businesslogic.paymentbl.MockBanking;
 import client.businesslogic.paymentbl.Paymentbl;
+import client.businesslogic.paymentbl.Mock_Test.MockBanking;
 import client.vo.paymentvo.Paymentvo;
 
 public class PaymentPanel extends JPanel {

@@ -1,11 +1,11 @@
-package client.businesslogic.balancebl;
+package client.businesslogic.balancebl.CreateCost;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.balanceblservice.CostControlService;
-import client.businesslogic.paymentbl.MockBanking;
+import client.businesslogic.paymentbl.Mock_Test.MockBanking;
 import client.dataservice.balancedataservice.balancedataservice;
 import client.main.RMIHelper;
 import client.po.balancepo.Balancepo;

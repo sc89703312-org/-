@@ -2,8 +2,8 @@ package client.businesslogic.balancebl.Mock_Test;
 
 import java.util.ArrayList;
 
-import client.businesslogic.balancebl.CostControlbl;
-import client.businesslogic.paymentbl.MockBanking;
+import client.businesslogic.balancebl.CreateCost.CostControlbl;
+import client.businesslogic.paymentbl.Mock_Test.MockBanking;
 import client.po.balancepo.Item;
 import client.vo.balancevo.Balancevo;
 
