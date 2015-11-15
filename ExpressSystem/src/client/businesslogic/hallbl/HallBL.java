@@ -2,9 +2,9 @@ package client.businesslogic.hallbl;
 
 import client.ResultMessage;
 import client.blservice.hallblservice.HallBLService;
-import client.vo.arrivalreceiptvo.ArrivalReceiptVO;
-import client.vo.deliverreceiptvo.DeliverReceiptVO;
-import client.vo.transferreceiptvo.TransferReceiptVO;
+import client.vo.logisticsvo.ArrivalReceiptVO;
+import client.vo.logisticsvo.DeliverReceiptVO;
+import client.vo.logisticsvo.TransferReceiptVO;
 
 public class HallBL implements HallBLService{
 

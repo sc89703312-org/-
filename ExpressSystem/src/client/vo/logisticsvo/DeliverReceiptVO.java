@@ -1,6 +1,6 @@
-package client.vo.deliverreceiptvo;
+package client.vo.logisticsvo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.po.ReceiptState;
 import client.vo.ReceiptVOBase;
@@ -12,7 +12,7 @@ public class DeliverReceiptVO extends ReceiptVOBase{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String deliver;
-	private List<OrderVO> list;
+	private ArrayList<OrderVO> list;
 	
 	public DeliverReceiptVO(String id,String date, String deliver, ReceiptState state){
 		this.id=id;

@@ -1,7 +1,7 @@
 package client.vo.logisticsvo;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 public class LogisticsVO implements Serializable{
 
@@ -12,9 +12,9 @@ public class LogisticsVO implements Serializable{
 	
 	private String currentLoca;
 	
-	private List<String> history;
+	private ArrayList<String> history;
 	
-	public LogisticsVO(String currentLocation,List<String> history){
+	public LogisticsVO(String currentLocation,ArrayList<String> history){
 		this.currentLoca=currentLocation;
 		this.history=history;
 	}
@@ -23,7 +23,7 @@ public class LogisticsVO implements Serializable{
 		return this.currentLoca;
 	}
 	
-	public List<String> getHistory(){
+	public ArrayList<String> getHistory(){
 		return this.history;
 	}
 }

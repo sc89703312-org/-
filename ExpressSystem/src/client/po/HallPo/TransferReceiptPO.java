@@ -1,6 +1,6 @@
 package client.po.HallPo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.po.ReceiptPOBase;
 import client.po.ReceiptState;
@@ -19,7 +19,7 @@ public class TransferReceiptPO extends ReceiptPOBase{
 	private String carID;
 	private String supervisor;
 	private String guard;
-	private List<OrderPO> orderlist;
+	private ArrayList<OrderPO> orderlist;
 	
 	public TransferReceiptPO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard){
@@ -58,7 +58,7 @@ public class TransferReceiptPO extends ReceiptPOBase{
 		return guard;
 	}
 	
-	public List<OrderPO> getOrderlist(){
+	public ArrayList<OrderPO> getOrderlist(){
 		return orderlist;
 	}
 	

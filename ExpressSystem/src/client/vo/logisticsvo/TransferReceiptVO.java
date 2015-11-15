@@ -1,6 +1,6 @@
-package client.vo.transferreceiptvo;
+package client.vo.logisticsvo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.po.ReceiptState;
 import client.vo.ReceiptVOBase;
@@ -18,7 +18,7 @@ public class TransferReceiptVO extends ReceiptVOBase{
 	private String carID;
 	private String supervisor;
 	private String guard;
-	private List<OrderVO> orderlist;
+	private ArrayList<OrderVO> orderlist;
 	
 	public TransferReceiptVO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard){

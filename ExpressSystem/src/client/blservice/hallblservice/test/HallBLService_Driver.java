@@ -6,12 +6,12 @@ import java.util.List;
 import client.blservice.hallblservice.HallBLService;
 import client.po.GoodsState;
 import client.po.ReceiptState;
-import client.vo.arrivalreceiptvo.ArrivalReceiptVO;
-import client.vo.deliverreceiptvo.DeliverReceiptVO;
+import client.vo.logisticsvo.ArrivalReceiptVO;
+import client.vo.logisticsvo.DeliverReceiptVO;
+import client.vo.logisticsvo.TransferReceiptVO;
 import client.vo.ordervo.ArrivalState;
 import client.vo.ordervo.Etype;
 import client.vo.ordervo.OrderVO;
-import client.vo.transferreceiptvo.TransferReceiptVO;
 
 public class HallBLService_Driver {
 

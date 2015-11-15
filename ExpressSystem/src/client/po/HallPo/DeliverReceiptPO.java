@@ -1,6 +1,6 @@
 package client.po.HallPo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.po.ReceiptPOBase;
 import client.po.ReceiptState;
@@ -13,7 +13,7 @@ public class DeliverReceiptPO extends ReceiptPOBase{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String deliver;
-	private List<OrderPO> list;
+	private ArrayList<OrderPO> list;
 	
 	public DeliverReceiptPO(String id,String date, String deliver, ReceiptState state){
 		this.id=id;

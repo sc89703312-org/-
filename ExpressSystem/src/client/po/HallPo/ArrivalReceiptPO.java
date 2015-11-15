@@ -1,6 +1,6 @@
 package client.po.HallPo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.po.GoodsState;
 import client.po.ReceiptPOBase;
@@ -17,7 +17,7 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 //	protected String date;
 	private String from;
 	private GoodsState goodsState;
-	private List<OrderPO> orderList;
+	private ArrayList<OrderPO> orderList;
 	
 	public ArrivalReceiptPO(String id, String date, String from, GoodsState gstate,ReceiptState state){
 		this.id=id;

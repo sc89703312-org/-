@@ -1,6 +1,6 @@
-package client.vo.arrivalreceiptvo;
+package client.vo.logisticsvo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.po.GoodsState;
 import client.po.ReceiptState;
@@ -18,7 +18,7 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 	 */
 	private String from;
 	private GoodsState goodsState;
-	private List<OrderVO> list;
+	private ArrayList<OrderVO> list;
 	
 	public ArrivalReceiptVO(String id, String date, String from, GoodsState gstate,ReceiptState state){
 		this.id=id;
