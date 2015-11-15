@@ -11,17 +11,21 @@ import client.vo.paymentvo.Paymentvo;
 public class Balancebl implements Balanceblservice{
 
 	PaymentList paymentList;
+	CostList  costList;
 	
 	
-	public Balancebl(PaymentList paymentList) {
+	public Balancebl(PaymentList paymentList,CostList costList) {
 		// TODO Auto-generated constructor stub
 	
 		
 		this.paymentList = paymentList;
 		
-		
+		this.costList = costList;
 		
 	}
+	
+	
+	
 	
 	
 	
@@ -57,9 +61,9 @@ public class Balancebl implements Balanceblservice{
 		
 		temp[0] = Caculate.caculatePay(paymentList.getList());
 		
-		temp[1] =0;
+		temp[1] = Caculate.caculateCost(costList.getList());
 		
-		temp[2] = 0;
+		temp[2] = temp[0] - temp[1];
 		
 		return temp;
 	}

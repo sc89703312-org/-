@@ -9,6 +9,7 @@ import client.businesslogic.paymentbl.MockBanking;
 import client.dataservice.balancedataservice.balancedataservice;
 import client.main.RMIHelper;
 import client.po.balancepo.Balancepo;
+import client.po.balancepo.Item;
 import client.vo.balancevo.Balancevo;
 
 public class CostControlbl implements CostControlService{
@@ -17,6 +18,8 @@ public class CostControlbl implements CostControlService{
 	
 	MockBanking account;
 	
+
+	
 	
 	public CostControlbl(MockBanking account) {
 		// TODO Auto-generated constructor stub
@@ -24,6 +27,10 @@ public class CostControlbl implements CostControlService{
 	balancedataservice = RMIHelper.getBalanceDataService();
 	
 	this.account = account;
+	
+
+	
+	
 	
 	}
 	
