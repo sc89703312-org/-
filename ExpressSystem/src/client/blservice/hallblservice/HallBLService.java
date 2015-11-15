@@ -15,10 +15,6 @@ public interface HallBLService {
 	
 	public ResultMessage createDeliverReceipt(DeliverReceiptVO vo);
 	
-	public ArrayList<ArrivalReceiptVO> viewAllArrival();
 	
-	public ArrayList<TransferReceiptVO> viewAllTransfer();
-	
-	public ArrayList<DeliverReceiptVO> viewAllDeliver();
 	
 }
