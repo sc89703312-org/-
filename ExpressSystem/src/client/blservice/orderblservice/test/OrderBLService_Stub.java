@@ -1,6 +1,6 @@
 package client.blservice.orderblservice.test;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.orderblservice.OrderBLService;
@@ -62,7 +62,7 @@ public class OrderBLService_Stub implements OrderBLService{
 
 
 	@Override
-	public List<OrderVO> viewAll() {
+	public ArrayList<OrderVO> viewAll() {
 		// TODO Auto-generated method stub
 		System.out.println("Show all orders");
 		return null;

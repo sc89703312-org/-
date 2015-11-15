@@ -1,6 +1,6 @@
 package client.blservice.orderblservice;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.vo.ordervo.OrderVO;
@@ -11,7 +11,7 @@ public interface OrderBLService {
 	
 	public OrderVO view(String id);
 	
-	public List<OrderVO> viewAll();
+	public ArrayList<OrderVO> viewAll();
 	
 	public void receiverCfm(String id);
 	
