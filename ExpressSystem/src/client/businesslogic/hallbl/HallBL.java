@@ -1,5 +1,7 @@
 package client.businesslogic.hallbl;
 
+import java.util.ArrayList;
+
 import client.ResultMessage;
 import client.blservice.hallblservice.HallBLService;
 import client.vo.hallvo.ArrivalReceiptVO;
@@ -25,5 +27,25 @@ public class HallBL implements HallBLService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<ArrivalReceiptVO> viewAllArrival() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<TransferReceiptVO> viewAllTransfer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<DeliverReceiptVO> viewAllDeliver() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
