@@ -11,7 +11,7 @@ import client.po.paymentpo.Paymentpo;
 import client.vo.paymentvo.Paymentvo;
 
 
-public class paymentbl implements Paymentblservice {
+public class Paymentbl implements Paymentblservice {
 
 	ArrayList<Paymentpo> tempArrayList = new ArrayList<Paymentpo>();
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
@@ -19,7 +19,7 @@ public class paymentbl implements Paymentblservice {
 	private Paymentpo temp;
 	MockBanking account;
 	
-	public paymentbl(MockBanking account) {
+	public Paymentbl(MockBanking account) {
 		// TODO Auto-generated constructor stub
 	
 	paymentDataService =RMIHelper.getPaymentDataService();
