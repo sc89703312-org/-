@@ -1,4 +1,4 @@
-package client.vo.logisticsvo;
+package client.vo.hallvo;
 
 import java.util.ArrayList;
 

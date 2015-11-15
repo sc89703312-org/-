@@ -1,9 +1,9 @@
 package client.blservice.hallblservice;
 
 import client.ResultMessage;
-import client.vo.logisticsvo.ArrivalReceiptVO;
-import client.vo.logisticsvo.DeliverReceiptVO;
-import client.vo.logisticsvo.TransferReceiptVO;
+import client.vo.hallvo.ArrivalReceiptVO;
+import client.vo.hallvo.DeliverReceiptVO;
+import client.vo.hallvo.TransferReceiptVO;
 
 public interface HallBLService {
 
