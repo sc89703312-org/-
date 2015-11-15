@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import client.ResultMessage;
 import client.blservice.StrategyBlService.ManagementBlService;
 import client.po.Role;
+import client.vo.uservo.EmployeeVO;
 import client.vo.uservo.UserVO;
 
 public class ManagementBlService_Stub implements ManagementBlService{
 
 	@Override
-	public ArrayList<UserVO> viewEmployeeList() {
+	public ArrayList<EmployeeVO> viewEmployeeList() {
 		System.out.println("Show the list of all the employees");
-		ArrayList<UserVO> list = new ArrayList<UserVO>();
-		list.add(new UserVO("025000001","A",Role.POSTMAN,"1234567"));
+		ArrayList<EmployeeVO> list = new ArrayList<EmployeeVO>();
+		list.add(new EmployeeVO("025000001","A",Role.POSTMAN));
 		return list;
 	}
 

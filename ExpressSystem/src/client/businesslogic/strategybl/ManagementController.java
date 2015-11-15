@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import client.ResultMessage;
 import client.blservice.StrategyBlService.ManagementBlService;
 import client.po.Role;
-import client.vo.uservo.UserVO;
+import client.vo.uservo.EmployeeVO;
 
 public class ManagementController implements ManagementBlService{
 
@@ -21,7 +21,7 @@ public class ManagementController implements ManagementBlService{
 	}
 
 	@Override
-	public ArrayList<UserVO> viewEmployeeList() {
+	public ArrayList<EmployeeVO> viewEmployeeList() {
 		// TODO Auto-generated method stub
 		return management.viewEmployeeList();
 	}

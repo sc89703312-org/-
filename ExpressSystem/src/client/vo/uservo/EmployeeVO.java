@@ -2,24 +2,20 @@ package client.vo.uservo;
 
 import client.po.Role;
 
-public class UserVO {
+public class EmployeeVO {
 	private String id;
 	private String name;
 	private Role role;
-	private String password;
 	
 	/**
 	 * @param id
 	 * @param name
 	 * @param role
-	 * @param password
 	 */
-	public UserVO(String id, String name, Role role, String password) {
-		super();
+	public EmployeeVO(String id, String name, Role role) {
 		this.id = id;
 		this.name = name;
 		this.role = role;
-		this.password = password;
 	}
 
 	public void show(){
@@ -35,9 +31,13 @@ public class UserVO {
 	public Role getRole() {
 		return role;
 	}
-	public String getPassword(){
-		return password;
+
+	@Override
+	public String toString() {
+		return "EmployeeVO [id=" + id + ", name=" + name + ", role=" + role + "]";
 	}
 	
 	
+	
 }
+

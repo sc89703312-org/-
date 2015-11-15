@@ -18,6 +18,6 @@ public interface UserDataService extends Remote{
 	
 	public UserPO find(String id) throws RemoteException;
 	
-	public ArrayList<UserVO> showAll() throws RemoteException;
+	public ArrayList<UserPO> getAll() throws RemoteException;
 	
 }

@@ -7,24 +7,25 @@ import client.ResultMessage;
 import client.blservice.userblservice.UserBlService;
 import client.dataservice.userdataservice.UserDataService;
 import client.po.Role;
-import client.vo.uservo.UserVO;
+import client.po.userpo.UserPO;
+import client.vo.uservo.EmployeeVO;
 
 public class UserBl implements UserBlService{
 
-	UserDataService userDataService;
+	UserDataService userData;
 	
 	public UserBl(){
-		
+		userData = new MockUserData();
 	}
 	
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
 		ResultMessage rm = null;
 		try {
-			if(userDataService.find(id)!=null)
+			if(userData.find(id)!=null)
 				rm = ResultMessage.INVALID;
 			else{
-				userDataService.insert(id, name, role, password);
+				userData.insert(id, name, role, password);
 				rm =  ResultMessage.VALID;
 			}
 		} catch (RemoteException e) {
@@ -37,10 +38,10 @@ public class UserBl implements UserBlService{
 	public ResultMessage deleteUser(String id) {
 		ResultMessage rm = null;
 		try {
-			if(userDataService.find(id)==null)
+			if(userData.find(id)==null)
 				rm = ResultMessage.INVALID;
 			else{
-				userDataService.delete(id);
+				userData.delete(id);
 				rm =  ResultMessage.VALID;
 			}
 		} catch (RemoteException e) {
@@ -53,10 +54,10 @@ public class UserBl implements UserBlService{
 	public ResultMessage modifyUser(String id, String name, Role role, String password) {
 		ResultMessage rm = null;
 		try {
-			if(userDataService.find(id)==null)
+			if(userData.find(id)==null)
 				rm = ResultMessage.INVALID;
 			else{
-				userDataService.modify(id, name, role, password);
+				userData.modify(id, name, role, password);
 				rm =  ResultMessage.VALID;
 			}
 		} catch (RemoteException e) {
@@ -65,14 +66,25 @@ public class UserBl implements UserBlService{
 		return rm;
 	}
 	
-	public ArrayList<UserVO> viewEmployeeList(){
-		ArrayList<UserVO> list = null;
+	public ArrayList<EmployeeVO> viewEmployeeList(){
+		ArrayList<UserPO> listPo = null;
+		ArrayList<EmployeeVO> listVo = new ArrayList<EmployeeVO>();
 		try {
-			list = userDataService.showAll();
+			listPo = userData.getAll();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return list;
+		
+		for(int i = 0; i < listPo.size(); i ++){
+			listVo.add(convertToVO(listPo.get(i)));
+		}
+		return listVo;
+	}
+	
+	EmployeeVO convertToVO(UserPO po){
+		
+		return new EmployeeVO(po.getId(), po.getName(), po.getRole());	
 	}
 
+	
 }
