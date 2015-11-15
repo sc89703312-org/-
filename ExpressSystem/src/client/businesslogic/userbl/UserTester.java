@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import client.ResultMessage;
 import client.po.Role;
+import client.vo.UserMessageVO;
 import client.vo.uservo.EmployeeVO;
 
 public class UserTester {
@@ -33,5 +34,16 @@ public class UserTester {
 		for(int i = 0; i < list.size();i++){
 			System.out.println(list.get(i).toString());
 		}
+		System.out.println();
+	}
+	
+	@Test
+	public void testTask(){
+		ArrayList<UserMessageVO> list = userbl.viewTask();
+		
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i));
+		}
+		System.out.println();
 	}
 }

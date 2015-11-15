@@ -10,7 +10,7 @@ public interface ManagementBlService {
 	public ArrayList<EmployeeVO> viewEmployeeList();
 	
 	public ResultMessage addEmployee(String id, 
-			String name, Role role, String password);
+			String name, Role role);
 	
 	public ResultMessage dismissEmployee(String id);
 }

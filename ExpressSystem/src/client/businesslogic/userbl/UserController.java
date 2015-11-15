@@ -1,8 +1,11 @@
 package client.businesslogic.userbl;
 
+import java.util.ArrayList;
+
 import client.ResultMessage;
 import client.blservice.userblservice.UserBlService;
 import client.po.Role;
+import client.vo.UserMessageVO;
 
 public class UserController implements UserBlService{
 
@@ -28,6 +31,12 @@ public class UserController implements UserBlService{
 	@Override
 	public ResultMessage modifyUser(String id, String name, Role role, String password) {
 		return user.modifyUser(id, name, role, password);
+	}
+
+	@Override
+	public ArrayList<UserMessageVO> viewTask() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

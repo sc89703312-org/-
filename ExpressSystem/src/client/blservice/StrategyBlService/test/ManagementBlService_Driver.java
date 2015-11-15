@@ -8,7 +8,7 @@ public class ManagementBlService_Driver {
 	public void drive(ManagementBlService ss){
 		ss.viewEmployeeList();
 		
-		ResultMessage rm = ss.addEmployee("025000001","A",Role.POSTMAN,"1234567");
+		ResultMessage rm = ss.addEmployee("025000001","A",Role.POSTMAN);
 		if(rm == ResultMessage.INVALID)
 			System.out.println("ID exists");
 		else System.out.println("Succeed");

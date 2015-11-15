@@ -1,8 +1,11 @@
 package client.blservice.userblservice.test;
 
+import java.util.ArrayList;
+
 import client.ResultMessage;
 import client.blservice.userblservice.UserBlService;
 import client.po.Role;
+import client.vo.UserMessageVO;
 
 public class UserBlService_Stub implements UserBlService{
 
@@ -27,6 +30,12 @@ public class UserBlService_Stub implements UserBlService{
 		if(id.equals("025000001"))
 			return ResultMessage.VALID;
 		return ResultMessage.INVALID;
+	}
+
+	@Override
+	public ArrayList<UserMessageVO> viewTask() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

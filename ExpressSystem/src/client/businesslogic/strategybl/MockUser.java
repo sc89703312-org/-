@@ -2,9 +2,10 @@ package client.businesslogic.strategybl;
 
 import java.util.ArrayList;
 
+import client.ResultMessage;
 import client.businesslogic.userbl.UserBl;
 import client.po.Role;
-import client.po.userpo.UserPO;
+import client.po.StaffChange;
 import client.vo.uservo.EmployeeVO;
 
 public class MockUser extends UserBl{
@@ -15,12 +16,22 @@ public class MockUser extends UserBl{
 	
 	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList(){
-		ArrayList<UserPO> listPo = new ArrayList<UserPO>();
-		listPo.add(new UserPO("025000001", "A", Role.POSTMAN, "123456"));
-		listPo.add(new UserPO("025000002", "B", Role.POSTMAN, "123456"));
-		listPo.add(new UserPO("025000003", "C", Role.POSTMAN, "123456"));
+		ArrayList<EmployeeVO> list = new ArrayList<EmployeeVO>();
+		list.add(new EmployeeVO("025000001", "A", Role.POSTMAN));
+		list.add(new EmployeeVO("025000002", "B", Role.POSTMAN));
+		list.add(new EmployeeVO("025000003", "C", Role.POSTMAN));
 		
-		ArrayList<EmployeeVO> listVo = new ArrayList<EmployeeVO>();
-		return listVo;
+		return list;
+	}
+	
+	
+	
+	@Override
+	public ResultMessage createUserMessage(StaffChange operation,String id,String name,Role role){
+		if(operation == StaffChange.add && id.equals("025000001"))
+			return ResultMessage.INVALID;
+		if(operation == StaffChange.delete && !id.equals("025000001"))
+			return ResultMessage.INVALID;
+		return ResultMessage.VALID;
 	}
 }

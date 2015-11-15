@@ -19,7 +19,7 @@ public class ManagementBlService_Stub implements ManagementBlService{
 	}
 
 	@Override
-	public ResultMessage addEmployee(String id, String name, Role role, String password) {
+	public ResultMessage addEmployee(String id, String name, Role role) {
 		ResultMessage rm = ResultMessage.VALID;
 		if(id.equals("025000001"))
 			rm = ResultMessage.INVALID;

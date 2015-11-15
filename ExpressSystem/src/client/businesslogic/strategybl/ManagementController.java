@@ -27,9 +27,9 @@ public class ManagementController implements ManagementBlService{
 	}
 
 	@Override
-	public ResultMessage addEmployee(String id, String name, Role role, String password) {
+	public ResultMessage addEmployee(String id, String name, Role role) {
 		// TODO Auto-generated method stub
-		return management.addEmployee(id, name, role, password);
+		return management.addEmployee(id, name, role);
 	}
 
 	@Override
