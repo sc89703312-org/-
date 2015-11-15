@@ -12,5 +12,5 @@ public interface UserBlService {
 	
 	public ResultMessage modifyUser(String id, 
 			String name, Role role, String password);
-	
+
 }
