@@ -17,7 +17,6 @@ public class ManagementBl implements ManagementBlService{
 	
 	@Override
 	public ArrayList<UserVO> viewEmployeeList() {
-		mockUser.
 		return null;
 	}
 

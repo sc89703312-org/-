@@ -1,5 +1,5 @@
 package client.businesslogic.strategybl;
 
-public class MockStation extends {
+public class MockStation{
 
 }
