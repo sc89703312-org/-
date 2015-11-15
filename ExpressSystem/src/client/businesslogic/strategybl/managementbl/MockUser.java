@@ -1,4 +1,4 @@
-package client.businesslogic.strategybl;
+package client.businesslogic.strategybl.managementbl;
 
 import java.util.ArrayList;
 
