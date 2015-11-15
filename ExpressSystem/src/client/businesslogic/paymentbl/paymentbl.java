@@ -9,6 +9,7 @@ import client.businesslogic.bankingbl.Bankingbl;
 import client.dataservice.paymentdataservice.Paymentdataservice;
 import client.main.RMIHelper;
 import client.po.paymentpo.Paymentpo;
+import client.vo.bankingvo.BankingAccountVO;
 import client.vo.paymentvo.Paymentvo;
 
 
@@ -17,6 +18,7 @@ public class Paymentbl implements Paymentblservice {
 	ArrayList<Paymentpo> tempArrayList = new ArrayList<Paymentpo>();
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
 	Paymentdataservice paymentDataService ;
+	ArrayList<BankingAccountVO> accountlist = new ArrayList<BankingAccountVO>();
 	private Paymentpo temp;
 	Bankingbl account;
 	
@@ -25,6 +27,8 @@ public class Paymentbl implements Paymentblservice {
 	
 	paymentDataService =RMIHelper.getPaymentDataService();
 	this.account = account;
+	
+	//accountlist = account.showAccount("");
 	}
 	
 	
@@ -36,6 +40,20 @@ public class Paymentbl implements Paymentblservice {
 		if (!(vo.getBankaccount().equals("sc")||vo.getBankaccount().equals("a")||vo.getBankaccount().equals("sc89703312"))) {
 			return ResultMessage.INVALID;
 		}
+		
+//		boolean exsit=false;
+//		
+//		for(int i=0;i<accountlist.size();i++){
+//			if(vo.getBankaccount().equals(accountlist.get(i).getName())){
+//				exsit = true;
+//				break;
+//			}
+//		}
+//		
+		
+		
+		
+		
 		
 		else{
 			System.out.println("Bingo!");
@@ -74,6 +92,8 @@ public class Paymentbl implements Paymentblservice {
 		return convertPO(temp);
 	}
 
+	
+	
 	@Override
 	public void endPayment() {
 		// TODO Auto-generated method stub

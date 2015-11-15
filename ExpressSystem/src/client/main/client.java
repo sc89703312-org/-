@@ -23,12 +23,12 @@ public class client {
 		System.out.println("Client creates!");
 		
 	
-		try {
-			RMIHelper.getBalanceDataService().delete("2015/11/5");
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			RMIHelper.getBalanceDataService().delete("2015/11/5");
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 //		try {

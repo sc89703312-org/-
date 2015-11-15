@@ -12,6 +12,7 @@ import client.main.RMIHelper;
 import client.po.balancepo.Balancepo;
 import client.po.balancepo.Item;
 import client.vo.balancevo.Balancevo;
+import client.vo.bankingvo.BankingAccountVO;
 
 public class CostControlbl implements CostControlService{
 
@@ -20,6 +21,7 @@ public class CostControlbl implements CostControlService{
 	Bankingbl account;
 	
 
+	ArrayList<BankingAccountVO> accountlist = new ArrayList<BankingAccountVO>();
 	
 	
 	public CostControlbl(Bankingbl account) {
@@ -29,6 +31,7 @@ public class CostControlbl implements CostControlService{
 	
 	this.account = account;
 	
+//	accountlist = account.showAccount("");
 
 	
 	
