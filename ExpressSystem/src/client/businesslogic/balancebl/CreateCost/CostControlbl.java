@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.balanceblservice.CostControlService;
+import client.businesslogic.bankingbl.Bankingbl;
 import client.businesslogic.paymentbl.Mock_Test.MockBanking;
 import client.dataservice.balancedataservice.balancedataservice;
 import client.main.RMIHelper;
@@ -16,12 +17,12 @@ public class CostControlbl implements CostControlService{
 
 	balancedataservice balancedataservice;
 	
-	MockBanking account;
+	Bankingbl account;
 	
 
 	
 	
-	public CostControlbl(MockBanking account) {
+	public CostControlbl(Bankingbl account) {
 		// TODO Auto-generated constructor stub
 	
 	balancedataservice = RMIHelper.getBalanceDataService();

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import client.businesslogic.balancebl.CostList;
 import client.businesslogic.balancebl.PaymentList;
 import client.businesslogic.balancebl.CreateCost.CostControlbl;
-import client.businesslogic.balancebl.CreateCost.CostList;
 import client.businesslogic.balancebl.balance.Balancebl;
 import client.businesslogic.paymentbl.Paymentbl;
 import client.businesslogic.paymentbl.Mock_Test.MockBanking;

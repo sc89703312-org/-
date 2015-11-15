@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import client.blservice.balanceblservice.Balanceblservice;
 import client.businesslogic.balancebl.Caculate;
+import client.businesslogic.balancebl.CostList;
 import client.businesslogic.balancebl.PaymentList;
-import client.businesslogic.balancebl.CreateCost.CostList;
 import client.businesslogic.paymentbl.Paymentbl;
 import client.vo.balancevo.Balancevo;
 import client.vo.paymentvo.Paymentvo;
@@ -39,36 +39,9 @@ public class Balancebl implements Balanceblservice{
 		// TODO Auto-generated method stub
 		
 		
-		ArrayList<Paymentvo> tempList = new ArrayList<Paymentvo>();
-		
-		
-		
-		System.out.println("The length of paymentlist is: "+paymentList.getList().size());
-		
-		
-		for(int i=0;i<paymentList.getList().size();i++){
-			
-			String date =paymentList.getList().get(i).getDate();
-			
-			
-			if(date.compareTo(end)<=0&&date.compareTo(start)>=0){
-				
-				System.out.println("The date of: "+date +" is valid");
-				
-				tempList.add(paymentList.getList().get(i));
-			}
-		}
-		
-		
-		
-		
-		return tempList;
+		return paymentList.getListByDate(start, end);
 	}
 
-	
-	
-	
-	
 	
 	
 	@Override
@@ -76,30 +49,7 @@ public class Balancebl implements Balanceblservice{
 		// TODO Auto-generated method stub
 		
 		
-       ArrayList<Balancevo> tempList = new ArrayList<Balancevo>();
-		
-		
-		
-		System.out.println("The length of costlist is: "+costList.getList().size());
-		
-		
-		for(int i=0;i<costList.getList().size();i++){
-			
-			String date =costList.getList().get(i).getDate();
-			
-			
-			if(date.compareTo(end)<=0&&date.compareTo(start)>=0){
-				
-				System.out.println("The date of: "+date +" is valid");
-				
-				tempList.add(costList.getList().get(i));
-			}
-		}
-		
-		
-		
-		
-		return tempList;
+      return costList.getListByDate(start, end);
 	}
 
 	@Override
