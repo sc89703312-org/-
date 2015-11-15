@@ -1,5 +1,7 @@
 package client.businesslogic.accountbl;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import client.ResultMessage;
@@ -75,6 +77,36 @@ public class Accountbl implements Accountblservice{
 		ArrayList<HallVO> halls = organizationBl.viewHallList();
 		ArrayList<BankingAccountVO> accounts= bankingbl.showAccount("") ;
 	    ArrayList<Carvo> cars = carControl.getAll();
+	    
+	    
+	    
+	        
+	    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");    
+	    String str1 = sdf1.format(new java.util.Date());  
+	    
+	
+	    Accountvo accountvo = new Accountvo(
+	    		halls,
+	    		stations,
+	    		employees,
+	    		cars,
+	    		accounts,str1);
+	
+	    
+	    
+	}
+
+
+
+
+	public String showDate() {
+		// TODO Auto-generated method stub
+		
+	    
+	    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");    
+	    String str1 = sdf1.format(new java.util.Date());  
+		
+		return str1;
 	}
 
 }

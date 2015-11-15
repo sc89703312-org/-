@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import client.po.HallPo.HallPo;
+import client.po.bankingpo.BankingAccountPO;
 import client.po.carpo.Carpo;
 import client.po.stationpo.StationPO;
 import client.po.userpo.UserPO;
+import client.vo.bankingvo.BankingAccountVO;
 
 
 public class Accountpo implements Serializable {
@@ -22,15 +24,17 @@ public class Accountpo implements Serializable {
 	ArrayList<StationPO> station_list  = new ArrayList<StationPO>();
 	ArrayList<UserPO> user_list = new ArrayList<UserPO>();
 	ArrayList<Carpo> car_list = new ArrayList<Carpo>();
-	
-	
+	ArrayList<BankingAccountPO> bank_list = new ArrayList<BankingAccountPO>();
+	String date="";
 	
 	
 	
 	public Accountpo(ArrayList<HallPo> hall_list,
 			                ArrayList<StationPO> station_list,
 			                ArrayList<UserPO> user_list,
-			                ArrayList<Carpo> car_list ) {
+			                ArrayList<Carpo> car_list ,
+			                ArrayList<BankingAccountPO> bank_list) {
+		                    String d = null ;
 		// TODO Auto-generated constructor stub
 
 	
@@ -38,7 +42,8 @@ public class Accountpo implements Serializable {
 	this.station_list = station_list;
 	this.user_list = user_list;
 	this.car_list = car_list;
-	
+	this.bank_list = bank_list;
+	this.date = d;
 	}
 	
 	public ArrayList<HallPo> getHallList(){
@@ -53,6 +58,12 @@ public class Accountpo implements Serializable {
 	}
 	public ArrayList<Carpo> getCarList(){
 		return car_list;
+	}
+	public ArrayList<BankingAccountPO> getBankList(){
+		return bank_list;
+	}
+	public String getDate(){
+		return date;
 	}
 	
 }

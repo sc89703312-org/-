@@ -2,26 +2,30 @@ package client.vo.accountvo;
 
 import java.util.ArrayList;
 
+import client.vo.bankingvo.BankingAccountVO;
 import client.vo.carvo.Carvo;
 import client.vo.hallvo.HallVO;
 import client.vo.stationvo.StationVO;
+import client.vo.uservo.EmployeeVO;
 import client.vo.uservo.UserVO;
 
 
 public class Accountvo {
 	ArrayList<HallVO> hall_list = new ArrayList<HallVO>();
 	ArrayList<StationVO> station_list  = new ArrayList<StationVO>();
-	ArrayList<UserVO> user_list = new ArrayList<UserVO>();
+	ArrayList<EmployeeVO> user_list = new ArrayList<EmployeeVO>();
 	ArrayList<Carvo> car_list = new ArrayList<Carvo>();
-	
-	
+	ArrayList<BankingAccountVO> bank_list = new ArrayList<BankingAccountVO>();
+	String date;
 	
 	
 	
 	public Accountvo(ArrayList<HallVO> hall_list,
 			                ArrayList<StationVO> station_list,
-			                ArrayList<UserVO> user_list,
-			                ArrayList<Carvo> car_list ) {
+			                ArrayList<EmployeeVO> user_list,
+			                ArrayList<Carvo> car_list,
+			                ArrayList<BankingAccountVO> bank_list, String string) {
+		                    
 		// TODO Auto-generated constructor stub
 
 	
@@ -29,7 +33,8 @@ public class Accountvo {
 	this.station_list = station_list;
 	this.user_list = user_list;
 	this.car_list = car_list;
-	
+	this.bank_list = bank_list;
+	this.date = string;
 	}
 	
 	public ArrayList<HallVO> getHallList(){
@@ -39,10 +44,17 @@ public class Accountvo {
 	public ArrayList<StationVO> getStationList(){
 		return station_list;
 	}
-	public ArrayList<UserVO> getUserList(){
+	public ArrayList<EmployeeVO> getUserList(){
 		return user_list;
 	}
 	public ArrayList<Carvo> getCarList(){
 		return car_list;
+	}
+	
+	public ArrayList<BankingAccountVO> getBankList(){
+		return bank_list;
+	}
+	public String getDate(){
+		return date;
 	}
 }
