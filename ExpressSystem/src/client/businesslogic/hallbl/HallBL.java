@@ -28,19 +28,16 @@ public class HallBL implements HallBLService{
 		return null;
 	}
 
-	@Override
 	public ArrayList<ArrivalReceiptVO> viewAllArrival() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<TransferReceiptVO> viewAllTransfer() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<DeliverReceiptVO> viewAllDeliver() {
 		// TODO Auto-generated method stub
 		return null;
