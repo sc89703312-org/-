@@ -16,4 +16,6 @@ public interface OrderBLService {
 	public void receiverCfm(String id);
 	
 	public void endOrder();
+	
+	
 }

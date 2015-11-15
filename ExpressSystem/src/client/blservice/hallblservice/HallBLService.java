@@ -1,5 +1,7 @@
 package client.blservice.hallblservice;
 
+import java.util.ArrayList;
+
 import client.ResultMessage;
 import client.vo.hallvo.ArrivalReceiptVO;
 import client.vo.hallvo.DeliverReceiptVO;
@@ -12,4 +14,11 @@ public interface HallBLService {
 	public ResultMessage createTransferReceipt(TransferReceiptVO vo);
 	
 	public ResultMessage createDeliverReceipt(DeliverReceiptVO vo);
+	
+	public ArrayList<ArrivalReceiptVO> viewAllArrival();
+	
+	public ArrayList<TransferReceiptVO> viewAllTransfer();
+	
+	public ArrayList<DeliverReceiptVO> viewAllDeliver();
+	
 }
