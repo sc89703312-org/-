@@ -1,5 +1,6 @@
 package client.businesslogic.orderbl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import client.ResultMessage;
@@ -22,7 +23,7 @@ public class OrderBL implements OrderBLService{
 	}
 
 	@Override
-	public List<OrderVO> viewAll() {
+	public ArrayList<OrderVO> viewAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}

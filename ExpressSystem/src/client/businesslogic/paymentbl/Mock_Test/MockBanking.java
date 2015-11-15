@@ -1,9 +1,15 @@
 package client.businesslogic.paymentbl.Mock_Test;
 
+import java.util.ArrayList;
+
 import client.businesslogic.bankingbl.Bankingbl;
+import client.vo.bankingvo.BankingAccountVO;
 
 public class MockBanking extends Bankingbl {
 
+	ArrayList<BankingAccountVO> accounts = new ArrayList<BankingAccountVO>();
+	
+	
 	String[] accountNames =new String[3];
 	
 	int[] money =new int[3];
@@ -21,6 +27,9 @@ public class MockBanking extends Bankingbl {
 		accountNames[2]="hehe";
 		money[2]=100000;
 		
+		accounts.add(new BankingAccountVO("sc"));
+		accounts.add(new BankingAccountVO("a"));
+		accounts.add(new BankingAccountVO("hehe"));
 		
 	}
 	
@@ -56,6 +65,8 @@ public class MockBanking extends Bankingbl {
 		}
 		
 		
-		
+		public ArrayList<BankingAccountVO> getAllAccounts(){
+			return accounts;
+		}
 	
 }

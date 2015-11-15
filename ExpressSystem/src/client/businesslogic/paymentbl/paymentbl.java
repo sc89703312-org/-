@@ -56,6 +56,9 @@ public class Paymentbl implements Paymentblservice {
 		return ResultMessage.VALID;
 	}
 	}
+	
+	
+	
 	@Override
 	public Paymentvo getPayment(String id) {
 		// TODO Auto-generated method stub
