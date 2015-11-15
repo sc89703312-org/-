@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import client.businesslogic.bankingbl.Bankingbl;
 import client.businesslogic.paymentbl.Mock_Test.MockBanking;
-import client.businesslogic.strategybl.ManagementBl;
-import client.businesslogic.strategybl.OrganizationBl;
+import client.businesslogic.strategybl.managementbl.ManagementBl;
+import client.businesslogic.strategybl.organizationbl.OrganizationBl;
 import client.businesslogic.vehiclebl.CarControl;
 
 public class CreateAccountTest {

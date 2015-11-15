@@ -2,7 +2,7 @@ package client.businesslogic.accountbl.Mock_Test;
 
 import java.util.ArrayList;
 
-import client.businesslogic.strategybl.OrganizationBl;
+import client.businesslogic.strategybl.organizationbl.OrganizationBl;
 import client.vo.hallvo.HallVO;
 import client.vo.stationvo.StationVO;
 

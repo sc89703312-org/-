@@ -2,7 +2,7 @@ package client.businesslogic.accountbl.Mock_Test;
 
 import java.util.ArrayList;
 
-import client.businesslogic.strategybl.ManagementBl;
+import client.businesslogic.strategybl.managementbl.ManagementBl;
 import client.po.Role;
 import client.vo.uservo.EmployeeVO;
 
