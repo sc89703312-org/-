@@ -2,6 +2,7 @@ package client.businesslogic.accountbl.Mock_Test;
 
 import java.util.ArrayList;
 
+import client.businesslogic.stationbl.StationBl;
 import client.businesslogic.strategybl.organizationbl.OrganizationBl;
 import client.vo.hallvo.HallVO;
 import client.vo.stationvo.StationVO;
@@ -17,7 +18,7 @@ public class MockOrganization extends OrganizationBl {
 	
 	public MockOrganization() {
 		// TODO Auto-generated constructor stub
-	
+		super(null);
 	
 		stations.add(new StationVO("a", "Nanjing"));
 		

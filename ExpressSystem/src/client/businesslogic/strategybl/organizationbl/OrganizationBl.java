@@ -4,27 +4,34 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.StrategyBlService.OrganizationBlService;
+import client.businesslogic.stationbl.StationBl;
 import client.vo.hallvo.HallVO;
 import client.vo.stationvo.StationVO;
 
 public class OrganizationBl implements OrganizationBlService{
 
+	StationBl stationbl;
 	
 	
+	public OrganizationBl(StationBl stationbl){
+		
+		this.stationbl = stationbl;
+		
+	}
 	
 	@Override
 	public ArrayList<StationVO> viewStationList() {
-		return null;
+		return stationbl.showStation();
 	}
 
 	@Override
 	public ResultMessage createStation(String id, String name) {
-		return null;
+		return stationbl.addStation(id, name);
 	}
 
 	@Override
 	public ResultMessage deleteStation(String id) {
-		return null;
+		return stationbl.deleteStation(id);
 	}
 
 	@Override
