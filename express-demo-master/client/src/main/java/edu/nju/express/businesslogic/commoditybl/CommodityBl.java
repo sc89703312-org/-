@@ -29,6 +29,7 @@ public class CommodityBl implements CommodityBlService{
 	@Override
 	public EnterReceiptVO showEnterReceipt(ArriveReceiptVO vo) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

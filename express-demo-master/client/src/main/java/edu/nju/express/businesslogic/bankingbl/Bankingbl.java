@@ -24,23 +24,62 @@ public class Bankingbl implements BankingBlService{
 	public void addAccount(String name) {
 		// TODO Auto-generated method stub
 		
+		try {
+			bankingDataService.addAccount(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
 	public ResultMessage removeAccount(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		ResultMessage result = ResultMessage.INVALID;
+		
+		try {
+			result = bankingDataService.removeAccount(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+		
 	}
 
 	@Override
 	public ResultMessage modifyAccount(String newName, String name) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		ResultMessage result = ResultMessage.INVALID;
+		
+		try {
+			result = bankingDataService.modifyName(newName, name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
 	public ArrayList<BankingAccountVO> showAccount(String subName) {
 		// TODO Auto-generated method stub
+		
+		try {
+			ArrayList<BankingAccountPO> poList = bankingDataService.getAccount();
+			ArrayList<BankingAccountVO> voList = new ArrayList<BankingAccountVO>();
+			for(int i=0;i<poList.size();i++)
+				voList.add(new BankingAccountVO(poList.get(i).getName(),poList.get(i).getMoney()));
+			return voList;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 	
