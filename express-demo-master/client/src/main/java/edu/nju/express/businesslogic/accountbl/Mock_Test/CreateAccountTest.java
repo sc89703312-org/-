@@ -1,5 +1,10 @@
 package edu.nju.express.businesslogic.accountbl.Mock_Test;
 
+import static org.junit.Assert.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 
 import edu.nju.express.businesslogic.accountbl.Accountbl;
@@ -23,8 +28,12 @@ public class CreateAccountTest {
 	
 	
 	
+	
 	@Test
 	public void testCreateAccount(){
-		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");    
+	    String str1 = sdf1.format(new Date());   
+	    
+	    assertEquals(str1,accountbl.getDate());
 	}
 }

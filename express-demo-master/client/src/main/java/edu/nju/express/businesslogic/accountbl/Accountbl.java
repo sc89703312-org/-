@@ -10,6 +10,7 @@ import edu.nju.express.businesslogic.strategybl.managementbl.*;
 import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
 import edu.nju.express.businesslogic.vehiclebl.CarControl;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.vo.Accountvo;
 import edu.nju.express.vo.BankingAccountVO;
 import edu.nju.express.vo.Carvo;
@@ -28,6 +29,7 @@ public class Accountbl implements Accountblservice{
 	Bankingbl bankingbl;
 	
 	
+	accountdataservice accountdataservice;
 	
 	
 	public Accountbl(ManagementBl managementBl,
@@ -44,6 +46,7 @@ public class Accountbl implements Accountblservice{
 	
 	
 	
+		
 	
 	}
 	
@@ -90,6 +93,15 @@ public class Accountbl implements Accountblservice{
 	    		             employees, cars,accounts,str1);
 	    
 	    
+	}
+	
+	
+	
+	public String getDate(){
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");    
+	    String str1 = sdf1.format(new Date());    
+	    return str1;
 	}
 
 }
