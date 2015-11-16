@@ -15,7 +15,7 @@ public interface OrganizationBlService {
 	
 	public ArrayList<HallVO> viewHallList();
 	
-	public ResultMessage createHall(String id, String name,String cityID);
+	public ResultMessage createHall(String id, String name, String cityid);
 	
 	public ResultMessage deleteHall(String id);
 }

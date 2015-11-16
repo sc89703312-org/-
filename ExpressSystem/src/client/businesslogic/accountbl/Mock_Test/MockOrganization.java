@@ -18,7 +18,7 @@ public class MockOrganization extends OrganizationBl {
 	
 	public MockOrganization() {
 		// TODO Auto-generated constructor stub
-		super(null);
+		super(null,null);
 	
 		stations.add(new StationVO("a", "Nanjing"));
 		

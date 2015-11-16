@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.StrategyBlService.OrganizationBlService;
+import client.businesslogic.hallbl.HallBL;
 import client.businesslogic.stationbl.StationBl;
 import client.vo.hallvo.HallVO;
 import client.vo.stationvo.StationVO;
@@ -11,12 +12,13 @@ import client.vo.stationvo.StationVO;
 public class OrganizationBl implements OrganizationBlService{
 
 	StationBl stationbl;
+	HallBL hallbl;
 	
 	
-	public OrganizationBl(StationBl stationbl){
+	public OrganizationBl(StationBl stationbl, HallBL hallbl){
 		
 		this.stationbl = stationbl;
-		
+		this.hallbl = hallbl;
 	}
 	
 	@Override
@@ -36,18 +38,18 @@ public class OrganizationBl implements OrganizationBlService{
 
 	@Override
 	public ArrayList<HallVO> viewHallList() {
-		return null;
+		return hallbl.showHall();
 	}
 
 	@Override
-	public ResultMessage createHall(String id, String name, String cityID) {
-		return null;
+	public ResultMessage createHall(String id, String name,String cityid) {
+		return hallbl.addHall(id, name,cityid);
 	}
 
 	@Override
 	public ResultMessage deleteHall(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return hallbl.removeHall(id);
 	}
 
 }
