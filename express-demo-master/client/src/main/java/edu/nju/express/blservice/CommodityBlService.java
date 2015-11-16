@@ -21,7 +21,7 @@ public interface CommodityBlService {
 	public void subEnterReceipt(EnterReceiptVO vo);
 	
 	//���������
-	public ArrayList<TransferReceiptVO> showTransferReceipt();
+	public ArrayList<TransferReceiptVO> showTransferReceiptList();
 	public ExitReceiptVO showExitReceipt(TransferReceiptVO vo);
 	public void subExitReceipt(ExitReceiptVO vo);
 	
