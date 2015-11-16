@@ -18,6 +18,7 @@ public class TransferReceiptPO implements Serializable{
 	String location;
 	
 	boolean isApprove;
+	boolean isHandle;
 	
 	ArrayList<OrderPO> order_list;
 	
@@ -28,6 +29,7 @@ public class TransferReceiptPO implements Serializable{
 		this.location = location;
 		
 		this.isApprove = false;
+		this.isHandle = false;
 		
 		this.order_list = order_list;
 	}
@@ -48,8 +50,20 @@ public class TransferReceiptPO implements Serializable{
 		return location;
 	}
 	
+	public boolean isApprove(){
+		return this.isApprove;
+	}
+	
+	public boolean isHandle(){
+		return this.isHandle;
+	}
+	
 	public void approve(){
 		this.isApprove = true;
+	}
+	
+	public void handle(){
+		this.isHandle = true;
 	}
 	
 	public ArrayList<OrderPO> getOrderList(){
