@@ -3,6 +3,7 @@ package edu.nju.express.dataimpl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.BankingDataService;
 import edu.nju.express.po.BankingAccountPO;
 
@@ -23,7 +24,8 @@ public class BankingDataService_Impl implements BankingDataService{
 	}
 
 	@Override
-	public void modifyName(String newName, String name) throws RemoteException {
+	public ResultMessage modifyName(String newName, String name) throws RemoteException {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
@@ -35,7 +37,8 @@ public class BankingDataService_Impl implements BankingDataService{
 	}
 
 	@Override
-	public void removeAccount(String name) throws RemoteException {
+	public ResultMessage removeAccount(String name) throws RemoteException {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
