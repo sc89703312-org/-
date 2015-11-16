@@ -2,7 +2,6 @@ package client.po.logisticspo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LogisticsPO implements Serializable{
 	
@@ -14,13 +13,13 @@ public class LogisticsPO implements Serializable{
 		
 		private String currentLoca;
 		
-		private String deliverName = null;
+		private String deliverName = "";
 		
 		private ArrayList<String> history;
 		
 		public LogisticsPO(String currentLoca){
 			this.currentLoca=currentLoca;
-			
+			history = new ArrayList<String>();
 		}
 		
 		public void setDeliver(String name){

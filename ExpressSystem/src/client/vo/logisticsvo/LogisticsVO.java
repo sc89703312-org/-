@@ -17,12 +17,13 @@ public class LogisticsVO implements Serializable,Observer{
 	
 	private String currentLoca;
 	
-	private String deliverName = null;
+	private String deliverName = "";
 	
-	private ArrayList<String> history;
+	private ArrayList<String> history ;
 	
 	public LogisticsVO(String currentLocation){
 		this.currentLoca=currentLocation;
+		history = new ArrayList<String>();
 	}
 	
 	public void addHistory(String loca){
@@ -35,6 +36,10 @@ public class LogisticsVO implements Serializable,Observer{
 	
 	public ArrayList<String> getHistory(){
 		return this.history;
+	}
+	
+	public String getDeliver(){
+		return this.deliverName;
 	}
 
 	@Override
