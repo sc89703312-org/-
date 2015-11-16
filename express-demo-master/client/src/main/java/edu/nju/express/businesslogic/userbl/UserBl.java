@@ -13,8 +13,6 @@ import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.UserMessageVO;
 
-
-
 public class UserBl implements UserBlService {
 
 	UserDataService userData;
@@ -28,51 +26,40 @@ public class UserBl implements UserBlService {
 
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
-		ResultMessage rm = null;
 		try {
-			if (userData.find(id) != null)
-				rm = ResultMessage.INVALID;
-			else {
-				userData.insert(id, name, role, password);
-				rm = ResultMessage.VALID;
-				deleteUserMessage(id);
-			}
+
+			userData.insert(id, name, role, password);
+			deleteUserMessage(id);
+			return ResultMessage.VALID;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return rm;
+		return ResultMessage.INVALID;
 	}
 
 	@Override
 	public ResultMessage deleteUser(String id) {
-		ResultMessage rm = null;
 		try {
-			if (userData.find(id) == null)
-				rm = ResultMessage.INVALID;
-			else {
-				userData.delete(id);
-				rm = ResultMessage.VALID;
-			}
+
+			userData.delete(id);
+			return ResultMessage.VALID;
+
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return rm;
+		return ResultMessage.INVALID;
 	}
 
 	@Override
 	public ResultMessage modifyUser(String id, String name, Role role, String password) {
-		ResultMessage rm = null;
 		try {
-			if (userData.find(id) == null)
-				rm = ResultMessage.INVALID;
-			else {
+			
 				userData.modify(id, name, role, password);
-				rm = ResultMessage.VALID;
-			}
+				return ResultMessage.VALID;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return rm;
+		return ResultMessage.INVALID;
 	}
 
 	public ArrayList<EmployeeVO> viewEmployeeList() {
@@ -95,16 +82,12 @@ public class UserBl implements UserBlService {
 		return new EmployeeVO(po.getId(), po.getName(), po.getRole());
 	}
 
-	
-
-	
 	@Override
 	public ArrayList<UserMessageVO> viewTask() {
 		task = new TaskList();
 		return task.viewTask();
 	}
 
-	
 	public ResultMessage createUserMessage(StaffChange operation, String id, String name, Role role) {
 
 		ResultMessage rm = ResultMessage.INVALID;
@@ -123,20 +106,20 @@ public class UserBl implements UserBlService {
 
 		} else if (operation == StaffChange.delete) {
 
-				try {
-					if (userData.find(id) != null) {
-						userMessageData.insert(operation, id, name, role);
-						rm = ResultMessage.VALID;
-					}
-				} catch (RemoteException e) {
-					e.printStackTrace();
+			try {
+				if (userData.find(id) != null) {
+					userMessageData.insert(operation, id, name, role);
+					rm = ResultMessage.VALID;
 				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 
 		}
-		
+
 		return rm;
 	}
-	
+
 	public ResultMessage deleteUserMessage(String id) {
 
 		return null;

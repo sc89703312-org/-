@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.userbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.po.UserPO;
@@ -14,19 +15,22 @@ public class MockUserData implements UserDataService{
 	ArrayList<UserPO> list = new ArrayList<UserPO>();
 	
 	@Override
-	public void insert(String id, String name, Role role, String password) throws RemoteException {
+	public ResultMessage insert(String id, String name, Role role, String password) throws RemoteException {
 		list.add(new UserPO(id, name, role, password));
+		return null;
 	}
 
 	@Override
-	public void delete(String id) throws RemoteException {
+	public ResultMessage delete(String id) throws RemoteException {
 		list.remove(find(id));
+		return null;
 	}
 
 	@Override
-	public void modify(String id, String name, Role role, String password) throws RemoteException {
+	public ResultMessage modify(String id, String name, Role role, String password) throws RemoteException {
 		list.remove(find(id));
 		list.add(new UserPO(id, name, role, password));
+		return null;
 	}
 
 	@Override
