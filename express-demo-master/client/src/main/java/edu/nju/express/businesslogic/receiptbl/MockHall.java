@@ -3,6 +3,8 @@ package edu.nju.express.businesslogic.receiptbl;
 import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.hallbl.HallReceiptBL;
+import edu.nju.express.businesslogic.orderbl.OrderBL;
+import edu.nju.express.businesslogic.vehiclebl.Vehiclebl;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.common.ReceiptState;
 import edu.nju.express.po.DeliverReceiptPO;
@@ -14,17 +16,22 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 public class MockHall extends HallReceiptBL{
 
+	public MockHall(OrderBL orderBL, Vehiclebl vehiclebl) {
+		super(null, null);
+		// TODO Auto-generated constructor stub
+	}
+
 	ArrayList<DeliverReceiptPO> listPo;
 	
 	@Override
 	public ArrayList<ArrivalReceiptVO> viewAllArrival(){
 		ArrayList<ArrivalReceiptVO> list = new ArrayList<ArrivalReceiptVO>();
 		list.add(new ArrivalReceiptVO("2015111100001", "2015/11/11",
-				"Nanjing", GoodsState.COMPLETE, ReceiptState.SUBMITTED));
+				"Nanjing", "Nanjing", GoodsState.COMPLETE, ReceiptState.SUBMITTED));
 		list.add(new ArrivalReceiptVO("2015111100002", "2015/11/11",
-				"Nanjing", GoodsState.COMPLETE, ReceiptState.SUBMITTED));
+				"Nanjing", "Nanjing", GoodsState.COMPLETE, ReceiptState.SUBMITTED));
 		list.add(new ArrivalReceiptVO("2015111100003", "2015/11/11",
-				"Shanghai", GoodsState.COMPLETE, ReceiptState.SUBMITTED));
+				"Shanghai", "Nanjing", GoodsState.COMPLETE, ReceiptState.SUBMITTED));
 		return list;
 	}
 	
