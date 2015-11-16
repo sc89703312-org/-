@@ -31,9 +31,21 @@ public class LogisticsVO implements Serializable,Observer{
 		ob.addObserver(this);
 	}
 	
+	public void setCurrentLoca(String loca){
+		if(!loca.equals(currentLoca)){
+			this.currentLoca=loca;
+			addHistory(loca);
+		}
+	}
+	
+	public void setDeliver(String name){
+		this.deliverName=name;
+	}
+	
 	 
 
 	public void addHistory(String loca){
+		
 		this.history.add(loca);
 	}
 	
@@ -59,9 +71,8 @@ public class LogisticsVO implements Serializable,Observer{
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		OrderVO orderVO = (OrderVO)o;
-		this.currentLoca = orderVO.getCurrentSpot();
-		this.deliverName = orderVO.getDeliver();
-		addHistory(currentLoca);
-
+		setCurrentLoca(orderVO.getCurrentSpot());
+		setDeliver(orderVO.getDeliver());
+		
 	}
 }

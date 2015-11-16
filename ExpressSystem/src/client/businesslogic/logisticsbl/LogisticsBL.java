@@ -26,13 +26,13 @@ public class LogisticsBL implements LogisticsBLService{
 		String currentLoca = orderVO.getCurrentSpot();
 		logisticsVO = new LogisticsVO(id,currentLoca,(Observable)orderVO);
 		logisticsVO.addHistory(currentLoca);
-//		orderVO.setCurrentSpot("Beijing");
+		orderVO.setCurrentSpot("Beijing");
 		orderVO.setArrivalState(ArrivalState.YES);
 		orderVO.setDeliver("XiaoLi");
 		orderVO.setCurrentSpot("Shanghai");
 		orderVO.setCurrentSpot("Guangdong");
 		
-		System.out.println(logisticsVO.getHistory());
+//		System.out.println(logisticsVO.getHistory());
 		
 		return logisticsVO;
 	}

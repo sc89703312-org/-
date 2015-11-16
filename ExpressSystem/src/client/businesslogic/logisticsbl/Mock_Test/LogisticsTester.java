@@ -17,7 +17,7 @@ public class LogisticsTester {
 		
 		assertEquals("Guangdong",logisticsVO.getCurrentLoca());
 		
-		assertEquals(3,logisticsVO.getHistory().size());
+		assertEquals(4,logisticsVO.getHistory().size());
 		
 		assertEquals("Nanjing",logisticsVO.getHistory().get(0));
 		
