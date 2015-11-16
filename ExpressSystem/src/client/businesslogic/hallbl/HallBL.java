@@ -2,7 +2,7 @@ package client.businesslogic.hallbl;
 
 import java.util.ArrayList;
 
-import client.po.HallPo.HallPo;
+import client.vo.hallvo.HallVO;
 
 public class HallBL {
 	public void addHall(String id,String location){
@@ -11,7 +11,7 @@ public class HallBL {
 	public void removeHall(String id){
 		
 	}
-	public ArrayList<HallPo> showHall(){
+	public ArrayList<HallVO> showHall(){
 		return null;
 	}
 }

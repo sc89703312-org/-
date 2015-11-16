@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import client.po.HallPo.ArrivalReceiptPO;
 import client.po.HallPo.DeliverReceiptPO;
-import client.po.HallPo.HallPo;
 import client.po.HallPo.TransferReceiptPO;
+import client.vo.hallvo.HallVO;
 
 public interface HallDao {
 	public void addHall(String id,String location);
 	public void removeHall(String id);
-	public ArrayList<HallPo> showHall();
+	public ArrayList<HallVO> showHall();
 	
 	public void addArrivalReceipt(ArrivalReceiptPO po);
 	public ArrayList<ArrivalReceiptPO> getArrivalReceipt();
