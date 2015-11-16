@@ -7,10 +7,8 @@ import client.ResultMessage;
 import client.blservice.userblservice.UserBlService;
 import client.dataservice.userdataservice.UserDataService;
 import client.dataservice.userdataservice.UserMessageDataService;
-import client.po.BasicValues;
 import client.po.Role;
 import client.po.StaffChange;
-import client.po.userpo.UserMessagePO;
 import client.po.userpo.UserPO;
 import client.vo.UserMessageVO;
 import client.vo.uservo.EmployeeVO;
@@ -19,6 +17,7 @@ public class UserBl implements UserBlService {
 
 	UserDataService userData;
 	UserMessageDataService userMessageData;
+	TaskList task;
 
 	public UserBl() {
 		userData = new MockUserData();
@@ -34,6 +33,7 @@ public class UserBl implements UserBlService {
 			else {
 				userData.insert(id, name, role, password);
 				rm = ResultMessage.VALID;
+				deleteUserMessage(id);
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -93,29 +93,16 @@ public class UserBl implements UserBlService {
 		return new EmployeeVO(po.getId(), po.getName(), po.getRole());
 	}
 
-	UserMessageVO convertToVO(UserMessagePO po) {
+	
 
-		return new UserMessageVO(po.getOperation(), po.getId(), po.getName(), po.getRole());
-	}
-
+	
 	@Override
 	public ArrayList<UserMessageVO> viewTask() {
-		ArrayList<UserMessagePO> listPo = null;
-		
-		try {
-			listPo = userMessageData.getAll();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<UserMessageVO> listVo = new ArrayList<UserMessageVO>();
-
-		for (int i = 0; i < listPo.size(); i++) {
-			listVo.add(convertToVO(listPo.get(i)));
-		}
-		return listVo;
+		task = new TaskList();
+		return task.viewTask();
 	}
 
+	
 	public ResultMessage createUserMessage(StaffChange operation, String id, String name, Role role) {
 
 		ResultMessage rm = ResultMessage.INVALID;
@@ -134,19 +121,24 @@ public class UserBl implements UserBlService {
 
 		} else if (operation == StaffChange.delete) {
 
-			try {
-
-				if (userData.find(id) != null) {
-					userMessageData.insert(operation, id, name, role);
-					rm = ResultMessage.VALID;
+				try {
+					if (userData.find(id) != null) {
+						userMessageData.insert(operation, id, name, role);
+						rm = ResultMessage.VALID;
+					}
+				} catch (RemoteException e) {
+					e.printStackTrace();
 				}
 
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
 		}
-
+		
 		return rm;
+	}
+	
+	public ResultMessage deleteUserMessage(String id) {
+
+		return null;
+
 	}
 
 }
