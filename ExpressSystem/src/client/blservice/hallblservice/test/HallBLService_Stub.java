@@ -1,12 +1,12 @@
 package client.blservice.hallblservice.test;
 
 import client.ResultMessage;
-import client.blservice.hallblservice.HallBLService;
+import client.blservice.hallblservice.HallBLReceiptService;
 import client.vo.hallvo.ArrivalReceiptVO;
 import client.vo.hallvo.DeliverReceiptVO;
 import client.vo.hallvo.TransferReceiptVO;
 
-public class HallBLService_Stub implements HallBLService{
+public class HallBLService_Stub implements HallBLReceiptService{
 	ArrivalReceiptVO arrivalDemo;
 	TransferReceiptVO transferDemo;
 	DeliverReceiptVO deliverDemo;

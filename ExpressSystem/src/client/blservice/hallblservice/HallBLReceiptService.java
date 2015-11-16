@@ -7,7 +7,7 @@ import client.vo.hallvo.ArrivalReceiptVO;
 import client.vo.hallvo.DeliverReceiptVO;
 import client.vo.hallvo.TransferReceiptVO;
 
-public interface HallBLService {
+public interface HallBLReceiptService {
 
 	public ResultMessage createArrivalReceipt(ArrivalReceiptVO vo);
 	

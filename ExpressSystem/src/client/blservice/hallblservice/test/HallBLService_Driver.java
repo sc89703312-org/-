@@ -3,7 +3,7 @@ package client.blservice.hallblservice.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import client.blservice.hallblservice.HallBLService;
+import client.blservice.hallblservice.HallBLReceiptService;
 import client.po.GoodsState;
 import client.po.ReceiptState;
 import client.vo.hallvo.ArrivalReceiptVO;
@@ -15,7 +15,7 @@ import client.vo.ordervo.OrderVO;
 
 public class HallBLService_Driver {
 
-	public void drive(HallBLService hs){
+	public void drive(HallBLReceiptService hs){
 		hs.createArrivalReceipt(new ArrivalReceiptVO("025201510260000001","20151026","Shanghai",
 				GoodsState.COMPLETE,ReceiptState.SUBMITTED));
 		hs.createDeliverReceipt(new DeliverReceiptVO("0250010000001","20151026","deliver1",ReceiptState.SUBMITTED));

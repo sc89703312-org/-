@@ -2,7 +2,7 @@ package client.businesslogic.receiptbl;
 
 import java.util.ArrayList;
 
-import client.businesslogic.hallbl.HallBL;
+import client.businesslogic.hallbl.HallBLReceipt;
 import client.po.GoodsState;
 import client.po.ReceiptState;
 import client.po.HallPo.DeliverReceiptPO;
@@ -10,7 +10,7 @@ import client.vo.hallvo.ArrivalReceiptVO;
 import client.vo.hallvo.DeliverReceiptVO;
 import client.vo.hallvo.TransferReceiptVO;
 
-public class MockHall extends HallBL{
+public class MockHall extends HallBLReceipt{
 
 	ArrayList<DeliverReceiptPO> listPo;
 	

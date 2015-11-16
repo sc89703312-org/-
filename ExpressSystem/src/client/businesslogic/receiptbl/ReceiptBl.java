@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import client.ResultMessage;
 import client.blservice.receiptblservice.ReceiptBlService;
-import client.businesslogic.hallbl.HallBL;
+import client.businesslogic.hallbl.HallBLReceipt;
 import client.businesslogic.orderbl.OrderBL;
 import client.businesslogic.paymentbl.Paymentbl;
 import client.businesslogic.stationbl.StationReceiptBl;
@@ -14,7 +14,7 @@ public class ReceiptBl implements ReceiptBlService {
 
 	OrderBL order;
 	Paymentbl payment;
-	HallBL hall;
+	HallBLReceipt hall;
 	StationReceiptBl stationbl;
 
 	ArrayList<ReceiptVOBase> list = new ArrayList<ReceiptVOBase>();
