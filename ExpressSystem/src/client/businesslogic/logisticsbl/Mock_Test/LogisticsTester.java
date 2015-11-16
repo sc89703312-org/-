@@ -15,9 +15,9 @@ public class LogisticsTester {
 		
 		LogisticsVO logisticsVO = logisticsBL.view("0000000001");
 		
-		assertEquals("Nanjing",logisticsVO.getCurrentLoca());
+		assertEquals("Guangdong",logisticsVO.getCurrentLoca());
 		
-		assertEquals(1,logisticsVO.getHistory().size());
+		assertEquals(3,logisticsVO.getHistory().size());
 		
 		assertEquals("Nanjing",logisticsVO.getHistory().get(0));
 		

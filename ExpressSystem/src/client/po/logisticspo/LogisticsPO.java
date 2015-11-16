@@ -11,13 +11,16 @@ public class LogisticsPO implements Serializable{
 		 */
 		private static final long serialVersionUID = 1L;
 		
+		private String id;
+		
 		private String currentLoca;
 		
 		private String deliverName = "";
 		
 		private ArrayList<String> history;
 		
-		public LogisticsPO(String currentLoca){
+		public LogisticsPO(String id,String currentLoca){
+			this.id=id;
 			this.currentLoca=currentLoca;
 			history = new ArrayList<String>();
 		}
@@ -40,6 +43,10 @@ public class LogisticsPO implements Serializable{
 		
 		public String getDeliver(){
 			return this.deliverName;
+		}
+		
+		public String getid(){
+			return this.id;
 		}
 	
 

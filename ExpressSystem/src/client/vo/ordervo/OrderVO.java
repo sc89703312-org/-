@@ -2,6 +2,7 @@ package client.vo.ordervo;
 
 import java.io.Serializable;
 import java.util.Observable;
+import java.util.Observer;
 
 
 
@@ -35,7 +36,9 @@ public class OrderVO extends Observable implements Serializable{
 	ArrivalState arrivalState;
 	String expectedTime;
 	String currentSpot;
-	String Deliver=null;
+	String Deliver="";
+	
+	
 
 	public OrderVO(String sname,String saddress,String spost,String stel,String sphone,String rname,String raddress
 			,String rpost,String rtel,String rphone,int num,double w,double v,String gname,double size,double pkgCost
@@ -62,6 +65,11 @@ public class OrderVO extends Observable implements Serializable{
 		this.arrivalState=no;
 		this.expectedTime=expected;
 		this.currentSpot=currentSpot;
+		
+	}
+	
+	public void addObserver(Object o){
+		this.addObserver(o);
 	}
 	
 	public void stateChanged(){
