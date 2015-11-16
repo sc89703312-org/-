@@ -3,14 +3,14 @@ package client.blservice.stationBlService.test;
 import java.util.ArrayList;
 
 import client.ResultMessage;
-import client.blservice.stationBlService.StationBlService;
+import client.blservice.stationBlService.StationReceiptBlService;
 import client.vo.ordervo.ArrivalState;
 import client.vo.ordervo.Etype;
 import client.vo.ordervo.OrderVO;
 
 public class StationBlService_Driver {
 
-	public void drive(StationBlService service){
+	public void drive(StationReceiptBlService service){
 		
 		ResultMessage result;
 		

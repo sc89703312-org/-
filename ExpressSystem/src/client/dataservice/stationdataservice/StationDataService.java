@@ -4,14 +4,15 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import client.ResultMessage;
 import client.po.stationpo.ArriveReceiptPO;
 import client.po.stationpo.StationPO;
 import client.po.stationpo.TransferReceiptPO;
 
 public interface StationDataService extends Remote{
 
-	public void addStation(String id, String location) throws RemoteException;
-	public void removeStation(String id) throws RemoteException;
+	public ResultMessage addStation(String id, String location) throws RemoteException;
+	public ResultMessage removeStation(String id) throws RemoteException;
 	public ArrayList<StationPO> showStation() throws RemoteException;
 	
 	public void addArriveReceipt(ArriveReceiptPO po, String stationID) throws RemoteException;
