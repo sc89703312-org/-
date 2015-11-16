@@ -55,7 +55,7 @@ public class CommodityBlService_Stub implements CommodityBlService{
 	public ArrayList<TransferReceiptVO> showTransferReceipt(){
 		
 		ArrayList<TransferReceiptVO> list = new ArrayList<TransferReceiptVO>();
-		list.add(new TransferReceiptVO("100","2015/10/25","Nanjing",new ArrayList<OrderVO>()));
+		list.add(new TransferReceiptVO("100","2015/10/25","Nanjing","Shanghai",new ArrayList<OrderVO>()));
 		return list;
 		
 	}

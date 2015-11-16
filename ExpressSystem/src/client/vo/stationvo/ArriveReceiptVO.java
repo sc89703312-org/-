@@ -2,9 +2,10 @@ package client.vo.stationvo;
 
 import java.util.ArrayList;
 
+import client.vo.ReceiptVOBase;
 import client.vo.ordervo.OrderVO;
 
-public class ArriveReceiptVO {
+public class ArriveReceiptVO extends ReceiptVOBase{
 
 	String id;
 	String date;
@@ -37,5 +38,9 @@ public class ArriveReceiptVO {
 	public String getLocation(){
 		return this.location;
 	}
+	
+	public ArrayList<OrderVO> getList(){
+    	return this.orderList;
+    }
 	
 }

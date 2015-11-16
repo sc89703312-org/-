@@ -14,17 +14,17 @@ public class TransferReceiptPO implements Serializable{
 	
 	String id;
 	String date;
-	String from;
+	String to;
 	String location;
 	
 	boolean isApprove;
 	
 	ArrayList<OrderPO> order_list;
 	
-	public TransferReceiptPO(String id, String date, String from, String location, ArrayList<OrderPO> order_list){
+	public TransferReceiptPO(String id, String date, String to, String location, ArrayList<OrderPO> order_list){
 		this.id = id;
 		this.date = date;
-		this.from = from;
+		this.to = to;
 		this.location = location;
 		
 		this.isApprove = false;
@@ -40,8 +40,8 @@ public class TransferReceiptPO implements Serializable{
 		return date;
 	}
 	
-	public String getFrom(){
-		return from;
+	public String getTo(){
+		return to;
 	}
 	
 	public String getLocation(){

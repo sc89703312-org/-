@@ -7,6 +7,7 @@ import client.blservice.receiptblservice.ReceiptBlService;
 import client.businesslogic.hallbl.HallBL;
 import client.businesslogic.orderbl.OrderBL;
 import client.businesslogic.paymentbl.Paymentbl;
+import client.businesslogic.stationbl.StationReceiptBl;
 import client.vo.ReceiptVOBase;
 
 public class ReceiptBl implements ReceiptBlService {
@@ -14,6 +15,7 @@ public class ReceiptBl implements ReceiptBlService {
 	OrderBL order;
 	Paymentbl payment;
 	HallBL hall;
+	StationReceiptBl stationbl;
 
 	ArrayList<ReceiptVOBase> list = new ArrayList<ReceiptVOBase>();
 
@@ -25,10 +27,13 @@ public class ReceiptBl implements ReceiptBlService {
 
 	@Override
 	public ArrayList<ReceiptVOBase> view() {
+		
 		list.addAll(payment.viewAll());
 		list.addAll(hall.viewAllArrival());
 		list.addAll(hall.viewAllDeliver());
 		list.addAll(hall.viewAllTransfer());
+		list.addAll(stationbl.viewAllArrive());
+		list.addAll(stationbl.viewAllTransfer());
 
 		return list;
 	}

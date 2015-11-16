@@ -2,9 +2,10 @@ package client.vo.stationvo;
 
 import java.util.ArrayList;
 
+import client.vo.ReceiptVOBase;
 import client.vo.ordervo.OrderVO;
 
-public class TransferReceiptVO {
+public class TransferReceiptVO extends ReceiptVOBase{
 
 	String id;
 	String date;
@@ -13,11 +14,14 @@ public class TransferReceiptVO {
 	
 	ArrayList<OrderVO> orderList;
 	
-    public TransferReceiptVO(String id, String date, String to, ArrayList<OrderVO> list){
+    public TransferReceiptVO(String id, String date, String to, String location, ArrayList<OrderVO> list){
 		
 		this.id = id;
 		this. date = date;
 		this.to = to;
+		this.location = location;
+		
+		orderList = list;
 		
 	}
     
@@ -37,6 +41,8 @@ public class TransferReceiptVO {
 		return this.location;
 	}
 
-
+    public ArrayList<OrderVO> getList(){
+    	return this.orderList;
+    }
 	
 }

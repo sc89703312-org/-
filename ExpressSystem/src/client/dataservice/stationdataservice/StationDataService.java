@@ -16,14 +16,14 @@ public interface StationDataService extends Remote{
 	public ArrayList<StationPO> showStation() throws RemoteException;
 	
 	public void addArriveReceipt(ArriveReceiptPO po, String stationID) throws RemoteException;
-	public ArrayList<ArriveReceiptPO> getArriveReceipt(String stationID) throws RemoteException;
-	public void approveArriveReceipt(ArrayList<ArriveReceiptPO> list) throws RemoteException;
+	public ArrayList<ArriveReceiptPO> getArriveReceipt() throws RemoteException;
+	public ResultMessage approveArriveReceipt(String id) throws RemoteException;
 	public void modifyArriveReceipt(String id, ArriveReceiptPO po) throws RemoteException;
 	
 	public void addTransferReceipt(TransferReceiptPO po, String stationID) throws RemoteException;
-	public ArrayList<TransferReceiptPO> getTransferReceipt(String stationID) throws RemoteException;
-	public void approveTransferReceiptPO(ArrayList<TransferReceiptPO> list) throws RemoteException;
-	public void modifyTransferReceiptPO(String id, TransferReceiptPO po) throws RemoteException;
+	public ArrayList<TransferReceiptPO> getTransferReceipt() throws RemoteException;
+	public ResultMessage approveTransferReceipt(String id) throws RemoteException;
+	public void modifyTransferReceipt(String id, TransferReceiptPO po) throws RemoteException;
 	
 	
 }
