@@ -1,26 +1,10 @@
 package client.main;
 
-import java.awt.List;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
 
-import client.businesslogic.vehiclebl.CarControl;
-import client.businesslogic.vehiclebl.Vehiclebl;
-import client.po.Role;
-import client.po.HallPo.HallPo;
-import client.po.accountpo.Accountpo;
-import client.po.balancepo.Balancepo;
-import client.po.bankingpo.BankingAccountPO;
-import client.po.carpo.Carpo;
-import client.po.driverpo.Driverpo;
-import client.po.paymentpo.Paymentpo;
-import client.po.stationpo.StationPO;
-import client.po.userpo.UserPO;
-import client.presentation.payment.PaymentPanel;
-import client.presentation.payment.paymentui;
-import client.vo.carvo.Carvo;
-import client.vo.drivervo.Drivervo;
-import client.vo.paymentvo.Paymentvo;
+import java.rmi.RemoteException;
+
+
+
 
 public class client {
 
@@ -29,47 +13,7 @@ public class client {
 		System.out.println("Client creates!");
 		
 	
-		try {
-			RMIHelper.getBalanceDataService().delete("2015/11/5");
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		ArrayList<StationPO> stations=new ArrayList<StationPO>();
-		ArrayList<HallPo> halls=new ArrayList<HallPo>();
-		ArrayList<BankingAccountPO> accounts=new ArrayList<BankingAccountPO>();
-		ArrayList<UserPO> users=new ArrayList<UserPO>();
-		ArrayList<Carpo> cars=new ArrayList<Carpo>();
-		
-		String date ="2015/11/16";
-		
-		stations.add(new StationPO("a", "Nanjing"));
-		halls.add(new HallPo("025000", "Gulou", "a"));
-		accounts.add(new BankingAccountPO("sc"));
-		users.add(new UserPO("1", "XiaoLiu",
-				Role.ACCOUNTANT, "sc"));
-		cars.add(new Carpo(1, "", "", "", "", 1));
-		
-		
-		try {
-			RMIHelper.getAccountdataservice().insert(new Accountpo(
-					halls,
-					stations,
-					users,
-					cars,
-					accounts,
-					date));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		
+
 		
 		
 //		try {
