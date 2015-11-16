@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.strategybl.managementbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.ManagementBlService;
+import edu.nju.express.businesslogic.userbl.UserBl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
@@ -12,28 +13,28 @@ import edu.nju.express.vo.EmployeeVO;
 
 public class ManagementBl implements ManagementBlService{
 
-	MockUser mockUser;
+	UserBl user;
 	
-	public ManagementBl() {
-		mockUser = new MockUser();
+	public ManagementBl(UserBl user) {
+		this.user = user;
 	}
 	
 
 
 	@Override
 	public ResultMessage addEmployee(String id, String name, Role role) {
-		return mockUser.createUserMessage(StaffChange.add, id, name, role);
+		return user.createUserMessage(StaffChange.add, id, name, role);
 	}
 
 	@Override
 	public ResultMessage dismissEmployee(String id) {
-		return mockUser.createUserMessage(StaffChange.delete, id, null, null);
+		return user.createUserMessage(StaffChange.delete, id, null, null);
 	}
 
 
 	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList() {
-		return mockUser.viewEmployeeList();
+		return user.viewEmployeeList();
 	}
 
 }

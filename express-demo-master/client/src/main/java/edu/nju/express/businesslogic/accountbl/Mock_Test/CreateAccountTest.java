@@ -19,7 +19,7 @@ import edu.nju.express.businesslogic.vehiclebl.CarControl;
 public class CreateAccountTest {
 
 	
-	ManagementBl managementBl = new MockManagement();
+	ManagementBl managementBl = new MockManagement(null);
 	OrganizationBl organizationBl = new MockOrganization();
 	Bankingbl bankingbl = new MockBanking();
 	CarControl carControl = new MockVehicle();

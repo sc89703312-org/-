@@ -2,7 +2,7 @@ package edu.nju.express.businesslogic.receiptbl;
 
 import java.util.ArrayList;
 
-import edu.nju.express.businesslogic.hallbl.HallBL;
+import edu.nju.express.businesslogic.hallbl.HallReceiptBL;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.common.ReceiptState;
 import edu.nju.express.po.DeliverReceiptPO;
@@ -12,7 +12,7 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 
 
-public class MockHall extends HallBL{
+public class MockHall extends HallReceiptBL{
 
 	ArrayList<DeliverReceiptPO> listPo;
 	

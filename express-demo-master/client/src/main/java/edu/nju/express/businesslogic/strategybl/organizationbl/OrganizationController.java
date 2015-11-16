@@ -45,8 +45,8 @@ public class OrganizationController implements OrganizationBlService{
 	}
 
 	@Override
-	public ResultMessage createHall(String id, String name, String cityID) {
-		return organization.createHall(id, name, cityID);
+	public ResultMessage createHall(String id, String name) {
+		return organization.createHall(id, name);
 	}
 
 	@Override

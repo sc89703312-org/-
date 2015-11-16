@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.accountbl.Mock_Test;
 import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.strategybl.managementbl.ManagementBl;
+import edu.nju.express.businesslogic.userbl.UserBl;
 import edu.nju.express.common.Role;
 import edu.nju.express.vo.EmployeeVO;
 
@@ -13,9 +14,9 @@ public class MockManagement extends ManagementBl{
 	ArrayList<EmployeeVO> tempList = new ArrayList<EmployeeVO>();
 	
 	
-	public MockManagement() {
+	public MockManagement(UserBl user) {
 		// TODO Auto-generated constructor stub
-	
+			super(null);
 		    tempList.add(new EmployeeVO(
 				"1",
 				"sc",

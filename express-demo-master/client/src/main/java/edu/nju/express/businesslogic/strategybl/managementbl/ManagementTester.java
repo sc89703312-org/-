@@ -15,7 +15,7 @@ import edu.nju.express.vo.EmployeeVO;
 
 public class ManagementTester {
 
-	ManagementBlService manage = new ManagementBl();
+	ManagementBlService manage = new ManagementBl(new MockUser());
 
 	@Test
 	public void testView() {

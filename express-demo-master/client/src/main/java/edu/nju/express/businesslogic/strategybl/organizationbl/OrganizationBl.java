@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.strategybl.organizationbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.OrganizationBlService;
+import edu.nju.express.businesslogic.hallbl.HallBL;
 import edu.nju.express.businesslogic.stationbl.StationBl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.HallVO;
@@ -13,12 +14,13 @@ import edu.nju.express.vo.StationVO;
 public class OrganizationBl implements OrganizationBlService{
 
 	StationBl stationbl;
+	HallBL hallbl;
 	
 	
-	public OrganizationBl(StationBl stationbl){
+	public OrganizationBl(StationBl stationbl, HallBL hallbl){
 		
 		this.stationbl = stationbl;
-		
+		this.hallbl = hallbl;
 	}
 	
 	@Override
@@ -38,18 +40,18 @@ public class OrganizationBl implements OrganizationBlService{
 
 	@Override
 	public ArrayList<HallVO> viewHallList() {
-		return null;
+		return hallbl.showHall();
 	}
 
 	@Override
-	public ResultMessage createHall(String id, String name, String cityID) {
-		return null;
+	public ResultMessage createHall(String id, String name) {
+		return hallbl.addHall(id, name);
 	}
 
 	@Override
 	public ResultMessage deleteHall(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return hallbl.removeHall(id);
 	}
 
 }

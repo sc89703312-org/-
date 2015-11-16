@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.blservice.ReceiptBlService;
 import edu.nju.express.businesslogic.hallbl.HallBL;
+import edu.nju.express.businesslogic.hallbl.HallReceiptBL;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
@@ -16,15 +17,15 @@ public class ReceiptBl implements ReceiptBlService {
 
 	OrderBL order;
 	Paymentbl payment;
-	HallBL hall;
+	HallReceiptBL hall;
 	StationReceiptBl stationbl;
 
-	ArrayList<ReceiptVOBase> list = new ArrayList<ReceiptVOBase>();
+	ArrayList<ReceiptVOBase> list;
 
 	public ReceiptBl() {
 		payment = new MockPayment(null);
 		hall = new MockHall();
-
+		list = new ArrayList<ReceiptVOBase>();
 	}
 
 	@Override
@@ -34,8 +35,8 @@ public class ReceiptBl implements ReceiptBlService {
 		list.addAll(hall.viewAllArrival());
 		list.addAll(hall.viewAllDeliver());
 		list.addAll(hall.viewAllTransfer());
-		list.addAll(stationbl.viewAllArrive());
-		list.addAll(stationbl.viewAllTransfer());
+//		list.addAll(stationbl.viewAllArrive());
+//		list.addAll(stationbl.viewAllTransfer());
 
 		return list;
 	}

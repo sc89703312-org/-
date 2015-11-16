@@ -8,12 +8,12 @@ import edu.nju.express.vo.*;
 
 public interface HallBLService {
 
-	public ResultMessage createArrivalReceipt(ArrivalReceiptVO vo);
-	
-	public ResultMessage createTransferReceipt(TransferReceiptVO vo);
-	
-	public ResultMessage createDeliverReceipt(DeliverReceiptVO vo);
-	
+	public ResultMessage addHall(String id, String location);;
+
+	public ResultMessage removeHall(String id);
+
+	public ArrayList<HallVO> showHall();
+
 	
 	
 }
