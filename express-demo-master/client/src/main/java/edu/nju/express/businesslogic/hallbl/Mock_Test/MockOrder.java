@@ -10,6 +10,7 @@ import edu.nju.express.vo.OrderVO;
 
 
 public class MockOrder extends OrderBL{
+	//I can use MAVEN!
 	ArrayList<OrderVO> list = new ArrayList<OrderVO>();
 	public MockOrder(){
 		list.add(new OrderVO("SC","NJU","NJU","025-83621002","13900001231","DY","NJU","NJU",
