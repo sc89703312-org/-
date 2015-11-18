@@ -15,8 +15,6 @@ public class TaskList {
 
 	public TaskList() {
 		
-		this.userMessageData = new MockUserMessageData();
-		
 	}
 	
 	public ArrayList<UserMessageVO> viewTask() {

@@ -9,6 +9,7 @@ import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.dataservice.UserMessageDataService;
+import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.UserMessageVO;
@@ -20,15 +21,12 @@ public class UserBl implements UserBlService {
 	TaskList task;
 
 	public UserBl() {
-		userData = new MockUserData();
-		userMessageData = new MockUserMessageData();
 	}
 
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
 		try {
-
-			userData.insert(id, name, role, password);
+			userData.insert(new UserPO(id, name, role, password));
 			deleteUserMessage(id);
 			return ResultMessage.VALID;
 		} catch (RemoteException e) {
@@ -54,7 +52,7 @@ public class UserBl implements UserBlService {
 	public ResultMessage modifyUser(String id, String name, Role role, String password) {
 		try {
 			
-				userData.modify(id, name, role, password);
+				userData.modify(new UserPO(id, name, role, password));
 				return ResultMessage.VALID;
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -96,7 +94,7 @@ public class UserBl implements UserBlService {
 			try {
 
 				if (userData.find(id) == null) {
-					userMessageData.insert(operation, id, name, role);
+					userMessageData.insert(new UserMessagePO(operation, id, name, role));
 					rm = ResultMessage.VALID;
 				}
 
@@ -108,7 +106,7 @@ public class UserBl implements UserBlService {
 
 			try {
 				if (userData.find(id) != null) {
-					userMessageData.insert(operation, id, name, role);
+					userMessageData.insert(new UserMessagePO(operation, id, name, role));
 					rm = ResultMessage.VALID;
 				}
 			} catch (RemoteException e) {
