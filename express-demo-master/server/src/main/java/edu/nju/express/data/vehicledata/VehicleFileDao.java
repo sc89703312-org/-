@@ -280,26 +280,26 @@ public class VehicleFileDao implements VehicleDao {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-		
-		for(int i=0;i<drivers.size();i++){
-			Driverpo po = drivers.get(i);
-			
-			try {
-			ObjectOutputStream os;
-			File file = new File("driver.txt");
-			FileOutputStream fos = new FileOutputStream(file, true);
-			if (file.length() < 1) {
-				os = new ObjectOutputStream(fos);
-			} else {
-				os = new MyObjectOutputStream(fos);
-			}
-			os.writeObject(po);
-			os.flush();
-			os.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		 for(int i=0;i<drivers.size();i++){
+			 Driverpo po = drivers.get(i);
+
+			 try {
+				 ObjectOutputStream os;
+				 File file = new File("driver.txt");
+				 FileOutputStream fos = new FileOutputStream(file, true);
+				 if (file.length() < 1) {
+					 os = new ObjectOutputStream(fos);
+				 } else {
+					 os = new MyObjectOutputStream(fos);
+				 }
+				 os.writeObject(po);
+				 os.flush();
+				 os.close();
+			 } catch (FileNotFoundException e) {
+				 e.printStackTrace();
+			 } catch (IOException e) {
+				 e.printStackTrace();
 		}
 		}
 		

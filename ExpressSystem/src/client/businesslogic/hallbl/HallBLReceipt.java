@@ -61,6 +61,6 @@ public class HallBLReceipt implements HallBLReceiptService{
 		return deliverList;
 	}
 
-	
+
 
 }
