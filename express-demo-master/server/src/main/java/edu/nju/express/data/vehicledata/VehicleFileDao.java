@@ -213,6 +213,7 @@ public class VehicleFileDao implements VehicleDao {
 			}
 		} catch (Exception ex) {
 			try {
+				if(is!=null)
 				is.close();
 			} catch (IOException e) {
 				e.printStackTrace();
