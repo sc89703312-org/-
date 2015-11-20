@@ -3,7 +3,7 @@ package edu.nju.express.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class EnterReceiptPO implements Serializable{
+public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 
 	/**
 	 * 

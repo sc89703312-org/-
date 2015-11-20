@@ -3,7 +3,7 @@ package edu.nju.express.po;
 import java.io.Serializable;
 import java.util.List;
 
-public class ConstantPO implements Serializable{
+public class ConstantPO extends PersistentObj implements Serializable{
 
 	private static final long serialVersionUID = -1926679450602183759L;
 	private List<String> cityList;

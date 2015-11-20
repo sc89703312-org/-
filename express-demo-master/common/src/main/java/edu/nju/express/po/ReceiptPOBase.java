@@ -5,7 +5,7 @@ import java.io.Serializable;
 import edu.nju.express.common.ReceiptState;
 
 
-public abstract class ReceiptPOBase implements Serializable{
+public abstract class ReceiptPOBase extends PersistentObj implements Serializable{
 	
 	/**
 	 * 

@@ -3,14 +3,14 @@ package edu.nju.express.po;
 import java.io.Serializable;
 
 
-public class Driverpo implements Serializable{
+public class Driverpo extends PersistentObj implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	int id;
+	String id;
 	String name;
 	String birthdate;
 	String certificate;
@@ -20,7 +20,7 @@ public class Driverpo implements Serializable{
 	String ddl;
 	
 	
-	public Driverpo(int id,String n,String b,String c,String p,String h,boolean s,String d) {
+	public Driverpo(String id,String n,String b,String c,String p,String h,boolean s,String d) {
 		// TODO Auto-generated constructor stub
       
 		this.id  = id;
@@ -36,9 +36,7 @@ public class Driverpo implements Serializable{
 	}
 
 	
-	public int getId(){
-		return id;
-	}
+	
 	
 	public String getName(){
 		return name;

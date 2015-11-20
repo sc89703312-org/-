@@ -3,7 +3,7 @@ package edu.nju.express.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LogisticsPO implements Serializable{
+public class LogisticsPO extends PersistentObj implements Serializable{
 	
 
 		/**
@@ -23,6 +23,7 @@ public class LogisticsPO implements Serializable{
 			this.id=id;
 			this.currentLoca=currentLoca;
 			history = new ArrayList<String>();
+			this.date="";
 		}
 		
 		public void setDeliver(String name){

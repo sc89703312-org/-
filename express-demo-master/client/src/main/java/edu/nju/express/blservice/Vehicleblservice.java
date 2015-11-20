@@ -9,9 +9,9 @@ public interface Vehicleblservice {
 
 	
 	public ResultMessage addDriver(Drivervo vo);
-	public ResultMessage deleteDriver(int id);
-	public ResultMessage modifyDriver(int id,Drivervo vo);
-	public Drivervo viewDriver(int id);
+	public ResultMessage deleteDriver(String id);
+	public ResultMessage modifyDriver(String id,Drivervo vo);
+	public Drivervo viewDriver(String id);
 	
 	public void endVehicle();
 }

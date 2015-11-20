@@ -3,7 +3,7 @@ package edu.nju.express.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StationPO implements Serializable{
+public class StationPO extends PersistentObj implements Serializable{
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class StationPO implements Serializable{
 	public StationPO(String id, String name) {
 		this.id = id;
 		this.name = name;
-		
+		this.date ="";
 		arrive_list = new ArrayList<ArriveReceiptPO>();
 		transfer_list = new ArrayList<TransferReceiptPO>();
 	}

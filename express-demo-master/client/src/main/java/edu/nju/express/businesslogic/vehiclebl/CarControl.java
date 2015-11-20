@@ -49,7 +49,7 @@ public class CarControl implements CarControlService{
 	}
 
 	@Override
-	public ResultMessage deleteCar(int id) {
+	public ResultMessage deleteCar(String id) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -69,7 +69,7 @@ public class CarControl implements CarControlService{
 	}
 
 	@Override
-	public ResultMessage modifyCar(int id, Carvo vo) {
+	public ResultMessage modifyCar(String id, Carvo vo) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -89,7 +89,7 @@ public class CarControl implements CarControlService{
 	}
 
 	@Override
-	public Carvo viewCar(int id) {
+	public Carvo viewCar(String id) {
 		// TODO Auto-generated method stub
 		
 		Carvo tempCarvo = null;

@@ -7,7 +7,7 @@ import edu.nju.express.common.StaffChange;
 
 
 
-public class UserMessagePO implements Serializable{
+public class UserMessagePO extends PersistentObj implements Serializable{
 
 	/**
 	 * 
@@ -30,6 +30,7 @@ public class UserMessagePO implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.role = role;
+		this.date = "";
 	}
 
 	public StaffChange getOperation() {

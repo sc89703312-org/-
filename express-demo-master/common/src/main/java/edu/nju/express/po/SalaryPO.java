@@ -2,7 +2,7 @@ package edu.nju.express.po;
 
 import java.io.Serializable;
 
-public class SalaryPO implements Serializable{
+public class SalaryPO extends PersistentObj implements Serializable{
 	/**
 	 * 
 	 */

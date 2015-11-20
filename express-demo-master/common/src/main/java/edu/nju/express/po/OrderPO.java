@@ -7,7 +7,7 @@ import edu.nju.express.common.Etype;
 
 
 
-public class OrderPO implements Serializable{
+public class OrderPO extends ReceiptPOBase implements Serializable{
 
 	/**
 	 * 
@@ -151,7 +151,7 @@ public class OrderPO implements Serializable{
 		return this.type;
 	}
 	
-	public ArrivalState getState(){
+	public ArrivalState getArrivalState(){
 		return this.arrivalState;
 	}
 	

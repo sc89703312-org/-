@@ -2,14 +2,14 @@ package edu.nju.express.vo;
 
 
 public class Carvo {
-	int id;
+	String id;
 	String motor;
 	String car;
 	String base;
 	String purchase;
 	int use;
 	
-	public Carvo(int id,String motor,String car,String base,String purchase,int use) {
+	public Carvo(String id,String motor,String car,String base,String purchase,int use) {
 		// TODO Auto-generated constructor stub
 	this.id = id;
 	this.motor = motor;
@@ -22,7 +22,7 @@ public class Carvo {
 	
 	
 	
-	public int getId(){
+	public String getId(){
 		return id;
 	}
 	

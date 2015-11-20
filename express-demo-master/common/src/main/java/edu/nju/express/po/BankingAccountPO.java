@@ -2,7 +2,7 @@ package edu.nju.express.po;
 
 import java.io.Serializable;
 
-public class BankingAccountPO  implements Serializable{
+public class BankingAccountPO extends PersistentObj  implements Serializable{
 
 	/**
 	 * 
@@ -16,6 +16,8 @@ public class BankingAccountPO  implements Serializable{
 		
 		this.name = name;
 		this.money = 0;
+		this.id = name;
+		this.date = "";
 		
 	}
 	

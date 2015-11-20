@@ -40,7 +40,7 @@ public class VehicleFileDao implements VehicleDao {
 
 	
 	@Override
-	public void deleteCar(int id) {
+	public void deleteCar(String id) {
 		// TODO Auto-generated method stub
 
 		System.out.println("Before delete " +cars.size());
@@ -56,7 +56,7 @@ public class VehicleFileDao implements VehicleDao {
 	}
 
 	@Override
-	public void updateCar(int number, Carpo po) {
+	public void updateCar(String number, Carpo po) {
 		// TODO Auto-generated method stub
 		   
 		deleteCar(number);
@@ -66,7 +66,7 @@ public class VehicleFileDao implements VehicleDao {
 	
 	
 	@Override
-	public Carpo findCar(int id) {
+	public Carpo findCar(String id) {
 		// TODO Auto-generated method stub
 
 		
@@ -95,7 +95,7 @@ public class VehicleFileDao implements VehicleDao {
 	
 	
 	@Override
-	public void deleteDri(int id) {
+	public void deleteDri(String id) {
 		// TODO Auto-generated method stub
 		
 		   
@@ -113,14 +113,14 @@ public class VehicleFileDao implements VehicleDao {
 	}
 
 	@Override
-	public void updateDri(int number, Driverpo po) {
+	public void updateDri(String number, Driverpo po) {
 		// TODO Auto-generated method stub
 		deleteDri(number);
 		insertDri(po);
 	}
 
 	@Override
-	public Driverpo findDri(int id) {
+	public Driverpo findDri(String id) {
 		// TODO Auto-generated method stub
  
 		

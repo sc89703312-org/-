@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 
-public class ArriveReceiptPO implements Serializable{
+public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 
 	/**
 	 * 

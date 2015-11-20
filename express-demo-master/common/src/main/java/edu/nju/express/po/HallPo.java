@@ -2,7 +2,7 @@ package edu.nju.express.po;
 
 import java.io.Serializable;
 
-public class HallPo implements Serializable {
+public class HallPo extends PersistentObj implements Serializable {
 
 	/**
 	 * 
@@ -18,6 +18,7 @@ public class HallPo implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.cityID = cityID;
+		this.date ="";
 	}
 	public String getId() {
 		return id;

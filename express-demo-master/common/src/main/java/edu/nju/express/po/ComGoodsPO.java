@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 
-public class ComGoodsPO implements Serializable{
+public class ComGoodsPO extends PersistentObj implements Serializable{
 
 	/**
 	 * 
@@ -17,6 +17,8 @@ public class ComGoodsPO implements Serializable{
 	public ComGoodsPO(OrderPO order, String comLocation){
 		this.order = order;
 		this.comLocation = comLocation;
+		this.id = order.id;
+		this.date = "";
 	}
 	
 	public OrderPO getOrder(){

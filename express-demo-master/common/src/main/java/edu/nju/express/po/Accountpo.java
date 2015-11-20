@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 
-public class Accountpo implements Serializable {
+public class Accountpo extends PersistentObj implements Serializable {
 
 	/**
 	 * 
@@ -20,7 +20,9 @@ public class Accountpo implements Serializable {
 	ArrayList<UserPO> user_list = new ArrayList<UserPO>();
 	ArrayList<Carpo> car_list = new ArrayList<Carpo>();
 	ArrayList<BankingAccountPO> bank_list = new ArrayList<BankingAccountPO>();
-	String date;
+//	String date;
+	
+	
 	
 	
 	
@@ -31,8 +33,9 @@ public class Accountpo implements Serializable {
 			                ArrayList<Carpo> car_list,
 			                ArrayList<BankingAccountPO> bank_list,
 			                String date) {
+		
 		// TODO Auto-generated constructor stub
-
+  
 	
 	this.hall_list = hall_list;
 	this.station_list = station_list;
@@ -40,6 +43,7 @@ public class Accountpo implements Serializable {
 	this.car_list = car_list;
 	this.bank_list = bank_list;
 	this.date = date;
+	this.id = date +"_Account";
 	}
 	
 	public ArrayList<HallPo> getHallList(){
@@ -61,8 +65,6 @@ public class Accountpo implements Serializable {
 	}
 	
 	
-	public String getDate(){
-		return date;
-	}
+
 	
 }

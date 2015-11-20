@@ -15,13 +15,13 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	String date;
+
 	double money;
 	String name;
 	String banking;
 	Item item;
 	String remark;
-	String id;
+
 	
 	public Balancepo(String date,double money,String name,
 			               String banking,Item item,String remark) {

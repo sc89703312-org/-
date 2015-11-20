@@ -6,7 +6,7 @@ import edu.nju.express.common.Role;
 
 
 
-public class UserPO implements Serializable{
+public class UserPO  extends PersistentObj implements Serializable{
 	/**
 	 * 
 	 */
@@ -28,6 +28,7 @@ public class UserPO implements Serializable{
 		this.name = name;
 		this.role = role;
 		this.password = password;
+		this.date = "";
 	}
 
 	public String getId() {

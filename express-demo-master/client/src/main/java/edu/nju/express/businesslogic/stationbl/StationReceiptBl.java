@@ -272,7 +272,7 @@ public class StationReceiptBl implements StationReceiptBlService{
 		OrderVO vo = new OrderVO(po.getSenderName(),po.getSenderAddress(),po.getSenderPost(),po.getReceiverTel(),
 				po.getReceiverPhone(),po.getReceiverName(),po.getReceiverAddress(),po.getReceiverPost(),po.getReceiverTel(),
 				po.getReceiverPhone(),po.getNum(),po.getWeight(),po.getVolume(),po.getGoodsName(),po.getSize(),
-				po.getPkgCost(),po.getTotalCost(),po.getID(),po.getType(),po.getState(),po.getExpectedTime(),
+				po.getPkgCost(),po.getTotalCost(),po.getID(),po.getType(),po.getArrivalState(),po.getExpectedTime(),
 				po.getCurrentSpot());
 		
 		return vo;

@@ -46,7 +46,7 @@ public class Vehiclebl implements Vehicleblservice{
 	}
 
 	@Override
-	public ResultMessage deleteDriver(int id) {
+	public ResultMessage deleteDriver(String id) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -66,7 +66,7 @@ public class Vehiclebl implements Vehicleblservice{
 	}
 
 	@Override
-	public ResultMessage modifyDriver(int id, Drivervo vo) {
+	public ResultMessage modifyDriver(String id, Drivervo vo) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -86,7 +86,7 @@ public class Vehiclebl implements Vehicleblservice{
 	}
 
 	@Override
-	public Drivervo viewDriver(int id) {
+	public Drivervo viewDriver(String id) {
 		// TODO Auto-generated method stub
 		
 		Drivervo tempDrivervo = null;

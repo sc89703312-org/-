@@ -3,21 +3,21 @@ package edu.nju.express.po;
 import java.io.Serializable;
 
 
-public class Carpo  implements Serializable {
+public class Carpo extends PersistentObj implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	int id;
+	String id;
 	String motor;
 	String car;
 	String base;
 	String purchase;
 	int use;
 	
-	public Carpo(int id,String motor,String car,String base,String purchase,int use) {
+	public Carpo(String id,String motor,String car,String base,String purchase,int use) {
 		// TODO Auto-generated constructor stub
 	this.id = id;
 	this.motor = motor;
@@ -25,14 +25,12 @@ public class Carpo  implements Serializable {
 	this.base = base;
 	this.purchase = purchase;
 	this.use = use;
-	
+	this.date = "";
 	}
 	
 	
 	
-	public int getId(){
-		return id;
-	}
+
 	
 	public String getMotor(){
 		return motor;

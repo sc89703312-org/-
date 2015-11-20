@@ -37,21 +37,21 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 	}
 
 	@Override
-	public void deleteCar(int id) throws RemoteException {
+	public void deleteCar(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Prepares to delete a car");
 		vehicleDao.deleteCar(id);
 	}
 
 	@Override
-	public void updateCar(int number, Carpo po) throws RemoteException {
+	public void updateCar(String number, Carpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to update");
 		vehicleDao.updateCar(number, po);
 	}
 
 	@Override
-	public Carpo findCar(int id) throws RemoteException {
+	public Carpo findCar(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to find");
 		return vehicleDao.findCar(id);
@@ -66,21 +66,21 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 	}
 
 	@Override
-	public void deleteDri(int id) throws RemoteException {
+	public void deleteDri(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to delete a po");
 		vehicleDao.deleteDri(id);
 	}
 
 	@Override
-	public void updateDri(int number, Driverpo po) throws RemoteException {
+	public void updateDri(String number, Driverpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to update");
 		vehicleDao.updateDri(number, po);
 	}
 
 	@Override
-	public Driverpo findDri(int id) throws RemoteException {
+	public Driverpo findDri(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to find");
 		return vehicleDao.findDri(id);

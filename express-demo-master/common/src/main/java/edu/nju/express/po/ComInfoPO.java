@@ -3,7 +3,7 @@ package edu.nju.express.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ComInfoPO implements Serializable{
+public class ComInfoPO extends PersistentObj implements Serializable{
 
 	/**
 	 * 
@@ -29,6 +29,8 @@ public class ComInfoPO implements Serializable{
 	public ComInfoPO(String comID, String location){
 		this.comID = comID;
 		this.location = location;
+		this.id = comID;
+		this.date = "";
 		
 		goods_list = new ArrayList<ComGoodsPO>();
 		enter_list = new ArrayList<EnterReceiptPO>();

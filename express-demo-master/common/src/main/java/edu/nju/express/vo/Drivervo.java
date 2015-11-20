@@ -2,7 +2,7 @@ package edu.nju.express.vo;
 
 
 public class Drivervo {
-	int id;
+	String id;
 	String name;
 	String birthdate;
 	String certificate;
@@ -11,7 +11,7 @@ public class Drivervo {
 	boolean sex;
 	String ddl;
 	
-	public Drivervo(int id,String n,String b,String c,String p,String h,boolean s,String d) {
+	public Drivervo(String id,String n,String b,String c,String p,String h,boolean s,String d) {
 		// TODO Auto-generated constructor stub
 		this.id  = id;
 		name = n;
@@ -27,8 +27,8 @@ public class Drivervo {
 	}
 	
 	
-	
-	public int getId(){
+
+	public String getId(){
 		return id;
 	}
 	

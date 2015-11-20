@@ -17,20 +17,20 @@ public class MockVehicle extends CarControl{
 	
 	
 	cars.add(new Carvo(
-			1, "Motor-1",
+			"1", "Motor-1",
 			"Su-A", "Base-1",
 			"2011/1/1", 5));
 	
 	
 	cars.add(new Carvo(
-			2, "Motor-1",
+			"2", "Motor-1",
 			"Su-A", "Base-1",
 			"2011/1/1", 5));
 	
 	
 	
 	cars.add(new Carvo(
-			3, "Motor-1",
+			"3", "Motor-1",
 			"Su-A", "Base-1",
 			"2011/1/1", 5));
 	
