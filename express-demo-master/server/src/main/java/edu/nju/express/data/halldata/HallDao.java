@@ -15,9 +15,9 @@ public interface HallDao {
 	public ArrayList<ArrivalReceiptPO> getArrivalReceipt();
 	public void approveArrivalReceipt(ArrayList<ArrivalReceiptPO> list);
 	
-	public void addTransferReceipt(TransferReceiptPO po);
-	public ArrayList<TransferReceiptPO> getTransferReceipt();
-	public void approveTransferReceipt(ArrayList<TransferReceiptPO> list);
+	public void addTransferReceipt(HallTransferReceiptPO po);
+	public ArrayList<HallTransferReceiptPO> getTransferReceipt();
+	public void approveTransferReceipt(ArrayList<HallTransferReceiptPO> list);
 	
 	public void addDeliverReceipt(DeliverReceiptPO po);
 	public ArrayList<DeliverReceiptPO> getDeliverReceipt();

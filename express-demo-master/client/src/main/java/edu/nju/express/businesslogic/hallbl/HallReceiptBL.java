@@ -8,8 +8,8 @@ import edu.nju.express.businesslogic.vehiclebl.Vehiclebl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
+import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
-import edu.nju.express.vo.TransferReceiptVO;
 
 public class HallReceiptBL implements HallReceiptBlService{
 	
@@ -17,7 +17,7 @@ public class HallReceiptBL implements HallReceiptBlService{
 	Vehiclebl vehiclebl;
 	
 	ArrayList<ArrivalReceiptVO> arrivalList = new ArrayList<ArrivalReceiptVO>();
-	ArrayList<TransferReceiptVO> transferList = new ArrayList<TransferReceiptVO>();
+	ArrayList<HallTransferReceiptVO> transferList = new ArrayList<HallTransferReceiptVO>();
 	ArrayList<DeliverReceiptVO> deliverList = new ArrayList<DeliverReceiptVO>();
 	
 	public HallReceiptBL(OrderBL orderBL,Vehiclebl vehiclebl){
@@ -40,7 +40,7 @@ public class HallReceiptBL implements HallReceiptBlService{
 	}
 
 	@Override
-	public ResultMessage createTransferReceipt(TransferReceiptVO vo) {
+	public ResultMessage createTransferReceipt(HallTransferReceiptVO vo) {
 		// TODO Auto-generated method stub
 		if(vo.getId().length()==10){
 			this.transferList.add(vo);
@@ -66,7 +66,7 @@ public class HallReceiptBL implements HallReceiptBlService{
 		return arrivalList;
 	}
 
-	public ArrayList<TransferReceiptVO> viewAllTransfer() {
+	public ArrayList<HallTransferReceiptVO> viewAllTransfer() {
 		// TODO Auto-generated method stub
 		return transferList;
 	}
