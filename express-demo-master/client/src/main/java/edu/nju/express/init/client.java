@@ -20,13 +20,13 @@ public class client {
 		
 		
 		
-		try {
-			RMIHelper.getPaymentDataService().insert(new Paymentpo(
-					"2015/11/21", 100, "02500001", "0000000005", "hehe"));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			RMIHelper.getPaymentDataService().insert(new Paymentpo(
+//					"2015/11/21", 100, "02500001", "0000000006", "hehe"));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 	

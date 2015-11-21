@@ -29,7 +29,7 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 		super();
 		// TODO Auto-generated constructor stub
 	
-	paymentDao = new PaymentDataTest();
+	paymentDao = new PaymentDataTest("payment");
 	
 	}
 

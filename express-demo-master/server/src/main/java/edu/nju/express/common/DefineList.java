@@ -34,24 +34,17 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	public DefineList(String file) {
 		// TODO Auto-generated constructor stub
 	
-	path = file+".txt";
+	path = "data/"+ file+".txt";
 	list = getAll();
 	
 	}
-	
-	
 	
 	public void insert(E e){
 		list.add(e);
 	}
 	
 	
-	
-	
 	public void delete(String id){
-		
-		
-		
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getId().equals(id)){
 				list.remove(i);
@@ -60,6 +53,26 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 		}
 	
 	}
+	
+	
+	public E find(String id){
+		
+		E temp =null;
+		
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getId().equals(id)){
+				temp = list.get(i);
+				break;
+			}
+		}
+		
+		return temp;
+	}
+	
+	
+	
+	
+	
 	
 	
 	public ArrayList<E> getAll(){

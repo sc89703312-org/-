@@ -29,7 +29,7 @@ public class AccountDataTest implements AccountDao {
 	@Override
 	public Accountpo find(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		return accounts.find(date);
 	}
 
 	@Override

@@ -3,18 +3,21 @@ package edu.nju.express.data.paymentdata;
 import java.util.ArrayList;
 
 import edu.nju.express.common.DefineList;
+import edu.nju.express.data.CommonData;
 import edu.nju.express.po.Paymentpo;
 
-public class PaymentDataTest implements PaymentDao {
+public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao  {
 
 	
-	DefineList<Paymentpo> payments;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	
-	public PaymentDataTest() {
+	public PaymentDataTest(String path) {
 		// TODO Auto-generated constructor stub
-	
-	
-		payments = new DefineList<Paymentpo>("payment");
+		super(path);
 	}
 	
 	
@@ -22,13 +25,13 @@ public class PaymentDataTest implements PaymentDao {
 	@Override
 	public void insert(Paymentpo po) {
 		// TODO Auto-generated method stub
-		payments.insert(po);
+		inList.insert(po);
 	}
 
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		
+		inList.delete(id);
 	}
 
 	@Override
@@ -40,7 +43,7 @@ public class PaymentDataTest implements PaymentDao {
 	@Override
 	public Paymentpo find(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return inList.find(id);
 	}
 
 	@Override
@@ -58,14 +61,14 @@ public class PaymentDataTest implements PaymentDao {
 	@Override
 	public ArrayList<Paymentpo> getAll() {
 		// TODO Auto-generated method stub
-		return payments.getAll();
+		return inList.getAll();
 	}
 
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
 		System.out.println("data_test does");
-		payments.flush();
+		inList.flush();
 	}
 
 }
