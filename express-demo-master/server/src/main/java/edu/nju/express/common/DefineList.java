@@ -101,6 +101,10 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	
 	public void flush() {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Definelist does");
+		
+		
 		try {
 			File f = new File(path);
 			FileWriter fw =  new FileWriter(f);

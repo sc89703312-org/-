@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.nju.express.data.paymentdata.PaymentDao;
+import edu.nju.express.data.paymentdata.PaymentDataTest;
 import edu.nju.express.data.paymentdata.PaymentFileDao;
 import edu.nju.express.dataservice.Paymentdataservice;
 import edu.nju.express.po.Paymentpo;
@@ -28,7 +29,7 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 		super();
 		// TODO Auto-generated constructor stub
 	
-	paymentDao = new PaymentFileDao();
+	paymentDao = new PaymentDataTest();
 	
 	}
 
@@ -82,6 +83,7 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	@Override
 	public void flush() throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println("data_impl does");
 		paymentDao.flush();
 	}
 	

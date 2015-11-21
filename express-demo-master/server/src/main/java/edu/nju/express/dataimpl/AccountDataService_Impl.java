@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.nju.express.data.accountdata.AccountDao;
+import edu.nju.express.data.accountdata.AccountDataTest;
 import edu.nju.express.data.accountdata.AccountFileDao;
 import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.po.Accountpo;
@@ -32,7 +33,7 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 		// TODO Auto-generated constructor stub
 	
 	
-	accountDao = new AccountFileDao();
+	accountDao = new AccountDataTest();
 	
 	
 	}

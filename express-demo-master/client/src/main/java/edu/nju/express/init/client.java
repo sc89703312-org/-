@@ -16,6 +16,19 @@ public class client {
 		RMIHelper.init();
 		System.out.println("Client creates!");
 		
+		
+		
+		
+		
+		try {
+			RMIHelper.getPaymentDataService().insert(new Paymentpo(
+					"2015/11/21", 100, "02500001", "0000000005", "hehe"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	
 //		try {
 //			ArrayList<Paymentpo> arrayList=RMIHelper.getPaymentDataService().getAll();
