@@ -10,7 +10,7 @@ import edu.nju.express.common.ReceiptState;
 import edu.nju.express.po.DeliverReceiptPO;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
-import edu.nju.express.vo.TransferReceiptVO;
+import edu.nju.express.vo.HallTransferReceiptVO;
 
 
 
@@ -45,9 +45,9 @@ public class MockHall extends HallReceiptBL{
 	}
 	
 	@Override
-	public ArrayList<TransferReceiptVO> viewAllTransfer(){
+	public ArrayList<HallTransferReceiptVO> viewAllTransfer(){
 		
-		return new ArrayList<TransferReceiptVO>();
+		return new ArrayList<HallTransferReceiptVO>();
 	}
 	
 	public void approve(String id){
