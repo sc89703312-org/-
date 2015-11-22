@@ -33,7 +33,7 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 		// TODO Auto-generated constructor stub
 	
 	
-	accountDao = new AccountDataTest();
+	accountDao = new AccountDataTest("account");
 	
 	
 	}

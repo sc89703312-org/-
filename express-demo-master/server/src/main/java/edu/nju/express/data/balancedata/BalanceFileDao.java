@@ -37,7 +37,7 @@ public class BalanceFileDao implements BalanceDao {
 	}
 
 	@Override
-	public ArrayList<Balancepo> find(String date) {
+	public ArrayList<Balancepo> findByDate(String date) {
 		// TODO Auto-generated method stub
 		
 		ArrayList<Balancepo> tempList = new ArrayList<Balancepo>();

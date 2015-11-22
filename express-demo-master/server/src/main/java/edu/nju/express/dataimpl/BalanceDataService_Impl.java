@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.nju.express.data.balancedata.BalanceDao;
+import edu.nju.express.data.balancedata.BalanceDataTest;
 import edu.nju.express.data.balancedata.BalanceFileDao;
 import edu.nju.express.dataservice.balancedataservice;
 import edu.nju.express.po.Balancepo;
@@ -25,7 +26,7 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 		super();
 		// TODO Auto-generated constructor stub
 	
-	balanceDao = new BalanceFileDao();
+	balanceDao = new BalanceDataTest("balance");
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 	public ArrayList<Balancepo> find(String date) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Prepares to get some po");
-		return balanceDao.find(date);
+		return balanceDao.findByDate(date);
 	}
 
 	@Override

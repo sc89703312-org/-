@@ -1,9 +1,8 @@
-package edu.nju.express.data;
+package edu.nju.express.common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import edu.nju.express.common.DefineList;
 import edu.nju.express.po.PersistentObj;
 
 public class CommonData<T extends PersistentObj> implements Serializable {

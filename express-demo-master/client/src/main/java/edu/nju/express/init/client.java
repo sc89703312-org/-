@@ -4,6 +4,8 @@ package edu.nju.express.init;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.Item;
+import edu.nju.express.po.Balancepo;
 import edu.nju.express.po.Driverpo;
 import edu.nju.express.po.Paymentpo;
 
@@ -20,18 +22,12 @@ public class client {
 		
 		
 		
-//		try {
-//			RMIHelper.getPaymentDataService().insert(new Paymentpo(
-//					"2015/11/21", 100, "02500001", "0000000006", "hehe"));
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		
 		
-	
+		
+//	
 //		try {
-//			ArrayList<Paymentpo> arrayList=RMIHelper.getPaymentDataService().getAll();
+//			ArrayList<Paymentpo> arrayList=RMIHelper.getPaymentDataService().viewByDate("2015/11/22");
 //			
 //			for(int i=0;i<arrayList.size();i++){
 //				System.out.println(arrayList.get(i).getCourier_id());
@@ -43,12 +39,15 @@ public class client {
 
 		
 		
-//		try {
-//			RMIHelper.getPaymentDataService().delete("2014/9/11 1234567890");
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			RMIHelper.getBalanceDataService().insert(
+					new Balancepo("2015/11/22", 2000,
+							"Dsy", "dsy",
+							Item.BONUS, "2000"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 //		try {

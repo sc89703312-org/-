@@ -12,7 +12,7 @@ public interface BalanceDao {
 
     public void insert(Balancepo po) ;
 	
-	public ArrayList<Balancepo > find(String date) ;
+	public ArrayList<Balancepo> findByDate(String date) ;
 	
 	public void delete(String id) ;
 	

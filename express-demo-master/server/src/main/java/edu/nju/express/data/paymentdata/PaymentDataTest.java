@@ -2,8 +2,8 @@ package edu.nju.express.data.paymentdata;
 
 import java.util.ArrayList;
 
+import edu.nju.express.common.CommonData;
 import edu.nju.express.common.DefineList;
-import edu.nju.express.data.CommonData;
 import edu.nju.express.po.Paymentpo;
 
 public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao  {
@@ -21,19 +21,6 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 	}
 	
 	
-	
-	@Override
-	public void insert(Paymentpo po) {
-		// TODO Auto-generated method stub
-		inList.insert(po);
-	}
-
-	@Override
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-		inList.delete(id);
-	}
-
 	@Override
 	public void update(Paymentpo po) {
 		// TODO Auto-generated method stub
@@ -41,34 +28,34 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 	}
 
 	@Override
-	public Paymentpo find(String id) {
-		// TODO Auto-generated method stub
-		return inList.find(id);
-	}
-
-	@Override
 	public ArrayList<Paymentpo> viewByHall(String number) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<Paymentpo> payments = inList.getAll();
+		ArrayList<Paymentpo> temps = new ArrayList<Paymentpo>();
+		for(int i=0;i<payments.size();i++){
+			if(payments.get(i).getCourier_id().substring(0, 6).equals(number))
+			   temps.add(payments.get(i));
+		}
+		
+		return temps;
 	}
 
 	@Override
 	public ArrayList<Paymentpo> viewByDate(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Paymentpo> payments = inList.getAll();
+		ArrayList<Paymentpo> temps = new ArrayList<Paymentpo>();
+		for(int i=0;i<payments.size();i++){
+			if(payments.get(i).getDate().equals(date))
+			   temps.add(payments.get(i));
+		}
+		
+		return temps;
 	}
 
-	@Override
-	public ArrayList<Paymentpo> getAll() {
-		// TODO Auto-generated method stub
-		return inList.getAll();
-	}
 
-	@Override
-	public void flush() {
-		// TODO Auto-generated method stub
-		System.out.println("data_test does");
-		inList.flush();
-	}
+
+	
 
 }
