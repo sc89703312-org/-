@@ -20,9 +20,6 @@ public class HallPo extends PersistentObj implements Serializable {
 		this.cityID = cityID;
 		this.date ="";
 	}
-	public String getId() {
-		return id;
-	}
 	public String getName() {
 		return name;
 	}

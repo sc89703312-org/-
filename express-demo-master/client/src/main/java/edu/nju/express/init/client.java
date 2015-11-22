@@ -20,6 +20,49 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+		
+//		try {
+//			RMIHelper.getBalanceDataService().insert
+//			(new Balancepo("2015/11/22", 2000,
+//					"DSY", "SC", Item.BONUS, "2000"));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
+	
+//		
+//		try {
+//			RMIHelper.getVehicleDataService().deleteDri("025000");
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		
+//		
+//		try {
+//			RMIHelper.getPaymentDataService().insert
+//			(new Paymentpo("2015/11/22",200 , "02500001", "0000000001", "sc"));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		
+//		
+//		try {
+//		RMIHelper.getPaymentDataService().delete("2015/11/22 0000000001");;
+//		
+//				} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		
 //		try {
 //			RMIHelper.getVehicleDataService().insertCar
 //			(new Carpo("025000", "a", "Sua", "b", "2011/1/1", 6));

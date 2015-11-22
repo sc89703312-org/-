@@ -40,9 +40,6 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	
 	
 	
-	public String getDate(){
-		return date;
-	}
 	public double getMoney(){
 		return money;
 	}

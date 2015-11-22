@@ -13,8 +13,7 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 	 * 
 	 */
 	private static final long serialVersionUID = -5743990485972024749L;
-//	protected String id;
-//	protected String date;
+
 	private String from;
 	private GoodsState goodsState;
 	private ArrayList<OrderPO> orderList;

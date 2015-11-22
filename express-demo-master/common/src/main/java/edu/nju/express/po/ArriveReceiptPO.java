@@ -31,13 +31,7 @@ public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 		this.order_list = order_list;
 	}
 	
-	public String getID(){
-		return id;
-	}
 	
-	public String getDate(){
-		return date;
-	}
 	
 	public String getFrom(){
 		return from;
@@ -53,6 +47,13 @@ public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 	
 	public ArrayList<OrderPO> getOrderList(){
 		return order_list;
+	}
+
+
+
+	public String getID() {
+		// TODO Auto-generated method stub
+		return id;
 	}
 	
 }

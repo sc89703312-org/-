@@ -12,6 +12,9 @@ public abstract class ReceiptPOBase extends PersistentObj implements Serializabl
 	 */
 	private static final long serialVersionUID = 1L;
 
+	
+	
+	
 	protected ReceiptState state = ReceiptState.SUBMITTED;
 
 	public void approve(){
@@ -22,6 +25,7 @@ public abstract class ReceiptPOBase extends PersistentObj implements Serializabl
 	public ReceiptState getState() {
 		return state;
 	}
-
+	
+	
 }
 

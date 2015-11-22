@@ -26,9 +26,6 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 		goods_list = list;
 	}
 	
-	public String getID(){
-		return id;
-	}
 	
 	public String getLocation(){
 		return location;

@@ -32,11 +32,7 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	hall_id = courier_id.substring(0, 6);
 	}
 	
-	@Override
-	public String getDate()
-	{
-		return date;
-	}
+
 	
 	public double getPay()
 	{
@@ -59,10 +55,6 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	}
 	
 	
-	@Override
-	public String getId(){
-		return id;
-	}
 	
 	public String getHall_Id()
 	{

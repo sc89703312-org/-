@@ -26,17 +26,10 @@ public class ExitReceiptPO extends ReceiptPOBase implements Serializable{
 		goods_list = list;
 	}
 	
-	public String getID(){
-		return id;
-	}
-	
 	public String getLocation(){
 		return location;
 	}
 	
-	public String getDate(){
-		return date;
-	}
 	
 	public void approve(){
 		isApprove = true;
