@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.Item;
 import edu.nju.express.po.Balancepo;
+import edu.nju.express.po.Carpo;
 import edu.nju.express.po.Driverpo;
 import edu.nju.express.po.Paymentpo;
 
@@ -19,12 +20,29 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+//		try {
+//			RMIHelper.getVehicleDataService().insertCar
+//			(new Carpo("025000", "a", "Sua", "b", "2011/1/1", 6));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
+//		try {
+//			RMIHelper.getVehicleDataService().insertDri
+//			(new Driverpo("025000", "a", "a", "a", "a", "a", true, "a"));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		
-		
-		
-		
+//		
+//		try {
+//			RMIHelper.getVehicleDataService().deleteDri("025000");
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //	
 //		try {
 //			ArrayList<Paymentpo> arrayList=RMIHelper.getPaymentDataService().viewByDate("2015/11/22");
@@ -39,15 +57,7 @@ public class client {
 
 		
 		
-		try {
-			RMIHelper.getBalanceDataService().insert(
-					new Balancepo("2015/11/22", 2000,
-							"Dsy", "dsy",
-							Item.BONUS, "2000"));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 		
 //		try {

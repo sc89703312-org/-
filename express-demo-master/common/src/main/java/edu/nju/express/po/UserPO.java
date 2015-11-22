@@ -11,7 +11,7 @@ public class UserPO  extends PersistentObj implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3613670690872702254L;
-	private String id;
+
 	private String name;
 	private Role role;
 	private String password;

@@ -10,7 +10,6 @@ public class StationPO extends PersistentObj implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	String id;
 	String name;
 	
 	ArrayList<ArriveReceiptPO> arrive_list;

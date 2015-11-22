@@ -10,9 +10,7 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String id;
 	String location;
-	String date;
 	
 	boolean isApprove;
 	

@@ -30,7 +30,6 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	double size;
 	double pkgCost;
 	double totalCost;
-	String id;
 	Etype type;
 	ArrivalState arrivalState;
 	String expectedTime;

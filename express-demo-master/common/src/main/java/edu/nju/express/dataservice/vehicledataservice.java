@@ -2,6 +2,7 @@ package edu.nju.express.dataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import edu.nju.express.po.Carpo;
 import edu.nju.express.po.Driverpo;
@@ -27,4 +28,7 @@ public interface vehicledataservice extends Remote {
 	
 	public void flushDrivers() throws RemoteException;
 	
+	public ArrayList<Carpo> getAllCars() throws RemoteException;
+	
+	public ArrayList<Driverpo> getAllDrivers() throws RemoteException;
 }

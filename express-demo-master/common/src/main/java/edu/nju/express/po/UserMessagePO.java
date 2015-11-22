@@ -14,7 +14,7 @@ public class UserMessagePO extends PersistentObj implements Serializable{
 	 */
 	private static final long serialVersionUID = -7595964527752101953L;
 	private StaffChange operation;
-	private String id;
+
 	private String name;
 	private Role role;
 	

@@ -11,15 +11,14 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4832837392996360235L;
-	String date;
+
 	double payment;
 	String courier_id;
 	String order_id;
 	String bankaccount;
 	String hall_id;
 	
-	String id ;
-	
+
 	public Paymentpo(String d,double p,String c,String o,String b) {
 		// TODO Auto-generated constructor stub
 	
