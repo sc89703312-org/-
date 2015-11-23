@@ -17,6 +17,9 @@ public class LogisticsDataService_Impl extends UnicastRemoteObject implements Lo
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	LogisticsDao logisticsDao;
 	protected LogisticsDataService_Impl() throws RemoteException {
 		super();

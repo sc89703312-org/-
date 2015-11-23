@@ -18,7 +18,7 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 	private GoodsState goodsState;
 	private ArrayList<OrderPO> orderList;
 	
-	public ArrivalReceiptPO(String id, String date, String from, GoodsState gstate,ReceiptState state){
+	public ArrivalReceiptPO(String id, String date, String from,GoodsState gstate,ReceiptState state){
 		this.id=id;
 		this.date=date;
 		this.from=from;
@@ -39,5 +39,6 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 	public void addOrderItem(OrderPO po){
 		orderList.add(po);
 	}
+	
 
 }

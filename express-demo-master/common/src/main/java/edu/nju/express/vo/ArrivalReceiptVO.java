@@ -48,6 +48,12 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 		return this.currentSpot;
 	}
 	
+	public void resetOrderLoca(){
+		for(OrderVO ordervo:list){
+			ordervo.setCurrentSpot(currentSpot);
+		}
+	}
+	
 	public void addOrderItem(OrderVO vo){
 		list.add(vo);
 	}

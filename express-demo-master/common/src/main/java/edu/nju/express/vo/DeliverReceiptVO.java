@@ -25,6 +25,12 @@ public class DeliverReceiptVO extends ReceiptVOBase{
 		return deliver;
 	}
 	
+	public void resetOrderDeliver(){
+			for(OrderVO ordervo:list){
+				ordervo.setDeliver(deliver);;
+			}
+	}
+	
 	public void addOrderItem(OrderVO vo){
 		list.add(vo);
 	}
