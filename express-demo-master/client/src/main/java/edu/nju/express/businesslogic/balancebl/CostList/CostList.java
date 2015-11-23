@@ -1,7 +1,8 @@
-package edu.nju.express.businesslogic.balancebl;
+package edu.nju.express.businesslogic.balancebl.CostList;
 
 import java.util.ArrayList;
 
+import edu.nju.express.businesslogic.balancebl.CostList.Info.CostControlInfo;
 import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
 import edu.nju.express.vo.Balancevo;
 
@@ -12,10 +13,10 @@ public class CostList {
 	
 	
 	ArrayList<Balancevo>  tempLists = new ArrayList<Balancevo>();
-	CostControlbl controlbl;
+	CostControlInfo controlbl;
 	
 	
-	public CostList(CostControlbl controlbl) {
+	public CostList(CostControlInfo controlbl) {
 		// TODO Auto-generated constructor stub
 	
 	

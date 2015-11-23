@@ -3,10 +3,9 @@ package edu.nju.express.businesslogic.balancebl.Mock_Test;
 import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
-import edu.nju.express.businesslogic.paymentbl.Mock_Test.MockBanking;
 import edu.nju.express.vo.Paymentvo;
 
-
+/*
 public class MockPayment extends Paymentbl{
 	
 	private ArrayList<Paymentvo> tempList = new ArrayList<Paymentvo>();
@@ -47,3 +46,4 @@ public class MockPayment extends Paymentbl{
 	
 
 }
+*/

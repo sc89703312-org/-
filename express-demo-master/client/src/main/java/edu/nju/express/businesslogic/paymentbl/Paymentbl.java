@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
+import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.Paymentdataservice;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Paymentpo;
+import edu.nju.express.vo.BankingAccountVO;
 import edu.nju.express.vo.Paymentvo;
 
 
@@ -20,9 +22,9 @@ public class Paymentbl implements Paymentblservice {
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
 	Paymentdataservice paymentDataService ;
 	private Paymentpo temp;
-	Bankingbl account;
+	BankingInfo account;
 	
-	public Paymentbl(Bankingbl account) {
+	public Paymentbl(BankingInfo account) {
 		// TODO Auto-generated constructor stub
 	
 	paymentDataService =RMIHelper.getPaymentDataService();
@@ -35,12 +37,23 @@ public class Paymentbl implements Paymentblservice {
 	public ResultMessage createReceipt(Paymentvo vo) {
 		// TODO Auto-generated method stub
 		 
-		if (!(vo.getBankaccount().equals("sc")||vo.getBankaccount().equals("a")||vo.getBankaccount().equals("sc89703312"))) {
+		boolean exsit = false;
+		
+		ArrayList<BankingAccountVO> accounts = account.getAllAccounts();
+		for(int i=0;i<accounts.size();i++){
+			if(accounts.get(i).getName().equals(vo.getBankaccount())){
+		       exsit =true;
+		       break;
+			}
+		
+		}
+		
+		if (!exsit) {
 			return ResultMessage.INVALID;
 		}
 		
 		else{
-			System.out.println("Bingo!");
+			System.out.println("Successfully insert a Payment PO");
 			
 			
 			modify((int)vo.getPay(),vo.getBankaccount());
@@ -64,6 +77,8 @@ public class Paymentbl implements Paymentblservice {
 	@Override
 	public Paymentvo getPayment(String id) {
 		// TODO Auto-generated method stub
+		
+		
 		try {
 		temp=	paymentDataService.find(id);
 		} catch (RemoteException e) {

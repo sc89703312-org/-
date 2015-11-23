@@ -23,7 +23,7 @@ public class ReceiptBl implements ReceiptBlService {
 	ArrayList<ReceiptVOBase> list;
 
 	public ReceiptBl() {
-		payment = new MockPayment(null);
+//		payment = new MockPayment(null);
 		hall = new MockHall(null,null);
 		list = new ArrayList<ReceiptVOBase>();
 	}

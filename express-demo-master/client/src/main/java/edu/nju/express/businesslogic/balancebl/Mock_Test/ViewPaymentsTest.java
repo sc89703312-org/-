@@ -6,14 +6,13 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import edu.nju.express.businesslogic.balancebl.PaymentList;
+import edu.nju.express.businesslogic.balancebl.PaymentList.PaymentList;
 import edu.nju.express.businesslogic.balancebl.ViewPayment.ViewPaymentbl;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
-import edu.nju.express.businesslogic.paymentbl.Mock_Test.MockBanking;
 import edu.nju.express.vo.Paymentvo;
 
 
-
+/*
 public class ViewPaymentsTest {
 
 	
@@ -52,3 +51,4 @@ public class ViewPaymentsTest {
 	
 	
 }
+*/

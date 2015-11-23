@@ -5,25 +5,32 @@ import java.util.ArrayList;
 
 import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.blservice.CostControlService;
+import edu.nju.express.businesslogic.balancebl.CostList.Info.CostControlInfo;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
+import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Balancepo;
 import edu.nju.express.vo.Balancevo;
+import edu.nju.express.vo.BankingAccountVO;
 
 
 
-public class CostControlbl implements CostControlService{
+public class CostControlbl implements CostControlService,CostControlInfo{
 
+	
+
+	
+	
 	balancedataservice balancedataservice;
 	
-	Bankingbl account;
+	BankingInfo account;
 	
 
 	
 	
-	public CostControlbl(Bankingbl account) {
+	public CostControlbl(BankingInfo account) {
 		// TODO Auto-generated constructor stub
 	
 	balancedataservice = RMIHelper.getBalanceDataService();
@@ -43,21 +50,41 @@ public class CostControlbl implements CostControlService{
 	public ResultMessage createCost(Balancevo vo) {
 		// TODO Auto-generated method stub
 		
-//		try {
+
+		
+		boolean exsit = false;
+		
+		ArrayList<BankingAccountVO> accounts = account.getAllAccounts();
+		for(int i=0;i<accounts.size();i++){
+			if(accounts.get(i).getName().equals(vo.getBanking())){
+				exsit = true;
+				break;
+			}
+			
+		}
+		
+		
+		if(exsit){
+		modify(vo.getBanking(), (int)vo.getMoney());
+		
+		return ResultMessage.VALID;
+		
+		
+		
+		//		try {
 //			balancedataservice.insert(convertVO(vo));
 //		} catch (RemoteException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
-		modify(vo.getBanking(), (int)vo.getMoney());
-		
-		
-		
-		
-		return ResultMessage.VALID;
+		}else {
+			return ResultMessage.INVALID;
+		}
 	}
 
+	
+	
+	
 	@Override
 	public Balancevo getCost(String id) {
 		// TODO Auto-generated method stub
@@ -70,11 +97,7 @@ public class CostControlbl implements CostControlService{
 		
 	}
 
-	@Override
-	public ArrayList<Balancevo> viewAllCost() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 	
@@ -86,9 +109,38 @@ public class CostControlbl implements CostControlService{
 	
 	
 	
+	public Balancevo convertPO(Balancepo po){
+		return new Balancevo(po.getDate(), po.getMoney(), 
+				                      po.getName(), po.getBanking(),
+				                      po.getItem(), po.getRemark());
+	}
+	
 	
 	
 	public void modify(String name,int cost){
 		account.modify(cost, name);
 	}
+
+
+
+
+	@Override
+	public ArrayList<Balancevo> viewAllCost() {
+		// TODO Auto-generated method stub
+		ArrayList<Balancevo> temps=new ArrayList<>();
+		
+		try {
+			ArrayList<Balancepo> balancepos = balancedataservice.getAll();
+		
+		
+			for(int i=0;i<balancepos.size();i++)
+				temps.add(convertPO(balancepos.get(i)));
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return temps;
+	}
+	
 }

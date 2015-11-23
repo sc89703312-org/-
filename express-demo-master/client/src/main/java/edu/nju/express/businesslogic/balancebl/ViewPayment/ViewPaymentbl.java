@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.blservice.ViewPaymentService;
 import edu.nju.express.businesslogic.balancebl.Caculate;
-import edu.nju.express.businesslogic.balancebl.PaymentList;
+import edu.nju.express.businesslogic.balancebl.PaymentList.PaymentList;
 import edu.nju.express.vo.Paymentvo;
 
 

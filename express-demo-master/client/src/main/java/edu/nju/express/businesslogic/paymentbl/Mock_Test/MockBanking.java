@@ -3,11 +3,12 @@ package edu.nju.express.businesslogic.paymentbl.Mock_Test;
 import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
+import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.vo.BankingAccountVO;
 
 
-
-public class MockBanking extends Bankingbl {
+/*
+public class MockBanking implements BankingInfo {
 
 	ArrayList<BankingAccountVO> accounts = new ArrayList<BankingAccountVO>();
 	
@@ -72,3 +73,4 @@ public class MockBanking extends Bankingbl {
 		}
 	
 }
+*/

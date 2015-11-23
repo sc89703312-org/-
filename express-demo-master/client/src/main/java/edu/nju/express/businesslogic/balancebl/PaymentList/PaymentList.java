@@ -1,4 +1,4 @@
-package edu.nju.express.businesslogic.balancebl;
+package edu.nju.express.businesslogic.balancebl.PaymentList;
 
 import java.util.ArrayList;
 
