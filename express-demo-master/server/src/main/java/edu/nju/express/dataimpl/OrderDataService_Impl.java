@@ -20,7 +20,7 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	protected OrderDataService_Impl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
-		orderDao = new OrderFileDao();
+		orderDao = new OrderFileDao("order");
 	}
 	
 	

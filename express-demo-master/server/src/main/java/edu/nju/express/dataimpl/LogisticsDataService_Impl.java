@@ -24,7 +24,7 @@ public class LogisticsDataService_Impl extends UnicastRemoteObject implements Lo
 	protected LogisticsDataService_Impl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
-		logisticsDao = new LogisticsFileDao();
+		logisticsDao = new LogisticsFileDao("logistics");
 	}
 
 	@Override
