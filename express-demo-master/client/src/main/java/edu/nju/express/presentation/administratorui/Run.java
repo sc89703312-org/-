@@ -12,10 +12,10 @@ public class Run {
 		
 		f.setSize(900, 600);
         f.setLocationRelativeTo(null);
-  //      f.setUndecorated(true);
+        f.setUndecorated(true);
    
         JPanel p = null;
-        p = new AddUserUI(new AdministratorController( f));
+        p = new CheckTaskUI(new AdministratorController( f));
         f.add(p);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

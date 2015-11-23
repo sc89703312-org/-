@@ -11,9 +11,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import edu.nju.express.blservice.UserBlService;
-import edu.nju.express.presentation.MyTable;
+import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.MyTable;
 
-public class CheckTaskUI extends JPanel {
+public class CheckTaskUI extends MainPanel {
 
 	/**
 	 * 
@@ -21,6 +22,7 @@ public class CheckTaskUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	int width = 900, height = 600;
+	int y = 50;		//由标题栏高度决定
 
 	AdministratorController controller;
 	UserBlService us;
@@ -35,14 +37,15 @@ public class CheckTaskUI extends JPanel {
 	public CheckTaskUI(AdministratorController c) {
 		controller = c;
 		this.setLayout(null);
+		this.setOpaque(false);
 		initGuide();
 		initTable();
 	}
 
 	private void initTable() {
 		p = new JPanel();
-		
-		p.setBounds((int) (width * 0.2), 0, (int) (width * 0.8), height);
+		p.setOpaque(false);
+		p.setBounds((int) (width * 0.2), y, (int) (width * 0.8), height);
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		
 		this.add(p);
@@ -55,6 +58,8 @@ public class CheckTaskUI extends JPanel {
 				TitledBorder.DEFAULT_JUSTIFICATION,
 				TitledBorder.DEFAULT_POSITION, FONT));
 		s1.setPreferredSize(new Dimension(s1.getWidth(),4*ROW_HEIGHT));
+		s1.setOpaque(false);
+		s1.getViewport().setOpaque(false);
 		
 		String[] header2 = { "ID" };
 		table2 = new MyTable(header2);
@@ -63,6 +68,8 @@ public class CheckTaskUI extends JPanel {
 		s2.setBorder(new TitledBorder(new EmptyBorder(getInsets()), "需要删除的账号:", 
 				TitledBorder.DEFAULT_JUSTIFICATION,
 				TitledBorder.DEFAULT_POSITION, FONT));
+		s2.setOpaque(false);
+		s2.getViewport().setOpaque(false);
 		
 		initData();
 

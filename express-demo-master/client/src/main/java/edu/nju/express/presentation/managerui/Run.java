@@ -11,6 +11,7 @@ public class Run {
 		
 		f.setSize(900, 600);
         f.setLocationRelativeTo(null);
+        f.setUndecorated(true);
    
         JPanel p = null;
         p = new EmployeeListUI(new ManageController(f));

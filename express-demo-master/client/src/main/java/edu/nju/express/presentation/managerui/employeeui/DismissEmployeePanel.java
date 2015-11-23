@@ -1,5 +1,4 @@
-package edu.nju.express.presentation.administratorui;
-import java.awt.FlowLayout;
+package edu.nju.express.presentation.managerui.employeeui;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -7,57 +6,62 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.ReturnButton;
 
-public class DeleteUserUI extends MainPanel{
+public class DismissEmployeePanel extends MainPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int width=900,height=600;
-	int y = 50;		//由标题栏高度决定
+
+	ManageController controller;
+
+	int width = 900, height = 600;
+	int y = 50;
 	MyTextField id;
 	JButton confirm;
-	AdministratorController controller;
-	JPanel p ;
-	
-	public DeleteUserUI(AdministratorController c) {
+	JButton jbtReturn;
+	JPanel p;
+
+	public DismissEmployeePanel(ManageController c) {
 		controller = c;
-		this.setLayout(null);
-		this.add(new AdministerGuide(controller));
 		initComponents();
 		this.setOpaque(false);
 	}
-	
+
 	private void initComponents() {
+		
 		p = new JPanel();
 		p.setLayout(null);
 		p.setOpaque(false);
+		
+		jbtReturn = new ReturnButton();
+		jbtReturn.setActionCommand("EmployeeUI");
+		jbtReturn.addActionListener(controller);
+		p.add(jbtReturn);
 
 		
 		id = new MyTextField("ID ", 15);
 		id.setSize(300, 100);
-		id.setLocation(180, 60);
+		id.setLocation(width/2-150, 80);
 		p.add(id);
 		
 		confirm = new ConfirmButton();
-		confirm.setLocation(confirm.getX(), 120);
+		confirm.setLocation((width-confirm.getWidth())/2, 140);
 		p.add(confirm);
 		confirm.addActionListener(controller);
-		confirm.setActionCommand("DeleteUser");
+		confirm.setActionCommand("DismissEmployee");
 		
 		this.add(p);
-		p.setBounds((int)(width*0.2), y, (int)(width*0.8), height);
+		p.setBounds(0, y, width, height);
 	}
 
-	public String getID(){
+	public String getID() {
 		return id.getText();
 	}
 
-	
-
-	
-	
 }

@@ -1,64 +1,70 @@
-package edu.nju.express.presentation.administratorui;
-
+package edu.nju.express.presentation.managerui.employeeui;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.Role;
+import edu.nju.express.common.StaffChange;
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.managerui.ManageController;
+import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.MyTextField;
-import edu.nju.express.vo.UserVO;
+import edu.nju.express.presentation.myUI.ReturnButton;
+import edu.nju.express.vo.UserMessageVO;
 
-public class ModifyUserUI extends MainPanel {
+public class AddEmployeePanel extends MainPanel {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	int width=900,height=600;
+
+	int width = 900, height = 600;
 	int y = 50;		//由标题栏高度决定
 	
-	AdministratorController controller;
+	ManageController controller;
 
+	ManageGuide guide;
+	JButton confirm;
 	MyTextField id;
 	MyTextField name;
-	MyTextField password;
-	JLabel roleLabel;	
+	JLabel roleLabel;
 	JComboBox<String> roleBox;
-	JButton confirm;
+	JButton jbtReturn;
 	JPanel p;
-	
-	
 
-	public ModifyUserUI(AdministratorController c) {
+	public AddEmployeePanel(ManageController c) {
+
 		controller = c;
-		this.setLayout(null);
-		this.add(new AdministerGuide(controller));
-		this.setOpaque(false);
 		initComponents();
 	}
 
-
 	private void initComponents() {
 		p = new JPanel();
-		p.setOpaque(false);
-		p.setLayout(null);
 		this.add(p);
+		p.setLayout(null);
+		p.setOpaque(false);
+		p.setBounds(0, y,  width, height);
 
-		p.setBounds((int)(width*0.2), y, (int)(width*0.8), height);
-		
+		jbtReturn = new ReturnButton();
+		jbtReturn.setActionCommand("EmployeeUI");
+		jbtReturn.addActionListener(controller);
+		p.add(jbtReturn);
+
 		id = new MyTextField(" ID ",15);
-		id.setBounds((p.getWidth()-350)/2, 30,350,40);
+		id.setBounds((width-350)/2, 80,350,40);
 		p.add(id);
 		
 		name = new MyTextField("姓名",15);
-		name.setBounds((p.getWidth()-350)/2, 80, 350,40);
+		name.setBounds((width-350)/2, 130, 350,40);
 		p.add(name);
 
 		JPanel jp = new JPanel();
@@ -74,21 +80,19 @@ public class ModifyUserUI extends MainPanel {
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());
 		jp.add(roleBox);
-		jp.setBounds((p.getWidth()-350)/2, 130, 350,40);
+		jp.setBounds((width-350)/2, 180, 350,40);
 		p.add(jp);
-		
-		password = new MyTextField("密码",15);
-		password.setBounds((p.getWidth()-350)/2, 190, 350,40);
-		p.add(password);
-		
+
 		confirm = new ConfirmButton();
-		confirm.setActionCommand("ModifyUser");
+		confirm.setLocation((width-confirm.getWidth())/2, 260);
+		confirm.setActionCommand("AddEmployee");
 		confirm.addActionListener(controller);
 		p.add(confirm);
 	}
 
-	public UserVO getTextInput() {
-		return new UserVO(id.getText(), name.getText(), Role.getRole((String) roleBox.getSelectedItem()),
-				password.getText());
+
+	public UserMessageVO getTextInput() {
+		return new UserMessageVO(StaffChange.add, id.getText(), name.getText(),
+				Role.getRole((String) roleBox.getSelectedItem()));
 	}
 }

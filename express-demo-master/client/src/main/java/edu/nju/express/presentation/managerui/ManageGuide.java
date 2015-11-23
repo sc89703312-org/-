@@ -1,11 +1,14 @@
 package edu.nju.express.presentation.managerui;
 
+import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class ManageGuide extends JPanel {
 
 	int width = 900, height = 600;
+	int y = 40;		//由标题栏高度决定
 	/**
 	 * 
 	 */
@@ -23,11 +26,13 @@ public class ManageGuide extends JPanel {
 		this.controller = controller;
 		initGuide();
 		this.setLayout(null);
-		this.setBounds(0, 0, (int) (width * 0.2), (int) (height));
+		this.setOpaque(false);
+		this.setBounds(0, y, (int) (width * 0.2), (int) (height));
 	}
 
 	void initGuide() {
 		JPanel buttons = new JPanel();
+		((FlowLayout)buttons.getLayout()).setVgap(y/2);
 		buttons.setOpaque(false);
 		buttons.setBounds(0, 0, (int) (width * 0.2), (int) (height));
 		

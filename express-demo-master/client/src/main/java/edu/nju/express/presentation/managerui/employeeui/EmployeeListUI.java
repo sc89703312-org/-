@@ -1,22 +1,20 @@
 package edu.nju.express.presentation.managerui.employeeui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.common.Role;
-import edu.nju.express.presentation.MyTablePanel;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
+import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.EmployeeVO;
 
-public class EmployeeListUI extends JPanel {
+public class EmployeeListUI extends MainPanel {
 	/**
 	 * 
 	 */
@@ -35,35 +33,37 @@ public class EmployeeListUI extends JPanel {
 
 	int width = 900, height = 600;
 	int TABLE_ROW_HEIGHT = 30;
+	int y = 50; // 由标题栏高度决定
 
 	public EmployeeListUI(ManageController c) {
 
 		controller = c;
-		this.setLayout(null);
 		initGuide();
 		initdata();
 		initButtons();
 		initTable();
+		
+		this.setOpaque(false);
 
 	}
 
 	private void initButtons() {
 		buttons = new JPanel();
-		buttons.setBounds(guide.getWidth(), 0, width - guide.getWidth(), (int) (width * 0.1));
-		buttons.setLayout(new FlowLayout(FlowLayout.CENTER,
-				(int)(0.15*buttons.getWidth()),(int)(0.4*buttons.getHeight())));
+		buttons.setBounds(guide.getWidth(), y, width - guide.getWidth(), (int) (width * 0.1));
+		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.15 * buttons.getWidth()),
+				(int) (0.4 * buttons.getHeight())));
 
 		jbtAdd = new JButton("新增员工");
-		jbtAdd.setActionCommand("AddEmployee");
+		jbtAdd.setActionCommand("AddEmployeeUI");
 		jbtAdd.addActionListener(controller);
 
 		jbtDelete = new JButton("删除员工");
-		jbtDelete.setActionCommand("DismissEmployee");
+		jbtDelete.setActionCommand("DismissEmployeeUI");
 		jbtDelete.addActionListener(controller);
 
 		buttons.add(jbtAdd);
 		buttons.add(jbtDelete);
-		
+
 		this.add(buttons);
 		buttons.setOpaque(false);
 	}
@@ -85,7 +85,7 @@ public class EmployeeListUI extends JPanel {
 		String[] header = { "ID", "姓名", "职务" };
 		table = new MyTablePanel(header);
 		table.setRowHeight(TABLE_ROW_HEIGHT);
-		table.setBounds(guide.getWidth(), (int) (buttons.getHeight()), (int) (width - guide.getWidth()),
+		table.setBounds(guide.getWidth(), y + (int) (buttons.getHeight()), (int) (width - guide.getWidth()),
 				(int) (height - buttons.getHeight()));
 
 		model = table.getTableModel();

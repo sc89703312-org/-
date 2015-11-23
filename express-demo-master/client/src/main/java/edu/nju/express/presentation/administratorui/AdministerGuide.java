@@ -1,11 +1,15 @@
 package edu.nju.express.presentation.administratorui;
 
+import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 public class AdministerGuide extends JPanel{
 
 	int width=900,height=600;
+	int y = 50;		//由标题栏高度决定
 	/**
 	 * 
 	 */
@@ -22,14 +26,16 @@ public class AdministerGuide extends JPanel{
 	public AdministerGuide(AdministratorController controller) {
 		this.controller = controller;
 		initGuide();
+		this.setOpaque(false);
 		this.setLayout(null);
-		this.setBounds(0, 0, (int)(width*0.2), (int)(height));
+		this.setBounds(0, y, (int)(width*0.2), (int)(height));
 	}
 	
 	
 	void initGuide(){
 		JPanel buttons = new JPanel();
 		buttons.setOpaque(false);
+		((FlowLayout)buttons.getLayout()).setVgap(y/2);
 		buttons.setBounds(0, 0, (int)(width*0.2), (int)(height));
 		check = new JButton("查看任务");
 		check.setActionCommand("CheckTaskUI");
