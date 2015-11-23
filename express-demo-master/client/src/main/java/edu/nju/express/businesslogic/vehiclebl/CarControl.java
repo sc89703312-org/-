@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.CarControlService;
+import edu.nju.express.businesslogic.accountbl.Info.CarControlInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
@@ -13,7 +14,7 @@ import edu.nju.express.vo.Carvo;
 
 
 
-public class CarControl implements CarControlService{
+public class CarControl implements CarControlService,CarControlInfo{
 
 	vehicledataservice vehicledataservice;
 	
@@ -116,9 +117,6 @@ public class CarControl implements CarControlService{
 	}
 	
 	
-	public ArrayList<Carvo> getAll(){
-		return null;
-	}
 	
 	
 	
@@ -133,6 +131,26 @@ public class CarControl implements CarControlService{
 		return new Carvo(po.getId(), po.getMotor(),
 				                 po.getCar(), po.getBase(),
 				                 po.getPurchase() ,po.getUse());
+	}
+
+
+
+	@Override
+	public ArrayList<Carvo> getAll() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Carvo> cars = new ArrayList<>();
+		
+		try {
+			ArrayList<Carpo> temp = vehicledataservice.getAllCars();
+		    for(int i=0;i<temp.size();i++)
+		    	cars.add(convertPO(temp.get(i)));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return cars;
 	}
 
 }

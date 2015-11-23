@@ -2,6 +2,7 @@ package edu.nju.express.businesslogic.balancebl.PaymentList;
 
 import java.util.ArrayList;
 
+import edu.nju.express.businesslogic.balancebl.PaymentList.Info.PaymentInfo;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.vo.Paymentvo;
 
@@ -9,9 +10,9 @@ import edu.nju.express.vo.Paymentvo;
 public class PaymentList {
 
 	private ArrayList<Paymentvo> tempPayments ;
-	Paymentbl paymentbl;
+	PaymentInfo paymentbl;
 	
-	public PaymentList(Paymentbl paymentBl) {
+	public PaymentList(PaymentInfo paymentBl) {
 		// TODO Auto-generated constructor stub
 	this.paymentbl = paymentBl;
 	getAll();

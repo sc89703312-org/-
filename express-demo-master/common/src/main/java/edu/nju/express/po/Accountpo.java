@@ -20,7 +20,10 @@ public class Accountpo extends PersistentObj implements Serializable {
 	ArrayList<UserPO> user_list = new ArrayList<UserPO>();
 	ArrayList<Carpo> car_list = new ArrayList<Carpo>();
 	ArrayList<BankingAccountPO> bank_list = new ArrayList<BankingAccountPO>();
-//	String date;
+    ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
+	
+	
+	//	String date;
 	
 	
 	
@@ -32,6 +35,7 @@ public class Accountpo extends PersistentObj implements Serializable {
 			                ArrayList<UserPO> user_list,
 			                ArrayList<Carpo> car_list,
 			                ArrayList<BankingAccountPO> bank_list,
+			                ArrayList<ComGoodsPO> goods_list,
 			                String date) {
 		
 		// TODO Auto-generated constructor stub
@@ -42,6 +46,7 @@ public class Accountpo extends PersistentObj implements Serializable {
 	this.user_list = user_list;
 	this.car_list = car_list;
 	this.bank_list = bank_list;
+	this.goods_list = goods_list;
 	this.date = date;
 	this.id = date +"_Account";
 	}
@@ -62,6 +67,10 @@ public class Accountpo extends PersistentObj implements Serializable {
 	
 	public ArrayList<BankingAccountPO> getAccountsList(){
 		return bank_list;
+	}
+	public ArrayList<ComGoodsPO> getCommodity() {
+		return goods_list;
+		
 	}
 	
 	

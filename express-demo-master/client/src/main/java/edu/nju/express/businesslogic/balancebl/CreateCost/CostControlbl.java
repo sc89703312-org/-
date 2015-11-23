@@ -55,6 +55,8 @@ public class CostControlbl implements CostControlService,CostControlInfo{
 		boolean exsit = false;
 		
 		ArrayList<BankingAccountVO> accounts = account.getAllAccounts();
+		
+		
 		for(int i=0;i<accounts.size();i++){
 			if(accounts.get(i).getName().equals(vo.getBanking())){
 				exsit = true;
@@ -67,16 +69,18 @@ public class CostControlbl implements CostControlService,CostControlInfo{
 		if(exsit){
 		modify(vo.getBanking(), (int)vo.getMoney());
 		
+		try {
+			balancedataservice.insert(convertVO(vo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		return ResultMessage.VALID;
 		
 		
-		
-		//		try {
-//			balancedataservice.insert(convertVO(vo));
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		}else {
 			return ResultMessage.INVALID;
 		}
