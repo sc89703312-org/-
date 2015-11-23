@@ -1,10 +1,10 @@
-package edu.nju.express.presentation.UserUI;
+package edu.nju.express.presentation.administratorui;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class DeleteUserPanel extends JPanel{
+public class DeleteUserUI extends JPanel{
 
 	/**
 	 * 
@@ -14,10 +14,10 @@ public class DeleteUserPanel extends JPanel{
 	JTextField idField;
 	JLabel label;
 	JButton confirm;
-	UserController controller;
+	AdministratorController controller;
 	JPanel p ;
 	
-	public DeleteUserPanel(UserController c) {
+	public DeleteUserUI(AdministratorController c) {
 		controller = c;
 		this.setLayout(null);
 		this.add(new AdministerGuide(controller));

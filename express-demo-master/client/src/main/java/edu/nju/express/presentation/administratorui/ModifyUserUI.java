@@ -1,7 +1,5 @@
-package edu.nju.express.presentation.UserUI;
+package edu.nju.express.presentation.administratorui;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,12 +10,12 @@ import javax.swing.JTextField;
 import edu.nju.express.common.Role;
 import edu.nju.express.vo.UserVO;
 
-public class AddUserPanel extends JPanel {
+public class ModifyUserUI extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	int width=900,height=600;
 	
-	UserController controller;
+	AdministratorController controller;
 
 	JLabel idLabel;
 	JLabel nameLabel;
@@ -30,25 +28,20 @@ public class AddUserPanel extends JPanel {
 	JButton confirm;
 	JPanel p;
 
-	public AddUserPanel(UserController c) {
+	public ModifyUserUI(AdministratorController c) {
 		controller = c;
 		this.setLayout(null);
 		this.add(new AdministerGuide(controller));
+		
+		initComponents();
+	}
+
+
+	private void initComponents() {
 		p = new JPanel();
 		this.add(p);
 		p.setBounds((int)(width*0.2), 0, (int)(width*0.8), height);
-		initComponents();
-		initButton();
-	}
-
-	private void initButton() {
-		confirm = new JButton("确认");
-		confirm.setActionCommand("AddUser");
-		confirm.addActionListener(controller);
-		p.add(confirm);
-	}
-
-	private void initComponents() {
+		
 		idLabel = new JLabel("ID:");
 		p.add(idLabel);
 		idField = new JTextField(10);
@@ -70,8 +63,12 @@ public class AddUserPanel extends JPanel {
 		p.add(passwordLabel);
 		passwordField = new JTextField(10);
 		p.add(passwordField);
+
 		
-	//	System.out.println(Role.valueOf("管理员"));
+		confirm = new JButton("确认");
+		confirm.setActionCommand("ModifyUser");
+		confirm.addActionListener(controller);
+		p.add(confirm);
 	}
 
 	public UserVO getTextInput() {

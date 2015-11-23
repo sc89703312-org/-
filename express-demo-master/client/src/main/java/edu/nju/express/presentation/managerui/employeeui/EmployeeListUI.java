@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.EmployUI;
+package edu.nju.express.presentation.managerui.employeeui;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.common.Role;
+import edu.nju.express.presentation.MyTablePanel;
 import edu.nju.express.vo.EmployeeVO;
 
 public class EmployeeListUI extends JPanel {

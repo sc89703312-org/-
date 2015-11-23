@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.UserUI;
+package edu.nju.express.presentation.administratorui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,7 +15,7 @@ public class Run {
   //      f.setUndecorated(true);
    
         JPanel p = null;
-        p = new AddUserPanel(new UserController( f));
+        p = new AddUserUI(new AdministratorController( f));
         f.add(p);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

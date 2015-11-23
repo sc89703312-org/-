@@ -1,47 +1,48 @@
-package edu.nju.express.presentation.EmployUI;
+package edu.nju.express.presentation.administratorui;
 
-import java.awt.Graphics;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class AdministerUI extends JPanel{
+public class AdministerGuide extends JPanel{
 
 	int width=900,height=600;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	AdministratorController controller;
+	
 	JButton add;
 	JButton delete;
 	JButton modify;
 	JButton check;
 	
 	
-	public AdministerUI() {
-		setLayout(null);
+	public AdministerGuide(AdministratorController controller) {
+		this.controller = controller;
 		initGuide();
-		initTable();
+		this.setLayout(null);
+		this.setBounds(0, 0, (int)(width*0.2), (int)(height));
 	}
 	
-	
-	void initTable(){
-		JPanel table = new EmployeeListUI();
-		table.setOpaque(false);
-		table.setBounds((int)(width*0.2), 0, (int)(width*0.8), (int)(height));
-		add(table);
-	}
 	
 	void initGuide(){
 		JPanel buttons = new JPanel();
 		buttons.setOpaque(false);
 		buttons.setBounds(0, 0, (int)(width*0.2), (int)(height));
 		check = new JButton("查看任务");
+		check.setActionCommand("CheckTaskUI");
+		check.addActionListener(controller);
 		add = new JButton("增加账号");
+		add.setActionCommand("AddUserUI");
+		add.addActionListener(controller);
 		delete = new JButton("删除账号");
+		delete.setActionCommand("DeleteUserUI");
+		delete.addActionListener(controller);
 		modify = new JButton("修改账号");
+		modify.setActionCommand("ModifyUserUI");
+		modify.addActionListener(controller);
 		buttons.add(check);
 		buttons.add(add);
 		buttons.add(delete);
