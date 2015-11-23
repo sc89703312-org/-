@@ -40,34 +40,80 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	}
 	
 	public void insert(E e){
-		list.add(e);
+		
+		
+		if (list.size()==0) {
+			list.add(e);
+		}else{
+			if(e.getId().compareTo(list.get(0).getId())<0) {
+			list.add(0,e);			
+		}else if(e.getId().compareTo(list.get(list.size()-1).getId())>0){
+			list.add(e);
+		}
+		else{
+			for(int i=0;i<list.size()-1;i++){
+				
+				System.out.println(list.get(i).getId()+" "+list.get(i+1).getId());
+				
+				if(list.get(i).getId().compareTo(e.getId())<0
+				    &&list.get(i+1).getId().compareTo(e.getId())>0){
+					list.add(i+1,e);
+				    break;
+				}
+		}
+		
+		}
+		
+		}
+		
 	}
+	
+	
 	
 	
 	public void delete(String id){
-		for(int i=0;i<list.size();i++){
-			if(list.get(i).getId().equals(id)){
-				list.remove(i);
-				break;
-			}
-		}
+		
+		list.remove(binaryFind(0, list.size(), id));
 	
 	}
-	
-	
+
 	public E find(String id){
+	
+		return list.get(binaryFind(0, list.size(), id));
+	}
+	
+	
+	
+	
+	public void update(String id, E po){
 		
-		E temp =null;
 		
-		for(int i=0;i<list.size();i++){
-			if(list.get(i).getId().equals(id)){
-				temp = list.get(i);
-				break;
+		int index = binaryFind(0, list.size(), id);
+		list.remove(index);
+		list.add(index,po);
+	}
+	
+	
+	public int binaryFind(int left, int right, String ID) {
+		
+		
+		int index = -1;
+		if (right >= left) {
+			int middle = (left + right) >> 1;
+			E po = list.get(middle);
+			if (po.getId().compareTo(ID) > 0) {
+				middle--;
+				index = binaryFind(left, middle, ID);
+			} else if (po.getId().compareTo(ID) < 0) {
+				middle++;
+				index = binaryFind(middle, right, ID);
+			} else if (po.getId().compareTo(ID) == 0) {
+				index = middle;
 			}
 		}
-		
-		return temp;
+		return index;
 	}
+	
 	
 	
 	

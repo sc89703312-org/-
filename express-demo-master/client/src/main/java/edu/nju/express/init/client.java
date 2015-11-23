@@ -1,14 +1,11 @@
 package edu.nju.express.init;
 
-
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
-import edu.nju.express.common.Item;
-import edu.nju.express.po.Balancepo;
-import edu.nju.express.po.Carpo;
-import edu.nju.express.po.Driverpo;
 import edu.nju.express.po.Paymentpo;
+
+
+
 
 
 
@@ -20,6 +17,31 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+		
+		
+		
+		
+//		try {
+//			RMIHelper.getPaymentDataService().update("0000000003",
+//					new Paymentpo("2000/1/1", 1, "025000123", "0000000003", "aaaa"));;
+//		
+//		
+//		
+//					System.out.println(RMIHelper.getPaymentDataService().find("0000000003").getBankaccount()
+//		);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+////		
+//		try {
+//			RMIHelper.getPaymentDataService().insert(
+//					new Paymentpo("2015/11/22", 200, "025000001", "0000000008", "sc"));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 		
 //		try {
 //			RMIHelper.getBalanceDataService().insert

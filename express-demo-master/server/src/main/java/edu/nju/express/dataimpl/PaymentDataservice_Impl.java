@@ -48,8 +48,9 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	}
 
 	@Override
-	public void update(Paymentpo po) throws RemoteException {
+	public void update(String id,Paymentpo po) throws RemoteException {
 		// TODO Auto-generated method stub
+		paymentDao.update(id, po);
 		System.out.println("A po has been updated");
 	}
 

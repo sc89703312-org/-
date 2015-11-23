@@ -28,7 +28,7 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	order_id = o;
 	bankaccount = b;
 	//to define the id of payment  which composites of date and the id of order
-	id = date+" "+order_id;
+	id =order_id;
 	hall_id = courier_id.substring(0, 6);
 	}
 	

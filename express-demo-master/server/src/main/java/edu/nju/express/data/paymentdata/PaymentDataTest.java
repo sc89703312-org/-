@@ -21,11 +21,7 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 	}
 	
 	
-	@Override
-	public void update(Paymentpo po) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public ArrayList<Paymentpo> viewByHall(String number) {

@@ -24,12 +24,16 @@ public class CommonData<T extends PersistentObj> implements Serializable {
 	
 	
 	
-	public void insert(T e){
+	public void insert(T e){        
 		inList.insert(e);
 	}
 	
 	public void delete(String id){
 		inList.delete(id);
+	}
+	
+	public void update(String id,T e){
+		inList.update(id, e);
 	}
 	
 	public T find(String id){

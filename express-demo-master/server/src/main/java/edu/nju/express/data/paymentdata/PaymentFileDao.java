@@ -46,7 +46,7 @@ public class PaymentFileDao implements PaymentDao {
 		}
 
 	@Override
-	public void update(Paymentpo po) {
+	public void update(String id,Paymentpo po) {
 		// TODO Auto-generated method stub
 		
 	}

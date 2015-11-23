@@ -13,7 +13,7 @@ public interface Paymentdataservice extends Remote{
 
 	public void insert(Paymentpo po) throws RemoteException;
 	public void delete(String id) throws RemoteException;
-	public void update(Paymentpo po) throws RemoteException;
+	public void update(String id,Paymentpo po) throws RemoteException;
 	public Paymentpo find(String id) throws RemoteException;
 	
 	public ArrayList<Paymentpo> viewByHall(String number) throws RemoteException;
