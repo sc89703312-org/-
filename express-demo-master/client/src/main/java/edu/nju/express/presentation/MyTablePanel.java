@@ -92,6 +92,11 @@ public class MyTablePanel extends JPanel {
 		}
 	}
 
-	
+	public void setRowHeight(int h){
+		this.ROW_HEIGHT = h;
+		table.setRowHeight(ROW_HEIGHT);
+		JTableHeader header= table.getTableHeader();
+		header.setPreferredSize(new Dimension(header.getWidth(), ROW_HEIGHT));
+	}
 
 }

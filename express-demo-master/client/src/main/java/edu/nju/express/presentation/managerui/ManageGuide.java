@@ -51,6 +51,12 @@ public class ManageGuide extends JPanel {
 		constant.setActionCommand("ConstantUI");
 		constant.addActionListener(controller);
 		
+		buttons.add(receipt);
+		buttons.add(employee);
+		buttons.add(organization);
+		buttons.add(salary);
+		buttons.add(constant);
+		
 		add(buttons);
 	}
 }
