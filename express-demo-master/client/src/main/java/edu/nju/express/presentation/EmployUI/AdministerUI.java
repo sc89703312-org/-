@@ -1,4 +1,6 @@
-/*import java.awt.Graphics;
+package edu.nju.express.presentation.EmployUI;
+
+import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -8,9 +10,9 @@ import javax.swing.JPanel;
 public class AdministerUI extends JPanel{
 
 	int width=900,height=600;
-	*//**
+	/**
 	 * 
-	 *//*
+	 */
 	private static final long serialVersionUID = 1L;
 	JButton add;
 	JButton delete;
@@ -36,10 +38,10 @@ public class AdministerUI extends JPanel{
 		JPanel buttons = new JPanel();
 		buttons.setOpaque(false);
 		buttons.setBounds(0, 0, (int)(width*0.2), (int)(height));
-		check = new JButton("�鿴����");
-		add = new JButton("�����˺�");
-		delete = new JButton("ɾ���˺�");
-		modify = new JButton("�޸��˺�");
+		check = new JButton("查看任务");
+		add = new JButton("增加账号");
+		delete = new JButton("删除账号");
+		modify = new JButton("修改账号");
 		buttons.add(check);
 		buttons.add(add);
 		buttons.add(delete);
@@ -47,4 +49,3 @@ public class AdministerUI extends JPanel{
 		add(buttons);
 	}
 }
-*/

@@ -1,4 +1,6 @@
-/*import java.awt.Color;
+package edu.nju.express.presentation.EmployUI;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,7 +13,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class MyTable extends JPanel {
+public class MyTablePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	int ROW_HEIGHT = 40;
@@ -26,7 +28,7 @@ public class MyTable extends JPanel {
 	JTable table; 
 	DefaultTableModel model;
 	
-	public MyTable(String[] header) {
+	public MyTablePanel(String[] header) {
 		model = new DefaultTableModel(null, header);
 		
 		table = new JTable(model){
@@ -69,7 +71,7 @@ public class MyTable extends JPanel {
 		table.setBorder(null);
 		table.setOpaque(false);
 
-		// ������ɫ
+		// 设置表格颜色
 		setForeground(foreColor);
 		header.setBackground(headerColor);
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
@@ -93,4 +95,3 @@ public class MyTable extends JPanel {
 	
 
 }
-*/
