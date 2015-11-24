@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,20 +19,21 @@ import javax.swing.JPanel;
 
 
 
+
 import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
+import edu.nju.express.presentation.myUI.MyBackground;
 import edu.nju.express.presentation.myUI.MyButton;
 import edu.nju.express.presentation.myUI.MyLabel;
 import edu.nju.express.presentation.myUI.MyPasswordField;
 import edu.nju.express.presentation.myUI.MyTextFieldV2;
 
-public class LoginUI extends JPanel implements ActionListener{
+public class LoginUI extends JFrame implements ActionListener{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	int WIDTH = 900;
 	int HEIGHT = 600;
 	int BAR_HEIGHT = 40;
@@ -42,10 +44,11 @@ public class LoginUI extends JPanel implements ActionListener{
 	
 	MyButton login;
 	MyButton logistics;
+
 	MyPasswordField passwordField;
 	MyTextFieldV2 userNameField;
-	MyLabel label_field1,label_field2,label_field3,label_field4;
-	
+	MyLabel label_field1,label_field2,label_field3,label_field4,label_field5;
+	MyBackground background;
 	
 	
 	
@@ -61,13 +64,21 @@ public class LoginUI extends JPanel implements ActionListener{
 
 	
 
-
-
+	
+	
 	public LoginUI() {
+		// TODO Auto-generated constructor stub
+	
+	
+		
+		this.setSize(900, 600);
+		this.setLocationRelativeTo(null);
+		this.setUndecorated(true);
 		this.setLayout(null);
-		this.setOpaque(false);
 
+		
 
+		
 		loginBL = new Login();
 		quit = new MyButton(WIDTH - BAR_HEIGHT-10 , 10, BAR_HEIGHT ,BAR_HEIGHT);
 		quit.addActionListener(new ActionListener() {
@@ -189,38 +200,43 @@ public class LoginUI extends JPanel implements ActionListener{
 
 
 		
-		
-		
-		
-	}
-	
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		g.drawImage(bg, 0, 0, this);
-	}
+		background = new MyBackground("ui/image/login/login_4.png");
 
+		this.add(background);
+		
+
+		 this.setVisible(true);
+	     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      
 	
 	
 	
-	@SuppressWarnings("deprecation")
+
+       
+	}
+	
+	
+	
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-		
-		
-		
+
 		if(e.getSource()==login){
 			System.out.println(userNameField.getText()+"\n"+passwordField.getText());
 			
+			@SuppressWarnings("deprecation")
 			Role role  =loginBL.login(userNameField.getText(),
 					passwordField.getText());
 			
-			
+			if(role==null){
+				System.out.println("failed");
+			 new ErrorUI();
+			}
 		}
 	}
-	
 	
 	}
