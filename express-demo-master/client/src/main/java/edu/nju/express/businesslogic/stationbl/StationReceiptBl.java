@@ -4,7 +4,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.StationReceiptBlService;
+import edu.nju.express.businesslogic.commoditybl.StationInfo;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
+import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
@@ -18,14 +20,14 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 
 
-public class StationReceiptBl implements StationReceiptBlService{
+public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 	
 	StationDataService stationDataService;
-	OrderBL orderBl;
+	OrderInfo orderInfo;
 	
-	public StationReceiptBl(OrderBL orderBl){
+	public StationReceiptBl(OrderInfo orderInfo){
 		//stationDataService = RMIHelper.getStationDataService();
-		this.orderBl = orderBl;
+		this.orderInfo= orderInfo;
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class StationReceiptBl implements StationReceiptBlService{
 				result = ResultMessage.INVALID;
 				return result;
 			}
-			OrderPO po = vo_to_po_order(orderBl.view(list.get(i)));
+			OrderPO po = vo_to_po_order(orderInfo.view(list.get(i)));
 			orderList.add(po);
 		}
 		
@@ -72,7 +74,7 @@ public class StationReceiptBl implements StationReceiptBlService{
 				result = ResultMessage.INVALID;
 				return result;
 			}
-			OrderPO po = vo_to_po_order(orderBl.view(list.get(i)));
+			OrderPO po = vo_to_po_order(orderInfo.view(list.get(i)));
 			orderList.add(po);
 		}
 		

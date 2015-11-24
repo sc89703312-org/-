@@ -14,16 +14,16 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 public class CommodityBl implements CommodityBlService{
 	
-	StationReceiptBl stationReceiptBl;
+	StationInfo stationInfo;
 	
-	public CommodityBl(StationReceiptBl stationReceiptBl){
-		this.stationReceiptBl = stationReceiptBl;
+	public CommodityBl(StationInfo stationInfo){
+		this.stationInfo = stationInfo;
 	}
 
 	@Override
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList() {
 		// TODO Auto-generated method stub
-		return stationReceiptBl.viewApproveArrive();
+		return stationInfo.viewApproveArrive();
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class CommodityBl implements CommodityBlService{
 	@Override
 	public ArrayList<TransferReceiptVO> showTransferReceiptList() {
 		// TODO Auto-generated method stub
-		return stationReceiptBl.viewApproveTransfer();
+		return stationInfo.viewApproveTransfer();
 	}
 
 	@Override

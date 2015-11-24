@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.BankingBlService;
+import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.BankingDataService;
 import edu.nju.express.init.RMIHelper;
@@ -12,7 +13,7 @@ import edu.nju.express.vo.BankingAccountVO;
 
 
 
-public class Bankingbl implements BankingBlService{
+public class Bankingbl implements BankingBlService, BankingInfo{
 	
 	BankingDataService bankingDataService;
 	
@@ -72,8 +73,12 @@ public class Bankingbl implements BankingBlService{
 		try {
 			ArrayList<BankingAccountPO> poList = bankingDataService.getAccount();
 			ArrayList<BankingAccountVO> voList = new ArrayList<BankingAccountVO>();
-			for(int i=0;i<poList.size();i++)
-				voList.add(new BankingAccountVO(poList.get(i).getName(),poList.get(i).getMoney()));
+			for(int i=0;i<poList.size();i++){
+				BankingAccountPO tempo = poList.get(i);
+				String name = tempo.getName();
+				if(name.contains(subName))
+					voList.add(new BankingAccountVO(name,tempo.getMoney()));
+			}
 			return voList;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -114,5 +119,24 @@ public class Bankingbl implements BankingBlService{
 		return result;
 
     }
+
+	@Override
+	public ArrayList<BankingAccountVO> getAllAccounts() {
+		// TODO Auto-generated method stub
+		
+		try {
+			ArrayList<BankingAccountPO>  poList = bankingDataService.getAccount();
+			ArrayList<BankingAccountVO> voList = new ArrayList<BankingAccountVO>();
+			for(int i=0;i<poList.size();i++){
+				voList.add(new BankingAccountVO(poList.get(i).getName(),poList.get(i).getMoney()));
+			}
+			return voList;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 }
