@@ -52,7 +52,8 @@ public class MyTablePanel extends JPanel {
 		
 		JScrollPane s = new JScrollPane(table);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
-	//	s.getViewport().setOpaque(false);
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
 		s.setColumnHeaderView(table.getTableHeader());
 		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
