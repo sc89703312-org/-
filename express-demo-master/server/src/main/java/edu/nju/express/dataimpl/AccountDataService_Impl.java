@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.accountdata.AccountDao;
 import edu.nju.express.data.accountdata.AccountDataTest;
-import edu.nju.express.data.accountdata.AccountFileDao;
 import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.po.Accountpo;
 
@@ -39,12 +39,12 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 	}
 
 	@Override
-	public void insert(Accountpo po) throws RemoteException {
+	public ResultMessage insert(Accountpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Insert a new po");
 		
-		accountDao.insert(po);
+	     return	accountDao.insert(po);
 		
 	}
 

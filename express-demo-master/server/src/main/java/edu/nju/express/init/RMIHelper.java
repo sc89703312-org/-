@@ -19,6 +19,10 @@ public class RMIHelper {
 	private static balancedataservice balancedataservice;
 	private static BankingDataService bankingDataService;
 	private static accountdataservice accountdataservice;
+	private static orderdataservice orderdataservice;
+	private static HallDataService hallDataService;
+	private static LogisticsDataService logisticsDataService;
+	private static UserDataService userDataService;
 	
 	 public static void init() {
 	        try {
@@ -34,6 +38,14 @@ public class RMIHelper {
 	            
 	             accountdataservice = new AccountDataService_Impl();
 	             
+	             orderdataservice = new OrderDataService_Impl();
+	             
+	             hallDataService = new HallDataService_Impl();
+	             
+	             userDataService = new UserDataService_Impl();
+	             
+	             logisticsDataService = new LogisticsDataService_Impl();
+	             
 	            Naming.rebind("payment-service",paymentdataservice);
 
 	            Naming.rebind("vehicle-service", vehicledataservice);
@@ -44,6 +56,13 @@ public class RMIHelper {
 	        
 	            Naming.rebind("account-service", accountdataservice);
 	        
+	            Naming.rebind("order-service", orderdataservice);
+	            
+	            Naming.rebind("hall-service", hallDataService);
+	            
+	            Naming.rebind("logistics-service", logisticsDataService);
+	            
+	            Naming.rebind("user-service", userDataService);
 	        } catch (MalformedURLException e) {
 	            e.printStackTrace();
 	        } catch (RemoteException e) {
@@ -64,6 +83,13 @@ public class RMIHelper {
 			vehicledataservice.flushDrivers();
 			balancedataservice.flush();
 			accountdataservice.flush();
+			hallDataService.flushHalls();
+			hallDataService.flushHallArrival();
+			hallDataService.flushHallDeliver();
+			hallDataService.flushHallTransfer();
+			logisticsDataService.flush();
+			orderdataservice.flush();
+			userDataService.flush();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

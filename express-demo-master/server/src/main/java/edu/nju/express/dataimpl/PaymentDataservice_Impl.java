@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.paymentdata.PaymentDao;
 import edu.nju.express.data.paymentdata.PaymentDataTest;
-import edu.nju.express.data.paymentdata.PaymentFileDao;
 import edu.nju.express.dataservice.Paymentdataservice;
 import edu.nju.express.po.Paymentpo;
 
@@ -34,24 +34,23 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	}
 
 	@Override
-	public void insert(Paymentpo po) throws RemoteException {
+	public ResultMessage insert(Paymentpo po) throws RemoteException {
 		// TODO Auto-generated method stub
-		paymentDao.insert(po);
-		System.out.println("A po has been inserted");
+		return paymentDao.insert(po);
+		
 	}
 
 	@Override
-	public void delete(String id) throws RemoteException {
+	public ResultMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		paymentDao.delete(id);
-		System.out.println("A po has been deleted");
+	    return	paymentDao.delete(id);
+		
 	}
 
 	@Override
-	public void update(String id,Paymentpo po) throws RemoteException {
+	public ResultMessage update(String id,Paymentpo po) throws RemoteException {
 		// TODO Auto-generated method stub
-		paymentDao.update(id, po);
-		System.out.println("A po has been updated");
+		return paymentDao.update(id, po);
 	}
 
 	@Override

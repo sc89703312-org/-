@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.vehicledata.CarDao;
 import edu.nju.express.data.vehicledata.CarDataTest;
 import edu.nju.express.data.vehicledata.VehicleDao;
@@ -35,24 +36,24 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 	
 	
 	@Override
-	public void insertCar(Carpo po) throws RemoteException {
+	public ResultMessage insertCar(Carpo po) throws RemoteException {
 		// TODO Auto-generated method stub
-		carDao.insertCar(po);
-		System.out.println("Have inserted a po");
+	   return	carDao.insertCar(po);
+		
 	}
 
 	@Override
-	public void deleteCar(String id) throws RemoteException {
+	public ResultMessage deleteCar(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("Prepares to delete a car");
-		carDao.deleteCar(id);
+		
+		return carDao.deleteCar(id);
 	}
 
 	@Override
-	public void updateCar(String number, Carpo po) throws RemoteException {
+	public ResultMessage updateCar(String number, Carpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to update");
-		carDao.updateCar(number, po);
+		return carDao.updateCar(number, po);
 	}
 
 	@Override
@@ -63,25 +64,25 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 	}
 
 	@Override
-	public void insertDri(Driverpo po) throws RemoteException {
+	public ResultMessage insertDri(Driverpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Prepares to insert a po");
-		vehicleDao.insertDri(po);
+		return vehicleDao.insertDri(po);
 	}
 
 	@Override
-	public void deleteDri(String id) throws RemoteException {
+	public ResultMessage deleteDri(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to delete a po");
-		vehicleDao.deleteDri(id);
+		return vehicleDao.deleteDri(id);
 	}
 
 	@Override
-	public void updateDri(String number, Driverpo po) throws RemoteException {
+	public ResultMessage updateDri(String number, Driverpo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to update");
-		vehicleDao.updateDri(number, po);
+		return vehicleDao.updateDri(number, po);
 	}
 
 	@Override

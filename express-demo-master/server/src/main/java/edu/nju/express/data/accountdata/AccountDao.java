@@ -2,6 +2,7 @@ package edu.nju.express.data.accountdata;
 
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.Accountpo;
 
 
@@ -9,7 +10,7 @@ import edu.nju.express.po.Accountpo;
 public interface AccountDao {
 
 	
-	public void insert(Accountpo po);
+	public ResultMessage insert(Accountpo po);
 	
 	public Accountpo find(String date);
 	

@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTree;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,8 +25,8 @@ public class MyTablePanel extends JPanel {
 	int HEIGHT = 400;
 	Color headerColor = new Color(49, 121, 177);
 	Color foreColor = new Color(0, 0, 0);
-	Color backColor1 = new Color(255, 255, 255);
-	Color backColor2 = new Color(240, 250, 254);
+	Color backColor1 = new Color(255, 255, 255,50);
+	Color backColor2 = new Color(240, 250, 254,50);
 	Font font = new Font("微软雅黑", Font.PLAIN, 15);
 	String[] headerStr;
 	JTable table; 
@@ -37,16 +40,17 @@ public class MyTablePanel extends JPanel {
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return false;
+				return true;
 			}
 		};
+
+		
 		
 		headerStr = header;
 		
 		initTable();
 		
 		JScrollPane s = new JScrollPane(table);
-		s.setOpaque(false);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 	//	s.getViewport().setOpaque(false);
 		s.setColumnHeaderView(table.getTableHeader());
@@ -88,6 +92,9 @@ public class MyTablePanel extends JPanel {
 					setBackground(backColor2);
 				else
 					setBackground(headerColor);
+				
+
+			
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
 		};

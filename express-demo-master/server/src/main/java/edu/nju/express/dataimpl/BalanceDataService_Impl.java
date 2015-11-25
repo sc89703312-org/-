@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.balancedata.BalanceDao;
 import edu.nju.express.data.balancedata.BalanceDataTest;
-import edu.nju.express.data.balancedata.BalanceFileDao;
 import edu.nju.express.dataservice.balancedataservice;
 import edu.nju.express.po.Balancepo;
 
@@ -30,10 +30,10 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 	}
 
 	@Override
-	public void insert(Balancepo po) throws RemoteException {
+	public ResultMessage insert(Balancepo po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("A po has been inserted");
-		balanceDao.insert(po);
+		return balanceDao.insert(po);
 	}
 
 	@Override
@@ -44,17 +44,17 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 	}
 
 	@Override
-	public void delete(String id) throws RemoteException {
+	public ResultMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to delete a po");
-		balanceDao.delete(id);
+		return balanceDao.delete(id);
 	}
 
 	@Override
-	public void update(Balancepo po,String id) throws RemoteException {
+	public ResultMessage update(Balancepo po,String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("prepares to update a po");
-		balanceDao.update(po, id);
+		return balanceDao.update(po, id);
 	}
 
 	@Override

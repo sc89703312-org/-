@@ -4,31 +4,36 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.ArrivalReceiptPO;
 import edu.nju.express.po.DeliverReceiptPO;
 import edu.nju.express.po.HallPo;
 import edu.nju.express.po.HallTransferReceiptPO;
 
 public interface HallDataService extends Remote{
-	public void addHall(HallPo po) throws RemoteException;
-	public void removeHall(String id) throws RemoteException;
+	public ResultMessage addHall(HallPo po) throws RemoteException;
+	public ResultMessage removeHall(String id) throws RemoteException;
 	public ArrayList<HallPo> showHall() throws RemoteException;
+	public void flushHalls() throws RemoteException;
 	
-	public void addHallArrival(ArrivalReceiptPO po);
-	public void removeHallArrival(String id);
-	public ArrivalReceiptPO findHallArrival(String id);
-	public ArrayList<ArrivalReceiptPO> getAllHallArrival();
-	public void approveHallArrival(ArrayList<ArrivalReceiptPO> list);
+	public ResultMessage addHallArrival(ArrivalReceiptPO po)throws RemoteException;
+	public ResultMessage removeHallArrival(String id)throws RemoteException;
+	public ArrivalReceiptPO findHallArrival(String id)throws RemoteException;
+	public ArrayList<ArrivalReceiptPO> getAllHallArrival()throws RemoteException;
+	public void approveHallArrival(ArrayList<ArrivalReceiptPO> list)throws RemoteException;
+	public void flushHallArrival() throws RemoteException;
 	
-	public void addHallTransfer(HallTransferReceiptPO po);
-	public void removeHallTransfer(String id);
-	public HallTransferReceiptPO findHallTransfer(String id);
-	public ArrayList<HallTransferReceiptPO> getAllHallTransfer();
-	public void approveHallTransfer(ArrayList<HallTransferReceiptPO> list);
+	public ResultMessage addHallTransfer(HallTransferReceiptPO po)throws RemoteException;
+	public ResultMessage removeHallTransfer(String id)throws RemoteException;
+	public HallTransferReceiptPO findHallTransfer(String id)throws RemoteException;
+	public ArrayList<HallTransferReceiptPO> getAllHallTransfer()throws RemoteException;
+	public void approveHallTransfer(ArrayList<HallTransferReceiptPO> list)throws RemoteException;
+	public void flushHallTransfer()throws RemoteException;
 	
-	public void addHallDeliver(DeliverReceiptPO po);
-	public void removeHallDeliver(String id);
-	public DeliverReceiptPO findHallDeliver(String id);
-	public ArrayList<DeliverReceiptPO> getAllHallDeliver();
-	public void approveHallDeliver(ArrayList<DeliverReceiptPO> list);
+	public ResultMessage addHallDeliver(DeliverReceiptPO po) throws RemoteException;
+	public ResultMessage removeHallDeliver(String id)throws RemoteException;
+	public DeliverReceiptPO findHallDeliver(String id)throws RemoteException;
+	public ArrayList<DeliverReceiptPO> getAllHallDeliver()throws RemoteException;
+	public void approveHallDeliver(ArrayList<DeliverReceiptPO> list)throws RemoteException;
+	public void flushHallDeliver()throws RemoteException;
 }

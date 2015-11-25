@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.Accountpo;
 
 
@@ -12,7 +13,7 @@ import edu.nju.express.po.Accountpo;
 public interface accountdataservice extends Remote {
 
 	
-	public void insert(Accountpo po) throws RemoteException;
+	public ResultMessage insert(Accountpo po) throws RemoteException;
 	
 	public Accountpo find(String date) throws RemoteException;
 	

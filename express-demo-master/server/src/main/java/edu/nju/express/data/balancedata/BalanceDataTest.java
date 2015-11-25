@@ -3,6 +3,7 @@ package edu.nju.express.data.balancedata;
 import java.util.ArrayList;
 
 import edu.nju.express.common.CommonData;
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.Balancepo;
 
 public class BalanceDataTest extends CommonData<Balancepo> implements BalanceDao{
@@ -38,9 +39,9 @@ public class BalanceDataTest extends CommonData<Balancepo> implements BalanceDao
 	}
 
 	@Override
-	public void update(Balancepo po, String id) {
+	public ResultMessage update(Balancepo po, String id) {
 		// TODO Auto-generated method stub
-		
+		return update(id, po);
 	}
 
 }

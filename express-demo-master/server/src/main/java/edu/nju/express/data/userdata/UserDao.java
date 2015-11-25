@@ -2,6 +2,7 @@ package edu.nju.express.data.userdata;
 
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.UserPO;
 
 public interface UserDao {

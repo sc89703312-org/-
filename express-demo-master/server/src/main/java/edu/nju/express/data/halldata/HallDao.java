@@ -2,15 +2,16 @@ package edu.nju.express.data.halldata;
 
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.*;
 
 
 
 public interface HallDao {
 	
-	public void insert(HallPo hallPo);
-	public void delete(String id);
+	public ResultMessage insert(HallPo hallPo);
+	public ResultMessage delete(String id);
 	public ArrayList<HallPo> getAll();
 	public ArrayList<HallPo> showAll();
-	
+	public void flush();
 }

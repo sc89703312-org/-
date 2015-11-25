@@ -3,6 +3,7 @@ package edu.nju.express.data.logisticsdata;
 
 
 import edu.nju.express.common.CommonData;
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.LogisticsPO;
 
 public class LogisticsFileDao extends CommonData<LogisticsPO> implements LogisticsDao{
@@ -19,9 +20,9 @@ public class LogisticsFileDao extends CommonData<LogisticsPO> implements Logisti
 	}
 
 	@Override
-	public void update(LogisticsPO po) {
+	public ResultMessage update(LogisticsPO po) {
 		// TODO Auto-generated method stub
-		
+		return update(po.getId(), po);
 	}
 
 	

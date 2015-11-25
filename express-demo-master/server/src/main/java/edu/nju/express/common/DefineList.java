@@ -12,7 +12,6 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import edu.nju.express.data.accountdata.AccountFileDao.MyObjectOutputStream;
 import edu.nju.express.po.Accountpo;
 import edu.nju.express.po.PersistentObj;
 
@@ -39,12 +38,27 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	
 	}
 	
-	public void insert(E e){
+	public ResultMessage insert(E e){
+		
+		
+		
+		
 		
 		
 		if (list.size()==0) {
 			list.add(e);
+			return ResultMessage.VALID;
 		}else{
+			
+			
+			if(binaryFind(0, list.size()-1, e.getId())!=-1)
+				return ResultMessage.INVALID;
+			
+			
+			
+			
+			else{
+			
 			if(e.getId().compareTo(list.get(0).getId())<0) {
 			list.add(0,e);			
 		}else if(e.getId().compareTo(list.get(list.size()-1).getId())>0){
@@ -64,33 +78,56 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 		
 		}
 		
-		}
 		
+			
+			return ResultMessage.VALID;
+			}
+		
+		
+		
+		
+		
+		}
+	
+	
+	
+	
 	}
 	
 	
 	
 	
-	public void delete(String id){
+	public ResultMessage delete(String id){
 		
-		list.remove(binaryFind(0, list.size(), id));
+		
+		if(binaryFind(0, list.size()-1, id)==-1)
+			return ResultMessage.INVALID;
+		
+		else {
+			list.remove(binaryFind(0, list.size(), id));
+			return ResultMessage.VALID;
+		}
+		
+		
 	
 	}
 
 	public E find(String id){
 	
-		return list.get(binaryFind(0, list.size(), id));
+		return list.get(binaryFind(0, list.size()-1, id));
 	}
 	
 	
 	
 	
-	public void update(String id, E po){
+	public ResultMessage update(String id, E po){
 		
 		
-		int index = binaryFind(0, list.size(), id);
+		int index = binaryFind(0, list.size()-1, id);
 		list.remove(index);
 		list.add(index,po);
+		
+		return ResultMessage.VALID;
 	}
 	
 	
@@ -121,6 +158,7 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	
 	
 	
+
 	
 	
 	public ArrayList<E> getAll(){

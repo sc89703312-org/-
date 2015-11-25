@@ -3,6 +3,7 @@ package edu.nju.express.data.orderdata;
 
 
 import edu.nju.express.common.CommonData;
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.OrderPO;
 
 public class OrderFileDao extends CommonData<OrderPO> implements OrderDao {
@@ -18,9 +19,9 @@ public class OrderFileDao extends CommonData<OrderPO> implements OrderDao {
 	}
 
 	@Override
-	public void update(OrderPO po) {
+	public ResultMessage update(OrderPO po) {
 		// TODO Auto-generated method stub
-		
+		return update(po.getId(), po);
 	}
 
 	

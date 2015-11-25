@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.logisticsdata.LogisticsDao;
 import edu.nju.express.data.logisticsdata.LogisticsFileDao;
 import edu.nju.express.dataservice.LogisticsDataService;
@@ -23,22 +24,22 @@ public class LogisticsDataService_Impl extends UnicastRemoteObject implements Lo
 	 * 
 	 */
 	LogisticsDao logisticsDao;
-	protected LogisticsDataService_Impl() throws RemoteException {
+	public LogisticsDataService_Impl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 		logisticsDao = new LogisticsFileDao("logistics");
 	}
 
 	@Override
-	public void insert(LogisticsPO po) throws RemoteException {
+	public ResultMessage insert(LogisticsPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		logisticsDao.insert(po);
+		return logisticsDao.insert(po);
 	}
 
 	@Override
-	public void update(LogisticsPO po) throws RemoteException {
+	public ResultMessage update(LogisticsPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		logisticsDao.update(po);
+		return logisticsDao.update(po);
 	}
 
 	@Override
@@ -51,6 +52,12 @@ public class LogisticsDataService_Impl extends UnicastRemoteObject implements Lo
 	public ArrayList<LogisticsPO> getAll()throws RemoteException {
 		// TODO Auto-generated method stub
 		return logisticsDao.showAll();
+	}
+
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		logisticsDao.flush();
 	}
 
 	

@@ -17,18 +17,19 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+		
 		try {
-			RMIHelper.getPaymentDataService().insert(new Paymentpo("2015/11/25", 200, "025000001", "0000000010", "sc"));
+			System.out.println(RMIHelper.getPaymentDataService().insert(new Paymentpo("2015/11/25", 200, "025000001", "0000000001", "sc")));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
-			System.out.println(RMIHelper.getPaymentDataService().getAll().size());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			System.out.println(RMIHelper.getPaymentDataService().getAll().size());
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 //		try {

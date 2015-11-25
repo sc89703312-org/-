@@ -3,6 +3,7 @@ package edu.nju.express.data.vehicledata;
 import java.util.ArrayList;
 
 import edu.nju.express.common.CommonData;
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.Driverpo;
 
 public class VehicleDataTest extends CommonData<Driverpo> implements VehicleDao{
@@ -25,21 +26,21 @@ public class VehicleDataTest extends CommonData<Driverpo> implements VehicleDao{
 
 
 	@Override
-	public void insertDri(Driverpo po) {
+	public ResultMessage insertDri(Driverpo po) {
 		// TODO Auto-generated method stub
-		inList.insert(po);
+		return inList.insert(po);
 	}
 
 	@Override
-	public void deleteDri(String id) {
+	public ResultMessage deleteDri(String id) {
 		// TODO Auto-generated method stub
-		inList.delete(id);
+		return inList.delete(id);
 	}
 
 	@Override
-	public void updateDri(String number, Driverpo po) {
+	public ResultMessage updateDri(String number, Driverpo po) {
 		// TODO Auto-generated method stub
-		
+		return inList.update(number, po);
 	}
 
 	@Override

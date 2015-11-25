@@ -20,8 +20,10 @@ public class RMIHelper {
     private static balancedataservice balancedataservice;
     private static BankingDataService bankingDataService;
     private static accountdataservice accountdataservice;
-    
-    
+    private static orderdataservice orderdataservice;
+    private static HallDataService hallDataService;
+    private static LogisticsDataService logisticsDataService;
+    private static UserDataService userDataService;
     
     
     public static void init() {
@@ -33,9 +35,11 @@ public class RMIHelper {
             balancedataservice = (balancedataservice) Naming.lookup("rmi://" + IP + "/balance-service");
 //          bankingDataService = (BankingDataService) Naming.lookup("rmi://" + IP + "/banking-service");
             accountdataservice = (accountdataservice) Naming.lookup("rmi://" + IP + "/account-service");
-        
-        
-        
+            orderdataservice = (orderdataservice) Naming.lookup("rmi://" + IP + "/order-service");
+            hallDataService = (HallDataService) Naming.lookup("rmi://" + IP + "/hall-service");
+            logisticsDataService = (LogisticsDataService) Naming.lookup("rmi://" + IP + "/logistics-service");
+            userDataService = (UserDataService) Naming.lookup("rmi://" + IP + "/user-service");
+            
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
@@ -59,5 +63,17 @@ public class RMIHelper {
     }
     public static accountdataservice getAccountdataservice(){
     	return accountdataservice;
+    }
+    public static orderdataservice getOrderdataservice(){
+    	return orderdataservice;
+    }
+    public static HallDataService getHallDataService(){
+    	return hallDataService;
+    }
+    public static LogisticsDataService getLogisticsDataService(){
+    	return logisticsDataService;
+    }
+    public static UserDataService getUserDataService(){
+    	return userDataService;
     }
 }

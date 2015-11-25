@@ -86,11 +86,13 @@ public class LoginUI extends MyFrame implements ActionListener{
 	
 	
 		
+		
 		this.setSize(900, 600);
 		this.setLocationRelativeTo(null);
 		this.setUndecorated(true);
 		this.setLayout(null);
 
+      
 		label_field6 = new MyLabel(0, 0, 900, 600);
 		label_field6.setIcon(new ImageIcon("ui/image/login/报错_1.png"));
 		label_field6.setVisible(false);

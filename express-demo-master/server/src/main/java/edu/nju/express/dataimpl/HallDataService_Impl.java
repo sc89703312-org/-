@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.halldata.HallArrivalDao;
 import edu.nju.express.data.halldata.HallArrivalFileDao;
 import edu.nju.express.data.halldata.HallDao;
@@ -30,7 +31,8 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	HallTransferDao hallTransferDao;
 	HallDeliverDao hallDeliverDao;
 
-	protected HallDataService_Impl() throws RemoteException {
+	public HallDataService_Impl() throws RemoteException {
+
 		super();
 		// TODO Auto-generated constructor stub
 		hallDao = new HallFileDao("hall");
@@ -41,15 +43,15 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	}
 
 	@Override
-	public void addHall(HallPo po) throws RemoteException {
+	public ResultMessage addHall(HallPo po) throws RemoteException {
 		// TODO Auto-generated method stub
-		hallDao.insert(po);
+		return hallDao.insert(po);
 	}
 
 	@Override
-	public void removeHall(String id) throws RemoteException {
+	public ResultMessage removeHall(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		hallDao.delete(id);
+		return hallDao.delete(id);
 	}
 
 	@Override
@@ -59,93 +61,117 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	}
 
 	@Override
-	public void addHallArrival(ArrivalReceiptPO po) {
+	public ResultMessage addHallArrival(ArrivalReceiptPO po) throws RemoteException  {
 		// TODO Auto-generated method stub
-		this.hallArrivalDao.insert(po);
+		return this.hallArrivalDao.insert(po);
 	}
 
 	@Override
-	public void removeHallArrival(String id) {
+	public ResultMessage removeHallArrival(String id)throws RemoteException {
 		// TODO Auto-generated method stub
-		this.hallArrivalDao.delete(id);
+		return this.hallArrivalDao.delete(id);
 	}
 
 	@Override
-	public ArrivalReceiptPO findHallArrival(String id) {
+	public ArrivalReceiptPO findHallArrival(String id) throws RemoteException{
 		// TODO Auto-generated method stub
 		return this.hallArrivalDao.find(id);
 	}
 
 	@Override
-	public ArrayList<ArrivalReceiptPO> getAllHallArrival() {
+	public ArrayList<ArrivalReceiptPO> getAllHallArrival()throws RemoteException {
 		// TODO Auto-generated method stub
 		return this.hallArrivalDao.showAll();
 	}
 
 	@Override
-	public void approveHallArrival(ArrayList<ArrivalReceiptPO> list) {
+	public void approveHallArrival(ArrayList<ArrivalReceiptPO> list) throws RemoteException{
 		// TODO Auto-generated method stub
 		this.hallArrivalDao.approveArrivalReceipt(list);
 	}
 
 	@Override
-	public void addHallTransfer(HallTransferReceiptPO po) {
+	public ResultMessage addHallTransfer(HallTransferReceiptPO po) throws RemoteException{
 		// TODO Auto-generated method stub
-		this.hallTransferDao.insert(po);
+		return this.hallTransferDao.insert(po);
 	}
 
 	@Override
-	public void removeHallTransfer(String id) {
+	public ResultMessage removeHallTransfer(String id) throws RemoteException{
 		// TODO Auto-generated method stub
-		this.hallTransferDao.delete(id);
+		return this.hallTransferDao.delete(id);
 	}
 
 	@Override
-	public HallTransferReceiptPO findHallTransfer(String id) {
+	public HallTransferReceiptPO findHallTransfer(String id) throws RemoteException{
 		// TODO Auto-generated method stub
 		return this.hallTransferDao.find(id);
 	}
 
 	@Override
-	public ArrayList<HallTransferReceiptPO> getAllHallTransfer() {
+	public ArrayList<HallTransferReceiptPO> getAllHallTransfer() throws RemoteException{
 		// TODO Auto-generated method stub
 		return this.hallTransferDao.showAll();
 	}
 
 	@Override
-	public void approveHallTransfer(ArrayList<HallTransferReceiptPO> list) {
+	public void approveHallTransfer(ArrayList<HallTransferReceiptPO> list) throws RemoteException{
 		// TODO Auto-generated method stub
 		this.hallTransferDao.approveTransferReceipt(list);;
 	}
 
 	@Override
-	public void addHallDeliver(DeliverReceiptPO po) {
+	public ResultMessage addHallDeliver(DeliverReceiptPO po)throws RemoteException {
 		// TODO Auto-generated method stub
-		this.hallDeliverDao.insert(po);
+		return this.hallDeliverDao.insert(po);
 	}
 
 	@Override
-	public void removeHallDeliver(String id) {
+	public ResultMessage removeHallDeliver(String id)throws RemoteException {
 		// TODO Auto-generated method stub
-		this.hallDeliverDao.delete(id);
+		return this.hallDeliverDao.delete(id);
 	}
 
 	@Override
-	public DeliverReceiptPO findHallDeliver(String id) {
+	public DeliverReceiptPO findHallDeliver(String id)throws RemoteException {
 		// TODO Auto-generated method stub
 		return this.hallDeliverDao.find(id);
 	}
 
 	@Override
-	public ArrayList<DeliverReceiptPO> getAllHallDeliver() {
+	public ArrayList<DeliverReceiptPO> getAllHallDeliver() throws RemoteException{
 		// TODO Auto-generated method stub
 		return this.hallDeliverDao.showAll();
 	}
 
 	@Override
-	public void approveHallDeliver(ArrayList<DeliverReceiptPO> list) {
+	public void approveHallDeliver(ArrayList<DeliverReceiptPO> list)throws RemoteException {
 		// TODO Auto-generated method stub
 		this.hallDeliverDao.approveDeliverReceipt(list);
+	}
+
+	@Override
+	public void flushHalls() throws RemoteException {
+		// TODO Auto-generated method stub
+		hallDao.flush();
+	}
+
+	@Override
+	public void flushHallArrival() throws RemoteException {
+		// TODO Auto-generated method stub
+		hallArrivalDao.flush();
+	}
+
+	@Override
+	public void flushHallTransfer() throws RemoteException{
+		// TODO Auto-generated method stub
+		hallTransferDao.flush();
+	}
+
+	@Override
+	public void flushHallDeliver()throws RemoteException {
+		// TODO Auto-generated method stub
+		hallDeliverDao.flush();
 	}
 
 }
