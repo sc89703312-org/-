@@ -115,7 +115,9 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	}
 	
 	
-	
+	public ArrayList<E> showAll(){
+		return list;
+	}
 	
 	
 	

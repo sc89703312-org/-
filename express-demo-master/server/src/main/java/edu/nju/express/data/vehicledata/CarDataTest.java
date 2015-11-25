@@ -52,4 +52,10 @@ public class CarDataTest extends CommonData<Carpo> implements CarDao{
 		inList.flush();
 	}
 
+	@Override
+	public ArrayList<Carpo> showAllCars() {
+		// TODO Auto-generated method stub
+		return inList.showAll();
+	}
+
 }

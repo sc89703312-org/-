@@ -16,6 +16,7 @@ public interface CarDao {
 
 	public ArrayList<Carpo> getAllCars();
 	
+	public ArrayList<Carpo> showAllCars();
 	
 
 	public void flushCars();

@@ -20,6 +20,7 @@ public interface PaymentDao {
 	
 	public ArrayList<Paymentpo> getAll();
 	
+	public ArrayList<Paymentpo> showAll();
 	
 	public void flush();
 }

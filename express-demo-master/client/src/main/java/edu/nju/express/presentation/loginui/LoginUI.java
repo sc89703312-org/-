@@ -8,12 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
 
 
 
@@ -44,10 +47,11 @@ public class LoginUI extends JFrame implements ActionListener{
 	
 	MyButton login;
 	MyButton logistics;
+	MyButton errorConfirm;
 
 	MyPasswordField passwordField;
 	MyTextFieldV2 userNameField;
-	MyLabel label_field1,label_field2,label_field3,label_field4,label_field5;
+	MyLabel label_field1,label_field2,label_field3,label_field4,label_field5,label_field6;
 	MyBackground background;
 	
 	
@@ -76,8 +80,22 @@ public class LoginUI extends JFrame implements ActionListener{
 		this.setUndecorated(true);
 		this.setLayout(null);
 
-		
+		label_field6 = new MyLabel(0, 0, 900, 600);
+		label_field6.setIcon(new ImageIcon("ui/image/login/报错_1.png"));
+		label_field6.setVisible(false);
+		label_field6.setOpaque(false);
+		this.add(label_field6);
 
+		label_field5 = new MyLabel(0, 0, 900, 600);
+		label_field5.setIcon(new ImageIcon("ui/image/login/报错.png"));
+		label_field5.setVisible(false);
+		label_field5.setOpaque(false);
+		this.add(label_field5);
+		
+		
+		
+		
+		
 		
 		loginBL = new Login();
 		quit = new MyButton(WIDTH - BAR_HEIGHT-10 , 10, BAR_HEIGHT ,BAR_HEIGHT);
@@ -234,7 +252,53 @@ public class LoginUI extends JFrame implements ActionListener{
 			
 			if(role==null){
 				System.out.println("failed");
-			 new ErrorUI();
+			    label_field5.setVisible(true);
+			    errorConfirm =new MyButton(400,430,114,44);
+			   
+			    
+			    errorConfirm.addMouseListener(new MouseListener() {
+					
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						// TODO Auto-generated method stub
+						label_field6.setVisible(false);
+					}
+					
+					@Override
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						label_field6.setVisible(true);
+					}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+			     errorConfirm.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						label_field5.setVisible(false);
+					}
+				});
+			    
+			    this.add(errorConfirm);
+			    
 			}
 		}
 	}

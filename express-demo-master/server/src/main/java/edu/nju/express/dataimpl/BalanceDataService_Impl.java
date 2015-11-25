@@ -61,7 +61,7 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 	public ArrayList<Balancepo> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Show All");
-		return balanceDao.getAll();
+		return balanceDao.showAll();
 	}
 
 	@Override

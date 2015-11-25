@@ -68,7 +68,7 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 		
 		
 		
-		return accountDao.getAll();
+		return accountDao.showAll();
 	}
 
 	@Override

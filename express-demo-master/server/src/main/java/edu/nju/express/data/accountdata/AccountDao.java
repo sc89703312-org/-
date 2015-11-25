@@ -15,6 +15,8 @@ public interface AccountDao {
 	
 	public ArrayList<Accountpo> getAll();
 	
+	public ArrayList<Accountpo> showAll();
+	
 	public void flush();
 	
 	

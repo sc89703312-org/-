@@ -112,13 +112,13 @@ public class VehicleDataService_Impl extends UnicastRemoteObject  implements veh
 
 	@Override
 	public ArrayList<Carpo> getAllCars(){
-		return carDao.getAllCars();
+		return carDao.showAllCars();
 	}
 	
 	
 	@Override
 	public ArrayList<Driverpo> getAllDrivers(){
-		return vehicleDao.getAllDrivers();
+		return vehicleDao.showAllDrivers();
 	}
 
 }

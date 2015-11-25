@@ -40,6 +40,10 @@ public class CommonData<T extends PersistentObj> implements Serializable {
 		return inList.find(id);
 	}
 	
+	public ArrayList<T> showAll(){
+		return inList.showAll();
+	}
+	
 	public ArrayList<T> getAll(){
 		return inList.getAll();
 	}

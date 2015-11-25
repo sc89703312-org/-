@@ -20,5 +20,7 @@ public interface BalanceDao {
 	
 	public ArrayList<Balancepo> getAll() ;
 	
+	public ArrayList<Balancepo> showAll();
+	
 	public void flush();
 }
