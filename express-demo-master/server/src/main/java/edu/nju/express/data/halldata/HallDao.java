@@ -11,6 +11,6 @@ public interface HallDao {
 	public void insert(HallPo hallPo);
 	public void delete(String id);
 	public ArrayList<HallPo> getAll();
-	
+	public ArrayList<HallPo> showAll();
 	
 }

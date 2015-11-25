@@ -10,5 +10,6 @@ public interface HallDeliverDao {
 	public void delete(String id);
 	public DeliverReceiptPO find(String id);
 	public ArrayList<DeliverReceiptPO> getAll();
+	public ArrayList<DeliverReceiptPO> showAll();
 	public void approveDeliverReceipt(ArrayList<DeliverReceiptPO> list);
 }

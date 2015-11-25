@@ -22,7 +22,7 @@ public class LogisticsFileDao extends CommonData<LogisticsPO> implements Logisti
 	public void update(LogisticsPO po) {
 		// TODO Auto-generated method stub
 		
-			}
+	}
 
 	
 

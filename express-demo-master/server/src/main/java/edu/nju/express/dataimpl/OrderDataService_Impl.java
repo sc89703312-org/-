@@ -54,7 +54,7 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	@Override
 	public ArrayList<OrderPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		return orderDao.getAll();
+		return orderDao.showAll();
 	}
 	
 	/**

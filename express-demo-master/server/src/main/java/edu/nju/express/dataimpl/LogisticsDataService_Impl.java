@@ -48,7 +48,7 @@ public class LogisticsDataService_Impl extends UnicastRemoteObject implements Lo
 	@Override
 	public ArrayList<LogisticsPO> getAll()throws RemoteException {
 		// TODO Auto-generated method stub
-		return logisticsDao.getAll();
+		return logisticsDao.showAll();
 	}
 
 	

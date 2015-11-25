@@ -9,5 +9,6 @@ public interface HallTransferDao {
 	public void delete(String id);
 	public HallTransferReceiptPO find(String id);
 	public ArrayList<HallTransferReceiptPO> getAll();
+	public ArrayList<HallTransferReceiptPO> showAll();
 	public void approveTransferReceipt(ArrayList<HallTransferReceiptPO> list);
 }

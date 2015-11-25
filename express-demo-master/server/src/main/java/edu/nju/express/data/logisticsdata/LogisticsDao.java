@@ -11,5 +11,6 @@ public interface LogisticsDao {
 	public void update(LogisticsPO po);
 	public LogisticsPO find(String id);
 	public ArrayList<LogisticsPO> getAll();
+	public ArrayList<LogisticsPO> showAll();
 	public void flush();
 }

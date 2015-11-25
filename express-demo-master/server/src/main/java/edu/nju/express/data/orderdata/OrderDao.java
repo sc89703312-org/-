@@ -13,6 +13,6 @@ public interface OrderDao {
 	public OrderPO find(String id);
 	
 	public ArrayList<OrderPO> getAll();
-	
+	public ArrayList<OrderPO> showAll();
 	public void flush();
 }

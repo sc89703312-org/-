@@ -55,7 +55,7 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	@Override
 	public ArrayList<HallPo> showHall() throws RemoteException {
 		// TODO Auto-generated method stub
-		return hallDao.getAll();
+		return hallDao.showAll();
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	@Override
 	public ArrayList<ArrivalReceiptPO> getAllHallArrival() {
 		// TODO Auto-generated method stub
-		return this.hallArrivalDao.getAll();
+		return this.hallArrivalDao.showAll();
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	@Override
 	public ArrayList<HallTransferReceiptPO> getAllHallTransfer() {
 		// TODO Auto-generated method stub
-		return this.hallTransferDao.getAll();
+		return this.hallTransferDao.showAll();
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	@Override
 	public ArrayList<DeliverReceiptPO> getAllHallDeliver() {
 		// TODO Auto-generated method stub
-		return this.hallDeliverDao.getAll();
+		return this.hallDeliverDao.showAll();
 	}
 
 	@Override
