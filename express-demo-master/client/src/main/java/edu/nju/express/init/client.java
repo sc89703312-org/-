@@ -19,7 +19,7 @@ public class client {
 		
 		
 		try {
-			System.out.println(RMIHelper.getPaymentDataService().insert(new Paymentpo("2015/11/25", 200, "025000001", "0000000001", "sc")));
+			System.out.println(RMIHelper.getPaymentDataService().insert(new Paymentpo("2015/11/25", 200, "025000001", "0000000010", "sc")));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
