@@ -10,7 +10,7 @@ import edu.nju.express.businesslogic.commoditybl.CommodityBl;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.TransferReceiptVO;
-
+/*
 public class showReceiptTest {
 
 	StationReceiptBl stationReceiptBl = new MockStation();
@@ -37,3 +37,4 @@ public class showReceiptTest {
 	}
 	
 }
+*/

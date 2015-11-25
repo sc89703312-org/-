@@ -5,12 +5,18 @@ package edu.nju.express.vo;
 public class ComGoodsVO {
 
 	OrderVO order;
-	String comLocation;
+	int type;
+	int line;
+	int shelf;
+	int cell;
 	
-	public ComGoodsVO(OrderVO order, String comLocation){
+	public ComGoodsVO(OrderVO order, int type, int line, int shelf, int cell){
 		
 		this.order = order;
-		this.comLocation = comLocation;
+		this.type = type;
+		this.line = line;
+		this.shelf = shelf;
+		this.cell = cell;
 		
 	}
 	
@@ -18,8 +24,20 @@ public class ComGoodsVO {
 		return order;
 	}
 	
-	public String getComLocation(){
-		return comLocation;
-	}
+    public int getType(){
+    	return type;
+    }
+    
+    public int getLine(){
+    	return line;
+    }
+    
+    public int getShelf(){
+    	return shelf;
+    }
+    
+    public int getCell(){
+    	return cell;
+    }
 	
 }
