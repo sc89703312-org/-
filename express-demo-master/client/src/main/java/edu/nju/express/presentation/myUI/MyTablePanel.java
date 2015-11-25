@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -47,7 +48,7 @@ public class MyTablePanel extends JPanel {
 		JScrollPane s = new JScrollPane(table);
 		s.setOpaque(false);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
-		s.getViewport().setOpaque(false);
+	//	s.getViewport().setOpaque(false);
 		s.setColumnHeaderView(table.getTableHeader());
 		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -63,17 +64,18 @@ public class MyTablePanel extends JPanel {
 		JTableHeader header = table.getTableHeader();
 		table.setRowHeight(ROW_HEIGHT);
 		table.setFont(font);
+		
 		header.setFont(font);
 		header.setPreferredSize(new Dimension(header.getWidth(), ROW_HEIGHT));
-		table.setPreferredScrollableViewportSize(new Dimension(WIDTH, HEIGHT));
 
 		table.setCellSelectionEnabled(false);
-		table.setBorder(null);
 		table.setOpaque(false);
+		table.setShowGrid(false);
 
 		// 设置表格颜色
 		setForeground(foreColor);
 		header.setBackground(headerColor);
+		
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = 1L;
 
@@ -82,14 +84,19 @@ public class MyTablePanel extends JPanel {
 					boolean hasFocus, int row, int column) {
 				if (row % 2 == 0)
 					setBackground(backColor1);
-				else
+				else if(row % 2 == 1)
 					setBackground(backColor2);
+				else
+					setBackground(headerColor);
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
 		};
+		dtr.setHorizontalAlignment(JLabel.CENTER);
 		for (int i = 0; i < headerStr.length; i++) {
 			table.getColumn(headerStr[i]).setCellRenderer(dtr);
 		}
+		header.setDefaultRenderer(dtr);
+
 	}
 
 	public void setRowHeight(int h){

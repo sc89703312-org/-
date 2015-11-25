@@ -81,9 +81,15 @@ public class CheckTaskUI extends MainPanel {
 	private void initData() {
 		String[] rowdata = { "141250030", "dy", "daef" };
 		table1.getTableModel().addRow(rowdata);
+		table1.getTableModel().addRow(rowdata);
+		table1.getTableModel().addRow(rowdata);
+		table1.getTableModel().addRow(rowdata);
+		table1.getTableModel().addRow(rowdata);
+		table1.getTableModel().addRow(rowdata);
 
 		String[] data = { "141250030" };
 		table2.getTableModel().addRow(data);
+		
 	}
 
 	private void initGuide() {

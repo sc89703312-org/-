@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -46,15 +48,19 @@ public class MyTable extends JTable {
 		JTableHeader header = this.getTableHeader();
 		this.setRowHeight(ROW_HEIGHT);
 		this.setFont(font);
+		
 		header.setFont(font);
+		
 		header.setPreferredSize(new Dimension(header.getWidth(), ROW_HEIGHT));
 
 		this.setCellSelectionEnabled(false);
 		this.setOpaque(false);
+		this.setShowGrid(false);
 
 		// 设置表格颜色
 		setForeground(foreColor);
 		header.setBackground(headerColor);
+		
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = 1L;
 
@@ -63,14 +69,18 @@ public class MyTable extends JTable {
 					boolean hasFocus, int row, int column) {
 				if (row % 2 == 0)
 					setBackground(backColor1);
-				else
+				else if(row % 2 == 1)
 					setBackground(backColor2);
+				else
+					setBackground(headerColor);
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
 		};
 		for (int i = 0; i < headerStr.length; i++) {
 			this.getColumn(headerStr[i]).setCellRenderer(dtr);
 		}
+		header.setDefaultRenderer(dtr);
+
 	}
 
 	@Override

@@ -42,10 +42,9 @@ public class ReceiptBl implements ReceiptBlService {
 	}
 
 	@Override
-	public void approve(ArrayList<ReceiptVOBase> list) {
+	public void approve(String id) {
 		
 		for (int i = 0; i < list.size(); i++) {
-			String id = list.get(i).getId();
 			switch(id.substring(0, 4)){
 			case"2015":	((MockHall)hall).approve(id);break;
 			}

@@ -10,6 +10,7 @@ import edu.nju.express.presentation.administratorui.CheckTaskUI;
 import edu.nju.express.presentation.managerui.employeeui.AddEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.DismissEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.EmployeeListUI;
+import edu.nju.express.presentation.managerui.receiptui.RceiptListUI;
 
 public class ManageController implements ActionListener {
 
@@ -27,7 +28,11 @@ public class ManageController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getActionCommand().equals("ReceiptUI")) {
-
+			frame.getContentPane().removeAll();;
+			currentPanel = new RceiptListUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		} else if (e.getActionCommand().equals("EmployeeUI")) {
 			frame.getContentPane().removeAll();;
 			currentPanel = new EmployeeListUI(this);
@@ -52,6 +57,8 @@ public class ManageController implements ActionListener {
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+		}else if(e.getActionCommand().equals("Approve")){
+			((RceiptListUI)currentPanel).getIDtoApprove();
 		}
 	}
 

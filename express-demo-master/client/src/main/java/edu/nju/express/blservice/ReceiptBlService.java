@@ -14,7 +14,7 @@ public interface ReceiptBlService{
 	
 	public ArrayList<ReceiptVOBase> view();
 	
-	public void approve(ArrayList<ReceiptVOBase> list);
+	public void approve(String id);
 	
 	public ResultMessage modify(ReceiptVOBase vo);
 	
