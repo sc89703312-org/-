@@ -1,13 +1,13 @@
 package edu.nju.express.po;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 public class ConstantPO extends PersistentObj implements Serializable{
 
 	private static final long serialVersionUID = -1926679450602183759L;
-	private List<String> cityList;
-	private List<Double> cityDistance;
+	private ArrayList<String> cityList;
+	private ArrayList<String> cityDistance;
 	private double price;
 	private double vanCost, railwayCost, airplaneCost;
 	private int vanLoad, railwayLoad, airplaneLoad;
@@ -56,16 +56,16 @@ public class ConstantPO extends PersistentObj implements Serializable{
 	public void setAirplaneLoad(int airplaneLoad) {
 		this.airplaneLoad = airplaneLoad;
 	}
-	public List<String> getCityList() {
+	public ArrayList<String> getCityList() {
 		return cityList;
 	}
-	public List<Double> getCityDistance() {
+	public ArrayList<String> getCityDistance() {
 		return cityDistance;
 	}
-	public void setCityList(List<String> cityList) {
+	public void setCityList(ArrayList<String> cityList) {
 		this.cityList = cityList;
 	}
-	public void setCityDistance(List<Double> cityDistance) {
+	public void setCityDistance(ArrayList<String> cityDistance) {
 		this.cityDistance = cityDistance;
 	}
 
