@@ -63,6 +63,8 @@ public class ManageController implements ActionListener {
 			frame.repaint();
 		}else if(e.getActionCommand().equals("Approve")){
 			((RceiptListUI)currentPanel).getIDtoApprove();
+		}else if(e.getActionCommand().equals("GetSalary")){
+			((SalaryUI)currentPanel).getText();
 		}
 	}
 

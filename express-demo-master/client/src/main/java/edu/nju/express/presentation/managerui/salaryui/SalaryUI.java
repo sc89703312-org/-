@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 
 public class SalaryUI extends MainPanel {
 
@@ -28,6 +29,8 @@ public class SalaryUI extends MainPanel {
 
 	JPanel p;
 	ManageGuide guide;
+	ConfirmButton confirm;
+	
 	JLabel clerkLabel1, clerkLabel2;
 	JLabel driverLabel1, driverLabel2;
 	JLabel postmanLabel1, postmanLabel2;
@@ -41,12 +44,12 @@ public class SalaryUI extends MainPanel {
 
 		guide = new ManageGuide(controller);
 		this.add(guide);
-
+		
 		p = new JPanel();
 		this.add(p);
 		p.setOpaque(false);
-		p.setBounds(guide.getWidth(), y, width - guide.getWidth(), (int) (width * 0.1));
-		p.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.5 * p.getWidth()), (int) (0.4 * p.getHeight())));
+		p.setBounds(guide.getWidth(), y, width - guide.getWidth(), height - y);
+		p.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.5 * p.getWidth()), 60));
 
 		clerkLabel1 = new JLabel("业务员月薪：");
 		clerkField = new JTextField();
@@ -56,6 +59,7 @@ public class SalaryUI extends MainPanel {
 		clerkLabel1.setOpaque(false);
 		clerkField.setOpaque(false);
 		clerkLabel2.setOpaque(false);
+		temp1.setOpaque(false);
 		temp1.add(clerkLabel1);
 		temp1.add(clerkField);
 		temp1.add(clerkLabel2);
@@ -66,6 +70,10 @@ public class SalaryUI extends MainPanel {
 		driverField.setText(driver + "");
 		driverLabel2 = new JLabel("元/次");
 		JPanel temp2 = new JPanel();
+		driverLabel1.setOpaque(false);
+		driverField.setOpaque(false);
+		driverLabel2.setOpaque(false);
+		temp2.setOpaque(false);
 		temp2.add(driverLabel1);
 		temp2.add(driverField);
 		temp2.add(driverLabel2);
@@ -76,10 +84,20 @@ public class SalaryUI extends MainPanel {
 		postmanField.setText(postman + "");
 		postmanLabel2 = new JLabel("元/次");
 		JPanel temp3 = new JPanel();
+		postmanLabel1.setOpaque(false);
+		postmanField.setOpaque(false);
+		postmanLabel2.setOpaque(false);
+		temp3.setOpaque(false);
 		temp3.add(postmanLabel1);
 		temp3.add(postmanField);
 		temp3.add(postmanLabel2);
 		p.add(temp3);
+		
+		confirm = new ConfirmButton();
+		confirm.setLocation(guide.getWidth()+p.getWidth()/2-confirm.getWidth()/2, 380);
+		this.add(confirm);
+		confirm.setActionCommand("GetSalary");
+		confirm.addActionListener(controller);
 	}
 
 	private void initData() {
@@ -87,5 +105,13 @@ public class SalaryUI extends MainPanel {
 		driver = 50;
 		postman = 3;
 
+	}
+	
+	public String[] getText(){
+		String[] text = new String[3];
+		text[0] = clerkField.getText();
+		text[1] = driverField.getText();
+		text[2] = postmanField.getText();
+		return text;
 	}
 }
