@@ -2,6 +2,8 @@ package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,11 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-public class HallDeliverUI extends JPanel{
+import edu.nju.express.presentation.myUI.MyTextField;
+
+public class HallDeliverUI extends JPanel implements MouseListener{
 
 	/**
 	 * 
@@ -33,7 +36,7 @@ public class HallDeliverUI extends JPanel{
 	JLabel dateLabel;
 	JLabel deliverIdLabel;
 	JLabel yearLabel, monthLabel, dayLabel;
-	JTextField idField, deliverIdField;
+	MyTextField idField, deliverIdField;
 	JTextArea orderArea;
 	JComboBox<String> yearBox, monthBox, dayBox;
 	
@@ -43,7 +46,7 @@ public class HallDeliverUI extends JPanel{
 		mainpanel = new JPanel();
 		mainpanel.setBounds(0, 0, width, height);
 		mainpanel.setLayout(null);
-		mainpanel.setBackground(Color.DARK_GRAY);
+		mainpanel.setBackground(Color.LIGHT_GRAY);
 		mainpanel.setVisible(true);
 		initPanel();
 		initOrderContainer();
@@ -59,20 +62,22 @@ public class HallDeliverUI extends JPanel{
 		
 		idLabel = new JLabel("装车单编号");
 		idLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		idLabel.setForeground(Color.white);
 		idLabel.setBounds(20, 20, 100, 30);
 		
-		idField = new JTextField("",15);
-		idField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		idField = new MyTextField(15);
 		idField.setBounds(120, 20, 150, 30);
-		idField.setOpaque(false);
-		
+//		idField.setOpaque(false);
+//		idField.setBorder(BorderFactory.createEmptyBorder());
 		//行间隔为10
 		dateLabel = new JLabel("装车日期");
 		dateLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		dateLabel.setForeground(Color.white);
 		dateLabel.setBounds(20, 70, 70, 30);
 		
 		yearLabel = new JLabel("年");
 		yearLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		yearLabel.setForeground(Color.white);
 		yearLabel.setBounds(200, 70, 20, 30);
 		
 		yearBox = new JComboBox<String>();
@@ -86,6 +91,7 @@ public class HallDeliverUI extends JPanel{
 		
 		monthLabel = new JLabel("月");
 		monthLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		monthLabel.setForeground(Color.white);
 		monthLabel.setBounds(300, 70, 20, 30);
 		
 		monthBox = new JComboBox<String>();
@@ -97,6 +103,7 @@ public class HallDeliverUI extends JPanel{
 		
 		dayLabel = new JLabel("日");
 		dayLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		dayLabel.setForeground(Color.white);
 		dayLabel.setBounds(400, 70, 20, 30);
 		
 		dayBox = new JComboBox<String>();
@@ -108,10 +115,10 @@ public class HallDeliverUI extends JPanel{
 		
 		deliverIdLabel = new JLabel("派送员");
 		deliverIdLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		deliverIdLabel.setForeground(Color.white);
 		deliverIdLabel.setBounds(20, 120, 70, 30);
 		
-		deliverIdField = new JTextField("",19);
-		deliverIdField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		deliverIdField = new MyTextField(19);
 		deliverIdField.setBounds(90, 120, 200, 30);
 		
 		panel.add(idLabel);
@@ -129,6 +136,7 @@ public class HallDeliverUI extends JPanel{
 		panel.setLayout(null);
 		panel.setBounds(50, 50, 480, 450);
 		panel.setVisible(true);
+		panel.setBackground(Color.DARK_GRAY);
 		mainpanel.add(panel);
 	}
 	
@@ -139,6 +147,8 @@ public class HallDeliverUI extends JPanel{
 		orderArea.setLineWrap(true);
 		orderArea.setWrapStyleWord(true);
 		orderArea.setEditable(true);
+		orderArea.setBackground(Color.DARK_GRAY);
+		orderArea.setForeground(Color.white);
 		JScrollPane qScroller = new JScrollPane(orderArea);
 		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -155,17 +165,19 @@ public class HallDeliverUI extends JPanel{
 		panel.setLayout(null);
 		panel.setBounds(540, 50, 330, 450);
 		panel.setVisible(true);
+		panel.setBackground(Color.DARK_GRAY);
 		mainpanel.add(panel);
 	}
 	
 	public void initMargin(){
 		JPanel panel = new JPanel();
 		
-		back = new JButton(new ImageIcon("ui/image/hall/backToLastPage.png"));
+		back = new JButton(new ImageIcon("ui/image/hall/back1.png"));
 		back.setBounds(30, 15, 30, 30);
 		back.setOpaque(false);
 		back.setBorderPainted(false);
 		back.addActionListener(controller);
+		back.addMouseListener(this);
 		back.setActionCommand("backHome");
 		
 		submitBtn = new JButton("submit");
@@ -181,6 +193,40 @@ public class HallDeliverUI extends JPanel{
 		panel.setBounds(0, 0, width, height);
 		panel.setVisible(true);
 		mainpanel.add(panel);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(back)){
+			back.setIcon(new ImageIcon("ui/image/hall/back2.png"));
+		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(back)){
+			back.setIcon(new ImageIcon("ui/image/hall/back1.png"));
+		}
 	}
 
 }

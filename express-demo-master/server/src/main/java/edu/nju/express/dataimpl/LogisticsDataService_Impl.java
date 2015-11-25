@@ -13,6 +13,8 @@ import edu.nju.express.po.LogisticsPO;
 
 public class LogisticsDataService_Impl extends UnicastRemoteObject implements LogisticsDataService{
 
+	
+
 	/**
 	 * 
 	 */
