@@ -39,5 +39,11 @@ public class ComGoodsVO {
     public int getCell(){
     	return cell;
     }
+    
+    public void setLocation(int line, int shelf, int cell){
+    	this.line = line;
+    	this.shelf = shelf;
+    	this.cell = cell;
+    }
 	
 }

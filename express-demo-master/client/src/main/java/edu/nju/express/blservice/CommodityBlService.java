@@ -17,7 +17,7 @@ public interface CommodityBlService {
 	
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList();
 	public EnterReceiptVO showEnterReceipt(ArriveReceiptVO vo) throws Exception;
-	public ResultMessageV2 editEnterReceipt(EnterReceiptVO vo, String orderID);
+	ResultMessageV2 editEnterReceipt(EnterReceiptVO vo, Object[][] data);
 	public void subEnterReceipt(EnterReceiptVO vo);
 	
 	public ArrayList<TransferReceiptVO> showTransferReceiptList();
@@ -31,5 +31,7 @@ public interface CommodityBlService {
 	public ComZoneVO showZone();
 	public ResultMessage editZone(ComZoneVO vo, int[] space);
 	public void subZone(ComZoneVO vo);
+	public ResultMessageV2 moveGoods(Object data[][]);
+
 	
 }

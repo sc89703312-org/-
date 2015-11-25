@@ -39,16 +39,5 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 		isApprove = true;
 	}
 	
-	public void changeComLocation(String orderID, String newComLocation){
-		
-		int length = goods_list.size();
-		
-		for(int i=0;i<length;i++){
-			if(goods_list.get(i).getOrder().getID()==orderID)
-				goods_list.get(i).modifyComLocation(newComLocation);
-		}
-		
-	}
-	
 	
 }

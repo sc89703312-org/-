@@ -231,7 +231,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 		
 	}
 	
-	
+
 	public ArrayList<TransferReceiptVO> viewApproveTransfer(){
 		
 		ArrayList<TransferReceiptVO> voList = new ArrayList<TransferReceiptVO>();
@@ -268,8 +268,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 		
 	}
 	
-	
-	private OrderVO po_to_vo_order(OrderPO po){
+	@Override
+	public OrderVO po_to_vo_order(OrderPO po){
 		
 		OrderVO vo = new OrderVO(po.getSenderName(),po.getSenderAddress(),po.getSenderPost(),po.getReceiverTel(),
 				po.getReceiverPhone(),po.getReceiverName(),po.getReceiverAddress(),po.getReceiverPost(),po.getReceiverTel(),
@@ -281,8 +281,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 		
 	}
 	
-	
-	private OrderPO vo_to_po_order(OrderVO vo){
+	@Override
+	public OrderPO vo_to_po_order(OrderVO vo){
 		
 		OrderPO po = new OrderPO(vo.getSenderName(),vo.getSenderAddress(),vo.getSenderPost(),vo.getReceiverTel(),
 				vo.getReceiverPhone(),vo.getReceiverName(),vo.getReceiverAddress(),vo.getReceiverPost(),vo.getReceiverTel(),

@@ -84,6 +84,22 @@ public class ComZonePO {
 		return cellPerShelf;
 	}
 	
+	public boolean[] getIsEmptyPlane(){
+		return isEmptyPlane;
+	}
+	
+	public boolean[] getIsEmptyTrain(){
+		return isEmptyTrain;
+	}
+	
+	public boolean[] getIsEmptyCar(){
+		return isEmptyCar;
+	}
+	
+	public boolean[] getIsEmptyTem(){
+		return isEmptyTem;
+	}
+	
 	public int[] selectCell(int type){
 		
 		int result[] = new int[2];
