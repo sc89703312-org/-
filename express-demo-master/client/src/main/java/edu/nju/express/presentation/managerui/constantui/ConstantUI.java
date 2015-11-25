@@ -16,7 +16,6 @@ public class ConstantUI extends MainPanel{
 
 	ManageController controller;
 	
-	MyTextField 
 	public ConstantUI() {
 	}
 }
