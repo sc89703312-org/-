@@ -23,15 +23,26 @@ import javax.swing.JPanel;
 
 
 
+
+
+
+
+
+
+
+
+
 import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
+import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.myUI.MyBackground;
 import edu.nju.express.presentation.myUI.MyButton;
+import edu.nju.express.presentation.myUI.MyFrame;
 import edu.nju.express.presentation.myUI.MyLabel;
 import edu.nju.express.presentation.myUI.MyPasswordField;
 import edu.nju.express.presentation.myUI.MyTextFieldV2;
 
-public class LoginUI extends JFrame implements ActionListener{
+public class LoginUI extends MyFrame implements ActionListener{
 
 	/**
 	 * 
@@ -228,13 +239,35 @@ public class LoginUI extends JFrame implements ActionListener{
 
       
 	
-	
+//	new HyalineValue().start();
 	
 
        
 	}
 	
-	
+//	protected class HyalineValue extends Thread {
+//		
+//		float hyalineValue = 0f;
+//
+//		public void run() {
+//			while(true) {
+//				try {
+//					Thread.sleep(30);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//				hyalineValue += 0.05f;
+//				if (hyalineValue > 1) {
+//					hyalineValue = 1;
+//				}
+//				setOpacity(hyalineValue);
+//				if (hyalineValue == 1) {
+//					break;
+//				}
+//
+//			}
+//		}
+//	}
 	
 
 
@@ -250,7 +283,17 @@ public class LoginUI extends JFrame implements ActionListener{
 			Role role  =loginBL.login(userNameField.getText(),
 					passwordField.getText());
 			
-			if(role==null){
+			
+			
+			
+			if(role!=null){
+				
+				this.setVisible(false);
+			
+			    new Finance_Frame();
+				
+			}
+			else{
 				System.out.println("failed");
 			    label_field5.setVisible(true);
 			    errorConfirm =new MyButton(400,430,114,44);
