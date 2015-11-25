@@ -27,7 +27,7 @@ public class MyTextField extends JTextField {
 
 	private void initField() {
 		this.setOpaque(false);
-		this.setSize(columns, 20);
+		this.setSize(columns, 30);
 		this.setFont(font);
 		this.setForeground(color);
 		this.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));

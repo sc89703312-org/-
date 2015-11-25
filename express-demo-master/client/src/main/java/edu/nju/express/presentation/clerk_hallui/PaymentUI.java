@@ -33,7 +33,7 @@ public class PaymentUI extends JPanel{
 	JLabel moneyLabel;
 	JLabel dateLabel;
 	JLabel yearLabel, monthLabel, dayLabel;
-	JTextField idField;
+	JTextField idField, deliverField;
 	JTextArea orderArea;
 	JComboBox<String> yearBox, monthBox, dayBox;
 	
@@ -105,13 +105,13 @@ public class PaymentUI extends JPanel{
 			dayBox.addItem(Integer.toString(i));
 		}
 		
-		deliverIdLabel = new JLabel("派送员");
-		deliverIdLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		deliverIdLabel.setBounds(20, 120, 70, 30);
+		deliverLabel = new JLabel("派送员");
+		deliverLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		deliverLabel.setBounds(20, 120, 70, 30);
 		
-		deliverIdField = new JTextField("",19);
-		deliverIdField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		deliverIdField.setBounds(90, 120, 200, 30);
+		deliverField = new JTextField("",19);
+		deliverField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		deliverField.setBounds(90, 120, 200, 30);
 		
 		panel.setLayout(null);
 		panel.setBounds(50, 50, 480, 450);

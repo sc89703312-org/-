@@ -69,11 +69,11 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		
 		
-//		idLabel = new JLabel("装车单编号");
-//		idLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-//		idLabel.setBounds(20, 20, 100, 30);
+		idLabel = new JLabel("装车单编号");
+		idLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		idLabel.setBounds(20, 20, 100, 30);
 		
-		idField = new MyTextField("装车单编号",15);
+		idField = new MyTextField(15);
 //		idField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 //		idField.setBounds(120, 20, 150, 30);
 //		idField.setOpaque(false);
