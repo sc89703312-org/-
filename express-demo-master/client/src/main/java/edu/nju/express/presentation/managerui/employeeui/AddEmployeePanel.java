@@ -16,7 +16,7 @@ import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.ConfirmButton;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.UserMessageVO;
 
@@ -34,8 +34,8 @@ public class AddEmployeePanel extends MainPanel {
 
 	ManageGuide guide;
 	JButton confirm;
-	MyTextField id;
-	MyTextField name;
+	LabelTextField id;
+	LabelTextField name;
 	JLabel roleLabel;
 	JComboBox<String> roleBox;
 	JButton jbtReturn;
@@ -59,11 +59,11 @@ public class AddEmployeePanel extends MainPanel {
 		jbtReturn.addActionListener(controller);
 		p.add(jbtReturn);
 
-		id = new MyTextField(" ID ",15);
+		id = new LabelTextField(" ID ",15);
 		id.setBounds((width-350)/2, 80,350,40);
 		p.add(id);
 		
-		name = new MyTextField("姓名",15);
+		name = new LabelTextField("姓名",15);
 		name.setBounds((width-350)/2, 130, 350,40);
 		p.add(name);
 

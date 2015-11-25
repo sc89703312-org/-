@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.nju.express.presentation.administratorui.CheckTaskUI;
 import edu.nju.express.presentation.managerui.employeeui.AddEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.DismissEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.EmployeeListUI;
 import edu.nju.express.presentation.managerui.receiptui.RceiptListUI;
+import edu.nju.express.presentation.managerui.salaryui.SalaryUI;
 
 public class ManageController implements ActionListener {
 
@@ -42,7 +42,11 @@ public class ManageController implements ActionListener {
 		} else if (e.getActionCommand().equals("OrganizationUI")) {
 
 		} else if (e.getActionCommand().equals("SalaryUI")) {
-
+			frame.getContentPane().removeAll();;
+			currentPanel = new SalaryUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		}else if(e.getActionCommand().equals("ConstantUI")){
 			
 		}else if(e.getActionCommand().equals("AddEmployeeUI")){

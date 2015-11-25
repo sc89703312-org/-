@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.common.Role;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.vo.UserVO;
 
 public class ModifyUserUI extends MainPanel {
@@ -26,9 +26,9 @@ public class ModifyUserUI extends MainPanel {
 	
 	AdministratorController controller;
 
-	MyTextField id;
-	MyTextField name;
-	MyTextField password;
+	LabelTextField id;
+	LabelTextField name;
+	LabelTextField password;
 	JLabel roleLabel;	
 	JComboBox<String> roleBox;
 	JButton confirm;
@@ -53,11 +53,11 @@ public class ModifyUserUI extends MainPanel {
 
 		p.setBounds((int)(width*0.2), y, (int)(width*0.8), height);
 		
-		id = new MyTextField(" ID ",15);
+		id = new LabelTextField(" ID ",15);
 		id.setBounds((p.getWidth()-350)/2, 30,350,40);
 		p.add(id);
 		
-		name = new MyTextField("姓名",15);
+		name = new LabelTextField("姓名",15);
 		name.setBounds((p.getWidth()-350)/2, 80, 350,40);
 		p.add(name);
 
@@ -77,7 +77,7 @@ public class ModifyUserUI extends MainPanel {
 		jp.setBounds((p.getWidth()-350)/2, 130, 350,40);
 		p.add(jp);
 		
-		password = new MyTextField("密码",15);
+		password = new LabelTextField("密码",15);
 		password.setBounds((p.getWidth()-350)/2, 190, 350,40);
 		p.add(password);
 		

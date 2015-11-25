@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.LabelTextField;
 
 public class DeleteUserUI extends MainPanel{
 
@@ -18,7 +18,7 @@ public class DeleteUserUI extends MainPanel{
 	private static final long serialVersionUID = 1L;
 	int width=900,height=600;
 	int y = 50;		//由标题栏高度决定
-	MyTextField id;
+	LabelTextField id;
 	JButton confirm;
 	AdministratorController controller;
 	JPanel p ;
@@ -37,7 +37,7 @@ public class DeleteUserUI extends MainPanel{
 		p.setOpaque(false);
 
 		
-		id = new MyTextField("ID ", 15);
+		id = new LabelTextField("ID ", 15);
 		id.setSize(300, 100);
 		id.setLocation(180, 60);
 		p.add(id);

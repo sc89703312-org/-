@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ConfirmButton;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;
 
 public class DismissEmployeePanel extends MainPanel {
@@ -22,7 +22,7 @@ public class DismissEmployeePanel extends MainPanel {
 
 	int width = 900, height = 600;
 	int y = 50;
-	MyTextField id;
+	LabelTextField id;
 	JButton confirm;
 	JButton jbtReturn;
 	JPanel p;
@@ -45,7 +45,7 @@ public class DismissEmployeePanel extends MainPanel {
 		p.add(jbtReturn);
 
 		
-		id = new MyTextField("ID ", 15);
+		id = new LabelTextField("ID ", 15);
 		id.setSize(300, 100);
 		id.setLocation(width/2-150, 80);
 		p.add(id);
