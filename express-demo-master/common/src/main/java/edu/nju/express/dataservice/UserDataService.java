@@ -4,17 +4,18 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.UserPO;
 
 
 
 public interface UserDataService extends Remote{
 	
-	public int insert(UserPO po) throws RemoteException;
+	public ResultMessage insert(UserPO po) throws RemoteException;
 	
-	public int delete(String id) throws RemoteException;
+	public ResultMessage delete(String id) throws RemoteException;
 	
-	public int modify(UserPO po) throws RemoteException;
+	public ResultMessage modify(UserPO po) throws RemoteException;
 	
 	public UserPO find(String id) throws RemoteException;
 	

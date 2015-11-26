@@ -240,36 +240,9 @@ public class LoginUI extends MyFrame implements ActionListener{
 	     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       
-	
-//	new HyalineValue().start();
-	
 
        
 	}
-	
-//	protected class HyalineValue extends Thread {
-//		
-//		float hyalineValue = 0f;
-//
-//		public void run() {
-//			while(true) {
-//				try {
-//					Thread.sleep(30);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//				hyalineValue += 0.05f;
-//				if (hyalineValue > 1) {
-//					hyalineValue = 1;
-//				}
-//				setOpacity(hyalineValue);
-//				if (hyalineValue == 1) {
-//					break;
-//				}
-//
-//			}
-//		}
-//	}
 	
 
 
@@ -288,7 +261,7 @@ public class LoginUI extends MyFrame implements ActionListener{
 			
 			
 			
-			if(role!=null){
+			if(role==Role.ACCOUNTANT){
 				
 				this.setVisible(false);
 			

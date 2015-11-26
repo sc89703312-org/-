@@ -2,7 +2,15 @@ package edu.nju.express.init;
 
 import java.rmi.RemoteException;
 
+import edu.nju.express.common.Item;
+import edu.nju.express.common.Role;
+import edu.nju.express.common.StaffChange;
+import edu.nju.express.po.Balancepo;
+import edu.nju.express.po.HallPo;
 import edu.nju.express.po.Paymentpo;
+import edu.nju.express.po.UserMessagePO;
+import edu.nju.express.po.UserPO;
+import edu.nju.express.presentation.loginui.LoginUI;
 
 
 
@@ -17,13 +25,20 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+//		
+//		new LoginUI();
+		
+
 		
 		try {
-			System.out.println(RMIHelper.getPaymentDataService().insert(new Paymentpo("2015/11/25", 200, "025000001", "0000000010", "sc")));
-		} catch (RemoteException e1) {
+			System.out.println(RMIHelper.getUserMessageDataService().insert(new UserMessagePO(StaffChange.add, "sc"," a", Role.ACCOUNTANT)));;
+		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
+		
+		
+
 //		try {
 //			System.out.println(RMIHelper.getPaymentDataService().getAll().size());
 //		} catch (RemoteException e) {

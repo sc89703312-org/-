@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.login;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.po.UserPO;
@@ -22,21 +23,21 @@ public class MockUserData implements UserDataService{
 	
 	
 	@Override
-	public int insert(UserPO po) throws RemoteException {
+	public ResultMessage insert(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		return ResultMessage.VALID;
 	}
 
 	@Override
-	public int delete(String id) throws RemoteException {
+	public ResultMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		return ResultMessage.VALID;
 	}
 
 	@Override
-	public int modify(UserPO po) throws RemoteException {
+	public ResultMessage modify(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		return ResultMessage.VALID;
 	}
 
 	@Override

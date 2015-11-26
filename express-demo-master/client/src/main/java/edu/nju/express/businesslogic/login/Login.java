@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.Role;
 import edu.nju.express.dataservice.UserDataService;
+import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.UserPO;
 
 
@@ -17,7 +18,7 @@ public class Login {
 	public Login() {
 		// TODO Auto-generated constructor stub
 	
-		userDataService = new MockUserData();
+		userDataService = RMIHelper.getUserDataService();
 	}
 	
 	
@@ -37,6 +38,7 @@ public class Login {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		   }
+			
 			
 			
 			

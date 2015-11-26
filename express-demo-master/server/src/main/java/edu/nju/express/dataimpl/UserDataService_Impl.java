@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.userdata.UserDao;
 import edu.nju.express.data.userdata.UserFileDao;
 import edu.nju.express.dataservice.UserDataService;
@@ -18,23 +19,23 @@ public class UserDataService_Impl extends UnicastRemoteObject implements UserDat
 	UserDao userDao;
 	
 	public UserDataService_Impl() throws RemoteException{
-		userDao = new UserFileDao();
+		userDao = new UserFileDao("user");
 	}
 	
 	@Override
-	public int insert(UserPO po) throws RemoteException {
+	public ResultMessage insert(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userDao.insert(po);
 	}
 
 	@Override
-	public int delete(String id) throws RemoteException {
+	public ResultMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userDao.delete(id);
 	}
 
 	@Override
-	public int modify(UserPO po) throws RemoteException {
+	public ResultMessage modify(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userDao.modify(po);
 	}
@@ -48,7 +49,7 @@ public class UserDataService_Impl extends UnicastRemoteObject implements UserDat
 	@Override
 	public ArrayList<UserPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		return userDao.getAll();
+		return userDao.showAll();
 	}
 
 	@Override
