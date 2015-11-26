@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.strategybl.managementbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.ManagementBlService;
+import edu.nju.express.businesslogic.accountbl.Info.ManagementInfo;
 import edu.nju.express.businesslogic.userbl.UserBl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
@@ -11,7 +12,7 @@ import edu.nju.express.vo.EmployeeVO;
 
 
 
-public class ManagementBl implements ManagementBlService{
+public class ManagementBl implements ManagementBlService,ManagementInfo{
 
 	UserBl user;
 	
@@ -32,9 +33,13 @@ public class ManagementBl implements ManagementBlService{
 	}
 
 
+
 	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList() {
 		return user.viewEmployeeList();
 	}
+
+
+	
 
 }

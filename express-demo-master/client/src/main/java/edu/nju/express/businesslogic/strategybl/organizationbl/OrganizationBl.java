@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.strategybl.organizationbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.OrganizationBlService;
+import edu.nju.express.businesslogic.accountbl.Info.OrganizationInfo;
 import edu.nju.express.businesslogic.hallbl.HallBL;
 import edu.nju.express.businesslogic.stationbl.StationBl;
 import edu.nju.express.common.ResultMessage;
@@ -11,7 +12,7 @@ import edu.nju.express.vo.StationVO;
 
 
 
-public class OrganizationBl implements OrganizationBlService{
+public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 
 	StationBl stationbl;
 	HallBL hallbl;

@@ -112,7 +112,7 @@ public class Accountbl implements Accountblservice{
 		ArrayList<HallVO> halls = new ArrayList<>();
 		
 		for(int i=0;i<polist.size();i++){
-			halls.add(new HallVO(polist.get(i).getId(), polist.get(i).getName(), polist.get(i).getCityID()));
+			halls.add(new HallVO(polist.get(i).getId(), polist.get(i).getName()));
 		}
 		return halls;
 	}
@@ -122,7 +122,7 @@ public class Accountbl implements Accountblservice{
 		ArrayList<HallPo> halls = new ArrayList<>();
 		
 		for(int i=0;i<volist.size();i++){
-			halls.add(new HallPo(volist.get(i).getId(), volist.get(i).getName(), volist.get(i).getCityID()));
+			halls.add(new HallPo(volist.get(i).getId(), volist.get(i).getName()));
 		}
 		return halls;
 	}

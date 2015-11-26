@@ -88,13 +88,11 @@ public class CostControlbl implements CostControlService,CostControlInfo{
 
 	
 	
-	
-	@Override
-	public Balancevo getCost(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+
+	
+	
+	
 	@Override
 	public void endCostControl() {
 		// TODO Auto-generated method stub

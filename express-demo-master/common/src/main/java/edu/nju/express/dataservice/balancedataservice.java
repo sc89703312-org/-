@@ -14,7 +14,7 @@ public interface balancedataservice extends Remote {
 
 	public ResultMessage insert(Balancepo po) throws RemoteException;
 	
-	public ArrayList<Balancepo > find(String date) throws RemoteException;
+	public ArrayList<Balancepo> find(String date) throws RemoteException;
 	
 	public ResultMessage delete(String id) throws RemoteException;
 	

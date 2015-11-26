@@ -10,7 +10,7 @@ import edu.nju.express.vo.HallVO;
 public class MockHall extends HallBL{
 
 	ArrayList<HallPo> list = new ArrayList<HallPo>();
-
+/*
 	MockHall(){
 		list.add(new HallPo("0250001", "Nanjing","025"));
 		list.add(new HallPo("026001","Unknown","026"));
@@ -46,6 +46,6 @@ public class MockHall extends HallBL{
     	return poList;
     	
     }
-	
+	*/
 }
 
