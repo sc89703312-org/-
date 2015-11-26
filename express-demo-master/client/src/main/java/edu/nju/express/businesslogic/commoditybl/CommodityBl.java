@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.express.blservice.CommodityBlService;
+import edu.nju.express.businesslogic.accountbl.Info.CommodityInfo;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
@@ -24,7 +25,7 @@ import edu.nju.express.vo.ExitReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
-public class CommodityBl implements CommodityBlService{
+public class CommodityBl implements CommodityBlService,CommodityInfo{
 	
 	CommodityDataService commodityDataService;
 	StationInfo stationInfo;
