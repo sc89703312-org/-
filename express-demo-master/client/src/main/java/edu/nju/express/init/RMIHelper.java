@@ -25,6 +25,8 @@ public class RMIHelper {
     private static LogisticsDataService logisticsDataService;
     private static UserDataService userDataService;
     private static UserMessageDataService userMessageDataService;
+    private static SalaryDataService salaryDataService;
+    private static ConstantDataService constantDataService;
     
     public static void init() {
         try {
@@ -40,6 +42,8 @@ public class RMIHelper {
             logisticsDataService = (LogisticsDataService) Naming.lookup("rmi://" + IP + "/logistics-service");
             userDataService = (UserDataService) Naming.lookup("rmi://" + IP + "/user-service");
             userMessageDataService = (UserMessageDataService) Naming.lookup("rmi://" + IP + "/usermessage-service");
+            salaryDataService = (SalaryDataService) Naming.lookup("rmi://" + IP + "/salary-service");
+            constantDataService = (ConstantDataService) Naming.lookup("rmi://" + IP + "/constant-service");
             
             
         } catch (MalformedURLException e) {
@@ -80,5 +84,11 @@ public class RMIHelper {
     }
     public static UserMessageDataService getUserMessageDataService(){
     	return userMessageDataService;
+    }
+    public static SalaryDataService getSalaryDataService(){
+    	return salaryDataService;
+    }
+    public static ConstantDataService getConstantDataService(){
+    	return constantDataService;
     }
 }

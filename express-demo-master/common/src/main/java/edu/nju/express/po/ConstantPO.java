@@ -14,6 +14,26 @@ public class ConstantPO extends PersistentObj implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public ConstantPO( ArrayList<String> cityList,ArrayList<String> cityDistance
+			,double price,double vanCost,double railwayCost,double airplaneCost,
+			int vanLoad,int railwayLoad,int airplaneLoad) {
+		// TODO Auto-generated constructor stub
+	
+	this.cityList = cityList;
+	this.cityDistance = cityDistance;
+	this.price = price;
+	this.vanCost = vanCost;
+	this.railwayCost = railwayCost;
+	this.airplaneCost = airplaneCost;
+	this.vanLoad = vanLoad;
+	this.railwayLoad = railwayLoad;
+	this.airplaneLoad = airplaneLoad;
+	
+	
+	
+	}
+	
 	public double getPrice() {
 		return price;
 	}

@@ -2,6 +2,7 @@ package edu.nju.express.init;
 
 import java.rmi.RemoteException;
 
+import edu.nju.express.businesslogic.strategybl.salarysettingbl.SalarySettingBl;
 import edu.nju.express.common.Item;
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
@@ -25,18 +26,16 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+		
+		
+
+		
 //		
 //		new LoginUI();
 		
 
 		
-		try {
-			System.out.println(RMIHelper.getUserMessageDataService().insert(new UserMessagePO(StaffChange.add, "sc"," a", Role.ACCOUNTANT)));;
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	
 		
 
 //		try {

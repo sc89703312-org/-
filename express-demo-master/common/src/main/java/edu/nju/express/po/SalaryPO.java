@@ -14,6 +14,18 @@ public class SalaryPO extends PersistentObj implements Serializable{
 	
 	private double postmanWage;
 
+	
+	public SalaryPO(double clerkSalary ,double driverWage,double  postmanWage) {
+		// TODO Auto-generated constructor stub
+	
+	
+		this.clerkSalary = clerkSalary;
+		this.driverWage = driverWage;
+		this.postmanWage = postmanWage;
+	}
+	
+	
+	
 	public double getClerkSalary() {
 		return clerkSalary;
 	}
