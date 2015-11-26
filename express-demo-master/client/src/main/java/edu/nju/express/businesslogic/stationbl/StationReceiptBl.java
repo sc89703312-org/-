@@ -7,6 +7,7 @@ import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.businesslogic.commoditybl.StationInfo;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
+import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
@@ -49,46 +50,54 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 		
 		ArriveReceiptPO po = new ArriveReceiptPO(id,date,from,location,orderList);
 		
-		/*
+		
 		try {
 			stationDataService.addArriveReceipt(po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		*/
+		}		
 		
 		return result;
 	}
 
 	@Override
-	public ResultMessage creatTransferReceipt(ArrayList<String> list,
-			String id, String date, String to, String location) {
+	public ResultMessage creatTransferReceipt(ArrayList<OrderVO> ordervoList,
+			String id, String date, String to, String location, Etype type) {
 		// TODO Auto-generated method stub
 		
 		ResultMessage result = ResultMessage.VALID;
 		
 		ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();
-		for(int i=0;i<list.size();i++){
-			if(list.get(i)==null){
-				result = ResultMessage.INVALID;
-				return result;
-			}
-			OrderPO po = vo_to_po_order(orderInfo.view(list.get(i)));
-			orderList.add(po);
-		}
+		for(int i=0;i<ordervoList.size();i++)
+			orderList.add(vo_to_po_order(ordervoList.get(i)));
 		
 		TransferReceiptPO po = new TransferReceiptPO(id,date,to,location,orderList);
-		/*
+
 		try {
 			stationDataService.addTransferReceipt(po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+
 		
 		return result;
+	}
+	
+	public ArrayList<OrderVO> showComOrder(){
+		
+		try {
+			ArrayList<ArriveReceiptPO> arriveList = stationDataService.getArriveReceipt();
+			ArrayList<TransferReceiptPO> transferList = stationDataService.getTransferReceipt();
+			ArrayList<OrderVO> orderList = new ArrayList<OrderVO>();
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	public ResultMessage approveArriveReceipt(String id){
