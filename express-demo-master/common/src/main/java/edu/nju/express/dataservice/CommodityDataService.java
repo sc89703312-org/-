@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.po.ComGoodsPO;
 import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.ComZonePO;
@@ -20,7 +21,8 @@ public interface CommodityDataService extends Remote{
 	public void addGoods(String comID, EnterReceiptPO po) throws RemoteException;
 	public void removeGoods(String comID, ExitReceiptPO po) throws RemoteException;
 	public ComGoodsPO getGoods(String comID, String orderID) throws RemoteException;
-	public void modifyZone(String comID, int[] space) throws RemoteException;
+	public ResultMessageV2 modifyZone(String comID, int[] space) throws RemoteException;
+	public ResultMessageV2 initZone(String comID) throws RemoteException;
 	
 	public void addCommodity(String comID, String location) throws RemoteException;
 	public void removeCommodity(String comID) throws RemoteException;

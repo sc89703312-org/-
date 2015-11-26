@@ -29,8 +29,8 @@ public interface CommodityBlService {
 	public int[] showCheck(String start, String end);
 	
 	public ComZoneVO showZone();
-	public ResultMessage editZone(ComZoneVO vo, int[] space);
-	public void subZone(ComZoneVO vo);
+	public ResultMessageV2 editZone(int[] space);
+	public ResultMessageV2 initZone();
 	public ResultMessageV2 moveGoods(Object data[][]);
 
 	

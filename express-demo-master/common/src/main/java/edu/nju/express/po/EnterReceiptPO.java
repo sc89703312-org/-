@@ -39,5 +39,7 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 		isApprove = true;
 	}
 	
-	
+	public ArrayList<ComGoodsPO> getGoods(){
+		return this.goods_list;
+	}
 }

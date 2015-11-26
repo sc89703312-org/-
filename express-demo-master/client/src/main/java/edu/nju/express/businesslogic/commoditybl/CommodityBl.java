@@ -15,6 +15,7 @@ import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.ComZonePO;
 import edu.nju.express.po.EnterReceiptPO;
 import edu.nju.express.po.ExitReceiptPO;
+import edu.nju.express.po.OrderPO;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.ComGoodsVO;
 import edu.nju.express.vo.ComZoneVO;
@@ -249,28 +250,117 @@ public class CommodityBl implements CommodityBlService{
 	@Override
 	public int[] showCheck(String start, String end) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		int result[] = new int[20];
+		for(int i=0;i<20;i++)
+			result[i] = 0;
+		
+		try {
+			ArrayList<EnterReceiptPO> enterlist = commodityDataService.getEnterReceipt(comID);
+			ArrayList<ExitReceiptPO> exitlist = commodityDataService.getExitReceipt(comID);
+			
+			for(int i=0;i<enterlist.size();i++){
+				EnterReceiptPO tempo = enterlist.get(i);
+				if(tempo.getDate().compareTo(end)<=0&&tempo.getDate().compareTo(start)>=0){
+					ArrayList<ComGoodsPO> goodslist = tempo.getGoods();
+					
+					for(int j=0;j<goodslist.size();j++){
+						result[0]++;
+						ComGoodsPO good = goodslist.get(j);
+						result[5]+=good.getOrder().getTotalCost();
+						switch(good.getType()){
+						case 1:result[1]++;result[6]+=good.getOrder().getTotalCost();break;
+						case 2:result[2]++;result[7]+=good.getOrder().getTotalCost();break;
+						case 3:result[3]++;result[8]+=good.getOrder().getTotalCost();break;
+						case 4:result[4]++;result[9]+=good.getOrder().getTotalCost();break;
+						}
+					}			
+					
+				}							
+			}
+			
+			for(int i=0;i<exitlist.size();i++){
+				ExitReceiptPO tempo = exitlist.get(i);
+				if(tempo.getDate().compareTo(end)<=0&&tempo.getDate().compareTo(start)>=0){
+					ArrayList<ComGoodsPO> goodslist = tempo.getGoods();
+					
+					for(int j=0;j<goodslist.size();j++){
+						result[10]++;
+						ComGoodsPO good = goodslist.get(j);
+						result[15]+=good.getOrder().getTotalCost();
+						switch(good.getType()){
+						case 1:result[11]++;result[16]+=good.getOrder().getTotalCost();break;
+						case 2:result[12]++;result[17]+=good.getOrder().getTotalCost();break;
+						case 3:result[13]++;result[18]+=good.getOrder().getTotalCost();break;
+						case 4:result[14]++;result[19]+=good.getOrder().getTotalCost();break;
+						}
+					}			
+					
+				}							
+			}
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
 	public ComZoneVO showZone() {
 		// TODO Auto-generated method stub
-		return null;
+		
+	   ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
+	   ComInfoPO po = null;
+	   ComZonePO zonepo = null;
+	   try {
+		po = commodityDataService.getCom(comID);
+		zonepo = po.getZone();
+		ArrayList<ComGoodsPO> polist = po.getComGoodsList();
+		for(int i=0;i<polist.size();i++){
+			ComGoodsPO tempo = polist.get(i);
+			volist.add(new ComGoodsVO(stationInfo.po_to_vo_order(tempo.getOrder()),tempo.getType(),tempo.getLine(),tempo.getShelf(),tempo.getCell()));
+		}
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   
+		return new ComZoneVO(volist,zonepo.getSpace());
 	}
 
 	@Override
-	public ResultMessage editZone(ComZoneVO vo, int[] space) {
+	public ResultMessageV2 editZone(int[] space) {
 		// TODO Auto-generated method stub
+
+		ResultMessageV2 result = null;
 		
+		try {
+			result = commodityDataService.modifyZone(comID, space);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
-		return null;
+		return result;
 	}
 
 	@Override
-	public void subZone(ComZoneVO vo) {
+	public ResultMessageV2 initZone() {
 		// TODO Auto-generated method stub
 		
+        ResultMessageV2 result = null;
+		
+		try {
+			result = commodityDataService.initZone(comID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;		
 	}
 
 	@Override

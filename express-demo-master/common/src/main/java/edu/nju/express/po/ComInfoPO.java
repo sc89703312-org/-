@@ -40,6 +40,8 @@ public class ComInfoPO extends PersistentObj implements Serializable{
 		return goods_list;
 	}
 	
-	
+	public ComZonePO getZone(){
+		return this.zonePO;
+	}
 	
 }

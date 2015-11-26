@@ -84,6 +84,11 @@ public class ComZonePO {
 		return cellPerShelf;
 	}
 	
+	public int[] getSpace(){
+		int result[] = {planeSpace,trainSpace,carSpace,temSpace};
+		return result;
+	}
+	
 	public boolean[] getIsEmptyPlane(){
 		return isEmptyPlane;
 	}

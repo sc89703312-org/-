@@ -1,33 +1,46 @@
 package edu.nju.express.vo;
 
-public class ComZoneVO {
+import java.util.ArrayList;
 
-	int planeSpace;
-	int trainSpace;
-	int carSpace;
-	int temSpace;
+public class ComZoneVO {
 	
-	int planeGoods;
-	int trainGoods;
-	int carGoods;
-	int temGoods;
-	
-	public ComZoneVO(int[] space){
-		
-		planeSpace = space[0];
-		trainSpace = space[1];
-		carSpace = space[2];
-		temSpace = space[3];
-		
-	}
-	
-	public int[] getSpace(){
-		int[] space = new int[4];
-		space[0] = planeSpace;
-		space[1] = trainSpace;
-		space[2] = carSpace;
-		space[3] = temSpace;
-		return space;
-	}
-	
+    int planeSpace,trainSpace,carSpace,temSpace;
+    
+    ArrayList<ComGoodsVO> volist;
+    
+    public ComZoneVO(ArrayList<ComGoodsVO> volist, int[] space){
+    	this.volist = volist;
+    	planeSpace = space[0];
+    	trainSpace = space[1];
+    	carSpace = space[2];
+    	temSpace = space[3];
+    }
+    
+    public ArrayList<ComGoodsVO> getGoods(){
+    	return volist;
+    }
+    
+    public int[] getSpace(){
+    	int result[] = new int[4];
+    	result[0] = planeSpace;
+    	result[1] = trainSpace;
+    	result[2] = carSpace;
+    	result[3] = temSpace;
+    	return result;
+    }
+    
+    public int[] getGoodsNum(){
+    	int result[] = new int[4];
+    	result[0] = result[1] = result[2] = result[3] = 0;
+    	for(int i=0;i<volist.size();i++){
+    		switch(volist.get(i).getType()){
+    		case 1:result[0]++;break;
+    		case 2:result[1]++;break;
+    		case 3:result[2]++;break;
+    		case 4:result[3]++;break;
+    		}
+    	}
+    	return result;
+    }
+    
 }
