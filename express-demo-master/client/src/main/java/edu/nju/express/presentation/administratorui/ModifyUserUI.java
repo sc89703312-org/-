@@ -84,6 +84,7 @@ public class ModifyUserUI extends MainPanel {
 		confirm = new ConfirmButton();
 		confirm.setActionCommand("ModifyUser");
 		confirm.addActionListener(controller);
+		confirm.setLocation(270, 260);
 		p.add(confirm);
 	}
 

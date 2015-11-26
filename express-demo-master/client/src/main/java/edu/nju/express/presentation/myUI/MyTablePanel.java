@@ -24,10 +24,10 @@ public class MyTablePanel extends JPanel {
 	int WIDTH = 600;
 	int HEIGHT = 400;
 	Color headerColor = new Color(49, 121, 177);
-	Color foreColor = new Color(0, 0, 0);
+	Color foreColor = Color.white;
 	Color backColor1 = new Color(255, 255, 255,50);
 	Color backColor2 = new Color(240, 250, 254,50);
-	Font font = new Font("微软雅黑", Font.PLAIN, 15);
+	Font font = new Font("黑体", Font.PLAIN, 15);
 	String[] headerStr;
 	JTable table; 
 	DefaultTableModel model;
@@ -79,6 +79,7 @@ public class MyTablePanel extends JPanel {
 
 		// 设置表格颜色
 		setForeground(foreColor);
+		header.setForeground(foreColor);
 		header.setBackground(headerColor);
 		
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
@@ -93,7 +94,7 @@ public class MyTablePanel extends JPanel {
 					setBackground(backColor2);
 				else
 					setBackground(headerColor);
-				
+				setForeground(foreColor);
 
 			
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

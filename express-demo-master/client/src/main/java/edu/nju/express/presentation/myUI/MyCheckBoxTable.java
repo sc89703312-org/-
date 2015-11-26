@@ -62,8 +62,6 @@ public class MyCheckBoxTable extends JTable {
 		this.setShowGrid(false);
 
 		// 设置表格颜色
-		setForeground(foreColor);
-		header.setBackground(headerColor);
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = 1L;
 
@@ -76,6 +74,7 @@ public class MyCheckBoxTable extends JTable {
 					setBackground(backColor2);
 				else
 					setBackground(headerColor);
+				setForeground(foreColor);
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
 		};

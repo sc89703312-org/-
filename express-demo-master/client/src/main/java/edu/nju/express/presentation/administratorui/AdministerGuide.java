@@ -33,26 +33,29 @@ public class AdministerGuide extends JPanel{
 	
 	
 	void initGuide(){
-		JPanel buttons = new JPanel();
-		buttons.setOpaque(false);
-		((FlowLayout)buttons.getLayout()).setVgap(y/2);
-		buttons.setBounds(0, 0, (int)(width*0.2), (int)(height));
 		check = new JButton("查看任务");
 		check.setActionCommand("CheckTaskUI");
 		check.addActionListener(controller);
+		check.setBounds(60, 30,120,40);
+		
 		add = new JButton("增加账号");
 		add.setActionCommand("AddUserUI");
 		add.addActionListener(controller);
+		add.setBounds(60, 100,120,40);
+	
 		delete = new JButton("删除账号");
 		delete.setActionCommand("DeleteUserUI");
 		delete.addActionListener(controller);
+		delete.setBounds(60, 170,120,40);
+		
 		modify = new JButton("修改账号");
 		modify.setActionCommand("ModifyUserUI");
 		modify.addActionListener(controller);
-		buttons.add(check);
-		buttons.add(add);
-		buttons.add(delete);
-		buttons.add(modify);
-		add(buttons);
+		modify.setBounds(60, 240,120,40);
+		
+		this.add(check);
+		this.add(add);
+		this.add(delete);
+		this.add(modify);
 	}
 }

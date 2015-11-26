@@ -3,15 +3,16 @@ package edu.nju.express.presentation.managerui.salaryui;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.ConfirmButton;
+import edu.nju.express.presentation.myUI.MyTextField;
 
 public class SalaryUI extends MainPanel {
 
@@ -34,9 +35,9 @@ public class SalaryUI extends MainPanel {
 	JLabel clerkLabel1, clerkLabel2;
 	JLabel driverLabel1, driverLabel2;
 	JLabel postmanLabel1, postmanLabel2;
-	JTextField clerkField;
-	JTextField driverField;
-	JTextField postmanField;
+	MyTextField clerkField;
+	MyTextField driverField;
+	MyTextField postmanField;
 
 	public SalaryUI(ManageController c) {
 		this.controller = c;
@@ -52,7 +53,7 @@ public class SalaryUI extends MainPanel {
 		p.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.5 * p.getWidth()), 60));
 
 		clerkLabel1 = new JLabel("业务员月薪：");
-		clerkField = new JTextField();
+		clerkField = new MyTextField(6);
 		clerkField.setText(clerk + "");
 		clerkLabel2 = new JLabel("元/月");
 		JPanel temp1 = new JPanel();
@@ -66,7 +67,7 @@ public class SalaryUI extends MainPanel {
 		p.add(temp1);
 		
 		driverLabel1 = new JLabel("司机提成：");
-		driverField = new JTextField();
+		driverField = new MyTextField(6);
 		driverField.setText(driver + "");
 		driverLabel2 = new JLabel("元/次");
 		JPanel temp2 = new JPanel();
@@ -80,7 +81,7 @@ public class SalaryUI extends MainPanel {
 		p.add(temp2);
 		
 		postmanLabel1 = new JLabel("司机提成：");
-		postmanField = new JTextField();
+		postmanField = new MyTextField(6);
 		postmanField.setText(postman + "");
 		postmanLabel2 = new JLabel("元/次");
 		JPanel temp3 = new JPanel();
@@ -114,4 +115,6 @@ public class SalaryUI extends MainPanel {
 		text[2] = postmanField.getText();
 		return text;
 	}
+	
+	
 }

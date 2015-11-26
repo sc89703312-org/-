@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.nju.express.presentation.managerui.constantui.ConstantUI;
 import edu.nju.express.presentation.managerui.employeeui.AddEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.DismissEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.EmployeeListUI;
@@ -48,7 +49,11 @@ public class ManageController implements ActionListener {
 			frame.validate();
 			frame.repaint();
 		}else if(e.getActionCommand().equals("ConstantUI")){
-			
+			frame.getContentPane().removeAll();;
+			currentPanel = new ConstantUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		}else if(e.getActionCommand().equals("AddEmployeeUI")){
 			frame.getContentPane().removeAll();;
 			currentPanel = new AddEmployeePanel(this);

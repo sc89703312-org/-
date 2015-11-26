@@ -10,9 +10,9 @@ public class ConfirmButton extends JButton{
 
 	public ConfirmButton() {
 		super("确认");
-		this.setSize(70,35);
+		this.setSize(80,30);
 		this.setOpaque(false);
-		this.setLocation(300,260);
+		this.setLocation(410,260);
 	}
 	
 }

@@ -43,8 +43,8 @@ public class DeleteUserUI extends MainPanel{
 		p.add(id);
 		
 		confirm = new ConfirmButton();
-		confirm.setLocation(confirm.getX(), 120);
 		p.add(confirm);
+		confirm.setLocation(270, 260);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("DeleteUser");
 		

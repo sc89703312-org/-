@@ -1,37 +1,51 @@
 package edu.nju.express.presentation.myUI;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 public class MyTextField extends JTextField {
 
 	private static final long serialVersionUID = 1L;
 
-	Font font = new Font("微软雅黑", Font.PLAIN, 16);
+	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = Color.white;
 	int columns = 10;
+	MyTextField field;
+	static int count = 3;
+	Graphics2D g;
+
+	Color bc1 = new Color(137, 193, 232,60);
+	Color bc2 = new Color(137, 193, 232,80);
+	Color bc3 = new Color(101, 184, 229);
 
 	public MyTextField() {
 		initField();
 	}
-	
+
 	public MyTextField(int columns) {
 		this.columns = columns;
 		initField();
 	}
 
 	private void initField() {
+		field = this;
 		this.setOpaque(false);
-		this.setSize(columns, 30);
+		this.setBounds(columns, 25, 518, 140);
 		this.setFont(font);
 		this.setForeground(color);
-		this.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+		this.setBorder(new EmptyBorder(0, 0, 0, 0));
 
+		
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -48,14 +62,27 @@ public class MyTextField extends JTextField {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				field.getParent().repaint();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				g = (Graphics2D)field.getParent().getGraphics();
+				float d = 1.0f;
+				int a = 4;
+				int x = field.getX();
+				int y = field.getY();
+				int w = field.getWidth();
+				int h = field.getHeight();
+				
+				g.setStroke(new BasicStroke(d));
+				
+				g.setColor(bc3);
+				g.draw(new RoundRectangle2D.Float(x-d, y-d, w+2*d, h+2*d, a,a));
+				g.setColor(bc2);
+				g.draw(new RoundRectangle2D.Float(x-2*d, y-2*d, w+4*d, h+4*d, a, a));
+				g.setColor(bc1);
+				g.draw(new RoundRectangle2D.Float(x-3*d, y-3*d, w+6*d, h+6*d, a, a));
 			}
 
 			@Override
@@ -70,4 +97,26 @@ public class MyTextField extends JTextField {
 	public String getText() {
 		return this.getText();
 	}
+	
+	private void drawBoarder(Graphics g, Color c, int width, int height){
+		g.setColor(c);
+        g.drawLine(0, 0, width-2, 0);
+        g.drawLine(0, 0, 0, height-2);
+        g.drawLine(1, 1, 1, 1);
+
+        g.setColor(c);
+        g.drawLine(2, 1, width-2, 1);
+        g.drawLine(1, 2, 1, height-2);
+        g.drawLine(2, 2, 2, 2);
+        g.drawLine(0, height-1, 0, height-2);
+        g.drawLine(width-1, 0, width-1, 0);
+
+        g.setColor(c);
+        g.drawLine(2, height-1, width-1, height-1);
+        g.drawLine(width-1, 2, width-1, height-1);
+
+        g.setColor(c);
+        g.drawLine(width-2, height-2, width-2, height-2);
+	}
+	
 }

@@ -7,8 +7,8 @@ public class ReturnButton extends JButton{
 
 	public ReturnButton() {
 		super("返回上一层");
-		this.setSize(100,30);
+		this.setSize(80,30);
 		this.setOpaque(false);
-		this.setLocation(10,10);
+		this.setLocation(20,20);
 	}
 }

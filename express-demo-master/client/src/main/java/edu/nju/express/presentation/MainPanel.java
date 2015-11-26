@@ -19,7 +19,7 @@ public class MainPanel extends JPanel {
 
 	int WIDTH = 900;
 	int HEIGHT = 600;
-	int BAR_HEIGHT = 40;
+	int BAR_HEIGHT = 50;
 	Image logo;
 	Image bg = new ImageIcon("ui/image/bg.jpg").getImage();
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -35,11 +36,18 @@ public class RceiptListUI extends MainPanel {
 		jbtReturn.setActionCommand("ReceiptUI");
 
 		refreshTable();
+		
 		JScrollPane s = new JScrollPane(table);
-		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		/*s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setOpaque(false);
-	//	s.getViewport().setOpaque(false);
+		s.getViewport().setOpaque(false);*/
 		s.setBounds(10, 90 + jbtReturn.getHeight(), width / 2, 400);
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+		s.setColumnHeaderView(table.getTableHeader());
+		s.getColumnHeader().setOpaque(false);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		this.add(s);
 
 		jbtApprove = new JButton("审批通过");
