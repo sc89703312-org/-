@@ -98,25 +98,6 @@ public class MyTextField extends JTextField {
 		return this.getText();
 	}
 	
-	private void drawBoarder(Graphics g, Color c, int width, int height){
-		g.setColor(c);
-        g.drawLine(0, 0, width-2, 0);
-        g.drawLine(0, 0, 0, height-2);
-        g.drawLine(1, 1, 1, 1);
 
-        g.setColor(c);
-        g.drawLine(2, 1, width-2, 1);
-        g.drawLine(1, 2, 1, height-2);
-        g.drawLine(2, 2, 2, 2);
-        g.drawLine(0, height-1, 0, height-2);
-        g.drawLine(width-1, 0, width-1, 0);
-
-        g.setColor(c);
-        g.drawLine(2, height-1, width-1, height-1);
-        g.drawLine(width-1, 2, width-1, height-1);
-
-        g.setColor(c);
-        g.drawLine(width-2, height-2, width-2, height-2);
-	}
 	
 }
