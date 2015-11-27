@@ -1,7 +1,6 @@
 package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -54,7 +53,8 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
-		mainpanel.setBackground(Color.GRAY);
+//		mainpanel.setBackground(Color.GRAY);
+		
 		mainpanel.setVisible(true);
 		initPanel();
 		initOrderContainer();

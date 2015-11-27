@@ -1,5 +1,6 @@
 package edu.nju.express.presentation.clerk_hallui;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -7,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+
+import edu.nju.express.presentation.myUI.MyBackground;
+import edu.nju.express.presentation.myUI.MyLabel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -32,26 +36,40 @@ public class HallHome extends JPanel{
 	JButton back;
 	JLabel greeting;
 	JTextArea recentReceipt;
+	JLabel bg;
 	
 	public HallHome(HallController controller) {
 		this.controller = controller;
 		this.guidePanel = new JPanel();
+		JPanel p = new JPanel();
+		p.setLayout(null);
+		p.setBounds(0,0,width,height);
+		p.setVisible(true);
 		guidePanel.setLayout(null);
 		guidePanel.setBounds(0, 0, width/5, height);
-		guidePanel.setBackground(Color.LIGHT_GRAY);
+//		guidePanel.setBackground(Color.LIGHT_GRAY);
+		guidePanel.setOpaque(false);
 		initButtons();
 		guidePanel.setVisible(true);
 		
 		this.mainPanel = new JPanel();
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(width/5, 0, 4*width/5, height);
-		mainPanel.setBackground(Color.DARK_GRAY);
+//		mainPanel.setBackground(Color.DARK_GRAY);
+		mainPanel.setOpaque(false);
 		initMain();
 		mainPanel.setVisible(true);
 		
-		this.add(guidePanel);
-		this.add(mainPanel);
-		this.setLayout(null);			//!!!!!!!!!!!!!!!!!!!!!!!
+		bg = new JLabel();
+		bg.setBounds(0, 0, width, height);
+		bg.setIcon(new ImageIcon("ui/image/hall/hall1.png"));
+		
+		
+		p.add(guidePanel);
+		p.add(mainPanel);
+		p.add(bg);
+		this.add(p);
+		this.setLayout(null);			
 		this.setVisible(true);
 		
 	}
