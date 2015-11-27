@@ -224,16 +224,14 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public ArrayList<ComGoodsVO> showInventory() {
 		// TODO Auto-generated method stub
 		
-		ComInfoPO compo = null;
+		ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
+		ArrayList<ComGoodsPO> polist = null;
 		try {
-			compo = commodityDataService.getCom(comID);
+			polist = commodityDataService.getComGoods(comID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
-		ArrayList<ComGoodsPO> polist = compo.getComGoodsList();
 		
 		for(int i=0;i<polist.size();i++){
 			ComGoodsVO vo = new ComGoodsVO(stationInfo.po_to_vo_order(polist.get(i).getOrder()),polist.get(i).getType(),polist.get(i).getLine(),polist.get(i).getShelf(),polist.get(i).getCell());
@@ -315,12 +313,10 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		// TODO Auto-generated method stub
 		
 	   ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
-	   ComInfoPO po = null;
 	   ComZonePO zonepo = null;
 	   try {
-		po = commodityDataService.getCom(comID);
-		zonepo = po.getZone();
-		ArrayList<ComGoodsPO> polist = po.getComGoodsList();
+		zonepo = commodityDataService.getZone(comID);
+		ArrayList<ComGoodsPO> polist = commodityDataService.getComGoods(comID);
 		for(int i=0;i<polist.size();i++){
 			ComGoodsPO tempo = polist.get(i);
 			volist.add(new ComGoodsVO(stationInfo.po_to_vo_order(tempo.getOrder()),tempo.getType(),tempo.getLine(),tempo.getShelf(),tempo.getCell()));
@@ -331,6 +327,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	}
 	   
 		return new ComZoneVO(volist,zonepo.getSpace());
+		
 	}
 
 	@Override
@@ -435,6 +432,18 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 
 	@Override
 	public ResultMessage approveExitReceipt(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<EnterReceiptVO> viewAllEnterReceipt() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ExitReceiptVO> viewAllExitReceipt() {
 		// TODO Auto-generated method stub
 		return null;
 	}
