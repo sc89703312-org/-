@@ -34,14 +34,14 @@ public class MyTablePanel extends JPanel {
 	
 	public MyTablePanel(String[] header) {
 		model = new DefaultTableModel(null, header);
-		
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return true;
+				return false;
 			}
+			
 		};
 
 		
@@ -115,4 +115,7 @@ public class MyTablePanel extends JPanel {
 		header.setPreferredSize(new Dimension(header.getWidth(), ROW_HEIGHT));
 	}
 
+	public JTable getTable(){
+		return table;
+	}
 }

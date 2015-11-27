@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -38,11 +39,11 @@ public class MyTextField extends JTextField {
 		this.columns = columns;
 		
 		field = this;
-		this.setOpaque(false);
 		this.setFont(font);
 		this.setBounds(500, 90, 100, 25);
 		this.setForeground(fore1);
 		this.setBackground(back1);
+//		this.setHorizontalAlignment(JLabel.CENTER);
 		this.setBorder(new EmptyBorder(0,0,0,0));
 		
 		

@@ -43,7 +43,7 @@ public class ManageGuide extends JPanel {
 		
 		organization = new JButton("机构管理");
 		organization.setBounds(60,170,120,40);
-		organization.setActionCommand("organizationUI");
+		organization.setActionCommand("OrganizationUI");
 		organization.addActionListener(controller);
 		
 		salary = new JButton("薪水制定");

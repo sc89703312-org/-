@@ -1,5 +1,6 @@
 package edu.nju.express.presentation.managerui.employeeui;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
@@ -31,9 +32,11 @@ public class EmployeeListUI extends MainPanel {
 	JButton jbtAdd;
 	JButton jbtDelete;
 
-	int width = 900, height = 600;
-	int TABLE_ROW_HEIGHT = 30;
-	int y = 50; // 由标题栏高度决定
+	private static int width = 900, height = 600;
+	private static int TABLE_ROW_HEIGHT = 30;
+	private static int y = 50; // 由标题栏高度决定
+	private static int x = 240;
+	private static int h=90;
 
 	public EmployeeListUI(ManageController c) {
 
@@ -49,10 +52,8 @@ public class EmployeeListUI extends MainPanel {
 
 	private void initButtons() {
 		buttons = new JPanel();
-		buttons.setBounds(guide.getWidth(), y, width - guide.getWidth(), (int) (width * 0.1));
-		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.15 * buttons.getWidth()),
-				(int) (0.4 * buttons.getHeight())));
-
+		buttons.setBounds(x, y, width - x, h);
+		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 100,36));
 		jbtAdd = new JButton("新增员工");
 		jbtAdd.setActionCommand("AddEmployeeUI");
 		jbtAdd.addActionListener(controller);
@@ -85,8 +86,8 @@ public class EmployeeListUI extends MainPanel {
 		String[] header = { "ID", "姓名", "职务" };
 		table = new MyTablePanel(header);
 		table.setRowHeight(TABLE_ROW_HEIGHT);
-		table.setBounds(guide.getWidth(), y + (int) (buttons.getHeight()), (int) (width - guide.getWidth()),
-				(int) (height - buttons.getHeight()));
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h));
+		table.setBounds(x+30, y +h, width - x-60,height - y-h-30);
 
 		model = table.getTableModel();
 		for (int i = 0; i < list.size(); i++) {

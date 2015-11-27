@@ -1,12 +1,11 @@
 package edu.nju.express.presentation.managerui.constantui;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import edu.nju.express.common.BasicValues;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
@@ -24,7 +23,7 @@ public class ConstantUI extends MainPanel{
 
 	ManageController controller;
 	
-	MyTextField priceField;
+	MyTextField priceField1,priceField2,priceField3;
 	MyTextField vanCostField;
 	MyTextField railwayCostField;
 	MyTextField airplaneCostField;
@@ -34,19 +33,16 @@ public class ConstantUI extends MainPanel{
 	
 	ConfirmButton distanceConfirm;
 	ConfirmButton priceConfirm;
-	ConfirmButton costConfirm;
+	ConfirmButton LoadConfirm;
 	ConfirmButton loadConfirm;
 	
-	JPanel distancePanel;
-	JPanel pricePanel;
-	JPanel costPanel;
-	JPanel loadPanel;
+	JPanel fieldsPanel;
+	JPanel buttonsPanel;
 	ManageGuide guide;
 	
-	private String price;
+	private String price1,price2,price3;
 	private String vanCost, railwayCost, airplaneCost;
 	private String vanLoad, railwayLoad, airplaneLoad;
-	private String clerkSalary, driverWage, postmanWage;
 	
 	public ConstantUI(ManageController c) {
 		this.setOpaque(false);
@@ -56,15 +52,75 @@ public class ConstantUI extends MainPanel{
 
 		guide = new ManageGuide(controller);
 		this.add(guide);
-
-		priceField = new MyTextField(11);
-		priceField.setText(price);
-		priceField.setBorder(new EmptyBorder(0,0,0,0));
+		
+		initFields();
 		
 	}
 
-	private void initData() {
+	private void initFields() {
+		fieldsPanel = new JPanel();
+		fieldsPanel.setBounds(x, y, width-x, height-y);
+		fieldsPanel.setOpaque(false);;
+		fieldsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 160, 80));
 		
+		priceField1 = new MyTextField(4);
+		priceField1.setText(price1);
+		priceField1.setOpaque(false);
+		fieldsPanel.add(priceField1);
+		
+		priceField2 = new MyTextField(4);
+		priceField2.setText(price2);
+		priceField2.setOpaque(false);
+		fieldsPanel.add(priceField2);
+		
+		priceField3 = new MyTextField(4);
+		priceField3.setText(price3);
+		priceField3.setOpaque(false);
+		fieldsPanel.add(priceField3);
+		
+		vanCostField = new MyTextField(4);
+		vanCostField.setText(vanCost);
+		vanCostField.setOpaque(false);
+		fieldsPanel.add(vanCostField);
+		
+		railwayCostField = new MyTextField(4);
+		railwayCostField.setText(railwayCost);
+		railwayCostField.setOpaque(false);
+		fieldsPanel.add(railwayCostField);
+		
+		airplaneCostField = new MyTextField(4);
+		airplaneCostField.setText(airplaneCost);
+		airplaneCostField.setOpaque(false);
+		fieldsPanel.add(airplaneCostField);
+		
+		vanLoadField = new MyTextField(6);
+		vanLoadField.setText(vanLoad);
+		vanLoadField.setOpaque(false);
+		fieldsPanel.add(vanLoadField);
+		
+		railwayLoadField = new MyTextField(6);
+		railwayLoadField.setText(railwayLoad);
+		railwayLoadField.setOpaque(false);
+		fieldsPanel.add(railwayLoadField);
+		
+		airplaneLoadField = new MyTextField(6);
+		airplaneLoadField.setText(airplaneLoad);
+		airplaneLoadField.setOpaque(false);
+		fieldsPanel.add(airplaneLoadField);
+		
+		this.add(fieldsPanel);
+	}
+
+	private void initData() {
+		price1 = "23";
+		price2 ="18";
+		price3 ="25";
+		vanCost="2"; 
+		railwayCost="0.2"; 
+		airplaneCost="1000";
+		vanLoad="1000"; 
+		railwayLoad="200000"; 
+		airplaneLoad="5000";
 		
 	}
 }

@@ -10,6 +10,11 @@ import edu.nju.express.presentation.managerui.constantui.ConstantUI;
 import edu.nju.express.presentation.managerui.employeeui.AddEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.DismissEmployeePanel;
 import edu.nju.express.presentation.managerui.employeeui.EmployeeListUI;
+import edu.nju.express.presentation.managerui.organizationui.AddHallPanel;
+import edu.nju.express.presentation.managerui.organizationui.AddStationPanel;
+import edu.nju.express.presentation.managerui.organizationui.DeleteHallPanel;
+import edu.nju.express.presentation.managerui.organizationui.DeleteStationPanel;
+import edu.nju.express.presentation.managerui.organizationui.OrganizationUI;
 import edu.nju.express.presentation.managerui.receiptui.RceiptListUI;
 import edu.nju.express.presentation.managerui.salaryui.SalaryUI;
 
@@ -41,7 +46,11 @@ public class ManageController implements ActionListener {
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("OrganizationUI")) {
-
+			frame.getContentPane().removeAll();;
+			currentPanel = new OrganizationUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		} else if (e.getActionCommand().equals("SalaryUI")) {
 			frame.getContentPane().removeAll();;
 			currentPanel = new SalaryUI(this);
@@ -63,6 +72,30 @@ public class ManageController implements ActionListener {
 		}else if(e.getActionCommand().equals("DismissEmployeeUI")){
 			frame.getContentPane().removeAll();;
 			currentPanel = new DismissEmployeePanel(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+		}else if(e.getActionCommand().equals("AddStationUI")){
+			frame.getContentPane().removeAll();;
+			currentPanel = new AddStationPanel(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+		}else if(e.getActionCommand().equals("DeleteStationUI")){
+			frame.getContentPane().removeAll();;
+			currentPanel = new DeleteStationPanel(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+		}else if(e.getActionCommand().equals("AddHallUI")){
+			frame.getContentPane().removeAll();;
+			currentPanel = new AddHallPanel(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+		}else if(e.getActionCommand().equals("DeleteHallUI")){
+			frame.getContentPane().removeAll();;
+			currentPanel = new DeleteHallPanel(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();

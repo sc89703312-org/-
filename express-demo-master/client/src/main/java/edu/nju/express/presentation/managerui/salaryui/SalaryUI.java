@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.managerui.salaryui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -19,7 +20,7 @@ public class SalaryUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static Font font = new Font("微软雅黑", Font.PLAIN, 16);
+	static Font font = new Font("黑体", Font.PLAIN, 16);
 	static Color color = Color.white;
 	static int width = 900, height = 600;
 	static int y = 50; // 由标题栏高度决定
@@ -52,9 +53,13 @@ public class SalaryUI extends MainPanel {
 		p.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.5 * p.getWidth()), 60));
 
 		clerkLabel1 = new JLabel("业务员月薪：");
+		clerkLabel1.setFont(font);
+		clerkLabel1.setForeground(color);
 		clerkField = new MyTextField(6);
 		clerkField.setText(clerk + "");
 		clerkLabel2 = new JLabel("元/月");
+		clerkLabel2.setFont(font);
+		clerkLabel2.setForeground(color);
 		JPanel temp1 = new JPanel();
 		clerkLabel1.setOpaque(false);
 		clerkField.setOpaque(false);
@@ -66,9 +71,13 @@ public class SalaryUI extends MainPanel {
 		p.add(temp1);
 		
 		driverLabel1 = new JLabel("司机提成：");
+		driverLabel1.setFont(font);
+		driverLabel1.setForeground(color);
 		driverField = new MyTextField(6);
 		driverField.setText(driver + "");
 		driverLabel2 = new JLabel("元/次");
+		driverLabel2.setFont(font);
+		driverLabel2.setForeground(color);
 		JPanel temp2 = new JPanel();
 		driverLabel1.setOpaque(false);
 		driverField.setOpaque(false);
@@ -79,14 +88,23 @@ public class SalaryUI extends MainPanel {
 		temp2.add(driverLabel2);
 		p.add(temp2);
 		
+		
+		JPanel temp3 = new JPanel();
 		postmanLabel1 = new JLabel("司机提成：");
+		postmanLabel1.setFont(font);
+		postmanLabel1.setForeground(color);
+		
 		postmanField = new MyTextField(6);
 		postmanField.setText(postman + "");
+		
 		postmanLabel2 = new JLabel("元/次");
-		JPanel temp3 = new JPanel();
+		postmanLabel2.setFont(font);
+		postmanLabel2.setForeground(color);
+		
 		postmanLabel1.setOpaque(false);
 		postmanField.setOpaque(false);
 		postmanLabel2.setOpaque(false);
+		
 		temp3.setOpaque(false);
 		temp3.add(postmanLabel1);
 		temp3.add(postmanField);
