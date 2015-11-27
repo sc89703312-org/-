@@ -8,6 +8,7 @@ import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.businesslogic.balancebl.CostList.Info.CostControlInfo;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
+import edu.nju.express.businesslogic.receiptbl.Info.CostApproveInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
@@ -17,7 +18,7 @@ import edu.nju.express.vo.BankingAccountVO;
 
 
 
-public class CostControlbl implements CostControlService,CostControlInfo{
+public class CostControlbl implements CostControlService,CostControlInfo,CostApproveInfo{
 
 	
 
@@ -148,7 +149,7 @@ public class CostControlbl implements CostControlService,CostControlInfo{
 	
 	
 	
-	
+	@Override
 	public ArrayList<Balancevo> viewAllCostSubmitted(){
       ArrayList<Balancevo> temps=new ArrayList<>();
 		
@@ -167,7 +168,7 @@ public class CostControlbl implements CostControlService,CostControlInfo{
 		
 	}
 	
-	
+	@Override
 	public void approveCost(String id){
 		
 		try {

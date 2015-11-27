@@ -7,6 +7,7 @@ import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.businesslogic.balancebl.PaymentList.Info.PaymentInfo;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
+import edu.nju.express.businesslogic.receiptbl.Info.PaymentApproveInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.Paymentdataservice;
 import edu.nju.express.init.RMIHelper;
@@ -17,7 +18,7 @@ import edu.nju.express.vo.Paymentvo;
 
 
 
-public class Paymentbl implements Paymentblservice,PaymentInfo {
+public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInfo {
 
 	ArrayList<Paymentpo> tempArrayList = new ArrayList<Paymentpo>();
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
@@ -123,7 +124,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo {
 	}
 	
 	
-	
+	@Override
 	public ArrayList<Paymentvo> viewAllPaymentSubmitted(){
 		
 		
@@ -139,7 +140,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo {
 		}
 		return temps;
 	}
-	
+	@Override
 	public void approvePayment(String id){
 		try {
 			Paymentpo po = paymentDataService.find(id);

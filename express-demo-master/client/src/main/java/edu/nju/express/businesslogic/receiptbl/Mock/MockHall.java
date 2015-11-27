@@ -1,4 +1,4 @@
-package edu.nju.express.businesslogic.receiptbl;
+package edu.nju.express.businesslogic.receiptbl.Mock;
 
 import java.util.ArrayList;
 
