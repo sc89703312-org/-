@@ -1,11 +1,11 @@
 package edu.nju.express.po;
-/*
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class LogisticsPO{
-
+public class LogisticsPO extends PersistentObj{
+/*
 
 		/**
 		 * 
@@ -50,6 +50,6 @@ public class LogisticsPO{
 //			return this.id;
 //		}
 //	
-//		
-//}
-//*/
+//	*/	
+}
+
