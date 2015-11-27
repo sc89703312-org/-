@@ -4,8 +4,6 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
-import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.dataservice.*;
 
 
@@ -22,7 +20,6 @@ public class RMIHelper {
     private static accountdataservice accountdataservice;
     private static orderdataservice orderdataservice;
     private static HallDataService hallDataService;
-    private static LogisticsDataService logisticsDataService;
     private static UserDataService userDataService;
     private static UserMessageDataService userMessageDataService;
     private static SalaryDataService salaryDataService;
@@ -39,7 +36,6 @@ public class RMIHelper {
             accountdataservice = (accountdataservice) Naming.lookup("rmi://" + IP + "/account-service");
             orderdataservice = (orderdataservice) Naming.lookup("rmi://" + IP + "/order-service");
             hallDataService = (HallDataService) Naming.lookup("rmi://" + IP + "/hall-service");
-            logisticsDataService = (LogisticsDataService) Naming.lookup("rmi://" + IP + "/logistics-service");
             userDataService = (UserDataService) Naming.lookup("rmi://" + IP + "/user-service");
             userMessageDataService = (UserMessageDataService) Naming.lookup("rmi://" + IP + "/usermessage-service");
             salaryDataService = (SalaryDataService) Naming.lookup("rmi://" + IP + "/salary-service");
@@ -76,9 +72,7 @@ public class RMIHelper {
     public static HallDataService getHallDataService(){
     	return hallDataService;
     }
-    public static LogisticsDataService getLogisticsDataService(){
-    	return logisticsDataService;
-    }
+
     public static UserDataService getUserDataService(){
     	return userDataService;
     }

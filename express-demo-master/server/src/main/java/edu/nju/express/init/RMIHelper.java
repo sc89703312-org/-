@@ -21,7 +21,6 @@ public class RMIHelper {
 	private static accountdataservice accountdataservice;
 	private static orderdataservice orderdataservice;
 	private static HallDataService hallDataService;
-	private static LogisticsDataService logisticsDataService;
 	private static UserDataService userDataService;
 	private static UserMessageDataService userMessageDataService;
 	private static SalaryDataService salaryDataService;
@@ -47,9 +46,7 @@ public class RMIHelper {
 	             hallDataService = new HallDataService_Impl();
 	             
 	             userDataService = new UserDataService_Impl();
-	             
-	             logisticsDataService = new LogisticsDataService_Impl();
-	             
+	             	             
 	             userMessageDataService = new UserMessageDataService_Impl();
 	             
 	             salaryDataService = new SalaryDataService_Impl();
@@ -69,9 +66,7 @@ public class RMIHelper {
 	            Naming.rebind("order-service", orderdataservice);
 	            
 	            Naming.rebind("hall-service", hallDataService);
-	            
-	            Naming.rebind("logistics-service", logisticsDataService);
-	            
+	            	            
 	            Naming.rebind("user-service", userDataService);
 	            
 	            Naming.rebind("usermessage-service", userMessageDataService);
@@ -104,7 +99,6 @@ public class RMIHelper {
 			hallDataService.flushHallArrival();
 			hallDataService.flushHallDeliver();
 			hallDataService.flushHallTransfer();
-			logisticsDataService.flush();
 			orderdataservice.flush();
 			userDataService.flush();
 			userMessageDataService.flush();
