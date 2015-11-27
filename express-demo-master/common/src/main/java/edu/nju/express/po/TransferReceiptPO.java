@@ -15,8 +15,7 @@ public class TransferReceiptPO extends ReceiptPOBase implements Serializable{
 	
 	String to;
 	String location;
-	
-	boolean isApprove;
+
 	boolean isHandle;
 	
 	ArrayList<OrderPO> order_list;
@@ -27,7 +26,6 @@ public class TransferReceiptPO extends ReceiptPOBase implements Serializable{
 		this.to = to;
 		this.location = location;
 		
-		this.isApprove = false;
 		this.isHandle = false;
 		
 		this.order_list = order_list;
@@ -49,16 +47,8 @@ public class TransferReceiptPO extends ReceiptPOBase implements Serializable{
 		return location;
 	}
 	
-	public boolean isApprove(){
-		return this.isApprove;
-	}
-	
 	public boolean isHandle(){
 		return this.isHandle;
-	}
-	
-	public void approve(){
-		this.isApprove = true;
 	}
 	
 	public void handle(){

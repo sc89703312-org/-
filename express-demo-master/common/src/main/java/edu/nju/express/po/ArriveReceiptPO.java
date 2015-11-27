@@ -16,7 +16,7 @@ public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 	String from;
 	String location;
 	
-	boolean isApprove;
+	boolean isHandle;
 	
 	ArrayList<OrderPO> order_list;
 	
@@ -26,7 +26,7 @@ public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 		this.from = from;
 		this.location = location;
 		
-		this.isApprove = false;
+		this.isHandle = false;
 		
 		this.order_list = order_list;
 	}
@@ -41,15 +41,17 @@ public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 		return location;
 	}
 	
-	public void approve(){
-		this.isApprove = true;
+	public boolean isHandle(){
+		return this.isHandle;
+	}
+	
+	public void handle(){
+		this.isHandle = true;
 	}
 	
 	public ArrayList<OrderPO> getOrderList(){
 		return order_list;
 	}
-
-
 
 	public String getID() {
 		// TODO Auto-generated method stub

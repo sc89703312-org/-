@@ -12,8 +12,6 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 	
 	String location;
 	
-	boolean isApprove;
-	
 	ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
 	
 	public EnterReceiptPO(ArrayList<ComGoodsPO> list, String id, String date, String location){
@@ -21,11 +19,12 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 		this.date = date;
 		this.location = location;
 		
-		isApprove = false;
-		
 		goods_list = list;
 	}
 	
+	public String getID(){
+		return id;
+	}
 	
 	public String getLocation(){
 		return location;
@@ -35,11 +34,8 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 		return date;
 	}
 	
-	public void approve(){
-		isApprove = true;
-	}
-	
 	public ArrayList<ComGoodsPO> getGoods(){
 		return this.goods_list;
 	}
+	
 }

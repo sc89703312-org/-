@@ -2,11 +2,9 @@ package edu.nju.express.vo;
 
 import java.util.ArrayList;
 
-public class ExitReceiptVO {
+public class ExitReceiptVO extends ReceiptVOBase{
 
-	String id;
 	String location;
-	String date;
 	
     ArrayList<ComGoodsVO> list;
 	
