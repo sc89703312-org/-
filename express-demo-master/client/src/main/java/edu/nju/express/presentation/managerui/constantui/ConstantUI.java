@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.common.BasicValues;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
@@ -14,10 +16,11 @@ import edu.nju.express.presentation.myUI.MyTextField;
 public class ConstantUI extends MainPanel{
 
 	private static final long serialVersionUID = 1L;
-	static Font font = new Font("微软雅黑", Font.PLAIN, 16);
+	static Font font = new Font("黑体", Font.PLAIN, 14);
 	static Color color = Color.white;
 	static int width = 900, height = 600;
 	static int y = 50; // 由标题栏高度决定
+	static int x =240;
 
 	ManageController controller;
 	
@@ -40,6 +43,11 @@ public class ConstantUI extends MainPanel{
 	JPanel loadPanel;
 	ManageGuide guide;
 	
+	private String price;
+	private String vanCost, railwayCost, airplaneCost;
+	private String vanLoad, railwayLoad, airplaneLoad;
+	private String clerkSalary, driverWage, postmanWage;
+	
 	public ConstantUI(ManageController c) {
 		this.setOpaque(false);
 		
@@ -48,9 +56,15 @@ public class ConstantUI extends MainPanel{
 
 		guide = new ManageGuide(controller);
 		this.add(guide);
+
+		priceField = new MyTextField(11);
+		priceField.setText(price);
+		priceField.setBorder(new EmptyBorder(0,0,0,0));
+		
 	}
 
 	private void initData() {
+		
 		
 	}
 }

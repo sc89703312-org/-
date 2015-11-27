@@ -17,9 +17,9 @@ public class LabelTextField extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel label;
-	JTextField field;
+	MyTextField field;
 	
-	Font font = new Font("微软雅黑", Font.PLAIN, 16);
+	Font font = new Font("黑体", Font.PLAIN, 16);
 	Color color = Color.white;
 	
 	public LabelTextField(String text, int columns) {
@@ -32,11 +32,7 @@ public class LabelTextField extends JPanel{
 		this.add(label);
 		
 		
-		field = new JTextField(columns);
-		field.setSize(columns, 20);
-		field.setOpaque(false);
-		field.setForeground(color);
-		field.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+		field = new MyTextField(columns);
 		this.add(field);
 	}
 	

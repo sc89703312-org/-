@@ -3,7 +3,6 @@ package edu.nju.express.presentation.managerui.salaryui;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

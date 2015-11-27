@@ -21,6 +21,8 @@ public class AddUserUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 	int width=900,height=600;
 	int y = 50;		//由标题栏高度决定
+	int x = 240;
+	static Font font = new Font("黑体", Font.PLAIN, 16);
 	
 	AdministratorController controller;
 
@@ -49,10 +51,10 @@ public class AddUserUI extends MainPanel {
 		p.setLayout(null);
 		this.add(p);
 
-		p.setBounds((int)(width*0.2), y, (int)(width*0.8), height);
+		p.setBounds(x, y, width-x, height);
 		
 		id = new LabelTextField(" ID ",15);
-		id.setBounds((p.getWidth()-350)/2, 30,350,40);
+		id.setBounds(270+100, 90,200,25);
 		p.add(id);
 		
 		name = new LabelTextField("姓名",15);
@@ -63,11 +65,11 @@ public class AddUserUI extends MainPanel {
 		jp.setOpaque(false);
 		roleLabel = new JLabel("职务  ");
 		roleLabel.setForeground(Color.white);
-		roleLabel.setFont( new Font("微软雅黑", Font.PLAIN, 16)); 
+		roleLabel.setFont(font ); 
 		jp.add(roleLabel);
 		roleBox = new JComboBox<String>();
 		roleBox.setOpaque(false);
-		roleBox.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		roleBox.setFont(font);
 		roleBox.setBorder(new EmptyBorder(0,0,0,0));;
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());
