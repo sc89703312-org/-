@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import edu.nju.express.blservice.CommodityBlService;
 import edu.nju.express.businesslogic.accountbl.Info.CommodityInfo;
+import edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
@@ -25,7 +26,7 @@ import edu.nju.express.vo.ExitReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
-public class CommodityBl implements CommodityBlService,CommodityInfo{
+public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityApproveInfo{
 	
 	CommodityDataService commodityDataService;
 	StationInfo stationInfo;
@@ -412,6 +413,30 @@ public class CommodityBl implements CommodityBlService,CommodityInfo{
 		commodityDataService.moveGoods(comID, data);
 		
 		return ResultMessageV2.SUCCESS;
+	}
+
+	@Override
+	public ArrayList<EnterReceiptVO> viewAllEnterReceiptSubmitted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveEnterReceipt(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ExitReceiptVO> viewAllExitReceiptSubmitted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveExitReceipt(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.businesslogic.commoditybl.StationInfo;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
+import edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
@@ -21,7 +22,7 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 
 
-public class StationReceiptBl implements StationReceiptBlService, StationInfo{
+public class StationReceiptBl implements StationReceiptBlService, StationInfo, StationApproveInfo{
 	
 	StationDataService stationDataService;
 	OrderInfo orderInfo;
@@ -277,6 +278,23 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 		
 	}
 	
+	
+	@Override
+	public ArrayList<ArriveReceiptVO> viewAllArriveReceiptSubmitted() {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<TransferReceiptVO> viewAllTransferReceiptSubmitted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	@Override
 	public OrderVO po_to_vo_order(OrderPO po){
 		
@@ -302,6 +320,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo{
 		return po;
 		
 	}
-	
+
+
 	
 }
