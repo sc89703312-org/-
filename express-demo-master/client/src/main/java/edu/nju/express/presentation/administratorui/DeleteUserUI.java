@@ -1,7 +1,9 @@
 package edu.nju.express.presentation.administratorui;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,12 +18,15 @@ public class DeleteUserUI extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int width=900,height=600;
-	int y = 50;		//由标题栏高度决定
+	private static int width=900,height=600;
+	private static int y = 50;		//由标题栏高度决定
+	private static int x =240;
+	
+	AdministratorController controller;
+
 	LabelTextField id;
 	JButton confirm;
-	AdministratorController controller;
-	JPanel p ;
+	JPanel p;
 	
 	public DeleteUserUI(AdministratorController c) {
 		controller = c;
@@ -37,19 +42,18 @@ public class DeleteUserUI extends MainPanel{
 		p.setOpaque(false);
 
 		
-		id = new LabelTextField("ID ", 15);
-		id.setSize(300, 100);
-		id.setLocation(180, 60);
+		id = new LabelTextField(" ID  ", 15);
+		id.setBounds(200, 90,200,28);
 		p.add(id);
 		
 		confirm = new ConfirmButton();
 		p.add(confirm);
-		confirm.setLocation(270, 260);
+		confirm.setLocation(270, 200);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("DeleteUser");
 		
 		this.add(p);
-		p.setBounds((int)(width*0.2), y, (int)(width*0.8), height);
+		p.setBounds(x, y, width-x, height-y);
 	}
 
 	public String getID(){

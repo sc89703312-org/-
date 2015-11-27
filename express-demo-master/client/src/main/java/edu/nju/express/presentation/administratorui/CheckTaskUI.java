@@ -1,5 +1,6 @@
 package edu.nju.express.presentation.administratorui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
@@ -17,18 +18,20 @@ public class CheckTaskUI extends MainPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	int width = 900, height = 600;
-	int y = 50;		//由标题栏高度决定
-
+	static int width = 900, height = 600;
+	static int y = 50;		//由标题栏高度决定
+	static int LABEL_HEIGHT = 6;
+	static int ROW_HEIGHT = 28;
+	static int x=240;
+	static int h=50;
+	
 	AdministratorController controller;
 	UserBlService us;
 	JPanel p;
 	MyTablePanel table1, table2;
 	JLabel label1, label2;
 
-	int LABEL_HEIGHT = 6;
-	int ROW_HEIGHT = 20;
-	Font FONT = new Font("微软雅黑",Font.PLAIN,15);
+
 
 	public CheckTaskUI(AdministratorController c) {
 		controller = c;
@@ -41,7 +44,7 @@ public class CheckTaskUI extends MainPanel {
 	private void initTable() {
 		p = new JPanel();
 		p.setOpaque(false);
-		p.setBounds((int) (width * 0.2), y, (int) (width * 0.8), height);
+		p.setBounds(x, y+h, width-x, height-y);
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		
 		this.add(p);
@@ -55,7 +58,10 @@ public class CheckTaskUI extends MainPanel {
 		table2.setRowHeight(ROW_HEIGHT);
 		
 		initData();
-
+		table1.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h));
+		table1.setBounds(x+30, y +h, width - x-60,height - y-h-30);
+		table2.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h));
+		table2.setBounds(x+30, y +h, width - x-60,height - y-h-30);
 		p.add(table1);
 		p.add(table2);
 	}

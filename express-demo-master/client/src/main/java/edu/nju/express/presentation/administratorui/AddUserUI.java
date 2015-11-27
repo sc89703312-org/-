@@ -19,10 +19,10 @@ import edu.nju.express.vo.UserVO;
 public class AddUserUI extends MainPanel {
 
 	private static final long serialVersionUID = 1L;
-	int width=900,height=600;
-	int y = 50;		//由标题栏高度决定
-	int x = 240;
-	static Font font = new Font("黑体", Font.PLAIN, 16);
+	private static int width=900,height=600;
+	private static int y = 50;		//由标题栏高度决定
+	private static int x =240;
+	private static Font font = new Font("黑体", Font.PLAIN, 16);
 	
 	AdministratorController controller;
 
@@ -51,34 +51,34 @@ public class AddUserUI extends MainPanel {
 		p.setLayout(null);
 		this.add(p);
 
-		p.setBounds(x, y, width-x, height);
+		p.setBounds(x, y+30, width-x, height-y-30);
 		
-		id = new LabelTextField(" ID ",15);
-		id.setBounds(270+100, 90,200,25);
+		id = new LabelTextField(" ID   ",15);
+		id.setBounds((width-x-350)/2, 30,350,40);
 		p.add(id);
 		
-		name = new LabelTextField("姓名",15);
-		name.setBounds((p.getWidth()-350)/2, 80, 350,40);
+		name = new LabelTextField("姓名  ",15);
+		name.setBounds((width-x-350)/2, 80, 350,40);
 		p.add(name);
 
 		JPanel jp = new JPanel();
 		jp.setOpaque(false);
 		roleLabel = new JLabel("职务  ");
 		roleLabel.setForeground(Color.white);
-		roleLabel.setFont(font ); 
+		roleLabel.setFont( font); 
 		jp.add(roleLabel);
 		roleBox = new JComboBox<String>();
 		roleBox.setOpaque(false);
-		roleBox.setFont(font);
+		roleBox.setFont(new Font("黑体", Font.PLAIN, 14));
 		roleBox.setBorder(new EmptyBorder(0,0,0,0));;
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());
 		jp.add(roleBox);
-		jp.setBounds((p.getWidth()-350)/2, 130, 350,40);
+		jp.setBounds((width-x-350)/2, 130, 350,40);
 		p.add(jp);
 		
-		password = new LabelTextField("密码",15);
-		password.setBounds((p.getWidth()-350)/2, 190, 350,40);
+		password = new LabelTextField("密码  ",15);
+		password.setBounds((width-x-350)/2, 190, 350,40);
 		p.add(password);
 		
 		confirm = new ConfirmButton();
