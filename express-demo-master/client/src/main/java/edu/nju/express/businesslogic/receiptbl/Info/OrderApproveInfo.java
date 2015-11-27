@@ -11,4 +11,6 @@ public interface OrderApproveInfo {
 	public ArrayList<OrderVO> viewAllOrderSubmitted();
 	
 	public void approveOrder(String id);
+	
+	public ArrayList<OrderVO> viewAllOrder();
 }

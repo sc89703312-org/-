@@ -10,4 +10,6 @@ public interface CostApproveInfo {
     public ArrayList<Balancevo> viewAllCostSubmitted();
 	
 	public void approveCost(String id);
+	
+	public ArrayList<Balancevo> viewAllCost();
 }

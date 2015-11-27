@@ -9,4 +9,6 @@ public interface PaymentApproveInfo {
 	public ArrayList<Paymentvo> viewAllPaymentSubmitted();
 	
 	public void approvePayment(String id);
+	
+	public ArrayList<Paymentvo> viewAll();
 }

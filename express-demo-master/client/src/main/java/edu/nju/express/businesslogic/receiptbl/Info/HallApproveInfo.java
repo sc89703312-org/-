@@ -13,12 +13,18 @@ public interface HallApproveInfo {
 	
 	public void approveArrivalReceipt(String id);
 	
+	public ArrayList<ArrivalReceiptVO> viewAllArrivalReceipt();
+	
     public ArrayList<HallTransferReceiptVO> viewAllHallTransferReceiptSubmitted();
 	
 	public void approveHallTransferReceipt(String id);
 	
+	public ArrayList<HallTransferReceiptVO> viewAllHallTransferReceipt();
+	
 	public ArrayList<DeliverReceiptVO> viewAllDeliverReceiptSubmitted();
 	
 	public void approveDeliverReceipt(String id);
+	
+	public ArrayList<DeliverReceiptVO> viewAllDeliverReceipt();
 	
 }

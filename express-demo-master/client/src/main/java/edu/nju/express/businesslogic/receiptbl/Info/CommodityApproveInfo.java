@@ -13,7 +13,11 @@ public interface CommodityApproveInfo {
 	
 	public ResultMessage approveEnterReceipt(String id);
 	
+	public ArrayList<EnterReceiptVO> viewAllEnterReceipt();
+	
 	public ArrayList<ExitReceiptVO> viewAllExitReceiptSubmitted();
 	
 	public ResultMessage approveExitReceipt(String id);
+	
+	public ArrayList<ExitReceiptVO> viewAllExitReceipt();
 }
