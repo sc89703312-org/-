@@ -256,7 +256,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		submitBtn = new JButton("submit");
 		submitBtn.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		submitBtn.setBounds(50, 510, 60, 20);
+		submitBtn.setBounds(50, 510, 90, 30);
 		submitBtn.addActionListener(controller);
 		
 		panel.add(back);

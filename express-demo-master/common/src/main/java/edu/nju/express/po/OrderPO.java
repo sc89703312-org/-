@@ -1,6 +1,7 @@
 package edu.nju.express.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
@@ -34,6 +35,7 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	ArrivalState arrivalState;
 	String expectedTime;
 	String currentSpot;
+	ArrayList<String> history;
 	String Deliver=null;
 	
 	public OrderPO(String sname,String saddress,String spost,String stel,String sphone,String rname,String raddress
@@ -61,6 +63,15 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 		this.arrivalState=arrivalState;
 		this.expectedTime=expectedTime;
 		this.currentSpot=currentSpot;
+		history = new ArrayList<String>();
+	}
+	
+	/**
+	 * 创建订单的时候要手动调用一下这个方法
+	 * @param spot
+	 */
+	public void addHistory(String spot){
+		this.history.add(spot);
 	}
 	
 	public void setDeliver(String name){
@@ -164,5 +175,9 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	
 	public String getDeliver(){
 		return this.Deliver;
+	}
+	
+	public ArrayList<String> viewHistory(String id){
+		return this.history;
 	}
 }

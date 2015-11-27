@@ -93,7 +93,26 @@ public class HallReceiptBL implements HallReceiptBlService{
 		// TODO Auto-generated method stub
 		return deliverList;
 	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ResultMessage approveArrival(String id){
+		return ResultMessage.INVALID;
+	}
+	
+	public ResultMessage approveTransfer(String id){
+		return ResultMessage.INVALID;
+	}
 
+	public ResultMessage approveDeliver(String id){
+		return ResultMessage.INVALID;
+	}
+	
+	
 	
 
 }
