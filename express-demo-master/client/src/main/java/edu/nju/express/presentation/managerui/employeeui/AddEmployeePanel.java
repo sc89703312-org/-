@@ -59,11 +59,11 @@ public class AddEmployeePanel extends MainPanel {
 		jbtReturn.addActionListener(controller);
 		p.add(jbtReturn);
 
-		id = new LabelTextField(" ID ",15);
+		id = new LabelTextField("ID    ",15);
 		id.setBounds((width-350)/2, 80,350,40);
 		p.add(id);
 		
-		name = new LabelTextField("姓名",15);
+		name = new LabelTextField("姓名  ",15);
 		name.setBounds((width-350)/2, 130, 350,40);
 		p.add(name);
 
@@ -71,11 +71,12 @@ public class AddEmployeePanel extends MainPanel {
 		jp.setOpaque(false);
 		roleLabel = new JLabel("职务  ");
 		roleLabel.setForeground(Color.white);
-		roleLabel.setFont( new Font("微软雅黑", Font.PLAIN, 16)); 
+		roleLabel.setFont( new Font("黑体", Font.PLAIN, 16)); 
 		jp.add(roleLabel);
+		
 		roleBox = new JComboBox<String>();
 		roleBox.setOpaque(false);
-		roleBox.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		roleBox.setFont(new Font("黑体", Font.PLAIN, 14));
 		roleBox.setBorder(new EmptyBorder(0,0,0,0));;
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());

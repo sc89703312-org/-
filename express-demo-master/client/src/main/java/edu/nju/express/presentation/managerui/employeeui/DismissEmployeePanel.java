@@ -45,13 +45,13 @@ public class DismissEmployeePanel extends MainPanel {
 		p.add(jbtReturn);
 
 		
-		id = new LabelTextField("ID ", 15);
-		id.setSize(300, 100);
-		id.setLocation(width/2-150, 80);
+		id = new LabelTextField("ID   ", 15);
+		id.setSize(350, 40);
+		id.setLocation((width-350)/2, 90);
 		p.add(id);
 		
 		confirm = new ConfirmButton();
-		confirm.setLocation((width-confirm.getWidth())/2, 140);
+		confirm.setLocation((width-confirm.getWidth())/2, 180);
 		p.add(confirm);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("DismissEmployee");

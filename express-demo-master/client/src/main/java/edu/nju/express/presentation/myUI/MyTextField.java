@@ -40,7 +40,7 @@ public class MyTextField extends JTextField {
 		
 		field = this;
 		this.setFont(font);
-		this.setBounds(500, 90, 100, 25);
+		this.setBounds(500, 90, 100, 28);
 		this.setForeground(fore1);
 		this.setBackground(back1);
 //		this.setHorizontalAlignment(JLabel.CENTER);
@@ -89,10 +89,6 @@ public class MyTextField extends JTextField {
 			}
 		});
 
-	}
-
-	public String getText() {
-		return this.getText();
 	}
 
 	public void setErrorField(){

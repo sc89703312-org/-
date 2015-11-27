@@ -59,22 +59,22 @@ public class OrganizationUI extends MainPanel {
 		buttons.setOpaque(false);
 
 		addStation = new JButton("新增中转中心");
-		addStation.setActionCommand("AddStation");
+		addStation.setActionCommand("AddStationUI");
 		addStation.addActionListener(controller);
 		buttons.add(addStation);
 
 		deleteStation = new JButton("删除中转中心");
-		deleteStation.setActionCommand("DeleteStation");
+		deleteStation.setActionCommand("DeleteStationUI");
 		deleteStation.addActionListener(controller);
 		buttons.add(deleteStation);
 
 		addHall = new JButton("新增营业厅");
-		addHall.setActionCommand("AddHall");
+		addHall.setActionCommand("AddHallUI");
 		addHall.addActionListener(controller);
 		buttons.add(addHall);
 
 		deleteHall = new JButton("删除营业厅");
-		deleteHall.setActionCommand("DeleteHall");
+		deleteHall.setActionCommand("DeleteHallUI");
 		deleteHall.addActionListener(controller);
 		buttons.add(deleteHall);
 
