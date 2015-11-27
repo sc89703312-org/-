@@ -1,6 +1,6 @@
 package edu.nju.express.data.balancedata;
 
-import java.rmi.RemoteException;
+
 import java.util.ArrayList;
 
 import edu.nju.express.common.ResultMessage;
@@ -22,6 +22,10 @@ public interface BalanceDao {
 	public ArrayList<Balancepo> getAll() ;
 	
 	public ArrayList<Balancepo> showAll();
+	
+    public ArrayList<Balancepo> viewAllCostSubmitted();
+	
+    public Balancepo findById(String id);
 	
 	public void flush();
 }

@@ -19,6 +19,8 @@ public interface PaymentDao {
 	public ArrayList<Paymentpo> viewByDate(String date);
 	
 	
+	public ArrayList<Paymentpo> viewAllPaymentSubmitted();
+	
 	public ArrayList<Paymentpo> getAll();
 	
 	public ArrayList<Paymentpo> showAll();

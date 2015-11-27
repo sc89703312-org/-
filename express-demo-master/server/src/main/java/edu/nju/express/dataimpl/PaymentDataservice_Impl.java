@@ -86,6 +86,13 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 		System.out.println("data_impl does");
 		paymentDao.flush();
 	}
+
+	@Override
+	public ArrayList<Paymentpo> viewAllPaymentSubmitted()
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return paymentDao.viewAllPaymentSubmitted();
+	}
 	
 	
 

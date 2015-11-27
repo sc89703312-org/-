@@ -15,40 +15,19 @@ import edu.nju.express.vo.ReceiptVOBase;
 
 public class ReceiptBl implements ReceiptBlService {
 
-	OrderBL order;
-	Paymentbl payment;
-	HallReceiptBL hall;
-	StationReceiptBl stationbl;
-
-	ArrayList<ReceiptVOBase> list;
-
-	public ReceiptBl() {
-//		payment = new MockPayment(null);
-		hall = new MockHall(null,null);
-		list = new ArrayList<ReceiptVOBase>();
-	}
-
+	
+	
+	
 	@Override
 	public ArrayList<ReceiptVOBase> view() {
-		
-		list.addAll(payment.viewAll());
-		list.addAll(hall.viewAllArrival());
-		list.addAll(hall.viewAllDeliver());
-		list.addAll(hall.viewAllTransfer());
-//		list.addAll(stationbl.viewAllArrive());
-//		list.addAll(stationbl.viewAllTransfer());
-
-		return list;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void approve(String id) {
+		// TODO Auto-generated method stub
 		
-		for (int i = 0; i < list.size(); i++) {
-			switch(id.substring(0, 4)){
-			case"2015":	((MockHall)hall).approve(id);break;
-			}
-		}
 	}
 
 	@Override
@@ -56,6 +35,7 @@ public class ReceiptBl implements ReceiptBlService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	
 }

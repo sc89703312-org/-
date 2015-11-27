@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.CommonData;
 import edu.nju.express.common.DefineList;
+import edu.nju.express.common.ReceiptState;
 import edu.nju.express.po.Paymentpo;
 
 public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao  {
@@ -27,7 +28,7 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 	public ArrayList<Paymentpo> viewByHall(String number) {
 		// TODO Auto-generated method stub
 		
-		ArrayList<Paymentpo> payments = inList.getAll();
+		ArrayList<Paymentpo> payments = inList.showAll();
 		ArrayList<Paymentpo> temps = new ArrayList<Paymentpo>();
 		for(int i=0;i<payments.size();i++){
 			if(payments.get(i).getCourier_id().substring(0, 6).equals(number))
@@ -40,10 +41,26 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 	@Override
 	public ArrayList<Paymentpo> viewByDate(String date) {
 		// TODO Auto-generated method stub
-		ArrayList<Paymentpo> payments = inList.getAll();
+		ArrayList<Paymentpo> payments = inList.showAll();
 		ArrayList<Paymentpo> temps = new ArrayList<Paymentpo>();
 		for(int i=0;i<payments.size();i++){
 			if(payments.get(i).getDate().equals(date))
+			   temps.add(payments.get(i));
+		}
+		
+		return temps;
+	}
+
+
+
+
+	@Override
+	public ArrayList<Paymentpo> viewAllPaymentSubmitted() {
+		// TODO Auto-generated method stub
+		ArrayList<Paymentpo> payments = inList.showAll();
+		ArrayList<Paymentpo> temps = new ArrayList<Paymentpo>();
+		for(int i=0;i<payments.size();i++){
+			if(payments.get(i).getState()==ReceiptState.SUBMITTED)
 			   temps.add(payments.get(i));
 		}
 		

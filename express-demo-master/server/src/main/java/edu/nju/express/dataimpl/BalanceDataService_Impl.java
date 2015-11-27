@@ -70,4 +70,18 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 		balanceDao.flush();
 	}
 
+	@Override
+	public ArrayList<Balancepo> viewAllCostSubmitted() throws RemoteException {
+		// TODO Auto-generated method stub
+		return balanceDao.viewAllCostSubmitted();
+	}
+
+	@Override
+	public Balancepo findById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return balanceDao.findById(id);
+	}
+
+
+
 }

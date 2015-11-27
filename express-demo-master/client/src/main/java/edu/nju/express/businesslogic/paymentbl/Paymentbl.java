@@ -39,6 +39,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo {
 		// TODO Auto-generated method stub
 		 
 		boolean exsit = false;
+		ResultMessage temp = ResultMessage.INVALID;
 		
 		ArrayList<BankingAccountVO> accounts = account.getAllAccounts();
 		for(int i=0;i<accounts.size();i++){
@@ -54,22 +55,25 @@ public class Paymentbl implements Paymentblservice,PaymentInfo {
 		}
 		
 		else{
-			System.out.println("Successfully insert a Payment PO");
 			
+		try {
+			temp =paymentDataService.insert(convertVO(vo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			
+		
+		
+		if(temp==ResultMessage.VALID)
 			modify((int)vo.getPay(),vo.getBankaccount());
 			
 			
 			
 			
-//		try {
-//			paymentDataService.insert(convertVO(vo));
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		
-		return ResultMessage.VALID;
+		return temp;
 	}
 	}
 	
@@ -117,6 +121,37 @@ public class Paymentbl implements Paymentblservice,PaymentInfo {
 		
 		return tempVoList;
 	}
+	
+	
+	
+	public ArrayList<Paymentvo> viewAllPaymentSubmitted(){
+		
+		
+		ArrayList<Paymentvo> temps = new ArrayList<>();
+		
+		try {
+			for(Paymentpo po:paymentDataService.viewAllPaymentSubmitted()){
+				temps.add(convertPO(po));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return temps;
+	}
+	
+	public void approvePayment(String id){
+		try {
+			Paymentpo po = paymentDataService.find(id);
+		    po.approve();
+		    paymentDataService.update(id, po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	
 	

@@ -145,4 +145,39 @@ public class CostControlbl implements CostControlService,CostControlInfo{
 		return temps;
 	}
 	
+	
+	
+	
+	
+	public ArrayList<Balancevo> viewAllCostSubmitted(){
+      ArrayList<Balancevo> temps=new ArrayList<>();
+		
+		try {
+			ArrayList<Balancepo> balancepos = balancedataservice.viewAllCostSubmitted();
+		
+		
+			for(int i=0;i<balancepos.size();i++)
+				temps.add(convertPO(balancepos.get(i)));
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return temps;
+		
+	}
+	
+	
+	public void approveCost(String id){
+		
+		try {
+			Balancepo submintted = balancedataservice.findById(id);
+			submintted.approve();
+			balancedataservice.update(submintted, id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

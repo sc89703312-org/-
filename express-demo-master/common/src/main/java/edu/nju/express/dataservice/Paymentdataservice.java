@@ -20,6 +20,7 @@ public interface Paymentdataservice extends Remote{
 	public ArrayList<Paymentpo> viewByHall(String number) throws RemoteException;
 	public ArrayList<Paymentpo> viewByDate(String date) throws RemoteException;
 	
+	public ArrayList<Paymentpo> viewAllPaymentSubmitted() throws RemoteException;
 	
 	public ArrayList<Paymentpo> getAll() throws RemoteException;
 	
