@@ -69,6 +69,21 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 
 
 
+
+	@Override
+	public ArrayList<String> viewAllOrderListByHall(String HallID) {
+		// TODO Auto-generated method stub
+		ArrayList<String> orderList = new ArrayList<>();
+		ArrayList<Paymentpo> payments = inList.showAll();
+		for(Paymentpo po:payments){
+			if(po.getHall_Id().equals(HallID))
+				orderList.add(po.getOrder_id());
+		}
+		return orderList;
+	}
+
+
+
 	
 
 }

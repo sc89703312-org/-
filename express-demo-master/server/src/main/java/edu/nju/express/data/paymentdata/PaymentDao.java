@@ -25,5 +25,7 @@ public interface PaymentDao {
 	
 	public ArrayList<Paymentpo> showAll();
 	
+	public ArrayList<String> viewAllOrderListByHall(String HallID);
+	
 	public void flush();
 }

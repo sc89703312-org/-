@@ -24,6 +24,7 @@ public interface Paymentdataservice extends Remote{
 	
 	public ArrayList<Paymentpo> getAll() throws RemoteException;
 	
+	public ArrayList<String> viewAllOrderListByHall(String HallID)throws RemoteException;
 	
 	public void flush() throws RemoteException;
 }

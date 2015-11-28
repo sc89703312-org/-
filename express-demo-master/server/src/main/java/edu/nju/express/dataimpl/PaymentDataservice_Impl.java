@@ -93,6 +93,13 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 		// TODO Auto-generated method stub
 		return paymentDao.viewAllPaymentSubmitted();
 	}
+
+	@Override
+	public ArrayList<String> viewAllOrderListByHall(String HallID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return paymentDao.viewAllOrderListByHall(HallID);
+	}
 	
 	
 

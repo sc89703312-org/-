@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.businesslogic.balancebl.PaymentList.Info.PaymentInfo;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
+import edu.nju.express.businesslogic.hallbl.info.PaymentOrderInfo;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.PaymentApproveInfo;
 import edu.nju.express.common.ResultMessage;
@@ -18,7 +19,7 @@ import edu.nju.express.vo.Paymentvo;
 
 
 
-public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInfo {
+public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInfo,PaymentOrderInfo {
 
 	ArrayList<Paymentpo> tempArrayList = new ArrayList<Paymentpo>();
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
@@ -181,5 +182,23 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	public void modify(int pay,String name){
 		this.account.modify(pay,name);
 	}
+
+
+
+	@Override
+	public ArrayList<String> getOrderListByHall(String HallId) {
+		// TODO Auto-generated method stub
+		try {
+			return paymentDataService.viewAllOrderListByHall(HallId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+	
 	
 }

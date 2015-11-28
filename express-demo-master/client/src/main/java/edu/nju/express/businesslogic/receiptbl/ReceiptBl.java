@@ -10,7 +10,6 @@ import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.CostApproveInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo;
-import edu.nju.express.businesslogic.receiptbl.Info.OrderApproveInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.PaymentApproveInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
@@ -24,7 +23,6 @@ public class ReceiptBl implements ReceiptBlService {
 	CommodityApproveInfo commodityBL;
 	CostApproveInfo costBL;
 	HallApproveInfo hallBL;
-	OrderApproveInfo orderBL;
 	PaymentApproveInfo paymentBL;
 	StationApproveInfo stationBL;
 	
@@ -32,14 +30,12 @@ public class ReceiptBl implements ReceiptBlService {
 	public ReceiptBl(CommodityApproveInfo commodityBL,
 	CostApproveInfo costBL,
 	HallApproveInfo hallBL,
-	OrderApproveInfo orderBL,
 	PaymentApproveInfo paymentBL,
 	StationApproveInfo stationBL) {
 		// TODO Auto-generated constructor stub	
 	this.commodityBL = commodityBL;	
 	this.costBL = costBL;	
-	this.hallBL = hallBL;	
-	this.orderBL = orderBL;	
+	this.hallBL = hallBL;		
 	this.paymentBL = paymentBL;	
 	this.stationBL = stationBL;
 	
@@ -49,7 +45,16 @@ public class ReceiptBl implements ReceiptBlService {
 	@Override
 	public ArrayList<ReceiptVOBase> view() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		
+		ArrayList<ReceiptVOBase> allReceipts = new ArrayList<>();
+		allReceipts.addAll(paymentBL.viewAll());
+		allReceipts.addAll(costBL.viewAllCost());
+		allReceipts.addAll(hallBL.viewAllArrivalReceipt());
+		allReceipts.addAll(hallBL.viewAllDeliverReceipt());
+		allReceipts.addAll(hallBL.viewAllHallTransferReceipt());
+
+		return allReceipts;
 	}
 
 	@Override
