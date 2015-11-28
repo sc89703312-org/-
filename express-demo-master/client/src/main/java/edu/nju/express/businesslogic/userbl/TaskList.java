@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.dataservice.UserMessageDataService;
+import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.vo.UserMessageVO;
 
@@ -14,7 +15,7 @@ public class TaskList {
 	UserMessageDataService userMessageData;
 
 	public TaskList() {
-		
+		userMessageData = RMIHelper.getUserMessageDataService();
 	}
 	
 	public ArrayList<UserMessageVO> viewTask() {

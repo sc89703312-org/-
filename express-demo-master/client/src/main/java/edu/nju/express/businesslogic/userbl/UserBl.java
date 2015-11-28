@@ -10,6 +10,7 @@ import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.dataservice.UserMessageDataService;
+import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.EmployeeVO;
@@ -22,12 +23,10 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	TaskList task;
 
 	public UserBl() {
+		userData = RMIHelper.getUserDataService();
+		userMessageData = RMIHelper.getUserMessageDataService();
 	}
 
-	
-	
-	
-	
 	
 	
 	
@@ -68,6 +67,10 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		return ResultMessage.INVALID;
 	}
 
+	
+	
+	
+	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList() {
 		ArrayList<UserPO> listPo = null;
 		ArrayList<EmployeeVO> listVo = new ArrayList<EmployeeVO>();
@@ -83,17 +86,27 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		return listVo;
 	}
 
+	
+	
+	
 	EmployeeVO convertToVO(UserPO po) {
 
 		return new EmployeeVO(po.getId(), po.getName(), po.getRole());
 	}
 
+	
+	
+	
 	@Override
 	public ArrayList<UserMessageVO> viewTask() {
 		task = new TaskList();
 		return task.viewTask();
 	}
-
+	
+	
+	
+	
+	@Override
 	public ResultMessage createUserMessage(StaffChange operation, String id, String name, Role role) {
 
 		ResultMessage rm = ResultMessage.INVALID;
@@ -101,7 +114,7 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 			try {
 
-				if (userData.find(id) == null) {
+				if (userMessageData.find(id) ==null) {
 					userMessageData.insert(new UserMessagePO(operation, id, name, role));
 					rm = ResultMessage.VALID;
 				}
@@ -128,6 +141,12 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 	public ResultMessage deleteUserMessage(String id) {
 
+		try {
+			return userMessageData.delete(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 
 	}

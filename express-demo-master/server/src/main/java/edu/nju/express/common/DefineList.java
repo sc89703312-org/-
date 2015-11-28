@@ -99,6 +99,8 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	
 	public ResultMessage delete(String id){
 		
+		if(list.size()==0)
+			return ResultMessage.INVALID;
 		
 		if(binaryFind(0, list.size()-1, id)==-1)
 			return ResultMessage.INVALID;
@@ -114,6 +116,9 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 
 	public E find(String id){
 	
+		
+		if(list.size()==0)
+			return null;
 		return list.get(binaryFind(0, list.size()-1, id));
 	}
 	
@@ -122,6 +127,10 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	
 	public ResultMessage update(String id, E po){
 		
+		
+		
+		if(list.size()==0)
+			return ResultMessage.INVALID;
 		
 		int index = binaryFind(0, list.size()-1, id);
 		list.remove(index);
