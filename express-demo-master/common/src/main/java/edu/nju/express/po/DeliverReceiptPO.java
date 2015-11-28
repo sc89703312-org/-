@@ -2,8 +2,6 @@ package edu.nju.express.po;
 
 import java.util.ArrayList;
 
-import edu.nju.express.common.ReceiptState;
-
 
 
 public class DeliverReceiptPO extends ReceiptPOBase{
@@ -15,11 +13,11 @@ public class DeliverReceiptPO extends ReceiptPOBase{
 	private String deliver;
 	private ArrayList<OrderPO> list;
 	
-	public DeliverReceiptPO(String id,String date, String deliver, ReceiptState state){
+	public DeliverReceiptPO(String id,String date, String deliver, ArrayList<OrderPO> list){
 		this.id="DeliverReceipt"+id;
 		this.date=date;
 		this.deliver=deliver;
-		this.state=state;
+		this.list = list;
 	}
 	
 	public String getDeliver(){
@@ -30,5 +28,8 @@ public class DeliverReceiptPO extends ReceiptPOBase{
 		list.add(po);
 	}
 	
+	public ArrayList<OrderPO> getOrderList(){
+		return list;
+	}
 	
 }

@@ -21,18 +21,20 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 	private String guard;
 	private ArrayList<OrderPO> orderlist;
 	
-	public HallTransferReceiptPO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
-			String supervisor,String guard){
+	public HallTransferReceiptPO(String date,String hallID,String transportID,String to, String carID,
+			String supervisor,String guard,ArrayList<OrderPO> orderlist){
 		
 		this.id = "HallTransferReceipt"+hallID+transportID;
 		this.date=date;
-		this.state=state;
+		this.state = ReceiptState.SUBMITTED;
 		this.hallID=hallID;
 		this.transportID=transportID;
 		this.to=to;
 		this.carID=carID;
 		this.supervisor=supervisor;
 		this.guard=guard;
+		this.orderlist = orderlist;
+		
 	}
 	
 	public String getHallID(){
@@ -62,8 +64,5 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 	public ArrayList<OrderPO> getOrderlist(){
 		return orderlist;
 	}
-	
-	public void addOrderItem(OrderPO po){
-		orderlist.add(po);
-	}
+
 }

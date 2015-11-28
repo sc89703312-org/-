@@ -16,21 +16,16 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 	 * 
 	 */
 	private String from;
-	private String currentSpot;
 	private GoodsState goodsState;
 	private ArrayList<OrderVO> list;
 	
-	public ArrivalReceiptVO(String id, String date, String from,String currentSpot, GoodsState gstate,ReceiptState state){
+	public ArrivalReceiptVO(String id, String date, String from, GoodsState gstate, ArrayList<OrderVO> voList){
 		this.id="ArrivalReceipt"+id;
 		this.date=date;
 		this.from=from;
-		this.currentSpot=currentSpot;
 		this.goodsState=gstate;
-		this.state=state;
-		this.list =new ArrayList<OrderVO>();
-	}
-
-	
+		this.list = voList;
+	}	
 	
 	public String getFrom(){
 		return from;
@@ -40,22 +35,8 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 		return goodsState;
 	}
 	
-	public ArrayList<OrderVO> getOrderlist(){
+	public ArrayList<OrderVO> getOrderList(){
 		return this.list;
-	}
-	
-	public String getCurrentSpot(){
-		return this.currentSpot;
-	}
-	
-	public void resetOrderLoca(){
-		for(OrderVO ordervo:list){
-			ordervo.setCurrentSpot(currentSpot);
-		}
-	}
-	
-	public void addOrderItem(OrderVO vo){
-		list.add(vo);
 	}
 
 }

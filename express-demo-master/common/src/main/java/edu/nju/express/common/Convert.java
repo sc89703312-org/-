@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import edu.nju.express.po.ArrivalReceiptPO;
 import edu.nju.express.po.ArriveReceiptPO;
 import edu.nju.express.po.ComGoodsPO;
+import edu.nju.express.po.DeliverReceiptPO;
 import edu.nju.express.po.EnterReceiptPO;
 import edu.nju.express.po.ExitReceiptPO;
+import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.ComGoodsVO;
+import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.EnterReceiptVO;
 import edu.nju.express.vo.ExitReceiptVO;
+import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
@@ -100,7 +104,9 @@ public class Convert {
 		ArrayList<ComGoodsPO> goodspo = po.getGoods();
 		ArrayList<ComGoodsVO> goodsvo = new ArrayList<ComGoodsVO>();
 		for(int i=0;i<goodspo.size();i++)
-			goodsvo.add(new ComGoodsVO(po_to_vo_order(goodspo.get(i).getOrder()),goodspo.get(i).getType(),goodspo.get(i).getLine(),goodspo.get(i).getShelf(),goodspo.get(i).getCell()));
+			goodsvo.add(new ComGoodsVO(po_to_vo_order(goodspo.get(i).getOrder()),
+					goodspo.get(i).getType(),goodspo.get(i).getLine(),goodspo.get(i).getShelf(),
+					goodspo.get(i).getCell()));
 			
 		EnterReceiptVO vo = new EnterReceiptVO(goodsvo,po.getID(),po.getDate(),po.getLocation());
 		
@@ -113,7 +119,9 @@ public class Convert {
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
 		for(int i=0;i<goodsvo.size();i++)
-			goodspo.add(new ComGoodsPO(vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
+			goodspo.add(new ComGoodsPO(vo_to_po_order(goodsvo.get(i).getOrder()),
+					goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),
+					goodsvo.get(i).getCell()));
 			
 		EnterReceiptPO po = new EnterReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		
@@ -126,7 +134,9 @@ public class Convert {
 		ArrayList<ComGoodsPO> goodspo = po.getGoods();
 		ArrayList<ComGoodsVO> goodsvo = new ArrayList<ComGoodsVO>();
 		for(int i=0;i<goodspo.size();i++)
-			goodsvo.add(new ComGoodsVO(po_to_vo_order(goodspo.get(i).getOrder()),goodspo.get(i).getType(),goodspo.get(i).getLine(),goodspo.get(i).getShelf(),goodspo.get(i).getCell()));
+			goodsvo.add(new ComGoodsVO(po_to_vo_order(goodspo.get(i).getOrder()),
+					goodspo.get(i).getType(),goodspo.get(i).getLine(),goodspo.get(i).getShelf(),
+					goodspo.get(i).getCell()));
 			
 		ExitReceiptVO vo = new ExitReceiptVO(goodsvo,po.getID(),po.getDate(),po.getLocation());
 		
@@ -139,7 +149,9 @@ public class Convert {
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
 		for(int i=0;i<goodsvo.size();i++)
-			goodspo.add(new ComGoodsPO(vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
+			goodspo.add(new ComGoodsPO(vo_to_po_order(goodsvo.get(i).getOrder()),
+					goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),
+					goodsvo.get(i).getCell()));
 			
 		ExitReceiptPO po = new ExitReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		
@@ -147,10 +159,60 @@ public class Convert {
 		
 	}
     
-//    public static ArrivalReceiptVO po_to_vo_arrival(ArrivalReceiptPO po){
-//    	
-//    	
-//    	
-//    }
+    public static ArrivalReceiptVO po_to_vo_arrival(ArrivalReceiptPO po){
+    	
+    	ArrivalReceiptVO vo = new ArrivalReceiptVO(po.getId(),po.getDate(),po.getFrom(),
+    			po.getGoodsState(),po_to_vo_orderlist(po.getOrderList()));
+    	
+    	return vo;
+    	
+    }
+    
+    public static ArrivalReceiptPO vo_to_po_arrival(ArrivalReceiptVO vo){
+    	
+    	ArrivalReceiptPO po = new ArrivalReceiptPO(vo.getId(),vo.getDate(),vo.getFrom(),
+    			vo.getGoodsState(),vo_to_po_orderlist(vo.getOrderList()));
+    	
+    	return po;
+    	
+    }
+    
+    public static HallTransferReceiptVO po_to_vo_halltransfer(HallTransferReceiptPO po){
+    	
+    	HallTransferReceiptVO vo = new HallTransferReceiptVO(po.getDate(),po.getHallID(),
+    			po.getTransportID(),po.getDestination(),po.getCarID(),po.getSupervisor(),
+    			po.getGuard(),po_to_vo_orderlist(po.getOrderlist()));
+    	
+    	return vo;
+    	
+    }
+    
+    public static HallTransferReceiptPO vo_to_po_halltransfer(HallTransferReceiptVO vo){
+    	
+    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getDate(),vo.getHallID(),
+    			vo.getTransportID(),vo.getDestination(),vo.getCarID(),vo.getSupervisor(),
+    			vo.getGuard(),vo_to_po_orderlist(vo.getOrderlist()));
+    	
+    	return po;
+    	
+    }
+    
+    public static DeliverReceiptVO po_to_vo_deliver(DeliverReceiptPO po){
+    	
+    	DeliverReceiptVO vo = new DeliverReceiptVO(po.getId(),po.getDate(),
+    			po.getDeliver(),po_to_vo_orderlist(po.getOrderList()));
+    	
+    	return vo;
+    	
+    }
+    
+    public static DeliverReceiptPO vo_to_po_deliver(DeliverReceiptVO vo){
+    	
+    	DeliverReceiptPO po = new DeliverReceiptPO(vo.getId(),vo.getDate(),
+    			vo.getDeliver(),vo_to_po_orderlist(vo.getOrderList()));
+    	
+    	return po;
+    	
+    }
 
 }

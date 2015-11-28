@@ -2,23 +2,18 @@ package edu.nju.express.vo;
 
 import java.util.ArrayList;
 
-import edu.nju.express.common.ReceiptState;
-
 
 
 public class DeliverReceiptVO extends ReceiptVOBase{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private String deliver;
 	private ArrayList<OrderVO> list;
 	
-	public DeliverReceiptVO(String id,String date, String deliver, ReceiptState state){
+	public DeliverReceiptVO(String id,String date, String deliver, ArrayList<OrderVO> list){
 		this.id="DeliverReceipt"+id;
 		this.date=date;
 		this.deliver=deliver;
-		this.state=state;
+		this.list = list;
 	}
 	
 	public String getDeliver(){
@@ -34,4 +29,9 @@ public class DeliverReceiptVO extends ReceiptVOBase{
 	public void addOrderItem(OrderVO vo){
 		list.add(vo);
 	}
+	
+	public ArrayList<OrderVO> getOrderList(){
+		return list;
+	}
+	
 }

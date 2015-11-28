@@ -2,15 +2,9 @@ package edu.nju.express.vo;
 
 import java.util.ArrayList;
 
-import edu.nju.express.common.ReceiptState;
-
 
 public class HallTransferReceiptVO extends ReceiptVOBase{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
 	private String hallID;
 	private String transportID;
 	private String to;
@@ -19,11 +13,10 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 	private String guard;
 	private ArrayList<OrderVO> orderlist;
 	
-	public HallTransferReceiptVO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
-			String supervisor,String guard){
+	public HallTransferReceiptVO(String date,String hallID,String transportID,String to, String carID,
+			String supervisor,String guard, ArrayList<OrderVO> orderlist){
 		
 		this.date=date;
-		this.state=state;
 		this.hallID=hallID;
 		this.transportID=transportID;
 		this.to=to;
@@ -31,6 +24,8 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		this.supervisor=supervisor;
 		this.guard=guard;
 		this.id = "HallTransferReceipt"+hallID+transportID;
+		this.orderlist = orderlist;
+		
 	}
 	
 	public String getHallID(){
@@ -61,7 +56,4 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		return orderlist;
 	}
 	
-	public void addOrderItem(OrderVO vo){
-		orderlist.add(vo);
-	}
 }

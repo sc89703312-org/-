@@ -18,12 +18,13 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 	private GoodsState goodsState;
 	private ArrayList<OrderPO> orderList;
 	
-	public ArrivalReceiptPO(String id, String date, String from,GoodsState gstate,ReceiptState state){
+	public ArrivalReceiptPO(String id, String date, String from,GoodsState gstate, ArrayList<OrderPO> poList){
 		this.id="ArrivalReceipt"+id;
 		this.date=date;
 		this.from=from;
 		this.goodsState=gstate;
-		this.state=state;
+		this.state=ReceiptState.SUBMITTED;
+		this.orderList = poList;
 	}
 
 	
@@ -36,9 +37,8 @@ public class ArrivalReceiptPO extends ReceiptPOBase{
 		return goodsState;
 	}
 	
-	public void addOrderItem(OrderPO po){
-		orderList.add(po);
+	public ArrayList<OrderPO> getOrderList(){
+		return orderList;
 	}
-	
 
 }
