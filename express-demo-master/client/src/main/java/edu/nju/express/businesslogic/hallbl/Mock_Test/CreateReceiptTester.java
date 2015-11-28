@@ -10,7 +10,7 @@ import edu.nju.express.common.ReceiptState;
 import edu.nju.express.vo.ArrivalReceiptVO;
 
 public class CreateReceiptTester {
-	
+	/*
 	@Test
 	public void testArrival(){
 		MockOrder order = new MockOrder();
@@ -22,4 +22,5 @@ public class CreateReceiptTester {
 		assertEquals("Shanghai",order.view("0000000001").getCurrentSpot());
 		
 	}
+	*/
 }

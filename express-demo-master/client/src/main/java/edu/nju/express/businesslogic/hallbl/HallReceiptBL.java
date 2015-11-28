@@ -46,14 +46,7 @@ public class HallReceiptBL implements HallReceiptBlService{
 	@Override
 	public ResultMessage createArrivalReceipt(ArrivalReceiptVO vo) {
 		// TODO Auto-generated method stub
-		if(vo.getId().length()==5){
-			arrivalList.add(vo);
-			for(OrderVO orderi:vo.getOrderlist()){
-				orderi.setCurrentSpot(vo.getCurrentSpot());
-			}
-			return ResultMessage.VALID;
-		}
-		else
+
 		return ResultMessage.INVALID;
 	}
 
