@@ -20,7 +20,7 @@ public class MockHall extends HallReceiptBL{
 		super(null, null);
 		// TODO Auto-generated constructor stub
 	}
-
+/*
 	ArrayList<DeliverReceiptPO> listPo;
 	
 	@Override
@@ -59,4 +59,6 @@ public class MockHall extends HallReceiptBL{
 			listPo.get(i).approve();
 	}
 
+	
+	*/
 }

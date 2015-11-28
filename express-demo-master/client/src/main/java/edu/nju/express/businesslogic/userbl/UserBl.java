@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.UserBlService;
+import edu.nju.express.businesslogic.strategybl.managementbl.Info.UserCreateMessageInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
@@ -14,7 +15,7 @@ import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.UserMessageVO;
 
-public class UserBl implements UserBlService {
+public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 	UserDataService userData;
 	UserMessageDataService userMessageData;
@@ -23,6 +24,13 @@ public class UserBl implements UserBlService {
 	public UserBl() {
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
 		try {
