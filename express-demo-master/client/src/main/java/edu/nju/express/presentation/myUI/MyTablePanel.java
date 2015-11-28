@@ -9,18 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ScrollBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class MyTablePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	int ROW_HEIGHT = 40;
-	int WIDTH = 600;
-	int HEIGHT = 400;
+	int ROW_HEIGHT = 35;
 	Color headerColor = new Color(49, 121, 177);
 	Color foreColor = Color.white;
 	Color backColor1 = new Color(255, 255, 255,50);
@@ -39,11 +39,8 @@ public class MyTablePanel extends JPanel {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
-			
 		};
 
-		
-		
 		headerStr = header;
 		
 		initTable();
@@ -52,11 +49,12 @@ public class MyTablePanel extends JPanel {
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
-		s.setColumnHeaderView(table.getTableHeader());
-		s.getColumnHeader().setOpaque(false);
+//		s.setColumnHeaderView(table.getTableHeader());
+//		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.getVerticalScrollBar().setOpaque(false);
 		s.getVerticalScrollBar().setUI(null);
+		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );;
 		this.add(s);
 		this.setOpaque(false);
 	}
@@ -117,5 +115,13 @@ public class MyTablePanel extends JPanel {
 
 	public JTable getTable(){
 		return table;
+	}
+	
+	public void setColumnWidth(int[] columnWidth){
+		TableColumnModel columnModel = table.getColumnModel();
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+        	// 以数组元素设置列的宽度
+            columnModel.getColumn(i).setMinWidth(columnWidth[i]);
+        }
 	}
 }

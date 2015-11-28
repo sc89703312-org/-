@@ -37,14 +37,14 @@ public class ReceiptApprovalUI extends MainPanel {
 		this.add(new ManageGuide(c));
 
 		JScrollPane s = new JScrollPane(table);
-		s.setBounds(x + 30, y + 50, width - x - 60, height - y - 120);
+		s.setBounds(x + 30, y + 25, width - x - 60, height - y - 105);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
 		s.setColumnHeaderView(table.getTableHeader());
 		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
-		// s.getVerticalScrollBar().setUI(null);
+		s.getVerticalScrollBar().setUI(null);
 		this.add(s);
 
 		jbtApprove = new JButton("审批通过");

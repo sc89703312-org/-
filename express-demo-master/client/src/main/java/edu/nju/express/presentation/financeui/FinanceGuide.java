@@ -17,8 +17,8 @@ public class FinanceGuide extends JPanel{
 	//期初建账，银行账户管理，结算管理，成本管理，统计报表分析
 	JButton account;
 	JButton banking;
-	JButton income;
-	JButton cost;
+	JButton payment;
+	JButton balance;
 	JButton analyze;
 	
 	public FinanceGuide(FinanceController controller) {
@@ -31,19 +31,19 @@ public class FinanceGuide extends JPanel{
 
 	void initGuide() {	
 		
-		cost = new JButton("成本管理");
-		cost.setBounds(60,30,120,40);
-		cost.setActionCommand("SalaryUI");
-		cost.addActionListener(controller);
+		balance = new JButton("成本管理");
+		balance.setBounds(60,30,120,40);
+		balance.setActionCommand("BalanceUI");
+		balance.addActionListener(controller);
 		
-		income = new JButton("结算管理");
-		income.setBounds(60,100,120,40);
-		income.setActionCommand("IncomeUI");
-		income.addActionListener(controller);	
+		payment = new JButton("结算管理");
+		payment.setBounds(60,100,120,40);
+		payment.setActionCommand("PaymentUI");
+		payment.addActionListener(controller);	
 		
 		analyze = new JButton("报表分析");
 		analyze.setBounds(60,170,120,40);
-		analyze.setActionCommand("ConstantUI");
+		analyze.setActionCommand("AnalyzeUI");
 		analyze.addActionListener(controller);
 		
 		banking = new JButton("账户管理");
@@ -58,8 +58,8 @@ public class FinanceGuide extends JPanel{
 		
 		this.add(account);
 		this.add(banking);
-		this.add(income);
-		this.add(cost);
+		this.add(payment);
+		this.add(balance);
 		this.add(analyze);
 
 	}
