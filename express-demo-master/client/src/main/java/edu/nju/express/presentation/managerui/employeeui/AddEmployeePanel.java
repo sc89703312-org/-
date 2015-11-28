@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.Role;
@@ -17,6 +16,7 @@ import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.UserMessageVO;
 
@@ -74,10 +74,7 @@ public class AddEmployeePanel extends MainPanel {
 		roleLabel.setFont( new Font("黑体", Font.PLAIN, 16)); 
 		jp.add(roleLabel);
 		
-		roleBox = new JComboBox<String>();
-		roleBox.setOpaque(false);
-		roleBox.setFont(new Font("黑体", Font.PLAIN, 14));
-		roleBox.setBorder(new EmptyBorder(0,0,0,0));;
+		roleBox = new MyComboBox<String>();
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());
 		jp.add(roleBox);

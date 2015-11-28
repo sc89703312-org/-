@@ -112,6 +112,7 @@ public class ConstantUI extends MainPanel{
 		p.setBounds(x+200,y+70,240,125);
 		p.setOpaque(false);
 		p.getViewport().setOpaque(false);
+		p.getVerticalScrollBar().setUI(null);
 		this.add(p);
 	}
 

@@ -24,7 +24,7 @@ public class MyCheckBoxTable extends JTable {
 	private static final long serialVersionUID = 1L;
 	int ROW_HEIGHT = 30;
 	Color headerColor = new Color(49, 121, 177);
-	Color foreColor = new Color(0, 0, 0);
+	Color foreColor = new Color(255,255,255);
 	Color backColor1 = new Color(255, 255, 255,50);
 	Color backColor2 = new Color(240, 250, 254,50);
 	Font font = new Font("微软雅黑", Font.PLAIN, 15);

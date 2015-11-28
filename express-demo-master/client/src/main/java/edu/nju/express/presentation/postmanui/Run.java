@@ -13,7 +13,7 @@ public class Run {
         f.setUndecorated(true);
    
         JPanel p = null;
-        p = new ProcessOrderUI(new PostmanController(f));
+        p = new PostmanMainUI(new PostmanController(f));
         f.add(p);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

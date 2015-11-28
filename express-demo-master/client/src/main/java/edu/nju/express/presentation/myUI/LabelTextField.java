@@ -5,10 +5,6 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.SoftBevelBorder;
 
 public class LabelTextField extends JPanel{
 	
@@ -19,8 +15,8 @@ public class LabelTextField extends JPanel{
 	JLabel label;
 	MyTextField field;
 	
-	Font font = new Font("黑体", Font.PLAIN, 16);
-	Color color = Color.white;
+	static Font font = new Font("黑体", Font.PLAIN, 16);
+	static Color color = Color.white;
 	
 	public LabelTextField(String text, int columns) {
 		
@@ -34,6 +30,25 @@ public class LabelTextField extends JPanel{
 		
 		field = new MyTextField(columns);
 		this.add(field);
+	}
+	
+public LabelTextField(String text1, int columns,String text2) {
+		
+		this.setOpaque(false);
+		
+		label = new JLabel(text1);
+		label.setFont(font);
+		label.setForeground(color);
+		this.add(label);
+		
+		
+		field = new MyTextField(columns);
+		this.add(field);
+		
+		JLabel label2 = new JLabel(text2);
+		label2.setFont(font);
+		label2.setForeground(color);
+		this.add(label2);
 	}
 	
 	public String getText(){

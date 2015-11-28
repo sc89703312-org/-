@@ -16,6 +16,7 @@ import edu.nju.express.presentation.managerui.organizationui.DeleteHallPanel;
 import edu.nju.express.presentation.managerui.organizationui.DeleteStationPanel;
 import edu.nju.express.presentation.managerui.organizationui.OrganizationUI;
 import edu.nju.express.presentation.managerui.receiptui.RceiptListUI;
+import edu.nju.express.presentation.managerui.receiptui.ReceiptApprovalUI;
 import edu.nju.express.presentation.managerui.salaryui.SalaryUI;
 
 public class ManageController implements ActionListener {
@@ -35,7 +36,7 @@ public class ManageController implements ActionListener {
 
 		if (e.getActionCommand().equals("ReceiptUI")) {
 			frame.getContentPane().removeAll();;
-			currentPanel = new RceiptListUI(this);
+			currentPanel = new ReceiptApprovalUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
@@ -100,7 +101,7 @@ public class ManageController implements ActionListener {
 			frame.validate();
 			frame.repaint();
 		}else if(e.getActionCommand().equals("Approve")){
-			((RceiptListUI)currentPanel).getIDtoApprove();
+			((ReceiptApprovalUI)currentPanel).getIDtoApprove();
 		}else if(e.getActionCommand().equals("GetSalary")){
 			((SalaryUI)currentPanel).getText();
 		}

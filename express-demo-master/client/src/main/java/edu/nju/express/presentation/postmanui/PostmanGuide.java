@@ -13,7 +13,7 @@ public class PostmanGuide extends JPanel {
 
 	PostmanController controller;
 
-	JButton processOrder;
+	JButton createOrder;
 	JButton inquireOrder;
 	JButton confirmReceival;
 
@@ -27,10 +27,10 @@ public class PostmanGuide extends JPanel {
 
 	void initGuide() {
 
-		processOrder = new JButton("处理订单");
-		processOrder.setBounds(60, 30, 120, 40);
-		processOrder.setActionCommand("ProcessOrderUI");
-		processOrder.addActionListener(controller);
+		createOrder = new JButton("新建订单");
+		createOrder.setBounds(60, 30, 120, 40);
+		createOrder.setActionCommand("CreateOrderUI");
+		createOrder.addActionListener(controller);
 
 		inquireOrder = new JButton("查询订单");
 		inquireOrder.setBounds(60, 100, 120, 40);
@@ -43,7 +43,7 @@ public class PostmanGuide extends JPanel {
 		confirmReceival.addActionListener(controller);
 
 
-		this.add(processOrder);
+		this.add(createOrder);
 		this.add(inquireOrder);
 		this.add(confirmReceival);
 

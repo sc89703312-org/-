@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ScrollBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -54,6 +55,8 @@ public class MyTablePanel extends JPanel {
 		s.setColumnHeaderView(table.getTableHeader());
 		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.getVerticalScrollBar().setOpaque(false);
+		s.getVerticalScrollBar().setUI(null);
 		this.add(s);
 		this.setOpaque(false);
 	}
