@@ -87,4 +87,17 @@ public class ConstantDataService_Impl extends UnicastRemoteObject implements Con
 		return constantDao.getCityDistance();
 	}
 
+	@Override
+	public void addCity(String CityID) throws RemoteException {
+		// TODO Auto-generated method stub
+		constantDao.addCity(CityID);
+	}
+
+	@Override
+	public void setCityDistance(String CityID1, String CityID2, double distance)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		constantDao.setCityDistance(CityID1, CityID2, distance);
+	}
+
 }

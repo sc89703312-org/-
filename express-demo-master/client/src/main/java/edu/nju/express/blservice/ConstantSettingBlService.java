@@ -1,6 +1,7 @@
 package edu.nju.express.blservice;
 
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.vo.ConstantVO;
 
 
 
@@ -17,4 +18,7 @@ public interface ConstantSettingBlService{
 	
 	//���ò�ͬ��ͨ�����˻���
 	public ResultMessage setVehicleLoad(int van, int railway, int airplane);
+
+	public ConstantVO getConstant();
+
 }

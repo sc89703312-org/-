@@ -4,14 +4,16 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.ConstantSettingBlService;
+import edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.ConstantDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.vo.ConstantVO;
 
 
 
-public class ConstantSettingBl implements ConstantSettingBlService {
+public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCityInfo {
 
 	
 	
@@ -27,7 +29,17 @@ public class ConstantSettingBl implements ConstantSettingBlService {
 	@Override
 	public ResultMessage setDistance(String id1, String id2, double distance) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		
+		try {
+			constantDataService.setCityDistance(id1, id2, distance);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ResultMessage.VALID;
 	}
 
 	@Override
@@ -79,6 +91,19 @@ public class ConstantSettingBl implements ConstantSettingBlService {
 		return ResultMessage.VALID;
 	}
 
+	
+	
+	
+	
+	public void addCity(String CityID){
+		try {
+			constantDataService.addCity(CityID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 	public static ArrayList<String> getCityList(){
@@ -136,4 +161,29 @@ public class ConstantSettingBl implements ConstantSettingBlService {
 		}
 		return null;
 	}
+
+
+
+	@Override
+	public ConstantVO getConstant() {
+		// TODO Auto-generated method stub
+		try {
+			return new ConstantVO(constantDataService.getCityList(),
+					constantDataService.getCityDistance(),
+					constantDataService.getPrice()+"",
+					constantDataService.getPrice()*18/23+"",
+					constantDataService.getPrice()*25/23+"", 
+					constantDataService.getVehicleCost()[0]+"",
+					constantDataService.getVehicleCost()[1]+"", 
+					constantDataService.getVehicleCost()[2]+"",
+					constantDataService.getVehicleLoad()[0]+"", 
+					constantDataService.getVehicleLoad()[1]+"",
+					constantDataService.getVehicleLoad()[2]+"");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

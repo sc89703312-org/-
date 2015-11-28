@@ -12,7 +12,7 @@ import edu.nju.express.vo.EmployeeVO;
 
 
 
-public class ManagementBl implements ManagementBlService,ManagementInfo{
+public class ManagementBl implements ManagementBlService{
 
 	UserBl user;
 	

@@ -24,4 +24,8 @@ public interface ConstantDataService extends Remote{
 	
 	public ArrayList<String> getCityDistance() throws RemoteException;
 	
+	public void addCity(String CityID)throws RemoteException;
+	
+	public void setCityDistance(String CityID1,String CityID2, double distance)throws RemoteException;
+	
 }
