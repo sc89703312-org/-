@@ -8,6 +8,7 @@ import edu.nju.express.blservice.CommodityBlService;
 import edu.nju.express.businesslogic.accountbl.Info.CommodityInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
+import edu.nju.express.common.Convert;
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.ResultMessageV2;
@@ -154,7 +155,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
 		for(int i=0;i<goodsvo.size();i++)
-			goodspo.add(new ComGoodsPO(stationInfo.vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
+			goodspo.add(new ComGoodsPO(Convert.vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
 			
 		EnterReceiptPO po = new EnterReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
@@ -208,7 +209,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
 		for(int i=0;i<goodsvo.size();i++)
-			goodspo.add(new ComGoodsPO(stationInfo.vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
+			goodspo.add(new ComGoodsPO(Convert.vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
 			
 		ExitReceiptPO po = new ExitReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
@@ -234,7 +235,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		}
 		
 		for(int i=0;i<polist.size();i++){
-			ComGoodsVO vo = new ComGoodsVO(stationInfo.po_to_vo_order(polist.get(i).getOrder()),polist.get(i).getType(),polist.get(i).getLine(),polist.get(i).getShelf(),polist.get(i).getCell());
+			ComGoodsVO vo = new ComGoodsVO(Convert.po_to_vo_order(polist.get(i).getOrder()),polist.get(i).getType(),polist.get(i).getLine(),polist.get(i).getShelf(),polist.get(i).getCell());
 			volist.add(vo);
 		}
 		
@@ -319,7 +320,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		ArrayList<ComGoodsPO> polist = commodityDataService.getComGoods(comID);
 		for(int i=0;i<polist.size();i++){
 			ComGoodsPO tempo = polist.get(i);
-			volist.add(new ComGoodsVO(stationInfo.po_to_vo_order(tempo.getOrder()),tempo.getType(),tempo.getLine(),tempo.getShelf(),tempo.getCell()));
+			volist.add(new ComGoodsVO(Convert.po_to_vo_order(tempo.getOrder()),tempo.getType(),tempo.getLine(),tempo.getShelf(),tempo.getCell()));
 		}
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
@@ -415,39 +416,90 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ArrayList<EnterReceiptVO> viewAllEnterReceiptSubmitted() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EnterReceiptVO> volist = new ArrayList<EnterReceiptVO>();
+		ArrayList<EnterReceiptPO> polist = null;
+		try {
+			polist = commodityDataService.getSummitEnter();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0;i<polist.size();i++)
+			volist.add(Convert.po_to_vo_enter(polist.get(i)));
+		return volist;
 	}
 
 	@Override
 	public ResultMessage approveEnterReceipt(String id) {
 		// TODO Auto-generated method stub
+		try {
+			return commodityDataService.approveEnterReceipt(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public ArrayList<ExitReceiptVO> viewAllExitReceiptSubmitted() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ExitReceiptVO> volist = new ArrayList<ExitReceiptVO>();
+		ArrayList<ExitReceiptPO> polist = null;
+		try {
+			polist = commodityDataService.getSummitExit();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0;i<polist.size();i++)
+			volist.add(Convert.po_to_vo_exit(polist.get(i)));
+		return volist;
 	}
 
 	@Override
 	public ResultMessage approveExitReceipt(String id) {
 		// TODO Auto-generated method stub
+		try {
+			return commodityDataService.approveExitReceipt(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public ArrayList<EnterReceiptVO> viewAllEnterReceipt() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EnterReceiptVO> volist = new ArrayList<EnterReceiptVO>();
+		ArrayList<EnterReceiptPO> polist = null;
+		try {
+			polist = commodityDataService.getEnterReceipt();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0;i<polist.size();i++)
+			volist.add(Convert.po_to_vo_enter(polist.get(i)));
+		return volist;
 	}
 
 	@Override
 	public ArrayList<ExitReceiptVO> viewAllExitReceipt() {
 		// TODO Auto-generated method stub
-		return null;
+				ArrayList<ExitReceiptVO> volist = new ArrayList<ExitReceiptVO>();
+				ArrayList<ExitReceiptPO> polist = null;
+				try {
+					polist = commodityDataService.getExitReceipt();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				for(int i=0;i<polist.size();i++)
+					volist.add(Convert.po_to_vo_exit(polist.get(i)));
+				return volist;
 	}
-
 	
 	
 }

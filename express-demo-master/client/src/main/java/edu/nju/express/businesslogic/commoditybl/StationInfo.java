@@ -12,9 +12,5 @@ public interface StationInfo {
 	public ArrayList<ArriveReceiptVO> viewApproveArrive();
 	
 	public ArrayList<TransferReceiptVO> viewApproveTransfer();
-	
-	public OrderVO po_to_vo_order(OrderPO po);
-	
-	public OrderPO vo_to_po_order(OrderVO vo);
 
 }

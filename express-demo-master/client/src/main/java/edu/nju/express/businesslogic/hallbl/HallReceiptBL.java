@@ -7,6 +7,7 @@ import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.vehiclebl.Vehiclebl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.HallDataService;
+import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
@@ -15,11 +16,6 @@ import edu.nju.express.vo.OrderVO;
 
 public class HallReceiptBL implements HallReceiptBlService{
 	
-	
-	
-	
-	
-	
 	OrderBL orderBL;
 	Vehiclebl vehiclebl;
 	
@@ -27,10 +23,8 @@ public class HallReceiptBL implements HallReceiptBlService{
 	ArrayList<HallTransferReceiptVO> transferList = new ArrayList<HallTransferReceiptVO>();
 	ArrayList<DeliverReceiptVO> deliverList = new ArrayList<DeliverReceiptVO>();
 	
-	
 	HallDataService hallDataService;
-	
-	
+    StationDataService stationDataService;
 	
 	public HallReceiptBL(OrderBL orderBL,Vehiclebl vehiclebl){
 		this.orderBL = orderBL;
