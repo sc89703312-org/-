@@ -42,7 +42,7 @@ public class ConstantUI extends MainPanel{
 	
 	ConfirmButton distanceConfirm;
 	ConfirmButton priceConfirm;
-	ConfirmButton LoadConfirm;
+	ConfirmButton costConfirm;
 	ConfirmButton loadConfirm;
 	
 	JPanel fieldsPanel;
@@ -68,6 +68,26 @@ public class ConstantUI extends MainPanel{
 		initFields();
 		
 		initTable();
+		
+		initButton();
+	}
+
+	private void initButton() {
+		distanceConfirm = new ConfirmButton();
+		distanceConfirm.setBounds(740, y+35, 80,30);
+		this.add(distanceConfirm);
+		
+		priceConfirm = new ConfirmButton();
+		priceConfirm.setBounds(740,y+220,80,30);
+		this.add(priceConfirm);
+		
+		costConfirm = new ConfirmButton();
+		costConfirm.setBounds(740, y+325, 80,30);
+		this.add(costConfirm);
+		
+		loadConfirm = new ConfirmButton();
+		loadConfirm.setBounds(740, y+430, 80, 30);
+		this.add(loadConfirm);
 	}
 
 	private void initTable() {
@@ -97,9 +117,9 @@ public class ConstantUI extends MainPanel{
 
 	private void initFields() {
 		fieldsPanel = new JPanel();
-		fieldsPanel.setBounds(x, y+180, width-x, 300);
+		fieldsPanel.setBounds(x, y+180, width-x, 350);
 		fieldsPanel.setOpaque(false);;
-		fieldsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 160, 60));
+		fieldsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 160, 85));
 		
 		priceField1 = new MyTextField(4);
 		priceField1.setText(price1);

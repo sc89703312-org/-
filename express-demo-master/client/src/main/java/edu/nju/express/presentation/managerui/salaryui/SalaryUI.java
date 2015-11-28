@@ -49,7 +49,7 @@ public class SalaryUI extends MainPanel {
 		p = new JPanel();
 		this.add(p);
 		p.setOpaque(false);
-		p.setBounds(guide.getWidth(), y, width - guide.getWidth(), height - y);
+		p.setBounds(guide.getWidth(), y+40, width - guide.getWidth(), height - y);
 		p.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.5 * p.getWidth()), 60));
 
 		clerkLabel1 = new JLabel("业务员月薪：");
@@ -112,7 +112,7 @@ public class SalaryUI extends MainPanel {
 		p.add(temp3);
 		
 		confirm = new ConfirmButton();
-		confirm.setLocation(guide.getWidth()+p.getWidth()/2-confirm.getWidth()/2, 380);
+		confirm.setLocation(guide.getWidth()+p.getWidth()/2-confirm.getWidth()/2, 420);
 		this.add(confirm);
 		confirm.setActionCommand("GetSalary");
 		confirm.addActionListener(controller);
