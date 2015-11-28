@@ -15,7 +15,7 @@ public class ExitReceiptPO extends ReceiptPOBase implements Serializable{
 	ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
 	
 	public ExitReceiptPO(ArrayList<ComGoodsPO> list, String id, String date, String location){
-		this.id = id;
+		this.id ="ExitReceipt"+ id;
 		this.date = date;
 		this.location = location;
 		

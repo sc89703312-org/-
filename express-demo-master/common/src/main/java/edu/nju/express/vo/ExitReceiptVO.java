@@ -10,7 +10,7 @@ public class ExitReceiptVO extends ReceiptVOBase{
 	
 	public ExitReceiptVO(ArrayList<ComGoodsVO> list, String id, String date, String location){
 		
-		this.id = id;
+		this.id = "ExitReceipt"+id;
 		this.location = location;
 		this.date = date;
 		

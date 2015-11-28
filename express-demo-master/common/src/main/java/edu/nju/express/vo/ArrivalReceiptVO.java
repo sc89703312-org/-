@@ -21,7 +21,7 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 	private ArrayList<OrderVO> list;
 	
 	public ArrivalReceiptVO(String id, String date, String from,String currentSpot, GoodsState gstate,ReceiptState state){
-		this.id=id;
+		this.id="ArrivalReceipt"+id;
 		this.date=date;
 		this.from=from;
 		this.currentSpot=currentSpot;

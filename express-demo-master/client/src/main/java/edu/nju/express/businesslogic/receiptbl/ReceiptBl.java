@@ -13,7 +13,9 @@ import edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.PaymentApproveInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
+import edu.nju.express.common.ConcludeTypeById;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.vo.Paymentvo;
 import edu.nju.express.vo.ReceiptVOBase;
 
 
@@ -53,13 +55,54 @@ public class ReceiptBl implements ReceiptBlService {
 		allReceipts.addAll(hallBL.viewAllArrivalReceipt());
 		allReceipts.addAll(hallBL.viewAllDeliverReceipt());
 		allReceipts.addAll(hallBL.viewAllHallTransferReceipt());
-
+		allReceipts.addAll(stationBL.viewAllArriveReceipt());
+		allReceipts.addAll(stationBL.viewAllTransferReceipt());
+		allReceipts.addAll(commodityBL.viewAllEnterReceipt());
+		allReceipts.addAll(commodityBL.viewAllExitReceipt());
+		
 		return allReceipts;
 	}
 
+	
+	
+	
 	@Override
 	public void approve(String id) {
 		// TODO Auto-generated method stub
+		
+		switch (ConcludeTypeById.conclude(id)) {
+		case 0:
+			paymentBL.approvePayment(id);
+			break;
+		case 1:
+			costBL.approveCost(id);
+            break;
+		case 2:
+            stationBL.approveArriveReceipt(id);
+			break;
+		case 3:
+		    stationBL.approveTransferReceipt(id);        
+			break;
+		case 4:
+		    commodityBL.approveEnterReceipt(id);
+			break;
+		case 5:
+		    commodityBL.approveExitReceipt(id);
+			break;
+		case 6:
+		    hallBL.approveArrivalReceipt(id);
+			break;
+		case 7:
+		    hallBL.approveDeliverReceipt(id);
+			break;
+		case 8:
+		    hallBL.approveHallTransferReceipt(id);
+			break;
+            
+		default:
+			break;
+		}
+		
 		
 	}
 

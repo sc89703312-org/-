@@ -26,7 +26,7 @@ public class Balancevo extends ReceiptVOBase{
 	this.remark = remark;
 	
 	
-	id= date+" "+banking;
+	id= "Cost"+date+money+name+remark;
 	}
 	
 	

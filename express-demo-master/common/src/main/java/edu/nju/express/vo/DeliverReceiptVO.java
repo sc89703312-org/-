@@ -15,7 +15,7 @@ public class DeliverReceiptVO extends ReceiptVOBase{
 	private ArrayList<OrderVO> list;
 	
 	public DeliverReceiptVO(String id,String date, String deliver, ReceiptState state){
-		this.id=id;
+		this.id="DeliverReceipt"+id;
 		this.date=date;
 		this.deliver=deliver;
 		this.state=state;

@@ -15,7 +15,7 @@ public class EnterReceiptPO extends ReceiptPOBase implements Serializable{
 	ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
 	
 	public EnterReceiptPO(ArrayList<ComGoodsPO> list, String id, String date, String location){
-		this.id = id;
+		this.id ="EnterReceipt"+ id;
 		this.date = date;
 		this.location = location;
 		

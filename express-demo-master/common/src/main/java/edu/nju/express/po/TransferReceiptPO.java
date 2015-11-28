@@ -21,7 +21,7 @@ public class TransferReceiptPO extends ReceiptPOBase implements Serializable{
 	ArrayList<OrderPO> order_list;
 	
 	public TransferReceiptPO(String id, String date, String to, String location, ArrayList<OrderPO> order_list){
-		this.id = id;
+		this.id = "TransferReceipt"+id;
 		this.date = date;
 		this.to = to;
 		this.location = location;

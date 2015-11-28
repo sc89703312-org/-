@@ -30,6 +30,7 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		this.carID=carID;
 		this.supervisor=supervisor;
 		this.guard=guard;
+		this.id = "HallTransferReceipt"+hallID+transportID;
 	}
 	
 	public String getHallID(){

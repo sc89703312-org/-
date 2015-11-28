@@ -35,7 +35,7 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	this.remark = remark;
 	
 	
-	id= date+money+name+remark;
+	id= "Cost"+date+money+name+remark;
 	}
 	
 	

@@ -21,7 +21,7 @@ public class ArriveReceiptPO extends ReceiptPOBase implements Serializable{
 	ArrayList<OrderPO> order_list;
 	
 	public ArriveReceiptPO(String id, String date, String from, String location, ArrayList<OrderPO> order_list){
-		this.id = id;
+		this.id = "ArriveReceipt"+id;
 		this.date = date;
 		this.from = from;
 		this.location = location;

@@ -1,12 +1,13 @@
 package edu.nju.express.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.nju.express.common.ReceiptState;
 
 
 
-public class HallTransferReceiptPO extends ReceiptPOBase{
+public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable{
 
 	/**
 	 * 
@@ -23,6 +24,7 @@ public class HallTransferReceiptPO extends ReceiptPOBase{
 	public HallTransferReceiptPO(String date,ReceiptState state,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard){
 		
+		this.id = "HallTransferReceipt"+hallID+transportID;
 		this.date=date;
 		this.state=state;
 		this.hallID=hallID;

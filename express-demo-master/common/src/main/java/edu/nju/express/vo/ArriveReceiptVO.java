@@ -15,7 +15,7 @@ public class ArriveReceiptVO extends ReceiptVOBase{
 	
 	public ArriveReceiptVO(String id, String date, String from, String location, ArrayList<OrderVO> list){
 		
-		this.id = id;
+		this.id = "ArriveReceipt"+id;
 		this. date = date;
 		this.from = from;
 		this.location = location;

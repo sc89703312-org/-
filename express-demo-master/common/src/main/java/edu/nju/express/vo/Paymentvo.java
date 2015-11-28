@@ -20,6 +20,7 @@ public class Paymentvo extends ReceiptVOBase {
 		courier_id = c;
 		order_id = o;
 	    bankaccount = b;
+	    id ="Payment"+order_id;;
 	}
 	public String getDate()
 	{
