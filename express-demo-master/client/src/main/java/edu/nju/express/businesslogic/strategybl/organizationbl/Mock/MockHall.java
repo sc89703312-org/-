@@ -1,4 +1,4 @@
-package edu.nju.express.businesslogic.strategybl.organizationbl;
+package edu.nju.express.businesslogic.strategybl.organizationbl.Mock;
 
 import java.util.ArrayList;
 

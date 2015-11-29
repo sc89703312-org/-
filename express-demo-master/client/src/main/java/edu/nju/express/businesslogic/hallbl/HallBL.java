@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.HallBLService;
+import edu.nju.express.businesslogic.strategybl.organizationbl.Info.HallOperationInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.HallDataService;
 import edu.nju.express.init.RMIHelper;
@@ -13,7 +14,7 @@ import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
-public class HallBL implements HallBLService {
+public class HallBL implements HallBLService,HallOperationInfo {
 
 	
 	HallDataService hallDataService;

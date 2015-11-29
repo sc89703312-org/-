@@ -7,6 +7,7 @@ import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.SalaryDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.vo.SalaryVO;
 
 
 
@@ -102,6 +103,25 @@ public class SalarySettingBl implements SalarySettingBlService {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+
+
+
+
+
+	@Override
+	public SalaryVO getSalary() {
+		// TODO Auto-generated method stub
+		try {
+			return new SalaryVO(salaryDataService.getClerkSalary(),
+					            salaryDataService.getDriverWage(), 
+					            salaryDataService.getPostmanWage());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

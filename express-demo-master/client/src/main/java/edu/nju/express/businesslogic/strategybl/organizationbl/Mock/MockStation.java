@@ -1,4 +1,4 @@
-package edu.nju.express.businesslogic.strategybl.organizationbl;
+package edu.nju.express.businesslogic.strategybl.organizationbl.Mock;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import edu.nju.express.po.StationPO;
 import edu.nju.express.vo.StationVO;
 
 public class MockStation extends StationBl{
-
+/*
 	ArrayList<StationPO> list = new ArrayList<StationPO>();
 
 	MockStation(){
@@ -47,4 +47,5 @@ public class MockStation extends StationBl{
     	return poList;
     	
     }
+    */
 }
