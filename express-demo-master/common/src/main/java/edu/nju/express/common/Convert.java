@@ -93,7 +93,7 @@ public class Convert {
 	
 	public static TransferReceiptVO po_to_vo_transfer(TransferReceiptPO po){
 		
-		TransferReceiptVO vo = new TransferReceiptVO(po.getID(),po.getDate(),po.getTo(),po.getLocation(),po_to_vo_orderlist(po.getOrderList()));
+		TransferReceiptVO vo = new TransferReceiptVO(po.getID(),po.getDate(),po.getTo(),po.getLocation(),po.getTransportID(),po.getSupervisor(),po.getType(),po_to_vo_orderlist(po.getOrderList()));
 		
 		return vo;
 		
@@ -101,7 +101,7 @@ public class Convert {
 	
 	public static TransferReceiptPO vo_to_po_transfer(TransferReceiptVO vo){
 		
-		TransferReceiptPO po = new TransferReceiptPO(vo.getID(),vo.getDate(),vo.getTo(),vo.getLocation(),vo_to_po_orderlist(vo.getList()));
+		TransferReceiptPO po = new TransferReceiptPO(vo.getID(),vo.getDate(),vo.getTo(),vo.getLocation(),vo.getTransportID(),vo.getSupervisor(),vo.getType(),vo_to_po_orderlist(vo.getList()));
 		
 		return po;
 		
@@ -187,9 +187,10 @@ public class Convert {
     
     public static HallTransferReceiptVO po_to_vo_halltransfer(HallTransferReceiptPO po){
     	
-    	HallTransferReceiptVO vo = new HallTransferReceiptVO(po.getDate(),po.getHallID(),
-    			po.getTransportID(),po.getDestination(),po.getCarID(),po.getSupervisor(),
-    			po.getGuard(),po_to_vo_orderlist(po.getOrderlist()));
+    	HallTransferReceiptVO vo = new HallTransferReceiptVO(po.getLocation(),
+    			po.getDate(),po.getHallID(),po.getTransportID(),po.getDestination(),
+    			po.getCarID(),po.getSupervisor(),po.getGuard(),
+    			po_to_vo_orderlist(po.getOrderlist()));
     	
     	return vo;
     	
@@ -197,9 +198,10 @@ public class Convert {
     
     public static HallTransferReceiptPO vo_to_po_halltransfer(HallTransferReceiptVO vo){
     	
-    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getDate(),vo.getHallID(),
-    			vo.getTransportID(),vo.getDestination(),vo.getCarID(),vo.getSupervisor(),
-    			vo.getGuard(),vo_to_po_orderlist(vo.getOrderlist()));
+    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getLocation(),
+    			vo.getDate(),vo.getHallID(),vo.getTransportID(),vo.getDestination(),
+    			vo.getCarID(),vo.getSupervisor(),vo.getGuard(),
+    			vo_to_po_orderlist(vo.getOrderlist()));
     	
     	return po;
     	

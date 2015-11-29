@@ -11,6 +11,7 @@ import edu.nju.express.po.HallPo;
 import edu.nju.express.po.HallTransferReceiptPO;
 
 public interface HallDataService extends Remote{
+	
 	public ResultMessage addHall(HallPo po) throws RemoteException;
 	public ResultMessage removeHall(String id) throws RemoteException;
 	public ArrayList<HallPo> showHall() throws RemoteException;
@@ -36,4 +37,7 @@ public interface HallDataService extends Remote{
 	public ArrayList<DeliverReceiptPO> getAllHallDeliver()throws RemoteException;
 	public void approveHallDeliver(ArrayList<DeliverReceiptPO> list)throws RemoteException;
 	public void flushHallDeliver()throws RemoteException;
+	
+	public HallTransferReceiptPO getHallTransfer(String id) throws RemoteException;
+ 	
 }

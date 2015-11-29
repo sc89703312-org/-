@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.OrderVO;
+import edu.nju.express.vo.TransferReceiptVO;
 
 
 
 public interface StationReceiptBlService {
-
-	public ResultMessage creatArriveReceipt(ArrayList<String> list, String id, String date, String from, String location);
-	public ResultMessage creatTransferReceipt(ArrayList<OrderVO> orderList, String id, String date, String to, String location, Etype type);
-    public ArrayList<OrderVO> showComOrder();
+	
+	public ArriveReceiptVO creatArriveReceipt(String id);
+	public void subArriveReceipt(ArriveReceiptVO vo);
+	public ArrayList<OrderVO> showCurrentOrder();
+	public void subTransferReceipt(ArrayList<OrderVO> orderlist, String to, String transportID, String supervisor, Etype etype);
 	
 }

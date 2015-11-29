@@ -13,6 +13,7 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String location;
 	private String hallID;
 	private String transportID;
 	private String to;
@@ -21,7 +22,7 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 	private String guard;
 	private ArrayList<OrderPO> orderlist;
 	
-	public HallTransferReceiptPO(String date,String hallID,String transportID,String to, String carID,
+	public HallTransferReceiptPO(String location, String date,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard,ArrayList<OrderPO> orderlist){
 		
 		this.id = "HallTransferReceipt"+hallID+transportID;
@@ -35,6 +36,10 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 		this.guard=guard;
 		this.orderlist = orderlist;
 		
+	}
+	
+	public String getLocation(){
+		return location;
 	}
 	
 	public String getHallID(){

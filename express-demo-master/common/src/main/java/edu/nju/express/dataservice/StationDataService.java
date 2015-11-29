@@ -13,6 +13,7 @@ import edu.nju.express.po.TransferReceiptPO;
 
 public interface StationDataService extends Remote{
 
+	public String getLocation(String id) throws RemoteException;
 	
 	public ResultMessage addStation(String id, String location) throws RemoteException;
 	public ResultMessage removeStation(String id) throws RemoteException;
@@ -38,5 +39,6 @@ public interface StationDataService extends Remote{
 	public ArrayList<TransferReceiptPO> getSummitTransfer() throws RemoteException;
 	//public void modifyTransferReceipt(String id, TransferReceiptPO po) throws RemoteException;
 	
+	public TransferReceiptPO getTransfer(String id) throws RemoteException;
 	
 }

@@ -7,9 +7,9 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
-
+/*
 public class MockStation extends StationReceiptBl{
-	
+	/*
 	ArrayList<ArriveReceiptVO> arriveList = new ArrayList<ArriveReceiptVO>();
 	ArrayList<TransferReceiptVO> transferList = new ArrayList<TransferReceiptVO>();
 	
@@ -39,5 +39,6 @@ public class MockStation extends StationReceiptBl{
 	public ArrayList<TransferReceiptVO> viewApproveTransfer(){
 		return transferList;
 	}
+	*/
 
-}
+

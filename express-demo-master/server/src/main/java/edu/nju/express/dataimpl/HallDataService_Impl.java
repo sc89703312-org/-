@@ -174,4 +174,10 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 		hallDeliverDao.flush();
 	}
 
+	@Override
+	public HallTransferReceiptPO getHallTransfer(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

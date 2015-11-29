@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class HallTransferReceiptVO extends ReceiptVOBase{
 	
+	private String location;
 	private String hallID;
 	private String transportID;
 	private String to;
@@ -13,7 +14,7 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 	private String guard;
 	private ArrayList<OrderVO> orderlist;
 	
-	public HallTransferReceiptVO(String date,String hallID,String transportID,String to, String carID,
+	public HallTransferReceiptVO(String location, String date,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard, ArrayList<OrderVO> orderlist){
 		
 		this.date=date;
@@ -26,6 +27,10 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		this.id = "HallTransferReceipt"+hallID+transportID;
 		this.orderlist = orderlist;
 		
+	}
+	
+	public String getLocation(){
+		return location;
 	}
 	
 	public String getHallID(){

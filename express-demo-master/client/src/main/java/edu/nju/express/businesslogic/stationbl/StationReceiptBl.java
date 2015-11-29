@@ -2,6 +2,7 @@ package edu.nju.express.businesslogic.stationbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.businesslogic.commoditybl.StationInfo;
@@ -18,6 +19,7 @@ import edu.nju.express.po.ArriveReceiptPO;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.vo.ArriveReceiptVO;
+import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
@@ -35,68 +37,95 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	public StationReceiptBl(OrderInfo orderInfo){
 		//stationDataService = RMIHelper.getStationDataService();
 		this.orderInfo= orderInfo;
+		try {
+			this.location = stationDataService.getLocation(stationID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Override
+	public ArriveReceiptVO creatArriveReceipt(String id) {
+		// TODO Auto-generated method stub
+		
+		if(id.contains("HallTransferReceipt")){
+            try {
+				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.getHallTransfer(id));
+				if(transfervo.getDestination().equals(location)){
+				    ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getOrderlist());
+				    return vo;
+				}
+				else
+					return null;
+			    } catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			    }
+			}
+		else if(id.contains("TransferReceipt")){
+			try {
+				TransferReceiptVO transfervo = Convert.po_to_vo_transfer(stationDataService.getTransfer(id));
+				if(transfervo.getTo().equals(location)){
+					ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getList());
+					return vo;
+				}
+				else
+					return null;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+		else
+			return null;
+		
 	}
 
 	@Override
-	public ResultMessage creatArriveReceipt(ArrayList<String> list, String id,
-			String date, String from, String location) {
+	public void subArriveReceipt(ArriveReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
-		ResultMessage result = ResultMessage.VALID;
-		
-		ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();
-		for(int i=0;i<list.size();i++){
-			if(list.get(i)==null){
-				result = ResultMessage.INVALID;
-				return result;
-			}
-			OrderPO po = Convert.vo_to_po_order(orderInfo.view(list.get(i)));
-			orderList.add(po);
-		}
-		
-		ArriveReceiptPO po = new ArriveReceiptPO(id,date,from,location,orderList);
-		
-		
+		ArriveReceiptPO po = Convert.vo_to_po_arrive(vo);
 		try {
 			stationDataService.addArriveReceipt(po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 		
-		return result;
 	}
 
 	@Override
-	public ResultMessage creatTransferReceipt(ArrayList<OrderVO> ordervoList,
-			String id, String date, String to, String location, Etype type) {
+	public ArrayList<OrderVO> showCurrentOrder() {
 		// TODO Auto-generated method stub
 		
-		ResultMessage result = ResultMessage.VALID;
-		
-		ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();
-		for(int i=0;i<ordervoList.size();i++)
-			orderList.add(Convert.vo_to_po_order(ordervoList.get(i)));
-		
-		TransferReceiptPO po = new TransferReceiptPO(id,date,to,location,orderList);
-
 		try {
-			stationDataService.addTransferReceipt(po);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		return result;
-	}
-	
-	public ArrayList<OrderVO> showComOrder(){
-		
-		try {
-			ArrayList<ArriveReceiptPO> arriveList = stationDataService.getArriveReceipt();
-			ArrayList<TransferReceiptPO> transferList = stationDataService.getTransferReceipt();
-			ArrayList<OrderVO> orderList = new ArrayList<OrderVO>();
+			ArrayList<ArriveReceiptPO> arrivelist = stationDataService.getArriveReceipt(stationID);
+			ArrayList<TransferReceiptPO> transferlist = stationDataService.getTransferReceipt(stationID);
+			ArrayList<OrderPO> polist = new ArrayList<OrderPO>();
+			for(int i=0;i<arrivelist.size();i++)
+				polist.addAll(arrivelist.get(i).getOrderList());
+			for(int i=0;i<transferlist.size();i++)
+				polist.addAll(transferlist.get(i).getOrderList());
+			for(int i=0;i<polist.size();i++){
+				for(int j=i+1;j<polist.size();j++){
+					OrderPO po = polist.get(j);
+					if(polist.get(i).getID().equals(po.getID())){
+						polist.remove(po);
+						j--;
+					}
+				}
+			}
+			
+			ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
+			for(int i=0;i<polist.size();i++)
+				orderlist.add(Convert.po_to_vo_order(polist.get(i)));
+			
+			return orderlist;
 			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -105,6 +134,22 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		return null;
 	}
+
+	@Override
+	public void subTransferReceipt(ArrayList<OrderVO> orderlist,
+			String to, String transportID, String supervisor, Etype etype) {
+		// TODO Auto-generated method stub
+		
+		try {
+			TransferReceiptVO vo = new TransferReceiptVO(stationDataService.nextTransferID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,to,location,transportID,supervisor,etype,orderlist);
+			stationDataService.addTransferReceipt(Convert.vo_to_po_transfer(vo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+
+	}
+	
 
 	public ResultMessage approveArriveReceipt(String id){
 		
@@ -189,18 +234,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			
 			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
 			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
-			
-			for(int j=0;j<orderpolist.size();j++){
-				
-				OrderPO orderpo = orderpolist.get(j);
-				OrderVO ordervo = Convert.po_to_vo_order(orderpo);
-				ordervolist.add(ordervo);
-				
-			}
-			
-			TransferReceiptVO vo = new TransferReceiptVO(poList.get(i).getID(),poList.get(i).getDate(),
-					poList.get(i).getTo(),poList.get(i).getLocation(),ordervolist);
-			
+		    TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
 			voList.add(vo);
 			
 		}
@@ -262,19 +296,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		for(int i=0;i<poList.size();i++){
 			
 			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
-			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
-			
-			for(int j=0;j<orderpolist.size();j++){
-				
-				OrderPO orderpo = orderpolist.get(j);
-				OrderVO ordervo = Convert.po_to_vo_order(orderpo);
-				ordervolist.add(ordervo);
-				
-			}
-			
-			TransferReceiptVO vo = new TransferReceiptVO(poList.get(i).getID(),poList.get(i).getDate(),
-					poList.get(i).getTo(),poList.get(i).getLocation(),ordervolist);
-			
+			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();			
+			TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
 			voList.add(vo);
 			
 		}
@@ -340,18 +363,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			
 			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
 			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
-			
-			for(int j=0;j<orderpolist.size();j++){
-				
-				OrderPO orderpo = orderpolist.get(j);
-				OrderVO ordervo = Convert.po_to_vo_order(orderpo);
-				ordervolist.add(ordervo);
-				
-			}
-			
-			TransferReceiptVO vo = new TransferReceiptVO(poList.get(i).getID(),poList.get(i).getDate(),
-					poList.get(i).getTo(),poList.get(i).getLocation(),ordervolist);
-			
+			TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
 			voList.add(vo);
 			
 		}
@@ -391,7 +403,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			volist.add(Convert.po_to_vo_transfer(polist.get(i)));
 		return volist;
 	}
-
-
+	
 	
 }
