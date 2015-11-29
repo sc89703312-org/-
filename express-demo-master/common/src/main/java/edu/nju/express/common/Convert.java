@@ -4,21 +4,29 @@ import java.util.ArrayList;
 
 import edu.nju.express.po.ArrivalReceiptPO;
 import edu.nju.express.po.ArriveReceiptPO;
+import edu.nju.express.po.Balancepo;
+import edu.nju.express.po.Carpo;
 import edu.nju.express.po.ComGoodsPO;
 import edu.nju.express.po.DeliverReceiptPO;
+import edu.nju.express.po.Driverpo;
 import edu.nju.express.po.EnterReceiptPO;
 import edu.nju.express.po.ExitReceiptPO;
 import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.OrderPO;
+import edu.nju.express.po.Paymentpo;
 import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.ArriveReceiptVO;
+import edu.nju.express.vo.Balancevo;
+import edu.nju.express.vo.Carvo;
 import edu.nju.express.vo.ComGoodsVO;
 import edu.nju.express.vo.DeliverReceiptVO;
+import edu.nju.express.vo.Drivervo;
 import edu.nju.express.vo.EnterReceiptVO;
 import edu.nju.express.vo.ExitReceiptVO;
 import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
+import edu.nju.express.vo.Paymentvo;
 import edu.nju.express.vo.TransferReceiptVO;
 
 public class Convert {
@@ -214,5 +222,68 @@ public class Convert {
     	return po;
     	
     }
+    
+    
+    
+    
+	public static Balancepo vo_to_po_Balance(Balancevo vo){
+		return new Balancepo(vo.getDate(), vo.getMoney(), 
+				                      vo.getName(), vo.getBanking(),
+				                      vo.getItem(), vo.getRemark());
+	}
+	
+	
+	
+	public static Balancevo po_to_vo_Balance(Balancepo po){
+		return new Balancevo(po.getDate(), po.getMoney(), 
+				                      po.getName(), po.getBanking(),
+				                      po.getItem(), po.getRemark());
+	}
 
+	
+	
+	public static Paymentpo vo_to_po_Payment(Paymentvo vo){
+		
+		return new Paymentpo(vo.getDate(), vo.getPay(),
+				                        vo.getCourier_id(), vo.getOrder_id(),
+				                        vo.getBankaccount());
+		
+	}
+	
+	
+	public static Paymentvo po_to_vo_Payment(Paymentpo po){
+		
+		return new Paymentvo(po.getDate(), po.getPay(),
+				                        po.getCourier_id(), po.getOrder_id(),
+				                        po.getBankaccount());
+		
+	}
+	
+	public static Carpo vo_to_po_Car(Carvo vo){
+		return new Carpo(vo.getId(), vo.getMotor(),
+				                 vo.getCar(), vo.getBase(),
+				                 vo.getPurchase(), vo.getUse());
+	}
+	
+	
+	public static Carvo po_to_vo_Car(Carpo po){
+		return new Carvo(po.getId(), po.getMotor(),
+				                 po.getCar(), po.getBase(),
+				                 po.getPurchase() ,po.getUse());
+	}
+	
+	public static Driverpo vo_to_po_Driver(Drivervo vo){
+		return new Driverpo(vo.getId(), vo.getName(),
+				                     vo.getBirthDate(), vo.getCertificate(),
+				                     vo.getPhone(), vo.getHallId(),
+				                     vo.getSex(), vo.getDdl());
+	}
+	
+	
+	public static Drivervo po_to_vo_Driver(Driverpo po){
+		return new Drivervo(po.getId(), po.getName(),
+				                 po.getBirthDate(), po.getCertificate(),
+				                 po.getPhone() ,po.getHallId(),
+				                 po.getSex(),po.getDdl());
+	}
 }
