@@ -1,5 +1,6 @@
 package edu.nju.express.businesslogic.accountbl;
 
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,9 +12,14 @@ import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.businesslogic.strategybl.managementbl.*;
 import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
 import edu.nju.express.businesslogic.vehiclebl.CarControl;
+import edu.nju.express.common.Convert;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.accountdataservice;
+import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Accountpo;
+import edu.nju.express.po.BankingAccountPO;
+import edu.nju.express.po.Carpo;
+import edu.nju.express.po.ComGoodsPO;
 import edu.nju.express.po.HallPo;
 import edu.nju.express.po.StationPO;
 import edu.nju.express.po.UserPO;
@@ -55,6 +61,8 @@ public class Accountbl implements Accountblservice{
 	    this.commoditybl = commodityBl;
 	
 	
+	    
+	    accountdataservice = RMIHelper.getAccountdataservice();
 		
 	
 	}
@@ -67,7 +75,28 @@ public class Accountbl implements Accountblservice{
 	@Override
 	public Accountvo viewAccount(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Accountpo po=null;
+		try {
+			po = accountdataservice.find(date);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+		Accountvo vo = new Accountvo
+				(convertHallPO(po.getHallList()),
+				 convertStationPO(po.getStationList()),
+				 convertEmployeePO(po.getUserList()),
+				 convertCarPO(po.getCarList()),
+				 convertBankingPO(po.getAccountsList()),
+				 convertComGoodsPO(po.getCommodity()),
+				 po.getDate());
+		
+		
+		return vo;
+		
 	}
 
 	@Override
@@ -93,8 +122,21 @@ public class Accountbl implements Accountblservice{
 	    Accountvo accountvo = new Accountvo(halls, stations,
 	    		             employees, cars,accounts,goods,getDate());
 	    
+	    Accountpo accountpo = new Accountpo(convertHallVO(halls),
+	    		                            convertStationVO(stations),
+	    		                            convertEmployeeVO(employees),
+	    		                            convertCarVO(cars),
+	    		                            convertBankingVO(accounts),
+	    		                            convertComGoodsVO(goods),
+	    		                            getDate());
 	    
 	    
+	    try {
+			accountdataservice.insert(accountpo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	   
 	}
 	
@@ -106,6 +148,10 @@ public class Accountbl implements Accountblservice{
 	    String str1 = sdf1.format(new Date());    
 	    return str1;
 	}
+	
+	
+	
+	
 	
 	
 	public ArrayList<HallVO> convertHallPO (ArrayList<HallPo> polist){
@@ -161,5 +207,86 @@ public class Accountbl implements Accountblservice{
 	}
 	
 	
+	public ArrayList<UserPO> convertEmployeeVO (ArrayList<EmployeeVO> volist){
+		ArrayList<UserPO> employees = new ArrayList<>();
+		
+		for(int i=0;i<volist.size();i++){
+			employees.add(new UserPO(volist.get(i).getId(), volist.get(i).getName(), volist.get(i).getRole(), "******"));
+		}
+		return employees;
+	}
 
+	
+	
+	public ArrayList<BankingAccountVO> convertBankingPO (ArrayList<BankingAccountPO> polist){
+		ArrayList<BankingAccountVO> bankaccounts = new ArrayList<>();
+		
+		for(int i=0;i<polist.size();i++){
+			bankaccounts.add(new BankingAccountVO(polist.get(i).getName(), polist.get(i).getMoney()));
+		}
+		return bankaccounts;
+	}
+	
+	
+	public ArrayList<BankingAccountPO> convertBankingVO (ArrayList<BankingAccountVO> volist){
+		ArrayList<BankingAccountPO> bankaccounts = new ArrayList<>();
+		
+		for(int i=0;i<volist.size();i++){
+			bankaccounts.add(new BankingAccountPO(volist.get(i).getName()));
+		}
+		return bankaccounts;
+	}
+	
+	
+	public ArrayList<Carvo> convertCarPO (ArrayList<Carpo> polist){
+		ArrayList<Carvo> cars = new ArrayList<>();
+		
+		for(int i=0;i<polist.size();i++){
+			cars.add(new Carvo(polist.get(i).getId(), polist.get(i).getMotor(),
+					polist.get(i).getCar(), polist.get(i).getBase(),
+					polist.get(i).getPurchase(), polist.get(i).getUse()));
+		}
+		return cars;
+	}
+	
+	public ArrayList<Carpo> convertCarVO (ArrayList<Carvo> volist){
+		ArrayList<Carpo> cars = new ArrayList<>();
+		
+		for(int i=0;i<volist.size();i++){
+			cars.add(new Carpo(volist.get(i).getId(), volist.get(i).getMotor(),
+					volist.get(i).getCar(), volist.get(i).getBase(),
+					volist.get(i).getPurchase(), volist.get(i).getUse()));
+		}
+		return cars;
+	}
+	
+	
+	
+	public ArrayList<ComGoodsVO> convertComGoodsPO (ArrayList<ComGoodsPO> polist){
+		ArrayList<ComGoodsVO> comGoods = new ArrayList<>();
+		
+		for(int i=0;i<polist.size();i++){
+			comGoods.add(new ComGoodsVO(Convert.po_to_vo_order(polist.get(i).getOrder()),
+					     polist.get(i).getType(),
+					     polist.get(i).getLine(),
+					     polist.get(i).getShelf(),
+					     polist.get(i).getCell()));
+		}
+		return comGoods;
+	}
+	
+	
+	public ArrayList<ComGoodsPO> convertComGoodsVO (ArrayList<ComGoodsVO> volist){
+		ArrayList<ComGoodsPO> comGoods = new ArrayList<>();
+		
+		for(int i=0;i<volist.size();i++){
+			comGoods.add(new ComGoodsPO(Convert.vo_to_po_order(volist.get(i).getOrder()),
+					     volist.get(i).getType(),
+					     volist.get(i).getLine(),
+					     volist.get(i).getShelf(),
+					     volist.get(i).getCell()));
+		}
+		return comGoods;
+	}
+	
 }
