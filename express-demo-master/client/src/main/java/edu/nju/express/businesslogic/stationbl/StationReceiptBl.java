@@ -11,6 +11,7 @@ import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.common.Convert;
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.common.SetOrderSpot;
 import edu.nju.express.dataservice.HallDataService;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
@@ -30,13 +31,15 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	StationDataService stationDataService;
 	HallDataService hallDataService;
 	OrderInfo orderInfo;
+	SetOrderSpot setOrderSpot;
 	
 	String stationID;
 	String location;
 	
-	public StationReceiptBl(OrderInfo orderInfo){
+	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
 		//stationDataService = RMIHelper.getStationDataService();
 		this.orderInfo= orderInfo;
+		this.setOrderSpot = setOrderSpot;
 		try {
 			this.location = stationDataService.getLocation(stationID);
 		} catch (RemoteException e) {
@@ -90,6 +93,9 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		// TODO Auto-generated method stub
 		
 		ArriveReceiptPO po = Convert.vo_to_po_arrive(vo);
+		ArrayList<OrderPO> orderlist = po.getOrderList();
+		for(int i=0;i<orderlist.size();i++)
+			setOrderSpot.modifySpot(orderlist.get(i).getID(), location);
 		try {
 			stationDataService.addArriveReceipt(po);
 		} catch (RemoteException e) {
@@ -142,6 +148,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		try {
 			TransferReceiptVO vo = new TransferReceiptVO(stationDataService.nextTransferID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,to,location,transportID,supervisor,etype,orderlist);
+			for(int i=0;i<orderlist.size();i++)
+				setOrderSpot.modifySpot(orderlist.get(i).getID(), location);
 			stationDataService.addTransferReceipt(Convert.vo_to_po_transfer(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -232,8 +240,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		for(int i=0;i<poList.size();i++){
 			
-			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
-			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
 		    TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
 			voList.add(vo);
 			
@@ -294,9 +300,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		}
 		
 		for(int i=0;i<poList.size();i++){
-			
-			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
-			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();			
+					
 			TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
 			voList.add(vo);
 			
@@ -360,9 +364,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		}
 		
 		for(int i=0;i<poList.size();i++){
-			
-			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
-			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
+
 			TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
 			voList.add(vo);
 			
