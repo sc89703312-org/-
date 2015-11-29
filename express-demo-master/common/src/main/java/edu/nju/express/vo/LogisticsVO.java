@@ -1,18 +1,14 @@
 package edu.nju.express.vo;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 
 
-public class LogisticsVO implements Serializable,Observer{
-	Observable observable;
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+public class LogisticsVO {
+
+
 	
 	private String id;
 	
@@ -22,32 +18,18 @@ public class LogisticsVO implements Serializable,Observer{
 	
 	private ArrayList<String> history ;
 	
-	public LogisticsVO(String id,String currentLocation,Observable ob){
+	public LogisticsVO(String id,String currentLocation,
+			           String deliverName,ArrayList<String> history){
+		
+		
+		
 		this.id=id;
 		this.currentLoca=currentLocation;
-		history = new ArrayList<String>();
-		
-		this.observable = ob;
-		ob.addObserver(this);
-	}
-	
-	public void setCurrentLoca(String loca){
-		if(!loca.equals(currentLoca)){
-			this.currentLoca=loca;
-			addHistory(loca);
-		}
-	}
-	
-	public void setDeliver(String name){
-		this.deliverName=name;
-	}
-	
-	 
+		this.deliverName = deliverName;
+		this.history = history;
 
-	public void addHistory(String loca){
-		
-		this.history.add(loca);
 	}
+	
 	
 	public String getid(){
 		return this.id;
@@ -67,12 +49,5 @@ public class LogisticsVO implements Serializable,Observer{
 	
 	
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		OrderVO orderVO = (OrderVO)o;
-		setCurrentLoca(orderVO.getCurrentSpot());
-		setDeliver(orderVO.getDeliver());
-		
-	}
+	
 }

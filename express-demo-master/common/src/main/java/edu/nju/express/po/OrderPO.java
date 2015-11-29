@@ -177,7 +177,7 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 		return this.Deliver;
 	}
 	
-	public ArrayList<String> viewHistory(String id){
+	public ArrayList<String> viewHistory(){
 		return this.history;
 	}
 }

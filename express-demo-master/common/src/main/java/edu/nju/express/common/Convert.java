@@ -55,7 +55,7 @@ public class Convert {
 		
 	}
 	
-	static ArrayList<OrderVO> po_to_vo_orderlist(ArrayList<OrderPO> polist){
+	public static ArrayList<OrderVO> po_to_vo_orderlist(ArrayList<OrderPO> polist){
 		
 		ArrayList<OrderVO> volist = new ArrayList<OrderVO>();
 		for(int i=0;i<polist.size();i++)
@@ -65,7 +65,7 @@ public class Convert {
 		
 	}
 	
-	static ArrayList<OrderPO> vo_to_po_orderlist(ArrayList<OrderVO> volist){
+	public static ArrayList<OrderPO> vo_to_po_orderlist(ArrayList<OrderVO> volist){
 		
 		ArrayList<OrderPO> polist = new ArrayList<OrderPO>();
 		for(int i=0;i<volist.size();i++)

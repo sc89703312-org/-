@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.data.orderdata.OrderDao;
 import edu.nju.express.data.orderdata.OrderFileDao;
@@ -63,6 +64,28 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	public void flush() throws RemoteException {
 		// TODO Auto-generated method stub
 		orderDao.flush();
+	}
+
+
+	@Override
+	public void addHistory(String spot,String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		orderDao.addHistory(spot, id);
+	}
+
+
+	@Override
+	public void setDeliver(String name,String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		orderDao.setDeliver(name, id);
+	}
+
+
+	@Override
+	public void setArrivalState(ArrivalState arrivalState,String id)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		orderDao.setArrivalState(arrivalState, id);
 	}
 	
 	
