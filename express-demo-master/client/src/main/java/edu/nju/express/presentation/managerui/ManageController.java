@@ -1,25 +1,13 @@
 package edu.nju.express.presentation.managerui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.nju.express.presentation.managerui.constantui.ConstantUI;
-import edu.nju.express.presentation.managerui.employeeui.AddEmployeePanel;
-import edu.nju.express.presentation.managerui.employeeui.DismissEmployeePanel;
-import edu.nju.express.presentation.managerui.employeeui.EmployeeListUI;
-import edu.nju.express.presentation.managerui.organizationui.AddHallPanel;
-import edu.nju.express.presentation.managerui.organizationui.AddStationPanel;
-import edu.nju.express.presentation.managerui.organizationui.DeleteHallPanel;
-import edu.nju.express.presentation.managerui.organizationui.DeleteStationPanel;
-import edu.nju.express.presentation.managerui.organizationui.OrganizationUI;
-import edu.nju.express.presentation.managerui.receiptui.RceiptListUI;
-import edu.nju.express.presentation.managerui.receiptui.ReceiptApprovalUI;
-import edu.nju.express.presentation.managerui.salaryui.SalaryUI;
+import edu.nju.express.presentation.UIController;
 
-public class ManageController implements ActionListener {
+public class ManageController implements UIController {
 
 	JPanel currentPanel;
 	JFrame frame;

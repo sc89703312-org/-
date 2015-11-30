@@ -1,14 +1,15 @@
 package edu.nju.express.presentation.postmanui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.nju.express.presentation.UIController;
 
 
-public class PostmanController implements ActionListener {
+
+public class PostmanController implements UIController {
 
 	JPanel currentPanel;
 	JFrame frame;

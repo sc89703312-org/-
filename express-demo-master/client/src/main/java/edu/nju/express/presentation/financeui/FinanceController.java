@@ -1,12 +1,13 @@
 package edu.nju.express.presentation.financeui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class FinanceController implements ActionListener {
+import edu.nju.express.presentation.UIController;
+
+public class FinanceController implements UIController {
 	JPanel currentPanel;
 	JFrame frame;
 
@@ -17,6 +18,8 @@ public class FinanceController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		System.out.println(e.getActionCommand());
+		
 		if (e.getActionCommand().equals("BalanceUI")) {
 			frame.getContentPane().removeAll();;
 			currentPanel = new BalanceUI(this);
@@ -32,7 +35,11 @@ public class FinanceController implements ActionListener {
 		} else if (e.getActionCommand().equals("AnalyzeUI")) {
 			
 		} else if (e.getActionCommand().equals("BankingUI")) {
-
+			frame.getContentPane().removeAll();;
+			currentPanel = new BankingUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		} else if (e.getActionCommand().equals("AccountUI")) {
 
 		} else if (e.getActionCommand().equals("BalanceHistory")) {
@@ -42,6 +49,8 @@ public class FinanceController implements ActionListener {
 			frame.validate();
 			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
+			
+		}else if (e.getActionCommand().equals("SearchBanking")) {
 			
 		}
 

@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.organizationui;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,13 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.StationVO;
 
-public class AddHallPanel extends MainPanel{
+public class AddStationPanel extends MainPanel{
 
 	/**
 	 * 
@@ -34,7 +33,7 @@ public class AddHallPanel extends MainPanel{
 
 	private ManageController controller;
 	
-	public AddHallPanel(ManageController c) {
+	public AddStationPanel(ManageController c) {
 		this.controller = c;
 		initComponents();
 	}

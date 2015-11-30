@@ -2,12 +2,13 @@ package edu.nju.express.presentation.administratorui;
 
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class AdministratorController implements ActionListener{
+import edu.nju.express.presentation.UIController;
+
+public class AdministratorController implements UIController{
 
 	JPanel currentPanel;
 	JFrame frame;

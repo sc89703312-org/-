@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.employeeui;
+package edu.nju.express.presentation.managerui;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;

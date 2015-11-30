@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.employeeui;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,8 +12,6 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
-import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;

@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.constantui;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,8 +13,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
-import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.MyEditableTable;
 import edu.nju.express.presentation.myUI.MyTextField;

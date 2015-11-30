@@ -1,10 +1,9 @@
-package edu.nju.express.presentation.managerui.receiptui;
+package edu.nju.express.presentation.managerui;
 
 
 import javax.swing.JButton;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ReturnButton;
 
 public class RceiptListUI extends MainPanel {

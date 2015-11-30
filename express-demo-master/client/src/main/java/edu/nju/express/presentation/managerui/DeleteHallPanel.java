@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.organizationui;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,13 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;
-import edu.nju.express.vo.StationVO;
 
-public class AddStationPanel extends MainPanel{
+public class DeleteHallPanel extends MainPanel{
 
 	/**
 	 * 
@@ -30,44 +28,42 @@ public class AddStationPanel extends MainPanel{
 	JButton confirm;
 	JPanel p;
 	LabelTextField id;
-	LabelTextField name;
 
 	private ManageController controller;
 	
-	public AddStationPanel(ManageController c) {
+	public DeleteHallPanel(ManageController c) {
 		this.controller = c;
 		initComponents();
 	}
 
 	private void initComponents() {
+		
 		p = new JPanel();
-		this.add(p);
 		p.setLayout(null);
 		p.setOpaque(false);
-		p.setBounds(0, y,  width, height);
-
+		
 		jbtReturn = new ReturnButton();
 		jbtReturn.setActionCommand("OrganizationUI");
 		jbtReturn.addActionListener(controller);
 		p.add(jbtReturn);
 
 		
-		name = new LabelTextField("中转中心名称",18);
-		name.setBounds((width-350)/2, 130, 350,40);
-		p.add(name);
-
-		id = new LabelTextField("中转中心编号",18);
-		id.setBounds((width-350)/2, 80,350,40);
+		id = new LabelTextField("ID   ", 15);
+		id.setSize(350, 40);
+		id.setLocation((width-350)/2, 90);
 		p.add(id);
-
+		
 		confirm = new ConfirmButton();
-		confirm.setLocation((width-confirm.getWidth())/2, 220);
-		confirm.setActionCommand("AddStation");
-		confirm.addActionListener(controller);
+		confirm.setLocation((width-confirm.getWidth())/2, 180);
 		p.add(confirm);
+		confirm.addActionListener(controller);
+		confirm.setActionCommand("DeleteStation");
+		
+		this.add(p);
+		p.setBounds(0, y, width, height);
 	}
 	
-	public StationVO getTextInput(){
-		return new StationVO(id.getText(), name.getText());
+	public String getID(){
+		return id.getText();
 	}
 }

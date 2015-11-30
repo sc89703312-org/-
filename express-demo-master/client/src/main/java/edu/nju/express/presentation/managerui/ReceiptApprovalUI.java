@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.receiptui;
+package edu.nju.express.presentation.managerui;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
-import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.vo.ReceiptVOBase;
 

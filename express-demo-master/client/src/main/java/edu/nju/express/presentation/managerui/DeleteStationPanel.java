@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.organizationui;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,12 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;
 
-public class DeleteHallPanel extends MainPanel{
+public class DeleteStationPanel extends MainPanel{
 
 	/**
 	 * 
@@ -32,7 +31,7 @@ public class DeleteHallPanel extends MainPanel{
 
 	private ManageController controller;
 	
-	public DeleteHallPanel(ManageController c) {
+	public DeleteStationPanel(ManageController c) {
 		this.controller = c;
 		initComponents();
 	}

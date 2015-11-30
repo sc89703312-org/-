@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.managerui.employeeui;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,8 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.common.Role;
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.managerui.ManageController;
-import edu.nju.express.presentation.managerui.ManageGuide;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.EmployeeVO;
 
