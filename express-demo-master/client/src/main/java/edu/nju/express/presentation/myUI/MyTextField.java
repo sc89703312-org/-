@@ -90,8 +90,10 @@ public class MyTextField extends JTextField {
 
 	}
 
-	public void setErrorField(){
-		
+	public void setColor(Color back1,Color back2){
+		this.back1 = back1;
+		this.back2 = back2;
+		this.setBackground(back1);
 	}
 	
 	
