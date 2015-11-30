@@ -1,6 +1,5 @@
 package edu.nju.express.presentation.clerk_hallui;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,13 +8,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import edu.nju.express.presentation.myUI.MyBackground;
-import edu.nju.express.presentation.myUI.MyLabel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Insets;
 
 public class HallHome extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -47,7 +42,6 @@ public class HallHome extends JPanel{
 		p.setVisible(true);
 		guidePanel.setLayout(null);
 		guidePanel.setBounds(0, 0, width/5, height);
-//		guidePanel.setBackground(Color.LIGHT_GRAY);
 		guidePanel.setOpaque(false);
 		initButtons();
 		guidePanel.setVisible(true);
@@ -55,7 +49,6 @@ public class HallHome extends JPanel{
 		this.mainPanel = new JPanel();
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(width/5, 0, 4*width/5, height);
-//		mainPanel.setBackground(Color.DARK_GRAY);
 		mainPanel.setOpaque(false);
 		initMain();
 		mainPanel.setVisible(true);
@@ -122,15 +115,8 @@ public class HallHome extends JPanel{
 	
 		back = new JButton(new ImageIcon("ui/image/hall/backToLastPage.png"));
 		back.setBounds(30, 15, 30, 30);
-//		Image img = icon.getImage().getScaledInstance(back.getWidth(), back.getHeight(),icon.getImage().SCALE_DEFAULT );
-//		icon = new ImageIcon(img);
-		
 		back.setOpaque(false);  
-//        back.setContentAreaFilled(false);  
-//        back.setMargin(new Insets(0, 0, 0, 0));  
-//        back.setFocusPainted(false);  
         back.setBorderPainted(false);  
-//        back.setBorder(null);  
 		back.addActionListener(controller);
 		
 		panel.add(addTransfer);

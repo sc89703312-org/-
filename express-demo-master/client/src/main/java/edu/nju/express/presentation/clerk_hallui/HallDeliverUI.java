@@ -180,9 +180,11 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		back.addMouseListener(this);
 		back.setActionCommand("backHome");
 		
-		submitBtn = new JButton("submit");
-		submitBtn.setBounds(50, 510, 60, 20);
-		submitBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
+		submitBtn.setBounds(50, 510, 90, 30);
+		submitBtn.setOpaque(false);
+		submitBtn.setBorderPainted(false);
+		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(controller);
 		
 		panel.add(back);

@@ -47,18 +47,21 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	JComboBox<String> yearBox, monthBox, dayBox;
 	MyTextField carrierIdField, fromField, toField, supervisorField, guardField;
 	MyTextField feeField;
+	JLabel bg;
 	
 	public HallTransferUI(HallController controller){
 		this.controller = controller;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
-//		mainpanel.setBackground(Color.GRAY);
-		
 		mainpanel.setVisible(true);
 		initPanel();
 		initOrderContainer();
 		initMargin();
+		bg = new JLabel();
+		bg.setBounds(0, 0, width, height);
+		bg.setIcon(new ImageIcon("ui/image/hall/hall1.png"));
+		mainpanel.add(bg);
 		this.add(mainpanel);
 		this.setLayout(null);
 		this.setVisible(true);
@@ -66,7 +69,10 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	
 	public void initPanel(){
 		JPanel panel = new JPanel();
-		
+		panel.setLayout(null);
+		panel.setBounds(50, 50, 480, 450);
+		panel.setVisible(true);
+		panel.setBackground(Color.DARK_GRAY);
 		
 		
 		idLabel = new JLabel("装车单编号");
@@ -76,9 +82,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		idField = new MyTextField(15);
 		idField.setBounds(120, 20, 150, 30);
-//		idField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-//		idField.setBounds(120, 20, 150, 30);
-//		idField.setOpaque(false);
 		
 		//行间隔为10
 		dateLabel = new JLabel("装车日期");
@@ -130,7 +133,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		carrierIdLabel.setBounds(20, 120, 150, 30);
 		
 		carrierIdField = new MyTextField(19);
-//		carrierIdField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 		carrierIdField.setBounds(170,120, 200, 30);
 		
 		fromLabel = new JLabel("出发地");
@@ -139,7 +141,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		fromLabel.setBounds(20, 170, 100, 30);
 		
 		fromField = new MyTextField(10);
-//		fromField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 		fromField.setBounds(120, 170, 120, 30);
 		
 		toLabel = new JLabel("到达地");
@@ -148,7 +149,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		toLabel.setBounds(20, 220, 100, 30);
 		
 		toField = new MyTextField(10);
-//		toField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 		toField.setBounds(120, 220, 120, 30);
 		
 		supervisorLabel = new JLabel("监装员");
@@ -157,7 +157,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		supervisorLabel.setBounds(20, 270, 100, 30);
 		
 		supervisorField = new MyTextField(10);
-//		supervisorField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 		supervisorField.setBounds(120, 270, 120, 30);
 		
 		guardLabel = new JLabel("押运员");
@@ -166,7 +165,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		guardLabel.setBounds(20, 320, 100, 30);
 		
 		guardField = new MyTextField(10);
-//		guardField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 		guardField.setBounds(120, 320, 120, 30);
 		
 		
@@ -190,15 +188,16 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		panel.add(supervisorField);
 		panel.add(guardLabel);
 		panel.add(guardField);
-		panel.setLayout(null);
-		panel.setBounds(50, 50, 480, 450);
-		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
+		
 		mainpanel.add(panel);
 	}
 	
 	public void initOrderContainer(){
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(540, 50, 330, 450);
+		panel.setVisible(true);
+		panel.setBackground(Color.DARK_GRAY);
 		
 		orderArea = new JTextArea(10,100);
 		orderArea.setLineWrap(true);
@@ -222,7 +221,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		feeLabel.setBounds(30, 340, 60, 30);
 		
 		feeField = new MyTextField(10);
-//		feeField.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
 		feeField.setBounds(90, 340, 100, 30);
 		
 		calFeeBtn = new JButton("生成运费");
@@ -236,10 +234,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		panel.add(feeLabel);
 		panel.add(feeField);
 		panel.add(calFeeBtn);
-		panel.setLayout(null);
-		panel.setBounds(540, 50, 330, 450);
-		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
+		
 		mainpanel.add(panel);
 	}
 	
@@ -254,9 +249,11 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		back.addMouseListener(this);
 		back.setActionCommand("backHome");
 		
-		submitBtn = new JButton("submit");
-		submitBtn.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
+		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
 		submitBtn.setBounds(50, 510, 90, 30);
+		submitBtn.setOpaque(false);
+		submitBtn.setBorderPainted(false);
+		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(controller);
 		
 		panel.add(back);
@@ -280,7 +277,9 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(submitBtn)){
+			System.out.println("Submit successfully!");
+		}
 	}
 
 	@Override
