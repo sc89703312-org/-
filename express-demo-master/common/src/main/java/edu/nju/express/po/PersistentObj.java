@@ -10,8 +10,8 @@ public class PersistentObj implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	String id;
-	String date;
+	public String id;
+	public String date;
 	
 	
 

@@ -58,6 +58,8 @@ public class Login {
 				{
 					System.out.println("Login Successfully");
 					passwordValid = true;
+					LoginInfo.setID(users.get(i).getId());
+					LoginInfo.setUserName(users.get(i).getName());
 					return users.get(i).getRole();
 				}else {
 					System.out.println("Password error");

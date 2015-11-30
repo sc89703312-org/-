@@ -3,10 +3,13 @@ package edu.nju.express.businesslogic.strategybl.salarysettingbl;
 import java.rmi.RemoteException;
 
 import edu.nju.express.blservice.SalarySettingBlService;
+import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.SalaryDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.log.LogController;
+import edu.nju.express.po.LogMessage;
 import edu.nju.express.vo.SalaryVO;
 
 
@@ -29,6 +32,11 @@ public class SalarySettingBl implements SalarySettingBlService {
 	
 	@Override
 	public ResultMessage setClerkSalary(double salary) {
+		
+		
+		LogController.insertLog(new LogMessage("Set Salary", LoginInfo.getUserName()));
+		
+		
 		if (salary <= 0)
 			return ResultMessage.INVALID;
 //		BasicValues.clerkSalary = salary;
@@ -43,6 +51,11 @@ public class SalarySettingBl implements SalarySettingBlService {
 
 	@Override
 	public ResultMessage setDriverWage(double wage) {
+		
+		LogController.insertLog(new LogMessage("Set DriverWage", LoginInfo.getUserName()));
+		
+		
+		
 		if (wage <= 0)
 			return ResultMessage.INVALID;
 //		BasicValues.driverWage = wage;
@@ -57,6 +70,11 @@ public class SalarySettingBl implements SalarySettingBlService {
 
 	@Override
 	public ResultMessage setPostmanWage(double wage) {
+		
+		
+		LogController.insertLog(new LogMessage("Set PostmanWage", LoginInfo.getUserName()));
+		
+		
 		if (wage <= 0)
 			return ResultMessage.INVALID;
 //		BasicValues.postmanWage = wage;

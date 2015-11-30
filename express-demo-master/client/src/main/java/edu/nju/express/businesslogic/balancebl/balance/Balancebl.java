@@ -6,6 +6,9 @@ import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.businesslogic.balancebl.Caculate;
 import edu.nju.express.businesslogic.balancebl.CostList.CostList;
 import edu.nju.express.businesslogic.balancebl.PaymentList.PaymentList;
+import edu.nju.express.businesslogic.login.LoginInfo;
+import edu.nju.express.log.LogController;
+import edu.nju.express.po.LogMessage;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.Paymentvo;
 
@@ -74,6 +77,8 @@ public class Balancebl implements Balanceblservice{
 		temp[1] = Caculate.caculateCost(costList.getList());
 		
 		temp[2] = temp[0] - temp[1];
+		
+		LogController.insertLog(new LogMessage("Create Balance Report", LoginInfo.getUserName()));
 		
 		return temp;
 	}

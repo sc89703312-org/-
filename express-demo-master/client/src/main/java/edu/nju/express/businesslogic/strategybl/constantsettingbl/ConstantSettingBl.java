@@ -4,11 +4,14 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.ConstantSettingBlService;
+import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.ConstantDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.log.LogController;
+import edu.nju.express.po.LogMessage;
 import edu.nju.express.vo.ConstantVO;
 
 
@@ -30,7 +33,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	public ResultMessage setDistance(String id1, String id2, double distance) {
 		// TODO Auto-generated method stub
 		
-		
+		LogController.insertLog(new LogMessage("Set Distance", LoginInfo.getUserName()));
 		try {
 			constantDataService.setCityDistance(id1, id2, distance);
 		} catch (RemoteException e) {
@@ -44,6 +47,12 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 	@Override
 	public ResultMessage setPrice(double p) {
+		
+		
+		LogController.insertLog(new LogMessage("Set Price", LoginInfo.getUserName()));
+		
+		
+		
 		if (p <= 0)
 			return ResultMessage.INVALID;
 //		BasicValues.price = p;
@@ -58,6 +67,12 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 	@Override
 	public ResultMessage setVehicleCost(double van, double railway, double airplane) {
+		
+		
+		LogController.insertLog(new LogMessage("Set VehicleCost", LoginInfo.getUserName()));
+		
+		
+		
 		if (van <= 0 || railway <= 0 || airplane <= 0)
 			return ResultMessage.INVALID;
 //		BasicValues.vanCost = van;
@@ -75,6 +90,12 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 	@Override
 	public ResultMessage setVehicleLoad(int van, int railway, int airplane) {
+	
+		LogController.insertLog(new LogMessage("Set VehicleLoad", LoginInfo.getUserName()));
+		
+		
+		
+		
 		if (van <= 0 || railway <= 0 || airplane <= 0)
 			return ResultMessage.INVALID;
 		
@@ -96,6 +117,10 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	
 	
 	public void addCity(String CityID){
+		
+		LogController.insertLog(new LogMessage("Add City", LoginInfo.getUserName()));
+		
+		
 		try {
 			constantDataService.addCity(CityID);
 		} catch (RemoteException e) {

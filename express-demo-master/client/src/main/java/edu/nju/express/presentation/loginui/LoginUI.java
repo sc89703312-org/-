@@ -32,7 +32,9 @@ import javax.swing.JPanel;
 
 
 
+
 import edu.nju.express.businesslogic.login.Login;
+import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.common.Role;
 import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.myUI.MyBackground;
@@ -266,7 +268,8 @@ public class LoginUI extends MyFrame implements ActionListener{
 				this.setVisible(false);
 			
 			    new Finance_Frame();
-				
+			    
+			   
 			}
 			else{
 				System.out.println("failed");

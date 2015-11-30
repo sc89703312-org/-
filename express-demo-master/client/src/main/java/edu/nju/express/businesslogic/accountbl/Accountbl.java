@@ -8,6 +8,7 @@ import java.util.Date;
 import edu.nju.express.blservice.Accountblservice;
 import edu.nju.express.businesslogic.accountbl.Info.*;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
+import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.businesslogic.strategybl.managementbl.*;
 import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
@@ -16,11 +17,13 @@ import edu.nju.express.common.Convert;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.log.LogController;
 import edu.nju.express.po.Accountpo;
 import edu.nju.express.po.BankingAccountPO;
 import edu.nju.express.po.Carpo;
 import edu.nju.express.po.ComGoodsPO;
 import edu.nju.express.po.HallPo;
+import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.StationPO;
 import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.Accountvo;
@@ -137,6 +140,9 @@ public class Accountbl implements Accountblservice{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	    
+	    
+	    LogController.insertLog(new LogMessage("Create Account", LoginInfo.getUserName()));
 	   
 	}
 	
