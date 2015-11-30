@@ -170,7 +170,7 @@ public class Convert {
     public static ArrivalReceiptVO po_to_vo_arrival(ArrivalReceiptPO po){
     	
     	ArrivalReceiptVO vo = new ArrivalReceiptVO(po.getId(),po.getDate(),po.getFrom(),
-    			po.getGoodsState(),po_to_vo_orderlist(po.getOrderList()));
+    			po.getLocation(),po_to_vo_orderlist(po.getOrderList()));
     	
     	return vo;
     	
@@ -179,7 +179,7 @@ public class Convert {
     public static ArrivalReceiptPO vo_to_po_arrival(ArrivalReceiptVO vo){
     	
     	ArrivalReceiptPO po = new ArrivalReceiptPO(vo.getId(),vo.getDate(),vo.getFrom(),
-    			vo.getGoodsState(),vo_to_po_orderlist(vo.getOrderList()));
+    			vo.getLocation(),vo_to_po_orderlist(vo.getOrderList()));
     	
     	return po;
     	
@@ -187,10 +187,10 @@ public class Convert {
     
     public static HallTransferReceiptVO po_to_vo_halltransfer(HallTransferReceiptPO po){
     	
-    	HallTransferReceiptVO vo = new HallTransferReceiptVO(po.getLocation(),
-    			po.getDate(),po.getHallID(),po.getTransportID(),po.getDestination(),
-    			po.getCarID(),po.getSupervisor(),po.getGuard(),
-    			po_to_vo_orderlist(po.getOrderlist()));
+    	HallTransferReceiptVO vo = new HallTransferReceiptVO
+    			(po.getId().substring(19, po.getId().length()),po.getLocation(),po.getDate(),
+    					po.getHallID(),po.getTransportID(),po.getDestination(),po.getCarID(),
+    					po.getSupervisor(),po.getGuard(),po_to_vo_orderlist(po.getOrderlist()));
     	
     	return vo;
     	
@@ -198,7 +198,7 @@ public class Convert {
     
     public static HallTransferReceiptPO vo_to_po_halltransfer(HallTransferReceiptVO vo){
     	
-    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getLocation(),
+    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getId().substring(19, vo.getId().length()), vo.getLocation(),
     			vo.getDate(),vo.getHallID(),vo.getTransportID(),vo.getDestination(),
     			vo.getCarID(),vo.getSupervisor(),vo.getGuard(),
     			vo_to_po_orderlist(vo.getOrderlist()));
@@ -209,7 +209,7 @@ public class Convert {
     
     public static DeliverReceiptVO po_to_vo_deliver(DeliverReceiptPO po){
     	
-    	DeliverReceiptVO vo = new DeliverReceiptVO(po.getId(),po.getDate(),
+    	DeliverReceiptVO vo = new DeliverReceiptVO(po.getId(),po.getDate(),po.getLocation(),
     			po.getDeliver(),po_to_vo_orderlist(po.getOrderList()));
     	
     	return vo;
@@ -218,7 +218,7 @@ public class Convert {
     
     public static DeliverReceiptPO vo_to_po_deliver(DeliverReceiptVO vo){
     	
-    	DeliverReceiptPO po = new DeliverReceiptPO(vo.getId(),vo.getDate(),
+    	DeliverReceiptPO po = new DeliverReceiptPO(vo.getId(),vo.getDate(),vo.getLocation(),
     			vo.getDeliver(),vo_to_po_orderlist(vo.getOrderList()));
     	
     	return po;

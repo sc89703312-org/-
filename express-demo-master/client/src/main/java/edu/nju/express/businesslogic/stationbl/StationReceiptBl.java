@@ -55,7 +55,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		if(id.contains("HallTransferReceipt")){
             try {
-				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.getHallTransfer(id));
+				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
 				if(transfervo.getDestination().equals(location)){
 				    ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getOrderlist());
 				    return vo;
@@ -148,8 +148,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		try {
 			TransferReceiptVO vo = new TransferReceiptVO(stationDataService.nextTransferID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,to,location,transportID,supervisor,etype,orderlist);
-			for(int i=0;i<orderlist.size();i++)
-				setOrderSpot.modifySpot(orderlist.get(i).getID(), location);
 			stationDataService.addTransferReceipt(Convert.vo_to_po_transfer(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -250,67 +248,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	}
 	
 	
-	public ArrayList<ArriveReceiptVO> viewApproveArrive(){
-		
-		ArrayList<ArriveReceiptVO> voList = new ArrayList<ArriveReceiptVO>();
-		ArrayList<ArriveReceiptPO> poList = new ArrayList<ArriveReceiptPO>();
-		
-		try {
-			poList = stationDataService.getApproveArrive();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i=0;i<poList.size();i++){
-			
-			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
-			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
-			
-			for(int j=0;j<orderpolist.size();j++){
-				
-				OrderPO orderpo = orderpolist.get(j);
-				OrderVO ordervo = Convert.po_to_vo_order(orderpo);
-				ordervolist.add(ordervo);
-				
-			}
-			
-			ArriveReceiptVO vo = new ArriveReceiptVO(poList.get(i).getID(),poList.get(i).getDate(),
-					poList.get(i).getFrom(),poList.get(i).getLocation(),ordervolist);
-			
-			voList.add(vo);
-			
-		}
-		
-		return voList;
-		
-	}
-	
-
-	public ArrayList<TransferReceiptVO> viewApproveTransfer(){
-		
-		ArrayList<TransferReceiptVO> voList = new ArrayList<TransferReceiptVO>();
-		ArrayList<TransferReceiptPO> poList = new ArrayList<TransferReceiptPO>();
-		
-		try {
-			poList = stationDataService.getApproveTransfer();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i=0;i<poList.size();i++){
-					
-			TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
-			voList.add(vo);
-			
-		}
-		
-		return voList;
-		
-	}
-	
-	
 	@Override
 	public ArrayList<ArriveReceiptVO> viewAllArriveReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -357,7 +294,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		ArrayList<TransferReceiptPO> poList = new ArrayList<TransferReceiptPO>();
 		
 		try {
-			poList = stationDataService.getApproveTransfer();
+			poList = stationDataService.getSummitTransfer();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -404,6 +341,44 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		for(int i=0;i<polist.size();i++)
 			volist.add(Convert.po_to_vo_transfer(polist.get(i)));
 		return volist;
+	}
+
+
+	@Override
+	public ArrayList<ArriveReceiptVO> viewApproveArrive(String comID) {
+		// TODO Auto-generated method stub
+		
+		try {
+			ArrayList<ArriveReceiptPO> polist = stationDataService.getApproveArrive(comID);
+			ArrayList<ArriveReceiptVO> volist = new ArrayList<ArriveReceiptVO>();
+			for(int i=0;i<polist.size();i++)
+				volist.add(Convert.po_to_vo_arrive(polist.get(i)));
+            return volist;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+
+	@Override
+	public ArrayList<TransferReceiptVO> viewApproveTransfer(String comID) {
+		// TODO Auto-generated method stub
+		
+		try {
+			ArrayList<TransferReceiptPO> polist = stationDataService.getApproveTransfer(comID);
+			ArrayList<TransferReceiptVO> volist = new ArrayList<TransferReceiptVO>();
+			for(int i=0;i<polist.size();i++)
+				volist.add(Convert.po_to_vo_transfer(polist.get(i)));
+			return volist;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	
 	}
 	
 	

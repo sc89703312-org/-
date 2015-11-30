@@ -14,12 +14,12 @@ import edu.nju.express.vo.HallTransferReceiptVO;
 
 
 
-public class MockHall extends HallReceiptBL{
+//public class MockHall extends HallReceiptBL{
 
-	public MockHall(OrderBL orderBL, Vehiclebl vehiclebl) {
-		super(null, null);
+	//public MockHall(OrderBL orderBL, Vehiclebl vehiclebl) {
+		//super(null, null);
 		// TODO Auto-generated constructor stub
-	}
+	//}
 /*
 	ArrayList<DeliverReceiptPO> listPo;
 	
@@ -61,4 +61,5 @@ public class MockHall extends HallReceiptBL{
 
 	
 	*/
-}
+//}
+

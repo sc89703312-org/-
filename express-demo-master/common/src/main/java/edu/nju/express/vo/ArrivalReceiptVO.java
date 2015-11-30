@@ -7,32 +7,25 @@ import edu.nju.express.common.*;
 
 
 public class ArrivalReceiptVO extends ReceiptVOBase{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
+	
 	private String from;
-	private GoodsState goodsState;
+	private String location;
 	private ArrayList<OrderVO> list;
 	
-	public ArrivalReceiptVO(String id, String date, String from, GoodsState gstate, ArrayList<OrderVO> voList){
+	public ArrivalReceiptVO(String id, String date, String from, String location, ArrayList<OrderVO> voList){
 		this.id="ArrivalReceipt"+id;
 		this.date=date;
 		this.from=from;
-		this.goodsState=gstate;
+		this.location = location;
 		this.list = voList;
 	}	
 	
-	public String getFrom(){
-		return from;
+	public String getLocation(){
+		return location;
 	}
 	
-	public GoodsState getGoodsState(){
-		return goodsState;
+	public String getFrom(){
+		return from;
 	}
 	
 	public ArrayList<OrderVO> getOrderList(){

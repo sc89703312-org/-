@@ -50,7 +50,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList() {
 		// TODO Auto-generated method stub
-		return stationInfo.viewApproveArrive();
+		return stationInfo.viewApproveArrive(comID);
 	}
 
 	
@@ -170,7 +170,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ArrayList<TransferReceiptVO> showTransferReceiptList() {
 		// TODO Auto-generated method stub
-		return stationInfo.viewApproveTransfer();
+		return stationInfo.viewApproveTransfer(comID);
 	}
 
 	@Override

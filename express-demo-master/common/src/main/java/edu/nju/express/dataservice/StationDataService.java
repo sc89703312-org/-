@@ -25,7 +25,7 @@ public interface StationDataService extends Remote{
 	public ArrayList<ArriveReceiptPO> getArriveReceipt(String stationID) throws RemoteException;
 	public ArrayList<ArriveReceiptPO> getArriveReceipt() throws RemoteException;
 	public ResultMessage approveArriveReceipt(String id) throws RemoteException;
-	public ArrayList<ArriveReceiptPO> getApproveArrive() throws RemoteException;
+	public ArrayList<ArriveReceiptPO> getApproveArrive(String comID) throws RemoteException;
 	public ArrayList<ArriveReceiptPO> getSummitArrive() throws RemoteException;
 	//public void modifyArriveReceipt(String id, ArriveReceiptPO po) throws RemoteException;
 	
@@ -35,7 +35,7 @@ public interface StationDataService extends Remote{
 	public ArrayList<TransferReceiptPO> getTransferReceipt(String stationID) throws RemoteException;
 	public ArrayList<TransferReceiptPO> getTransferReceipt() throws RemoteException;
 	public ResultMessage approveTransferReceipt(String id) throws RemoteException;
-	public ArrayList<TransferReceiptPO> getApproveTransfer() throws RemoteException;
+	public ArrayList<TransferReceiptPO> getApproveTransfer(String comID) throws RemoteException;
 	public ArrayList<TransferReceiptPO> getSummitTransfer() throws RemoteException;
 	//public void modifyTransferReceipt(String id, TransferReceiptPO po) throws RemoteException;
 	

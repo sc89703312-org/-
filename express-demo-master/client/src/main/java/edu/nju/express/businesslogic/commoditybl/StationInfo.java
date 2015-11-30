@@ -9,8 +9,8 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 public interface StationInfo {
 	
-	public ArrayList<ArriveReceiptVO> viewApproveArrive();
+	public ArrayList<ArriveReceiptVO> viewApproveArrive(String comID);
 	
-	public ArrayList<TransferReceiptVO> viewApproveTransfer();
+	public ArrayList<TransferReceiptVO> viewApproveTransfer(String comID);
 
 }

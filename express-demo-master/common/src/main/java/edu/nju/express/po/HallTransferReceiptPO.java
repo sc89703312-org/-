@@ -22,10 +22,10 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 	private String guard;
 	private ArrayList<OrderPO> orderlist;
 	
-	public HallTransferReceiptPO(String location, String date,String hallID,String transportID,String to, String carID,
+	public HallTransferReceiptPO(String id, String location, String date,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard,ArrayList<OrderPO> orderlist){
 		
-		this.id = "HallTransferReceipt"+hallID+transportID;
+		this.id = "HallTransferReceipt"+id;
 		this.date=date;
 		this.state = ReceiptState.SUBMITTED;
 		this.hallID=hallID;

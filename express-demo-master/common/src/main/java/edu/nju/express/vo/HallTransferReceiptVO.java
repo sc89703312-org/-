@@ -14,7 +14,7 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 	private String guard;
 	private ArrayList<OrderVO> orderlist;
 	
-	public HallTransferReceiptVO(String location, String date,String hallID,String transportID,String to, String carID,
+	public HallTransferReceiptVO(String id, String location, String date,String hallID,String transportID,String to, String carID,
 			String supervisor,String guard, ArrayList<OrderVO> orderlist){
 		
 		this.date=date;
@@ -24,7 +24,7 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		this.carID=carID;
 		this.supervisor=supervisor;
 		this.guard=guard;
-		this.id = "HallTransferReceipt"+hallID+transportID;
+		this.id = "HallTransferReceipt"+id;
 		this.orderlist = orderlist;
 		
 	}

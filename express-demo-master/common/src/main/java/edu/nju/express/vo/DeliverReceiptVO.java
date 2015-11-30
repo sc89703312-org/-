@@ -7,13 +7,19 @@ import java.util.ArrayList;
 public class DeliverReceiptVO extends ReceiptVOBase{
 
 	private String deliver;
+	private String location;
 	private ArrayList<OrderVO> list;
 	
-	public DeliverReceiptVO(String id,String date, String deliver, ArrayList<OrderVO> list){
+	public DeliverReceiptVO(String id,String date, String location, String deliver, ArrayList<OrderVO> list){
 		this.id="DeliverReceipt"+id;
 		this.date=date;
+		this.location = location;
 		this.deliver=deliver;
 		this.list = list;
+	}
+	
+	public String getLocation(){
+		return location;
 	}
 	
 	public String getDeliver(){
