@@ -18,16 +18,8 @@ public class MyEditableTable extends JTable{
 	Color foreColor = Color.white;
 	Font font = new Font("黑体", Font.PLAIN, 15);
 	
-	public MyEditableTable(String[] header) {
-		super(new DefaultTableModel(null,header){
-			private static final long serialVersionUID = 1L;
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				if(column == 4)
-					return true;
-				return false;
-			}
-		});
+	public MyEditableTable(String[] header, DefaultTableModel model) {
+		super(model);
 		
 		this.setRowHeight(ROW_HEIGHT);
 		this.setFont(font);

@@ -90,7 +90,18 @@ public class ConstantUI extends MainPanel{
 
 	private void initTable() {
 		String[] header = {"城市1","-","城市2","：","距离","公里"};
-		table = new MyEditableTable(header);
+		
+		DefaultTableModel model = new DefaultTableModel(null,header){
+			private static final long serialVersionUID = 1L;
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				if(column == 4)
+					return true;
+				return false;
+			}
+		};
+		
+		table = new MyEditableTable(header,model);
 		
 		String[] rowdata = new String[6];
 		for(int i =0;i<cityList.size()-1;i++){
