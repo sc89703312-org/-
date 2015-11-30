@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.OrderBLService;
-import edu.nju.express.businesslogic.hallbl.info.SetGoodsArriveState;
+
 import edu.nju.express.businesslogic.logisticsbl.Info.OrderToLogisticsInfo;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.common.ArrivalState;
@@ -21,8 +21,8 @@ import edu.nju.express.vo.OrderVO;
 
 public class OrderBL implements OrderBLService,
                                 OrderInfo,SetOrderSpot,
-                                OrderToLogisticsInfo,
-                                SetGoodsArriveState{
+                                OrderToLogisticsInfo
+                                {
 	
 	orderdataservice orderdataservice;
 	
@@ -91,7 +91,12 @@ public class OrderBL implements OrderBLService,
 	@Override
 	public void receiverCfm(String id) {
 		// TODO Auto-generated method stub
-		
+		try {
+			orderdataservice.setArrivalState(ArrivalState.YES, id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -159,16 +164,7 @@ public class OrderBL implements OrderBLService,
 
 
 
-	@Override
-	public void setGoodsArriveState(String id, ArrivalState arrivalState) {
-		// TODO Auto-generated method stub
-		try {
-			orderdataservice.setArrivalState(arrivalState, id);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	
 	
 	

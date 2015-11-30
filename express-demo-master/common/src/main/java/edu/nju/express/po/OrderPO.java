@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
+import edu.nju.express.common.GoodsState;
 
 
 
@@ -32,7 +33,8 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	double pkgCost;
 	double totalCost;
 	Etype type;
-	ArrivalState arrivalState;
+	ArrivalState arrivalState =ArrivalState.NO;
+	GoodsState goodsState = GoodsState.COMPLETE;
 	String expectedTime;
 	String currentSpot;
 	ArrayList<String> history;
@@ -64,6 +66,7 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 		this.expectedTime=expectedTime;
 		this.currentSpot=currentSpot;
 		history = new ArrayList<String>();
+		history.add(currentSpot);
 	}
 	
 	/**
@@ -81,6 +84,15 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	
 	public void setArrivalState(ArrivalState arrivalState){
 		this.arrivalState=arrivalState;
+	}
+	
+	
+	public void setCurrentSpot(String spot){
+		this.currentSpot = spot;
+	}
+	
+	public void setGoodsState(GoodsState goodsState){
+		this.goodsState = goodsState;
 	}
 
 	
@@ -139,6 +151,10 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	
 	public  String getGoodsName(){
 		return this.goodsName;
+	}
+	
+	public GoodsState getGoodsState(){
+		return this.goodsState;
 	}
 	
 	public double getSize(){

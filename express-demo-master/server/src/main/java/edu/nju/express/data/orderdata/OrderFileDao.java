@@ -32,6 +32,8 @@ public class OrderFileDao extends CommonData<OrderPO> implements OrderDao {
 		// TODO Auto-generated method stub
 		OrderPO temp = find(id);
 		temp.addHistory(spot);
+		temp.setCurrentSpot(spot);
+		
 		update(id, temp);
 	}
 

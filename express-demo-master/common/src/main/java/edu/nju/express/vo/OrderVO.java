@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
+import edu.nju.express.common.GoodsState;
 
 
 
@@ -27,6 +28,7 @@ public class OrderVO extends Observable implements Serializable{
 	String receiverPost;
 	String receiverTel;
 	String receiverPhone;
+	GoodsState goodsState = GoodsState.COMPLETE;
 	int num;
 	double weight;
 	double volume;
@@ -96,6 +98,8 @@ public class OrderVO extends Observable implements Serializable{
 		this.Deliver=name;
 		stateChanged();
 	}
+	
+	
 
 	public String getSenderName(){
 		return this.senderName;
