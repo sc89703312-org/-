@@ -1,5 +1,10 @@
 package edu.nju.express.init;
 
+import edu.nju.express.presentation.loginui.LoginUI;
+
+
+
+
 
 
 public class client {
@@ -9,6 +14,8 @@ public class client {
 		System.out.println("Client creates!");
 		
 	
+		new LoginUI();
+		
 		
 	}
 }

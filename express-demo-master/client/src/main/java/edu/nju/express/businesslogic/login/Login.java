@@ -13,12 +13,13 @@ public class Login {
 	
 	
 	UserDataService userDataService;
-
+    ArrayList<UserPO> users;
 	
 	public Login() {
 		// TODO Auto-generated constructor stub
 	
 		userDataService = RMIHelper.getUserDataService();
+		users = new ArrayList<>();
 	}
 	
 	
@@ -29,7 +30,7 @@ public class Login {
 			boolean passwordValid = false;
 		
 		
-			ArrayList<UserPO> users = new ArrayList<>();
+			
 		    
 			
 			try{

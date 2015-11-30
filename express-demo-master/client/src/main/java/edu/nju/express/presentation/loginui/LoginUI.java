@@ -53,7 +53,7 @@ public class LoginUI extends MyFrame implements ActionListener{
 	int BAR_HEIGHT = 40;
 
 	
-	Login loginBL;
+	Login loginBL= new Login();
 	
 	
 	MyButton login;
@@ -110,7 +110,7 @@ public class LoginUI extends MyFrame implements ActionListener{
 		
 		
 		
-		loginBL = new Login();
+		
 		quit = new MyButton(WIDTH - BAR_HEIGHT-10 , 10, BAR_HEIGHT ,BAR_HEIGHT);
 		quit.addActionListener(new ActionListener() {
 			
