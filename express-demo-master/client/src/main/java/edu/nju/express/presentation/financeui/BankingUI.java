@@ -23,7 +23,7 @@ public class BankingUI extends MainPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static int width = 900, height = 600;
-	private static int x = 240, y = 50;
+	private static int x = 94, y = 50;
 
 	FinanceController controller;
 
@@ -47,14 +47,14 @@ public class BankingUI extends MainPanel {
 		this.add(new FinanceGuide(c));
 
 		search = new MySearchFieldPanel(c);
-		search.setBounds(x + 290 - 100, y + 30, 200, 40);
+		search.setBounds(380, 120, 400, 40);
 		search.setActionCommand("SearchBanking");
 		this.add(search);
 
 		initPopup();
 
 		add = new JButton("增加账户");
-		add.setBounds(300, 150, 100, 30);
+		add.setBounds(x+95, 180, 80, 30);
 		this.add(add);
 		add.addActionListener(new ActionListener() {
 
@@ -67,7 +67,7 @@ public class BankingUI extends MainPanel {
 		});
 
 		delete = new JButton("删除账户");
-		delete.setBounds(520, 150, 100, 30);
+		delete.setBounds(x+360, 180, 80, 30);
 		this.add(delete);
 		delete.addActionListener(new ActionListener() {
 
@@ -80,7 +80,7 @@ public class BankingUI extends MainPanel {
 		});
 
 		modify = new JButton("修改账户");
-		modify.setBounds(740, 150, 100, 30);
+		modify.setBounds(x+630, 180, 80, 30);
 		this.add(modify);
 		modify.addActionListener(new ActionListener() {
 
@@ -103,9 +103,9 @@ public class BankingUI extends MainPanel {
 			table.getTableModel().addRow(rowdata);
 		}
 		this.add(table);
-		table.setRowHeight(30);
-		table.setBounds(x + 30, 280, width - x - 60, 270);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x - 60, 270));
+		table.setRowHeight(28);
+		table.setBounds(128, 280, 726, 280);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(727, 250));
 	}
 
 	private void initPopup() {
@@ -145,14 +145,8 @@ public class BankingUI extends MainPanel {
 
 	private void initData() {
 		list = new ArrayList<BankingAccountVO>();
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
-		list.add(new BankingAccountVO("622202194898561354889", 200000));
+		for(int i=0;i<20;i++)
+		list.add(new BankingAccountVO("622202194898561354889", 200000+i));
 	}
 
 }

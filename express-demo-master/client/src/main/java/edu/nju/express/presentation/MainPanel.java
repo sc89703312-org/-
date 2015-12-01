@@ -22,7 +22,7 @@ public class MainPanel extends JPanel {
 	int HEIGHT = 600;
 	int BAR_HEIGHT = 50;
 	Image logo;
-	Image bg = new ImageIcon("ui/image/bg.jpg").getImage();
+	Image bg = new ImageIcon("ui/image/bg.png").getImage();
 	Icon quitIcon1 = new ImageIcon("ui/image/quit1.png");
 	Icon quitIcon2 = new ImageIcon("ui/image/quit2.png");
 	
@@ -39,7 +39,7 @@ public class MainPanel extends JPanel {
 		JLabel label = new JLabel("此处应有logo");
 		label.setBounds(0, 0, 80, BAR_HEIGHT);
 		label.setOpaque(false);
-		this.add(label);
+//		this.add(label);
 
 		// init buttons
 		quit = new JButton(quitIcon1);
@@ -54,12 +54,12 @@ public class MainPanel extends JPanel {
 
 			}
 		});
-		this.add(quit);
+	//	this.add(quit);
 
 		welcome = new JLabel("Welcome!" + userInfo);
 		welcome.setBounds((int) (WIDTH * 0.6), 0, 150, BAR_HEIGHT);
 		welcome.setOpaque(false);
-		this.add(welcome);
+	//	this.add(welcome);
 
 		signOut = new JButton("退出登录");
 		signOut.setOpaque(false);

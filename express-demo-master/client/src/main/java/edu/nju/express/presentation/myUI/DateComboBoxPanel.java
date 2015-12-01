@@ -7,7 +7,6 @@ import java.util.Locale;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 /*
  * 用来选择日期，默认为当天
@@ -15,9 +14,8 @@ import javax.swing.JPopupMenu;
 public class DateComboBoxPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	static Font font1 = new Font("黑体", Font.PLAIN, 16);
-	static Font font2 = new Font("黑体", Font.PLAIN, 15);
-	static Color color = Color.white;
+	static Font font = new Font("黑体", Font.PLAIN, 18);
+	static Color color = new Color(44, 62,80);
 
 	MyComboBox<String> year, month, day;
 
@@ -44,13 +42,13 @@ public class DateComboBoxPanel extends JPanel {
 		day.setSelectedItem(String.format("%02d",c.get(Calendar.DATE)));
 		
 		JLabel y = new JLabel("年");
-		y.setFont(font1);
+		y.setFont(font);
 		y.setForeground(color);
 		JLabel m = new JLabel("月");
-		m.setFont(font1);
+		m.setFont(font);
 		m.setForeground(color);
 		JLabel d = new JLabel("日");
-		d.setFont(font1);
+		d.setFont(font);
 		d.setForeground(color);
 		
 		

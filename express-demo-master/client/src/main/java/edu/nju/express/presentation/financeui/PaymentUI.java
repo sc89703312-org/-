@@ -22,8 +22,11 @@ public class PaymentUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	static Font font = new Font("黑体", Font.PLAIN, 18);
+	static Color color = new Color(44, 62,80);
 	private static int width = 900, height = 600;
-	private static int x = 240, y = 50;
+	
+	private static int x = 94, y = 50;
 	private static int h = 75;
 
 	private MyTablePanel table;
@@ -43,8 +46,8 @@ public class PaymentUI extends MainPanel {
 		showTablebyDate();
 
 		JLabel sort = new JLabel("选择排序方式：");
-		sort.setFont(new Font("黑体", Font.PLAIN, 15));
-		sort.setForeground(Color.white);
+		sort.setFont(font);
+		sort.setForeground(color);
 		style = new MyComboBox<String>();
 		style.addItem("日期");
 		style.addItem("营业厅");
@@ -75,7 +78,7 @@ public class PaymentUI extends MainPanel {
 		p.setOpaque(false);
 		p.add(sort);
 		p.add(style);
-		p.setBounds(x, y + 30, 220, 30);
+		p.setBounds(x+50, 120, 220, 36);
 		this.add(p);
 
 	}
@@ -99,8 +102,8 @@ public class PaymentUI extends MainPanel {
 		Object[] last = {"总计",sum,"",""};
 		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x - 80, 320));
-		table.setBounds(x + 30, y + h, width - x - 60, 360);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 360));
+		table.setBounds(128, 165, 726, 360);
 		this.add(table);
 	}
 
@@ -118,19 +121,19 @@ public class PaymentUI extends MainPanel {
 		table.getTableModel().addRow(last);
 		this.add(table);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x - 80, 320));
-		table.setBounds(x + 30, y + h, width - x - 60, 360);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 360));
+		table.setBounds(128, 165, 726, 360);
 	}
 
 	private void initDatabyDate() {
 		list = new ArrayList<Paymentvo>();
 		for (int i = 0; i < 20; i++)
-			list.add(new Paymentvo("", 1, "", "", ""));
+			list.add(new Paymentvo("", 1+i, "", "", ""));
 	}
 
 	private void initDatabyHall() {
 		list = new ArrayList<Paymentvo>();
 		for (int i = 0; i < 20; i++)
-			list.add(new Paymentvo("", 1, "", "", ""));
+			list.add(new Paymentvo("", 1+i, "", "", ""));
 	}
 }

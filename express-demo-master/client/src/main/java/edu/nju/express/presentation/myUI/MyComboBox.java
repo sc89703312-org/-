@@ -21,9 +21,9 @@ public class MyComboBox<E> extends JComboBox<E>{
 		super();
 		
 	//	this.setOpaque(false);
-		this.setBackground(new Color(173,195,192));
-		this.setFont(new Font("黑体", Font.PLAIN, 15));
-		this.setForeground(Color.white);
+		this.setBackground(new Color(246,249,249));
+		this.setFont(new Font("黑体", Font.PLAIN, 17));
+		this.setForeground(new Color(44, 62,80));
 		this.setBorder(new EmptyBorder(0,0,0,0));;
 	//	this.setUI( new MyComboBoxUI() );
 	

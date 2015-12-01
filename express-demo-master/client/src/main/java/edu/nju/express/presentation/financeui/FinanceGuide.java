@@ -26,33 +26,43 @@ public class FinanceGuide extends JPanel{
 		initGuide();
 		this.setLayout(null);
 		this.setOpaque(false);
-		this.setBounds(0, y, 240, height-y);
+		this.setBounds(12, 0, 94, height-y);
 	}
 
 	void initGuide() {	
 		
-		balance = new JButton("成本管理");
-		balance.setBounds(60,30,120,40);
+		balance = new JButton();
+		balance.setBorderPainted(false);
+		balance.setContentAreaFilled(false);
+		balance.setBounds(0,44,82,82);
 		balance.setActionCommand("BalanceUI");
 		balance.addActionListener(controller);
 		
-		payment = new JButton("结算管理");
-		payment.setBounds(60,100,120,40);
+		payment = new JButton();
+		payment.setBounds(0,144,82,82);
+		payment.setBorderPainted(false);
+		payment.setContentAreaFilled(false);
 		payment.setActionCommand("PaymentUI");
 		payment.addActionListener(controller);	
 		
-		analyze = new JButton("报表分析");
-		analyze.setBounds(60,240,120,40);
+		analyze = new JButton();
+		analyze.setContentAreaFilled(false);
+		analyze.setBorderPainted(false);
+		analyze.setBounds(0,244,82,82);
 		analyze.setActionCommand("AnalyzeUI");
 		analyze.addActionListener(controller);
 		
-		banking = new JButton("账户管理");
-		banking.setBounds(60,170,120,40);
+		banking = new JButton();
+		banking.setContentAreaFilled(false);
+		banking.setBorderPainted(false);
+		banking.setBounds(0,344,82,82);
 		banking.setActionCommand("BankingUI");
 		banking.addActionListener(controller);
 				
-		account = new JButton("期初建账");
-		account.setBounds(60,310,120,40);
+		account = new JButton();
+		account.setBounds(0,444,82,82);
+		account.setContentAreaFilled(false);
+		account.setBorderPainted(false);
 		account.setActionCommand("AccountUI");
 		account.addActionListener(controller);
 		

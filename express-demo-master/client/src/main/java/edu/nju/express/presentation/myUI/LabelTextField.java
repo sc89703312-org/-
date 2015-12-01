@@ -15,8 +15,8 @@ public class LabelTextField extends JPanel{
 	JLabel label;
 	MyTextField field;
 	
-	static Font font = new Font("黑体", Font.PLAIN, 16);
-	static Color color = Color.white;
+	static Font font = new Font("黑体", Font.PLAIN, 18);
+	static Color color = new Color(44, 62,80);
 	
 	public LabelTextField(String text, int columns) {
 		
@@ -28,7 +28,7 @@ public class LabelTextField extends JPanel{
 		this.add(label);
 		
 		
-		field = new MyTextField(columns);
+		field = new MyTextField(20);
 		this.add(field);
 	}
 	
@@ -42,7 +42,7 @@ public LabelTextField(String text1, int columns,String text2) {
 		this.add(label);
 		
 		
-		field = new MyTextField(columns);
+		field = new MyTextField(20);
 		this.add(field);
 		
 		JLabel label2 = new JLabel(text2);
@@ -55,8 +55,4 @@ public LabelTextField(String text1, int columns,String text2) {
 		return field.getText();
 	}
 	
-	public void setColumns(int columns){
-		field.setColumns(columns);
-	}
-
 }

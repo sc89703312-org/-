@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -21,10 +22,11 @@ public class MyTablePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	int ROW_HEIGHT = 35;
-	Color headerColor = new Color(49, 121, 177);
-	Color foreColor = Color.white;
-	Color backColor1 = new Color(255, 255, 255,50);
-	Color backColor2 = new Color(240, 250, 254,50);
+//	Color headerColor = new Color(49, 121, 177);
+	Color foreColor = new Color(44, 62,80);
+	Color backColor1 = new Color(246,249,249);
+	Color backColor2 = new Color(36,194,156,90);
+	Color gridColor = new Color(143,143,143,50);
 	Font font = new Font("黑体", Font.PLAIN, 15);
 	String[] headerStr;
 	JTable table; 
@@ -73,12 +75,15 @@ public class MyTablePanel extends JPanel {
 
 		table.setCellSelectionEnabled(false);
 		table.setOpaque(false);
-		table.setShowGrid(false);
+//		table.setShowGrid(false);
+//		table.setShowVerticalLines(false);
+		table.setGridColor(gridColor);
 
 		// 设置表格颜色
 		setForeground(foreColor);
 		header.setForeground(foreColor);
-		header.setBackground(headerColor);
+//		header.setBackground(headerColor);
+		header.setBorder(new LineBorder(gridColor, 1));
 		
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = 1L;
@@ -86,12 +91,14 @@ public class MyTablePanel extends JPanel {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 					boolean hasFocus, int row, int column) {
-				if (row % 2 == 0)
+				if (row % 2 == 0){
 					setBackground(backColor1);
-				else if(row % 2 == 1)
+				}
+				else if(row % 2 == 1){
 					setBackground(backColor2);
+				}
 				else
-					setBackground(headerColor);
+					setBackground(backColor2);
 				setForeground(foreColor);
 
 			

@@ -15,25 +15,14 @@ public class BalanceHistoryPanel extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int width = 900, height = 600;
-	private static int x = 240, y = 50;
-	private static int h = 75;
 	
-	private FinanceController controller;
 	
-	private ReturnButton jbtRe;
 	private MyTablePanel table;
 	
 	private ArrayList<Balancevo> list;
 
 	BalanceHistoryPanel(FinanceController c) {
-		controller = c;
-		
-		jbtRe = new ReturnButton();
-		jbtRe.setLocation(20, 70);
-		jbtRe.setActionCommand("BalanceUI");
-		jbtRe.addActionListener(controller);
-		this.add(jbtRe);
+		this.add(new FinanceGuide(c));
 		
 		initTable();
 	}
@@ -54,18 +43,18 @@ public class BalanceHistoryPanel extends MainPanel {
 			rowdata[5]=vo.getRemark();
 			table.getTableModel().addRow(rowdata);
 		}
-		table.setRowHeight(35);
+		table.setRowHeight(30);
 		int[]  cwidth = {100,80,80,250,80,150};
 		table.setColumnWidth(cwidth);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(740,450));
-		table.setBounds(80, 120,740,450);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726,440));
+		table.setBounds(128, 105, 725, 465);
 		this.add(table);
 	}
 
 	private void initData() {
 		list = new ArrayList<Balancevo>();
 		for(int i =0;i<30;i++){
-			list.add(new Balancevo("2015/11/28", 1000, "Oraisdy", "62220212345689876", Item.RENT, "XXXXXX"));
+			list.add(new Balancevo("2015/11/28", 1000+i, "Oraisdy", "62220212345689876", Item.RENT, "XXXXXX"));
 		}
 	}
 }

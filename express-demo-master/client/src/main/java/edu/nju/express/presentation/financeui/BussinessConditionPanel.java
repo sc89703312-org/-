@@ -18,14 +18,14 @@ import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.Paymentvo;
 
-public class BussinessConditionPanel extends MainPanel{
+public class BussinessConditionPanel extends MainPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private static int width = 900, height = 600;
-	private static int x = 240, y = 50;
+	private static int x = 94;
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
 
@@ -38,17 +38,14 @@ public class BussinessConditionPanel extends MainPanel{
 
 	private ArrayList<Balancevo> listB;
 	private ArrayList<Paymentvo> listP;
-	
+
 	public BussinessConditionPanel(FinanceController controller) {
 
-		jbtRe = new ReturnButton();
-		jbtRe.setLocation(20, y+20);
-		jbtRe.setActionCommand("AnalyzeUI");
-		this.add(jbtRe);
+		this.add(new FinanceGuide(controller));
 		
 		date = new JPanel();
 		date.setOpaque(false);
-		date.setBounds(325, y + 50, 300, 50);
+		date.setBounds(250, 110, 500, 60);
 		date1 = new MyTextField(12);
 		date2 = new LabelTextField("- ", 12);
 		date.add(date1);
@@ -62,15 +59,14 @@ public class BussinessConditionPanel extends MainPanel{
 		search.setActionCommand("SearchList");
 		date.add(search);
 		this.add(date);
-		
-		
+
 		initData();
 
 		initTableB();
-		
+
 		initTableP();
 	}
-	
+
 	private void initTableP() {
 		String[] header = { "收款日期", "收款金额", "快递员编号", "订单编号" };
 		tableP = new MyTablePanel(header);
@@ -86,9 +82,9 @@ public class BussinessConditionPanel extends MainPanel{
 			rowdata[5] = vo.getRemark();
 			tableP.getTableModel().addRow(rowdata);
 		}
-		tableP.setRowHeight(30);
-		tableP.getTable().setPreferredScrollableViewportSize(new Dimension(390, 400));
-		tableP.setBounds(40, y+70, 390, 400);
+		tableP.setRowHeight(28);
+		tableP.getTable().setPreferredScrollableViewportSize(new Dimension(343, 370));
+		tableP.setBounds(128, 160, 343, 400);
 		this.add(tableP);
 	}
 
@@ -107,9 +103,9 @@ public class BussinessConditionPanel extends MainPanel{
 			rowdata[5] = vo.getRemark();
 			tableB.getTableModel().addRow(rowdata);
 		}
-		tableB.setRowHeight(25);
-		tableB.getTable().setPreferredScrollableViewportSize(new Dimension(390,400));
-		tableB.setBounds(450+20, y+70, 390,400);
+		tableB.setRowHeight(28);
+		tableB.getTable().setPreferredScrollableViewportSize(new Dimension(343, 370));
+		tableB.setBounds(511, 160, 343, 400);
 		this.add(tableB);
 	}
 
@@ -124,5 +120,5 @@ public class BussinessConditionPanel extends MainPanel{
 			listP.add(new Paymentvo("", 0, "", "", ""));
 		}
 	}
-	
+
 }

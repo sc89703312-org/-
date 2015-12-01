@@ -24,7 +24,7 @@ public class AnalyzeUI extends MainPanel {
 	private static int width = 900, height = 600;
 	private static int x = 240, y = 50;
 	private Font font = new Font("微软雅黑", Font.BOLD, 20);
-	private Color color = Color.white;
+	private Color color = new Color(44, 62,80);
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
 
@@ -85,7 +85,7 @@ public class AnalyzeUI extends MainPanel {
 	private void initDate() {
 		date = new JPanel();
 		date.setOpaque(false);
-		date.setBounds(x + 160, 400, 350, 60);
+		date.setBounds(250, 400, 500, 60);
 		date1 = new MyTextField(12);
 		date2 = new LabelTextField("- ", 12);
 		date.add(date1);

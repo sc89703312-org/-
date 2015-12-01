@@ -41,7 +41,7 @@ public class MySearchFieldPanel extends JPanel{
 		
 		field = new JTextField();
 		field.setBounds(10, 0, (int)(width*0.8)-10, height);
-		field.setFont(new Font("黑体", Font.PLAIN, 16));
+		field.setFont(new Font("黑体", Font.PLAIN, 18));
 	//	field.setForeground(new Color(165, 165, 165));
 		field.setOpaque(false);
 		field.setBorder(new EmptyBorder(0, 0, 0, 0));
