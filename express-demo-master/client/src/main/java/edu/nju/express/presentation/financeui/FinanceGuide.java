@@ -42,12 +42,12 @@ public class FinanceGuide extends JPanel{
 		payment.addActionListener(controller);	
 		
 		analyze = new JButton("报表分析");
-		analyze.setBounds(60,170,120,40);
+		analyze.setBounds(60,240,120,40);
 		analyze.setActionCommand("AnalyzeUI");
 		analyze.addActionListener(controller);
 		
 		banking = new JButton("账户管理");
-		banking.setBounds(60,240,120,40);
+		banking.setBounds(60,170,120,40);
 		banking.setActionCommand("BankingUI");
 		banking.addActionListener(controller);
 				

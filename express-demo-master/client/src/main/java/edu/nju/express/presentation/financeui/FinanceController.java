@@ -33,7 +33,11 @@ public class FinanceController implements UIController {
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("AnalyzeUI")) {
-			
+			frame.getContentPane().removeAll();;
+			currentPanel = new AnalyzeUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		} else if (e.getActionCommand().equals("BankingUI")) {
 			frame.getContentPane().removeAll();;
 			currentPanel = new BankingUI(this);
@@ -48,10 +52,23 @@ public class FinanceController implements UIController {
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+		}else if (e.getActionCommand().equals("BussinessConditionUI")) {
+			frame.getContentPane().removeAll();;
+			currentPanel = new BussinessConditionPanel(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
 			
 		}else if (e.getActionCommand().equals("SearchBanking")) {
 			
+		}else if (e.getActionCommand().equals("AddBanking")) {
+			((BankingUI)currentPanel).removePopup();
+		}else if (e.getActionCommand().equals("DeleteBanking")) {
+			((BankingUI)currentPanel).removePopup();
+		}else if (e.getActionCommand().equals("ModifyBanking")) {
+			((BankingUI)currentPanel).removePopup();
+		}else if (e.getActionCommand().equals("SearchList")) {
 		}
 
 	}

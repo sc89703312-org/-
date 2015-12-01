@@ -57,7 +57,6 @@ public class MySearchFieldPanel extends JPanel{
 		field.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				System.out.println(13545);
 				state = 2;
 				p.repaint();
 			}

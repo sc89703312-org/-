@@ -37,9 +37,9 @@ public class PaymentUI extends MainPanel {
 	public PaymentUI(FinanceController c) {
 		this.controller = c;
 		ui = this;
-		
+
 		this.add(new FinanceGuide(c));
-		
+
 		showTablebyDate();
 
 		JLabel sort = new JLabel("选择排序方式：");
@@ -84,19 +84,23 @@ public class PaymentUI extends MainPanel {
 		initDatabyDate();
 		String[] header = { "收款日期", "收款金额", "快递员编号", "订单编号" };
 		table = new MyTablePanel(header);
-		Object[] rowdata = new Object[4];
 
+		Object[] rowdata = new Object[4];
+		double sum = 0;
 		for (int i = 0; i < list.size(); i++) {
 			Paymentvo vo = list.get(i);
 			rowdata[0] = vo.getDate();
 			rowdata[1] = vo.getPay();
+			sum += (double) rowdata[1];
 			rowdata[2] = vo.getCourier_id();
 			rowdata[3] = vo.getOrder_id();
 			table.getTableModel().addRow(rowdata);
 		}
+		Object[] last = {"总计",sum,"",""};
+		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h-70));
-		table.setBounds(x + 30, y + h, width - x - 60, 400);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x - 80, 320));
+		table.setBounds(x + 30, y + h, width - x - 60, 360);
 		this.add(table);
 	}
 
@@ -105,26 +109,28 @@ public class PaymentUI extends MainPanel {
 		String[] header = { "营业厅编号", "收款金额", "快递员编号", "收款日期" };
 		table = new MyTablePanel(header);
 		Object[] rowdata = new Object[4];
-
+		double sum = 0;
 		for (int i = 0; i < list.size(); i++) {
 			Paymentvo vo = list.get(i);
 			table.getTableModel().addRow(rowdata);
 		}
+		Object[] last = {"总计",sum,"",""};
+		table.getTableModel().addRow(last);
 		this.add(table);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h-70));
-		table.setBounds(x + 30, y + h, width - x - 60, 400);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x - 80, 320));
+		table.setBounds(x + 30, y + h, width - x - 60, 360);
 	}
 
 	private void initDatabyDate() {
 		list = new ArrayList<Paymentvo>();
 		for (int i = 0; i < 20; i++)
-			list.add(new Paymentvo("", 0, "", "", ""));
+			list.add(new Paymentvo("", 1, "", "", ""));
 	}
 
 	private void initDatabyHall() {
 		list = new ArrayList<Paymentvo>();
 		for (int i = 0; i < 20; i++)
-			list.add(new Paymentvo("", 0, "", "", ""));
+			list.add(new Paymentvo("", 1, "", "", ""));
 	}
 }
