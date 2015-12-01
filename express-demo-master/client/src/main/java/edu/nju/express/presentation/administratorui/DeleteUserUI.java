@@ -37,23 +37,17 @@ public class DeleteUserUI extends MainPanel{
 	}
 	
 	private void initComponents() {
-		p = new JPanel();
-		p.setLayout(null);
-		p.setOpaque(false);
-
 		
-		id = new LabelTextField(" ID  ", 15);
-		id.setBounds(200, 90,200,28);
-		p.add(id);
+		id = new LabelTextField("ID     ", 15);
+		id.setBounds(294, 200,400,40);
+		this.add(id);
 		
 		confirm = new ConfirmButton();
-		p.add(confirm);
-		confirm.setLocation(270, 200);
+		this.add(confirm);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("DeleteUser");
 		
-		this.add(p);
-		p.setBounds(x, y, width-x, height-y);
+		
 	}
 
 	public String getID(){

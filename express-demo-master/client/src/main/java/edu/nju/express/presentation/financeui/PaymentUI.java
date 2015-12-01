@@ -24,8 +24,6 @@ public class PaymentUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 	static Font font = new Font("黑体", Font.PLAIN, 18);
 	static Color color = new Color(44, 62,80);
-	private static int width = 900, height = 600;
-	
 	private static int x = 94, y = 50;
 	private static int h = 75;
 
@@ -102,8 +100,8 @@ public class PaymentUI extends MainPanel {
 		Object[] last = {"总计",sum,"",""};
 		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 360));
-		table.setBounds(128, 165, 726, 360);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 395));
+		table.setBounds(128, 165, 726, 403);
 		this.add(table);
 	}
 
@@ -121,8 +119,8 @@ public class PaymentUI extends MainPanel {
 		table.getTableModel().addRow(last);
 		this.add(table);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 360));
-		table.setBounds(128, 165, 726, 360);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 395));
+		table.setBounds(128, 165, 726, 403);
 	}
 
 	private void initDatabyDate() {

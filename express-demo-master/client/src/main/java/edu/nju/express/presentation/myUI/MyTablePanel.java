@@ -25,7 +25,7 @@ public class MyTablePanel extends JPanel {
 //	Color headerColor = new Color(49, 121, 177);
 	Color foreColor = new Color(44, 62,80);
 	Color backColor1 = new Color(246,249,249);
-	Color backColor2 = new Color(36,194,156,90);
+	Color backColor2 = new Color(172,229,216);
 	Color gridColor = new Color(143,143,143,50);
 	Font font = new Font("黑体", Font.PLAIN, 15);
 	String[] headerStr;

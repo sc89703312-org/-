@@ -19,10 +19,10 @@ public class CheckTaskUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 
 	static int width = 900, height = 600;
-	static int y = 50;		//由标题栏高度决定
+	static int y = 50;		
 	static int LABEL_HEIGHT = 6;
-	static int ROW_HEIGHT = 28;
-	static int x=240;
+	static int ROW_HEIGHT = 30;
+	static int x=94;
 	static int h=50;
 	
 	AdministratorController controller;
@@ -42,12 +42,6 @@ public class CheckTaskUI extends MainPanel {
 	}
 
 	private void initTable() {
-		p = new JPanel();
-		p.setOpaque(false);
-		p.setBounds(x, y+h, width-x, height-y);
-		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-		
-		this.add(p);
 
 		String[] header1 = { "ID", "姓名", "职务" };
 		table1 = new MyTablePanel(header1);
@@ -58,12 +52,12 @@ public class CheckTaskUI extends MainPanel {
 		table2.setRowHeight(ROW_HEIGHT);
 		
 		initData();
-		table1.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h));
-		table1.setBounds(x+30, y +h, width - x-60,height - y-h-30);
-		table2.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h));
-		table2.setBounds(x+30, y +h, width - x-60,height - y-h-30);
-		p.add(table1);
-		p.add(table2);
+		table1.getTable().setPreferredScrollableViewportSize(new Dimension(726, 120));
+		table1.setBounds(128, 107, 726, 150);
+		table2.getTable().setPreferredScrollableViewportSize(new Dimension(726, 120));
+		table2.setBounds(128, 300, 726, 150);
+		this.add(table1);
+		this.add(table2);
 	}
 
 	

@@ -28,7 +28,7 @@ public class LabelTextField extends JPanel{
 		this.add(label);
 		
 		
-		field = new MyTextField(20);
+		field = new MyTextField(columns);
 		this.add(field);
 	}
 	

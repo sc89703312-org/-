@@ -39,8 +39,6 @@ public class BalanceUI extends MainPanel {
 
 		this.add(new FinanceGuide(c));
 		
-		JPanel whole = new JPanel();
-
 		JPanel p = new JPanel();
 		p.setBounds(x - 130, 100, width - x+60, height - y);
 		p.setLayout(new FlowLayout(FlowLayout.LEFT, 360, 18));
@@ -84,13 +82,13 @@ public class BalanceUI extends MainPanel {
 		this.add(p);
 		
 		cfm = new ConfirmButton();
-		cfm.setBounds(520, 510, 80,30);
+		cfm.setBounds(520, 537, 80,30);
 		cfm.addActionListener(controller);
 		cfm.setActionCommand("SubmitBalance");
 		this.add(cfm);
 		
 		history = new JButton("查看历史单据");
-		history.setBounds(350, 510, 110, 30);
+		history.setBounds(350, 537, 110, 30);
 		history.addActionListener(controller);
 		history.setActionCommand("BalanceHistory");
 		this.add(history);

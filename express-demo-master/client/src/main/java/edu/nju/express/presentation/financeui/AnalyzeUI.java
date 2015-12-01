@@ -21,8 +21,6 @@ public class AnalyzeUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int width = 900, height = 600;
-	private static int x = 240, y = 50;
 	private Font font = new Font("微软雅黑", Font.BOLD, 20);
 	private Color color = new Color(44, 62,80);
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
@@ -86,8 +84,8 @@ public class AnalyzeUI extends MainPanel {
 		date = new JPanel();
 		date.setOpaque(false);
 		date.setBounds(250, 400, 500, 60);
-		date1 = new MyTextField(12);
-		date2 = new LabelTextField("- ", 12);
+		date1 = new MyTextField(0);
+		date2 = new LabelTextField("- ", 0);
 		date.add(date1);
 		date.add(date2);
 		search = new JButton(search1);

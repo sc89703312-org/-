@@ -26,7 +26,7 @@ public class FinanceGuide extends JPanel{
 		initGuide();
 		this.setLayout(null);
 		this.setOpaque(false);
-		this.setBounds(12, 0, 94, height-y);
+		this.setBounds(12, 0, 94, height);
 	}
 
 	void initGuide() {	

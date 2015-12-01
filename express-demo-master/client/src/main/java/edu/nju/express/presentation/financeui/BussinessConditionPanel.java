@@ -24,12 +24,9 @@ public class BussinessConditionPanel extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int width = 900, height = 600;
-	private static int x = 94;
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
 
-	private ReturnButton jbtRe;
 	private JPanel date;
 	private MyTextField date1;
 	private LabelTextField date2;
@@ -46,8 +43,8 @@ public class BussinessConditionPanel extends MainPanel {
 		date = new JPanel();
 		date.setOpaque(false);
 		date.setBounds(250, 110, 500, 60);
-		date1 = new MyTextField(12);
-		date2 = new LabelTextField("- ", 12);
+		date1 = new MyTextField(0);
+		date2 = new LabelTextField("- ", 0);
 		date.add(date1);
 		date.add(date2);
 		search = new JButton(search1);
@@ -83,8 +80,8 @@ public class BussinessConditionPanel extends MainPanel {
 			tableP.getTableModel().addRow(rowdata);
 		}
 		tableP.setRowHeight(28);
-		tableP.getTable().setPreferredScrollableViewportSize(new Dimension(343, 370));
-		tableP.setBounds(128, 160, 343, 400);
+		tableP.getTable().setPreferredScrollableViewportSize(new Dimension(343, 390));
+		tableP.setBounds(128, 165, 335, 405);
 		this.add(tableP);
 	}
 
@@ -104,8 +101,8 @@ public class BussinessConditionPanel extends MainPanel {
 			tableB.getTableModel().addRow(rowdata);
 		}
 		tableB.setRowHeight(28);
-		tableB.getTable().setPreferredScrollableViewportSize(new Dimension(343, 370));
-		tableB.setBounds(511, 160, 343, 400);
+		tableB.getTable().setPreferredScrollableViewportSize(new Dimension(383, 390));
+		tableB.setBounds(471, 165, 383, 405);
 		this.add(tableB);
 	}
 

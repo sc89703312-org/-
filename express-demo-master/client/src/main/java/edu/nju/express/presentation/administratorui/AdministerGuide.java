@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 public class AdministerGuide extends JPanel{
 
 	int width=900,height=600;
-	int y = 50;		//由标题栏高度决定
 	/**
 	 * 
 	 */
@@ -28,30 +27,38 @@ public class AdministerGuide extends JPanel{
 		initGuide();
 		this.setOpaque(false);
 		this.setLayout(null);
-		this.setBounds(0, y, (int)(width*0.2), (int)(height));
+		this.setBounds(12, 0, 94, height);
 	}
 	
 	
 	void initGuide(){
-		check = new JButton("查看任务");
+		check = new JButton();
 		check.setActionCommand("CheckTaskUI");
 		check.addActionListener(controller);
-		check.setBounds(60, 30,120,40);
+		check.setBounds(0,44,82,82);
+		check.setBorderPainted(false);
+		check.setContentAreaFilled(false);
 		
-		add = new JButton("增加账号");
+		add = new JButton();
 		add.setActionCommand("AddUserUI");
 		add.addActionListener(controller);
-		add.setBounds(60, 100,120,40);
+		add.setBounds(0,144,82,82);
+		add.setBorderPainted(false);
+		add.setContentAreaFilled(false);
 	
-		delete = new JButton("删除账号");
+		delete = new JButton();
 		delete.setActionCommand("DeleteUserUI");
 		delete.addActionListener(controller);
-		delete.setBounds(60, 170,120,40);
+		delete.setBounds(0,244,82,82);
+		delete.setBorderPainted(false);
+		delete.setContentAreaFilled(false);
 		
-		modify = new JButton("修改账号");
+		modify = new JButton();
 		modify.setActionCommand("ModifyUserUI");
 		modify.addActionListener(controller);
-		modify.setBounds(60, 240,120,40);
+		modify.setBounds(0,344,82,82);
+		modify.setBorderPainted(false);
+		modify.setContentAreaFilled(false);
 		
 		this.add(check);
 		this.add(add);
