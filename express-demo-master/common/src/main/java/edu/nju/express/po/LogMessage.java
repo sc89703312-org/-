@@ -20,7 +20,7 @@ public class LogMessage extends PersistentObj implements Serializable {
 	/** 操作信息 */
 	public String message;
 	
-	
+
 	
 
 	
@@ -37,6 +37,7 @@ public class LogMessage extends PersistentObj implements Serializable {
 	
 	this.id = time;
 	
+	this.date = time.substring(0,10);
 	}
 	
 	

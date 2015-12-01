@@ -11,5 +11,7 @@ public interface LogDao {
 	
 	public ArrayList<LogMessage> viewAllLogs();
 	
+	public ArrayList<LogMessage> viewLogsByDate(String date);
+	
 	public void flush();
 }

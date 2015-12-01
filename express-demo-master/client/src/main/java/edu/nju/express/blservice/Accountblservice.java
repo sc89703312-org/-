@@ -1,6 +1,5 @@
 package edu.nju.express.blservice;
 
-import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.Accountvo;
 
 

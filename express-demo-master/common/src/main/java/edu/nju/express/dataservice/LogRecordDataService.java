@@ -15,5 +15,7 @@ public interface LogRecordDataService extends Remote {
 	
 	public ArrayList<LogMessage> viewAllLogs () throws RemoteException;
 	
+	public ArrayList<LogMessage> viewLogsByDate(String date)  throws RemoteException;
+	
 	public void flush()throws RemoteException;
 }

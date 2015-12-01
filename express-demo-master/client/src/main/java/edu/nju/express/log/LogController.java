@@ -1,5 +1,6 @@
 package edu.nju.express.log;
 
+import java.awt.Component;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class LogController {
 
 	
 
+	public static final String logFilesName = null;
 	static LogRecordDataService logRecordDataService = RMIHelper.getLogRecordDataService();
 
 	
@@ -40,7 +42,7 @@ public class LogController {
 	}
 	
 	
-	public ArrayList<LogMessage> viewAllMsg(){
+	public static ArrayList<LogMessage> viewAllMsg(){
 		try {
 			return logRecordDataService.viewAllLogs();
 		} catch (RemoteException e) {
@@ -49,4 +51,23 @@ public class LogController {
 		}
 		return null;
 	}
+
+
+
+
+	public static ArrayList<LogMessage> getLogsByDate(String date) {
+		// TODO Auto-generated method stub
+		try {
+			return logRecordDataService.viewLogsByDate(date);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+
+
 }
