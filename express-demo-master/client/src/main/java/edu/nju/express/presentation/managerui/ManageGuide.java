@@ -31,28 +31,38 @@ public class ManageGuide extends JPanel {
 
 	void initGuide() {
 		
-		receipt = new JButton("单据管理");
-		receipt.setBounds(60,30,120,40);
+		receipt = new JButton();
+		receipt.setBorderPainted(false);
+		receipt.setContentAreaFilled(false);
+		receipt.setBounds(0,44,82,82);
 		receipt.setActionCommand("ReceiptUI");
 		receipt.addActionListener(controller);
 		
-		employee = new JButton("人员管理");
-		employee.setBounds(60,100,120,40);
+		employee = new JButton();
+		employee.setBounds(0,144,82,82);
+		employee.setBorderPainted(false);
+		employee.setContentAreaFilled(false);
 		employee.setActionCommand("EmployeeUI");
 		employee.addActionListener(controller);
 		
-		organization = new JButton("机构管理");
-		organization.setBounds(60,170,120,40);
+		organization = new JButton();
+		organization.setContentAreaFilled(false);
+		organization.setBorderPainted(false);
+		organization.setBounds(0,244,82,82);
 		organization.setActionCommand("OrganizationUI");
 		organization.addActionListener(controller);
 		
-		salary = new JButton("薪水制定");
-		salary.setBounds(60,240,120,40);
+		salary = new JButton();
+		salary.setContentAreaFilled(false);
+		salary.setBorderPainted(false);
+		salary.setBounds(0,344,82,82);
 		salary.setActionCommand("SalaryUI");
 		salary.addActionListener(controller);
 		
-		constant = new JButton("常量制定");
-		constant.setBounds(60,310,120,40);
+		constant = new JButton();
+		constant.setBounds(0,444,82,82);
+		constant.setContentAreaFilled(false);
+		constant.setBorderPainted(false);
 		constant.setActionCommand("ConstantUI");
 		constant.addActionListener(controller);
 		

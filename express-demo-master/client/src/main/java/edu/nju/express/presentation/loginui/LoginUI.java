@@ -2,7 +2,6 @@ package edu.nju.express.presentation.loginui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,27 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import edu.nju.express.businesslogic.login.Login;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.common.Role;
 import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.myUI.MyBackground;

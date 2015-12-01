@@ -1,9 +1,10 @@
 package edu.nju.express.presentation.managerui;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,10 @@ public class EmployeeListUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Icon add1 = new ImageIcon("ui/button/addemployee1.png");
+	private static Icon add2 = new ImageIcon("ui/button/addemployee2.png");
+	private static Icon delete1 = new ImageIcon("ui/button/deleteemployee1.png");
+	private static Icon delete2 = new ImageIcon("ui/button/deleteemployee2.png");
 
 	ManageController controller;
 
@@ -49,22 +54,24 @@ public class EmployeeListUI extends MainPanel {
 	}
 
 	private void initButtons() {
-		buttons = new JPanel();
-		buttons.setBounds(x, y, width - x, h);
-		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 100,36));
-		jbtAdd = new JButton("新增员工");
+		jbtAdd = new JButton(add1);
+		jbtAdd.setRolloverIcon(add2);
+		jbtAdd.setContentAreaFilled(false);
+		jbtAdd.setBorderPainted(false);
+		jbtAdd.setBounds(370,537,80,30);
 		jbtAdd.setActionCommand("AddEmployeeUI");
 		jbtAdd.addActionListener(controller);
 
-		jbtDelete = new JButton("删除员工");
+		jbtDelete = new JButton(delete1);
+		jbtDelete.setRolloverIcon(delete2);
+		jbtDelete.setContentAreaFilled(false);
+		jbtDelete.setBorderPainted(false);
+		jbtDelete.setBounds(530,537,80,30);
 		jbtDelete.setActionCommand("DismissEmployeeUI");
 		jbtDelete.addActionListener(controller);
 
-		buttons.add(jbtAdd);
-		buttons.add(jbtDelete);
-
-		this.add(buttons);
-		buttons.setOpaque(false);
+		this.add(jbtAdd);
+		this.add(jbtDelete);
 	}
 
 	private void initGuide() {
@@ -84,8 +91,8 @@ public class EmployeeListUI extends MainPanel {
 		String[] header = { "ID", "姓名", "职务" };
 		table = new MyTablePanel(header);
 		table.setRowHeight(TABLE_ROW_HEIGHT);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h-70));
-		table.setBounds(x+30, y +h, width - x-60,height - y-h-30);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726,395));
+		table.setBounds(128,107,726,422);
 
 		model = table.getTableModel();
 		for (int i = 0; i < list.size(); i++) {

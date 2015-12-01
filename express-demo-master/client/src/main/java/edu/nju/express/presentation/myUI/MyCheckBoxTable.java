@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -23,11 +24,12 @@ public class MyCheckBoxTable extends JTable {
 
 	private static final long serialVersionUID = 1L;
 	int ROW_HEIGHT = 30;
-	Color headerColor = new Color(49, 121, 177);
-	Color foreColor = new Color(255,255,255);
-	Color backColor1 = new Color(255, 255, 255,50);
-	Color backColor2 = new Color(240, 250, 254,50);
-	Font font = new Font("微软雅黑", Font.PLAIN, 15);
+	
+	Color foreColor = new Color(44, 62,80);
+	Color backColor1 = new Color(246,249,249);
+	Color backColor2 = new Color(172,229,216);
+	Color gridColor = new Color(143,143,143,50);
+	Font font = new Font("黑体", Font.PLAIN, 15);
 
 	JTable table;
 	static String[] headerStr = { "全选", "单据种类", "单据编号", "提交时间" };
@@ -52,14 +54,16 @@ public class MyCheckBoxTable extends JTable {
 		JTableHeader header = this.getTableHeader();
 		this.setRowHeight(ROW_HEIGHT);
 		this.setFont(font);
+		table.setGridColor(gridColor);
 
 		header.setFont(font);
+		header.setBorder(new LineBorder(gridColor, 1));
 		header.setBorder(new EmptyBorder(0, 0, 0, 0));
 		header.setPreferredSize(new Dimension(header.getWidth(), ROW_HEIGHT));
 
 		this.setCellSelectionEnabled(false);
 		this.setOpaque(false);
-		this.setShowGrid(false);
+	//	this.setShowGrid(false);
 
 		// 设置表格颜色
 		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
@@ -73,7 +77,8 @@ public class MyCheckBoxTable extends JTable {
 				else if (row % 2 == 1)
 					setBackground(backColor2);
 				else
-					setBackground(headerColor);
+					setBackground(backColor2);
+				
 				setForeground(foreColor);
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
@@ -136,7 +141,7 @@ public class MyCheckBoxTable extends JTable {
 			else if (row % 2 == 1)
 				setBackground(backColor2);
 			else
-				setBackground(headerColor);
+				setBackground(backColor2);
 
 			if (row != -1)
 				setSelected(value != null && (Boolean) value);

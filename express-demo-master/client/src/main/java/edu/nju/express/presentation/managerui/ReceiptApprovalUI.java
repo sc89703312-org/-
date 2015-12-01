@@ -2,6 +2,8 @@ package edu.nju.express.presentation.managerui;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +21,9 @@ public class ReceiptApprovalUI extends MainPanel {
 	static int height = 600;
 	static int x = 240;
 	static int y = 50;
-
+	private static Icon img1 = new ImageIcon("ui/button/approve1.png");
+	private static Icon img2 = new ImageIcon("ui/button/approve2.png");
+	
 	ManageController controller;
 	ArrayList<Object[]> list;
 	ArrayList<ReceiptVOBase> voList;
@@ -35,7 +39,7 @@ public class ReceiptApprovalUI extends MainPanel {
 		this.add(new ManageGuide(c));
 
 		JScrollPane s = new JScrollPane(table);
-		s.setBounds(x + 30, y + 25, width - x - 60, height - y - 105);
+		s.setBounds(128,112,727,420);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
@@ -45,8 +49,11 @@ public class ReceiptApprovalUI extends MainPanel {
 		s.getVerticalScrollBar().setUI(null);
 		this.add(s);
 
-		jbtApprove = new JButton("审批通过");
-		jbtApprove.setBounds(x+290, 535, 80, 30);
+		jbtApprove = new JButton(img1);
+		jbtApprove.setRolloverIcon(img2);
+		jbtApprove.setContentAreaFilled(false);
+		jbtApprove.setBorderPainted(false);
+		jbtApprove.setBounds(450,537,80,30);
 		jbtApprove.setActionCommand("Approve");
 		jbtApprove.addActionListener(controller);
 		this.add(jbtApprove);

@@ -4,11 +4,9 @@ package edu.nju.express.presentation.administratorui;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.Role;
 import edu.nju.express.presentation.MainPanel;
@@ -52,7 +50,7 @@ public class AddUserUI extends MainPanel {
 		p.setLayout(null);
 		this.add(p);
 
-		p.setBounds(x, 90, width-x, height-90);
+		p.setBounds(x, 120, width-x, height-90);
 		
 		id = new LabelTextField(" ID    ",15);
 		id.setBounds(200, 30,400,40);

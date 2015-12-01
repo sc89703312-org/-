@@ -45,7 +45,7 @@ public class ModifyUserUI extends MainPanel {
 		p.setLayout(null);
 		this.add(p);
 
-		p.setBounds(x, 90, width - x, height - 90);
+		p.setBounds(x, 120, width - x, height - 90);
 
 		id = new LabelTextField(" ID    ", 15);
 		id.setBounds(200, 30, 400, 40);
