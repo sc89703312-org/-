@@ -1,6 +1,6 @@
 package edu.nju.express.po;
 
-import edu.nju.express.common.ResultMessageV2;
+
 
 public class ComZonePO {
 	
@@ -99,6 +99,26 @@ public class ComZonePO {
 	
 	public boolean[] getIsEmptyCar(){
 		return isEmptyCar;
+	}
+	
+	public void setIsEmptyPlane(boolean[] a){
+		isEmptyPlane = a;
+		planeSpace = a.length;
+	}
+	
+	public void setIsEmptyTrain(boolean[] a){
+		isEmptyTrain = a;
+		trainSpace = a.length;
+	}
+	
+	public void setIsEmptyCar(boolean[] a){
+		isEmptyCar = a;
+		carSpace = a.length;
+	}
+	
+	public void setIsEmptyTem(boolean[] a){
+		isEmptyTem = a;
+		temSpace = a.length;
 	}
 	
 	public boolean[] getIsEmptyTem(){

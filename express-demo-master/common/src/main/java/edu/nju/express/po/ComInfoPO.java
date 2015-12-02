@@ -44,4 +44,8 @@ public class ComInfoPO extends PersistentObj implements Serializable{
 		return this.zonePO;
 	}
 	
+	public String getLocation(){
+		return location;
+	}
+	
 }

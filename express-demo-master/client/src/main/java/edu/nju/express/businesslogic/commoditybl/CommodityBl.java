@@ -383,6 +383,15 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		boolean isEmptyCar[] = comZonePO.getIsEmptyCar();
 		boolean isEmptyTem[] = comZonePO.getIsEmptyTem();
 		
+		for(int i=0;i<isEmptyPlane.length;i++)
+			isEmptyPlane[i] = true;
+		for(int i=0;i<isEmptyTrain.length;i++)
+			isEmptyTrain[i] = true;
+		for(int i=0;i<isEmptyCar.length;i++)
+			isEmptyCar[i] = true;
+		for(int i=0;i<isEmptyTem.length;i++)
+			isEmptyTem[i] = true;
+		
 		for(int i=0;i<data.length;i++){
 			int index = (Integer.parseInt((String) data[i][2])-1)*shelfPerLine*cellPerShelf+(Integer.parseInt((String) data[i][3])-1)*cellPerShelf+(Integer.parseInt((String) data[i][4])-1);
 			String type = (String) data[i][1];

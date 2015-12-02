@@ -30,7 +30,7 @@ public interface CommodityDataService extends Remote{
 	public void moveGoods(String comID, Object data[][]);
 
 	
-	public void addCommodity(String comID, String location) throws RemoteException;
+	public void addCommodity(String location, int totalSpace) throws RemoteException;
 	public void removeCommodity(String comID) throws RemoteException;
 	public ArrayList<ComInfoPO> getCommodity() throws RemoteException;
 	

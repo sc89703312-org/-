@@ -8,9 +8,10 @@ import edu.nju.express.po.EnterReceiptPO;
 public interface EnterReceiptDao {
 
 	public void add(EnterReceiptPO po);
-	public ArrayList<EnterReceiptPO> showAll();
-	public ArrayList<EnterReceiptPO> showAll(String comID);
+	public ArrayList<EnterReceiptPO> showAllReceipt();
+	public ArrayList<EnterReceiptPO> showAllReceipt(String comID);
 	public ArrayList<EnterReceiptPO> showAllSummit();
 	public ResultMessage approve(String id);
+	public String nextID(String comID);
 	
 }

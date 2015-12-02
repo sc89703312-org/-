@@ -2,8 +2,6 @@ package edu.nju.express.po;
 
 import java.io.Serializable;
 
-import edu.nju.express.vo.OrderVO;
-
 
 
 public class ComGoodsPO extends PersistentObj implements Serializable{
@@ -47,6 +45,18 @@ public class ComGoodsPO extends PersistentObj implements Serializable{
     
     public int getCell(){
     	return cell;
+    }
+    
+    public void setLine(int line){
+    	this.line = line;
+    }
+    
+    public void setShelf(int shelf){
+    	this.shelf = shelf;
+    }
+    
+    public void setCell(int cell){
+    	this.cell = cell;
     }
     
 }
