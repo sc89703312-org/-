@@ -14,6 +14,7 @@ public class MyButton extends JButton{
 		this.setOpaque(false);
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
+		this.setFocusPainted(false);
 		this.setBackground(new Color(0,0,0,0));
 		this.setVisible(true);
 	}

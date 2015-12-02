@@ -32,7 +32,7 @@ public class PromptPanel extends JPanel {
 	private JButton confirmBtn;
 	
 	private Dimension preDimen = new Dimension(30, 30);
-	private Font font = new Font("黑体", Font.PLAIN, preDimen.height / 2);
+	private Font font = new Font("微软雅黑", Font.PLAIN, preDimen.height / 2);
 
 	private Listener listener;
 

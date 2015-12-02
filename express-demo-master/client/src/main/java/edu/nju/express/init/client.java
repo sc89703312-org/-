@@ -16,9 +16,10 @@ public class client {
 		RMIHelper.init();
 		System.out.println("Client creates!");
 		
-	
-		new LogFrame();
+       
 		
+		
+		new LogFrame();
 		
 //		LogController.insertLog(new LogMessage("结算管理 记录公司日前为止的总收入总支出", "Echo_佳小兔"));
 

@@ -42,7 +42,7 @@ public class PromptDialog extends JDialog {
 
 	public static void show(String title, String prompt) {
 		PromptDialog promptDialog = new PromptDialog();
-		promptDialog.setComp(new PromptPanel(title, "\n"+"       "+prompt));
+		promptDialog.setComp(new PromptPanel(title, "\n"+"               "+prompt));
 		promptDialog.start(); // 固定时间关闭窗口
 	}
 	
@@ -57,7 +57,7 @@ public class PromptDialog extends JDialog {
 
 		public void run() {
 			try {
-				Thread.sleep(2500);
+				Thread.sleep(1500);
 				while(true) {
 					Thread.sleep(20);
 					hyalineValue -= 0.05f;
