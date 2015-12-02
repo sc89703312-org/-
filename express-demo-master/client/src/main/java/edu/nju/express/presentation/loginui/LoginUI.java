@@ -70,8 +70,9 @@ public class LoginUI extends MyFrame implements ActionListener{
 		
 		this.setSize(900, 600);
 		this.setLocationRelativeTo(null);
-		this.setUndecorated(true);
+     	this.setUndecorated(true);
 		this.setLayout(null);
+
 
       
 		label_field6 = new MyLabel(0, 0, 900, 600);

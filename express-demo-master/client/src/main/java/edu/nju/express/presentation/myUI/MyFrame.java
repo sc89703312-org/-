@@ -21,8 +21,7 @@ public class MyFrame extends JFrame{
 	
 	
 		this.setUndecorated(true);
-		this.setDragable(); // 设置可以拖动
-		
+		setDragable();
 		new HyalineValue().start();
 	}
 	
@@ -50,7 +49,8 @@ public class MyFrame extends JFrame{
 		}
 	}
   
-    private Point loc = null;
+  
+  private Point loc = null;
 	private Point tmp = null;
 	private boolean isDragged = false;
 
@@ -83,4 +83,5 @@ public class MyFrame extends JFrame{
 			}
 		});
 	}
+
 }

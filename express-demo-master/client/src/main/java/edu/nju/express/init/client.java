@@ -19,7 +19,7 @@ public class client {
        
 		
 		
-		new LogFrame();
+//		new LoginUI();
 		
 //		LogController.insertLog(new LogMessage("结算管理 记录公司日前为止的总收入总支出", "Echo_佳小兔"));
 
