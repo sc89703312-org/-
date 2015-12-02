@@ -35,23 +35,23 @@ public interface CommodityDataService extends Remote{
 	public ArrayList<ComInfoPO> getCommodity() throws RemoteException;
 	
 	
-	public void addEnterReceipt(String comID, EnterReceiptPO po) throws RemoteException;
+	public void addEnterReceipt(EnterReceiptPO po) throws RemoteException;
 	public String getNextEnterID(String comID) throws RemoteException;
 	public ArrayList<EnterReceiptPO> getEnterReceipt(String comID) throws RemoteException;
 	public ArrayList<EnterReceiptPO> getEnterReceipt() throws RemoteException;
 	public ArrayList<EnterReceiptPO> getSummitEnter() throws RemoteException;
 	public ResultMessage approveEnterReceipt(String id) throws RemoteException;
-	public void approveEnterReceipt(ArrayList<EnterReceiptPO> list) throws RemoteException;
+	//public void approveEnterReceipt(ArrayList<EnterReceiptPO> list) throws RemoteException;
 	//public void modifyEnterReceipt(String id, EnterReceiptPO po) throws RemoteException;
 	
 	
-	public void addExitReceipt(String comID, ExitReceiptPO po) throws RemoteException;
+	public void addExitReceipt(ExitReceiptPO po) throws RemoteException;
 	public String getNextExitID(String comID) throws RemoteException;
 	public ArrayList<ExitReceiptPO> getExitReceipt(String comID) throws RemoteException;
 	public ArrayList<ExitReceiptPO> getExitReceipt() throws RemoteException;
 	public ArrayList<ExitReceiptPO> getSummitExit() throws RemoteException;
 	public ResultMessage approveExitReceipt(String id) throws RemoteException;
-	public void approveExitReceipt(ArrayList<ExitReceiptPO> list) throws RemoteException;
+	//public void approveExitReceipt(ArrayList<ExitReceiptPO> list) throws RemoteException;
 	//public void modifyExitReceipt(String id, ExitReceiptPO po) throws RemoteException;
 	
 	

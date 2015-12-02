@@ -13,7 +13,7 @@ public class ArrivalReceiptVO extends ReceiptVOBase{
 	private ArrayList<OrderVO> list;
 	
 	public ArrivalReceiptVO(String id, String date, String from, String location, ArrayList<OrderVO> voList){
-		this.id="ArrivalReceipt"+id;
+		this.id=id;
 		this.date=date;
 		this.from=from;
 		this.location = location;

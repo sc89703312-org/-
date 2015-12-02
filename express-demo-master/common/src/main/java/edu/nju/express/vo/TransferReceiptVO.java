@@ -18,7 +18,7 @@ public class TransferReceiptVO extends ReceiptVOBase{
     
     public TransferReceiptVO(String id, String date, String to, String location, String transportID, String supervisor, Etype etype, ArrayList<OrderVO> list){
 		
-		this.id ="TransferReceipt"+ id;
+		this.id =id;
 		this.date = date;
 		this.to = to;
 		this.location = location;

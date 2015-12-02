@@ -24,7 +24,7 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		this.carID=carID;
 		this.supervisor=supervisor;
 		this.guard=guard;
-		this.id = "HallTransferReceipt"+id;
+		this.id =id;
 		this.orderlist = orderlist;
 		
 	}

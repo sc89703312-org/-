@@ -159,7 +159,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 			
 		EnterReceiptPO po = new EnterReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
-			commodityDataService.addEnterReceipt(comID, po);
+			commodityDataService.addEnterReceipt(po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -213,7 +213,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 			
 		ExitReceiptPO po = new ExitReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
-			commodityDataService.addExitReceipt(comID, po);
+			commodityDataService.addExitReceipt(po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

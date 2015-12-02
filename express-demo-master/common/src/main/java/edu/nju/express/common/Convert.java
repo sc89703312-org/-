@@ -188,7 +188,7 @@ public class Convert {
     public static HallTransferReceiptVO po_to_vo_halltransfer(HallTransferReceiptPO po){
     	
     	HallTransferReceiptVO vo = new HallTransferReceiptVO
-    			(po.getId().substring(19, po.getId().length()),po.getLocation(),po.getDate(),
+    			(po.getId(),po.getLocation(),po.getDate(),
     					po.getHallID(),po.getTransportID(),po.getDestination(),po.getCarID(),
     					po.getSupervisor(),po.getGuard(),po_to_vo_orderlist(po.getOrderlist()));
     	
@@ -198,7 +198,7 @@ public class Convert {
     
     public static HallTransferReceiptPO vo_to_po_halltransfer(HallTransferReceiptVO vo){
     	
-    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getId().substring(19, vo.getId().length()), vo.getLocation(),
+    	HallTransferReceiptPO po = new HallTransferReceiptPO(vo.getId(), vo.getLocation(),
     			vo.getDate(),vo.getHallID(),vo.getTransportID(),vo.getDestination(),
     			vo.getCarID(),vo.getSupervisor(),vo.getGuard(),
     			vo_to_po_orderlist(vo.getOrderlist()));
