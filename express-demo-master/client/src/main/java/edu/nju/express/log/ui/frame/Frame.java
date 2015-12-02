@@ -36,7 +36,7 @@ public class Frame extends JFrame {
 		this.setVisible(true);
 		this.setDragable(); // 设置可以拖动
 		this.setOSStyle(); // 设置为当前系统风格
-		
+		 
 	}
 
 	/**

@@ -13,8 +13,10 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
+import edu.nju.express.log.ui.frame.Frame;
 import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.myUI.MyBackground;
 import edu.nju.express.presentation.myUI.MyButton;
@@ -74,6 +76,7 @@ public class LoginUI extends MyFrame implements ActionListener{
 		this.setLayout(null);
 
 
+		
       
 		label_field6 = new MyLabel(0, 0, 900, 600);
 		label_field6.setIcon(new ImageIcon("ui/image/login/报错_1.png"));
@@ -223,6 +226,7 @@ public class LoginUI extends MyFrame implements ActionListener{
 
       
 
+	    
        
 	}
 	
