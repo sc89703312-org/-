@@ -2,6 +2,9 @@ package edu.nju.express.presentation.postmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Scrollbar;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,6 +23,7 @@ import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.MyScrollBarUIV2;
 
 public class CreateOrderPanel extends MainPanel {
 
@@ -41,6 +45,7 @@ public class CreateOrderPanel extends MainPanel {
 	JComboBox<String> typeBox, pkgCostBox;
 	JLabel totalCost, expectedArrival;
 	JButton confirm,caculate;
+	static JScrollPane s = new JScrollPane();
 
 	ArrivalState arrivalState;
 	String expectedTime;
@@ -58,11 +63,31 @@ public class CreateOrderPanel extends MainPanel {
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		this.add(p);
 		
-		JScrollPane s = new JScrollPane(p);
 		s.setOpaque(false);
+		s.setViewportView(p);
 		s.getViewport().setOpaque(false);
-		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		s.getVerticalScrollBar().setOpaque(false);
+		
+		final MyScrollBarUIV2 ui2 = new MyScrollBarUIV2();
+		final MyScrollBarUI ui1 = new MyScrollBarUI();
+		s.getVerticalScrollBar().setUI(ui2);
+		
+		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				super.mouseEntered(e);
+				s.getVerticalScrollBar().setUI(ui1);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseExited(e);
+				s.getVerticalScrollBar().setUI(ui2);
+				
+			}
+		});
+		
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

@@ -12,15 +12,10 @@ import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-public class MyScrollBarUI extends BasicScrollBarUI {
+public class MyScrollBarUIV2 extends BasicScrollBarUI {
 
 	private int width = 11;
 	private Color thumbColor = new Color(44, 62, 80);
-	private Color trackColor = new Color(210,210,210);
-	
-	public MyScrollBarUI() {
-		super();
-	}
 	
 	
 	public void setThumbColor(Color thumbColor){
@@ -65,9 +60,6 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 	@Override
 	//绘制轨道
 	protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-		g.setColor(trackColor);
-		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-		g.fillRoundRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height,width-1,width-1);
 	}
 
 	@Override
