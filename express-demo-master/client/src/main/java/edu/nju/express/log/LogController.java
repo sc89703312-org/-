@@ -61,6 +61,7 @@ public class LogController {
 			return logRecordDataService.viewLogsByDate(date);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return null;

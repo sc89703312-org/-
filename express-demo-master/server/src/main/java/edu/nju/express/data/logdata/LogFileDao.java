@@ -30,6 +30,7 @@ public class LogFileDao  implements LogDao {
 	@Override
 	public ArrayList<LogMessage> viewAllLogs() {
 		// TODO Auto-generated method stub
+
 		return logs.showAll();
 	}
 
@@ -45,14 +46,21 @@ public class LogFileDao  implements LogDao {
 	@Override
 	public ArrayList<LogMessage> viewLogsByDate(String date) {
 		// TODO Auto-generated method stub
+
 		
 		ArrayList<LogMessage> curLogs = new ArrayList<>();
+		ArrayList<LogMessage> logList = logs.showAll();
+		for(int i=0;i<logList.size();i++){
+			
+
+			
+			
+			
+			if(logList.get(i).getDate().equals(date))
+				curLogs.add(logList.get(i));
+				
 		
-		for(int i=0;i<logs.showAll().size();i++){
-			if(logs.showAll().get(i).getDate().equals(date))
-				curLogs.add(logs.showAll().get(i));
 		}
-		
 		
 		return curLogs;
 	}

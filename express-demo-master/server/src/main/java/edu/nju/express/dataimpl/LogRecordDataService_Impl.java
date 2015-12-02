@@ -49,6 +49,7 @@ public class LogRecordDataService_Impl extends UnicastRemoteObject implements Lo
 	public ArrayList<LogMessage> viewLogsByDate(String date)
 			throws RemoteException {
 		// TODO Auto-generated method stub
+
 		return logDao.viewLogsByDate(date);
 	}
 

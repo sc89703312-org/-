@@ -292,13 +292,19 @@ public class LogPanel extends JPanel {
 				
 				String date = year + month + day;
 				
-				System.out.println(date);
+
 				
 				
 				ArrayList<LogMessage> logs = LogController.getLogsByDate(date);
 				logText.setText("");
 				logText.append(logs);
 				logText.setTitle(date);
+				
+				
+	
+				
+				
+				
 			} else if (e.getSource() == showAll) {
 				logText.setTitle("全部日志");
 				logText.setText("");

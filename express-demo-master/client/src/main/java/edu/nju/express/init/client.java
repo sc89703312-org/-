@@ -19,10 +19,12 @@ public class client {
        
 		
 		
+		
+//		
 //		new LoginUI();
 		
-//		LogController.insertLog(new LogMessage("结算管理 记录公司日前为止的总收入总支出", "Echo_佳小兔"));
 
+		new LogFrame();
 //		System.out.println(LogController.getLogsByDate("2015-12-01").get(0).getDate());
 	}
 }

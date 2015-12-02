@@ -3,7 +3,9 @@ package edu.nju.express.log.ui.logmsg;
 import java.awt.Color;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -13,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.log.LogController;
 import edu.nju.express.log.config.LogUIConfig;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 
 
 /**
@@ -45,14 +48,23 @@ public class LogTextArea extends JScrollPane {
 		bar.setBackground(Color.LIGHT_GRAY);
 		bar.setOpaque(false);
 		bar.setBorder(new EmptyBorder(0, 0, 0, 0));
+		MyScrollBarUI ui = new MyScrollBarUI();
+		ui.setThumbColor(new Color(76,161,219));
+		this.getVerticalScrollBar().setUI(ui);
 	}
 
 	private void addTextArea() {
+		
+		SimpleDateFormat sdfdate = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdfdate.format(new Date());
+		
+		
 		textArea = new JTextArea();
 		textArea.setForeground(new Color(130, 130, 130));
 		// 最新的在前面显示
-		for(int i = 0; i < LogController.viewAllMsg().size(); i++) {
-			LogMessage log = LogController.viewAllMsg().get(i);
+		ArrayList<LogMessage> logs = LogController.getLogsByDate(date);
+		for(int i = 0; i < logs.size(); i++) {
+			LogMessage log = logs.get(i);
 			textArea.append(log.toString() + "\r\n");
 		}
 		textArea.setLineWrap(true);
