@@ -1,6 +1,8 @@
 package edu.nju.express.log.ui.logmsg;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.text.SimpleDateFormat;
@@ -16,6 +18,7 @@ import edu.nju.express.log.LogController;
 import edu.nju.express.log.config.LogUIConfig;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.MyScrollBarUIV2;
 
 
 /**
@@ -30,7 +33,10 @@ public class LogTextArea extends JScrollPane {
 
 	/** 真正的TextArea在这 */
 	private JTextArea textArea;
-
+	JScrollBar bar = this.getVerticalScrollBar();
+	MyScrollBarUIV2 ui = new MyScrollBarUIV2();
+    MyScrollBarUI ui_1 = new MyScrollBarUI();
+	
 	//	/** 边框标题 */
 	//	private String title;
 
@@ -40,17 +46,26 @@ public class LogTextArea extends JScrollPane {
 		this.addMouseWheelListener(new WheelListener()); // 设置鼠标滚轮监听
 		this.addTextArea();	// 添加文本域
 		this.setBorder();	// 设置边框
+		ui.setThumbColor(new Color(76,161,219));
+		ui_1.setThumbColor(new Color(76,161,219));
 		this.modifyScrollBar();	// 修改滚动条样式
 	}
 
 	private void modifyScrollBar() {
-		JScrollBar bar = this.getVerticalScrollBar();
+		
 		bar.setBackground(Color.LIGHT_GRAY);
 		bar.setOpaque(false);
 		bar.setBorder(new EmptyBorder(0, 0, 0, 0));
-		MyScrollBarUI ui = new MyScrollBarUI();
-		ui.setThumbColor(new Color(76,161,219));
-		this.getVerticalScrollBar().setUI(ui);
+		bar.setUI(ui_1);
+		
+	
+	
+			
+			
+			
+			
+			
+			
 	}
 
 	private void addTextArea() {
