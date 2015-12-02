@@ -1,14 +1,11 @@
 package edu.nju.express.presentation.managerui;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.CancelButton;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
-import edu.nju.express.presentation.myUI.ReturnButton;
 
 public class DismissEmployeePanel extends MainPanel {
 
@@ -22,41 +19,32 @@ public class DismissEmployeePanel extends MainPanel {
 	int width = 900, height = 600;
 	int y = 50;
 	LabelTextField id;
-	JButton confirm;
-	JButton jbtReturn;
+	ConfirmButton confirm;
+	CancelButton cancel;
 	JPanel p;
 
 	public DismissEmployeePanel(ManageController c) {
 		controller = c;
 		initComponents();
-		this.setOpaque(false);
+		this.add(new ManageGuide(c));
 	}
 
 	private void initComponents() {
 		
-		p = new JPanel();
-		p.setLayout(null);
-		p.setOpaque(false);
-		
-		jbtReturn = new ReturnButton();
-		jbtReturn.setActionCommand("EmployeeUI");
-		jbtReturn.addActionListener(controller);
-		p.add(jbtReturn);
-
-		
-		id = new LabelTextField("ID   ", 15);
-		id.setSize(350, 40);
-		id.setLocation((width-350)/2, 90);
-		p.add(id);
+		id = new LabelTextField("ID    ",15);
+		id.setBounds(200+94, 220,400,40);
+		this.add(id);
 		
 		confirm = new ConfirmButton();
-		confirm.setLocation((width-confirm.getWidth())/2, 180);
-		p.add(confirm);
+		this.add(confirm);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("DismissEmployee");
 		
-		this.add(p);
-		p.setBounds(0, y, width, height);
+		cancel = new CancelButton();
+		this.add(cancel);
+		cancel.addActionListener(controller);
+		cancel.setActionCommand("EmployeeUI");
+		
 	}
 
 	public String getID() {

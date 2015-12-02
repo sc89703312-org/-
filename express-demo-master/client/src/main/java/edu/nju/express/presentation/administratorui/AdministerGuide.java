@@ -1,6 +1,5 @@
 package edu.nju.express.presentation.administratorui;
 
-import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

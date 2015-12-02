@@ -22,23 +22,29 @@ public class PostmanGuide extends JPanel {
 		initGuide();
 		this.setLayout(null);
 		this.setOpaque(false);
-		this.setBounds(0, y, 240, height - y);
+		this.setBounds(12, 0, 94, height);
 	}
 
 	void initGuide() {
 
-		createOrder = new JButton("新建订单");
-		createOrder.setBounds(60, 30, 120, 40);
+		createOrder = new JButton();
+		createOrder.setBorderPainted(false);
+		createOrder.setContentAreaFilled(false);
+		createOrder.setBounds(0,44,82,82);
 		createOrder.setActionCommand("CreateOrderUI");
 		createOrder.addActionListener(controller);
 
-		inquireOrder = new JButton("查询订单");
-		inquireOrder.setBounds(60, 100, 120, 40);
+		inquireOrder = new JButton();
+		inquireOrder.setBounds(0,144,82,82);
+		inquireOrder.setBorderPainted(false);
+		inquireOrder.setContentAreaFilled(false);
 		inquireOrder.setActionCommand("InquireOrderUI");
 		inquireOrder.addActionListener(controller);
 
-		confirmReceival = new JButton("确认收货");
-		confirmReceival.setBounds(60, 170, 120, 40);
+		confirmReceival = new JButton();
+		confirmReceival.setContentAreaFilled(false);
+		confirmReceival.setBorderPainted(false);
+		confirmReceival.setBounds(0,244,82,82);
 		confirmReceival.setActionCommand("ConfirmReceivalUI");
 		confirmReceival.addActionListener(controller);
 

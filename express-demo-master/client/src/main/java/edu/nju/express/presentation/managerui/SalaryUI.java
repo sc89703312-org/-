@@ -1,15 +1,8 @@
 package edu.nju.express.presentation.managerui;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.LabelTextField;
 
 public class SalaryUI extends MainPanel {
 
@@ -17,24 +10,16 @@ public class SalaryUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static Font font = new Font("黑体", Font.PLAIN, 16);
-	static Color color = Color.white;
-	static int width = 900, height = 600;
-	static int y = 50; // 由标题栏高度决定
 
-	ManageController controller;
-	int clerk, driver, postman;
+	private ManageController controller;
+	private int clerk, driver, postman;
 
-	JPanel p;
-	ManageGuide guide;
-	ConfirmButton confirm;
+	private ManageGuide guide;
+	private ConfirmButton confirm;
 	
-	JLabel clerkLabel1, clerkLabel2;
-	JLabel driverLabel1, driverLabel2;
-	JLabel postmanLabel1, postmanLabel2;
-	MyTextField clerkField;
-	MyTextField driverField;
-	MyTextField postmanField;
+	private LabelTextField clerkField;
+	private LabelTextField driverField;
+	private LabelTextField postmanField;
 
 	public SalaryUI(ManageController c) {
 		this.controller = c;
@@ -43,73 +28,22 @@ public class SalaryUI extends MainPanel {
 		guide = new ManageGuide(controller);
 		this.add(guide);
 		
-		p = new JPanel();
-		this.add(p);
-		p.setOpaque(false);
-		p.setBounds(guide.getWidth(), y+40, width - guide.getWidth(), height - y);
-		p.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (0.5 * p.getWidth()), 60));
-
-		clerkLabel1 = new JLabel("业务员月薪：");
-		clerkLabel1.setFont(font);
-		clerkLabel1.setForeground(color);
-		clerkField = new MyTextField(6);
+		clerkField = new LabelTextField("业务员月薪：",-1,"元/月");
 		clerkField.setText(clerk + "");
-		clerkLabel2 = new JLabel("元/月");
-		clerkLabel2.setFont(font);
-		clerkLabel2.setForeground(color);
-		JPanel temp1 = new JPanel();
-		clerkLabel1.setOpaque(false);
-		clerkField.setOpaque(false);
-		clerkLabel2.setOpaque(false);
-		temp1.setOpaque(false);
-		temp1.add(clerkLabel1);
-		temp1.add(clerkField);
-		temp1.add(clerkLabel2);
-		p.add(temp1);
+		clerkField.setBounds(200+94, 170, 400, 40);
+		this.add(clerkField);
 		
-		driverLabel1 = new JLabel("司机提成：");
-		driverLabel1.setFont(font);
-		driverLabel1.setForeground(color);
-		driverField = new MyTextField(6);
+		driverField = new LabelTextField("司机提成：  ",-1,"元/次");
 		driverField.setText(driver + "");
-		driverLabel2 = new JLabel("元/次");
-		driverLabel2.setFont(font);
-		driverLabel2.setForeground(color);
-		JPanel temp2 = new JPanel();
-		driverLabel1.setOpaque(false);
-		driverField.setOpaque(false);
-		driverLabel2.setOpaque(false);
-		temp2.setOpaque(false);
-		temp2.add(driverLabel1);
-		temp2.add(driverField);
-		temp2.add(driverLabel2);
-		p.add(temp2);
+		driverField.setBounds(200+94, 250, 400, 40);
+		this.add(driverField);
 		
-		
-		JPanel temp3 = new JPanel();
-		postmanLabel1 = new JLabel("司机提成：");
-		postmanLabel1.setFont(font);
-		postmanLabel1.setForeground(color);
-		
-		postmanField = new MyTextField(6);
+		postmanField = new LabelTextField("司机提成：  ",-1,"元/次");
 		postmanField.setText(postman + "");
-		
-		postmanLabel2 = new JLabel("元/次");
-		postmanLabel2.setFont(font);
-		postmanLabel2.setForeground(color);
-		
-		postmanLabel1.setOpaque(false);
-		postmanField.setOpaque(false);
-		postmanLabel2.setOpaque(false);
-		
-		temp3.setOpaque(false);
-		temp3.add(postmanLabel1);
-		temp3.add(postmanField);
-		temp3.add(postmanLabel2);
-		p.add(temp3);
+		postmanField.setBounds(200+94, 330, 400, 40);
+		this.add(postmanField);
 		
 		confirm = new ConfirmButton();
-		confirm.setLocation(guide.getWidth()+p.getWidth()/2-confirm.getWidth()/2, 420);
 		this.add(confirm);
 		confirm.setActionCommand("GetSalary");
 		confirm.addActionListener(controller);

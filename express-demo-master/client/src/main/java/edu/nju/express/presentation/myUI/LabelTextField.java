@@ -42,7 +42,7 @@ public LabelTextField(String text1, int columns,String text2) {
 		this.add(label);
 		
 		
-		field = new MyTextField(20);
+		field = new MyTextField(columns);
 		this.add(field);
 		
 		JLabel label2 = new JLabel(text2);
@@ -53,6 +53,10 @@ public LabelTextField(String text1, int columns,String text2) {
 	
 	public String getText(){
 		return field.getText();
+	}
+	
+	public void setText(String text){
+		field.setText(text);
 	}
 	
 }

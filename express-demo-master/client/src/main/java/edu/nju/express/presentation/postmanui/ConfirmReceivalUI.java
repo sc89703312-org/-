@@ -6,20 +6,18 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.nju.express.common.Role;
-import edu.nju.express.common.StaffChange;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.ReceivalVO;
-import edu.nju.express.vo.UserMessageVO;
 
 public class ConfirmReceivalUI extends MainPanel{
 	private static final long serialVersionUID = 1L;
-	static int width=900,height=600;
-	static int y=50;
+	private static int width=900,height=600;
+	private static Font font = new Font("黑体", Font.PLAIN, 18);
+	private static Color color = new Color(44, 62,80);
 
 	PostmanController controller;
 	
@@ -34,6 +32,8 @@ public class ConfirmReceivalUI extends MainPanel{
 	public ConfirmReceivalUI(PostmanController c) {
 		controller = c;
 		
+		this.add(new PostmanGuide(c));
+		
 		initComponents();
 	}
 
@@ -42,38 +42,33 @@ public class ConfirmReceivalUI extends MainPanel{
 		this.add(p);
 		p.setLayout(null);
 		p.setOpaque(false);
-		p.setBounds(0, y,  width, height);
+		p.setBounds(94, 112,  width-94, height-112);
 
-		jbtReturn = new ReturnButton();
-		jbtReturn.setActionCommand("PostmanMainUI");
-		jbtReturn.addActionListener(controller);
-		p.add(jbtReturn);
 
 		id = new LabelTextField("收件编号",12);
-		id.setBounds((width-350)/2, 90,350,40);
+		id.setBounds(200, 60,400,40);
 		p.add(id);
 		
 		name = new LabelTextField("收件人  ",12);
-		name.setBounds((width-350)/2, 160, 350,40);
+		name.setBounds(200, 150, 400,40);
 		p.add(name);
 
 		time = new JPanel();
 		time.setOpaque(false);
 		JLabel timeLabel = new JLabel("收件日期");
-		timeLabel.setForeground(Color.white);
-		timeLabel.setFont( new Font("黑体", Font.PLAIN, 16)); 
+		timeLabel.setForeground(color);
+		timeLabel.setFont(font); 
 		time.add(timeLabel);
 		
 		date= new DateComboBoxPanel();
 		time.add(date);
-		time.setBounds((width-350)/2, 230, 350,40);
+		time.setBounds(200,240,400,40);
 		p.add(time);
 
 		confirm = new ConfirmButton();
-		confirm.setLocation((width-confirm.getWidth())/2, 320);
 		confirm.setActionCommand("ConfirmReceival");
 		confirm.addActionListener(controller);
-		p.add(confirm);
+		this.add(confirm);
 	}
 
 

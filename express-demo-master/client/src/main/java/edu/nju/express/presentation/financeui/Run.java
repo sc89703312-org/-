@@ -9,7 +9,7 @@ import edu.nju.express.presentation.myUI.MyFrame;
 
 public class Run {
 	public static void main(String[] args) {
-		JFrame f = new MyFrame();
+		MyFrame f = new MyFrame();
 		
 		f.setBackground(new Color(0, 0, 0,0));
 		f.setSize(900, 600);

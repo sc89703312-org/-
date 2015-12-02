@@ -44,8 +44,8 @@ public class PostmanMainUI extends MainPanel {
 			table.getTableModel().addRow(rowData);
 		}
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y -95));
-		table.setBounds(x+30, y+30, width - x-60,height - y-60);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726,432));
+		table.setBounds(128,107,726,463);
 		this.add(table);
 	}
 

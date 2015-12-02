@@ -3,19 +3,17 @@ package edu.nju.express.presentation.managerui;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.CancelButton;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
-import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.UserMessageVO;
 
 public class AddEmployeePanel extends MainPanel {
@@ -24,66 +22,57 @@ public class AddEmployeePanel extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	int width = 900, height = 600;
-	int y = 50;		//由标题栏高度决定
+	static Font font = new Font("黑体", Font.PLAIN, 18);
+	static Color color = new Color(44, 62,80);
 	
 	ManageController controller;
 
-	ManageGuide guide;
-	JButton confirm;
+	ConfirmButton confirm;
+	CancelButton cancel;
 	LabelTextField id;
 	LabelTextField name;
 	JLabel roleLabel;
 	JComboBox<String> roleBox;
-	JButton jbtReturn;
-	JPanel p;
 
 	public AddEmployeePanel(ManageController c) {
 
 		controller = c;
 		initComponents();
+		this.add(new ManageGuide(c));
 	}
 
 	private void initComponents() {
-		p = new JPanel();
-		this.add(p);
-		p.setLayout(null);
-		p.setOpaque(false);
-		p.setBounds(0, y,  width, height);
-
-		jbtReturn = new ReturnButton();
-		jbtReturn.setActionCommand("EmployeeUI");
-		jbtReturn.addActionListener(controller);
-		p.add(jbtReturn);
 
 		id = new LabelTextField("ID    ",15);
-		id.setBounds((width-350)/2, 80,350,40);
-		p.add(id);
+		id.setBounds(200+94, 170,400,40);
+		this.add(id);
 		
 		name = new LabelTextField("姓名  ",15);
-		name.setBounds((width-350)/2, 130, 350,40);
-		p.add(name);
+		name.setBounds(200+94,230,400,40);
+		this.add(name);
 
 		JPanel jp = new JPanel();
 		jp.setOpaque(false);
-		roleLabel = new JLabel("职务  ");
-		roleLabel.setForeground(Color.white);
-		roleLabel.setFont( new Font("黑体", Font.PLAIN, 16)); 
+		roleLabel = new JLabel("职务    ");
+		roleLabel.setFont(font);
+		roleLabel.setForeground(color);
 		jp.add(roleLabel);
-		
 		roleBox = new MyComboBox<String>();
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());
 		jp.add(roleBox);
-		jp.setBounds((width-350)/2, 180, 350,40);
-		p.add(jp);
+		jp.setBounds(200+94, 300, 400,40);
+		this.add(jp);
 
 		confirm = new ConfirmButton();
-		confirm.setLocation((width-confirm.getWidth())/2, 260);
 		confirm.setActionCommand("AddEmployee");
 		confirm.addActionListener(controller);
-		p.add(confirm);
+		this.add(confirm);
+		
+		cancel = new CancelButton();
+		this.add(cancel);
+		cancel.addActionListener(controller);
+		cancel.setActionCommand("EmployeeUI");
 	}
 
 

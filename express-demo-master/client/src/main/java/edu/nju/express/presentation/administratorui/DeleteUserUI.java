@@ -1,12 +1,7 @@
 package edu.nju.express.presentation.administratorui;
-import java.awt.FlowLayout;
-import java.awt.Font;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
@@ -18,9 +13,6 @@ public class DeleteUserUI extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int width=900,height=600;
-	private static int y = 50;		//由标题栏高度决定
-	private static int x =240;
 	
 	AdministratorController controller;
 

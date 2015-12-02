@@ -1,13 +1,16 @@
 package edu.nju.express.presentation.postmanui;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
@@ -16,8 +19,6 @@ import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
-import edu.nju.express.presentation.myUI.ReturnButton;
-import edu.nju.express.vo.OrderVOforInput;
 
 public class CreateOrderPanel extends MainPanel {
 
@@ -25,14 +26,12 @@ public class CreateOrderPanel extends MainPanel {
 	static int width = 900;
 	static int height = 600;
 	static int y = 50;
-	static int interval = 70;
-	static int h = 90;
-	static Font font = new Font("黑体", Font.PLAIN, 16);
-	static Color color = Color.white;
+	static int interval = 10;
+	private static Font font = new Font("黑体", Font.PLAIN, 18);
+	private static Color color = new Color(44, 62,80);
 
 	PostmanController controller;
 
-	JPanel senderPanel, receiverPanel, goodsPanel, orderPanel, idPanel;
 	LabelTextField id;
 	DateComboBoxPanel date;
 	LabelTextField nameS, addressS, postS, telS, phoneS;
@@ -49,89 +48,72 @@ public class CreateOrderPanel extends MainPanel {
 
 	public CreateOrderPanel(PostmanController c) {
 		controller = c;
-
-		JButton jbtreturn = new ReturnButton();
-		jbtreturn.setLocation(20, y+20);
-		jbtreturn.addActionListener(controller);
-		jbtreturn.setActionCommand("PostmanMainUI");
-		this.add(jbtreturn);
 		
-		FlowLayout flo = new FlowLayout(FlowLayout.LEADING, 35,0);
+		this.add(new PostmanGuide(c));
 		
-		idPanel = new JPanel();
-		idPanel.setLayout(flo);
-		idPanel.setOpaque(false);
-		idPanel.setBounds(10,y+h,width,40);
-		id = new LabelTextField("快递编号  ",15);
-		idPanel.add(id);
+		JPanel p = new JPanel();
+		p.setOpaque(false);
+		p.setBounds(94, 112, width-175, height-180);
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		this.add(p);
+		
+		JScrollPane s = new JScrollPane(p);
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+//		s.getVerticalScrollBar().setUI(null);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		s.setBounds(128, 112, width-175, height-180);
+		this.add(s);
+		
+		id = new LabelTextField("快递编号    ",15);
+		p.add(id);
 		
 		JPanel dp = new JPanel();
 		dp.setOpaque(false);
-		JLabel time = new JLabel("日期");
+		JLabel time = new JLabel("日期   ");
 		time.setFont(font);
 		time.setForeground(color);
 		date = new DateComboBoxPanel();
 		dp.add(time);
 		dp.add(date);
-		idPanel.add(dp);		
+		p.add(dp);
 		
-		this.add(idPanel);
-		
-		senderPanel = new JPanel();
-		senderPanel.setOpaque(false);
-		senderPanel.setBounds(10, y + h+interval, width, 30);
-		senderPanel.setLayout(flo);
-		this.add(senderPanel);
 
-		nameS = new LabelTextField("姓名", 6);
-		addressS = new LabelTextField("地址", 17);
-		postS = new LabelTextField("单位", 13);
-		telS = new LabelTextField("电话", 10);
-		phoneS = new LabelTextField("手机", 11);
-		senderPanel.add(nameS);
-		senderPanel.add(addressS);
-		senderPanel.add(postS);
-		senderPanel.add(telS);
-		senderPanel.add(phoneS);
+		nameS = new LabelTextField("收件人姓名  ", 6);
+		addressS = new LabelTextField("收件人地址  ", 17);
+		postS = new LabelTextField("收件人单位  ", 13);
+		telS = new LabelTextField("收件人电话  ", 10);
+		phoneS = new LabelTextField("收件人手机  ", 11);
+		p.add(nameS);
+		p.add(addressS);
+		p.add(postS);
+		p.add(telS);
+		p.add(phoneS);
 
-		
-		receiverPanel = new JPanel();
-		receiverPanel.setOpaque(false);
-		receiverPanel.setLayout(flo);
-		receiverPanel.setBounds(10, y + h+interval*2, width, 30);
-		this.add(receiverPanel);
+		nameR = new LabelTextField("寄件人姓名  ", 6);
+		addressR = new LabelTextField("寄件人地址  ", 17);
+		postR = new LabelTextField("寄件人单位  ", 13);
+		telR = new LabelTextField("寄件人电话  ", 10);
+		phoneR = new LabelTextField("寄件人手机  ", 11);
+		p.add(nameR);
+		p.add(addressR);
+		p.add(postR);
+		p.add(telR);
+		p.add(phoneR);
 
-		nameR = new LabelTextField("姓名", 6);
-		addressR = new LabelTextField("地址", 17);
-		postR = new LabelTextField("单位", 13);
-		telR = new LabelTextField("电话", 10);
-		phoneR = new LabelTextField("手机", 11);
-		receiverPanel.add(nameR);
-		receiverPanel.add(addressR);
-		receiverPanel.add(postR);
-		receiverPanel.add(telR);
-		receiverPanel.add(phoneR);
-
-		goodsPanel = new JPanel();
-		goodsPanel.setOpaque(false);
-		goodsPanel.setLayout(flo);
-		goodsPanel.setBounds(10, y + h+interval*3, width, 30);
-		num = new LabelTextField("原件数", 4);
-		weight = new LabelTextField("重量 ", 6,"kg");
-		size = new LabelTextField("体积 ", 6);
-		goodsName = new LabelTextField("内件品名", 10);
-		goodsPanel.add(num);
-		goodsPanel.add(weight);
-		goodsPanel.add(size);
-		goodsPanel.add(goodsName);
-		this.add(goodsPanel);
+		num = new LabelTextField("原件数      ", 4);
+		weight = new LabelTextField("重量        ", 6,"kg       ");
+		size = new LabelTextField("体积        ", 6);
+		goodsName = new LabelTextField("内件品名    ", 10);
+		p.add(num);
+		p.add(weight);
+		p.add(size);
+		p.add(goodsName);
 		
-		orderPanel = new JPanel();
-		orderPanel.setOpaque(false);
-		orderPanel.setLayout(flo);
-		orderPanel.setBounds(10, y + h+interval*4, width, 30);
 		
-		JLabel l1= new JLabel("快递种类 ");
+		JLabel l1= new JLabel("快递种类    ");
 		l1.setOpaque(false);
 		l1.setFont(font);
 		l1.setForeground(color);
@@ -142,10 +124,10 @@ public class CreateOrderPanel extends MainPanel {
 		p1.setOpaque(false);
 		p1.add(l1);
 		p1.add(typeBox);
-		orderPanel.add(p1);
+		p.add(p1);
 		
 		
-		JLabel l2= new JLabel("包装种类 ");
+		JLabel l2= new JLabel("包装种类     ");
 		l2.setOpaque(false);
 		l2.setFont(font);
 		l2.setForeground(color);
@@ -157,34 +139,30 @@ public class CreateOrderPanel extends MainPanel {
 		pkgCostBox.addItem("快递袋");
 		pkgCostBox.addItem("纸箱");
 		pkgCostBox.addItem("木箱");
-		orderPanel.add(pkgCostBox);
+		p.add(pkgCostBox);
 		p2.add(pkgCostBox);
-		orderPanel.add(p2);
-		this.add(orderPanel);
+		p.add(p2);
 
 		totalCost = new JLabel("报价：");
-		totalCost.setFont(new Font("黑体", Font.PLAIN, 17));
+		totalCost.setFont(font);
 		totalCost.setForeground(color);
-		totalCost.setBounds(100, 480, 250, 30);
-		this.add(totalCost);
+		p.add(totalCost);
 		
 		expectedArrival = new JLabel("预计送达时间：");
-		expectedArrival.setFont(new Font("黑体", Font.PLAIN, 17));
+		expectedArrival.setFont(font);
 		expectedArrival.setForeground(color);
-		expectedArrival.setBounds(300, 480, 300, 30);
-		this.add(expectedArrival);
+		p.add(expectedArrival);
 		
-		JPanel buttons = new JPanel();
-		buttons.setOpaque(false);
-		buttons.setBounds(0, 540, width, 30);
 		caculate = new JButton("计算报价");
+		caculate.setBounds(400, 537, 80,30);
 		caculate.setActionCommand("CaculateFee");
 		caculate.addActionListener(controller);
-		buttons.add(caculate);
+		this.add(caculate);
+		
 		confirm = new ConfirmButton();
+		confirm.setBounds(500, 537, 80,30);
 		confirm.setActionCommand("SubmitOrder");
 		caculate.addActionListener(controller);
-		buttons.add(confirm);
-		this.add(buttons);
+		this.add(confirm);
 	}
 }

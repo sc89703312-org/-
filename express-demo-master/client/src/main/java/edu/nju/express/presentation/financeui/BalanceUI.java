@@ -23,8 +23,8 @@ public class BalanceUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 	private static int width = 900, height = 600;
 	private static int x = 94, y = 50;
-	static Font font = new Font("黑体", Font.PLAIN, 18);
-	static Color color = new Color(44, 62,80);
+	private static Font font = new Font("黑体", Font.PLAIN, 18);
+	private static Color color = new Color(44, 62,80);
 
 	private FinanceController controller;
 

@@ -9,7 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -33,14 +32,14 @@ public class MyTextField extends JPanel {
 	private int state = 1;
 	private int width;
 	private int height = 40;
-	private int colomn;
+	private int type;
 
-	public MyTextField(int colomn) {
-		this.colomn = colomn;
+	public MyTextField(int type) {
+		this.type = type;
 
-		if(colomn!=0)
-			width = 200;
-		else	width = 112;
+		if(type==0||type==-1)
+			width = 112;
+		else	width = 200;
 		this.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(null);
@@ -73,10 +72,22 @@ public class MyTextField extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (colomn == 0) {
+		if (type == 0) {
 			switch (state) {
 			case 1:
 				g.drawImage(imgS1, 0, 0, null);
+				break;
+			case 2:
+				g.drawImage(imgS2, 0, 0, null);
+				break;
+			case 3:
+				g.drawImage(imgS3, 0, 0, null);
+				break;
+			}
+		} else if (type == -1) {
+			switch (state) {
+			case 1:
+				field.setHorizontalAlignment(JTextField.CENTER);
 				break;
 			case 2:
 				g.drawImage(imgS2, 0, 0, null);

@@ -30,16 +30,11 @@ public class EmployeeListUI extends MainPanel {
 
 	MyTablePanel table;
 	DefaultTableModel model;
-	ManageGuide guide;
 	JPanel buttons;
 	JButton jbtAdd;
 	JButton jbtDelete;
 
-	private static int width = 900, height = 600;
 	private static int TABLE_ROW_HEIGHT = 30;
-	private static int y = 50; // 由标题栏高度决定
-	private static int x = 240;
-	private static int h=90;
 
 	public EmployeeListUI(ManageController c) {
 
@@ -75,8 +70,7 @@ public class EmployeeListUI extends MainPanel {
 	}
 
 	private void initGuide() {
-		guide = new ManageGuide(controller);
-		this.add(guide);
+		this.add(new ManageGuide(controller));
 	}
 
 	private void initdata() {

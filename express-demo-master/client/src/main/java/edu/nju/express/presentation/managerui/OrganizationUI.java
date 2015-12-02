@@ -1,15 +1,13 @@
 package edu.nju.express.presentation.managerui;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.MainPanel;
@@ -23,19 +21,20 @@ public class OrganizationUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static Font font = new Font("微软雅黑", Font.PLAIN, 16);
-	static Color color = Color.white;
-	static int width = 900, height = 600;
-	static int y = 50; // 由标题栏高度决定
-	static int x = 240;
-	static int h = 160;
+	private static Icon addS1 = new ImageIcon("ui/button/addstation1.png");
+	private static Icon addS2 = new ImageIcon("ui/button/addstation2.png");
+	private static Icon delS1 = new ImageIcon("ui/button/deletestation1.png");
+	private static Icon delS2 = new ImageIcon("ui/button/deletestation2.png");
+	private static Icon addH1 = new ImageIcon("ui/button/addhall1.png");
+	private static Icon addH2 = new ImageIcon("ui/button/addhall2.png");
+	private static Icon delH1 = new ImageIcon("ui/button/deletehall1.png");
+	private static Icon delH2 = new ImageIcon("ui/button/deletehall2.png");
 
 	private ArrayList<HallVO> hallList;
 	private ArrayList<StationVO> stationList;
 
 	private JButton addStation, deleteStation, addHall, deleteHall;
 	private MyTablePanel table;
-	private JPanel buttons;
 	private ManageController controller;
 
 	public OrganizationUI(ManageController c) {
@@ -51,40 +50,54 @@ public class OrganizationUI extends MainPanel {
 	}
 
 	private void initButtons() {
-		buttons = new JPanel();
-		buttons.setBounds(x, y, width - x, height);
-		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 180, 40));
-		buttons.setOpaque(false);
 
-		addStation = new JButton("新增中转中心");
+		addStation = new JButton(addS1);
+		addStation.setRolloverIcon(addS2);
+		addStation.setBounds(210,537,100,30);
+		addStation.setBorderPainted(false);
+		addStation.setContentAreaFilled(false);
+		addStation.setBorderPainted(false);
+		addStation.setContentAreaFilled(false);
 		addStation.setActionCommand("AddStationUI");
 		addStation.addActionListener(controller);
-		buttons.add(addStation);
+		this.add(addStation);
 
-		deleteStation = new JButton("删除中转中心");
+		deleteStation = new JButton(delS1);
+		deleteStation.setRolloverIcon(delS2);
+		deleteStation.setBorderPainted(false);
+		deleteStation.setContentAreaFilled(false);
+		deleteStation.setBounds(360,537,100,30);
 		deleteStation.setActionCommand("DeleteStationUI");
 		deleteStation.addActionListener(controller);
-		buttons.add(deleteStation);
+		this.add(deleteStation);
 
-		addHall = new JButton("新增营业厅");
+		addHall = new JButton(addH1);
+		addHall.setRolloverIcon(addH2);
+		addHall.setBorderPainted(false);
+		addHall.setContentAreaFilled(false);
+		addHall.setBounds(510,537,100,30);
 		addHall.setActionCommand("AddHallUI");
 		addHall.addActionListener(controller);
-		buttons.add(addHall);
+		this.add(addHall);
 
-		deleteHall = new JButton("删除营业厅");
+		deleteHall = new JButton(delH1);
+		deleteHall.setRolloverIcon(delH2);
+		deleteHall.setBorderPainted(false);
+		deleteHall.setContentAreaFilled(false);
+		deleteHall.setBounds(660,537,100,30);
 		deleteHall.setActionCommand("DeleteHallUI");
 		deleteHall.addActionListener(controller);
-		buttons.add(deleteHall);
+		this.add(deleteHall);
 
-		this.add(buttons);
 	}
 
 	private void initTable() {
 		String[] header = { "中转中心", "城市编号", "营业厅", "营业厅编号" };
 
 		table = new MyTablePanel(header);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(width - x -80, height - y - h));
-		table.setBounds(x+30, y + h, width - x -60, height - y - h - 30);
+		table.setRowHeight(30);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(727,390));
+		table.setBounds(128,107,726,422);
 		this.add(table);
 		DefaultTableModel model = table.getTableModel();
 

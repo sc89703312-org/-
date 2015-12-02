@@ -26,7 +26,7 @@ public class ManageGuide extends JPanel {
 		initGuide();
 		this.setLayout(null);
 		this.setOpaque(false);
-		this.setBounds(0, y, 240, height-y);
+		this.setBounds(12, 0, 94, height);
 	}
 
 	void initGuide() {
