@@ -19,6 +19,7 @@ import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 
 public class CreateOrderPanel extends MainPanel {
 
@@ -60,7 +61,7 @@ public class CreateOrderPanel extends MainPanel {
 		JScrollPane s = new JScrollPane(p);
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
-//		s.getVerticalScrollBar().setUI(null);
+		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
