@@ -33,7 +33,7 @@ public class RMIHelper {
             paymentDataservice = (Paymentdataservice) Naming.lookup("rmi://" + IP + "/payment-service");
             vehicledataservice = (vehicledataservice) Naming.lookup("rmi://" + IP + "/vehicle-service");
             balancedataservice = (balancedataservice) Naming.lookup("rmi://" + IP + "/balance-service");
-          bankingDataService = (BankingDataService) Naming.lookup("rmi://" + IP + "/banking-service");
+            bankingDataService = (BankingDataService) Naming.lookup("rmi://" + IP + "/banking_service");
             accountdataservice = (accountdataservice) Naming.lookup("rmi://" + IP + "/account-service");
             orderdataservice = (orderdataservice) Naming.lookup("rmi://" + IP + "/order-service");
             hallDataService = (HallDataService) Naming.lookup("rmi://" + IP + "/hall-service");

@@ -110,6 +110,7 @@ public class RMIHelper {
 			salaryDataService.flush();
 			constantDataService.flush();
 			logRecordDataService.flush();
+		    bankingDataService.flush();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

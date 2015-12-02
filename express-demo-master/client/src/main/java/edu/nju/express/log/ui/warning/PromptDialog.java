@@ -57,7 +57,7 @@ public class PromptDialog extends JDialog {
 
 		public void run() {
 			try {
-				Thread.sleep(1500);
+				Thread.sleep(1000);
 				while(true) {
 					Thread.sleep(20);
 					hyalineValue -= 0.05f;

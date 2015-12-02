@@ -29,7 +29,7 @@ public class PromptPanel extends JPanel {
 	/** 信息提示 */
 	private JTextArea promptLabel;
 	/** 确认按钮 */
-	private JButton confirmBtn;
+	private MyButton confirmBtn;
 	
 	private Dimension preDimen = new Dimension(30, 30);
 	private Font font = new Font("微软雅黑", Font.PLAIN, preDimen.height / 2);
@@ -52,7 +52,8 @@ public class PromptPanel extends JPanel {
 		promptLabel.setLineWrap(true);
 		promptLabel.setEditable(false);
 		this.add(promptLabel, BorderLayout.CENTER);
-		confirmBtn = new JButton();
+		confirmBtn = new MyButton(286,311,300,26);
+		
 		confirmBtn.setFont(font);
 		confirmBtn.setPreferredSize(preDimen);
 		confirmBtn.addMouseListener(listener);

@@ -210,7 +210,7 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	public void flush() {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Definelist does");
+
 		
 		
 		try {

@@ -15,7 +15,8 @@ public interface BankingDataService extends Remote{
 	public void expend(String name, int num) throws RemoteException;
 	public ResultMessage modifyName(String newName, String name) throws RemoteException;
 	public void addAccount(String name) throws RemoteException;
+	public ResultMessage insert(BankingAccountPO po)throws RemoteException;
 	public ResultMessage removeAccount(String name) throws RemoteException;
 	public ArrayList<BankingAccountPO> getAccount() throws RemoteException;
-	
+	public void flush() throws RemoteException;
 }

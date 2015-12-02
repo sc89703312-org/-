@@ -14,5 +14,8 @@ public interface BankingDao {
     public ResultMessage modify(String newname, String name);
     public void income(String name, int num);
     public void expend(String name, int num);
+    public ArrayList<BankingAccountPO> showAll();
+    public void flush();
+    public ResultMessage insert(BankingAccountPO po);
 	
 }

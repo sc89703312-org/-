@@ -62,7 +62,21 @@ public class BankingDataService_Impl extends UnicastRemoteObject implements Bank
 	@Override
 	public ArrayList<BankingAccountPO> getAccount() throws RemoteException {
 		// TODO Auto-generated method stub
-		return bankingDao.getAll();
+		return bankingDao.showAll();
+	}
+
+
+	@Override
+	public void flush() throws RemoteException {
+		// TODO Auto-generated method stub
+		bankingDao.flush();
+	}
+
+
+	@Override
+	public ResultMessage insert(BankingAccountPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return bankingDao.insert(po);
 	}
 
 }

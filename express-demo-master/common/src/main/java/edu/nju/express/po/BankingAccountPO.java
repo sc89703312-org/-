@@ -22,7 +22,7 @@ public class BankingAccountPO extends PersistentObj  implements Serializable{
 	}
 	
 	public String getName(){
-		return name;
+		return id;
 	}
 	
 	public int getMoney(){
