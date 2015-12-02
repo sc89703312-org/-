@@ -2,7 +2,6 @@ package edu.nju.express.presentation.postmanui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Scrollbar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -23,7 +22,6 @@ import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
-import edu.nju.express.presentation.myUI.MyScrollBarUIV2;
 
 public class CreateOrderPanel extends MainPanel {
 
@@ -68,22 +66,21 @@ public class CreateOrderPanel extends MainPanel {
 		s.getViewport().setOpaque(false);
 		s.getVerticalScrollBar().setOpaque(false);
 		
-		final MyScrollBarUIV2 ui2 = new MyScrollBarUIV2();
-		final MyScrollBarUI ui1 = new MyScrollBarUI();
-		s.getVerticalScrollBar().setUI(ui2);
+		final MyScrollBarUI ui = new MyScrollBarUI();
+		s.getVerticalScrollBar().setUI(ui);
 		
 		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				super.mouseEntered(e);
-				s.getVerticalScrollBar().setUI(ui1);
+				s.getVerticalScrollBar().repaint();;
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseExited(e);
-				s.getVerticalScrollBar().setUI(ui2);
+				s.getVerticalScrollBar().repaint();;
 				
 			}
 		});
@@ -131,7 +128,7 @@ public class CreateOrderPanel extends MainPanel {
 		p.add(phoneR);
 
 		num = new LabelTextField("原件数      ", 4);
-		weight = new LabelTextField("重量        ", 6,"kg       ");
+		weight = new LabelTextField("重量        ", 0,"kg       ");
 		size = new LabelTextField("体积        ", 6);
 		goodsName = new LabelTextField("内件品名    ", 10);
 		p.add(num);
