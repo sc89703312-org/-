@@ -3,7 +3,9 @@ package edu.nju.express.presentation.myUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -14,7 +16,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 
 	private int width = 11;
 	private Color thumbColor = new Color(44, 62, 80);
-	private Color trackColor = new Color(238, 238, 238);
+	private Color trackColor = new Color(238,238,238);
 	
 	public MyScrollBarUI() {
 		super();
@@ -58,8 +60,8 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 		g.translate(thumbBounds.x, thumbBounds.y);
 
 		g.setColor(thumbColor);
-		g.fillRoundRect(0, 0, w - 1, h - 1, 8, 8);
-		g.drawRoundRect(0, 0, w - 1, h - 1, 8, 8);
+		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		g.fillRoundRect(0, 0, w - 1, h - 1, 10, 10);
 
 		g.translate(-thumbBounds.x, -thumbBounds.y);
 	}
@@ -67,9 +69,9 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 	@Override
 	//绘制轨道
 	protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-
 		g.setColor(trackColor);
-		g.fillRoundRect(trackBounds.x, trackBounds.y, trackBounds.width-1, trackBounds.height-1,8,8);
+		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		g.fillRoundRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height,10,10);
 	}
 
 	@Override

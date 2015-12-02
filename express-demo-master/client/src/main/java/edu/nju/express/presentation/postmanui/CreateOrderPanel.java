@@ -62,6 +62,7 @@ public class CreateOrderPanel extends MainPanel {
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
 		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		s.getVerticalScrollBar().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
