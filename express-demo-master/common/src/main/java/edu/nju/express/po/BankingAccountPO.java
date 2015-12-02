@@ -15,7 +15,7 @@ public class BankingAccountPO extends PersistentObj  implements Serializable{
 	public BankingAccountPO(String name){
 		
 		this.name = name;
-		this.money = 0;
+		this.money = 1000000;
 		this.id = name;
 		this.date = "";
 		

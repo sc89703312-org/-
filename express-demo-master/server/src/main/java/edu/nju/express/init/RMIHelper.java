@@ -62,7 +62,7 @@ public class RMIHelper {
 	            
 	            Naming.rebind("balance-service", balancedataservice);
 	            
-//	            Naming.rebind("banking_service", bankingDataService);
+	            Naming.rebind("banking_service", bankingDataService);
 	        
 	            Naming.rebind("account-service", accountdataservice);
 	        
