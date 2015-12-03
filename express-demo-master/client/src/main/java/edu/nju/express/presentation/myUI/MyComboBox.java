@@ -144,8 +144,7 @@ public class MyComboBox<E> extends JComboBox<E> {
 			//设置下拉框列表的颜色
 			JLabel renderer = (JLabel) defaultCellRenderer.getListCellRendererComponent(list, value, index, isSelected,
 					cellHasFocus);
-			renderer.setBounds(renderer.getX() + gap, renderer.getY(), renderer.getWidth() - gap * 2,
-					renderer.getHeight());
+
 			if (isSelected) {
 				renderer.setBackground(select);
 				renderer.setForeground(fore.brighter().brighter());
