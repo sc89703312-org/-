@@ -119,6 +119,8 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 		
 		if(list.size()==0)
 			return null;
+		if(binaryFind(0, list.size()-1, id)==-1)
+			return null;
 		return list.get(binaryFind(0, list.size()-1, id));
 	}
 	

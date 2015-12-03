@@ -124,11 +124,15 @@ public class OrderBL implements OrderBLService,
 			e.printStackTrace();
 		}
 		 
-		 
+		 if(tempOrder!=null)
 		
 		return new LogisticsVO(tempOrder.getID(), 
 				tempOrder.getCurrentSpot(),
 				tempOrder.getDeliver(), tempOrder.viewHistory());
+		 
+		 else {
+			return null;
+		}
 		
 	}
 

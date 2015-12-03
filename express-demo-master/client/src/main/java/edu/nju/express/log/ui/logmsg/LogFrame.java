@@ -2,6 +2,7 @@ package edu.nju.express.log.ui.logmsg;
 
 import edu.nju.express.log.config.LogUIConfig;
 import edu.nju.express.log.ui.frame.Frame;
+import edu.nju.express.presentation.logisticui.Logistic_Panel;
 
 /**
  * @author cylong
@@ -16,8 +17,8 @@ public class LogFrame extends Frame {
 		// 显示日志信息的panel
 		LogPanel panel = new LogPanel();
 		this.add(panel);
-		this.setTitle("操作日志");
-		this.setSize(LogUIConfig.WIDTH, LogUIConfig.HEIGHT);
+		this.setTitle("日志查看");
+		this.setSize(960,720);
 		this.setLocationRelativeTo(null); // 居中
 		hy.start(); // 透明度渐变启动界面
 	}

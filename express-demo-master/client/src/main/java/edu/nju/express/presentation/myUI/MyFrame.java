@@ -32,11 +32,11 @@ public class MyFrame extends JFrame{
 		public void run() {
 			while(true) {
 				try {
-					Thread.sleep(30);
+					Thread.sleep(20);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				hyalineValue += 0.05f;
+				hyalineValue += 0.02f;
 				if (hyalineValue > 1) {
 					hyalineValue = 1;
 				}
