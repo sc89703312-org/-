@@ -2,6 +2,8 @@ package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -55,15 +57,31 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
 		mainpanel.setVisible(true);
-		initPanel();
-		initOrderContainer();
-		initMargin();
+//		initPanel();
+//		initOrderContainer();
+//		initMargin();
+		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+		exit.setBounds(840, 18, 30, 30);
+		exit.setOpaque(false);
+		exit.setBorderPainted(false);
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+		});
+		mainpanel.add(exit);
 		bg = new JLabel();
 		bg.setBounds(0, 0, width, height);
-		bg.setIcon(new ImageIcon("ui/image/hall/hall1.png"));
+		bg.setIcon(new ImageIcon("ui/image/hall/transfer.png"));
 		mainpanel.add(bg);
+		 
+			
 		this.add(mainpanel);
+		this.add(new HallGuide(controller));
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.setVisible(true);
 	}
 	
@@ -241,13 +259,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	public void initMargin(){
 		JPanel panel = new JPanel();
 		
-		back = new JButton(new ImageIcon("ui/image/hall/back1.png"));
-		back.setBounds(30, 15, 30, 30);
-		back.setOpaque(false);
-		back.setBorderPainted(false);
-		back.addActionListener(controller);
-		back.addMouseListener(this);
-		back.setActionCommand("backHome");
 		
 		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
 		submitBtn.setBounds(50, 510, 90, 30);
@@ -255,9 +266,16 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		submitBtn.setBorderPainted(false);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(controller);
-		
-		panel.add(back);
 		panel.add(submitBtn);
+
+//		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+//		exit.setBounds(840, 18, 30, 30);
+//		exit.setOpaque(false);
+//		exit.setBorderPainted(false);
+//		exit.setActionCommand("exit");
+//		exit.addActionListener(controller);
+//		panel.add(exit);
+		
 		
 		panel.setLayout(null);
 		panel.setOpaque(false);

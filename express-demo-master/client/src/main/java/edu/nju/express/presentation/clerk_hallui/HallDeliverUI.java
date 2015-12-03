@@ -2,6 +2,8 @@ package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -29,7 +31,6 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	HallController controller;
 	JPanel mainpanel;
 	
-	JButton back;
 	JButton addOrderBtn;
 	JButton submitBtn;
 	JLabel idLabel;
@@ -39,7 +40,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	MyTextField idField, deliverIdField;
 	JTextArea orderArea;
 	JComboBox<String> yearBox, monthBox, dayBox;
-	
+	JLabel bg;
 	
 	public HallDeliverUI(HallController controller){
 		this.controller = controller;
@@ -48,11 +49,28 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		mainpanel.setLayout(null);
 		mainpanel.setBackground(Color.LIGHT_GRAY);
 		mainpanel.setVisible(true);
-		initPanel();
-		initOrderContainer();
-		initMargin();
+//		initPanel();
+//		initOrderContainer();
+//		initMargin();
+		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+		exit.setBounds(840, 18, 30, 30);
+		exit.setOpaque(false);
+		exit.setBorderPainted(false);
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+		});
+		mainpanel.add(exit);
+		bg = new JLabel(new ImageIcon("ui/image/hall/deliver.png"));
+		bg.setBounds(0, 0, width, height);
+		mainpanel.add(bg);
 		this.add(mainpanel);
+		this.add(new HallGuide(controller));
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.setVisible(true);
 		
 	}
@@ -172,13 +190,6 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	public void initMargin(){
 		JPanel panel = new JPanel();
 		
-		back = new JButton(new ImageIcon("ui/image/hall/back1.png"));
-		back.setBounds(30, 15, 30, 30);
-		back.setOpaque(false);
-		back.setBorderPainted(false);
-		back.addActionListener(controller);
-		back.addMouseListener(this);
-		back.setActionCommand("backHome");
 		
 		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
 		submitBtn.setBounds(50, 510, 90, 30);
@@ -186,8 +197,6 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		submitBtn.setBorderPainted(false);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(controller);
-		
-		panel.add(back);
 		panel.add(submitBtn);
 		
 		panel.setLayout(null);
@@ -218,17 +227,12 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource().equals(back)){
-			back.setIcon(new ImageIcon("ui/image/hall/back2.png"));
-		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource().equals(back)){
-			back.setIcon(new ImageIcon("ui/image/hall/back1.png"));
-		}
+		
 	}
 
 }
