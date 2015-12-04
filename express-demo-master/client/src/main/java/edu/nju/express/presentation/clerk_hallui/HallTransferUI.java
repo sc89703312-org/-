@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,7 +18,9 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.DateComboBoxPanel;
+import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 
 public class HallTransferUI extends JPanel implements MouseListener{
 	
@@ -27,29 +30,26 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	HallController controller;
 	JPanel mainpanel;
+	JPanel boxpanel;
 	
 	int width = 900;
 	int height = 600;
-	JButton back;
+	
+	JLabel orderLabel;
+	JTextArea orderArea;
 	JButton addOrderBtn;
 	JButton calFeeBtn;
+	
 	JButton submitBtn;
-	JLabel idLabel;
+	
 	JLabel dateLabel;
-	JLabel carrierIdLabel;
-	JLabel fromLabel;
-	JLabel toLabel;
-	JLabel supervisorLabel;
-	JLabel guardLabel;
-	JLabel orderLabel;
-	JLabel feeLabel;
-	JLabel yearLabel, monthLabel, dayLabel;
-	MyTextField idField;
-	JTextArea orderArea;
-	JComboBox<String> yearBox, monthBox, dayBox;
-	MyTextField carrierIdField, fromField, toField, supervisorField, guardField;
-	MyTextField feeField;
+	DateComboBoxPanel dateBox;
+	LabelTextField idField, carrierIdField, fromField, toField, supervisorField,
+					guardField,feeField;
 	JLabel bg;
+	
+	static JScrollPane s = new JScrollPane();
+
 	
 	public HallTransferUI(HallController controller){
 		this.controller = controller;
@@ -57,13 +57,20 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
 		mainpanel.setVisible(true);
-//		initPanel();
-//		initOrderContainer();
-//		initMargin();
+		mainpanel.setOpaque(false);
+		
+		
+		
+		initPanel();
+		
+		
+
+		
 		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
 		exit.setBounds(840, 18, 30, 30);
 		exit.setOpaque(false);
 		exit.setBorderPainted(false);
+		exit.setContentAreaFilled(false);
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -77,7 +84,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		bg.setIcon(new ImageIcon("ui/image/hall/transfer.png"));
 		mainpanel.add(bg);
 		 
-			
+		
 		this.add(mainpanel);
 		this.add(new HallGuide(controller));
 		this.setLayout(null);
@@ -88,126 +95,94 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	public void initPanel(){
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(50, 50, 480, 450);
+		panel.setBounds(128, 117, 723, 1000);
 		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
+		panel.setOpaque(false);
 		
+		s.setOpaque(false);
+		s.setViewportView(panel);
+		s.getViewport().setOpaque(false);
+		s.getVerticalScrollBar().setOpaque(false);
 		
-		idLabel = new JLabel("装车单编号");
-		idLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		idLabel.setForeground(Color.white);
-		idLabel.setBounds(20, 20, 100, 30);
+		final MyScrollBarUI ui = new MyScrollBarUI();
+		s.getVerticalScrollBar().setUI(ui);
 		
-		idField = new MyTextField(15);
-		idField.setBounds(120, 20, 150, 30);
+		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				super.mouseEntered(e);
+				s.getVerticalScrollBar().repaint();;
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseExited(e);
+				s.getVerticalScrollBar().repaint();;
+				
+			}
+		});
 		
-		//行间隔为10
-		dateLabel = new JLabel("装车日期");
-		dateLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		dateLabel.setForeground(Color.white);
-		dateLabel.setBounds(20, 70, 70, 30);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		s.setBounds(128, 117, 723, 403);
+		mainpanel.add(s);
 		
-		yearLabel = new JLabel("年");
-		yearLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		yearLabel.setForeground(Color.white);
-		yearLabel.setBounds(200, 70, 20, 30);
+		Font font = new Font("黑体", Font.PLAIN, 18);
+		Color color = new Color(44, 62,80);
 		
-		yearBox = new JComboBox<String>();
-		yearBox.setOpaque(false);
-		yearBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		yearBox.setBorder(new EmptyBorder(0,0,0,0));
-		for(int i=2015; i<2100; i++){
-			yearBox.addItem(Integer.toString(i));
-		}
-		yearBox.setBounds(90, 70, 100, 30);
-		
-		monthLabel = new JLabel("月");
-		monthLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		monthLabel.setForeground(Color.white);
-		monthLabel.setBounds(300, 70, 20, 30);
-		
-		monthBox = new JComboBox<String>();
-		monthBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		monthBox.setBounds(220, 70, 70, 30);
-		for(int i=1; i<=12; i++){
-			monthBox.addItem(Integer.toString(i));
-		}
-		
-		dayLabel = new JLabel("日");
-		dayLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		dayLabel.setForeground(Color.white);
-		dayLabel.setBounds(400, 70, 20, 30);
-		
-		dayBox = new JComboBox<String>();
-		dayBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		dayBox.setBounds(320, 70, 70, 30);
-		for(int i=1; i<=31; i++){
-			dayBox.addItem(Integer.toString(i));
-		}
-		
-		carrierIdLabel = new JLabel("本营业厅汽运编号");
-		carrierIdLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		carrierIdLabel.setForeground(Color.white);
-		carrierIdLabel.setBounds(20, 120, 150, 30);
-		
-		carrierIdField = new MyTextField(19);
-		carrierIdField.setBounds(170,120, 200, 30);
-		
-		fromLabel = new JLabel("出发地");
-		fromLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		fromLabel.setForeground(Color.white);
-		fromLabel.setBounds(20, 170, 100, 30);
-		
-		fromField = new MyTextField(10);
-		fromField.setBounds(120, 170, 120, 30);
-		
-		toLabel = new JLabel("到达地");
-		toLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		toLabel.setForeground(Color.white);
-		toLabel.setBounds(20, 220, 100, 30);
-		
-		toField = new MyTextField(10);
-		toField.setBounds(120, 220, 120, 30);
-		
-		supervisorLabel = new JLabel("监装员");
-		supervisorLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		supervisorLabel.setForeground(Color.white);
-		supervisorLabel.setBounds(20, 270, 100, 30);
-		
-		supervisorField = new MyTextField(10);
-		supervisorField.setBounds(120, 270, 120, 30);
-		
-		guardLabel = new JLabel("押运员");
-		guardLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		guardLabel.setForeground(Color.white);
-		guardLabel.setBounds(20, 320, 100, 30);
-		
-		guardField = new MyTextField(10);
-		guardField.setBounds(120, 320, 120, 30);
-		
-		
-		
-		panel.add(idLabel);
+		/**
+		 * 装车单编号长度待定
+		 */
+		idField = new LabelTextField("装车单编号",10);
+		idField.setBounds(100, 10, 300, 45);
 		panel.add(idField);
+		
+		dateLabel = new JLabel("装车日期");
+		dateLabel.setFont(font);
+		dateLabel.setForeground(color);
+		dateLabel.setBounds(100, 70, 90, 40);
 		panel.add(dateLabel);
-		panel.add(yearLabel);
-		panel.add(yearBox);
-		panel.add(monthLabel);
-		panel.add(monthBox);
-		panel.add(dayLabel);
-		panel.add(dayBox);
-		panel.add(carrierIdLabel);
+		
+		dateBox = new DateComboBoxPanel();
+		dateBox.setBounds(190, 70, 500, 40);
+		panel.add(dateBox);
+		
+		carrierIdField = new LabelTextField("本营业厅汽运编号",19);
+		carrierIdField.setBounds(80,120, 400, 45);
 		panel.add(carrierIdField);
-		panel.add(fromLabel);
+		
+		fromField = new LabelTextField("出发地  ", 10);
+		fromField.setBounds(110, 180, 300, 45);
 		panel.add(fromField);
-		panel.add(toLabel);
+		
+		toField = new LabelTextField("到达地  ", 10);
+		toField.setBounds(110, 240, 300, 45);
 		panel.add(toField);
-		panel.add(supervisorLabel);
+		
+		supervisorField = new LabelTextField("监装员  ",10);
+		supervisorField.setBounds(110, 300, 300, 45);
 		panel.add(supervisorField);
-		panel.add(guardLabel);
+		
+		guardField = new LabelTextField("押运员  ",10);
+		guardField.setBounds(110, 360, 300, 45);
 		panel.add(guardField);
 		
+		orderArea = new JTextArea(10,100);
+		orderArea.setLineWrap(true);
+		orderArea.setWrapStyleWord(true);
+		orderArea.setEditable(true);
+		orderArea.setFont(font);
+		orderArea.setForeground(color);
+		JScrollPane qScroller = new JScrollPane(orderArea);
+		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		qScroller.setBounds(110, 50, 200, 100);
+		panel.add(qScroller);
+		
 		mainpanel.add(panel);
+		
 	}
 	
 	public void initOrderContainer(){
@@ -217,28 +192,15 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		panel.setVisible(true);
 		panel.setBackground(Color.DARK_GRAY);
 		
-		orderArea = new JTextArea(10,100);
-		orderArea.setLineWrap(true);
-		orderArea.setWrapStyleWord(true);
-		orderArea.setEditable(true);
-		orderArea.setBackground(Color.DARK_GRAY);
-		orderArea.setForeground(Color.WHITE);
-		JScrollPane qScroller = new JScrollPane(orderArea);
-		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		qScroller.setBounds(30, 30, 250, 250);
+		
 		
 		addOrderBtn = new JButton("add");
 		addOrderBtn.setBounds(230, 300, 50, 30);
 		addOrderBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		addOrderBtn.addActionListener(controller);
 		
-		feeLabel = new JLabel("运费");
-		feeLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		feeLabel.setForeground(Color.white);
-		feeLabel.setBounds(30, 340, 60, 30);
 		
-		feeField = new MyTextField(10);
+		feeField = new LabelTextField("运费",10);
 		feeField.setBounds(90, 340, 100, 30);
 		
 		calFeeBtn = new JButton("生成运费");
@@ -247,42 +209,13 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		calFeeBtn.addActionListener(controller);
 			
 		
-		panel.add(qScroller);
 		panel.add(addOrderBtn);
-		panel.add(feeLabel);
 		panel.add(feeField);
 		panel.add(calFeeBtn);
 		
 		mainpanel.add(panel);
 	}
 	
-	public void initMargin(){
-		JPanel panel = new JPanel();
-		
-		
-		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
-		submitBtn.setBounds(50, 510, 90, 30);
-		submitBtn.setOpaque(false);
-		submitBtn.setBorderPainted(false);
-		submitBtn.addMouseListener(this);
-		submitBtn.addActionListener(controller);
-		panel.add(submitBtn);
-
-//		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-//		exit.setBounds(840, 18, 30, 30);
-//		exit.setOpaque(false);
-//		exit.setBorderPainted(false);
-//		exit.setActionCommand("exit");
-//		exit.addActionListener(controller);
-//		panel.add(exit);
-		
-		
-		panel.setLayout(null);
-		panel.setOpaque(false);
-		panel.setBounds(0, 0, width, height);
-		panel.setVisible(true);
-		mainpanel.add(panel);
-	}
 
 	
 
@@ -309,16 +242,12 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource().equals(back))
-			this.back.setIcon(new ImageIcon("ui/image/hall/back2.png"));
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource().equals(back))
-			this.back.setIcon(new ImageIcon("ui/image/hall/back1.png"));
 	}
 	
 

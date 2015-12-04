@@ -1,12 +1,13 @@
 package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class HallController implements ActionListener {
+import edu.nju.express.presentation.UIController;
+
+public class HallController implements UIController {
 	JPanel currentPanel;
 	JFrame frame;
 	
@@ -59,14 +60,6 @@ public class HallController implements ActionListener {
 			frame.validate();
 			frame.repaint();
 			
-		}else if(e.getActionCommand().equals("backHome")){
-			frame.getContentPane().removeAll();
-			this.currentPanel = new HallGuide(this);
-			frame.add(currentPanel);
-			frame.validate();
-			frame.repaint();
-			
-		}else if(e.getActionCommand().equals("")){
 		}
 	}
 

@@ -3,12 +3,14 @@ package edu.nju.express.presentation.clerk_hallui;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import edu.nju.express.presentation.UIController;
+
 
 
 public class HallGuide extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	HallController controller;
+	UIController controller;
 	JPanel guidePanel;
 	JPanel mainPanel;
 
@@ -22,7 +24,7 @@ public class HallGuide extends JPanel{
 	JButton driver;
 	JButton car;
 	
-	public HallGuide(HallController controller) {
+	public HallGuide(UIController controller) {
 		this.controller = controller;
 		initButtons();
 		
@@ -32,6 +34,7 @@ public class HallGuide extends JPanel{
 		this.setBounds(0, 0, 100, 600);
 		this.setLayout(null);			
 		this.setVisible(true);
+		this.setOpaque(false);
 		
 	}
 
@@ -42,7 +45,7 @@ public class HallGuide extends JPanel{
 		addTransfer = new JButton();
 		addTransfer.setBounds(10,60,80,80);
 		addTransfer.setBorderPainted(false);
-//		addTransfer.setOpaque(false);
+		addTransfer.setOpaque(false);
 		addTransfer.setContentAreaFilled(false);
 		addTransfer.addActionListener(controller);
 		addTransfer.setActionCommand("addTransfer");

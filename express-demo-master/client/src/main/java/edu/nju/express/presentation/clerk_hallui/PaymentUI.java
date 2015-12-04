@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.presentation.myUI.DateComboBoxPanel;
+import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTextField;
 
 public class PaymentUI extends JPanel implements MouseListener{
@@ -32,14 +34,10 @@ public class PaymentUI extends JPanel implements MouseListener{
 	
 	JButton addOrderBtn;
 	JButton submitBtn;
-	JLabel idLabel;
-	JLabel deliverLabel;
-	JLabel moneyLabel;
 	JLabel dateLabel;
-	JLabel yearLabel, monthLabel, dayLabel;
-	MyTextField idField, deliverField, moneyField;
+	DateComboBoxPanel dateBox;
+	LabelTextField idField, deliverField, moneyField;
 	JTextArea orderArea;
-	JComboBox<String> yearBox, monthBox, dayBox;
 	JLabel bg;
 	
 	public PaymentUI(HallController controller){
@@ -47,15 +45,16 @@ public class PaymentUI extends JPanel implements MouseListener{
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0,0,width,height);
-		mainpanel.setBackground(Color.GRAY);
 		mainpanel.setVisible(true);
-//		initPanel();
+		mainpanel.setOpaque(false);
+		initPanel();
 //		initOrderContainer();
 //		initMargin();
 		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
 		exit.setBounds(840, 18, 30, 30);
 		exit.setOpaque(false);
 		exit.setBorderPainted(false);
+		exit.setContentAreaFilled(false);
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -78,93 +77,39 @@ public class PaymentUI extends JPanel implements MouseListener{
 	public void initPanel(){
 		JPanel panel = new JPanel();
 		
-		idLabel = new JLabel("装车单编号");
-		idLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		idLabel.setForeground(Color.white);
-		idLabel.setBounds(20, 20, 100, 30);
+		Font font = new Font("黑体", Font.PLAIN, 18);
+		Color color = new Color(44, 62,80);
+
 		
-		idField = new MyTextField(15);
-		idField.setBounds(120, 20, 150, 30);
-		idField.setOpaque(false);
-		
-		//行间隔为10
-		dateLabel = new JLabel("装车日期");
-		dateLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		dateLabel.setForeground(Color.white);
-		dateLabel.setBounds(20, 70, 70, 30);
-		
-		yearLabel = new JLabel("年");
-		yearLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		yearLabel.setForeground(Color.white);
-		yearLabel.setBounds(200, 70, 20, 30);
-		
-		yearBox = new JComboBox<String>();
-		yearBox.setOpaque(false);
-		yearBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		yearBox.setBorder(new EmptyBorder(0,0,0,0));
-		for(int i=2015; i<2100; i++){
-			yearBox.addItem(Integer.toString(i));
-		}
-		yearBox.setBounds(90, 70, 100, 30);
-		
-		monthLabel = new JLabel("月");
-		monthLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		monthLabel.setForeground(Color.white);
-		monthLabel.setBounds(300, 70, 20, 30);
-		
-		monthBox = new JComboBox<String>();
-		monthBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		monthBox.setBounds(220, 70, 70, 30);
-		for(int i=1; i<=12; i++){
-			monthBox.addItem(Integer.toString(i));
-		}
-		
-		dayLabel = new JLabel("日");
-		dayLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		dayLabel.setForeground(Color.white);
-		dayLabel.setBounds(400, 70, 20, 30);
-		
-		dayBox = new JComboBox<String>();
-		dayBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		dayBox.setBounds(320, 70, 70, 30);
-		for(int i=1; i<=31; i++){
-			dayBox.addItem(Integer.toString(i));
-		}
-		
-		deliverLabel = new JLabel("收款快递员");
-		deliverLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		deliverLabel.setForeground(Color.white);
-		deliverLabel.setBounds(20, 120, 100, 30);
-		
-		deliverField = new MyTextField(19);
-		deliverField.setBounds(120, 120, 200, 30);
-		
-		moneyLabel = new JLabel("收款金额");
-		moneyLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		moneyLabel.setForeground(Color.white);
-		moneyLabel.setBounds(20, 170, 100, 30);
-		
-		moneyField = new MyTextField(10);
-		moneyField.setBounds(120, 170, 100, 30);
-		
-		panel.add(idLabel);
+		idField = new LabelTextField("收款单编号",15);
+		idField.setBounds(100, 20, 300, 45);
 		panel.add(idField);
+
+		
+		dateLabel = new JLabel("装车日期");
+		dateLabel.setFont(font);
+		dateLabel.setForeground(color);
+		dateLabel.setBounds(90, 80, 80, 45);
 		panel.add(dateLabel);
-		panel.add(yearBox);
-		panel.add(yearLabel);
-		panel.add(monthLabel);
-		panel.add(monthBox);
-		panel.add(dayBox);
-		panel.add(dayLabel);
-		panel.add(deliverLabel);
+		
+		dateBox = new DateComboBoxPanel();
+		dateBox.setBounds(170, 80, 500, 40);
+		panel.add(dateBox);
+		
+		
+		
+		deliverField = new LabelTextField("收款快递员",19);
+		deliverField.setBounds(100, 140, 300, 45);
 		panel.add(deliverField);
-		panel.add(moneyLabel);
+		
+		moneyField = new LabelTextField("金额   ",10);
+		moneyField.setBounds(120, 200, 300, 45);
 		panel.add(moneyField);
 		
 		panel.setLayout(null);
-		panel.setBounds(50, 50, 480, 450);
+		panel.setBounds(128, 117, 723, 403);
 		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
+		panel.setOpaque(false);
 		mainpanel.add(panel);
 	}
 	

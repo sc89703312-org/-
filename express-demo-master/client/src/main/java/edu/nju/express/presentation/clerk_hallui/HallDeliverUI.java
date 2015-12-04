@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.presentation.myUI.DateComboBoxPanel;
+import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTextField;
 
 public class HallDeliverUI extends JPanel implements MouseListener{
@@ -33,13 +35,10 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	
 	JButton addOrderBtn;
 	JButton submitBtn;
-	JLabel idLabel;
 	JLabel dateLabel;
-	JLabel deliverIdLabel;
-	JLabel yearLabel, monthLabel, dayLabel;
-	MyTextField idField, deliverIdField;
+	DateComboBoxPanel dateBox;
+	LabelTextField idField, deliverIdField;
 	JTextArea orderArea;
-	JComboBox<String> yearBox, monthBox, dayBox;
 	JLabel bg;
 	
 	public HallDeliverUI(HallController controller){
@@ -47,9 +46,9 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		mainpanel = new JPanel();
 		mainpanel.setBounds(0, 0, width, height);
 		mainpanel.setLayout(null);
-		mainpanel.setBackground(Color.LIGHT_GRAY);
 		mainpanel.setVisible(true);
-//		initPanel();
+		mainpanel.setOpaque(false);
+		initPanel();
 //		initOrderContainer();
 //		initMargin();
 		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
@@ -78,83 +77,33 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	public void initPanel(){
 		JPanel panel = new JPanel();
 		
-		idLabel = new JLabel("装车单编号");
-		idLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		idLabel.setForeground(Color.white);
-		idLabel.setBounds(20, 20, 100, 30);
+		Font font = new Font("黑体", Font.PLAIN, 18);
+		Color color = new Color(44, 62,80);
 		
-		idField = new MyTextField(15);
-		idField.setBounds(120, 20, 150, 30);
-//		idField.setOpaque(false);
-//		idField.setBorder(BorderFactory.createEmptyBorder());
-		//行间隔为10
-		dateLabel = new JLabel("装车日期");
-		dateLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		dateLabel.setForeground(Color.white);
-		dateLabel.setBounds(20, 70, 70, 30);
-		
-		yearLabel = new JLabel("年");
-		yearLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		yearLabel.setForeground(Color.white);
-		yearLabel.setBounds(200, 70, 20, 30);
-		
-		yearBox = new JComboBox<String>();
-		yearBox.setOpaque(false);
-		yearBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		yearBox.setBorder(new EmptyBorder(0,0,0,0));
-		for(int i=2015; i<2100; i++){
-			yearBox.addItem(Integer.toString(i));
-		}
-		yearBox.setBounds(90, 70, 100, 30);
-		
-		monthLabel = new JLabel("月");
-		monthLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		monthLabel.setForeground(Color.white);
-		monthLabel.setBounds(300, 70, 20, 30);
-		
-		monthBox = new JComboBox<String>();
-		monthBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		monthBox.setBounds(220, 70, 70, 30);
-		for(int i=1; i<=12; i++){
-			monthBox.addItem(Integer.toString(i));
-		}
-		
-		dayLabel = new JLabel("日");
-		dayLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		dayLabel.setForeground(Color.white);
-		dayLabel.setBounds(400, 70, 20, 30);
-		
-		dayBox = new JComboBox<String>();
-		dayBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		dayBox.setBounds(320, 70, 70, 30);
-		for(int i=1; i<=31; i++){
-			dayBox.addItem(Integer.toString(i));
-		}
-		
-		deliverIdLabel = new JLabel("派送员");
-		deliverIdLabel.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		deliverIdLabel.setForeground(Color.white);
-		deliverIdLabel.setBounds(20, 120, 70, 30);
-		
-		deliverIdField = new MyTextField(19);
-		deliverIdField.setBounds(90, 120, 200, 30);
-		
-		panel.add(idLabel);
+		idField = new LabelTextField("派件单编号",15);
+		idField.setBounds(120, 20, 300, 45);
 		panel.add(idField);
+
+		dateLabel = new JLabel("装车日期");
+		dateLabel.setFont(font);
+		dateLabel.setForeground(color);
+		dateLabel.setBounds(90, 80, 80, 45);
 		panel.add(dateLabel);
-		panel.add(yearLabel);
-		panel.add(yearBox);
-		panel.add(monthLabel);
-		panel.add(monthBox);
-		panel.add(dateLabel);
-		panel.add(dayBox);
-		panel.add(deliverIdLabel);
+		
+		dateBox = new DateComboBoxPanel();
+		dateBox.setBounds(170, 80, 500, 40);
+		panel.add(dateBox);
+		
+		
+		deliverIdField = new LabelTextField("派送员  ",19);
+		deliverIdField.setBounds(120, 135, 300, 45);
 		panel.add(deliverIdField);
 		
+		
 		panel.setLayout(null);
-		panel.setBounds(50, 50, 480, 450);
+		panel.setBounds(128, 117, 723, 403);
 		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
+		panel.setOpaque(false);
 		mainpanel.add(panel);
 	}
 	
@@ -183,7 +132,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		panel.setLayout(null);
 		panel.setBounds(540, 50, 330, 450);
 		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
+		panel.setOpaque(false);
 		mainpanel.add(panel);
 	}
 	
