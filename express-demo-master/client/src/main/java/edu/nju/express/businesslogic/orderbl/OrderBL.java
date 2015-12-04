@@ -128,7 +128,9 @@ public class OrderBL implements OrderBLService,
 		
 		return new LogisticsVO(tempOrder.getID(), 
 				tempOrder.getCurrentSpot(),
-				tempOrder.getDeliver(), tempOrder.viewHistory());
+				tempOrder.getDeliver(), tempOrder.viewHistory(), tempOrder.getTotalCost(),
+				tempOrder.getSenderAddress(), tempOrder.getReceiverAddress(),
+				tempOrder.getGoodsName());
 		 
 		 else {
 			return null;

@@ -18,8 +18,18 @@ public class LogisticsVO {
 	
 	private ArrayList<String> history ;
 	
+	private double price;
+	
+	private String from;
+	
+	private String to;
+	
+	private String name;
+	
 	public LogisticsVO(String id,String currentLocation,
-			           String deliverName,ArrayList<String> history){
+			           String deliverName,ArrayList<String> history,
+			           double price,String from,String to,
+			           String name){
 		
 		
 		
@@ -27,6 +37,10 @@ public class LogisticsVO {
 		this.currentLoca=currentLocation;
 		this.deliverName = deliverName;
 		this.history = history;
+		this.from = from;
+		this.to = to;
+		this.name = name;
+		this.price = price;
 
 	}
 	
@@ -47,7 +61,20 @@ public class LogisticsVO {
 		return this.deliverName;
 	}
 	
-	
+	public String getFrom(){
+		return this.from;
+	}
 
+	public String getTo(){
+		return this.to;
+	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
+	
+	public String getPrice(){
+		return this.price+"";
+	}
 }

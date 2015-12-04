@@ -1,4 +1,5 @@
 package edu.nju.express.log.ui.frame;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -7,6 +8,8 @@ import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+
+import edu.nju.express.presentation.logisticui.Logistic_Frame;
 
 
 /**
@@ -31,13 +34,25 @@ public class Frame extends JFrame {
 		hy = new HyalineValue();
 		// 标题栏
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		this.setUndecorated(true);
+		this.setBackground(new Color(0, 0, 0,0));
 		this.setOpacity(hyalineValue); // 设置透明
 		this.setVisible(true);
 		this.setDragable(); // 设置可以拖动
 		this.setOSStyle(); // 设置为当前系统风格
 		 
 	}
+	
+	
+	
+	public void closeFrame(){
+		new Vanish().start();
+	}
+	
+	
+	
+	
 
 	/**
 	 * 透明度渐变启动界面
@@ -120,6 +135,43 @@ public class Frame extends JFrame {
 				String lookAndfeel = "com.sun.java.swing.plaf.mac.MacLookAndFeel";
 				UIManager.setLookAndFeel(lookAndfeel);
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	private class Vanish extends Thread {
+
+		/** 窗体透明值 */
+		protected float hyalineValue = 1f;
+
+		public void run() {
+			try {
+				
+				
+				
+				while(true) {
+					
+					
+		
+					Thread.sleep(20);
+					hyalineValue -= 0.05f;
+					if (hyalineValue < 0) {
+						hyalineValue = 0;
+					}
+					Frame.this.setOpacity(hyalineValue);
+					if (hyalineValue == 0) {
+						Frame.this.dispose();
+						break;
+					}
+				}
+			 
+			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}

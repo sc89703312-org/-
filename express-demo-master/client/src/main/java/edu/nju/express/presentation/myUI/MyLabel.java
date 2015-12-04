@@ -13,7 +13,7 @@ public class MyLabel extends JLabel {
 		this.setBounds(x, y, width, height);
 		this.setVisible(true);
 		this.setOpaque(true);
-		this.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		this.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		this.setForeground(new Color(130,130,130));
 		this.setHorizontalAlignment(MyLabel.CENTER);
 	}

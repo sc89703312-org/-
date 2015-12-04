@@ -1,11 +1,14 @@
 package edu.nju.express.presentation.myUI;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
+
+import edu.nju.express.presentation.logisticui.Logistic_Frame;
 
 
 public class MyFrame extends JFrame{
@@ -19,10 +22,16 @@ public class MyFrame extends JFrame{
 	public MyFrame() {
 		// TODO Auto-generated constructor stub
 	
-	
+
 		this.setUndecorated(true);
+		this.setBackground(new Color(0, 0, 0,0));
 		setDragable();
 		new HyalineValue().start();
+	}
+	
+	
+	public void closeFrame(){
+		new Vanish().start();
 	}
 	
   protected class HyalineValue extends Thread {
@@ -30,7 +39,11 @@ public class MyFrame extends JFrame{
 		float hyalineValue = 0f;
 
 		public void run() {
+			
+		
+			
 			while(true) {
+				
 				try {
 					Thread.sleep(20);
 				} catch (InterruptedException e) {
@@ -82,6 +95,40 @@ public class MyFrame extends JFrame{
 				}
 			}
 		});
+	}
+	
+	
+	
+	private class Vanish extends Thread {
+
+		/** 窗体透明值 */
+		protected float hyalineValue = 1f;
+
+		public void run() {
+			try {
+				
+				
+				
+				while(true) {
+					
+					
+		
+					Thread.sleep(20);
+					hyalineValue -= 0.05f;
+					if (hyalineValue < 0) {
+						hyalineValue = 0;
+					}
+					MyFrame.this.setOpacity(hyalineValue);
+					if (hyalineValue == 0) {
+						MyFrame.this.dispose();
+						break;
+					}
+				}
+			 
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
