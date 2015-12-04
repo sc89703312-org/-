@@ -37,16 +37,20 @@ public class MyTextField extends JPanel {
 	public MyTextField(int type) {
 		this.type = type;
 
-		if(type==0||type==-1)
+		field = new JTextField();
+		
+		if(type==0||type==-1){
 			width = 112;
-		else	width = 200;
+			field.setBounds(11, 0, (int)(width*0.8), height);
+		}else{
+			width = 200;
+			field.setBounds(15, 0, (int)(width*0.85), height);
+		}
 		this.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(null);
 		p = this;
-
-		field = new JTextField();
-		field.setBounds(10, 0, (int) (width * 0.8) - 10, height);
+		
 		field.setFont(new Font("黑体", Font.PLAIN, 18));
 		field.setForeground(new Color(44, 62, 80));
 		field.setOpaque(false);
