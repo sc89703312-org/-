@@ -54,7 +54,7 @@ public class MyComboBox<E> extends JComboBox<E> {
 	protected void paintBorder(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(grid);
-		g2d.setStroke(new BasicStroke(1.8f));
+		g2d.setStroke(new BasicStroke(2f));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.drawRoundRect(0, 0, getWidth() - 2, getHeight() - 2, getHeight() - 2, getHeight() - 2);
 	}
@@ -111,7 +111,7 @@ public class MyComboBox<E> extends JComboBox<E> {
 					
 					g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 					Shape inner = new RoundRectangle2D.Float(x+offs+arc, y, 
-							width - size-2*arc, height-arc, 24,24);
+							width - size-2*arc -2, height-arc, 24,24);
 					g2d.setColor(back);
 					g2d.fill(inner);
 					g2d.setStroke(new BasicStroke(arc));
