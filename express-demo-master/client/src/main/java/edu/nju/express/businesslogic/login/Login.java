@@ -64,6 +64,7 @@ public class Login {
 					passwordValid = true;
 
 					LoginInfo.setUserName(users.get(i).getName());
+					LoginInfo.setUserID(users.get(i).getId());
 
 					try {
 						loginInfoDataService.insert(new LoginInfo(

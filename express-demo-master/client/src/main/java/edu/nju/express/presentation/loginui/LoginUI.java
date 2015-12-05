@@ -120,6 +120,55 @@ public class LoginUI extends MyFrame{
 			    new Finance_Frame();
 			    
 			   
+			}else if (role==Role.ADMINISTRATOR) {
+				LoginUI.this.closeFrame();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}else if (role==Role.MANAGER) {
+				LoginUI.this.closeFrame();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if (role==Role.POSTMAN) {
+				LoginUI.this.closeFrame();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if (role==Role.CLERK_HALL) {
+				LoginUI.this.closeFrame();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if (role==Role.CLERK_STATION) {
+				LoginUI.this.closeFrame();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if (role==Role.STOREKEEPER) {
+				LoginUI.this.closeFrame();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			else{
 				System.out.println("failed");

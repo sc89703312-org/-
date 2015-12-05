@@ -20,6 +20,7 @@ public class LoginInfo implements Serializable{
 	
 	private  String id;
 	private  static String userName;
+	private  static String userID;
 	private  String name;
 	private  String loginTime;
 	private  String clientIP;
@@ -43,11 +44,17 @@ public class LoginInfo implements Serializable{
 		LoginInfo.userName = name;
 	}
 	
+	public static void setUserID(String ID){
+		LoginInfo.userID = ID;
+	}
 	
 	public static String getUserName(){
 		return userName;
 	}
 	
+	public static String getUserID(){
+		return userID;
+	}
 	public String getID(){
 		return id;
 	}
