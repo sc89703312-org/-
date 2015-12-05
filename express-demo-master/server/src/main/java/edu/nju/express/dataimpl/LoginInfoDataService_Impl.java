@@ -15,7 +15,7 @@ public class LoginInfoDataService_Impl extends UnicastRemoteObject implements Lo
 	private static final long serialVersionUID = 1L;
 
 	
-	ArrayList<LoginInfo> infos;
+	public static ArrayList<LoginInfo> infos;
 	
 	
 	
@@ -43,8 +43,18 @@ public class LoginInfoDataService_Impl extends UnicastRemoteObject implements Lo
 	
 	
 	@Override
-	public ArrayList<LoginInfo> getAll()throws RemoteException{
+	public  ArrayList<LoginInfo> getAll()throws RemoteException{
 		return infos;
+	}
+	
+	
+	public static ArrayList<LoginInfo> showAll(){
+		return infos;
+	}
+	
+	@Override
+	public  void flush(){
+		infos.clear();
 	}
 
 }

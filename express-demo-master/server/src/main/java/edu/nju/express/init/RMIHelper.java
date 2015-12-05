@@ -29,7 +29,16 @@ public class RMIHelper {
 	private static LogRecordDataService logRecordDataService;
 	private static LoginInfoDataService loginInfoDataService;
 	
+	
+	public static boolean  isStarted = false;
+	
+	
 	 public static void init() {
+		 
+		 
+		 
+		 
+		 
 	        try {
 	            LocateRegistry.createRegistry(1099);
 
@@ -103,6 +112,12 @@ public class RMIHelper {
 
 	 
 	 public static void end(){
+		 
+		 
+		 isStarted = false;
+		 
+		 
+		 
 		 try {
 			paymentdataservice.flush();
 			vehicledataservice.flushCars();
@@ -121,6 +136,7 @@ public class RMIHelper {
 			logRecordDataService.flush();
 		    bankingDataService.flush();
 		    stationDataService.flush();
+		    loginInfoDataService.flush();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

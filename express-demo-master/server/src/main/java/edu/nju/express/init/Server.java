@@ -4,6 +4,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import edu.nju.express.ui.frame.ServerFrame;
+
 
 
 
@@ -21,8 +23,8 @@ public class Server {
 		RMIHelper.init();
 		System.out.println("Server creates!");
 		
-		new Server();
-		System.out.println("HostAddress is : "+hostAddr+"\n"+"HostName is : "+hostName);
+	  new ServerFrame();
+		
 	
 
 
@@ -56,19 +58,6 @@ public class Server {
 	
 	
 	
-	public Server() {
-		// TODO Auto-generated constructor stub
-		
-			try {
-				addr = InetAddress.getLocalHost();
-				hostAddr = addr.getHostAddress();
-				hostName = addr.getHostName();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			}
-		
 	
-	
-	}
 	
 }

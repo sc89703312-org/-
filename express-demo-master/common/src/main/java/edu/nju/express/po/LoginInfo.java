@@ -51,12 +51,18 @@ public class LoginInfo implements Serializable{
 	public String getID(){
 		return id;
 	}
+	public String getName(){
+		return name;
+	}
 	
+	public String getTime(){
+		return loginTime;
+	}
 	
 	public void setTime(){
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		loginTime = sdf.format(new Date());
+		loginTime = sdf.format(new Date()).split(" ")[1];
 	}
 	
 	
@@ -67,7 +73,7 @@ public class LoginInfo implements Serializable{
 	}
 	
 	
-	private  String getClientIP() {
+	public  String getClientIP() {
 	
 		try {
 			addr = InetAddress.getLocalHost();

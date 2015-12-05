@@ -10,5 +10,7 @@ public interface LoginInfoDataService extends Remote {
 
 	public void insert(LoginInfo info)throws RemoteException;
 	
-	public ArrayList<LoginInfo> getAll() throws RemoteException;
+	public  ArrayList<LoginInfo> getAll() throws RemoteException;
+	
+	public void flush() throws RemoteException;
 }
