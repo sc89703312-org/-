@@ -11,5 +11,6 @@ public interface StationDao {
 	public ResultMessage add(StationPO po);
 	public ResultMessage remove(String id);
 	public ArrayList<StationPO> showAllStation();
+	public void flush();
 
 }

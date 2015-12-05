@@ -8,12 +8,14 @@ import edu.nju.express.po.TransferReceiptPO;
 public interface TransferReceiptDao {
 
 	public ResultMessage add(TransferReceiptPO po);
-	public String getNextID(String stationID);
-	public ArrayList<TransferReceiptPO> getAllReceipt(String stationID);
+	public String getNextID(String stationID,String location);
+	public ArrayList<TransferReceiptPO> getAllReceipt(String location);
 	public ArrayList<TransferReceiptPO> getAllReceipt();
 	public ArrayList<TransferReceiptPO> getSummitTransfer();
 	public ArrayList<TransferReceiptPO> getApproveTransfer(String stationID);
 	public ResultMessage approve(String id);
 	public TransferReceiptPO getTransfer(String id);
+	public void handle(String id);
+	public void flush();
 	
 }

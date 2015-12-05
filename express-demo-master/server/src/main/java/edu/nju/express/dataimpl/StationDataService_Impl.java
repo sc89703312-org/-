@@ -23,7 +23,7 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	ArriveReceiptDao arriveDao;
 	TransferReceiptDao transferDao;
 
-	protected StationDataService_Impl() throws RemoteException {
+	public StationDataService_Impl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -62,14 +62,15 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	@Override
 	public String nextArriveID(String stationID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return arriveDao.getNextID(stationID);
+		return arriveDao.getNextID(stationID,this.getLocation(stationID));
 	}
 
 	@Override
 	public ArrayList<ArriveReceiptPO> getArriveReceipt(String stationID)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return arriveDao.getAllReceipt(stationID);
+		String location = this.getLocation(stationID);
+		return arriveDao.getAllReceipt(location);
 	}
 
 	@Override
@@ -106,7 +107,7 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	@Override
 	public String nextTransferID(String stationID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return transferDao.getNextID(stationID);
+		return transferDao.getNextID(stationID,this.getLocation(stationID));
 	}
 
 	@Override
@@ -148,6 +149,19 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	public TransferReceiptPO getTransfer(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return transferDao.getTransfer(id);
+	}
+	
+	@Override
+	public void handle(String id){
+		transferDao.handle(id);
+	}
+
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		stationDao.flush();
+		arriveDao.flush();
+		transferDao.flush();
 	}
 
 }

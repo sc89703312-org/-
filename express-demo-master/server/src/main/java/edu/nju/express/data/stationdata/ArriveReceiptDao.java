@@ -8,11 +8,12 @@ import edu.nju.express.po.ArriveReceiptPO;
 public interface ArriveReceiptDao {
 
 	public ResultMessage add(ArriveReceiptPO po);
-	public String getNextID(String stationID);
-	public ArrayList<ArriveReceiptPO> getAllReceipt(String stationID);
+	public String getNextID(String stationID,String location);
+	public ArrayList<ArriveReceiptPO> getAllReceipt(String location);
 	public ArrayList<ArriveReceiptPO> getAllReceipt();
 	public ArrayList<ArriveReceiptPO> getSummitArrive();
 	public ArrayList<ArriveReceiptPO> getApproveArrive(String stationID);
 	public ResultMessage approve(String id);
+	public void flush();
 	
 }

@@ -37,7 +37,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	String location;
 	
 	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
-		//stationDataService = RMIHelper.getStationDataService();
+		stationDataService = RMIHelper.getStationDataService();
 		this.orderInfo= orderInfo;
 		this.setOrderSpot = setOrderSpot;
 		try {
