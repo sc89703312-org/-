@@ -5,8 +5,11 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.data.stationdata.ArriveFileDao;
 import edu.nju.express.data.stationdata.ArriveReceiptDao;
 import edu.nju.express.data.stationdata.StationDao;
+import edu.nju.express.data.stationdata.StationFileDao;
+import edu.nju.express.data.stationdata.TransferFileDao;
 import edu.nju.express.data.stationdata.TransferReceiptDao;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.po.ArriveReceiptPO;
@@ -26,6 +29,9 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	public StationDataService_Impl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
+		stationDao = new StationFileDao("station");
+		arriveDao = new ArriveFileDao("arrivereceipt");
+		transferDao = new TransferFileDao("transferreceipt");
 	}
 
 	@Override
