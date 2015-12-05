@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 
 public class PaymentUI extends JPanel implements MouseListener{
 
@@ -37,8 +37,14 @@ public class PaymentUI extends JPanel implements MouseListener{
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	LabelTextField idField, deliverField, moneyField;
+	JLabel addOrderLabel;
 	JTextArea orderArea;
 	JLabel bg;
+	JButton exit;
+	
+	Font font = new Font("黑体", Font.PLAIN, 18);
+	Color color = new Color(44, 62,80);
+	Color areaColor = new Color(210, 232, 232);
 	
 	public PaymentUI(HallController controller){
 		this.controller = controller;
@@ -47,10 +53,92 @@ public class PaymentUI extends JPanel implements MouseListener{
 		mainpanel.setBounds(0,0,width,height);
 		mainpanel.setVisible(true);
 		mainpanel.setOpaque(false);
+		
 		initPanel();
-//		initOrderContainer();
-//		initMargin();
-		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+		initMargin();
+		
+		
+		
+		bg = new JLabel(new ImageIcon("ui/image/hall/payment.png"));
+		bg.setBounds(0, 0, width, height);
+		mainpanel.add(bg);
+		this.add(mainpanel);
+		this.add(new HallGuide(controller));
+		this.setLayout(null);
+		this.setOpaque(false);
+		this.setVisible(true);
+	}
+	
+	
+	public void initPanel(){
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(128, 117, 723, 403);
+		panel.setVisible(true);
+		panel.setOpaque(false);
+		
+		
+
+		
+		dateLabel = new JLabel("装车日期");
+		dateLabel.setFont(font);
+		dateLabel.setForeground(color);
+		dateLabel.setBounds(90, 80-45, 80, 45);
+		panel.add(dateLabel);
+		
+		dateBox = new DateComboBoxPanel();
+		dateBox.setBounds(170, 80-45, 500, 40);
+		panel.add(dateBox);
+		
+		
+		
+		deliverField = new LabelTextField("收款快递员",19);
+		deliverField.setBounds(100, 140-45, 300, 45);
+		panel.add(deliverField);
+		
+		moneyField = new LabelTextField("金额   ",10);
+		moneyField.setBounds(120, 200-45, 300, 45);
+		panel.add(moneyField);
+		
+		addOrderLabel = new JLabel("请在此处添加本次收款所有订单号");
+		addOrderLabel.setFont(font);
+		addOrderLabel.setForeground(color);
+		addOrderLabel.setBounds(110, 215, 300, 40);
+		panel.add(addOrderLabel);
+		
+		orderArea = new JTextArea(10,500);
+		orderArea.setLineWrap(true);
+		orderArea.setWrapStyleWord(true);
+		orderArea.setEditable(true);
+		orderArea.setFont(font);
+		orderArea.setBackground(areaColor);
+		final JScrollPane orderpane = new JScrollPane();
+		final MyScrollBarUI ui2 = new MyScrollBarUI();
+		orderpane.setViewportView(orderArea);
+		wrapScrollPane(orderpane, ui2);
+		orderpane.setBounds(110, 255, 400, 100);
+		panel.add(orderpane);
+		
+		addOrderBtn = new JButton("add");
+		addOrderBtn.setBounds(460, 360, 50, 30);
+		addOrderBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		addOrderBtn.addActionListener(controller);
+		panel.add(addOrderBtn);
+		
+		mainpanel.add(panel);
+		
+	}
+	
+	
+	
+	public void initMargin(){
+		
+		submitBtn = new JButton("提交");
+		submitBtn.setBounds(424, 523, 100, 40);
+		submitBtn.addMouseListener(this);
+		mainpanel.add(submitBtn);
+		
+		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
 		exit.setBounds(840, 18, 30, 30);
 		exit.setOpaque(false);
 		exit.setBorderPainted(false);
@@ -63,100 +151,32 @@ public class PaymentUI extends JPanel implements MouseListener{
 			}
 		});
 		mainpanel.add(exit);
-		
-		bg = new JLabel(new ImageIcon("ui/image/hall/payment.png"));
-		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
-		this.add(mainpanel);
-		this.add(new HallGuide(controller));
-		this.setLayout(null);
-		this.setOpaque(false);
-		this.setVisible(true);
 	}
 	
-	public void initPanel(){
-		JPanel panel = new JPanel();
+	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+		s.getVerticalScrollBar().setUI(ui);
+		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				super.mouseEntered(e);
+				s.getVerticalScrollBar().repaint();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseExited(e);
+				s.getVerticalScrollBar().repaint();
+				
+			}
+		});
 		
-		Font font = new Font("黑体", Font.PLAIN, 18);
-		Color color = new Color(44, 62,80);
-
-		
-		idField = new LabelTextField("收款单编号",15);
-		idField.setBounds(100, 20, 300, 45);
-		panel.add(idField);
-
-		
-		dateLabel = new JLabel("装车日期");
-		dateLabel.setFont(font);
-		dateLabel.setForeground(color);
-		dateLabel.setBounds(90, 80, 80, 45);
-		panel.add(dateLabel);
-		
-		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(170, 80, 500, 40);
-		panel.add(dateBox);
-		
-		
-		
-		deliverField = new LabelTextField("收款快递员",19);
-		deliverField.setBounds(100, 140, 300, 45);
-		panel.add(deliverField);
-		
-		moneyField = new LabelTextField("金额   ",10);
-		moneyField.setBounds(120, 200, 300, 45);
-		panel.add(moneyField);
-		
-		panel.setLayout(null);
-		panel.setBounds(128, 117, 723, 403);
-		panel.setVisible(true);
-		panel.setOpaque(false);
-		mainpanel.add(panel);
-	}
-	
-	public void initOrderContainer(){
-		JPanel panel = new JPanel();
-		
-		orderArea = new JTextArea(10,100);
-		orderArea.setLineWrap(true);
-		orderArea.setWrapStyleWord(true);
-		orderArea.setEditable(true);
-		orderArea.setBackground(Color.DARK_GRAY);
-		orderArea.setForeground(Color.white);
-		JScrollPane qScroller = new JScrollPane(orderArea);
-		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		qScroller.setBounds(30, 30, 250, 250);
-		
-		addOrderBtn = new JButton("add");
-		addOrderBtn.setBounds(230, 300, 50, 30);
-		addOrderBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		addOrderBtn.addActionListener(controller);
-		
-		panel.add(qScroller);
-		panel.add(addOrderBtn);
-		panel.setLayout(null);
-		panel.setBounds(540, 50, 330, 450);
-		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
-		mainpanel.add(panel);
-	}
-	
-	public void initMargin(){
-		JPanel panel = new JPanel();
-		
-		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
-		submitBtn.setBounds(50, 510, 90, 30);
-		submitBtn.setOpaque(false);
-		submitBtn.setBorderPainted(false);
-		submitBtn.addMouseListener(this);
-		submitBtn.addActionListener(controller);
-		panel.add(submitBtn);
-		
-		panel.setLayout(null);
-		panel.setOpaque(false);
-		panel.setBounds(0, 0, width, height);
-		panel.setVisible(true);
-		mainpanel.add(panel);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 
 	@Override

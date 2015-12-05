@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -19,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTextField;
 
 public class HallDeliverUI extends JPanel implements MouseListener{
@@ -32,7 +34,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	int height = 600;
 	HallController controller;
 	JPanel mainpanel;
-	
+	JLabel addOrderLabel;
 	JButton addOrderBtn;
 	JButton submitBtn;
 	JLabel dateLabel;
@@ -40,6 +42,11 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	LabelTextField idField, deliverIdField;
 	JTextArea orderArea;
 	JLabel bg;
+	JButton exit;
+	
+	Font font = new Font("黑体", Font.PLAIN, 18);
+	Color color = new Color(44, 62,80);
+	Color areaColor = new Color(210, 232, 232);
 	
 	public HallDeliverUI(HallController controller){
 		this.controller = controller;
@@ -48,21 +55,11 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		mainpanel.setLayout(null);
 		mainpanel.setVisible(true);
 		mainpanel.setOpaque(false);
+		
 		initPanel();
-//		initOrderContainer();
-//		initMargin();
-		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
+		initMargin();
+		
+		
 		bg = new JLabel(new ImageIcon("ui/image/hall/deliver.png"));
 		bg.setBounds(0, 0, width, height);
 		mainpanel.add(bg);
@@ -77,27 +74,49 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	public void initPanel(){
 		JPanel panel = new JPanel();
 		
-		Font font = new Font("黑体", Font.PLAIN, 18);
-		Color color = new Color(44, 62,80);
-		
-		idField = new LabelTextField("派件单编号",15);
-		idField.setBounds(120, 20, 300, 45);
-		panel.add(idField);
+//		idField = new LabelTextField("派件单编号",15);
+//		idField.setBounds(120, 20, 300, 45);
+//		panel.add(idField);
 
 		dateLabel = new JLabel("装车日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(90, 80, 80, 45);
+		dateLabel.setBounds(90, 80-45, 80, 45);
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(170, 80, 500, 40);
+		dateBox.setBounds(170, 80-45, 500, 40);
 		panel.add(dateBox);
 		
 		
 		deliverIdField = new LabelTextField("派送员  ",19);
-		deliverIdField.setBounds(120, 135, 300, 45);
+		deliverIdField.setBounds(120, 135-45, 300, 45);
 		panel.add(deliverIdField);
+		
+		addOrderLabel = new JLabel("请在此处添加本次托运单号:");
+		addOrderLabel.setFont(font);
+		addOrderLabel.setForeground(color);
+		addOrderLabel.setBounds(110, 200-45, 300, 40);
+		panel.add(addOrderLabel);
+		
+		orderArea = new JTextArea(10,500);
+		orderArea.setLineWrap(true);
+		orderArea.setWrapStyleWord(true);
+		orderArea.setEditable(true);
+		orderArea.setFont(font);
+		orderArea.setBackground(areaColor);
+		final JScrollPane orderpane = new JScrollPane();
+		final MyScrollBarUI ui2 = new MyScrollBarUI();
+		orderpane.setViewportView(orderArea);
+		wrapScrollPane(orderpane, ui2);
+		orderpane.setBounds(110, 250-45, 400, 100);
+		panel.add(orderpane);
+		
+		addOrderBtn = new JButton("add");
+		addOrderBtn.setBounds(460, 360-45, 50, 30);
+		//点击addOrderBtn之后， 读取TextArea里的内容，并检测订单号位数，有错(!=10)给提示
+		addOrderBtn.addMouseListener(this);
+		panel.add(addOrderBtn);
 		
 		
 		panel.setLayout(null);
@@ -107,52 +126,53 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		mainpanel.add(panel);
 	}
 	
-	public void initOrderContainer(){
-		JPanel panel = new JPanel();
+	
+	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+		s.getVerticalScrollBar().setUI(ui);
+		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				super.mouseEntered(e);
+				s.getVerticalScrollBar().repaint();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseExited(e);
+				s.getVerticalScrollBar().repaint();
+				
+			}
+		});
 		
-		orderArea = new JTextArea(10,100);
-		orderArea.setLineWrap(true);
-		orderArea.setWrapStyleWord(true);
-		orderArea.setEditable(true);
-		orderArea.setBackground(Color.DARK_GRAY);
-		orderArea.setForeground(Color.white);
-		JScrollPane qScroller = new JScrollPane(orderArea);
-		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		qScroller.setBounds(30, 30, 250, 250);
-		
-		addOrderBtn = new JButton("add");
-		addOrderBtn.setBounds(230, 300, 50, 30);
-		addOrderBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		addOrderBtn.addActionListener(controller);
-		
-		panel.add(qScroller);
-		panel.add(addOrderBtn);
-		
-		panel.setLayout(null);
-		panel.setBounds(540, 50, 330, 450);
-		panel.setVisible(true);
-		panel.setOpaque(false);
-		mainpanel.add(panel);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
 	public void initMargin(){
-		JPanel panel = new JPanel();
-		
-		
-		submitBtn = new JButton(new ImageIcon("ui/image/hall/submit1.png"));
-		submitBtn.setBounds(50, 510, 90, 30);
-		submitBtn.setOpaque(false);
-		submitBtn.setBorderPainted(false);
+		submitBtn = new JButton("提交");
+		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
-		submitBtn.addActionListener(controller);
-		panel.add(submitBtn);
+		mainpanel.add(submitBtn);
 		
-		panel.setLayout(null);
-		panel.setOpaque(false);
-		panel.setBounds(0, 0, width, height);
-		panel.setVisible(true);
-		mainpanel.add(panel);
+		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+		exit.setBounds(840, 18, 30, 30);
+		exit.setOpaque(false);
+		exit.setBorderPainted(false);
+		exit.setContentAreaFilled(false);
+		exit.addMouseListener(this);
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+		});
+		mainpanel.add(exit);
 	}
 
 	@Override

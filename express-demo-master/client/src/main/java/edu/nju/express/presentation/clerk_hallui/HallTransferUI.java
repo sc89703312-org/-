@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -41,14 +41,18 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	JButton calFeeBtn;
 	
 	JButton submitBtn;
-	
-	JLabel dateLabel;
+	JButton exit;
+	JLabel dateLabel, addOrderLabel;
 	DateComboBoxPanel dateBox;
-	LabelTextField idField, carrierIdField, fromField, toField, supervisorField,
+	LabelTextField carrierIdField, fromField, toField, supervisorField,
 					guardField,feeField;
 	JLabel bg;
 	
 	static JScrollPane s = new JScrollPane();
+	final MyScrollBarUI ui = new MyScrollBarUI();
+	Font font = new Font("黑体", Font.PLAIN, 18);
+	Color color = new Color(44, 62,80);
+	Color areaColor = new Color(210, 232, 232);
 
 	
 	public HallTransferUI(HallController controller){
@@ -59,26 +63,10 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		mainpanel.setVisible(true);
 		mainpanel.setOpaque(false);
 		
-		
-		
+		initMargin();
 		initPanel();
 		
 		
-
-		
-		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.setContentAreaFilled(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 		bg = new JLabel();
 		bg.setBounds(0, 0, width, height);
 		bg.setIcon(new ImageIcon("ui/image/hall/transfer.png"));
@@ -95,140 +83,153 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	public void initPanel(){
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(128, 117, 723, 1000);
 		panel.setVisible(true);
 		panel.setOpaque(false);
+		
+		/*
+		 * height -= 45
+		 */
+		
+		dateLabel = new JLabel("装车日期");
+		dateLabel.setFont(font);
+		dateLabel.setForeground(color);
+		dateLabel.setBounds(100, 70-45, 90, 40);
+		panel.add(dateLabel);
+		
+		dateBox = new DateComboBoxPanel();
+		dateBox.setBounds(190, 70-45, 500, 40);
+		panel.add(dateBox);
+		
+		carrierIdField = new LabelTextField("本营业厅汽运编号",19);
+		carrierIdField.setBounds(80,120-45, 400, 45);
+		panel.add(carrierIdField);
+		
+		fromField = new LabelTextField("出发地  ", 10);
+		fromField.setBounds(110, 180-45, 300, 45);
+		panel.add(fromField);
+		
+		toField = new LabelTextField("到达地  ", 10);
+		toField.setBounds(110, 240-45, 300, 45);
+		panel.add(toField);
+		
+		supervisorField = new LabelTextField("监装员  ",10);
+		supervisorField.setBounds(110, 300-45, 300, 45);
+		panel.add(supervisorField);
+		
+		guardField = new LabelTextField("押运员  ",10);
+		guardField.setBounds(110, 360-45, 300, 45);
+		panel.add(guardField);
+		
+		addOrderLabel = new JLabel("请在此处添加本次托运单号:");
+		addOrderLabel.setFont(font);
+		addOrderLabel.setForeground(color);
+		addOrderLabel.setBounds(110, 375, 300, 40);
+		panel.add(addOrderLabel);
+		
+		orderArea = new JTextArea(10,1);
+		orderArea.setLineWrap(true);
+		orderArea.setWrapStyleWord(true);
+		orderArea.setEditable(true);
+		orderArea.setFont(font);
+		orderArea.setBackground(areaColor);
+		final JScrollPane orderpane = new JScrollPane();
+		
+		orderpane.setViewportView(orderArea);
+		final MyScrollBarUI ui2 = new MyScrollBarUI();
+		wrapScrollPane(orderpane, ui2);
+		orderpane.setBounds(110, 450, 400, 100);
+		panel.add(orderpane);
+		
+		addOrderBtn = new JButton("add");
+		addOrderBtn.setBounds(460, 560, 50, 30);
+		//点击addOrderBtn之后， 读取TextArea里的内容，并检测订单号位数，有错(!=10)给提示
+		addOrderBtn.addMouseListener(this);
+		panel.add(addOrderBtn);
+		
+		feeField = new LabelTextField("运费  ",10);
+		feeField.setBounds(110, 600, 300, 45);
+		panel.add(feeField);
+		
+		calFeeBtn = new JButton("生成运费");
+		calFeeBtn.setBounds(410, 600, 100, 40);
+		calFeeBtn.addMouseListener(this);
+		panel.add(calFeeBtn);
 		
 		/*
 		 * 如果需要在JScrollPane面板中放置多个控件，需要将多个控件放置到JPanel 面板上，然后将JPanel面板
 		 * 作为一个整体控件添加到JScrollPane控件上
 		 */
 		
-		s.setOpaque(false);
 		s.setViewportView(panel);
+		//感人。。。。layout==null时要加这句
+		panel.setPreferredSize(new Dimension(723, 700));
+		wrapScrollPane(s, ui);
+		s.setBounds(130, 120, 720, 400);
+		mainpanel.add(s);
+		
+		//不需要再加panel了，添加顺序为 mainpanel.add(scrollpane), scrollpane.add(panel)
+		
+	}
+	
+	public void initMargin(){
+		submitBtn = new JButton("提交");
+		submitBtn.setBounds(424, 523, 100, 40);
+		submitBtn.addMouseListener(this);
+		mainpanel.add(submitBtn);
+		
+		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+		exit.setBounds(840, 18, 30, 30);
+		exit.setOpaque(false);
+		exit.setBorderPainted(false);
+		exit.setContentAreaFilled(false);
+		exit.addMouseListener(this);
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+		});
+		mainpanel.add(exit);
+	}
+	
+	
+	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
+		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
-		s.getVerticalScrollBar().setOpaque(false);
-		
-		final MyScrollBarUI ui = new MyScrollBarUI();
 		s.getVerticalScrollBar().setUI(ui);
-		
 		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				super.mouseEntered(e);
-				s.getVerticalScrollBar().repaint();;
+				s.getVerticalScrollBar().repaint();
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseExited(e);
-				s.getVerticalScrollBar().repaint();;
+				s.getVerticalScrollBar().repaint();
 				
 			}
 		});
 		
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		s.setBounds(128, 117, 723, 403);
-		mainpanel.add(s);
-		
-		Font font = new Font("黑体", Font.PLAIN, 18);
-		Color color = new Color(44, 62,80);
-		
-		/**
-		 * 装车单编号长度待定
-		 */
-		idField = new LabelTextField("装车单编号",10);
-		idField.setBounds(100, 10, 300, 45);
-		panel.add(idField);
-		
-		dateLabel = new JLabel("装车日期");
-		dateLabel.setFont(font);
-		dateLabel.setForeground(color);
-		dateLabel.setBounds(100, 70, 90, 40);
-		panel.add(dateLabel);
-		
-		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(190, 70, 500, 40);
-		panel.add(dateBox);
-		
-		carrierIdField = new LabelTextField("本营业厅汽运编号",19);
-		carrierIdField.setBounds(80,120, 400, 45);
-		panel.add(carrierIdField);
-		
-		fromField = new LabelTextField("出发地  ", 10);
-		fromField.setBounds(110, 180, 300, 45);
-		panel.add(fromField);
-		
-		toField = new LabelTextField("到达地  ", 10);
-		toField.setBounds(110, 240, 300, 45);
-		panel.add(toField);
-		
-		supervisorField = new LabelTextField("监装员  ",10);
-		supervisorField.setBounds(110, 300, 300, 45);
-		panel.add(supervisorField);
-		
-		guardField = new LabelTextField("押运员  ",10);
-		guardField.setBounds(110, 360, 300, 45);
-		panel.add(guardField);
-		
-		orderArea = new JTextArea(10,100);
-		orderArea.setLineWrap(true);
-		orderArea.setWrapStyleWord(true);
-		orderArea.setEditable(true);
-		orderArea.setFont(font);
-		orderArea.setForeground(color);
-		JScrollPane qScroller = new JScrollPane(orderArea);
-		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		qScroller.setBounds(110, 450, 200, 100);
-		panel.add(qScroller);
-		
-		//不需要再加panel了，添加顺序为 mainpanel.add(scrollpane), scrollpane.add(panel)
-//		mainpanel.add(panel);
-		
 	}
-	
-	public void initOrderContainer(){
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBounds(540, 50, 330, 450);
-		panel.setVisible(true);
-		panel.setBackground(Color.DARK_GRAY);
-		
-		
-		
-		addOrderBtn = new JButton("add");
-		addOrderBtn.setBounds(230, 300, 50, 30);
-		addOrderBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		addOrderBtn.addActionListener(controller);
-		
-		
-		feeField = new LabelTextField("运费",10);
-		feeField.setBounds(90, 340, 100, 30);
-		
-		calFeeBtn = new JButton("生成运费");
-		calFeeBtn.setFont(new Font("Microsoft YaHei", Font.PLAIN,15));
-		calFeeBtn.setBounds(210, 340, 100, 30);
-		calFeeBtn.addActionListener(controller);
-			
-		
-		panel.add(addOrderBtn);
-		panel.add(feeField);
-		panel.add(calFeeBtn);
-		
-		mainpanel.add(panel);
-	}
-	
 
 	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(addOrderBtn)){
+			
+			//读取TextArea里的内容，并检测订单号位数，有错(!=10)给提示
+			
+		}
 	}
 
 	@Override
@@ -255,6 +256,8 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
+	
+	
 	
 
 }
