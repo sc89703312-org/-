@@ -3,13 +3,13 @@ package edu.nju.express.businesslogic.strategybl.salarysettingbl;
 import java.rmi.RemoteException;
 
 import edu.nju.express.blservice.SalarySettingBlService;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.SalaryDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.SalaryVO;
 
 

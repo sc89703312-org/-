@@ -1,10 +1,10 @@
 package edu.nju.express.init;
 
 
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.loginui.LoginUI;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
 import edu.nju.express.vo.OrderVO;

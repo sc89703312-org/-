@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import edu.nju.express.blservice.ManagementBlService;
 import edu.nju.express.businesslogic.accountbl.Info.ManagementInfo;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.strategybl.managementbl.Info.UserCreateMessageInfo;
 import edu.nju.express.businesslogic.userbl.UserBl;
 import edu.nju.express.common.ResultMessage;
@@ -12,6 +11,7 @@ import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.EmployeeVO;
 
 

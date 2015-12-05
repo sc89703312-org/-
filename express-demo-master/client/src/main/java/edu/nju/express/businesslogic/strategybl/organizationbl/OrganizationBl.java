@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import edu.nju.express.blservice.OrganizationBlService;
 import edu.nju.express.businesslogic.accountbl.Info.OrganizationInfo;
 import edu.nju.express.businesslogic.hallbl.HallBL;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.stationbl.StationBl;
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo;
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.HallOperationInfo;
@@ -13,6 +12,7 @@ import edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOpera
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
 

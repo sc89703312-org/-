@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.ConstantSettingBlService;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
@@ -12,6 +11,7 @@ import edu.nju.express.dataservice.ConstantDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.ConstantVO;
 
 

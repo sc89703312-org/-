@@ -1,4 +1,4 @@
-package edu.nju.express.businesslogic.login;
+package edu.nju.express.po;
 
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -75,6 +75,6 @@ public class LoginInfo implements Serializable{
 	
 	
 	public static String getInfo(){
-		return "["+loginTime+"]"+" "+userName+" "+getClientIP();
+		return "["+loginTime+"]"+" "+userName+" "+id+" "+getClientIP();
 	}
 }

@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.OrderBLService;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.logisticsbl.Info.OrderToLogisticsInfo;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.common.ArrivalState;
@@ -15,6 +14,7 @@ import edu.nju.express.dataservice.orderdataservice;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.vo.LogisticsVO;
 import edu.nju.express.vo.OrderVO;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.nju.express.common.Role;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.UserPO;
 
 

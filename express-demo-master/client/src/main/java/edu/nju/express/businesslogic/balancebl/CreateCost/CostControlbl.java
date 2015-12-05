@@ -7,7 +7,6 @@ import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.businesslogic.balancebl.CostList.Info.CostControlInfo;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
-import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.CostApproveInfo;
 import edu.nju.express.common.ResultMessage;
@@ -16,6 +15,7 @@ import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.Balancepo;
 import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.BankingAccountVO;
 

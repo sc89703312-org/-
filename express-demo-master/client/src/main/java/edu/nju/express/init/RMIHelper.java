@@ -43,7 +43,7 @@ public class RMIHelper {
             salaryDataService = (SalaryDataService) Naming.lookup("rmi://" + IP + "/salary-service");
             constantDataService = (ConstantDataService) Naming.lookup("rmi://" + IP + "/constant-service");
             logRecordDataService = (LogRecordDataService)Naming.lookup("rmi://" + IP + "/log-service");
-            stationDataService = (StationDataService)Naming.lookup("rmi://" + IP + "/station-service");
+//          stationDataService = (StationDataService)Naming.lookup("rmi://" + IP + "/station-service");
             
         } catch (MalformedURLException e) {
             e.printStackTrace();
