@@ -158,12 +158,12 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	}
 	
 	@Override
-	public void handle(String id){
+	public void handle(String id)throws RemoteException{
 		transferDao.handle(id);
 	}
 
 	@Override
-	public void flush() {
+	public void flush() throws RemoteException{
 		// TODO Auto-generated method stub
 		stationDao.flush();
 		arriveDao.flush();

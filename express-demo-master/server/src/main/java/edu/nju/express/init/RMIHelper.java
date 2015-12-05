@@ -83,7 +83,7 @@ public class RMIHelper {
 	            
 	            Naming.rebind("log-service", logRecordDataService);
 	            
-	            Naming.rebind("station_service", stationDataService);
+	            Naming.rebind("station-service", stationDataService);
 	            
 	        } catch (MalformedURLException e) {
 	            e.printStackTrace();
