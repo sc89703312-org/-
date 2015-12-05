@@ -26,6 +26,7 @@ public class RMIHelper {
     private static ConstantDataService constantDataService;
     private static LogRecordDataService logRecordDataService;
     private static StationDataService stationDataService;
+    private static LoginInfoDataService loginInfoDataService;
     
     public static void init() {
         try {
@@ -44,7 +45,8 @@ public class RMIHelper {
             constantDataService = (ConstantDataService) Naming.lookup("rmi://" + IP + "/constant-service");
             logRecordDataService = (LogRecordDataService)Naming.lookup("rmi://" + IP + "/log-service");
             stationDataService = (StationDataService)Naming.lookup("rmi://" + IP + "/station-service");
-            
+            loginInfoDataService = (LoginInfoDataService)Naming.lookup("rmi://" + IP + "/login-info")  ;
+      
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
@@ -93,5 +95,8 @@ public class RMIHelper {
     }
     public static StationDataService getStationDataService(){
     	return stationDataService;
+    }
+    public static LoginInfoDataService getLoginInfoDataService(){
+    	return loginInfoDataService;
     }
 }

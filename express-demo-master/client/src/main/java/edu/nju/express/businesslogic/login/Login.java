@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.common.Role;
+import edu.nju.express.dataservice.LoginInfoDataService;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.LoginInfo;
@@ -14,12 +15,14 @@ public class Login {
 	
 	
 	UserDataService userDataService;
+	LoginInfoDataService loginInfoDataService;
     ArrayList<UserPO> users;
 	
 	public Login() {
 		// TODO Auto-generated constructor stub
 	
 		userDataService = RMIHelper.getUserDataService();
+		loginInfoDataService = RMIHelper.getLoginInfoDataService();
 		users = new ArrayList<>();
 	}
 	
@@ -59,10 +62,18 @@ public class Login {
 				{
 					System.out.println("Login Successfully");
 					passwordValid = true;
-					LoginInfo.setID(users.get(i).getId());
+
 					LoginInfo.setUserName(users.get(i).getName());
-					LoginInfo.setTime();
-					System.out.println(LoginInfo.getInfo());
+
+					try {
+						loginInfoDataService.insert(new LoginInfo(
+								users.get(i).getId(),
+								users.get(i).getName()));
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 					return users.get(i).getRole();
 				}else {
 					System.out.println("Password error");

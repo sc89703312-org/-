@@ -18,27 +18,29 @@ public class LoginInfo implements Serializable{
 	
 	
 	
-	private static String id;
-	private static String userName;
-	private static String loginTime;
-	private static String clientIP;
+	private  String id;
+	private  static String userName;
+	private  String name;
+	private  String loginTime;
+	private  String clientIP;
 	
-	private static InetAddress addr;
-	private static String hostAddr;
-	private static String hostName;
+	private  InetAddress addr;
+	private  String hostAddr;
+
 	
-	public static void setID(String ID){
-		id = ID;
+	
+	
+	public LoginInfo(String id,String userName) {
+		// TODO Auto-generated constructor stub
+
+		this.id = id;
+        this.name = userName;
+		setTime();
 	}
 	
 	
 	public static void setUserName(String name){
-		userName = name;
-	}
-	
-	
-	public static String getID(){
-		return id;
+		LoginInfo.userName = name;
 	}
 	
 	
@@ -46,26 +48,31 @@ public class LoginInfo implements Serializable{
 		return userName;
 	}
 	
+	public String getID(){
+		return id;
+	}
 	
-	public static void setTime(){
+	
+	public void setTime(){
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		loginTime = sdf.format(new Date());
 	}
 	
-	public static String getTime(){
-		return loginTime;
+	
+	
+	
+	public  void setClientIP(){
+		clientIP =getClientIP();
 	}
 	
 	
-	
-	
-	private static String getClientIP() {
+	private  String getClientIP() {
 	
 		try {
 			addr = InetAddress.getLocalHost();
 			hostAddr = addr.getHostAddress();
-			hostName = addr.getHostName();
+		
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +81,7 @@ public class LoginInfo implements Serializable{
 	}
 	
 	
-	public static String getInfo(){
-		return "["+loginTime+"]"+" "+userName+" "+id+" "+getClientIP();
+	public  String getInfo(){
+		return "["+loginTime+"]"+" "+name+" "+id+" "+getClientIP();
 	}
 }

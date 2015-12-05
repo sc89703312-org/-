@@ -27,7 +27,7 @@ public class RMIHelper {
 	private static StationDataService stationDataService;
 	private static ConstantDataService constantDataService;
 	private static LogRecordDataService logRecordDataService;
-	
+	private static LoginInfoDataService loginInfoDataService;
 	
 	 public static void init() {
 	        try {
@@ -59,6 +59,8 @@ public class RMIHelper {
 	             
 	             stationDataService = new StationDataService_Impl();
 	             
+	             loginInfoDataService = new LoginInfoDataService_Impl();
+	             
 	            Naming.rebind("payment-service",paymentdataservice);
 
 	            Naming.rebind("vehicle-service", vehicledataservice);
@@ -84,6 +86,8 @@ public class RMIHelper {
 	            Naming.rebind("log-service", logRecordDataService);
 	            
 	            Naming.rebind("station-service", stationDataService);
+	            
+	            Naming.rebind("login-info", loginInfoDataService);
 	            
 	        } catch (MalformedURLException e) {
 	            e.printStackTrace();
