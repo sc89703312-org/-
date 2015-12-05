@@ -11,7 +11,7 @@ public interface HallDao {
 	
 	public ResultMessage insert(HallPo hallPo);
 	public ResultMessage delete(String id);
-	public ArrayList<HallPo> getAll();
+	public String getLocation(String id);
 	public ArrayList<HallPo> showAll();
 	public void flush();
 }

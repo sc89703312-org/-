@@ -6,7 +6,6 @@ import java.util.Calendar;
 
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.businesslogic.hallbl.info.PaymentOrderInfo;
-import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.businesslogic.vehiclebl.Vehiclebl;
@@ -17,12 +16,10 @@ import edu.nju.express.dataservice.HallDataService;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.ArrivalReceiptPO;
-import edu.nju.express.po.ArriveReceiptPO;
 import edu.nju.express.po.DeliverReceiptPO;
 import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.vo.ArrivalReceiptVO;
-import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
@@ -44,7 +41,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		this.orderInfo = orderInfo;
 		this.vehiclebl = vehiclebl;
 		this.setOrderSpot = setOrderSpot;
-		hallDataService = RMIHelper.getHallDataService();			
+		hallDataService = RMIHelper.getHallDataService();	
+		stationDataService = RMIHelper.getStationDataService();
 	}
 
 	@Override

@@ -15,9 +15,10 @@ public class HallFileDao extends CommonData<HallPo> implements HallDao{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	
-
+	@Override
+	public String getLocation(String id) {
+		// TODO Auto-generated method stub
+		return find(id).getName();
+	}
 	
 }
