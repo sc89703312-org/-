@@ -99,6 +99,11 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		panel.setVisible(true);
 		panel.setOpaque(false);
 		
+		/*
+		 * 如果需要在JScrollPane面板中放置多个控件，需要将多个控件放置到JPanel 面板上，然后将JPanel面板
+		 * 作为一个整体控件添加到JScrollPane控件上
+		 */
+		
 		s.setOpaque(false);
 		s.setViewportView(panel);
 		s.getViewport().setOpaque(false);
@@ -178,10 +183,11 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		JScrollPane qScroller = new JScrollPane(orderArea);
 		qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		qScroller.setBounds(110, 50, 200, 100);
+		qScroller.setBounds(110, 450, 200, 100);
 		panel.add(qScroller);
 		
-		mainpanel.add(panel);
+		//不需要再加panel了，添加顺序为 mainpanel.add(scrollpane), scrollpane.add(panel)
+//		mainpanel.add(panel);
 		
 	}
 	

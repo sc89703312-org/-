@@ -2,16 +2,16 @@ package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.presentation.myUI.MyFrame;
 
 public class HallController implements UIController {
 	JPanel currentPanel;
-	JFrame frame;
+	MyFrame frame;
 	
-	public HallController(JFrame f){
+	public HallController(MyFrame f){
 		this.frame = f;
 		currentPanel = (JPanel) f.getContentPane();
 	}
