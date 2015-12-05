@@ -60,6 +60,8 @@ public class Login {
 					passwordValid = true;
 					LoginInfo.setID(users.get(i).getId());
 					LoginInfo.setUserName(users.get(i).getName());
+					LoginInfo.setTime();
+					System.out.println(LoginInfo.getInfo());
 					return users.get(i).getRole();
 				}else {
 					System.out.println("Password error");

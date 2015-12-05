@@ -1,5 +1,7 @@
 package edu.nju.express.init;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 
@@ -7,12 +9,21 @@ import java.util.Scanner;
 
 public class Server {
 
+	
+	private InetAddress addr;
+	private static String hostAddr;
+	private static String hostName;
+	
+	
+	
+	
 	public static void main(String[] s){
 		RMIHelper.init();
 		System.out.println("Server creates!");
 		
-		
-		
+		new Server();
+		System.out.println("HostAddress is : "+hostAddr+"\n"+"HostName is : "+hostName);
+	
 
 
 		
@@ -42,4 +53,22 @@ public class Server {
 		}).start();
 		
 	}
+	
+	
+	
+	public Server() {
+		// TODO Auto-generated constructor stub
+		
+			try {
+				addr = InetAddress.getLocalHost();
+				hostAddr = addr.getHostAddress();
+				hostName = addr.getHostName();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+		
+	
+	
+	}
+	
 }

@@ -1,6 +1,7 @@
 package edu.nju.express.init;
 
 
+import edu.nju.express.businesslogic.login.LoginInfo;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
@@ -24,8 +25,16 @@ public class client {
 		System.out.println("Client creates!");
 		
 		
+		new LoginUI();		
+		
+
+		
+		
+		
+		
+		
        
-		new LoginUI();
+
 		
 		
 //		OrderBL orderBL = new OrderBL();
