@@ -16,7 +16,7 @@ import edu.nju.express.vo.EmployeeVO;
 
 
 
-public class ManagementBl implements ManagementBlService{
+public class ManagementBl implements ManagementBlService,ManagementInfo{
 
 	UserCreateMessageInfo userBL;
 	

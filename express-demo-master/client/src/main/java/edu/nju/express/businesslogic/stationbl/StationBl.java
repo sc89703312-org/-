@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.stationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOperationInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
@@ -10,7 +11,7 @@ import edu.nju.express.po.StationPO;
 import edu.nju.express.vo.StationVO;
 
 
-public class StationBl {
+public class StationBl implements StationOperationInfo{
 	
 	StationDataService stationDataService;
 	
