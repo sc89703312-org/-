@@ -11,8 +11,6 @@ public class HallGuide extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	UIController controller;
-	JPanel guidePanel;
-	JPanel mainPanel;
 
 	int width = 900;
 	int height = 600;

@@ -49,18 +49,7 @@ public class DriverUI extends JPanel{
 		
 		mainpanel.add(editPanel);
 		
-		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
+		
 		bg = new JLabel(new ImageIcon("ui/image/hall/driver.png"));
 		bg.setBounds(0, 0, width, height);
 		mainpanel.add(bg);
@@ -74,6 +63,19 @@ public class DriverUI extends JPanel{
 	}
 	
 	public void initButton(){
+		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
+		exit.setBounds(840, 18, 30, 30);
+		exit.setOpaque(false);
+		exit.setBorderPainted(false);
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+		});
+		mainpanel.add(exit);
+		
 		newBtn = new JButton(new ImageIcon("ui/image/hall/new0.png"));
 		newBtn.setBounds(729, 81, 30, 30);
 		newBtn.setBorderPainted(false);

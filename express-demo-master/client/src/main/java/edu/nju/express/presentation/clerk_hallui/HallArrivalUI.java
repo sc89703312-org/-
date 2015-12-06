@@ -105,8 +105,6 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		for(int i=0; i<orderList.size(); i++){
 			row[0] = orderList.get(i);
 			row[1] = "完整";
-//			orderTable.getTable().addMouseListener(this);
-			orderTable.getTable().editCellAt(i+1, 2);
 			orderTable.getTableModel().addRow(row);
 		}
 		orderTable.setBounds(5, 75, 700, 290);

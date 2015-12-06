@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import edu.nju.express.presentation.UIController;
 
-public class StationArrivalUI extends JPanel implements MouseListener{
+public class StationToHallUI extends JPanel implements MouseListener{
 
 	/**
 	 * 
@@ -24,8 +24,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	JLabel bg;
 	JButton exit, submitBtn;
 	
-	
-	public StationArrivalUI(UIController c){
+	public StationToHallUI(StationController c){
 		this.controller = c;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
@@ -35,7 +34,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		
 		initMargin();
 		
-		bg = new JLabel(new ImageIcon("ui/image/station/station_arrival.png"));
+		bg = new JLabel(new ImageIcon("ui/image/station/toHall.png"));
 		bg.setBounds(0, 0, width, height);
 		mainpanel.add(bg);
 		this.add(mainpanel);
