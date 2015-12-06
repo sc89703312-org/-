@@ -47,8 +47,6 @@ public class CostList {
 			
 			
 			
-			System.out.println("The length of costlist is: "+tempList.size());
-			
 			
 			for(int i=0;i<tempLists.size();i++){
 				

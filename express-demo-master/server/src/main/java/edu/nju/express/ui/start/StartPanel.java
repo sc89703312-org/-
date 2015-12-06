@@ -16,10 +16,12 @@ import javax.swing.ImageIcon;
 
 
 
+
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.ui.ServerButton;
 import edu.nju.express.ui.ServerPanel;
 import edu.nju.express.ui.UIConfig;
+import edu.nju.express.ui.frame.ServerFrame;
 
 /**
  * 启动界面
@@ -44,6 +46,9 @@ public class StartPanel extends ServerPanel {
 	/** 关闭服务图片 */
 	private static final Image IMG_OFF_TEXT = new ImageIcon("images/off_text.png").getImage();
 
+	
+	private ServerFrame frame;
+	
 	/** 显示系统信息 */
 	private ServerInfoPanel serverInfoPanel;
 	/** 显示当前登录客户信息 */
@@ -66,17 +71,19 @@ public class StartPanel extends ServerPanel {
 
 
 
-	public StartPanel() {
+	public StartPanel(ServerFrame parent) {
 		this.setLocation(0, UIConfig.TITLE_HEIGHT);	// 向下偏移TITLE_HEIGHT，防止和TitlePanel重合
 		this.setSize(UIConfig.WIDTH, UIConfig.HEIGHT - UIConfig.TITLE_HEIGHT);
 		this.setBackground(UIConfig.MAIN_COLOR);
 
+		this.frame = parent;
+		
         setHost();
 		serverInfoPanel = new ServerInfoPanel(hostAddr, hostName,RMIHelper.isStarted );
 		serverInfoPanel.setLocation(serverInfoPanelPoint);
 		this.add(serverInfoPanel);
 		this.addStartStopButton();
-		clientInfoPanel = new ClientInfoPanel();
+		clientInfoPanel = new ClientInfoPanel(frame);
 		clientInfoPanel.setLocation(clientInfoPanelPoint);
 		this.add(clientInfoPanel);
 	}

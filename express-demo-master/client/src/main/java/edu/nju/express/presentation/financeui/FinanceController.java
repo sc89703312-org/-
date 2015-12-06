@@ -59,7 +59,7 @@ public class FinanceController implements UIController {
 			frame.repaint();
 		}else if (e.getActionCommand().equals("BussinessConditionUI")) {
 			frame.getContentPane().removeAll();;
-			currentPanel = new BussinessConditionPanel(this);
+			currentPanel = new BussinessConditionPanel(this,frame);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();

@@ -28,8 +28,8 @@ public class AnalyzeUI extends MainPanel {
 	private FinanceController controller;
 
 	private JPanel date;
-	private MyTextField date1;
-	private LabelTextField date2;
+	private static MyTextField date1;
+	private static LabelTextField date2;
 	private JButton search;
 
 	private double[] balance;
@@ -98,7 +98,7 @@ public class AnalyzeUI extends MainPanel {
 		this.add(date);
 	}
 
-	public String[] getDates() {
+	public static String[] getDates() {
 		String[] d = new String[2];
 		d[0] = date1.getText();
 		d[1] = date2.getText();

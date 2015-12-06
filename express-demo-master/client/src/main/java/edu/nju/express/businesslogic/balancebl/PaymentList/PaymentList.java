@@ -44,7 +44,6 @@ public class PaymentList {
 		
 		
 		
-		System.out.println("The length of paymentlist is: "+tempPayments.size());
 		
 		
 		for(int i=0;i<tempPayments.size();i++){

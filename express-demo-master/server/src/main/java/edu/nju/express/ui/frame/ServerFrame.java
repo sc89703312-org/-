@@ -33,7 +33,7 @@ public class ServerFrame extends JFrame {
 	private float hyalineValue = 0f;
 
 	public ServerFrame() {
-		StartPanel start = new StartPanel();
+		StartPanel start = new StartPanel(this);
 		this.add(start, BorderLayout.CENTER);
 		// 标题栏
 

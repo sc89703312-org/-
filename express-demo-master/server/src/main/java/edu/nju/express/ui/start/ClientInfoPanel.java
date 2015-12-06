@@ -1,21 +1,30 @@
 package edu.nju.express.ui.start;
 
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import javax.swing.ImageIcon;
 
 
 
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import edu.nju.express.dataimpl.LoginInfoDataService_Impl;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.ui.ServerButton;
 import edu.nju.express.ui.ServerPanel;
 import edu.nju.express.ui.ServerTable;
+import edu.nju.express.ui.frame.ServerFrame;
 
 /**
  * 显示当前登录的用户信息
@@ -46,15 +55,16 @@ public class ClientInfoPanel extends ServerPanel {
 	/** 刷新按钮的位置 */
 	private Point btnPoint = new Point((dimension.width - btnDimen.width) / 2, dimension.height - btnDimen.height -2);
 
-	
+	private ServerFrame parent;
 
 	
-	public ClientInfoPanel() {
+	public ClientInfoPanel(ServerFrame parent) {
 		this.setSize(dimension);
 		// this.setBorder(BorderFactory.createTitledBorder(getBorder(), "客户端信息", TitledBorder.CENTER, TitledBorder.TOP, UIConfig.TEXT_FONT));
 		this.addUsersTable();
 		this.addRefreshBtn();
 
+		this.parent = parent;
 	}
 
 	/**
@@ -90,9 +100,18 @@ public class ClientInfoPanel extends ServerPanel {
 			public void mouseClicked(MouseEvent e) {
 				ClientInfoPanel.this.remove(usersTable);
 				ClientInfoPanel.this.addUsersTable();
+
 			}
 		});
 		this.add(refreshBtn);
 	}
+	
+	
+	
+	
+	
+	
+
+	
 
 }
