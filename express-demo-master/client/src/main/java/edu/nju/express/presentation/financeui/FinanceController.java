@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.nju.express.blservice.Balanceblservice;
+import edu.nju.express.blservice.CostControlService;
+import edu.nju.express.blservice.ViewPaymentService;
 import edu.nju.express.businesslogic.DataFactory;
+import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
 import edu.nju.express.businesslogic.balancebl.balance.Balancebl;
 import edu.nju.express.presentation.UIController;
 
@@ -14,10 +17,14 @@ public class FinanceController implements UIController {
 	JPanel currentPanel;
 	JFrame frame;
 	Balanceblservice balance;
+	CostControlService cost;
+	ViewPaymentService view;
 
 	public FinanceController(JFrame f) {
 		frame = f;
 		balance = DataFactory.createBalanceBLInstance();
+		cost    = DataFactory.createCostInstance();
+		view    = DataFactory.createViewPaymentblInstance();
 	}
 
 	@Override

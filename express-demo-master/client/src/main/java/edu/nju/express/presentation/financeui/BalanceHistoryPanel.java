@@ -19,6 +19,8 @@ public class BalanceHistoryPanel extends MainPanel {
 	private MyTablePanel table;
 	
 	private ArrayList<Balancevo> list;
+	
+	
 
 	BalanceHistoryPanel(FinanceController c) {
 		this.add(new FinanceGuide(c));

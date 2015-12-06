@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.blservice.Balanceblservice;
+import edu.nju.express.dataservice.balancedataservice;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTextField;
@@ -32,6 +34,9 @@ public class AnalyzeUI extends MainPanel {
 	private static LabelTextField date2;
 	private JButton search;
 
+	
+	Balanceblservice balanceBL;
+	
 	private double[] balance;
 
 	public AnalyzeUI(FinanceController c) {
@@ -39,6 +44,9 @@ public class AnalyzeUI extends MainPanel {
 		controller = c;
 		this.add(new FinanceGuide(controller));
 
+		
+	    balanceBL = c.balance;
+		
 		initDate();
 
 		initBalance();
@@ -73,10 +81,8 @@ public class AnalyzeUI extends MainPanel {
 	}
 
 	private void initData() {
-		balance = new double[3];
-		balance[0] = 132400;
-		balance[1] = 92400;
-		balance[2] = 40000;
+		balance = balanceBL.viewBalance();
+		
 	}
 
 	private void initDate() {
