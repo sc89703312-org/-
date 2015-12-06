@@ -60,6 +60,26 @@ public class MyTablePanel extends JPanel {
 		this.add(s);
 		this.setOpaque(false);
 	}
+	
+	public MyTablePanel( DefaultTableModel model) {
+		table = new JTable(model);
+
+		
+		initTable();
+		
+		JScrollPane s = new JScrollPane(table);
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+//		s.setColumnHeaderView(table.getTableHeader());
+//		s.getColumnHeader().setOpaque(false);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.getVerticalScrollBar().setOpaque(false);
+		s.getVerticalScrollBar().setUI(null);
+		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );;
+		this.add(s);
+		this.setOpaque(false);
+	}
 
 	public DefaultTableModel getTableModel() {
 		return model;
