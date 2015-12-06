@@ -7,6 +7,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.Item;
@@ -31,6 +32,7 @@ public class BussinessConditionPanel extends MainPanel {
 	private LabelTextField date2;
 	private JButton search;
 	private MyTablePanel tableB, tableP;
+	private JButton export;
 
 	private ArrayList<Balancevo> listB;
 	private ArrayList<Paymentvo> listP;
@@ -41,7 +43,7 @@ public class BussinessConditionPanel extends MainPanel {
 		
 		date = new JPanel();
 		date.setOpaque(false);
-		date.setBounds(250, 110, 500, 60);
+		date.setBounds(120, 110, 500, 60);
 		date1 = new MyTextField(0);
 		date2 = new LabelTextField("- ", 0);
 		date.add(date1);
@@ -55,6 +57,12 @@ public class BussinessConditionPanel extends MainPanel {
 		search.setActionCommand("SearchList");
 		date.add(search);
 		this.add(date);
+		
+		export = new JButton("导出");
+		export.setBounds(680, 110, 80, 30);
+		this.add(export);
+		export.setActionCommand("export");
+		export.addActionListener(controller);
 
 		initData();
 
@@ -115,6 +123,14 @@ public class BussinessConditionPanel extends MainPanel {
 		for (int i = 0; i < 30; i++) {
 			listP.add(new Paymentvo("", 0, "", "", ""));
 		}
+	}
+	
+	//获得payment和cost table
+	public JTable[] getTables(){
+		JTable[] tables= new JTable[2];
+		tables[0] = tableP.getTable();
+		tables[1] = tableB.getTable();
+		return tables;
 	}
 
 }

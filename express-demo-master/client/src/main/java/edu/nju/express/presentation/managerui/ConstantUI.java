@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.MyEditableTable;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTextField;
 import edu.nju.express.vo.ConstantVO;
 
@@ -115,21 +116,27 @@ public class ConstantUI extends MainPanel{
 				((DefaultTableModel)table.getModel()).addRow(rowdata);
 			}
 		}
-		table.setPreferredScrollableViewportSize(new Dimension(166,125));
+		table.setPreferredScrollableViewportSize(new Dimension(200,90));
 		JScrollPane p = new JScrollPane(table);
 		p.setBorder(new EmptyBorder(0, 0, 0, 0));
-		p.setBounds(x+200,y+70,240,125);
+		p.setBounds(100,50+70,200,125);
 		p.setOpaque(false);
 		p.getViewport().setOpaque(false);
 		p.getVerticalScrollBar().setUI(null);
-		this.add(p);
+		fieldsPanel.add(p);
 	}
 
 	private void initFields() {
 		fieldsPanel = new JPanel();
-		fieldsPanel.setBounds(x, y+180, width-x, 350);
+		
+		JScrollPane p = new JScrollPane(fieldsPanel);
+		p.setBounds(94, y+180, width-x, 300);
+		p.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		this.add(p);
+		
+		fieldsPanel.setBounds(94, y+180, width-x, 600);
 		fieldsPanel.setOpaque(false);;
-		fieldsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 160, 85));
+		fieldsPanel.setLayout(null);
 		
 		priceField1 = new MyTextField(4);
 		priceField1.setText(price1);
@@ -176,7 +183,6 @@ public class ConstantUI extends MainPanel{
 		airplaneLoadField.setOpaque(false);
 		fieldsPanel.add(airplaneLoadField);
 		
-		this.add(fieldsPanel);
 	}
 
 	private void initData() {

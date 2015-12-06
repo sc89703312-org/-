@@ -32,7 +32,7 @@ public class FinanceGuide extends JPanel{
 	void initGuide() {	
 		
 		balance = new JButton();
-		balance.setBorderPainted(false);
+	//	balance.setBorderPainted(false);
 		balance.setContentAreaFilled(false);
 		balance.setBounds(0,44,82,82);
 		balance.setActionCommand("BalanceUI");
@@ -40,21 +40,21 @@ public class FinanceGuide extends JPanel{
 		
 		payment = new JButton();
 		payment.setBounds(0,144,82,82);
-		payment.setBorderPainted(false);
+	//	payment.setBorderPainted(false);
 		payment.setContentAreaFilled(false);
 		payment.setActionCommand("PaymentUI");
 		payment.addActionListener(controller);	
 		
 		analyze = new JButton();
 		analyze.setContentAreaFilled(false);
-		analyze.setBorderPainted(false);
+	//	analyze.setBorderPainted(false);
 		analyze.setBounds(0,244,82,82);
 		analyze.setActionCommand("AnalyzeUI");
 		analyze.addActionListener(controller);
 		
 		banking = new JButton();
 		banking.setContentAreaFilled(false);
-		banking.setBorderPainted(false);
+	//	banking.setBorderPainted(false);
 		banking.setBounds(0,344,82,82);
 		banking.setActionCommand("BankingUI");
 		banking.addActionListener(controller);
@@ -62,7 +62,7 @@ public class FinanceGuide extends JPanel{
 		account = new JButton();
 		account.setBounds(0,444,82,82);
 		account.setContentAreaFilled(false);
-		account.setBorderPainted(false);
+	//	account.setBorderPainted(false);
 		account.setActionCommand("AccountUI");
 		account.addActionListener(controller);
 		

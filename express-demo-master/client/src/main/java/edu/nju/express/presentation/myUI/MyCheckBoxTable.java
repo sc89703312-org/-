@@ -32,9 +32,9 @@ public class MyCheckBoxTable extends JTable {
 	Font font = new Font("黑体", Font.PLAIN, 15);
 
 	JTable table;
-	static String[] headerStr = { "全选", "单据种类", "单据编号", "提交时间" };
+	static String[] headerStr;
 
-	public MyCheckBoxTable() {
+	public MyCheckBoxTable(String[] headerStr) {
 		super(new DefaultTableModel(null, headerStr) {
 			/**
 			 * 
@@ -49,6 +49,7 @@ public class MyCheckBoxTable extends JTable {
 					return String.class;
 			}
 		});
+		this.headerStr = headerStr;
 		table = this;
 
 		JTableHeader header = this.getTableHeader();
@@ -101,17 +102,7 @@ public class MyCheckBoxTable extends JTable {
 		// 全选功能
 		this.getTableHeader().addMouseListener(new MouseAdapter() {
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
+		
 
 			@Override
 			public void mouseClicked(MouseEvent e) {

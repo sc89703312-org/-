@@ -5,14 +5,19 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.Balanceblservice;
+import edu.nju.express.businesslogic.DataFactory;
+import edu.nju.express.businesslogic.balancebl.balance.Balancebl;
 import edu.nju.express.presentation.UIController;
 
 public class FinanceController implements UIController {
 	JPanel currentPanel;
 	JFrame frame;
+	Balanceblservice balance;
 
 	public FinanceController(JFrame f) {
 		frame = f;
+		balance = DataFactory.createBalanceBLInstance();
 	}
 
 	@Override
@@ -69,6 +74,8 @@ public class FinanceController implements UIController {
 		}else if (e.getActionCommand().equals("ModifyBanking")) {
 			((BankingUI)currentPanel).removePopup();
 		}else if (e.getActionCommand().equals("SearchList")) {
+		}else if (e.getActionCommand().equals("Export")) {
+			((BussinessConditionPanel)currentPanel).getTables();
 		}
 
 	}

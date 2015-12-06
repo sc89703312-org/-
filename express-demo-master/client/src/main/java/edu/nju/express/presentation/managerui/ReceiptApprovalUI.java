@@ -71,7 +71,8 @@ public class ReceiptApprovalUI extends MainPanel {
 	}
 
 	private void refreshTable() {
-		table = new MyCheckBoxTable();
+		String[] header= { "全选", "单据种类", "单据编号", "提交时间" };
+		table = new MyCheckBoxTable(header);
 		initData();
 	}
 
