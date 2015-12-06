@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
 import edu.nju.express.log.ui.frame.Frame;
@@ -37,7 +38,7 @@ public class LoginUI extends MyFrame{
 	int BAR_HEIGHT = 40;
 
 	
-	Login loginBL= new Login();
+	Login loginBL= DataFactory.createLoginBLInstance();
 	
 	
 	MyButton login;

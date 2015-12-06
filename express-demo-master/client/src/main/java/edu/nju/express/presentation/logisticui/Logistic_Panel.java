@@ -36,7 +36,9 @@ import javax.swing.JPanel;
 
 
 
+
 import edu.nju.express.blservice.LogisticsBLService;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.logisticsbl.LogisticsBL;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.log.ui.frame.Frame;
@@ -66,7 +68,7 @@ public class Logistic_Panel extends JPanel{
 	MyLabel spots[] = new MyLabel[5];
 	MyLabel goodInfo[] = new MyLabel[4];
 
-	LogisticsBLService logistic	=new LogisticsBL(new OrderBL());
+	LogisticsBLService logistic	=DataFactory.createLogisticBLInstance();
 	
 	LogisticsVO vo ;
 	

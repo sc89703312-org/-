@@ -10,6 +10,7 @@ import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.commoditybl.CommodityBl;
 import edu.nju.express.businesslogic.hallbl.HallBL;
 import edu.nju.express.businesslogic.hallbl.HallReceiptBL;
+import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.businesslogic.logisticsbl.LogisticsBL;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
@@ -67,6 +68,11 @@ public class DataFactory {
 	
 	public static Vehiclebl createDriverInstance(){
 		return new Vehiclebl();
+	}
+	
+	
+	public static Login createLoginBLInstance(){
+		return new Login();
 	}
 	
 	
