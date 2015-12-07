@@ -28,6 +28,7 @@ import edu.nju.express.presentation.myUI.MyFrame;
 import edu.nju.express.presentation.myUI.MyLabel;
 import edu.nju.express.presentation.myUI.MyPasswordField;
 import edu.nju.express.presentation.myUI.MyTextFieldV2;
+import edu.nju.express.presentation.postmanui.Postman_Frame;
 
 public class LoginUI extends MyFrame{
 
@@ -150,6 +151,7 @@ public class LoginUI extends MyFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				new Postman_Frame();
 			}else if (role==Role.CLERK_HALL) {
 				LoginUI.this.closeFrame();
 				try {

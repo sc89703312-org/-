@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.presentation.UIController;
 
 
@@ -13,9 +15,11 @@ public class PostmanController implements UIController {
 
 	JPanel currentPanel;
 	JFrame frame;
+	private OrderBLService order;
 	
 	public PostmanController(JFrame f) {
 		this.frame = f;
+		order = DataFactory.createOrderBLInstance();
 	}
 
 	@Override

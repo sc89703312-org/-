@@ -22,6 +22,7 @@ import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.vo.OrderVO;
 
 public class CreateOrderPanel extends MainPanel {
 
@@ -31,7 +32,7 @@ public class CreateOrderPanel extends MainPanel {
 	static int y = 50;
 	static int interval = 10;
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
-	private static Color color = new Color(44, 62,80);
+	private static Color color = new Color(44, 62, 80);
 
 	PostmanController controller;
 
@@ -42,7 +43,7 @@ public class CreateOrderPanel extends MainPanel {
 	LabelTextField num, weight, size, goodsName;
 	JComboBox<String> typeBox, pkgCostBox;
 	JLabel totalCost, expectedArrival;
-	JButton confirm,caculate;
+	JButton confirm, caculate;
 	static JScrollPane s = new JScrollPane();
 
 	ArrivalState arrivalState;
@@ -52,48 +53,50 @@ public class CreateOrderPanel extends MainPanel {
 
 	public CreateOrderPanel(PostmanController c) {
 		controller = c;
-		
+
 		this.add(new PostmanGuide(c));
-		
+
 		JPanel p = new JPanel();
 		p.setOpaque(false);
-		p.setBounds(94, 112, width-175, height-180);
+		p.setBounds(94, 112, width - 175, height - 180);
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		this.add(p);
-		
+
 		s.setOpaque(false);
 		s.setViewportView(p);
 		s.getViewport().setOpaque(false);
 		s.getVerticalScrollBar().setOpaque(false);
-		
+
 		final MyScrollBarUI ui = new MyScrollBarUI();
 		s.getVerticalScrollBar().setUI(ui);
-		
-		s.getVerticalScrollBar().addMouseListener(new MouseAdapter(){
+
+		s.getVerticalScrollBar().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				super.mouseEntered(e);
-				s.getVerticalScrollBar().repaint();;
+				s.getVerticalScrollBar().repaint();
+				;
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseExited(e);
-				s.getVerticalScrollBar().repaint();;
-				
+				s.getVerticalScrollBar().repaint();
+				;
+
 			}
 		});
-		
+
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		s.setBounds(128, 112, width-175, height-180);
+		s.setBounds(128, 112, width - 175, height - 180);
 		this.add(s);
-		
-		id = new LabelTextField("快递编号    ",15);
+
+		id = new LabelTextField("快递编号    ", 15);
 		p.add(id);
-		
+
 		JPanel dp = new JPanel();
 		dp.setOpaque(false);
 		JLabel time = new JLabel("日期   ");
@@ -103,7 +106,6 @@ public class CreateOrderPanel extends MainPanel {
 		dp.add(time);
 		dp.add(date);
 		p.add(dp);
-		
 
 		nameS = new LabelTextField("收件人姓名  ", 6);
 		addressS = new LabelTextField("收件人地址  ", 17);
@@ -128,16 +130,15 @@ public class CreateOrderPanel extends MainPanel {
 		p.add(phoneR);
 
 		num = new LabelTextField("原件数      ", 4);
-		weight = new LabelTextField("重量        ", 0,"kg       ");
+		weight = new LabelTextField("重量        ", 0, "kg       ");
 		size = new LabelTextField("体积        ", 6);
 		goodsName = new LabelTextField("内件品名    ", 10);
 		p.add(num);
 		p.add(weight);
 		p.add(size);
 		p.add(goodsName);
-		
-		
-		JLabel l1= new JLabel("快递种类    ");
+
+		JLabel l1 = new JLabel("快递种类    ");
 		l1.setOpaque(false);
 		l1.setFont(font);
 		l1.setForeground(color);
@@ -149,13 +150,12 @@ public class CreateOrderPanel extends MainPanel {
 		p1.add(l1);
 		p1.add(typeBox);
 		p.add(p1);
-		
-		
-		JLabel l2= new JLabel("包装种类     ");
+
+		JLabel l2 = new JLabel("包装种类     ");
 		l2.setOpaque(false);
 		l2.setFont(font);
 		l2.setForeground(color);
-		
+
 		JPanel p2 = new JPanel();
 		p2.setOpaque(false);
 		p2.add(l2);
@@ -171,22 +171,41 @@ public class CreateOrderPanel extends MainPanel {
 		totalCost.setFont(font);
 		totalCost.setForeground(color);
 		p.add(totalCost);
-		
+
 		expectedArrival = new JLabel("预计送达时间：");
 		expectedArrival.setFont(font);
 		expectedArrival.setForeground(color);
 		p.add(expectedArrival);
-		
+
 		caculate = new JButton("计算报价");
-		caculate.setBounds(400, 537, 80,30);
+		caculate.setBounds(400, 537, 80, 30);
 		caculate.setActionCommand("CaculateFee");
 		caculate.addActionListener(controller);
 		this.add(caculate);
-		
+
 		confirm = new ConfirmButton();
-		confirm.setBounds(500, 537, 80,30);
+		confirm.setBounds(500, 537, 80, 30);
 		confirm.setActionCommand("SubmitOrder");
 		caculate.addActionListener(controller);
 		this.add(confirm);
+	}
+
+	public OrderVO getInput() {
+		/*double pkgCost;
+		switch ((pkgCostBox.getSelectedItem()) {
+		case value:
+			
+			break;
+
+		default:
+			break;
+		}
+		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(),
+				telS.getText(), phoneS.getText(), nameR.getText(), addressR.getText(),
+				postR.getText(), telR.getText(), phoneR.getText(), Integer.parseInt(num.getText()),
+				Double.parseDouble(weight.getText()),Double.parseDouble(size.getText()),
+				goodsName.getText(),Double.parseDouble(size.getText()), 
+				pkgCost, totalCost, id.getText(),
+				fast, no, expected, currentSpot);*/
 	}
 }

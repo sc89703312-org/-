@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.MyComboBox;
+import edu.nju.express.presentation.myUI.MySearchFieldPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.Paymentvo;
 
@@ -32,7 +34,7 @@ public class PaymentUI extends MainPanel {
 
 	private MyTablePanel table;
 	private DateComboBoxPanel date;
-	private MyComboBox<String> hall;
+	private MySearchFieldPanel hall;
 	private JButton calculate;
 
 	private FinanceController controller;
@@ -47,7 +49,7 @@ public class PaymentUI extends MainPanel {
 
 		showTable();
 
-		JLabel selectDate = new JLabel("选择日期：");
+		JLabel selectDate = new JLabel("          按日期查看：");
 		selectDate.setFont(font);
 		selectDate.setForeground(color);
 		date = new DateComboBoxPanel();
@@ -73,26 +75,26 @@ public class PaymentUI extends MainPanel {
 
 		});
 		
-		JLabel selectHall = new JLabel("      选择营业厅：");
+		JLabel selectHall = new JLabel("按营业厅查看：");
 		selectHall.setFont(font);
 		selectHall.setForeground(color);
-		hall = new MyComboBox<String>();
-		hall.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println((String) hall.getSelectedItem());
-
-			}
-
-		});
+		hall = new MySearchFieldPanel(controller);
 
 		JPanel p = new JPanel();
 		p.setOpaque(false);
-		p.add(selectDate);
-		p.add(date);
-		p.add(selectHall);
-		p.add(hall);
-		p.setBounds(80, 80, 800, 50);
+		JPanel p1 = new JPanel();
+		p1.setOpaque(false);
+		p1.add(selectDate);
+		p1.add(date);
+		p.add(p1);
+		
+		JPanel p2 = new JPanel();
+		p2.setOpaque(false);
+		p2.add(selectHall);
+		p2.add(hall);
+		p.add(p2);
+		p.setBounds(-120, 65, 800, 90);
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		this.add(p);
 
 	}
@@ -117,7 +119,7 @@ public class PaymentUI extends MainPanel {
 		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
 		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
-		table.setBounds(128, 130, 727, 425);;
+		table.setBounds(128, 160, 727, 425);;
 		
 		this.add(table);
 	}

@@ -54,7 +54,7 @@ public class EmployeeListUI extends MainPanel {
 		jbtAdd.setContentAreaFilled(false);
 		jbtAdd.setBorderPainted(false);
 		jbtAdd.setBounds(370,537,80,30);
-		jbtAdd.setActionCommand("AddBankingUI");
+		jbtAdd.setActionCommand("AddEmployeeUI");
 		jbtAdd.addActionListener(controller);
 
 		jbtDelete = new JButton(delete1);
