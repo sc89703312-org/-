@@ -53,7 +53,7 @@ public class ManageController implements UIController {
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
-		}else if(e.getActionCommand().equals("AddEmployeeUI")){
+		}else if(e.getActionCommand().equals("AddBankingUI")){
 			frame.getContentPane().removeAll();;
 			currentPanel = new AddEmployeePanel(this);
 			frame.add(currentPanel);

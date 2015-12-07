@@ -39,14 +39,14 @@ public class AdministerGuide extends JPanel{
 		check.setContentAreaFilled(false);
 		
 		add = new JButton();
-		add.setActionCommand("AddUserUI");
+		add.setActionCommand("AddBankingUI");
 		add.addActionListener(controller);
 		add.setBounds(0,144,82,82);
 		add.setBorderPainted(false);
 		add.setContentAreaFilled(false);
 	
 		delete = new JButton();
-		delete.setActionCommand("DeleteUserUI");
+		delete.setActionCommand("DeleteBankingUI");
 		delete.addActionListener(controller);
 		delete.setBounds(0,244,82,82);
 		delete.setBorderPainted(false);

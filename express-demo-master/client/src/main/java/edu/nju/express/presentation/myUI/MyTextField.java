@@ -41,10 +41,10 @@ public class MyTextField extends JPanel {
 		
 		if(type==0||type==-1){
 			width = 112;
-			field.setBounds(15, 0, (int)(width*0.7), height);
+			field.setBounds(17, 0, (int)(width*0.7), height);
 		}else{
 			width = 200;
-			field.setBounds(20, 0, (int)(width*0.8), height);
+			field.setBounds(30, 0, (int)(width*0.7), height);
 		}
 		this.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);

@@ -2,6 +2,8 @@ package edu.nju.express.presentation.financeui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.Balanceblservice;
-import edu.nju.express.dataservice.balancedataservice;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTextField;
@@ -26,6 +27,7 @@ public class AnalyzeUI extends MainPanel {
 	private Color color = new Color(44, 62,80);
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
+	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 
 	private FinanceController controller;
 
@@ -56,22 +58,22 @@ public class AnalyzeUI extends MainPanel {
 	private void initBalance() {
 		initData();
 		
-		JLabel l1 = new JLabel(balance[0]+"");
-		l1.setBounds(550, 120, 100, 40);
+		JLabel l1 = new JLabel("总收入：    "+balance[0]);
+		l1.setBounds(400, 160, 400, 40);
 		l1.setFont(font);
 		l1.setForeground(color);
 		l1.setOpaque(false);
 		this.add(l1);
 		
-		JLabel l2 = new JLabel(balance[1]+"");
-		l2.setBounds(550, 180, 100, 40);
+		JLabel l2 = new JLabel("总支出：    "+balance[1]+"");
+		l2.setBounds(400, 220, 400, 40);
 		l2.setFont(font);
 		l2.setForeground(color);
 		l2.setOpaque(false);
 		this.add(l2);
 		
-		JLabel l3 = new JLabel(balance[2]+"");
-		l3.setBounds(550, 240, 100, 40);
+		JLabel l3 = new JLabel("总收益：    "+balance[2]+"");
+		l3.setBounds(400, 280, 400, 40);
 		l3.setFont(font);
 		l3.setForeground(color);
 		l3.setOpaque(false);
@@ -111,4 +113,10 @@ public class AnalyzeUI extends MainPanel {
 		return d;
 	}
 
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 0, null);
+	}
 }

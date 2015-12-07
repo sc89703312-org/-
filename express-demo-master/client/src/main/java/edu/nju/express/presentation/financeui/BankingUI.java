@@ -1,17 +1,15 @@
 package edu.nju.express.presentation.financeui;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.myUI.ConfirmButton;
-import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.BankingAccountVO;
@@ -22,19 +20,21 @@ public class BankingUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int width = 900, height = 600;
-	private static int x = 94, y = 50;
+	private static Icon add1  = new ImageIcon("ui/button/新增账号1.png");
+	private static Icon add2  = new ImageIcon("ui/button/新增账号2.png");
+	private static Icon del1  = new ImageIcon("ui/button/删除账号1.png");
+	private static Icon del2  = new ImageIcon("ui/button/删除账号2.png");
+	private static Icon mod1  = new ImageIcon("ui/button/修改账号1.png");
+	private static Icon mod2  = new ImageIcon("ui/button/修改账号2.png");
+	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
+	
+	private FinanceController controller;
 
-	FinanceController controller;
-
-	MyTablePanel table;
-	MySearchFieldPanel search;
-	JButton add;
-	JButton delete;
-	JButton modify;
-	JPanel popup;
-	ConfirmButton cfm;
-	BankingUI ui;
+	private MyTablePanel table;
+	private MySearchFieldPanel search;
+	private JButton add;
+	private JButton delete;
+	private JButton modify;
 
 	private ArrayList<BankingAccountVO> list;
 
@@ -42,55 +42,42 @@ public class BankingUI extends MainPanel {
 
 		this.controller = c;
 
-		ui = this;
 
 		this.add(new FinanceGuide(c));
 
 		search = new MySearchFieldPanel(c);
-		search.setBounds(380, 120, 400, 40);
+		search.setBounds(380,68, 400, 40);
 		search.setActionCommand("SearchBanking");
 		this.add(search);
 
-		initPopup();
+	/*	initPopup();*/
 
-		add = new JButton("增加账户");
-		add.setBounds(x+95, 180, 80, 30);
+		add = new JButton(add1);
+		add.setRolloverIcon(add2);
+		add.setBorderPainted(false);
+		add.setContentAreaFilled(false);
+		add.setBounds(300,537,100,30);
 		this.add(add);
-		add.addActionListener(new ActionListener() {
+		add.addActionListener(controller);
+		add.setActionCommand("AddBankingUI");
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				popup.setVisible(true);
-				ui.repaint();
-				cfm.setActionCommand("AddBanking");
-			}
-		});
-
-		delete = new JButton("删除账户");
-		delete.setBounds(x+360, 180, 80, 30);
+		delete= new JButton(del1);
+		delete.setRolloverIcon(del2);
+		delete.setBorderPainted(false);
+		delete.setContentAreaFilled(false);
+		delete.setBounds(450,537,100,30);
 		this.add(delete);
-		delete.addActionListener(new ActionListener() {
+		delete.addActionListener(controller);
+		delete.setActionCommand("DeleteBankingUI");
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				popup.setVisible(true);
-				ui.repaint();
-				cfm.setActionCommand("DeleteBanking");
-			}
-		});
-
-		modify = new JButton("修改账户");
-		modify.setBounds(x+630, 180, 80, 30);
+		modify = new JButton(mod1);
+		modify.setRolloverIcon(mod2);
+		modify.setBorderPainted(false);
+		modify.setContentAreaFilled(false);
+		modify.setBounds(600,537,100,30);
 		this.add(modify);
-		modify.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				popup.setVisible(true);
-				ui.repaint();
-				cfm.setActionCommand("ModifyBanking");
-			}
-		});
+		modify.addActionListener(controller) ;
+		modify.setActionCommand("ModifyBankingUI");
 
 		initData();
 
@@ -104,44 +91,10 @@ public class BankingUI extends MainPanel {
 		}
 		this.add(table);
 		table.setRowHeight(28);
-		table.setBounds(128, 280, 726, 280);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(727, 250));
+		table.setBounds(128, 106, 727, 428);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
 	}
 
-	private void initPopup() {
-		popup = new JPanel();
-		popup.setLayout(new FlowLayout(FlowLayout.LEADING, 100, 0));
-		popup.setOpaque(false);
-		popup.setBounds(x, 220, width - x, 80);
-		LabelTextField account = new LabelTextField("账号", 22);
-		popup.add(account);
-
-		JPanel p = new JPanel();
-		p.setOpaque(false);
-		cfm = new ConfirmButton();
-		cfm.addActionListener(controller);
-		p.add(cfm);
-
-		JButton cancel = new JButton("取消");
-		cancel.setSize(80, 30);
-		cancel.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				removePopup();
-
-			}
-		});
-		p.add(cancel);
-		popup.add(p);
-
-		this.add(popup);
-		popup.setVisible(false);
-	}
-
-	public void removePopup() {
-		popup.setVisible(false);
-		ui.repaint();
-	}
 
 	private void initData() {
 		list = new ArrayList<BankingAccountVO>();
@@ -149,4 +102,10 @@ public class BankingUI extends MainPanel {
 		list.add(new BankingAccountVO("622202194898561354889", 200000+i));
 	}
 
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 0, null);
+	}
 }

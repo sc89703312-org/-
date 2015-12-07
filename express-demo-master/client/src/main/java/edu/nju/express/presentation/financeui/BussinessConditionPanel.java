@@ -1,7 +1,8 @@
 package edu.nju.express.presentation.financeui;
 
-import java.awt.Dimension;
 import java.awt.FileDialog;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,14 +16,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.Balanceblservice;
-import edu.nju.express.common.Item;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.presentation.myUI.MyTextField;
 import edu.nju.express.vo.Balancevo;
@@ -36,6 +38,9 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
+	private static Icon export1= new ImageIcon("ui/button/export1.png");
+	private static Icon export2 = new ImageIcon("ui/button/export2.png");
+	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 
 	private JPanel date;
 	private MyTextField date1;
@@ -62,7 +67,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		
 		date = new JPanel();
 		date.setOpaque(false);
-		date.setBounds(120, 110, 500, 60);
+		date.setBounds(120, 68, 500, 50);
 		date1 = new MyTextField(0);
 		date2 = new LabelTextField("- ", 0);
 		date.add(date1);
@@ -77,17 +82,29 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		date.add(search);
 		this.add(date);
 		
-		export = new JButton("导出");
-		export.setBounds(680, 110, 80, 30);
+		export = new JButton(export1);
+		export.setRolloverIcon(export2);
+		export.setBorderPainted(false);
+		export.setContentAreaFilled(false);
+		export.setBounds(680, 82, 80, 30);
 		this.add(export);
 		export.setActionCommand("export");
 		export.addActionListener(this);
 
 		initData();
+		
+		JScrollPane sp = new JScrollPane();
+		sp.setOpaque(false);
+		sp.setBounds(128, 156, 727, 714);
+		sp.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		JPanel p =new JPanel();
+		p.setOpaque(false);
 
 		initTableB();
+		p.add(tableB);
 
 		initTableP();
+		p.add(tableP);
 	}
 
 	private void initTableP() {
@@ -104,10 +121,6 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 			
 			tableP.getTableModel().addRow(rowdata);
 		}
-		tableP.setRowHeight(28);
-		tableP.getTable().setPreferredScrollableViewportSize(new Dimension(343, 390));
-		tableP.setBounds(128, 165, 335, 405);
-		this.add(tableP);
 	}
 
 	private void initTableB() {
@@ -125,10 +138,6 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 			rowdata[5] = vo.getRemark();
 			tableB.getTableModel().addRow(rowdata);
 		}
-		tableB.setRowHeight(28);
-		tableB.getTable().setPreferredScrollableViewportSize(new Dimension(383, 390));
-		tableB.setBounds(471, 165, 383, 405);
-		this.add(tableB);
 	}
 
 	private void initData() {
@@ -305,5 +314,10 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	    }
 	}
 	
-	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 0, null);
+	}
 }

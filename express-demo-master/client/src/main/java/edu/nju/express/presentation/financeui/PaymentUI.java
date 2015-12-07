@@ -76,7 +76,7 @@ public class PaymentUI extends MainPanel {
 		p.setOpaque(false);
 		p.add(sort);
 		p.add(style);
-		p.setBounds(x+50, 120, 220, 36);
+		p.setBounds(100, 120, 400, 36);
 		this.add(p);
 
 	}
@@ -100,8 +100,9 @@ public class PaymentUI extends MainPanel {
 		Object[] last = {"总计",sum,"",""};
 		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 395));
-		table.setBounds(128, 165, 726, 403);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 395));
+		table.setBounds(128, 165, 727, 403);;
+		
 		this.add(table);
 	}
 
@@ -119,8 +120,8 @@ public class PaymentUI extends MainPanel {
 		table.getTableModel().addRow(last);
 		this.add(table);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(726, 395));
-		table.setBounds(128, 165, 726, 403);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 395));
+		table.setBounds(128, 165, 727, 403);
 	}
 
 	private void initDatabyDate() {

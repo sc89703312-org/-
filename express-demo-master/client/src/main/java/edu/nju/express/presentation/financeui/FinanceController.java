@@ -70,16 +70,31 @@ public class FinanceController implements UIController {
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+		}else if (e.getActionCommand().equals("AddBankingUI")) {
+			frame.getContentPane().removeAll();;
+			currentPanel = new AddBankingUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+		}else if (e.getActionCommand().equals("DeleteBankingUI")) {
+			frame.getContentPane().removeAll();;
+			currentPanel = new DeleteBankingUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+		}else if (e.getActionCommand().equals("ModifyBankingUI")) {
+			frame.getContentPane().removeAll();;
+			currentPanel = new ModifyBankingUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
 			
 		}else if (e.getActionCommand().equals("SearchBanking")) {
 			
 		}else if (e.getActionCommand().equals("AddBanking")) {
-			((BankingUI)currentPanel).removePopup();
 		}else if (e.getActionCommand().equals("DeleteBanking")) {
-			((BankingUI)currentPanel).removePopup();
 		}else if (e.getActionCommand().equals("ModifyBanking")) {
-			((BankingUI)currentPanel).removePopup();
 		}else if (e.getActionCommand().equals("SearchList")) {
 		}else if (e.getActionCommand().equals("Export")) {
 			((BussinessConditionPanel)currentPanel).getTables();

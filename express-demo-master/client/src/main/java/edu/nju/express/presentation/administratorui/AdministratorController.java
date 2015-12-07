@@ -32,13 +32,13 @@ public class AdministratorController implements UIController{
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
-		}else if(e.getActionCommand().equals("AddUserUI")){
+		}else if(e.getActionCommand().equals("AddBankingUI")){
 			frame.getContentPane().removeAll();;
 			currentPanel = new AddUserUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
-		}else if(e.getActionCommand().equals("DeleteUserUI")){
+		}else if(e.getActionCommand().equals("DeleteBankingUI")){
 			frame.getContentPane().removeAll();
 			currentPanel = new DeleteUserUI(this);
 			frame.add(currentPanel);
