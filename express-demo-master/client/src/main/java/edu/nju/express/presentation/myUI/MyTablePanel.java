@@ -31,6 +31,7 @@ public class MyTablePanel extends JPanel {
 	String[] headerStr;
 	JTable table; 
 	DefaultTableModel model;
+	final MyScrollBarUI ui = new MyScrollBarUI();
 	
 	public MyTablePanel(String[] header) {
 		model = new DefaultTableModel(null, header);
@@ -55,15 +56,16 @@ public class MyTablePanel extends JPanel {
 //		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.getVerticalScrollBar().setOpaque(false);
-		s.getVerticalScrollBar().setUI(null);
+		s.getVerticalScrollBar().setUI(ui);
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );;
 		this.add(s);
 		this.setOpaque(false);
 	}
 	
-	public MyTablePanel( DefaultTableModel model) {
+	public MyTablePanel( DefaultTableModel model,String[] header) {
+		this.model = model;
 		table = new JTable(model);
-
+		headerStr = header;
 		
 		initTable();
 		
@@ -75,7 +77,7 @@ public class MyTablePanel extends JPanel {
 //		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.getVerticalScrollBar().setOpaque(false);
-		s.getVerticalScrollBar().setUI(null);
+		s.getVerticalScrollBar().setUI(ui);
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );;
 		this.add(s);
 		this.setOpaque(false);

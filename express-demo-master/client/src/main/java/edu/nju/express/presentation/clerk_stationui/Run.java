@@ -5,8 +5,6 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.nju.express.presentation.clerk_hallui.HallController;
-import edu.nju.express.presentation.clerk_hallui.HallTransferUI;
 import edu.nju.express.presentation.myUI.MyFrame;
 
 public class Run {

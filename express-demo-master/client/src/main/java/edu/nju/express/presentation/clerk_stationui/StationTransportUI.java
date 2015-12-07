@@ -33,7 +33,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	int width = 900, height = 600;
 	UIController controller;
 	JPanel mainpanel,panel,op;
-	JLabel bg;
+	JLabel bg; 
 	JButton exit, submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
@@ -113,7 +113,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		fromBox.setBounds(210, 190, 100, 35);
 		panel.add(fromBox);
 		
-		toLabel = new JLabel("出发地");
+		toLabel = new JLabel("到达地");
 		toLabel.setFont(font);
 		toLabel.setForeground(color);
 		toLabel.setBounds(130, 245, 80, 40);

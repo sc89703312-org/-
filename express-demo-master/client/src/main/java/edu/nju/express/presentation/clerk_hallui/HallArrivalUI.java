@@ -92,21 +92,25 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		confirmBtn = new JButton("确认");
 		confirmBtn.setFont(new Font("Microsoft YaHei", Font.PLAIN, 15));
 		confirmBtn.setBounds(530, 15, 80, 40);
+		confirmBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				generateData();
+			}
+			
+		});
 		panel.add(confirmBtn);
 		
 		//orderTable
 		String[] header = {"托运单号", "货物状态"};
 		int[] columnWidth = {350, 350};
-		String[] row = new String[2];
+		
 		orderTable = new MyTablePanel(header);
 		orderTable.setRowHeight(30);
 		orderTable.setColumnWidth(columnWidth);
-		generateData();
-		for(int i=0; i<orderList.size(); i++){
-			row[0] = orderList.get(i);
-			row[1] = "完整";
-			orderTable.getTableModel().addRow(row);
-		}
+//		generateData();
 		orderTable.setBounds(5, 75, 700, 290);
 		orderTable.getTable().setPreferredScrollableViewportSize(new Dimension(700,250));
 		panel.add(orderTable);
@@ -211,11 +215,17 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	//生成托运单号
 	public void generateData(){
 		this.orderList = new ArrayList<String>();
-
+		String[] row = new String[2];
 		//mock orderList
 		for(int i=0; i<30; i++){
 			orderList.add("1234567890");
 		}
+		for(int i=0; i<orderList.size(); i++){
+			row[0] = orderList.get(i);
+			row[1] = "完整";
+			orderTable.getTableModel().addRow(row);
+		}
+
 	}
 
 
