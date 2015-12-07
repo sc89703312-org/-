@@ -117,19 +117,7 @@ public class OrganizationUI extends MainPanel {
 	}
 
 	private void initData() {
-		stationList = new ArrayList<StationVO>();
-		stationList.add(new StationVO("025", "南京"));
-		stationList.add(new StationVO("021", "上海"));
-		hallList = new ArrayList<HallVO>();
-		hallList.add(new HallVO("025001", "鼓楼"));
-		hallList.add(new HallVO("025002", "仙林"));
-		hallList.add(new HallVO("021001", "？"));
-		hallList.add(new HallVO("021002", "？"));
-		hallList.add(new HallVO("025001", "鼓楼"));
-		hallList.add(new HallVO("025002", "仙林"));
-		hallList.add(new HallVO("025001", "鼓楼"));
-		hallList.add(new HallVO("025002", "仙林"));
-		hallList.add(new HallVO("025001", "鼓楼"));
-		hallList.add(new HallVO("025002", "仙林"));
+		stationList = controller.getStationList();
+		hallList = controller.getHallList();
 	}
 }

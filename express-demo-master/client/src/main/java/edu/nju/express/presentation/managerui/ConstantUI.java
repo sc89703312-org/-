@@ -16,12 +16,14 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyEditableTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.ConstantVO;
+import edu.nju.express.vo.DistanceVO;
 
 public class ConstantUI extends MainPanel{
 
@@ -51,7 +53,7 @@ public class ConstantUI extends MainPanel{
 	private String vanLoad, railwayLoad, airplaneLoad;
 	private ArrayList<String> cityList;
 	private ArrayList<String> cityDistance;
-	ConstantVO constantVO;
+	private ConstantVO vo;
 	
 	public ConstantUI(ManageController c) {
 		ui = this;
@@ -80,13 +82,13 @@ public class ConstantUI extends MainPanel{
 		
 		p.add(new JLabel());
 		initTable();
-		table.setPreferredScrollableViewportSize(new Dimension(200,90));
+		table.setPreferredScrollableViewportSize(new Dimension(400,90));
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBorder(new EmptyBorder(0, 0, 0, 0));
 		sp.setOpaque(false);
 		sp.getViewport().setOpaque(false);
 		sp.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		sp.setPreferredSize(new Dimension( 220, 120));
+		sp.setPreferredSize(new Dimension( 440, 120));
 		JPanel p0 = new JPanel();
 		p0.setOpaque(false);
 		p0.add(sp);
@@ -207,6 +209,7 @@ public class ConstantUI extends MainPanel{
 			}
 		}
 		
+		
 		confirm = new ConfirmButton();
 		this.add(confirm);
 		confirm.addActionListener(controller);
@@ -215,36 +218,48 @@ public class ConstantUI extends MainPanel{
 
 
 	private void initData() {
-		price1 = "23";
-		price2 ="18";
-		price3 ="25";
-		vanCost="2"; 
-		railwayCost="0.2"; 
-		airplaneCost="1000";
-		vanLoad="1000"; 
-		railwayLoad="200000"; 
-		airplaneLoad="5000";
-		
-		cityList = new ArrayList<String>();
-		cityList.add("南京");
-		cityList.add("上海");
-		cityList.add("北京");
-		cityList.add("广州");
-		cityList.add("深圳");
-		
-		cityDistance = new ArrayList<String>();
-		cityDistance.add("0 100 200 300 400");
-		cityDistance.add("100 0 300 400 500");
-		cityDistance.add("200 300 0 400 600");
-		cityDistance.add("300 400 400 0 700");
-		cityDistance.add("400 500 600 700 0");
+		vo = controller.getConstantData();
+		price1 = vo.getPriceStandard();
+		price2 = vo.getPriceLow();
+		price3 =vo.getPriceHigh();
+		vanCost=vo.getVanCost(); 
+		railwayCost=vo.getRailwayCost(); 
+		airplaneCost=vo.getAirplaneCost();
+		vanLoad=vo.getVanLoad(); 
+		railwayLoad=vo.getRailwayLoad(); 
+		airplaneLoad=vo.getRailwayLoad();
+		cityList = vo.getCityList();
+		cityDistance = vo.getCityDistance();
 	}
 	
-	public ConstantVO getInput(){
-		return new ConstantVO(cityList, cityDistance,
-				price1, price2, price3,
-				vanCost, railwayCost, airplaneCost,
-				vanLoad, railwayLoad, airplaneLoad);
+	public DistanceVO getDistanceInput(){
 		
+		ArrayList<Integer> rows = table.getEditedRows();
+		for(int i = 0 ; i<rows.size();i++){
+		}
+		
+		
+		return null;
 	}
+	
+	public double getPriceInput(){
+		return Double.parseDouble(priceStd.getText());
+	}
+	
+	public double[] getVehicleCostInput(){
+		double[] input1 = new double[3];
+		input1[0] =  Double.parseDouble(vanCField.getText());
+		input1[1] =  Double.parseDouble(railCField.getText());
+		input1[2] =  Double.parseDouble(airCField.getText());
+		return input1;
+	}
+	
+	public int[] getVehicleLoadInput(){
+		int[] input2 = new int[3];
+		input2[0] =  Integer.parseInt(vanLField.getText());
+		input2[1] =  Integer.parseInt(railLField.getText());
+		input2[2] =  Integer.parseInt(airLField.getText());
+		return input2;
+	}
+
 }
