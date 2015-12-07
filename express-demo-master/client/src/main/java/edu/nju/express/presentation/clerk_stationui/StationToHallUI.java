@@ -103,11 +103,11 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		dateLabel = new JLabel("中转日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(100, 10, 80, 40);
+		dateLabel.setBounds(110, 10, 80, 40);
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(180, 10, 500, 45);
+		dateBox.setBounds(120, 10, 500, 45);
 		panel.add(dateBox);
 		
 		idField = new LabelTextField("汽运编号",19);

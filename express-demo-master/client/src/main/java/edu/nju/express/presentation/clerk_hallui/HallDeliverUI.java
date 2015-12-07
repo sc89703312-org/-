@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,8 +20,8 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
-import edu.nju.express.presentation.myUI.MyTextField;
 
 public class HallDeliverUI extends JPanel implements MouseListener{
 
@@ -35,15 +35,16 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	HallController controller;
 	JPanel mainpanel;
 	JLabel addOrderLabel;
-	JButton addOrderBtn;
-	JButton submitBtn;
+	MyCheckBoxTable checkTable;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	LabelTextField idField, deliverIdField;
 	JTextArea orderArea;
 	JLabel bg;
-	JButton exit;
+	JButton exit, submitBtn;
 	
+	JScrollPane scrollpane = new JScrollPane();
+	final MyScrollBarUI ui = new MyScrollBarUI();
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
 	Color areaColor = new Color(210, 232, 232);
@@ -73,7 +74,9 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	
 	public void initPanel(){
 		JPanel panel = new JPanel();
-		
+		panel.setLayout(null);
+		panel.setVisible(true);
+		panel.setOpaque(false);
 //		idField = new LabelTextField("派件单编号",15);
 //		idField.setBounds(120, 20, 300, 45);
 //		panel.add(idField);
@@ -85,7 +88,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(170, 80-45, 500, 40);
+		dateBox.setBounds(120, 80-45, 500, 40);
 		panel.add(dateBox);
 		
 		
@@ -93,37 +96,42 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		deliverIdField.setBounds(120, 135-45, 300, 45);
 		panel.add(deliverIdField);
 		
-		addOrderLabel = new JLabel("请在此处添加本次托运单号:");
+		addOrderLabel = new JLabel("请在此处勾选出本次装箱所有托运单号");
 		addOrderLabel.setFont(font);
 		addOrderLabel.setForeground(color);
-		addOrderLabel.setBounds(110, 200-45, 300, 40);
+		addOrderLabel.setBounds(20, 190, 400, 40);
 		panel.add(addOrderLabel);
 		
-		orderArea = new JTextArea(10,500);
-		orderArea.setLineWrap(true);
-		orderArea.setWrapStyleWord(true);
-		orderArea.setEditable(true);
-		orderArea.setFont(font);
-		orderArea.setBackground(areaColor);
-		final JScrollPane orderpane = new JScrollPane();
-		final MyScrollBarUI ui2 = new MyScrollBarUI();
-		orderpane.setViewportView(orderArea);
-		wrapScrollPane(orderpane, ui2);
-		orderpane.setBounds(110, 250-45, 400, 100);
-		panel.add(orderpane);
 		
-		addOrderBtn = new JButton("add");
-		addOrderBtn.setBounds(460, 360-45, 50, 30);
-		//点击addOrderBtn之后， 读取TextArea里的内容，并检测订单号位数，有错(!=10)给提示
-		addOrderBtn.addMouseListener(this);
-		panel.add(addOrderBtn);
+		String[] header = {"全选","订单号"};
+		checkTable = new MyCheckBoxTable(header);
+		//init data
+		Object[] data1 = { false, "1234567890" };
+		Object[] data2 = { false, "1234567891" };
+		Object[] data3 = { false, "1234567892" };
+		for (int i = 0; i < 10; i++) {
+			checkTable.getTableModel().addRow(data1);
+			checkTable.getTableModel().addRow(data2);
+			checkTable.getTableModel().addRow(data3);
+		}
+		
+		JScrollPane s = new JScrollPane(checkTable);
+		s.setBounds(0, 240, 710, 325);
+		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+		s.setColumnHeaderView(checkTable.getTableHeader());
+		s.getColumnHeader().setOpaque(false);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.getVerticalScrollBar().setUI(null);
+		panel.add(s);
 		
 		
-		panel.setLayout(null);
-		panel.setBounds(128, 117, 723, 403);
-		panel.setVisible(true);
-		panel.setOpaque(false);
-		mainpanel.add(panel);
+		scrollpane.setViewportView(panel);
+		panel.setPreferredSize(new Dimension(723, 700));
+		wrapScrollPane(scrollpane, ui);
+		scrollpane.setBounds(130, 120, 720, 400);
+		mainpanel.add(scrollpane);
 	}
 	
 	

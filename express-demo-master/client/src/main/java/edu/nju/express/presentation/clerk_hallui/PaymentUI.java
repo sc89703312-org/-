@@ -87,7 +87,7 @@ public class PaymentUI extends JPanel implements MouseListener{
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(170, 80-45, 500, 40);
+		dateBox.setBounds(120, 80-45, 500, 40);
 		panel.add(dateBox);
 		
 		

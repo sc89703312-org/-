@@ -17,10 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.HallTransferReceiptVO;
@@ -37,11 +39,11 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	JPanel mainpanel, panel;
 	JButton exit, submitBtn, saveOrderBtn, confirmBtn;
 	JLabel bg;
-	JLabel dateLabel;
+	JLabel dateLabel, fromLabel;
 	DateComboBoxPanel dateBox;
-	LabelTextField idField, fromField;
+	MyComboBox<String> fromBox;
 	LabelTextField transferIdField;
-	MyTablePanel orderTable;
+	MyTablePanel table;
 	ArrayList<String> orderList;
 	
 	static JScrollPane s = new JScrollPane();
@@ -104,21 +106,30 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		panel.add(confirmBtn);
 		
 		//orderTable
-		String[] header = {"托运单号", "货物状态"};
-		int[] columnWidth = {350, 350};
-		
-		orderTable = new MyTablePanel(header);
-		orderTable.setRowHeight(30);
-		orderTable.setColumnWidth(columnWidth);
-//		generateData();
-		orderTable.setBounds(5, 75, 700, 290);
-		orderTable.getTable().setPreferredScrollableViewportSize(new Dimension(700,250));
-		panel.add(orderTable);
+		String[] header = {"托运单号","货物到达状态"};
+		DefaultTableModel model = new DefaultTableModel(null,header){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				if(column==1){
+					return true;
+				}
+				return false;
+			}
+		};
+		table = new MyTablePanel(model,header);
+		table.setBounds(5, 80, 700, 350);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(690,350));
+		panel.add(table);
 
 
 		//saveOrderBtn
 		saveOrderBtn = new JButton("save");
-		saveOrderBtn.setBounds(600, 380, 80, 40);
+		saveOrderBtn.setBounds(600, 440, 80, 40);
 		panel.add(saveOrderBtn);
 		
 		
@@ -132,19 +143,29 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		dateLabel = new JLabel("到达日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(100, 490-45, 90, 40);
+		dateLabel.setBounds(100, 495, 90, 40);
 		panel.add(dateLabel);
 		
 		//comboBox:year, month, day
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(190, 490-45, 500, 40);
+		dateBox.setBounds(120, 495, 500, 40);
 		panel.add(dateBox);
 		
+		//fromLabel, fromBox
+		fromLabel = new JLabel("出发地");
+		fromLabel.setFont(font);
+		fromLabel.setForeground(color);
+		fromLabel.setBounds(130, 550, 80, 40);
+		panel.add(fromLabel);
 		
-		//fromField
-		fromField = new LabelTextField("出发地  ",10);
-		fromField.setBounds(110, 545-45, 300, 45);
-		panel.add(fromField);
+		fromBox = new MyComboBox<String>();
+		String[] fromList = {"南京","上海","北京","广州"};
+		for(int i=0; i<fromList.length; i++){
+			fromBox.addItem(fromList[i]);
+		}
+		fromBox.setSelectedItem(fromList[0]);
+		fromBox.setBounds(210, 550, 100, 35);
+		panel.add(fromBox);
 		
 	}
 	
@@ -152,7 +173,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	
 	public void initScrollPane(){
 		s.setViewportView(panel);
-		panel.setPreferredSize(new Dimension(723, 700));
+		panel.setPreferredSize(new Dimension(723, 620));
 		s.setBounds(130, 120, 720, 400);
 		mainpanel.add(s);
 		s.setOpaque(false);
@@ -223,10 +244,11 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		for(int i=0; i<orderList.size(); i++){
 			row[0] = orderList.get(i);
 			row[1] = "完整";
-			orderTable.getTableModel().addRow(row);
+			table.getTableModel().addRow(row);
 		}
 
 	}
+
 
 
 

@@ -89,7 +89,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(180, 70, 500, 40);
+		dateBox.setBounds(110, 70, 500, 40);
 		panel.add(dateBox);
 		
 		idField = new LabelTextField("中转单编号", 19);
@@ -108,21 +108,16 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			fromBox.addItem(fromList[i]);
 		}
 		fromBox.setSelectedItem(fromList[0]);
-		fromBox.setBounds(170, 185, 200, 35);
+		fromBox.setBounds(170, 185, 200, 30);
 		panel.add(fromBox);
 		
-//		arrivalStateLabel = new JLabel("请在下表中更正货物到达状态");
-//		arrivalStateLabel.setFont(font);
-//		arrivalStateLabel.setForeground(color);
-//		arrivalStateLabel.setBounds(20, 255, 300, 30);
-//		panel.add(arrivalStateLabel);
 		
 		getOrderField = new LabelTextField("获取到达订单", 19);
-		getOrderField.setBounds(90, 255, 350, 45);
+		getOrderField.setBounds(90, 235, 350, 45);
 		panel.add(getOrderField);
 		
 		getOrderBtn = new JButton("获取");
-		getOrderBtn.setBounds(440, 255, 60, 35);
+		getOrderBtn.setBounds(440, 240, 60, 35);
 		getOrderBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -151,11 +146,12 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		};
 		table = new MyTablePanel(model,header);
 		table.setBounds(5, 300, 700, 350);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(690,350));
 		panel.add(table);
 		
 		
 		scroll.setViewportView(panel);
-		panel.setPreferredSize(new Dimension(724, 1000));
+		panel.setPreferredSize(new Dimension(724, 800));
 		wrapScrollPane(scroll, ui);
 		scroll.setBounds(129, 120, 720, 400);
 		mainpanel.add(scroll);
@@ -219,7 +215,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			for(int i=0; i<orderList.size(); i++){
 				row[0] = orderList.get(i);
 				row[1] = "完整";
-				table.getTable().getModel().addRow(row);
+				table.getTableModel().addRow(row);
 			}
 
 		}
