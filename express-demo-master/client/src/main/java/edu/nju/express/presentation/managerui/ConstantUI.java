@@ -1,54 +1,52 @@
 package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
+import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyEditableTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
-import edu.nju.express.presentation.myUI.MyTextField;
 import edu.nju.express.vo.ConstantVO;
 
 public class ConstantUI extends MainPanel{
 
 	private static final long serialVersionUID = 1L;
-	static Font font = new Font("黑体", Font.PLAIN, 14);
-	static String split = " ";
-	static Color color = Color.white;
-	static int width = 900, height = 600;
-	static int y = 50; // 由标题栏高度决定
-	static int x =240;
+	private static Font font = new Font("黑体", Font.PLAIN, 18);
+	private static Color color = new Color(44,62,80);
+	private static String split = " ";
+	private static int width = 900, height = 600;
 	
 	ManageController controller;
+	ConstantUI ui;
 	
-	MyTextField priceField1,priceField2,priceField3;
-	MyTextField vanCostField;
-	MyTextField railwayCostField;
-	MyTextField airplaneCostField;
-	MyTextField vanLoadField;
-	MyTextField railwayLoadField;
-	MyTextField airplaneLoadField;
+	private LabelTextField priceStd;
+	private JLabel priceEco,priceFast;
+	private LabelTextField vanCField;
+	private LabelTextField railCField;
+	private LabelTextField airCField;
+	private LabelTextField vanLField;
+	private LabelTextField railLField;
+	private LabelTextField airLField;
+	private MyEditableTable table;
+	private JPanel p;
+	private ConfirmButton confirm;
 	
-	ConfirmButton distanceConfirm;
-	ConfirmButton priceConfirm;
-	ConfirmButton costConfirm;
-	ConfirmButton loadConfirm;
-	
-	JPanel fieldsPanel;
-	JPanel buttonsPanel;
-	ManageGuide guide;
-	JTable table;
-	private String price1,price2,price3;
+	private String price1, price2,price3;
 	private String vanCost, railwayCost, airplaneCost;
 	private String vanLoad, railwayLoad, airplaneLoad;
 	private ArrayList<String> cityList;
@@ -56,38 +54,130 @@ public class ConstantUI extends MainPanel{
 	ConstantVO constantVO;
 	
 	public ConstantUI(ManageController c) {
-		this.setOpaque(false);
-		
+		ui = this;
 		this.controller = c;
+		this.add(new ManageGuide(controller));
+		
+		p = new JPanel();
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		p.setOpaque(false);
+		p.setBounds(128, 112, 715, 1000);
+		p.setOpaque(false);
+		
+		JScrollPane s = new JScrollPane();
+		s.setViewportView(p);
+		s.setOpaque(false);
+		s.getViewport().setOpaque(false);
+		s.setBackground(new Color(255,255,255,50));
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
+		s.setBounds(128, 112, 726, 422);
+		s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		s.getVerticalScrollBar().setOpaque(false);
+		this.add(s);
+		
 		initData();
-
-		guide = new ManageGuide(controller);
-		this.add(guide);
 		
-		initFields();
-		
+		p.add(new JLabel());
 		initTable();
+		table.setPreferredScrollableViewportSize(new Dimension(200,90));
+		JScrollPane sp = new JScrollPane(table);
+		sp.setBorder(new EmptyBorder(0, 0, 0, 0));
+		sp.setOpaque(false);
+		sp.getViewport().setOpaque(false);
+		sp.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		sp.setPreferredSize(new Dimension( 220, 120));
+		JPanel p0 = new JPanel();
+		p0.setOpaque(false);
+		p0.add(sp);
+		p0.setName("Table");
+		p.add(p0);
+		p.add(new JLabel());
 		
-		initButton();
+		priceEco = new JLabel("经济快递：     "+price2+"      元");
+		priceFast = new JLabel("次晨特快：     "+price3+"      元");
+		priceEco.setFont(font);
+		priceEco.setOpaque(false);
+		priceEco.setForeground(color);
+		priceFast.setFont(font);
+		priceFast.setOpaque(false);
+		priceFast.setForeground(color);
+		priceEco.setPreferredSize(new Dimension(400,40));
+		priceFast.setPreferredSize(new Dimension(400,40));
+		priceEco.setHorizontalAlignment(JLabel.CENTER);
+		priceFast.setHorizontalAlignment(JLabel.CENTER);
+		priceStd = new LabelTextField("标准快递：", -1,"元");
+		priceStd.setText(price1);
+		priceStd.getTextField().addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				super.focusLost(e);
+				Double price = Double.parseDouble(priceStd.getText());
+				
+				BigDecimal eco = new BigDecimal(price/23*18);
+				price2 = eco.setScale(2,BigDecimal.ROUND_HALF_UP)+"";
+				
+				BigDecimal fast = new BigDecimal(price/23*25);
+				price3 = fast.setScale(2, BigDecimal.ROUND_HALF_UP)+"";
+				
+				priceEco.setText("经济快递：     "+price2+"      元");
+				priceFast.setText("次晨特快：     "+price3+"      元");
+				
+			}
+		});	
+		priceStd.setBounds(165, 160, 400, 40);
+		priceEco.setBounds(165, 200, 400, 40);
+		priceFast.setBounds(165, 240,400,40);
+		JPanel p1 = new JPanel();
+		p1.setOpaque(false);
+		p1.add(priceEco);
+		JPanel p2 = new JPanel();
+		p2.setOpaque(false);
+		p2.add(priceFast);
+		p.add(priceStd);
+		p.add(p1);
+		p.add(p2);
+		p.add(new JLabel());
+		
+		vanCField = new LabelTextField("公路:", -1, "元/公里·吨");
+		vanCField.setText(vanCost);
+		railCField = new LabelTextField("铁路:",-1,"元/公里·吨");
+		railCField.setText(railwayCost);
+		airCField = new LabelTextField("航空:", -1, "元/公里·吨");
+		airCField.setText(airplaneCost);
+		vanCField.setBounds(165, 320, 400, 40);
+		railCField.setBounds(165, 360,  400, 40);
+		airCField.setBounds(165, 400, 400,40);
+		p.add(vanCField);
+		p.add(railCField);
+		p.add(airCField);
+		p.add(new JLabel());
+		
+		vanLField = new LabelTextField("公路:", -1, "吨");
+		vanLField.setText(vanLoad);
+		railLField = new LabelTextField("铁路:",-1,"吨");
+		railLField.setText(railwayLoad);
+		airLField = new LabelTextField("航空:", -1, "吨");
+		airLField.setText(airplaneLoad);
+		vanLField.setBounds(165, 480, 400, 40);
+		railLField.setBounds(165, 520,  400, 40);
+		airLField.setBounds(165, 560, 400,40);
+		p.add(vanLField);
+		p.add(railLField);
+		p.add(airLField);
+		p.add(new JLabel());
+		
+		for(Component co : p.getComponents()){
+			co.setBackground(new Color(0,0,0,0));
+			if(co.getName()==null)
+				co.setPreferredSize(new Dimension(400,40));
+		}
+		
+		
+		
+
 	}
 
-	private void initButton() {
-		distanceConfirm = new ConfirmButton();
-		distanceConfirm.setBounds(740, y+35, 80,30);
-		this.add(distanceConfirm);
-		
-		priceConfirm = new ConfirmButton();
-		priceConfirm.setBounds(740,y+220,80,30);
-		this.add(priceConfirm);
-		
-		costConfirm = new ConfirmButton();
-		costConfirm.setBounds(740, y+325, 80,30);
-		this.add(costConfirm);
-		
-		loadConfirm = new ConfirmButton();
-		loadConfirm.setBounds(740, y+430, 80, 30);
-		this.add(loadConfirm);
-	}
 
 	private void initTable() {
 		String[] header = {"城市1","-","城市2","：","距离","公里"};
@@ -116,74 +206,13 @@ public class ConstantUI extends MainPanel{
 				((DefaultTableModel)table.getModel()).addRow(rowdata);
 			}
 		}
-		table.setPreferredScrollableViewportSize(new Dimension(200,90));
-		JScrollPane p = new JScrollPane(table);
-		p.setBorder(new EmptyBorder(0, 0, 0, 0));
-		p.setBounds(100,50+70,200,125);
-		p.setOpaque(false);
-		p.getViewport().setOpaque(false);
-		p.getVerticalScrollBar().setUI(null);
-		fieldsPanel.add(p);
+		
+		confirm = new ConfirmButton();
+		this.add(confirm);
+		confirm.addActionListener(controller);
+		confirm.setActionCommand("ModifyConstant");
 	}
 
-	private void initFields() {
-		fieldsPanel = new JPanel();
-		
-		JScrollPane p = new JScrollPane(fieldsPanel);
-		p.setBounds(94, y+180, width-x, 300);
-		p.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		this.add(p);
-		
-		fieldsPanel.setBounds(94, y+180, width-x, 600);
-		fieldsPanel.setOpaque(false);;
-		fieldsPanel.setLayout(null);
-		
-		priceField1 = new MyTextField(4);
-		priceField1.setText(price1);
-		priceField1.setOpaque(false);
-		fieldsPanel.add(priceField1);
-		
-		priceField2 = new MyTextField(4);
-		priceField2.setText(price2);
-		priceField2.setOpaque(false);
-		fieldsPanel.add(priceField2);
-		
-		priceField3 = new MyTextField(4);
-		priceField3.setText(price3);
-		priceField3.setOpaque(false);
-		fieldsPanel.add(priceField3);
-		
-		vanCostField = new MyTextField(4);
-		vanCostField.setText(vanCost);
-		vanCostField.setOpaque(false);
-		fieldsPanel.add(vanCostField);
-		
-		railwayCostField = new MyTextField(4);
-		railwayCostField.setText(railwayCost);
-		railwayCostField.setOpaque(false);
-		fieldsPanel.add(railwayCostField);
-		
-		airplaneCostField = new MyTextField(4);
-		airplaneCostField.setText(airplaneCost);
-		airplaneCostField.setOpaque(false);
-		fieldsPanel.add(airplaneCostField);
-		
-		vanLoadField = new MyTextField(6);
-		vanLoadField.setText(vanLoad);
-		vanLoadField.setOpaque(false);
-		fieldsPanel.add(vanLoadField);
-		
-		railwayLoadField = new MyTextField(6);
-		railwayLoadField.setText(railwayLoad);
-		railwayLoadField.setOpaque(false);
-		fieldsPanel.add(railwayLoadField);
-		
-		airplaneLoadField = new MyTextField(6);
-		airplaneLoadField.setText(airplaneLoad);
-		airplaneLoadField.setOpaque(false);
-		fieldsPanel.add(airplaneLoadField);
-		
-	}
 
 	private void initData() {
 		price1 = "23";

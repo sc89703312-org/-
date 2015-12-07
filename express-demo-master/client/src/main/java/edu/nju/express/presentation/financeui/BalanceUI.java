@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,8 +23,10 @@ public class BalanceUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Icon historyIcon1 =new ImageIcon("ui/button/查看历史单据1.png");
+	private static Icon historyIcon2 =new ImageIcon("ui/button/查看历史单据2.png");
 	private static int width = 900, height = 600;
-	private static int x = 94, y = 50;
+	private static int x = 95, y = 50;
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
 	private static Color color = new Color(44, 62,80);
 
@@ -40,7 +44,7 @@ public class BalanceUI extends MainPanel {
 		this.add(new FinanceGuide(c));
 		
 		JPanel p = new JPanel();
-		p.setBounds(x - 130, 100, width - x+60, height - y);
+		p.setBounds(x - 130, 100, width - x+90, height - y);
 		p.setLayout(new FlowLayout(FlowLayout.LEFT, 360, 18));
 		p.setOpaque(false);
 
@@ -82,13 +86,16 @@ public class BalanceUI extends MainPanel {
 		this.add(p);
 		
 		cfm = new ConfirmButton();
-		cfm.setBounds(520, 537, 80,30);
+		cfm.setBounds(545, 537, 80,30);
 		cfm.addActionListener(controller);
 		cfm.setActionCommand("SubmitBalance");
 		this.add(cfm);
 		
-		history = new JButton("查看历史单据");
-		history.setBounds(350, 537, 110, 30);
+		history = new JButton(historyIcon1);
+		history.setRolloverIcon(historyIcon2);
+		history.setBorderPainted(false);
+		history.setContentAreaFilled(false);
+		history.setBounds(355, 537, 120, 30);
 		history.addActionListener(controller);
 		history.setActionCommand("BalanceHistory");
 		this.add(history);

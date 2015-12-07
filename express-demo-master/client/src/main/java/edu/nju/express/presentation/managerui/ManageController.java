@@ -2,6 +2,7 @@ package edu.nju.express.presentation.managerui;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -89,9 +90,13 @@ public class ManageController implements UIController {
 			frame.validate();
 			frame.repaint();
 		}else if(e.getActionCommand().equals("Approve")){
-			((ReceiptApprovalUI)currentPanel).getIDtoApprove();
+			currentPanel = (JPanel)(((JButton)e.getSource()).getParent());
+			for(String id:((ReceiptApprovalUI)currentPanel).getIDtoApprove()){
+				System.out.println(id);
+			}
 		}else if(e.getActionCommand().equals("GetSalary")){
 			((SalaryUI)currentPanel).getText();
+		}else if(e.getActionCommand().equals("ModifyConstant")){
 		}
 	}
 

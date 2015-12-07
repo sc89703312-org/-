@@ -1,12 +1,24 @@
 package edu.nju.express.presentation.financeui;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class FinanceGuide extends JPanel{
 
-	static int width = 900, height = 600;
-	static int y = 50;		//由标题栏高度决定
+	private static int width = 900, height = 600;
+	private static Icon account1 = new ImageIcon("ui/icon/期初建帐1.png");
+	private static Icon account2 = new ImageIcon("ui/icon/期初建帐2.png");
+	private static Icon banking1 = new ImageIcon("ui/icon/账户管理1.png");
+	private static Icon banking2 = new ImageIcon("ui/icon/账户管理2.png");
+	private static Icon payment1 = new ImageIcon("ui/icon/结算管理1.png");
+	private static Icon payment2 = new ImageIcon("ui/icon/结算管理2.png");
+	private static Icon balance1 = new ImageIcon("ui/icon/成本管理1.png");
+	private static Icon balance2 = new ImageIcon("ui/icon/成本管理2.png");
+	private static Icon analyze1 = new ImageIcon("ui/icon/报表分析1.png");
+	private static Icon analyze2 = new ImageIcon("ui/icon/报表分析2.png");
+	
 	/**
 	 * 
 	 */
@@ -31,38 +43,43 @@ public class FinanceGuide extends JPanel{
 
 	void initGuide() {	
 		
-		balance = new JButton();
-	//	balance.setBorderPainted(false);
+		balance = new JButton(balance1);
+		balance.setRolloverIcon(balance2);
+		balance.setBorderPainted(false);
 		balance.setContentAreaFilled(false);
-		balance.setBounds(0,44,82,82);
+		balance.setBounds(1,44,82,82);
 		balance.setActionCommand("BalanceUI");
 		balance.addActionListener(controller);
 		
-		payment = new JButton();
-		payment.setBounds(0,144,82,82);
-	//	payment.setBorderPainted(false);
+		payment = new JButton(payment1);
+		payment.setRolloverIcon(payment2);
+		payment.setBounds(1,144,82,82);
+		payment.setBorderPainted(false);
 		payment.setContentAreaFilled(false);
 		payment.setActionCommand("PaymentUI");
 		payment.addActionListener(controller);	
 		
-		analyze = new JButton();
+		analyze = new JButton(analyze1);
+		analyze.setRolloverIcon(analyze2);
 		analyze.setContentAreaFilled(false);
-	//	analyze.setBorderPainted(false);
-		analyze.setBounds(0,244,82,82);
+		analyze.setBorderPainted(false);
+		analyze.setBounds(1,244,82,82);
 		analyze.setActionCommand("AnalyzeUI");
 		analyze.addActionListener(controller);
 		
-		banking = new JButton();
+		banking = new JButton(banking1);
+		banking.setRolloverIcon(banking2);
 		banking.setContentAreaFilled(false);
-	//	banking.setBorderPainted(false);
-		banking.setBounds(0,344,82,82);
+		banking.setBorderPainted(false);
+		banking.setBounds(1,344,82,82);
 		banking.setActionCommand("BankingUI");
 		banking.addActionListener(controller);
 				
-		account = new JButton();
-		account.setBounds(0,444,82,82);
+		account = new JButton(account1);
+		account.setRolloverIcon(account2);
+		account.setBounds(1,444,82,82);
 		account.setContentAreaFilled(false);
-	//	account.setBorderPainted(false);
+		account.setBorderPainted(false);
 		account.setActionCommand("AccountUI");
 		account.addActionListener(controller);
 		

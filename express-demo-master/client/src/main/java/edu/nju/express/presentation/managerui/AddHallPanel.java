@@ -42,6 +42,7 @@ public class AddHallPanel extends MainPanel{
 		this.add(id);
 
 		confirm = new ConfirmButton();
+		confirm.setBounds(400,537,80,30);
 		confirm.setActionCommand("AddStation");
 		confirm.addActionListener(controller);
 		this.add(confirm);

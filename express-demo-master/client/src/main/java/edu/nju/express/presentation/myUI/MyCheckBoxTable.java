@@ -102,8 +102,6 @@ public class MyCheckBoxTable extends JTable {
 		// 全选功能
 		this.getTableHeader().addMouseListener(new MouseAdapter() {
 
-		
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				boolean b = !check.isSelected();
@@ -127,28 +125,32 @@ public class MyCheckBoxTable extends JTable {
 
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
+			
 			if (row % 2 == 0)
 				setBackground(backColor1);
 			else if (row % 2 == 1)
 				setBackground(backColor2);
-			else
+			else{
 				setBackground(backColor2);
-
-			if (row != -1)
-				setSelected(value != null && (Boolean) value);
-
+			}
+			if(row!=-1)
+				setSelected(value != null&& (Boolean) value);
 			return this;
 		}
 	}
 
 	public ArrayList<String> getSelectedID() {
 		ArrayList<String> l = new ArrayList<String>();
+		ArrayList<Integer> temp = new ArrayList<Integer>();
 		for (int i = 0; i < table.getRowCount(); i++) {
-			if ((boolean) table.getValueAt(i, 0) == true) {
-				System.out.println(table.getValueAt(i, 2));
+			if ((boolean) table.getValueAt(i, 0) == true){
 				l.add((String) table.getValueAt(i, 2));
+				temp.add(i);
 			}
 		}
+		int gap = 0;
+		for(int i: temp)
+			this.getTableModel().removeRow(i-gap++);
 		return l;
 	}
 

@@ -24,7 +24,7 @@ public class PaymentUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 	static Font font = new Font("黑体", Font.PLAIN, 18);
 	static Color color = new Color(44, 62,80);
-	private static int x = 94, y = 50;
+	private static int x = 95, y = 50;
 	private static int h = 75;
 
 	private MyTablePanel table;

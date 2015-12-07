@@ -1,5 +1,6 @@
 package edu.nju.express.presentation.managerui;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
+import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.ReceiptVOBase;
 
 public class ReceiptApprovalUI extends MainPanel {
@@ -34,7 +36,9 @@ public class ReceiptApprovalUI extends MainPanel {
 	public ReceiptApprovalUI(ManageController c) {
 		controller = c;
 
-		refreshTable();
+		String[] header= { "全选", "单据种类", "单据编号", "提交时间" };
+		table = new MyCheckBoxTable(header);
+		initData();
 
 		this.add(new ManageGuide(c));
 
@@ -46,7 +50,8 @@ public class ReceiptApprovalUI extends MainPanel {
 		s.setColumnHeaderView(table.getTableHeader());
 		s.getColumnHeader().setOpaque(false);
 		s.setBorder(new EmptyBorder(0, 0, 0, 0));
-		s.getVerticalScrollBar().setUI(null);
+		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
 
 		jbtApprove = new JButton(img1);
@@ -60,24 +65,15 @@ public class ReceiptApprovalUI extends MainPanel {
 	}
 
 	private void initData() {
-		Object[] data1 = { false, "到达单", "123456", "2015/11/23" };
-		Object[] data2 = { false, "到达单", "123000", "2015/11/23" };
-		Object[] data3 = { false, "到达单", "123111", "2015/11/23" };
-		for (int i = 0; i < 10; i++) {
+		Object[] data1 = { false, "到达单", "0", "2015/11/23" };
+		for (int i = 1; i < 40; i++) {
+			data1[2] = i+"";
 			table.getTableModel().addRow(data1);
-			table.getTableModel().addRow(data2);
-			table.getTableModel().addRow(data3);
 		}
 	}
 
-	private void refreshTable() {
-		String[] header= { "全选", "单据种类", "单据编号", "提交时间" };
-		table = new MyCheckBoxTable(header);
-		initData();
-	}
 
 	public ArrayList<String> getIDtoApprove() {
-		refreshTable();
 		return table.getSelectedID();
 	}
 }

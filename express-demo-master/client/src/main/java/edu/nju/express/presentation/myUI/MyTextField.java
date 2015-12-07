@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 public class MyTextField extends JPanel {
 
 	/**
-	 * 
+	 * 0表示短文本框，-1表示不显示边框，其余为正常
 	 */
 	private static final long serialVersionUID = 1L;
 	private static Image img1 = new ImageIcon("ui/bar/field1.png").getImage();
@@ -41,10 +41,10 @@ public class MyTextField extends JPanel {
 		
 		if(type==0||type==-1){
 			width = 112;
-			field.setBounds(11, 0, (int)(width*0.8), height);
+			field.setBounds(15, 0, (int)(width*0.7), height);
 		}else{
 			width = 200;
-			field.setBounds(15, 0, (int)(width*0.85), height);
+			field.setBounds(20, 0, (int)(width*0.8), height);
 		}
 		this.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
@@ -115,6 +115,10 @@ public class MyTextField extends JPanel {
 
 		}
 
+	}
+	
+	public JTextField getTextField(){
+		return field;
 	}
 
 	public String getText() {

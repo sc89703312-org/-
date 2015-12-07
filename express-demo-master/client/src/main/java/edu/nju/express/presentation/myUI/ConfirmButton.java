@@ -22,7 +22,7 @@ public class ConfirmButton extends JButton{
 		this.setOpaque(false);
 		this.setBorderPainted(false);
 		this.setContentAreaFilled(false);
-		this.setBounds(400,537,80,30);
+		this.setBounds(450,537,80,30);
 	}
 	
 }

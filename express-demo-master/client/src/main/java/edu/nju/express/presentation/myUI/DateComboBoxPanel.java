@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.myUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Calendar;
 import java.util.Locale;
@@ -28,6 +29,9 @@ public class DateComboBoxPanel extends JPanel {
 		year = new MyComboBox<String>();
 		month = new MyComboBox<String>();
 		day = new MyComboBox<String>();
+		year.setPreferredSize(new Dimension(90, 32));
+		month.setPreferredSize(new Dimension(65, 32));
+		day.setPreferredSize(new Dimension(65, 32));
 		
 		for (int i = 2015; i <= 2030; i++)
 			year.addItem(i+"");

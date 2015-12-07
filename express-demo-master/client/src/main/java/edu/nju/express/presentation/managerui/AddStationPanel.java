@@ -41,6 +41,7 @@ public class AddStationPanel extends MainPanel{
 		this.add(id);
 
 		confirm = new ConfirmButton();
+		confirm.setBounds(400,537,80,30);
 		this.add(confirm);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("AddStation");

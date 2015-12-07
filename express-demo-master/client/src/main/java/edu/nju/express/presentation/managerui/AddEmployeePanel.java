@@ -67,6 +67,7 @@ public class AddEmployeePanel extends MainPanel {
 		this.add(jp);
 
 		confirm = new ConfirmButton();
+		confirm.setBounds(400,537,80,30);
 		confirm.setActionCommand("AddEmployee");
 		confirm.addActionListener(controller);
 		this.add(confirm);

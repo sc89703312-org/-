@@ -37,6 +37,7 @@ public class DismissEmployeePanel extends MainPanel {
 		
 		confirm = new ConfirmButton();
 		this.add(confirm);
+		confirm.setBounds(400,537,80,30);
 		confirm.addActionListener(controller);
 		confirm.setActionCommand("DismissEmployee");
 		
