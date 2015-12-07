@@ -99,4 +99,8 @@ public class MySearchFieldPanel extends JPanel{
 	public void setActionCommand(String actionCommand){
 		button.setActionCommand(actionCommand);
 	}
+	
+	public String getText(){
+		return field.getText();
+	}
 }

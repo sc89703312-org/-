@@ -3,6 +3,8 @@ package edu.nju.express.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 
 import edu.nju.express.blservice.BankingBlService;
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.MyButton;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.BankingAccountVO;
@@ -34,6 +37,7 @@ public class BankingUI extends MainPanel {
 
 	private MyTablePanel table;
 	private MySearchFieldPanel search;
+
 	private JButton add;
 	private JButton delete;
 	private JButton modify;
@@ -109,4 +113,30 @@ public class BankingUI extends MainPanel {
 		super.paintComponent(g);
 		g.drawImage(bg, 0, 0, null);
 	}
+	
+	
+	
+	public void clear(){
+		for(int i=0;i<list.size();i++)
+			table.getTableModel().removeRow(0);
+		
+	}
+	
+	
+	public void setNewComponents(ArrayList<BankingAccountVO> tempList){
+		
+		list = tempList;
+		
+		Object[] rowdata = new Object[2];
+		for (int i = 0; i <list.size(); i++) {
+			rowdata[0] = list.get(i).getName();
+			rowdata[1] = list.get(i).getMoney();
+			table.getTableModel().addRow(rowdata);
+		}
+	}
+	
+	public String getKeyWords(){
+		return search.getText();
+	}
+
 }

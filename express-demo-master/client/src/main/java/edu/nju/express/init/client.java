@@ -42,9 +42,6 @@ public class client {
 	
 		new LoginUI();		
 		
-		ArrayList<BankingAccountVO> a=	new Bankingbl().getAllAccounts();
-	    for(BankingAccountVO vo:a)
-		System.out.println(vo.getName()+"   "+vo.getMoney());
 
 
 

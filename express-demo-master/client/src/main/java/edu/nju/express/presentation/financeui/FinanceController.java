@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.financeui;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,6 +15,7 @@ import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
 import edu.nju.express.businesslogic.balancebl.balance.Balancebl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.vo.BankingAccountVO;
 
 public class FinanceController implements UIController {
 	JPanel currentPanel;
@@ -93,8 +95,12 @@ public class FinanceController implements UIController {
 			frame.validate();
 			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
-			
+		
 		}else if (e.getActionCommand().equals("SearchBanking")) {
+			ArrayList<BankingAccountVO> list = banking.showAccount(((BankingUI)currentPanel).getKeyWords());
+			((BankingUI)currentPanel).clear();
+			((BankingUI)currentPanel).setNewComponents(list);
+			
 			
 		}else if (e.getActionCommand().equals("AddBanking")) {
 			banking.addAccount(((AddBankingUI)currentPanel).getTextInput());
