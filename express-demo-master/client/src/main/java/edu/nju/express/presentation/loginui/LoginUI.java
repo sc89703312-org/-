@@ -178,8 +178,9 @@ public class LoginUI extends MyFrame{
 			else{
 				System.out.println("failed");
 			    label_field5.setVisible(true);
-			    errorConfirm =new MyButton(400,430,114,44);
-			   
+			    
+			    errorConfirm.setEnabled(true);
+			    errorConfirm.setVisible(true);
 			    
 			    errorConfirm.addMouseListener(new MouseListener() {
 					
@@ -210,19 +211,15 @@ public class LoginUI extends MyFrame{
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						// TODO Auto-generated method stub
-						
-					}
-				});
-			     errorConfirm.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
 						label_field5.setVisible(false);
+						errorConfirm.setVisible(false);
 					}
 				});
+			     
 			    
 			     LoginUI.this.add(errorConfirm);
+
+                 
 			    
 			}
 		}else if (e.getSource()==logistics) {
@@ -262,7 +259,8 @@ public class LoginUI extends MyFrame{
 			
 			
 			
-			
+			errorConfirm =new MyButton(400,430,114,44);
+			errorConfirm.setEnabled(false);
 			
 			
 			quit = new MyButton(WIDTH - BAR_HEIGHT-10 , 10, BAR_HEIGHT ,BAR_HEIGHT);
