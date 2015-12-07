@@ -42,7 +42,7 @@ public class ModifyBankingUI extends MainPanel{
 		
 		confirm = new ConfirmButton();
 		confirm.setBounds(400,537,80,30);
-		confirm.setActionCommand("MOdifyBanking");
+		confirm.setActionCommand("ModifyBanking");
 		confirm.addActionListener(controller);
 		this.add(confirm);
 		

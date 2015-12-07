@@ -30,7 +30,7 @@ public class BankingAccountPO extends PersistentObj  implements Serializable{
 	}
 	
 	public void changeName(String newName){
-		this.name = newName;
+		this.id = newName;
 	}
 	
 	public void addMoney(int num){

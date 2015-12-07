@@ -9,6 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import edu.nju.express.blservice.BankingBlService;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
@@ -29,6 +30,7 @@ public class BankingUI extends MainPanel {
 	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 	
 	private FinanceController controller;
+	private BankingBlService bankingBL;
 
 	private MyTablePanel table;
 	private MySearchFieldPanel search;
@@ -42,7 +44,7 @@ public class BankingUI extends MainPanel {
 
 		this.controller = c;
 
-
+        bankingBL = c.banking;
 		this.add(new FinanceGuide(c));
 
 		search = new MySearchFieldPanel(c);
@@ -97,9 +99,8 @@ public class BankingUI extends MainPanel {
 
 
 	private void initData() {
-		list = new ArrayList<BankingAccountVO>();
-		for(int i=0;i<20;i++)
-		list.add(new BankingAccountVO("622202194898561354889", 200000+i));
+		list = bankingBL.getAllAccounts();
+		
 	}
 
 	@Override

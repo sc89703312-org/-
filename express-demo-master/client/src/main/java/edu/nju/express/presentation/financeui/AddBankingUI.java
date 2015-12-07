@@ -1,6 +1,9 @@
 package edu.nju.express.presentation.financeui;
+
+
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.BankingBlService;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.CancelButton;
 import edu.nju.express.presentation.myUI.ConfirmButton;
@@ -11,7 +14,7 @@ public class AddBankingUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 	
 	FinanceController controller;
-
+    BankingBlService bankingBL;
 	LabelTextField id;
 	ConfirmButton confirm;
 	CancelButton cancel;
@@ -21,6 +24,7 @@ public class AddBankingUI extends MainPanel {
 
 	public AddBankingUI(FinanceController c) {
 		controller = c;
+		bankingBL = controller.banking;
 		this.setLayout(null);
 		this.add(new FinanceGuide(controller));
 		this.setOpaque(false);

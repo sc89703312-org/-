@@ -3,6 +3,7 @@ package edu.nju.express.presentation.financeui;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.common.Item;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
@@ -19,7 +20,7 @@ public class BalanceHistoryPanel extends MainPanel {
 	
 	private MyTablePanel table;
 	private FinanceController controller;
-	
+	private CostControlService costControlBL;
 	private ArrayList<Balancevo> list;
 	
 	
@@ -28,7 +29,7 @@ public class BalanceHistoryPanel extends MainPanel {
 		this.controller = c;
 		
 		this.add(new FinanceGuide(c));
-		
+		costControlBL = controller.cost;
 		ReturnButton jbtReturn = new ReturnButton();
 		jbtReturn.addActionListener(controller);
 		jbtReturn.setActionCommand("PaymentUI");
@@ -64,9 +65,6 @@ public class BalanceHistoryPanel extends MainPanel {
 	}
 
 	private void initData() {
-		list = new ArrayList<Balancevo>();
-		for(int i =0;i<30;i++){
-			list.add(new Balancevo("2015/11/28", 1000+i, "Oraisdy", "62220212345689876", Item.RENT, "XXXXXX"));
-		}
+		list = costControlBL.viewAllCost();
 	}
 }

@@ -13,5 +13,5 @@ public interface BankingBlService {
 	public ResultMessage removeAccount(String name);
 	public ResultMessage modifyAccount(String newName, String name);
 	public ArrayList<BankingAccountVO> showAccount(String subName);
-
+	public ArrayList<BankingAccountVO> getAllAccounts();
 }
