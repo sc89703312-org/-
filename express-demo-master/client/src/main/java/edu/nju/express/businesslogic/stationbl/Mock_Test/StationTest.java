@@ -14,15 +14,15 @@ public class StationTest {
 		System.out.println("Client creates!");
 		
 		StationBl stationbl = new StationBl();
-		stationbl.addStation("025", "Nanjing");
-		stationbl.addStation("026", "Shanghai");
-		stationbl.deleteStation("025");
+		System.out.println(stationbl.addStation("035", "zenmeban"));
+		System.out.println(stationbl.addStation("025", "Nanjing"));
+		//stationbl.deleteStation("026");
 		ArrayList<StationVO> list = stationbl.showStation();
 		for(int i=0;i<list.size();i++){
 			System.out.println(list.get(i).getId()+" "+list.get(i).getName());
 		}
 		
-		StationReceiptBl receiptbl = new StationReceiptBl(null,null);
+		//StationReceiptBl receiptbl = new StationReceiptBl(null,null);
 
 		
 	}

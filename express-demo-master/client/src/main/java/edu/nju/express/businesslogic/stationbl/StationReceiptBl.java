@@ -17,6 +17,7 @@ import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.init.client;
 import edu.nju.express.po.ArriveReceiptPO;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.vo.ArriveReceiptVO;
@@ -37,6 +38,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	String location;
 	
 	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
+		stationID = LoginInfo.getUserID().substring(0, 2);
 		stationDataService = RMIHelper.getStationDataService();
 		hallDataService = RMIHelper.getHallDataService();
 		this.orderInfo= orderInfo;

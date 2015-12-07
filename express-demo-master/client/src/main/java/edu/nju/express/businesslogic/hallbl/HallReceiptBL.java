@@ -18,6 +18,7 @@ import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.ArrivalReceiptPO;
 import edu.nju.express.po.DeliverReceiptPO;
 import edu.nju.express.po.HallTransferReceiptPO;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
@@ -38,6 +39,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
     StationDataService stationDataService;
 	
 	public HallReceiptBL(PaymentOrderInfo paymentInfo, OrderInfo orderInfo,Vehiclebl vehiclebl,SetOrderSpot setOrderSpot){
+		hallID = LoginInfo.getUserID().substring(0, 5);
 		this.orderInfo = orderInfo;
 		this.vehiclebl = vehiclebl;
 		this.setOrderSpot = setOrderSpot;

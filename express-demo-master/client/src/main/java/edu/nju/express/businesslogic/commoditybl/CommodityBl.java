@@ -38,7 +38,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
-		comID = userID.substring(0, userID.length()-2);
+		comID = userID.substring(0, 2);
 		try {
 			location = commodityDataService.getLocation(comID);
 		} catch (RemoteException e) {
