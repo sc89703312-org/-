@@ -3,7 +3,6 @@ package edu.nju.express.presentation.managerui;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
-import edu.nju.express.vo.SalaryVO;
 
 public class SalaryUI extends MainPanel {
 
@@ -13,7 +12,7 @@ public class SalaryUI extends MainPanel {
 	private static final long serialVersionUID = 1L;
 
 	private ManageController controller;
-	private double clerk, driver, postman;
+	private int clerk, driver, postman;
 
 	private ManageGuide guide;
 	private ConfirmButton confirm;
@@ -46,15 +45,14 @@ public class SalaryUI extends MainPanel {
 		
 		confirm = new ConfirmButton();
 		this.add(confirm);
-		confirm.setActionCommand("SetSalary");
+		confirm.setActionCommand("GetSalary");
 		confirm.addActionListener(controller);
 	}
 
 	private void initData() {
-		SalaryVO vo =controller.getSalaryData();
-		clerk = vo.getClerkSalary();
-		driver = vo.getDriverWage();
-		postman = vo.getPostmanWage();
+		clerk = 2000;
+		driver = 50;
+		postman = 3;
 
 	}
 	
