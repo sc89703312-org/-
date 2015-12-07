@@ -34,7 +34,7 @@ public class client {
 		RMIHelper.init();
 		System.out.println("Client creates!");
 		
-		
+		new UserBl().addUser("finance", "Tiny", Role.ACCOUNTANT, "hhh");
 
 		
 		new LoginUI();		
