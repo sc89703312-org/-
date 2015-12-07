@@ -33,7 +33,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	public ResultMessage setDistance(String id1, String id2, double distance) {
 		// TODO Auto-generated method stub
 		
-		LogController.insertLog(new LogMessage("Set Distance", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设定城市距离", LoginInfo.getUserName()));
 		try {
 			constantDataService.setCityDistance(id1, id2, distance);
 		} catch (RemoteException e) {
@@ -49,7 +49,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	public ResultMessage setPrice(double p) {
 		
 		
-		LogController.insertLog(new LogMessage("Set Price", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设定价格", LoginInfo.getUserName()));
 		
 		
 		
@@ -69,7 +69,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	public ResultMessage setVehicleCost(double van, double railway, double airplane) {
 		
 		
-		LogController.insertLog(new LogMessage("Set VehicleCost", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设置交通费用", LoginInfo.getUserName()));
 		
 		
 		
@@ -91,7 +91,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	@Override
 	public ResultMessage setVehicleLoad(int van, int railway, int airplane) {
 	
-		LogController.insertLog(new LogMessage("Set VehicleLoad", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设置承载量", LoginInfo.getUserName()));
 		
 		
 		
@@ -118,7 +118,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	
 	public void addCity(String CityID){
 		
-		LogController.insertLog(new LogMessage("Add City", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("新增城市", LoginInfo.getUserName()));
 		
 		
 		try {

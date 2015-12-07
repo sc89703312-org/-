@@ -8,7 +8,10 @@ import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.BankingDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.log.LogController;
 import edu.nju.express.po.BankingAccountPO;
+import edu.nju.express.po.LogMessage;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.BankingAccountVO;
 
 
@@ -27,6 +30,7 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		
 		try {
 			bankingDataService.addAccount(name);
+			LogController.insertLog(new LogMessage("添加银行账户", LoginInfo.getUserName()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,6 +45,7 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		
 		try {
 			result = bankingDataService.removeAccount(name);
+			LogController.insertLog(new LogMessage("删除银行账户", LoginInfo.getUserName()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,6 +63,7 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		
 		try {
 			result = bankingDataService.modifyName(newName, name);
+			LogController.insertLog(new LogMessage("查找银行账户", LoginInfo.getUserName()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

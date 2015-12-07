@@ -29,7 +29,7 @@ public class ManagementBl implements ManagementBlService,ManagementInfo{
 	@Override
 	public ResultMessage addEmployee(String id, String name, Role role) {
 		
-		LogController.insertLog(new LogMessage("Add Employee", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("增加雇员", LoginInfo.getUserName()));
 		
 		return userBL.createUserMessage(StaffChange.add, id, name, role);
 	}
@@ -37,7 +37,7 @@ public class ManagementBl implements ManagementBlService,ManagementInfo{
 	@Override
 	public ResultMessage dismissEmployee(String id) {
 		
-		LogController.insertLog(new LogMessage("Dismiss Employee", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("解雇雇员", LoginInfo.getUserName()));
 		
 		
 		return userBL.createUserMessage(StaffChange.delete, id, null, null);

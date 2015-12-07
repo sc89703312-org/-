@@ -142,7 +142,7 @@ public class Accountbl implements Accountblservice{
 		}
 	    
 	    
-	    LogController.insertLog(new LogMessage("Create Account", LoginInfo.getUserName()));
+	    LogController.insertLog(new LogMessage("进行期初建账", LoginInfo.getUserName()));
 	   
 	}
 	

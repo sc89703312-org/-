@@ -34,7 +34,7 @@ public class SalarySettingBl implements SalarySettingBlService {
 	public ResultMessage setClerkSalary(double salary) {
 		
 		
-		LogController.insertLog(new LogMessage("Set Salary", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设定月薪", LoginInfo.getUserName()));
 		
 		
 		if (salary <= 0)
@@ -52,7 +52,7 @@ public class SalarySettingBl implements SalarySettingBlService {
 	@Override
 	public ResultMessage setDriverWage(double wage) {
 		
-		LogController.insertLog(new LogMessage("Set DriverWage", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设定司机运费", LoginInfo.getUserName()));
 		
 		
 		
@@ -72,7 +72,7 @@ public class SalarySettingBl implements SalarySettingBlService {
 	public ResultMessage setPostmanWage(double wage) {
 		
 		
-		LogController.insertLog(new LogMessage("Set PostmanWage", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("设置快递员提成", LoginInfo.getUserName()));
 		
 		
 		if (wage <= 0)

@@ -62,7 +62,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		
 		else{
 			
-			LogController.insertLog(new LogMessage("Create Payment", LoginInfo.getUserName()));
+			LogController.insertLog(new LogMessage("建立收款单", LoginInfo.getUserName()));
 			
 		try {
 			temp =paymentDataService.insert(convertVO(vo));

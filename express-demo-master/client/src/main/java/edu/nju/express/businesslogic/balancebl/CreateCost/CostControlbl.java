@@ -73,7 +73,7 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 		if(exsit){
 		modify(vo.getBanking(), (int)vo.getMoney());
 		
-		LogController.insertLog(new LogMessage("Create Cost", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("建立付款单", LoginInfo.getUserName()));
 		
 		try {
 			balancedataservice.insert(convertVO(vo));

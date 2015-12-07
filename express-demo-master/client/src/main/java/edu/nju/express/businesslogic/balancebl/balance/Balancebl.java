@@ -78,7 +78,7 @@ public class Balancebl implements Balanceblservice{
 		
 		temp[2] = temp[0] - temp[1];
 		
-		LogController.insertLog(new LogMessage("Create Balance Report", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("结算成本收入", LoginInfo.getUserName()));
 		
 		return temp;
 	}

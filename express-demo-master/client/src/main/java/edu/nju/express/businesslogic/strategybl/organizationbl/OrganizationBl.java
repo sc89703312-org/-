@@ -45,7 +45,7 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
      	if(stationbl.addStation(id, name).equals(ResultMessage.VALID))
 			constantSettingBL.addCity(name);
 		
-     	LogController.insertLog(new LogMessage("Add Station", LoginInfo.getUserName()));
+     	LogController.insertLog(new LogMessage("增加中转站", LoginInfo.getUserName()));
 		
 		return stationbl.addStation(id, name);
 		
@@ -55,7 +55,7 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 	@Override
 	public ResultMessage deleteStation(String id) {
 		
-		LogController.insertLog(new LogMessage("Delete Station", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("删除中转站", LoginInfo.getUserName()));
 		
 		
 		return stationbl.deleteStation(id);
@@ -70,7 +70,7 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 	@Override
 	public ResultMessage createHall(String id, String name) {
 		
-		LogController.insertLog(new LogMessage("Create Hall", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("增加营业厅", LoginInfo.getUserName()));
 		
 		
 		return hallbl.addHall(id, name);
@@ -80,7 +80,7 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 	public ResultMessage deleteHall(String id) {
 		// TODO Auto-generated method stub
 		
-		LogController.insertLog(new LogMessage("Delete Hall", LoginInfo.getUserName()));
+		LogController.insertLog(new LogMessage("删除营业厅", LoginInfo.getUserName()));
 		
 		
 		return hallbl.removeHall(id);
