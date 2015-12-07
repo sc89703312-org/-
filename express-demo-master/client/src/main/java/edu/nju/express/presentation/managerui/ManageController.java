@@ -29,6 +29,7 @@ public class ManageController implements UIController {
 	
 	public ManageController(JFrame f) {
 		this.frame = f;
+		currentPanel = (JPanel)f.getContentPane();
 		manage = DataFactory.createManagementBlInstance();
 		org = DataFactory.createOrganizationBl();
 		receipt = DataFactory.createReceiptBlInstance();

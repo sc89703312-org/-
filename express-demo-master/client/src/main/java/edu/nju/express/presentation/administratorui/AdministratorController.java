@@ -18,7 +18,7 @@ public class AdministratorController implements UIController{
 	private JPanel currentPanel;
 	private JFrame frame;
 	private UserBlService user;
-	public AdministratorController( JFrame f) {
+	public AdministratorController( Administor_Frame f) {
 		currentPanel = (JPanel)f.getContentPane();
 		frame = f;
 		user = DataFactory.createUserBlInstance();
