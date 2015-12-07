@@ -1,13 +1,16 @@
 package edu.nju.express.presentation.administratorui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.nju.express.blservice.UserBlService;
+import edu.nju.express.common.StaffChange;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.vo.UserMessageVO;
 
 public class CheckTaskUI extends MainPanel {
 
@@ -24,7 +27,7 @@ public class CheckTaskUI extends MainPanel {
 	static int h=50;
 	
 	AdministratorController controller;
-	UserBlService us;
+	ArrayList<UserMessageVO> list;
 	JPanel p;
 	MyTablePanel table1, table2;
 	JLabel label1, label2;
@@ -50,27 +53,34 @@ public class CheckTaskUI extends MainPanel {
 		table2.setRowHeight(ROW_HEIGHT);
 		
 		initData();
-		table1.getTable().setPreferredScrollableViewportSize(new Dimension(726, 120));
-		table1.setBounds(128, 107, 726, 150);
-		table2.getTable().setPreferredScrollableViewportSize(new Dimension(726, 120));
-		table2.setBounds(128, 300, 726, 150);
+		table1.getTable().setPreferredScrollableViewportSize(new Dimension(715, 120));
+		table1.setBounds(128, 107, 726, 160);
+		table2.getTable().setPreferredScrollableViewportSize(new Dimension(715, 120));
+		table2.setBounds(128, 300, 726, 160);
 		this.add(table1);
 		this.add(table2);
 	}
 
 	
 	private void initData() {
-		String[] rowdata = { "141250030", "dy", "daef" };
-		table1.getTableModel().addRow(rowdata);
-		table1.getTableModel().addRow(rowdata);
-		table1.getTableModel().addRow(rowdata);
-		table1.getTableModel().addRow(rowdata);
-		table1.getTableModel().addRow(rowdata);
-		table1.getTableModel().addRow(rowdata);
-
-		String[] data = { "141250030" };
-		table2.getTableModel().addRow(data);
+		list = controller.getUserMessageList();
+		String[] rowdata;
 		
+		for(UserMessageVO vo: list){
+			
+			switch(vo.getOperation()){
+			case add:
+				rowdata = new String[3];
+				rowdata[0] = vo.getId();
+				rowdata[1] = vo.getName();
+				rowdata[2] = vo.getRole().getName();
+				table1.getTableModel().addRow(rowdata);break;
+			case delete:
+				rowdata = new String[1];
+				rowdata[0] = vo.getId();
+				table1.getTableModel().addRow(rowdata);break;
+			}
+		}
 	}
 
 	private void initGuide() {

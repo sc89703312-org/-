@@ -2,6 +2,7 @@ package edu.nju.express.presentation.administratorui;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
@@ -67,6 +68,7 @@ public class AddUserUI extends MainPanel {
 		roleLabel.setFont( font); 
 		jp.add(roleLabel);
 		roleBox = new MyComboBox<String>();
+		roleBox.setPreferredSize(new Dimension(160,32));
 		for (Role r : Role.values())
 			roleBox.addItem(r.getName());
 		jp.add(roleBox);

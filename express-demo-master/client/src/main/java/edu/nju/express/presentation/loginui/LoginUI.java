@@ -18,8 +18,10 @@ import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
 import edu.nju.express.log.ui.frame.Frame;
+import edu.nju.express.presentation.administratorui.Administor_Frame;
 import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
+import edu.nju.express.presentation.managerui.Manager_Frame;
 import edu.nju.express.presentation.myUI.MyBackground;
 import edu.nju.express.presentation.myUI.MyButton;
 import edu.nju.express.presentation.myUI.MyFrame;
@@ -129,6 +131,7 @@ public class LoginUI extends MyFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				new Administor_Frame();
 				
 			}else if (role==Role.MANAGER) {
 				LoginUI.this.closeFrame();
@@ -138,6 +141,7 @@ public class LoginUI extends MyFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				new Manager_Frame();
 			}else if (role==Role.POSTMAN) {
 				LoginUI.this.closeFrame();
 				try {

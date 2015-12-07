@@ -8,8 +8,6 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
 
-import edu.nju.express.presentation.logisticui.Logistic_Frame;
-
 
 public class MyFrame extends JFrame{
 
@@ -25,7 +23,10 @@ public class MyFrame extends JFrame{
 
 		this.setUndecorated(true);
 		this.setBackground(new Color(0, 0, 0,0));
-		setDragable();
+		this.setDragable();
+		this.setSize(900, 600);
+	    this.setLocationRelativeTo(null);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		new HyalineValue().start();
 	}
 	

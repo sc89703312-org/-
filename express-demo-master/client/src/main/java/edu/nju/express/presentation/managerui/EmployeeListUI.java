@@ -24,15 +24,15 @@ public class EmployeeListUI extends MainPanel {
 	private static Icon delete1 = new ImageIcon("ui/button/deleteemployee1.png");
 	private static Icon delete2 = new ImageIcon("ui/button/deleteemployee2.png");
 
-	ManageController controller;
+	private ManageController controller;
 
-	ArrayList<EmployeeVO> list;
+	private ArrayList<EmployeeVO> list;
 
-	MyTablePanel table;
-	DefaultTableModel model;
-	JPanel buttons;
-	JButton jbtAdd;
-	JButton jbtDelete;
+	private MyTablePanel table;
+	private DefaultTableModel model;
+	private JPanel buttons;
+	private JButton jbtAdd;
+	private JButton jbtDelete;
 
 	private static int TABLE_ROW_HEIGHT = 30;
 
@@ -74,11 +74,7 @@ public class EmployeeListUI extends MainPanel {
 	}
 
 	private void initdata() {
-		list = new ArrayList<EmployeeVO>();
-		for (int i = 0; i < 20; i++) {
-			list.add(new EmployeeVO("141250030", "q", Role.ACCOUNTANT));
-			list.add(new EmployeeVO("141250030", "dy", Role.ACCOUNTANT));
-		}
+		list = controller.getEmployeeList();
 	}
 
 	private void initTable() {
