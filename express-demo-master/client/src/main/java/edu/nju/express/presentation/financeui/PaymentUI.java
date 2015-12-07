@@ -156,11 +156,9 @@ public class PaymentUI extends MainPanel implements ActionListener{
 
 		
 		
-		
 		if(e.getSource()!=hall.button){
 		list = viewBL.viewByDate(date.getDate());
 		}else {
-			System.out.println("!!!");
 			list = viewBL.viewByHall(hall.getText());
 		}
 		
