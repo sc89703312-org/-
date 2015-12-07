@@ -41,6 +41,22 @@ public class LogMessage extends PersistentObj implements Serializable {
 	}
 	
 	
+	public LogMessage(String time,String message,String userName) {
+		// TODO Auto-generated constructor stub
+	
+	this.username = userName;
+	
+	this.time = time;
+	
+	this.message = message;
+	
+	this.id = time;
+	
+	this.date = time.substring(0,10);
+	}
+	
+	
+	
 	public String toString() {
 		return "[" + this.time + "] [" + this.username + "] " + this.message;
 	}
