@@ -15,14 +15,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.ViewPaymentService;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
+import edu.nju.express.presentation.myUI.MyButton;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.Paymentvo;
 
-public class PaymentUI extends MainPanel {
+public class PaymentUI extends MainPanel implements ActionListener{
 
 	/**
 	 * 
@@ -36,13 +38,15 @@ public class PaymentUI extends MainPanel {
 	private DateComboBoxPanel date;
 	private MySearchFieldPanel hall;
 	private JButton calculate;
-
+	private MyButton hallButton;
+    private ViewPaymentService viewBL;
 	private FinanceController controller;
 	private ArrayList<Paymentvo> list;
 	private PaymentUI ui;
 
 	public PaymentUI(FinanceController c) {
 		this.controller = c;
+		viewBL = c.view;
 		ui = this;
 
 		this.add(new FinanceGuide(c));
@@ -53,33 +57,29 @@ public class PaymentUI extends MainPanel {
 		selectDate.setFont(font);
 		selectDate.setForeground(color);
 		date = new DateComboBoxPanel();
-		date.getYearComboBox().addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-
-		});
-		date.getMonthComboBox().addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-
-		});
-		date.getDayComboBox().addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-
-		});
+		date.getYearComboBox().addActionListener(this);
+		date.getMonthComboBox().addActionListener(this);
+		date.getDayComboBox().addActionListener(this);
+		
+//		
+//		hallButton = new MyButton(404, 115, 35, 35);
+//		hallButton.setVisible(true);
+//		hallButton.setOpaque(false);
+//		hallButton.addActionListener(this);
+//		this.add(hallButton);
+		
 		
 		JLabel selectHall = new JLabel("按营业厅查看：");
 		selectHall.setFont(font);
 		selectHall.setForeground(color);
 		hall = new MySearchFieldPanel(controller);
+		hall.setBounds(251,120,200, 33);
+		hall.button.addActionListener(this);
+		this.add(hall);
 
+		
+		
+		
 		JPanel p = new JPanel();
 		p.setOpaque(false);
 		JPanel p1 = new JPanel();
@@ -126,9 +126,8 @@ public class PaymentUI extends MainPanel {
 
 	
 	private void initData() {
-		list = new ArrayList<Paymentvo>();
-		for (int i = 0; i < 20; i++)
-			list.add(new Paymentvo("", 1+i, "", "", ""));
+		list = viewBL.getAll();
+		
 	}
 
 	@Override
@@ -137,5 +136,53 @@ public class PaymentUI extends MainPanel {
 		super.paintComponent(g);
 		g.drawImage(bg,0,0,null);
 	}
+	
+	
+	public void clearTable(){
+		
+		
+		for(int i=0;i<=list.size();i++)
+			table.getTableModel().removeRow(0);
+		
+	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+
+
+		clearTable();
+
+		
+		
+		
+		if(e.getSource()!=hall.button){
+		list = viewBL.viewByDate(date.getDate());
+		}else {
+			System.out.println("!!!");
+			list = viewBL.viewByHall(hall.getText());
+		}
+		
+		Object[] rowdata = new Object[4];
+		double sum = 0;
+		for (int i = 0; i < list.size(); i++) {
+			Paymentvo vo = list.get(i);
+			rowdata[0] = vo.getDate();
+			rowdata[1] = vo.getPay();
+			sum += (double) rowdata[1];
+			rowdata[2] = vo.getCourier_id();
+			rowdata[3] = vo.getOrder_id();
+			table.getTableModel().addRow(rowdata);
+		}
+		Object[] last = {"总计",sum,"",""};
+		table.getTableModel().addRow(last);
+		table.setRowHeight(30);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
+		table.setBounds(128, 160, 727, 425);;
+	}
+	
+	
+	
 	
 }

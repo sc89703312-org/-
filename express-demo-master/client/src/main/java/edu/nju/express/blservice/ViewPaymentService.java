@@ -11,6 +11,7 @@ public interface ViewPaymentService {
 	
 	public ArrayList<Paymentvo> viewByHall(String number);
 	public ArrayList<Paymentvo> viewByDate(String date);
+	public ArrayList<Paymentvo> getAll();
 	
 	public double sumPaymentByHall(String number);
 	public double sumPaymentByDay(String date);

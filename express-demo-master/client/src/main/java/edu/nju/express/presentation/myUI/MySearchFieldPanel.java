@@ -26,7 +26,7 @@ public class MySearchFieldPanel extends JPanel{
 	private static Image img3= new ImageIcon("ui/bar/searchbar/search3.png").getImage();
 	
 	private JTextField field;
-	private JButton button;
+	public JButton button;
 	private MySearchFieldPanel p;
 	private int state = 1;
 	private int width = 200;

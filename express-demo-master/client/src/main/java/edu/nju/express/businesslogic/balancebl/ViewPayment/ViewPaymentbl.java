@@ -69,4 +69,15 @@ public class ViewPaymentbl implements ViewPaymentService{
 		
 	}
 
+
+
+
+
+
+	@Override
+	public ArrayList<Paymentvo> getAll() {
+		// TODO Auto-generated method stub
+		return paymentList.getList();
+	}
+
 }
