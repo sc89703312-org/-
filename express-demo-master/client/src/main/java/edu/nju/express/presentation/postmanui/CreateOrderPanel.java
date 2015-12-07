@@ -190,8 +190,8 @@ public class CreateOrderPanel extends MainPanel {
 		this.add(confirm);
 	}
 
-	public OrderVO getInput() {
-		/*double pkgCost;
+	/*public OrderVO getInput() {
+		double pkgCost;
 		switch ((pkgCostBox.getSelectedItem()) {
 		case value:
 			
@@ -206,6 +206,6 @@ public class CreateOrderPanel extends MainPanel {
 				Double.parseDouble(weight.getText()),Double.parseDouble(size.getText()),
 				goodsName.getText(),Double.parseDouble(size.getText()), 
 				pkgCost, totalCost, id.getText(),
-				fast, no, expected, currentSpot);*/
+				fast, no, expected, currentSpot);
 	}
-}
+*/}
