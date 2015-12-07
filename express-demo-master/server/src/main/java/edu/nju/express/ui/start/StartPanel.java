@@ -3,6 +3,8 @@ package edu.nju.express.ui.start;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
@@ -17,7 +19,13 @@ import javax.swing.ImageIcon;
 
 
 
+
+
+
+
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.ui.MyButton;
+import edu.nju.express.ui.MyLabel;
 import edu.nju.express.ui.ServerButton;
 import edu.nju.express.ui.ServerPanel;
 import edu.nju.express.ui.UIConfig;
@@ -57,6 +65,9 @@ public class StartPanel extends ServerPanel {
 	private ServerButton startBtn;
 	/** 关闭服务器按钮 */
 	private ServerButton stopBtn;
+	
+	private MyButton exit;
+	private MyLabel exitLabel;
 
 	/** 开始按钮和关闭按钮的坐标 */
 	private int buttonX = 74;
@@ -79,6 +90,25 @@ public class StartPanel extends ServerPanel {
 		this.frame = parent;
 		
         setHost();
+        
+        
+        exit = new MyButton(823, 27, 40, 40);
+        exit.setVisible(true);
+        exit.setOpaque(false);
+        exit.setIcon(new ImageIcon("images/exit.png"));
+        exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
+        this.add(exit);
+       
+     
+        
+        
 		serverInfoPanel = new ServerInfoPanel(hostAddr, hostName,RMIHelper.isStarted );
 		serverInfoPanel.setLocation(serverInfoPanelPoint);
 		this.add(serverInfoPanel);
