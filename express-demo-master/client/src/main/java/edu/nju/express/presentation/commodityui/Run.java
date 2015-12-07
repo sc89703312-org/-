@@ -2,6 +2,11 @@ package edu.nju.express.presentation.commodityui;
 
 import java.awt.Color;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import edu.nju.express.presentation.managerui.ManageController;
+import edu.nju.express.presentation.managerui.ReceiptApprovalUI;
 import edu.nju.express.presentation.myUI.MyFrame;
 
 public class Run {
@@ -15,7 +20,11 @@ public class Run {
         f.setLocationRelativeTo(null);
         f.setUndecorated(true);
         
-        
+        JPanel p = null;
+        p = new EnterManageUI(new CommodityController(f));
+        f.add(p);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	

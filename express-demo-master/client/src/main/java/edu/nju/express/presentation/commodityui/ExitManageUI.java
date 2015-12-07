@@ -11,25 +11,25 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
-import edu.nju.express.vo.ArriveReceiptVO;
+import edu.nju.express.vo.TransferReceiptVO;
 
-public class EnterManageUI extends MainPanel{
+public class ExitManageUI extends MainPanel{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	CommodityController controller;
-	ArrayList<ArriveReceiptVO> volist;
+	ArrayList<TransferReceiptVO> volist;
 	ArrayList<Object[]> list;
-	private static Icon img1 = new ImageIcon("ui/button/createnter1.png");
-	private static Icon img2 = new ImageIcon("ui/button/createnter2.png");
+	private static Icon img1 = new ImageIcon("ui/button/createxit1.png");
+	private static Icon img2 = new ImageIcon("ui/button/createxit2.png");
 	
 	MyCheckBoxTable table;
-	JButton createnter;
+	JButton createxit;
 	
-	public EnterManageUI(CommodityController c){
+	public ExitManageUI(CommodityController c){
 		
 		this.controller = c;
 		
@@ -51,14 +51,14 @@ public class EnterManageUI extends MainPanel{
 		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
 		
-		createnter = new JButton(img1);
-		createnter.setRolloverIcon(img2);
-		createnter.setContentAreaFilled(false);
-		createnter.setBorderPainted(false);
-		createnter.setBounds(450,537,80,30);
-		createnter.setActionCommand("createnter");
-		createnter.addActionListener(controller);
-		this.add(createnter);
+		createxit = new JButton(img1);
+		createxit.setRolloverIcon(img2);
+		createxit.setContentAreaFilled(false);
+		createxit.setBorderPainted(false);
+		createxit.setBounds(450,537,80,30);
+		createxit.setActionCommand("createxit");
+		createxit.addActionListener(controller);
+		this.add(createxit);
 		
 	}
 	
@@ -71,9 +71,9 @@ public class EnterManageUI extends MainPanel{
 		}
 	}
 	
-	public ArriveReceiptVO getSelectReceipt(){
+	public TransferReceiptVO getSelectReceipt(){
 		int i = table.getSelectedRow();
 		return volist.get(i);
 	}
-
+	
 }
