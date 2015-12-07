@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.Calendar;
 import java.util.Locale;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -63,6 +64,18 @@ public class DateComboBoxPanel extends JPanel {
 		this.add(day);
 		this.add(d);
 		
+	}
+	
+	public JComboBox<String> getYearComboBox(){
+		return year;
+	}
+	
+	public JComboBox<String> getMonthComboBox(){
+		return month;
+	}
+	
+	public JComboBox<String> getDayComboBox(){
+		return day;
 	}
 	
 	public String getDate(){

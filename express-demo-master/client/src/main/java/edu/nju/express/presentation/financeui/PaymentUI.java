@@ -3,15 +3,19 @@ package edu.nju.express.presentation.financeui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.Paymentvo;
@@ -22,13 +26,13 @@ public class PaymentUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 	static Font font = new Font("黑体", Font.PLAIN, 18);
 	static Color color = new Color(44, 62,80);
-	private static int x = 95, y = 50;
-	private static int h = 75;
 
 	private MyTablePanel table;
-	private MyComboBox<String> style;
+	private DateComboBoxPanel date;
+	private MyComboBox<String> hall;
 	private JButton calculate;
 
 	private FinanceController controller;
@@ -41,32 +45,42 @@ public class PaymentUI extends MainPanel {
 
 		this.add(new FinanceGuide(c));
 
-		showTablebyDate();
+		showTable();
 
-		JLabel sort = new JLabel("选择排序方式：");
-		sort.setFont(font);
-		sort.setForeground(color);
-		style = new MyComboBox<String>();
-		style.addItem("日期");
-		style.addItem("营业厅");
-		style.addActionListener(new ActionListener() {
+		JLabel selectDate = new JLabel("选择日期：");
+		selectDate.setFont(font);
+		selectDate.setForeground(color);
+		date = new DateComboBoxPanel();
+		date.getYearComboBox().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println((String) style.getSelectedItem());
-				switch ((String) style.getSelectedItem()) {
-				case "日期":
-					ui.remove(table);
-					showTablebyDate();
-					ui.validate();
-					ui.repaint();
-					break;
-				case "营业厅":
-					ui.remove(table);
-					showTablebyHall();
-					ui.validate();
-					ui.repaint();
-					break;
-				}
+
+			}
+
+		});
+		date.getMonthComboBox().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+		});
+		date.getDayComboBox().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+		});
+		
+		JLabel selectHall = new JLabel("      选择营业厅：");
+		selectHall.setFont(font);
+		selectHall.setForeground(color);
+		hall = new MyComboBox<String>();
+		hall.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println((String) hall.getSelectedItem());
 
 			}
 
@@ -74,15 +88,17 @@ public class PaymentUI extends MainPanel {
 
 		JPanel p = new JPanel();
 		p.setOpaque(false);
-		p.add(sort);
-		p.add(style);
-		p.setBounds(100, 120, 400, 36);
+		p.add(selectDate);
+		p.add(date);
+		p.add(selectHall);
+		p.add(hall);
+		p.setBounds(80, 80, 800, 50);
 		this.add(p);
 
 	}
 
-	private void showTablebyDate() {
-		initDatabyDate();
+	private void showTable() {
+		initData();
 		String[] header = { "收款日期", "收款金额", "快递员编号", "订单编号" };
 		table = new MyTablePanel(header);
 
@@ -100,39 +116,24 @@ public class PaymentUI extends MainPanel {
 		Object[] last = {"总计",sum,"",""};
 		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 395));
-		table.setBounds(128, 165, 727, 403);;
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
+		table.setBounds(128, 130, 727, 425);;
 		
 		this.add(table);
 	}
 
-	private void showTablebyHall() {
-		initDatabyHall();
-		String[] header = { "营业厅编号", "收款金额", "快递员编号", "收款日期" };
-		table = new MyTablePanel(header);
-		Object[] rowdata = new Object[4];
-		double sum = 0;
-		for (int i = 0; i < list.size(); i++) {
-			Paymentvo vo = list.get(i);
-			table.getTableModel().addRow(rowdata);
-		}
-		Object[] last = {"总计",sum,"",""};
-		table.getTableModel().addRow(last);
-		this.add(table);
-		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 395));
-		table.setBounds(128, 165, 727, 403);
-	}
-
-	private void initDatabyDate() {
+	
+	private void initData() {
 		list = new ArrayList<Paymentvo>();
 		for (int i = 0; i < 20; i++)
 			list.add(new Paymentvo("", 1+i, "", "", ""));
 	}
 
-	private void initDatabyHall() {
-		list = new ArrayList<Paymentvo>();
-		for (int i = 0; i < 20; i++)
-			list.add(new Paymentvo("", 1+i, "", "", ""));
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		g.drawImage(bg,0,0,null);
 	}
+	
 }

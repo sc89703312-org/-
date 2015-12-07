@@ -23,7 +23,7 @@ public class AnalyzeUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Font font = new Font("微软雅黑", Font.BOLD, 20);
+	private Font font = new Font("黑体", Font.PLAIN, 20);
 	private Color color = new Color(44, 62,80);
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");

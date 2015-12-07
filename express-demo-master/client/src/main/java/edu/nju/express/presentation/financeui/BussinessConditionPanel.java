@@ -1,6 +1,9 @@
 package edu.nju.express.presentation.financeui;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FileDialog;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,20 +14,21 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.Balanceblservice;
+import edu.nju.express.common.Item;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
-import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.presentation.myUI.MyTextField;
 import edu.nju.express.vo.Balancevo;
@@ -36,6 +40,8 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Font font = new Font("黑体", Font.PLAIN, 18);
+	private Color color = new Color(44, 62,80);
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
 	private static Icon export1= new ImageIcon("ui/button/export1.png");
@@ -93,18 +99,29 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 
 		initData();
 		
-		JScrollPane sp = new JScrollPane();
-		sp.setOpaque(false);
-		sp.setBounds(128, 156, 727, 714);
-		sp.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		JPanel p =new JPanel();
 		p.setOpaque(false);
 
+		JLabel pb = new JLabel();
+		pb.setOpaque(false);
+		pb.setPreferredSize(new Dimension(300,50));
+		p.add(pb);
 		initTableB();
 		p.add(tableB);
 
+		JLabel pp = new JLabel();
+		pp.setOpaque(false);
+		pp.setPreferredSize(new Dimension(300,20));
+		p.add(pp);
 		initTableP();
 		p.add(tableP);
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		
+		p.setBounds(128, 100, 729, 500);
+		
+		this.add(p);
+		
+
 	}
 
 	private void initTableP() {
@@ -121,6 +138,9 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 			
 			tableP.getTableModel().addRow(rowdata);
 		}
+		tableP.setRowHeight(20);
+		tableP.getTable().setPreferredScrollableViewportSize(new Dimension(704,160));
+		tableP.setPreferredSize(new Dimension(715,180));
 	}
 
 	private void initTableB() {
@@ -138,6 +158,9 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 			rowdata[5] = vo.getRemark();
 			tableB.getTableModel().addRow(rowdata);
 		}
+		tableB.setRowHeight(20);
+		tableB.getTable().setPreferredScrollableViewportSize(new Dimension(704,160));
+		tableB.setPreferredSize(new Dimension(715,180));
 	}
 
 	private void initData() {
@@ -145,12 +168,16 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		
 		listB = balanceBL.viewCost(AnalyzeUI.getDates()[0], AnalyzeUI.getDates()[1]);
 		
-		
 
 		listP = new ArrayList<Paymentvo>();
 
 		
 		listP = balanceBL.viewReport(AnalyzeUI.getDates()[0], AnalyzeUI.getDates()[1]);
+		
+		for(int i=0;i<20;i++)
+			listB.add(new Balancevo("", i, "", "", Item.SALARY, ""));
+		for(int i=0;i<20;i++)
+			listP.add(new Paymentvo("", i, "", "", ""));
 	}
 	
 	//获得payment和cost table

@@ -23,8 +23,8 @@ public class MainPanel extends JPanel {
 	int BAR_HEIGHT = 50;
 	Image logo;
 	Image bg = new ImageIcon("ui/image/bg.png").getImage();
-	Icon quitIcon1 = new ImageIcon("ui/image/quit1.png");
-	Icon quitIcon2 = new ImageIcon("ui/image/quit2.png");
+	Icon quitIcon1 = new ImageIcon("ui/button/X_darkGray.png");
+	Icon quitIcon2 = new ImageIcon("ui/button/X_green.png");
 	
 	JButton quit;
 	JButton signOut;
@@ -46,7 +46,7 @@ public class MainPanel extends JPanel {
 		quit.setRolloverIcon(quitIcon2);
 		quit.setContentAreaFilled(false);
 		quit.setBorderPainted(false);
-		quit.setBounds(WIDTH - BAR_HEIGHT - 5, 0, BAR_HEIGHT, BAR_HEIGHT);
+		quit.setBounds(WIDTH - 60, 20, 30, 30);
 		quit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class MainPanel extends JPanel {
 
 			}
 		});
-	//	this.add(quit);
+		this.add(quit);
 
 		welcome = new JLabel("Welcome!" + userInfo);
 		welcome.setBounds((int) (WIDTH * 0.6), 0, 150, BAR_HEIGHT);
