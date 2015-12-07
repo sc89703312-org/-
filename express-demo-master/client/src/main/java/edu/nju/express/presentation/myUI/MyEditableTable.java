@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -14,10 +17,11 @@ public class MyEditableTable extends JTable {
 
 	private static final long serialVersionUID = 1L;
 
-	int ROW_HEIGHT = 30;
-	Color foreColor = new Color(44, 62, 80);
-	Color foreColor2 = new Color(172, 229, 216);
-	Font font = new Font("黑体", Font.PLAIN, 18);
+	private int ROW_HEIGHT = 30;
+	private static Color foreColor = new Color(44, 62, 80);
+	private static Color foreColor2 = new Color(172, 229, 216);
+	private static Font font = new Font("黑体", Font.PLAIN, 18);
+	private static ArrayList<Integer> editedRows = new ArrayList<Integer>();
 
 	public MyEditableTable(String[] header, DefaultTableModel model) {
 		super(model);
@@ -37,7 +41,17 @@ public class MyEditableTable extends JTable {
 					boolean hasFocus, int row, int column) {
 				setOpaque(false);
 				if (isCellEditable(row, column)) {
+					final int i = row;
 					setForeground(foreColor2);
+					addFocusListener(new FocusAdapter() {
+						@Override
+						public void focusGained(FocusEvent e) {
+							// TODO Auto-generated method stub
+							super.focusGained(e);
+							editedRows.add(i);
+						}
+						
+					});
 				} else
 					setForeground(foreColor);
 
@@ -55,12 +69,15 @@ public class MyEditableTable extends JTable {
 
 		this.getTableHeader().setVisible(false);
 
-		this.getColumn(header[0]).setMaxWidth(40);
-		this.getColumn(header[1]).setMaxWidth(5);
-		this.getColumn(header[2]).setMaxWidth(40);
-		this.getColumn(header[3]).setMaxWidth(25);
-		this.getColumn(header[4]).setMaxWidth(45);
-		this.getColumn(header[5]).setMaxWidth(40);
+		this.getColumn(header[0]).setMaxWidth(80);
+		this.getColumn(header[1]).setMaxWidth(10);
+		this.getColumn(header[2]).setMaxWidth(80);
+		this.getColumn(header[3]).setMaxWidth(50);
+		this.getColumn(header[4]).setMaxWidth(90);
+		this.getColumn(header[5]).setMaxWidth(80);
 	}
 
+	public ArrayList<Integer> getEditedRows(){
+		return editedRows;
+	}
 }
