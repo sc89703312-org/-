@@ -50,13 +50,13 @@ public class ReceiptBl implements ReceiptBlService {
 		
 		
 		ArrayList<ReceiptVOBase> allReceipts = new ArrayList<>();
-		allReceipts.addAll(paymentBL.viewAll());
-		allReceipts.addAll(costBL.viewAllCost());
-		allReceipts.addAll(hallBL.viewAllArrivalReceipt());
-		allReceipts.addAll(hallBL.viewAllDeliverReceipt());
-		allReceipts.addAll(hallBL.viewAllHallTransferReceipt());
-		allReceipts.addAll(stationBL.viewAllArriveReceipt());
-		allReceipts.addAll(stationBL.viewAllTransferReceipt());
+		allReceipts.addAll(paymentBL.viewAllPaymentSubmitted());
+		allReceipts.addAll(costBL.viewAllCostSubmitted());
+		allReceipts.addAll(hallBL.viewAllArrivalReceiptSubmitted());
+		allReceipts.addAll(hallBL.viewAllDeliverReceiptSubmitted());
+		allReceipts.addAll(hallBL.viewAllHallTransferReceiptSubmitted());
+		allReceipts.addAll(stationBL.viewAllArriveReceiptSubmitted());
+		allReceipts.addAll(stationBL.viewAllTransferReceiptSubmitted());
 //		allReceipts.addAll(commodityBL.viewAllEnterReceipt());
 //		allReceipts.addAll(commodityBL.viewAllExitReceipt());
 		
