@@ -12,11 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.nju.express.presentation.UIController;
+import edu.nju.express.blservice.Vehicleblservice;
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.MyButton;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
+import edu.nju.express.vo.Drivervo;
 
 public class DriverUI extends JPanel implements MouseListener{
 
@@ -33,22 +36,31 @@ public class DriverUI extends JPanel implements MouseListener{
 	ImageIcon trash1 = new ImageIcon("ui/image/hall/trash1.png");
 	
 	int width = 900, height = 600;
-	UIController controller;
-	JPanel mainpanel;
-	JLabel bg;
-	JPanel infoPanel, newPanel, errorPanel;
-	JButton newBtn, editBtn, trashBtn, searchBtn;
-	JLabel  genderLabel, birthLabel, licenseLimitLabel;
-	LabelTextField driverIdField, nameField, identityField, cellphoneField;
-	MyComboBox<String> genderBox;
-	DateComboBoxPanel birthBoxPanel, licenseLimitBoxPanel;
-	JButton saveBtn, addBtn;
-	MySearchFieldPanel searchField;
+	private HallController controller;
+	private Vehicleblservice vehicleBL;
+	private JPanel mainpanel;
+	private JLabel bg;
+	private JPanel newPanel, errorPanel1, errorPanel2, deleteConfirmPanel;
+	private JButton newBtn, editBtn, trashBtn;
+	private JLabel  genderLabel, birthLabel, licenseLimitLabel;
+	private LabelTextField driverIdField, nameField, identityField, cellphoneField;
+	private MyComboBox<String> genderBox;
+	private DateComboBoxPanel birthBoxPanel, licenseLimitBoxPanel;
+	private MyButton addBtn, saveBtn;
+	private MySearchFieldPanel searchField;
+	private boolean isInfo = false;
+	private boolean isNew = true;
 	
 	
+	Font font = new Font("黑体", Font.PLAIN, 18);
+	Color color = new Color(44, 62,80);
 	
-	public DriverUI(UIController controller){
+//	String driverID = "12345";
+	String hall_id = "025001";
+	
+	public DriverUI(HallController controller){
 		this.controller = controller;
+//		this.vehicleBL = controller.vehicle;
 		
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
@@ -56,18 +68,20 @@ public class DriverUI extends JPanel implements MouseListener{
 		mainpanel.setVisible(true);
 		mainpanel.setOpaque(false);
 		initButton();
-		initInfoPanel();
 		initNewPanel();
-		initErrorPanel();
+		initErrorPanel1();
+		initErrorPanel2();
+		initDeleteConfirmPanel();
 		
 		mainpanel.add(newPanel);
 		
 		
 		bg = new JLabel(new ImageIcon("ui/image/hall/driver.png"));
 		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
 		
 		this.add(mainpanel);
+		//背景图一定要放在mainpanel下面！
+		this.add(bg);
 		this.add(new HallGuide(controller));
 		this.setLayout(null);
 		this.setBounds(0, 0, width, height);
@@ -98,6 +112,17 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
+				//新建信息无前置条件
+					
+					mainpanel.remove(mainpanel.getComponentAt(130, 130));
+					clearPanel();// clear components(public)
+					enableInfoPanel();
+					//clear searchpanel
+					searchField.clearText();
+					mainpanel.add(newPanel);
+					setIsNew(true);
+					mainpanel.validate();
+					mainpanel.repaint();
 			}
 			
 		});
@@ -112,9 +137,19 @@ public class DriverUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(mainpanel.getComponentAt(130, 120).equals(newPanel)){
+				
+				if(isNew){
 					mainpanel.remove(mainpanel.getComponentAt(130, 120));
-					
+					mainpanel.add(errorPanel1);
+					mainpanel.validate();
+					mainpanel.repaint();
+				}
+				else if(isInfo){
+					enableInfoPanel();
+					//编辑时不让删除
+					trashBtn.setEnabled(false);
+					mainpanel.remove(mainpanel.getComponentAt(307, 405));
+					mainpanel.add(saveBtn);
 					mainpanel.validate();
 					mainpanel.repaint();
 				}
@@ -132,33 +167,182 @@ public class DriverUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				if(isNew){
+					mainpanel.remove(mainpanel.getComponentAt(130, 130));
+					mainpanel.add(errorPanel2);
+					
+					mainpanel.validate();
+					mainpanel.repaint();
+				}
+				else if(isInfo){
+					mainpanel.remove(mainpanel.getComponentAt(130, 130));
+					mainpanel.add(deleteConfirmPanel);
+					newBtn.setEnabled(false);
+					editBtn.setEnabled(false);
+					mainpanel.validate();
+					mainpanel.repaint();
+				}
 			}
 			
 		});
 		trashBtn.addMouseListener(this);
 		mainpanel.add(trashBtn);
 		
-		searchField = new MySearchFieldPanel(controller);
-		searchField.setBounds(480, 76, 200, 40);
 		
+		
+		
+		searchField = new MySearchFieldPanel(controller);
+		searchField.getButton().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setIsInfo(true);
+				setIsNew(false);
+				trashBtn.setEnabled(true);
+				initInfoPanel(getDriver(searchField.getText()));
+				newBtn.setIcon(new0);
+				editBtn.setIcon(edit0);
+				trashBtn.setIcon(trash0);
+				mainpanel.remove(mainpanel.getComponentAt(300, 300));
+				mainpanel.add(newPanel);
+				mainpanel.validate();
+				mainpanel.repaint();
+			}
+			
+		});
+		searchField.setBounds(480, 76, 200, 40);
 		mainpanel.add(searchField);
+		
+		addBtn = new MyButton(306, 404, 110, 45);
+		addBtn.setIcon(new ImageIcon("ui/image/hall/add0.png"));
+		addBtn.addMouseListener(this);
+		addBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				addDriver(new Drivervo(driverIdField.getText(), nameField.getText(),
+						birthBoxPanel.getDate(), identityField.getText(), 
+						cellphoneField.getText(), hall_id, 
+						genderBox.getSelectedIndex()==0?true:false,
+						licenseLimitLabel.getText()
+						));
+			}
+			
+		});
+		mainpanel.add(addBtn);     //初始为newPanel
+
+		saveBtn = new MyButton(306, 404, 110, 45);
+		saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
+		saveBtn.addMouseListener(this);
+		saveBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				modifyDriver(driverIdField.getText(),
+						new Drivervo(driverIdField.getText(), nameField.getText(),
+						birthBoxPanel.getDate(), identityField.getText(), 
+						cellphoneField.getText(), hall_id, 
+						genderBox.getSelectedIndex()==0?true:false,
+						licenseLimitLabel.getText()
+						));
+			}
+			
+		});
+	}
+	
+	/**
+	 * 给newPanel 添加信息
+	 */
+	public void initInfoPanel(Drivervo vo){
+		driverIdField.setText(vo.getId());
+		driverIdField.getTextField().setEditable(false);;
+		
+		nameField.setText(vo.getName());
+		nameField.getTextField().setEditable(false);
+		
+		genderBox.setSelectedIndex(vo.getSex()==true?0:1);
+		genderBox.setEditable(false);
+		
+		String birthDate = vo.getBirthDate();
+		String[] split = birthDate.split("/");
+		birthBoxPanel.getYearComboBox().setSelectedItem(split[0]);
+		birthBoxPanel.getYearComboBox().setEditable(false);
+		birthBoxPanel.getMonthComboBox().setSelectedItem(split[1]);
+		birthBoxPanel.getMonthComboBox().setEditable(false);
+		birthBoxPanel.getDayComboBox().setSelectedItem(split[2]);
+		birthBoxPanel.getDayComboBox().setEditable(false);
+		
+		identityField.setText(vo.getCertificate());
+		identityField.getTextField().setEditable(false);
+		
+		cellphoneField.setText(vo.getPhone());
+		cellphoneField.getTextField().setEditable(false);
+		
+		//阿西吧。。。。又来一个日期box
+		String ddlDate = vo.getDdl();
+		String[] ddl = ddlDate.split("/");
+		licenseLimitBoxPanel.getYearComboBox().setSelectedItem(ddl[0]);
+		licenseLimitBoxPanel.getYearComboBox().setEditable(false);
+		licenseLimitBoxPanel.getMonthComboBox().setSelectedItem(ddl[1]);
+		licenseLimitBoxPanel.getMonthComboBox().setEditable(false);
+		licenseLimitBoxPanel.getDayComboBox().setSelectedItem(ddl[2]);
+		licenseLimitBoxPanel.getDayComboBox().setEditable(false);
+		
 		
 	}
 	
-	public void initInfoPanel(){
-		infoPanel = new JPanel();
+	public void clearPanel(){
+		driverIdField.setText("");
+		
+		nameField.setText("");
+		
+		genderBox.setSelectedIndex(0);
+		
+		//birthDate 暂时不写了！！
+		
+		identityField.setText("");
+		
+		cellphoneField.setText("");
+		
+		//ddlDate 暂时不写了！！
+		
+	}
+	
+	/**
+	 * 使infoPanel变为可编辑, editBtn响应时调用这个方法
+	 */
+	public void enableInfoPanel(){
+		
+		driverIdField.getTextField().setEditable(true);
+		
+		nameField.getTextField().setEditable(true);
+		
+		genderBox.setEditable(false);
+		
+		birthBoxPanel.getYearComboBox().setEditable(false);
+		birthBoxPanel.getMonthComboBox().setEditable(false);
+		birthBoxPanel.getDayComboBox().setEditable(false);
+		
+		identityField.getTextField().setEditable(false);
+		
+		cellphoneField.getTextField().setEditable(false);
+		
+		licenseLimitBoxPanel.getYearComboBox().setEditable(false);
+		licenseLimitBoxPanel.getMonthComboBox().setEditable(false);
+		licenseLimitBoxPanel.getDayComboBox().setEditable(false);
+		
 	}
 	
 	public void initNewPanel(){
 		newPanel = new JPanel();
 		newPanel.setLayout(null);
-		newPanel.setBounds(128, 117, 729, 452);
+		newPanel.setBounds(128, 117, 729, 403);
 		newPanel.setOpaque(false);
 		newPanel.setVisible(true);
 		
-		Font font = new Font("黑体", Font.PLAIN, 18);
-		Color color = new Color(44, 62,80);
 		
 		driverIdField = new LabelTextField("司机编号",9);
 		driverIdField.setBounds(110, 20, 300, 45);	
@@ -176,7 +360,7 @@ public class DriverUI extends JPanel implements MouseListener{
 		
 		genderBox = new MyComboBox<String>();
 		genderBox.setBounds(200, 140, 100, 30);
-		String[] genderlist = {"男", "女", "其他"};
+		String[] genderlist = {"男", "女"};
 		for(int i=0; i<genderlist.length; i++){
 			genderBox.addItem(genderlist[i]);
 		}
@@ -192,7 +376,7 @@ public class DriverUI extends JPanel implements MouseListener{
 		newPanel.add(birthLabel);
 
 		birthBoxPanel = new DateComboBoxPanel();
-		birthBoxPanel.setBounds(190, 190, 500, 40);
+		birthBoxPanel.setBounds(120, 190, 500, 40);
 		newPanel.add(birthBoxPanel);
 
 		identityField = new LabelTextField("身份证号",18);
@@ -210,21 +394,101 @@ public class DriverUI extends JPanel implements MouseListener{
 		newPanel.add(licenseLimitLabel);
 		
 		licenseLimitBoxPanel = new DateComboBoxPanel();
-		licenseLimitBoxPanel.setBounds(190, 365, 500, 40);
+		licenseLimitBoxPanel.setBounds(120, 365, 500, 40);
 		newPanel.add(licenseLimitBoxPanel);
 		
-		addBtn = new JButton(new ImageIcon("ui/image/hall/add0.png"));
-		addBtn.setBounds(306, 404, 110, 45);
-		addBtn.setOpaque(false);
-		addBtn.setBorderPainted(false);
-		addBtn.setContentAreaFilled(false);
-		newPanel.add(addBtn);
-	}
-	
-	public void initErrorPanel(){
-		errorPanel = new JPanel();
 		
 	}
+	
+	public void initErrorPanel1(){
+		errorPanel1 = new JPanel();
+		errorPanel1.setLayout(null);
+		errorPanel1.setVisible(true);
+		errorPanel1.setOpaque(false);
+		errorPanel1.setBounds(128, 117, 729, 452);
+		
+		JLabel errorLabel = new JLabel("(＞﹏＜)在上方的搜索框中输入司机编号才能编辑~");
+		errorLabel.setFont(font);
+		errorLabel.setForeground(color);
+		errorLabel.setBounds(120, 180, 500, 40);
+		errorPanel1.add(errorLabel);
+		
+	}
+	
+	public void initErrorPanel2(){
+		errorPanel2 = new JPanel();
+		errorPanel2.setLayout(null);
+		errorPanel2.setVisible(true);
+		errorPanel2.setOpaque(false);
+		errorPanel2.setBounds(128, 117, 729, 452);
+		
+		JLabel errorLabel = new JLabel("(＞﹏＜)还没输入要删除的司机编号呢~");
+		errorLabel.setFont(font);
+		errorLabel.setForeground(color);
+		errorLabel.setBounds(120, 180, 500, 40);
+		errorPanel2.add(errorLabel);
+	}
+	
+	public void initDeleteConfirmPanel(){
+		deleteConfirmPanel = new JPanel();
+		deleteConfirmPanel.setLayout(null);
+		deleteConfirmPanel.setVisible(true);
+		deleteConfirmPanel.setOpaque(false);
+		deleteConfirmPanel.setBounds(291, 214, 360, 240);
+		
+		JButton confirm = new JButton("确认");
+		confirm.setBounds(58, 144, 90, 40);
+		confirm.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setIsNew(true);
+				deleteDriver(driverIdField.getText());
+				mainpanel.remove(mainpanel.getComponentAt(292, 215));
+				newBtn.setEnabled(true);
+				editBtn.setEnabled(true);
+				mainpanel.validate();
+				mainpanel.repaint();
+			}
+			
+		});
+		deleteConfirmPanel.add(confirm);
+		
+		JButton cancel = new JButton("取消");
+		cancel.setBounds(221, 144, 90, 40);
+		cancel.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				mainpanel.remove(mainpanel.getComponentAt(292, 215));
+				mainpanel.add(newPanel);
+				newBtn.setEnabled(true);
+				editBtn.setEnabled(true);
+				mainpanel.validate();
+				mainpanel.repaint();
+			}
+			
+		});
+		deleteConfirmPanel.add(cancel);
+		
+		JLabel deletebg = new JLabel(new ImageIcon("ui/image/hall/deletebg.png"));
+		deletebg.setBounds(0, 0, 360, 240);
+		deleteConfirmPanel.add(deletebg);
+		
+	}
+	
+	
+	private void setIsNew (boolean isNew){
+		this.isNew = isNew;
+	}
+	
+	private void setIsInfo(boolean isInfo){
+		this.isInfo = isInfo;
+	}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -245,7 +509,7 @@ public class DriverUI extends JPanel implements MouseListener{
 			trashBtn.setIcon(trash1);
 		}
 	}
-
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -261,12 +525,65 @@ public class DriverUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource().equals(addBtn)){
+			addBtn.setIcon(new ImageIcon("ui/image/hall/add1.png"));
+		}
+		else if(e.getSource().equals(saveBtn)){
+			saveBtn.setIcon(new ImageIcon("ui/image/hall/save1.png"));
+		}
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource().equals(addBtn)){
+			addBtn.setIcon(new ImageIcon("ui/image/hall/add0.png"));
+		}
+		else if(e.getSource().equals(saveBtn)){
+			saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
+		}
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return DriverVO
+	 */
+	public Drivervo getDriver(String id){
+		
+//		return vehicleBL.viewDriver(id);
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public ResultMessage deleteDriver(String id){
+		
+//		return vehicleBL.deleteDriver(id);
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param vo
+	 */
+	public ResultMessage addDriver(Drivervo vo){
+		
+//		return vehicleBL.addDriver(vo);
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param vo
+	 */
+	public void modifyDriver(String id, Drivervo vo){
+		
+//		vehicleBL.modifyDriver(id, vo);
 		
 	}
 	

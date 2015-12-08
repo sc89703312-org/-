@@ -160,4 +160,5 @@ public class MyComboBox<E> extends JComboBox<E> {
 			return renderer;
 		}
 	}
+	
 }

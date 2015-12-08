@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.CarControlService;
+import edu.nju.express.blservice.HallReceiptBlService;
+import edu.nju.express.blservice.Paymentblservice;
+import edu.nju.express.blservice.Vehicleblservice;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.MyFrame;
 
@@ -11,9 +16,20 @@ public class HallController implements UIController {
 	JPanel currentPanel;
 	MyFrame frame;
 	
+	Vehicleblservice vehicle;
+	CarControlService car;
+	HallReceiptBlService receipt;
+	Paymentblservice payment;
+	
 	public HallController(MyFrame f){
 		this.frame = f;
 		currentPanel = (JPanel) f.getContentPane();
+		
+//		this.vehicle = DataFactory.createDriverInstance();
+//		this.car = DataFactory.createCarBLInstance();
+//		this.receipt = DataFactory.createHallReceiptBLInstance();
+//		this.payment = DataFactory.createPaymentBLInstance();
+		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

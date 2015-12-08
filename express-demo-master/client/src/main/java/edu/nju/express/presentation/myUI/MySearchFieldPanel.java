@@ -103,4 +103,16 @@ public class MySearchFieldPanel extends JPanel{
 	public String getText(){
 		return field.getText();
 	}
+	
+	public void setText(String s){
+		field.setText(s);
+	}
+	
+	public void clearText(){
+		field.setText("");
+	}
+	
+	public JButton getButton(){
+		return this.button;
+	}
 }

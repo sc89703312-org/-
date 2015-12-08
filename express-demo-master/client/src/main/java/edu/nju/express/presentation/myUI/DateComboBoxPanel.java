@@ -82,5 +82,17 @@ public class DateComboBoxPanel extends JPanel {
 		return year.getSelectedItem()+"/"+month.getSelectedItem()+"/"+day.getSelectedItem();
 		
 	}
+	
+	public void setYearComboBox(String item){
+		year.setSelectedItem(item);
+	}
+	
+	public void setMonthComboBox(String item){
+		month.setSelectedItem(item);
+	}
+	
+	public void setDayComboBox(String item){
+		day.setSelectedItem(item);
+	}
 
 }
