@@ -22,6 +22,7 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	Item item;
 	String remark;
 
+
 	
 	public Balancepo(String date,double money,String name,
 			               String banking,Item item,String remark) {
@@ -33,9 +34,9 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	this.banking = banking;
 	this.item = item;
 	this.remark = remark;
+
 	
-	
-	id= "Cost"+date+money+name+remark;
+	id= "Cost"+date+banking;
 	}
 	
 	

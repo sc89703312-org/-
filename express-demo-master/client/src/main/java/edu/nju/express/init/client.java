@@ -44,6 +44,10 @@ public class client {
 	
 		new LoginUI();		
 		
+		ArrayList<Paymentvo> list=DataFactory.createPaymentBLInstance().viewAll();
+		for(Paymentvo vo:list)
+			System.out.println(vo.getId());
+		
 
 //		System.out.println(ConstantSettingBl.getVehicleLoad()[2]);
 

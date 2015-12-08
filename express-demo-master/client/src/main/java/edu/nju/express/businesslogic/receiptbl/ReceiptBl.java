@@ -57,8 +57,8 @@ public class ReceiptBl implements ReceiptBlService {
 		allReceipts.addAll(hallBL.viewAllHallTransferReceipt());
 		allReceipts.addAll(stationBL.viewAllArriveReceipt());
 		allReceipts.addAll(stationBL.viewAllTransferReceipt());
-		allReceipts.addAll(commodityBL.viewAllEnterReceipt());
-		allReceipts.addAll(commodityBL.viewAllExitReceipt());
+//		allReceipts.addAll(commodityBL.viewAllEnterReceipt());
+//		allReceipts.addAll(commodityBL.viewAllExitReceipt());
 		
 		return allReceipts;
 	}

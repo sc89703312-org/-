@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.blservice.ReceiptBlService;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
@@ -25,7 +26,7 @@ public class ReceiptApprovalUI extends MainPanel {
 	static int y = 50;
 	private static Icon img1 = new ImageIcon("ui/button/approve1.png");
 	private static Icon img2 = new ImageIcon("ui/button/approve2.png");
-	
+	private ReceiptBlService receiptBl;
 	ManageController controller;
 	ArrayList<Object[]> list;
 	ArrayList<ReceiptVOBase> voList;
@@ -36,6 +37,7 @@ public class ReceiptApprovalUI extends MainPanel {
 	public ReceiptApprovalUI(ManageController c) {
 		controller = c;
 
+		receiptBl=c.receipt;
 		String[] header= { "全选", "单据种类", "单据编号", "提交时间" };
 		table = new MyCheckBoxTable(header);
 		initData();
@@ -65,9 +67,14 @@ public class ReceiptApprovalUI extends MainPanel {
 	}
 
 	private void initData() {
-		Object[] data1 = { false, "到达单", "0", "2015/11/23" };
-		for (int i = 1; i < 40; i++) {
-			data1[2] = i+"";
+		
+		ArrayList<ReceiptVOBase> receipts = receiptBl.view();
+		
+		Object[] data1 =new Object[4] ;
+		for (int i = 0; i < receipts.size(); i++) {
+			data1[1] = "";
+			data1[2] = receipts.get(i).getId();
+			data1[3] = receipts.get(i).getDate();
 			table.getTableModel().addRow(data1);
 		}
 	}

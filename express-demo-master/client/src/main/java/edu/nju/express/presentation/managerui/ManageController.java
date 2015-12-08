@@ -29,7 +29,7 @@ public class ManageController implements UIController {
 	private ManagementBlService manage;
 	private OrganizationBlService org;
 	private ConstantSettingBlService constant;
-	private ReceiptBlService receipt;
+	public ReceiptBlService receipt;
 	private SalarySettingBlService salary;
 
 	public ManageController(JFrame f) {
@@ -37,7 +37,7 @@ public class ManageController implements UIController {
 		currentPanel = (JPanel) f.getContentPane();
 		manage = DataFactory.createManagementBlInstance();
 		org = DataFactory.createOrganizationBl();
-		// receipt = DataFactory.createReceiptBlInstance();
+	    receipt = DataFactory.createReceiptBlInstance();
 		salary = DataFactory.createSalarySettingBlInstance();
 		constant = DataFactory.createConstantSettingBLInstance();
 	}
