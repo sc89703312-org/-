@@ -74,7 +74,7 @@ public class ReceiptApprovalUI extends MainPanel {
 		Object[] data1 =new Object[4] ;
 		for (int i = 0; i < receipts.size(); i++) {
 			
-			
+			data1[0] = false;
 			String id = receipts.get(i).getId();
 			switch (ConcludeTypeById.conclude(id)) {
 			case 0:

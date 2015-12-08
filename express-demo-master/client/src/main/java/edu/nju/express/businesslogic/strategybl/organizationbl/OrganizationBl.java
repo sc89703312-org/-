@@ -42,12 +42,14 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 	@Override
 	public ResultMessage createStation(String id, String name) {
 		
-     	if(stationbl.addStation(id, name).equals(ResultMessage.VALID))
+	 ResultMessage temp=	stationbl.addStation(id, name);
+		
+     	if(temp.equals(ResultMessage.VALID))
 			constantSettingBL.addCity(name);
 		
      	LogController.insertLog(new LogMessage("增加中转站", LoginInfo.getUserName()));
 		
-		return stationbl.addStation(id, name);
+		return temp;
 		
 		
 	}

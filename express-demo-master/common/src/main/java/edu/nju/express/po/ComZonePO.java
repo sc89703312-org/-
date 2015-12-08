@@ -1,9 +1,15 @@
 package edu.nju.express.po;
 
+import java.io.Serializable;
 
 
-public class ComZonePO {
+
+public class ComZonePO  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int planeSpace;
 	int trainSpace;
 	int carSpace;
