@@ -51,6 +51,13 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	public ArrivalReceiptVO createArrivalReceipt(String id) {
 		// TODO Auto-generated method stub
 		
+		try {
+			location = hallDataService.getLocation(hallID);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		if(id.contains("HallTransferReceipt")){
             try {
 				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
@@ -89,6 +96,13 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	@Override
 	public void subArrivalReceipt(ArrivalReceiptVO vo) {
 		// TODO Auto-generated method stub
+		
+		try {
+			location = hallDataService.getLocation(hallID);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		ArrivalReceiptPO po = Convert.vo_to_po_arrival(vo);
 		ArrayList<OrderPO> orderlist = po.getOrderList();
@@ -153,6 +167,13 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		// TODO Auto-generated method stub
 		
 		try {
+			location = hallDataService.getLocation(hallID);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
 			HallTransferReceiptVO vo = new HallTransferReceiptVO(hallDataService.nextHallTransferID(hallID), location, Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE, hallID, transportID, to, carID, supervisor, guard, orderlist);
 			hallDataService.addHallTransfer(Convert.vo_to_po_halltransfer(vo));
 		} catch (RemoteException e) {
@@ -166,6 +187,13 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	@Override
 	public void subDeliverReceipt(String deliver, ArrayList<OrderVO> orderlist) {
 		// TODO Auto-generated method stub
+		
+		try {
+			location = hallDataService.getLocation(hallID);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
 			DeliverReceiptVO vo = new DeliverReceiptVO(hallDataService.nextDeliverID(hallID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,location,deliver,orderlist);

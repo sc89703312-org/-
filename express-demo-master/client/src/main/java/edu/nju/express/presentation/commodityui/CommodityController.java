@@ -152,7 +152,27 @@ public class CommodityController implements UIController{
 		else if(e.getActionCommand().equals("movegoods")){
 			
 			ShowInventoryUI ui = (ShowInventoryUI)(((JButton)e.getSource()).getParent());
+			ArrayList<ComGoodsVO> voList = ui.getList();
 			
+			frame.getContentPane().removeAll();
+			currentPanel = new MoveGoodsUI(this,voList);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("confirmmove")){
+			
+			MoveGoodsUI ui = (MoveGoodsUI)(((JButton)e.getSource()).getParent());
+			Object[][] data = ui.getTableObjects();
+			service.moveGoods(data);
+			ArrayList<ComGoodsVO> voList = service.showInventory();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new ShowInventoryUI(this,voList);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			
 		}
 		

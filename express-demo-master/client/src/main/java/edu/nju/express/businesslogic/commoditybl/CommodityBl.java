@@ -308,6 +308,38 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		
 		return result;
 	}
+	
+	@Override
+	public ArrayList<EnterReceiptVO> showCheckEnter(String start,String end){
+		ArrayList<EnterReceiptPO> poList = null;
+		try {
+			poList = commodityDataService.getEnterReceipt(comID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<EnterReceiptVO> voList = new ArrayList<EnterReceiptVO>();
+		for(int i=0;i<poList.size();i++)
+			if(poList.get(i).getDate().compareTo(start)>=0&&poList.get(i).getDate().compareTo(end)<=0)
+				voList.add(Convert.po_to_vo_enter(poList.get(i)));
+		return voList;
+	}
+	
+	@Override
+	public ArrayList<ExitReceiptVO> showCheckExit(String start,String end){
+		ArrayList<ExitReceiptPO> poList = null;
+		try {
+			poList = commodityDataService.getExitReceipt(comID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<ExitReceiptVO> voList = new ArrayList<ExitReceiptVO>();
+		for(int i=0;i<poList.size();i++)
+			if(poList.get(i).getDate().compareTo(start)>=0&&poList.get(i).getDate().compareTo(end)<=0)
+				voList.add(Convert.po_to_vo_exit(poList.get(i)));
+		return voList;
+	}
 
 	@Override
 	public ComZoneVO showZone() {

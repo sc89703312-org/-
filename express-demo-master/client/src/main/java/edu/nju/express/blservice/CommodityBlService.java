@@ -27,6 +27,8 @@ public interface CommodityBlService {
 	public ArrayList<ComGoodsVO> showInventory();
 	public void outputInventory(ArrayList<ComGoodsVO> list);
 	public int[] showCheck(String start, String end);
+	public ArrayList<EnterReceiptVO> showCheckEnter(String start,String end);
+	public ArrayList<ExitReceiptVO> showCheckExit(String start,String end);
 	
 	public ComZoneVO showZone();
 	public ResultMessageV2 editZone(int[] space);

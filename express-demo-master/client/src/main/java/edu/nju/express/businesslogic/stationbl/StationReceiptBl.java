@@ -43,18 +43,19 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		hallDataService = RMIHelper.getHallDataService();
 		this.orderInfo= orderInfo;
 		this.setOrderSpot = setOrderSpot;
-		try {
-			this.location = stationDataService.getLocation(stationID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	
 	@Override
 	public ArriveReceiptVO creatArriveReceipt(String id) {
 		// TODO Auto-generated method stub
+		
+		try {
+			this.location = stationDataService.getLocation(stationID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		if(id.contains("HallTransferReceipt")){
             try {
@@ -94,6 +95,13 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	@Override
 	public void subArriveReceipt(ArriveReceiptVO vo) {
 		// TODO Auto-generated method stub
+		
+		try {
+			this.location = stationDataService.getLocation(stationID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ArriveReceiptPO po = Convert.vo_to_po_arrive(vo);
 		ArrayList<OrderPO> orderlist = po.getOrderList();
@@ -148,6 +156,13 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	public void subTransferReceipt(ArrayList<OrderVO> orderlist,
 			String to, String transportID, String supervisor, Etype etype) {
 		// TODO Auto-generated method stub
+		
+		try {
+			this.location = stationDataService.getLocation(stationID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		try {
 			TransferReceiptVO vo = new TransferReceiptVO(stationDataService.nextTransferID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,to,location,transportID,supervisor,etype,orderlist);
