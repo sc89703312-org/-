@@ -135,7 +135,7 @@ public class ManageController implements UIController {
 
 			currentPanel = (JPanel) (((JButton) e.getSource()).getParent());
 			for (String id : ((ReceiptApprovalUI) currentPanel).getIDtoApprove()) {
-				System.out.println(id);
+				receipt.approve(id);
 			}
 		} else if (e.getActionCommand().equals("SetSalary")) {
 			
