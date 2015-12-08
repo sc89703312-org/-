@@ -29,9 +29,10 @@ public class EnterManageUI extends MainPanel{
 	MyNormalTable table;
 	JButton createnter;
 	
-	public EnterManageUI(CommodityController c){
+	public EnterManageUI(CommodityController c, ArrayList<ArriveReceiptVO> list){
 		
 		this.controller = c;
+		this.volist = list;
 		
 		String[] header = {"编号","提交日期","货物来源","货物数量"};
 		table = new MyNormalTable(header);

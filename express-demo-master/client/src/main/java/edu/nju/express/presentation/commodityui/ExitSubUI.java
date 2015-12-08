@@ -73,7 +73,7 @@ public class ExitSubUI extends MainPanel{
 		}
 	}
 	
-	public ExitReceiptVO getEnterReceipt(){
+	public ExitReceiptVO getExitReceipt(){
 		return this.vo;
 	}
 	

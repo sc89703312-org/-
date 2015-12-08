@@ -29,9 +29,10 @@ public class ExitManageUI extends MainPanel{
 	MyNormalTable table;
 	JButton createxit;
 	
-	public ExitManageUI(CommodityController c){
+	public ExitManageUI(CommodityController c, ArrayList<TransferReceiptVO> list){
 		
 		this.controller = c;
+		this.volist = list;
 		
 		String[] header = {"编号","提交日期","货物来源","货物数量"};
 		table = new MyNormalTable(header);
@@ -55,7 +56,7 @@ public class ExitManageUI extends MainPanel{
 		createxit.setRolloverIcon(img2);
 		createxit.setContentAreaFilled(false);
 		createxit.setBorderPainted(false);
-		createxit.setBounds(450,537,80,30);
+		createxit.setBounds(450,537,120,30);
 		createxit.setActionCommand("createxit");
 		createxit.addActionListener(controller);
 		this.add(createxit);
@@ -63,9 +64,9 @@ public class ExitManageUI extends MainPanel{
 	}
 	
 	private void initData(){
-		Object[] data = {"0250001","2015/12/7","Shanghai","1"};
+		Object[] data = {"0251001","2015/12/7","Shanghai","1"};
 		for(int i=1;i<=40;i++){
-			data[0] = "0"+250000+i;
+			data[0] = "0"+251000+i;
 			data[3] = i+"";
 			table.getTableModel().addRow(data);
 		}
