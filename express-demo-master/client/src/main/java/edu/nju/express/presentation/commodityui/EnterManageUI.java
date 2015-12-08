@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.myUI.MyCheckBoxTable;
+import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.ArriveReceiptVO;
 
@@ -26,7 +26,7 @@ public class EnterManageUI extends MainPanel{
 	private static Icon img1 = new ImageIcon("ui/button/createnter1.png");
 	private static Icon img2 = new ImageIcon("ui/button/createnter2.png");
 	
-	MyCheckBoxTable table;
+	MyNormalTable table;
 	JButton createnter;
 	
 	public EnterManageUI(CommodityController c){
@@ -34,8 +34,9 @@ public class EnterManageUI extends MainPanel{
 		this.controller = c;
 		
 		String[] header = {"编号","提交日期","货物来源","货物数量"};
-		table = new MyCheckBoxTable(header);
+		table = new MyNormalTable(header);
 		initData();
+		table.setRowSelectionAllowed(true);
 		
 		this.add(new CommodityGuide(c));
 		
@@ -55,7 +56,7 @@ public class EnterManageUI extends MainPanel{
 		createnter.setRolloverIcon(img2);
 		createnter.setContentAreaFilled(false);
 		createnter.setBorderPainted(false);
-		createnter.setBounds(450,537,80,30);
+		createnter.setBounds(430,537,120,30);
 		createnter.setActionCommand("createnter");
 		createnter.addActionListener(controller);
 		this.add(createnter);

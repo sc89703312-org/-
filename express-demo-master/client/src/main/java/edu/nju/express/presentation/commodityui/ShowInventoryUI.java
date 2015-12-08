@@ -12,9 +12,8 @@ import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.ComGoodsVO;
-import edu.nju.express.vo.EnterReceiptVO;
 
-public class EnterSubUI extends MainPanel{
+public class ShowInventoryUI extends MainPanel{
 
 	/**
 	 * 
@@ -22,18 +21,17 @@ public class EnterSubUI extends MainPanel{
 	private static final long serialVersionUID = 1L;
 
 	CommodityController controller;
-	EnterReceiptVO vo;
-	ArrayList<Object[]> data;
-	private static Icon img1 = new ImageIcon("ui/button/subenter1.png");
-	private static Icon img2 = new ImageIcon("ui/button/subenter2.png");
+	ArrayList<ComGoodsVO> voList;
+	private static Icon img1 = new ImageIcon("ui/button/movegoods1.png");
+	private static Icon img2 = new ImageIcon("ui/button/movegoods2.png");
 	
 	MyNormalTable table;
-	JButton subenter;
+	JButton movegoods;
 	
-	public EnterSubUI(CommodityController c, EnterReceiptVO vo){
+	public ShowInventoryUI(CommodityController c, ArrayList<ComGoodsVO> list){
 		
 		this.controller = c;
-		this.vo = vo;
+		this.voList = list;
 		
 		String[] header = {"订单号","分区","排号","架号","位号"};
 		table = new MyNormalTable(header);
@@ -53,19 +51,18 @@ public class EnterSubUI extends MainPanel{
 		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
 		
-		subenter = new JButton(img1);
-		subenter.setRolloverIcon(img2);
-		subenter.setContentAreaFilled(false);
-		subenter.setBorderPainted(false);
-		subenter.setBounds(450,537,80,30);
-		subenter.setActionCommand("subenter");
-		subenter.addActionListener(controller);
-		this.add(subenter);
+		movegoods = new JButton(img1);
+		movegoods.setRolloverIcon(img2);
+		movegoods.setContentAreaFilled(false);
+		movegoods.setBorderPainted(false);
+		movegoods.setBounds(450,537,80,30);
+		movegoods.setActionCommand("movegoods");
+		movegoods.addActionListener(controller);
+		this.add(movegoods);
 		
 	}
 	
 	private void initData(){
-		ArrayList<ComGoodsVO> voList = vo.getList();
 		for(int i=0;i<voList.size();i++){
 			String[] data = {voList.get(i).getOrder().getID(),voList.get(i).getLine()+"",
 					voList.get(i).getShelf()+"",voList.get(i).getShelf()+""};
@@ -73,8 +70,8 @@ public class EnterSubUI extends MainPanel{
 		}
 	}
 	
-	public EnterReceiptVO getEnterReceipt(){
-		return this.vo;
+	public ArrayList<ComGoodsVO> getList(){
+		return this.voList;
 	}
 	
 }

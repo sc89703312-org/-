@@ -4,12 +4,9 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import edu.nju.express.presentation.managerui.ManageController;
-import edu.nju.express.presentation.managerui.ReceiptApprovalUI;
 import edu.nju.express.presentation.myUI.MyFrame;
 
-public class Run {
+public class RunCom {
 
 	public static void main(String[] args){
 		
@@ -19,7 +16,7 @@ public class Run {
 		f.setSize(900, 600);
         f.setLocationRelativeTo(null);
         f.setUndecorated(true);
-        
+   
         JPanel p = null;
         p = new EnterManageUI(new CommodityController(f));
         f.add(p);

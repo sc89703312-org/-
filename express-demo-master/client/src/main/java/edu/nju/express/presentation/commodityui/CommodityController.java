@@ -18,7 +18,7 @@ public class CommodityController implements UIController{
 	
 	public CommodityController(JFrame frame){
 		this.frame = frame;
-		service = DataFactory.createCommodityBlInstance();
+		//service = DataFactory.createCommodityBlInstance();
 	}
 
 	@Override

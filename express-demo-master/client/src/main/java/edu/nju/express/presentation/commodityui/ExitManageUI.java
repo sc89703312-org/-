@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.myUI.MyCheckBoxTable;
+import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.TransferReceiptVO;
 
@@ -26,7 +26,7 @@ public class ExitManageUI extends MainPanel{
 	private static Icon img1 = new ImageIcon("ui/button/createxit1.png");
 	private static Icon img2 = new ImageIcon("ui/button/createxit2.png");
 	
-	MyCheckBoxTable table;
+	MyNormalTable table;
 	JButton createxit;
 	
 	public ExitManageUI(CommodityController c){
@@ -34,7 +34,7 @@ public class ExitManageUI extends MainPanel{
 		this.controller = c;
 		
 		String[] header = {"编号","提交日期","货物来源","货物数量"};
-		table = new MyCheckBoxTable(header);
+		table = new MyNormalTable(header);
 		initData();
 		
 		this.add(new CommodityGuide(c));

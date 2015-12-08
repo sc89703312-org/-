@@ -12,9 +12,9 @@ import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.ComGoodsVO;
-import edu.nju.express.vo.EnterReceiptVO;
+import edu.nju.express.vo.ExitReceiptVO;
 
-public class EnterSubUI extends MainPanel{
+public class ExitSubUI extends MainPanel{
 
 	/**
 	 * 
@@ -22,15 +22,15 @@ public class EnterSubUI extends MainPanel{
 	private static final long serialVersionUID = 1L;
 
 	CommodityController controller;
-	EnterReceiptVO vo;
+	ExitReceiptVO vo;
 	ArrayList<Object[]> data;
 	private static Icon img1 = new ImageIcon("ui/button/subenter1.png");
 	private static Icon img2 = new ImageIcon("ui/button/subenter2.png");
 	
 	MyNormalTable table;
-	JButton subenter;
+	JButton subexit;
 	
-	public EnterSubUI(CommodityController c, EnterReceiptVO vo){
+	public ExitSubUI(CommodityController c, ExitReceiptVO vo){
 		
 		this.controller = c;
 		this.vo = vo;
@@ -53,14 +53,14 @@ public class EnterSubUI extends MainPanel{
 		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
 		
-		subenter = new JButton(img1);
-		subenter.setRolloverIcon(img2);
-		subenter.setContentAreaFilled(false);
-		subenter.setBorderPainted(false);
-		subenter.setBounds(450,537,80,30);
-		subenter.setActionCommand("subenter");
-		subenter.addActionListener(controller);
-		this.add(subenter);
+		subexit = new JButton(img1);
+		subexit.setRolloverIcon(img2);
+		subexit.setContentAreaFilled(false);
+		subexit.setBorderPainted(false);
+		subexit.setBounds(450,537,80,30);
+		subexit.setActionCommand("subexit");
+		subexit.addActionListener(controller);
+		this.add(subexit);
 		
 	}
 	
@@ -73,7 +73,7 @@ public class EnterSubUI extends MainPanel{
 		}
 	}
 	
-	public EnterReceiptVO getEnterReceipt(){
+	public ExitReceiptVO getEnterReceipt(){
 		return this.vo;
 	}
 	
