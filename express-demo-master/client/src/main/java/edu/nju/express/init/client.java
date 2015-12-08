@@ -43,13 +43,23 @@ public class client {
 
 	
 		new LoginUI();		
-		new UserBl().addUser("025001001", "顾晗",Role.CLERK_HALL, "yqdtgdd");
-		new UserBl().addUser("025001", "顾小晗",Role.CLERK_STATION, "yqdtgdd");
 
 		
-//		ArrayList<Paymentvo> list=DataFactory.createPaymentBLInstance().viewAll();
-//		for(Paymentvo vo:list)
-//			System.out.println(vo.getId());
+		
+
+
+		
+		
+
+//		
+//		try {
+//		
+//			System.out.println(RMIHelper.getBalanceDataService().getAll().get(1).getId());
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		
 
 //		System.out.println(ConstantSettingBl.getVehicleLoad()[2]);

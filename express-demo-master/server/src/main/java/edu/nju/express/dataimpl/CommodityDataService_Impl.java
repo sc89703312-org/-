@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.data.commoditydata.ComInfoDao;
+import edu.nju.express.data.commoditydata.ComInfoFileDao;
+import edu.nju.express.data.commoditydata.EnterFileDao;
 import edu.nju.express.data.commoditydata.EnterReceiptDao;
+import edu.nju.express.data.commoditydata.ExitFileDao;
 import edu.nju.express.data.commoditydata.ExitReceiptDao;
 import edu.nju.express.dataservice.CommodityDataService;
 import edu.nju.express.po.ComGoodsPO;
@@ -18,6 +21,15 @@ import edu.nju.express.po.ExitReceiptPO;
 
 public class CommodityDataService_Impl extends UnicastRemoteObject implements CommodityDataService{
 	
+	public CommodityDataService_Impl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	
+		enterDao = new EnterFileDao("enter");
+		exitDao = new ExitFileDao("exit");
+		comInfoDao = new ComInfoFileDao("cominfo");
+	}
+
 	/**
 	 * 
 	 */
@@ -27,10 +39,7 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 	ExitReceiptDao exitDao;
 	ComInfoDao comInfoDao;
 
-	public CommodityDataService_Impl() throws RemoteException{
-		
-	}
-
+	
 	@Override
 	public ArrayList<ComGoodsPO> getComGoods(String comID)
 			throws RemoteException {
@@ -136,7 +145,7 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 	}
 
 	@Override
-	public void moveGoods(String comID, Object[][] data) {
+	public void moveGoods(String comID, Object[][] data)throws RemoteException {
 		// TODO Auto-generated method stub
 		ComInfoPO po = comInfoDao.find(comID);
 		ComZonePO zone = po.getZone();
@@ -299,7 +308,7 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 	}
 	
 	@Override
-	public void flush(){
+	public void flush()throws RemoteException{
 		comInfoDao.flush();
 		enterDao.flush();
 		exitDao.flush();

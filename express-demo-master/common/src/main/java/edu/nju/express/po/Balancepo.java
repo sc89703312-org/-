@@ -60,4 +60,8 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	public String getRemark(){
 		return remark;
 	}
+	
+	public String getID(){
+		return this.id;
+	}
 }

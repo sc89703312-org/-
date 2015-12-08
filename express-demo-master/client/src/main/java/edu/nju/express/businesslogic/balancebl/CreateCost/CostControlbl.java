@@ -57,6 +57,8 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	public ResultMessage createCost(Balancevo vo) {
 		// TODO Auto-generated method stub
 		
+		
+
 
 		
 		boolean exsit = false;
@@ -113,6 +115,8 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	
 	
 	public Balancepo convertVO(Balancevo vo){
+
+		
 		return new Balancepo(vo.getDate(), vo.getMoney(), 
 				                      vo.getName(), vo.getBanking(),
 				                      vo.getItem(), vo.getRemark(),
@@ -146,9 +150,11 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 			ArrayList<Balancepo> balancepos = balancedataservice.getAll();
 		
 		
-			for(int i=0;i<balancepos.size();i++)
+			for(int i=0;i<balancepos.size();i++){
+
 				temps.add(convertPO(balancepos.get(i)));
-			
+
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

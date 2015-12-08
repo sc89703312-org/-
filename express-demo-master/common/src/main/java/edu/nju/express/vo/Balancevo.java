@@ -60,4 +60,9 @@ public class Balancevo extends ReceiptVOBase{
 	                +name+"     Bank_Account:"+banking+"       +Item:"+
 				    item+"     Remark:"+remark;
 	}
+	
+	@Override
+	public String getId(){
+		return this.id;
+	}
 }

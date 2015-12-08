@@ -27,7 +27,7 @@ public interface CommodityDataService extends Remote{
 	public void addGoods(String comID, EnterReceiptPO po) throws RemoteException;
 	public void removeGoods(String comID, ExitReceiptPO po) throws RemoteException;
 	public ComGoodsPO getGoods(String comID, String orderID) throws RemoteException;
-	public void moveGoods(String comID, Object data[][]);
+	public void moveGoods(String comID, Object data[][])throws RemoteException;
 
 	
 	public void addCommodity(String comID, String location, int totalSpace) throws RemoteException;
@@ -54,6 +54,6 @@ public interface CommodityDataService extends Remote{
 	//public void approveExitReceipt(ArrayList<ExitReceiptPO> list) throws RemoteException;
 	//public void modifyExitReceipt(String id, ExitReceiptPO po) throws RemoteException;
 	
-	public void flush();
+	public void flush()throws RemoteException;
 	
 }

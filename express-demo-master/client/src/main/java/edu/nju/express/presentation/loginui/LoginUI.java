@@ -21,6 +21,7 @@ import edu.nju.express.log.ui.frame.Frame;
 import edu.nju.express.presentation.administratorui.Administor_Frame;
 import edu.nju.express.presentation.clerk_hallui.Hall_Frame;
 import edu.nju.express.presentation.clerk_stationui.Station_Frame;
+import edu.nju.express.presentation.commodityui.Commodity_Frame;
 import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
 import edu.nju.express.presentation.managerui.Manager_Frame;
@@ -181,6 +182,8 @@ public class LoginUI extends MyFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				new Commodity_Frame();
 			}
 			else{
 				System.out.println("failed");

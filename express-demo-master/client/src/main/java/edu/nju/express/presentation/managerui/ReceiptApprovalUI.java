@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.ReceiptBlService;
+import edu.nju.express.common.ConcludeTypeById;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
@@ -72,7 +73,41 @@ public class ReceiptApprovalUI extends MainPanel {
 		
 		Object[] data1 =new Object[4] ;
 		for (int i = 0; i < receipts.size(); i++) {
-			data1[1] = "";
+			
+			
+			String id = receipts.get(i).getId();
+			switch (ConcludeTypeById.conclude(id)) {
+			case 0:
+				data1[1] = "收款单";
+				break;
+			case 1:
+				data1[1] = "付款单";
+				break;
+			case 2:
+				data1[1] = "";
+				break;
+			case 3:
+				data1[1] = "";
+				break;
+			case 4:
+				data1[1] = "";
+				break;
+			case 5:
+				data1[1] = "";
+				break;
+			case 6:
+				data1[1] = "";
+				break;
+			case 7:
+				data1[1] = "";
+				break;
+			case 8:
+				data1[1] = "";
+				break;
+			default:
+				break;
+			}
+			
 			data1[2] = receipts.get(i).getId();
 			data1[3] = receipts.get(i).getDate();
 			table.getTableModel().addRow(data1);

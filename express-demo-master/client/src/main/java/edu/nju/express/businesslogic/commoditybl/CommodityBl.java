@@ -459,7 +459,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 					return ResultMessageV2.ERROR;
 		}
 		
-		commodityDataService.moveGoods(comID, data);
+		try {
+			commodityDataService.moveGoods(comID, data);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return ResultMessageV2.SUCCESS;
 	}
