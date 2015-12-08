@@ -19,6 +19,7 @@ import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
+import edu.nju.express.presentation.myUI.MyTextField;
 import edu.nju.express.vo.Balancevo;
 
 public class BalanceUI extends MainPanel implements ActionListener {
@@ -40,6 +41,7 @@ public class BalanceUI extends MainPanel implements ActionListener {
 	private CostControlService costBL;
 
 	private ConfirmButton cfm;
+	private LabelTextField id;
 	private DateComboBoxPanel date;
 	private LabelTextField amount, name, banking, remark;
 	private MyComboBox<String> itemBox;
@@ -54,7 +56,7 @@ public class BalanceUI extends MainPanel implements ActionListener {
 		
 		JPanel p = new JPanel();
 		p.setBounds(x - 130, 100, width - x+90, height - y);
-		p.setLayout(new FlowLayout(FlowLayout.LEFT, 360, 18));
+		p.setLayout(new FlowLayout(FlowLayout.LEFT, 360, 10));
 		p.setOpaque(false);
 
 		JLabel d = new JLabel("日期     ");
@@ -66,7 +68,7 @@ public class BalanceUI extends MainPanel implements ActionListener {
 		p1.add(d);
 		p1.add(date);
 		p.add(p1);
-
+		
 		JLabel items = new JLabel("条目      ");
 		items.setForeground(color);
 		items.setFont(font);
@@ -79,6 +81,9 @@ public class BalanceUI extends MainPanel implements ActionListener {
 		p2.add(items);
 		p2.add(itemBox);
 		p.add(p2);
+		
+		id = new LabelTextField("单据编号 ", 10);
+		p.add(id);
 
 		amount = new LabelTextField("付款金额 ", 13, "元");
 		p.add(amount);

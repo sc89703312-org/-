@@ -6,16 +6,15 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.Accountblservice;
 import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.blservice.BankingBlService;
 import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.blservice.ViewPaymentService;
 import edu.nju.express.businesslogic.DataFactory;
-import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
-import edu.nju.express.businesslogic.balancebl.balance.Balancebl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.presentation.UIController;
-import edu.nju.express.presentation.myUI.MyComboBox;
+import edu.nju.express.vo.Accountvo;
 import edu.nju.express.vo.BankingAccountVO;
 
 public class FinanceController implements UIController {
@@ -25,6 +24,7 @@ public class FinanceController implements UIController {
 	CostControlService cost;
 	ViewPaymentService view;
 	BankingBlService banking;
+	Accountblservice account;
 
 	public FinanceController(JFrame f) {
 		frame = f;
@@ -32,6 +32,7 @@ public class FinanceController implements UIController {
 		cost    = DataFactory.createCostInstance();
 		view    = DataFactory.createViewPaymentblInstance();
 		banking = DataFactory.createBankingInstance();
+		account = DataFactory.createAccountblInstance();
 	}
 
 	@Override
@@ -66,7 +67,11 @@ public class FinanceController implements UIController {
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("AccountUI")) {
-
+			frame.getContentPane().removeAll();;
+			currentPanel = new AccountUI(this);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		} else if (e.getActionCommand().equals("BalanceHistory")) {
 
 			frame.getContentPane().removeAll();;
@@ -153,6 +158,18 @@ public class FinanceController implements UIController {
 		}else if (e.getActionCommand().equals("SearchList")) {
 		}else if (e.getActionCommand().equals("Export")) {
 			((BussinessConditionPanel)currentPanel).getTables();
+			
+		}else if(e.getActionCommand().equals("CreateAccount")){
+			
+			account.createAccount();
+			
+		}else if(e.getActionCommand().equals("SearchAccount")){
+			Accountvo avo = account.viewAccount(((AccountUI)currentPanel).getDate());
+			frame.getContentPane().removeAll();;
+			currentPanel = new AccountPanel(this, avo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 		}
 
 	}
