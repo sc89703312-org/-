@@ -12,4 +12,11 @@ public enum Etype {
 	public String getName() {
 		return name;
 	}
+	
+	public static Etype getType(String name){
+		 for( Etype t : values())
+	            if(t.getName().equals(name))
+	            	return t;
+		 throw new IllegalArgumentException();
+	}
 }

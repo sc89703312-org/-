@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
@@ -43,6 +44,7 @@ public class CreateOrderPanel extends MainPanel {
 	LabelTextField num, weight, size, goodsName;
 	JComboBox<String> typeBox, pkgCostBox;
 	JLabel totalCost, expectedArrival;
+	double total, expect;
 	JButton confirm, caculate;
 	static JScrollPane s = new JScrollPane();
 
@@ -167,12 +169,12 @@ public class CreateOrderPanel extends MainPanel {
 		p2.add(pkgCostBox);
 		p.add(p2);
 
-		totalCost = new JLabel("报价：");
+		totalCost = new JLabel("报价："+total);
 		totalCost.setFont(font);
 		totalCost.setForeground(color);
 		p.add(totalCost);
 
-		expectedArrival = new JLabel("预计送达时间：");
+		expectedArrival = new JLabel("预计送达时间："+expect);
 		expectedArrival.setFont(font);
 		expectedArrival.setForeground(color);
 		p.add(expectedArrival);
@@ -190,22 +192,32 @@ public class CreateOrderPanel extends MainPanel {
 		this.add(confirm);
 	}
 
-	/*public OrderVO getInput() {
-		double pkgCost;
-		switch ((pkgCostBox.getSelectedItem()) {
-		case value:
-			
+	public OrderVO getInput() {
+		double pkgCost = 0;
+		switch (((String)pkgCostBox.getSelectedItem())) {
+		case "快递袋":
+			pkgCost = 2;
 			break;
 
-		default:
+		case "纸箱":
+			pkgCost = 5;
+			break;
+			
+		case "木箱":
+			pkgCost = 10;
 			break;
 		}
+		
+		Etype type;
+		type = Etype.getType((String)typeBox.getSelectedItem());
+		
+		
 		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(),
 				telS.getText(), phoneS.getText(), nameR.getText(), addressR.getText(),
 				postR.getText(), telR.getText(), phoneR.getText(), Integer.parseInt(num.getText()),
 				Double.parseDouble(weight.getText()),Double.parseDouble(size.getText()),
 				goodsName.getText(),Double.parseDouble(size.getText()), 
-				pkgCost, totalCost, id.getText(),
-				fast, no, expected, currentSpot);
+				pkgCost, total, id.getText(),
+				type, ArrivalState.NO, "2015/12/08", LoginInfo.getUserID().substring(0, 6));
 	}
-*/}
+}

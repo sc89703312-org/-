@@ -23,6 +23,8 @@ public class BalanceUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Icon fee1 =new ImageIcon("ui/button/fee1.png");
+	private static Icon fee2 =new ImageIcon("ui/button/fee2.png");
 	private static Icon historyIcon1 =new ImageIcon("ui/button/查看历史单据1.png");
 	private static Icon historyIcon2 =new ImageIcon("ui/button/查看历史单据2.png");
 	private static int width = 900, height = 600;
@@ -37,6 +39,7 @@ public class BalanceUI extends MainPanel {
 	private LabelTextField amount, name, banking, remark;
 	private MyComboBox<String> itemBox;
 	private JButton history;
+	private JButton cal;
 
 	public BalanceUI(FinanceController c) {
 		this.controller = c;
@@ -85,8 +88,15 @@ public class BalanceUI extends MainPanel {
 
 		this.add(p);
 		
+		cal = new JButton(fee1);
+		cal.setContentAreaFilled(false);
+		cal.setBorderPainted(false);
+		cal.setRolloverIcon(fee2);
+		cal.setBounds(440, 537, 120,30);
+		this.add(cal);
+		
 		cfm = new ConfirmButton();
-		cfm.setBounds(545, 537, 80,30);
+		cfm.setBounds(580, 537, 80,30);
 		cfm.addActionListener(controller);
 		cfm.setActionCommand("SubmitBalance");
 		this.add(cfm);
@@ -95,7 +105,7 @@ public class BalanceUI extends MainPanel {
 		history.setRolloverIcon(historyIcon2);
 		history.setBorderPainted(false);
 		history.setContentAreaFilled(false);
-		history.setBounds(355, 537, 120, 30);
+		history.setBounds(300, 537, 120, 30);
 		history.addActionListener(controller);
 		history.setActionCommand("BalanceHistory");
 		this.add(history);
