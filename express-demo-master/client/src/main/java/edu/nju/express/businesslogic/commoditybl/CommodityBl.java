@@ -39,12 +39,6 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		this.stationInfo = stationInfo;
 		this.userID = userID;
 		comID = userID.substring(0, 2);
-		try {
-			location = commodityDataService.getLocation(comID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -57,6 +51,13 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public EnterReceiptVO showEnterReceipt(ArriveReceiptVO vo) throws Exception{
 		// TODO Auto-generated method stub
+		
+		try {
+			location = commodityDataService.getLocation(comID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ArrayList<OrderVO> orderList = vo.getList();
 		ArrayList<ComGoodsVO> comGoodsList = new ArrayList<ComGoodsVO>();
@@ -176,6 +177,13 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ExitReceiptVO showExitReceipt(TransferReceiptVO vo) {
 		// TODO Auto-generated method stub
+		
+		try {
+			location = commodityDataService.getLocation(comID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ArrayList<OrderVO> orderList = vo.getList();
 		ArrayList<ComGoodsVO> comGoodsList = new ArrayList<ComGoodsVO>();
