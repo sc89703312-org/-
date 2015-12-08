@@ -46,12 +46,14 @@ public class FinanceController implements UIController {
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("PaymentUI")) {
+			refresh();
 			frame.getContentPane().removeAll();;
 			currentPanel = new PaymentUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("AnalyzeUI")) {
+			refresh();
 			frame.getContentPane().removeAll();;
 			currentPanel = new AnalyzeUI(this);
 			frame.add(currentPanel);
@@ -66,6 +68,7 @@ public class FinanceController implements UIController {
 		} else if (e.getActionCommand().equals("AccountUI")) {
 
 		} else if (e.getActionCommand().equals("BalanceHistory")) {
+
 			frame.getContentPane().removeAll();;
 			currentPanel = new BalanceHistoryPanel(this);
 			frame.add(currentPanel);
@@ -96,13 +99,13 @@ public class FinanceController implements UIController {
 			frame.validate();
 			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
+		   
 		
-			if(((BalanceUI)currentPanel).getComBoxComponent().equals("工资")){
-//					double salary = cost.caculateClerkSalary();
-				
-				double salary = cost.caculatePostManSalary(((BalanceUI)currentPanel).getRemark());
-					((BalanceUI)currentPanel).setAmount(salary);
+			if(cost.createCost(((BalanceUI)currentPanel).createBalanceVO())==ResultMessage.VALID){
+				System.out.println("Cost Create SuccessFully");
 			}
+			else
+				System.out.println("Cost Create False");
 				
 			
 			
@@ -154,4 +157,10 @@ public class FinanceController implements UIController {
 
 	}
 
+	
+	
+	public void refresh(){
+		balance = DataFactory.createBalanceBLInstance();
+		view    = DataFactory.createViewPaymentblInstance();
+	}
 }

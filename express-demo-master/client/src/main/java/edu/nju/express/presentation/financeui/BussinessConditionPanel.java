@@ -174,10 +174,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		
 		listP = balanceBL.viewReport(AnalyzeUI.getDates()[0], AnalyzeUI.getDates()[1]);
 		
-		for(int i=0;i<20;i++)
-			listB.add(new Balancevo("", i, "", "", Item.SALARY, ""));
-		for(int i=0;i<20;i++)
-			listP.add(new Paymentvo("", i, "", "", ""));
+		
 	}
 	
 	//获得payment和cost table

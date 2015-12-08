@@ -15,4 +15,10 @@ public enum Item {
 		return name;
 	}
 
+	public static Item getItem(String name){
+		for(Item i:values())
+			if(i.getName().equals(name))
+				return i;
+		throw new IllegalArgumentException();
+	}
 }

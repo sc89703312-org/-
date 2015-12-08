@@ -129,7 +129,7 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	
 	
 	public void modify(String name,int cost){
-		account.modify(cost, name);
+		account.modify(-cost, name);
 	}
 
 

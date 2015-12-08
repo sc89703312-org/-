@@ -43,7 +43,7 @@ public class client {
 	
 		new LoginUI();		
 		
-//		System.out.println(SalarySettingBl.getClerkSalary());
+
 		
 
 

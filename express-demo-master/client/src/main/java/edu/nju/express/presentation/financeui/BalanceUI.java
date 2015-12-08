@@ -3,6 +3,8 @@ package edu.nju.express.presentation.financeui;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -10,14 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.common.Item;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
+import edu.nju.express.vo.Balancevo;
 
-public class BalanceUI extends MainPanel {
+public class BalanceUI extends MainPanel implements ActionListener {
 
 	/**
 	 * 
@@ -33,6 +37,7 @@ public class BalanceUI extends MainPanel {
 	private static Color color = new Color(44, 62,80);
 
 	private FinanceController controller;
+	private CostControlService costBL;
 
 	private ConfirmButton cfm;
 	private DateComboBoxPanel date;
@@ -43,6 +48,7 @@ public class BalanceUI extends MainPanel {
 
 	public BalanceUI(FinanceController c) {
 		this.controller = c;
+		costBL = c.cost;
 
 		this.add(new FinanceGuide(c));
 		
@@ -92,7 +98,9 @@ public class BalanceUI extends MainPanel {
 		cal.setContentAreaFilled(false);
 		cal.setBorderPainted(false);
 		cal.setRolloverIcon(fee2);
+		
 		cal.setBounds(440, 537, 120,30);
+		cal.addActionListener(this);
 		this.add(cal);
 		
 		cfm = new ConfirmButton();
@@ -126,4 +134,33 @@ public class BalanceUI extends MainPanel {
 	public String getRemark(){
 		return remark.getText();
 	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		double salary = 0;
+		
+		if(getComBoxComponent().equals("业务员月薪"))
+			salary = costBL.caculateClerkSalary();
+		else if (getComBoxComponent().equals("快递员提成")) {
+			salary = costBL.caculatePostManSalary(getRemark());
+		}else if (getComBoxComponent().equals("司机提成")) {
+			salary = costBL.caculateDriverSalary(getRemark());
+		}
+			
+		setAmount(salary);
+		
+	}
+	
+	
+	public Balancevo createBalanceVO(){
+		return new Balancevo(date.getDate(), Double.parseDouble(amount.getText()),
+				name.getText(), banking.getText(),
+				Item.getItem((String)itemBox.getSelectedItem()), remark.getText());
+	}
+	
+	
 }
