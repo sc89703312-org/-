@@ -193,6 +193,15 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		submitBtn = new JButton("提交");
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
+		submitBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		mainpanel.add(submitBtn);
 		
 		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));

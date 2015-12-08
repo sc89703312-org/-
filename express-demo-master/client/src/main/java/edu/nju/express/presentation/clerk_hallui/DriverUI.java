@@ -60,7 +60,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	
 	public DriverUI(HallController controller){
 		this.controller = controller;
-//		this.vehicleBL = controller.vehicle;
+		this.vehicleBL = controller.vehicle;
 		
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
@@ -137,7 +137,9 @@ public class DriverUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				//只要点击edit就remove “添加”按钮
+				mainpanel.remove(mainpanel.getComponentAt(396, 526));
+
 				if(isNew){
 					mainpanel.remove(mainpanel.getComponentAt(130, 120));
 					mainpanel.add(errorPanel1);
@@ -148,8 +150,7 @@ public class DriverUI extends JPanel implements MouseListener{
 					enableInfoPanel();
 					//编辑时不让删除
 					trashBtn.setEnabled(false);
-					mainpanel.remove(mainpanel.getComponentAt(307, 405));
-					mainpanel.add(saveBtn);
+										mainpanel.add(saveBtn);
 					mainpanel.validate();
 					mainpanel.repaint();
 				}
@@ -214,7 +215,7 @@ public class DriverUI extends JPanel implements MouseListener{
 		searchField.setBounds(480, 76, 200, 40);
 		mainpanel.add(searchField);
 		
-		addBtn = new MyButton(306, 404, 110, 45);
+		addBtn = new MyButton(395, 525, 110, 45);
 		addBtn.setIcon(new ImageIcon("ui/image/hall/add0.png"));
 		addBtn.addMouseListener(this);
 		addBtn.addActionListener(new ActionListener(){
@@ -233,7 +234,7 @@ public class DriverUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(addBtn);     //初始为newPanel
 
-		saveBtn = new MyButton(306, 404, 110, 45);
+		saveBtn = new MyButton(395, 525, 110, 45);
 		saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
 		saveBtn.addMouseListener(this);
 		saveBtn.addActionListener(new ActionListener(){

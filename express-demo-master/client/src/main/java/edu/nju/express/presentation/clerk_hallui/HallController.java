@@ -25,10 +25,10 @@ public class HallController implements UIController {
 		this.frame = f;
 		currentPanel = (JPanel) f.getContentPane();
 		
-//		this.vehicle = DataFactory.createDriverInstance();
-//		this.car = DataFactory.createCarBLInstance();
-//		this.receipt = DataFactory.createHallReceiptBLInstance();
-//		this.payment = DataFactory.createPaymentBLInstance();
+		this.vehicle = DataFactory.createDriverInstance();
+		this.car = DataFactory.createCarBLInstance();
+		this.receipt = DataFactory.createHallReceiptBLInstance();
+		this.payment = DataFactory.createPaymentBLInstance();
 		
 	}
 	@Override
