@@ -72,7 +72,7 @@ public class MyEditableTable extends JTable {
 		ArrayList<String> edited = new ArrayList<String>();
 		for(int i = 0;i<this.getRowCount();i++){
 			edited.add((String)(this.getValueAt(i, 4)));
-			System.out.println((String)(this.getValueAt(i, 4)));
+//			System.out.println((String)(this.getValueAt(i, 4)));
 		}
 		
 		return edited;

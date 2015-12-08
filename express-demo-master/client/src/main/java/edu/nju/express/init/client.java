@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
+import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.businesslogic.strategybl.salarysettingbl.SalarySettingBl;
 import edu.nju.express.businesslogic.userbl.UserBl;
 import edu.nju.express.common.ArrivalState;
@@ -44,9 +45,17 @@ public class client {
 		new LoginUI();		
 		
 
+//		System.out.println(ConstantSettingBl.getVehicleLoad()[2]);
+
+//		ConstantSettingBl constantSettingBl = DataFactory.createConstantSettingBLInstance();
 		
-
-
-
+		
+        
+        
+//        ArrayList<String> cityDistance =  ConstantSettingBl.getCityDistance();
+//		
+//		
+//        for(String distanceList:cityDistance)
+//		System.out.println(distanceList);
 	}
 }

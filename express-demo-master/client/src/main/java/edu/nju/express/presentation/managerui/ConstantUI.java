@@ -226,19 +226,27 @@ public class ConstantUI extends MainPanel{
 		airplaneCost=vo.getAirplaneCost();
 		vanLoad=vo.getVanLoad(); 
 		railwayLoad=vo.getRailwayLoad(); 
-		airplaneLoad=vo.getRailwayLoad();
+		airplaneLoad=vo.getAirplaneLoad();
 		cityList = vo.getCityList();
 		cityDistance = vo.getCityDistance();
 	}
 	
-	public DistanceVO getDistanceInput(){
+	public ArrayList<DistanceVO> getDistanceInput(){
 		
-		ArrayList<Integer> rows = table.getEditedRows();
-		for(int i = 0 ; i<rows.size();i++){
+		ArrayList<DistanceVO> tempList = new ArrayList<>();
+		
+		
+		ArrayList<String> infos = table.getEditedRows();
+		int m=0;
+		
+		for(int i =0;i<cityList.size()-1;i++){
+			for(int j = i+1;j<cityList.size();j++){
+				tempList.add(new DistanceVO(cityList.get(i), cityList.get(j), Double.parseDouble(infos.get(m))));
+			    m++;
+			}
 		}
 		
-		
-		return null;
+		return tempList;
 	}
 	
 	public double getPriceInput(){

@@ -15,6 +15,7 @@ import edu.nju.express.blservice.SalarySettingBlService;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.vo.ConstantVO;
+import edu.nju.express.vo.DistanceVO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.SalaryVO;
@@ -144,7 +145,23 @@ public class ManageController implements UIController {
 			salary.setPostmanWage(Double.parseDouble(input[2]));
 			
 		} else if (e.getActionCommand().equals("ModifyConstant")) {
+            
+			constant.setPrice(((ConstantUI)currentPanel).getPriceInput());
+			constant.setVehicleCost(((ConstantUI)currentPanel).getVehicleCostInput()[0],
+					((ConstantUI)currentPanel).getVehicleCostInput()[1], 
+					((ConstantUI)currentPanel).getVehicleCostInput()[2]);
+			constant.setVehicleLoad(((ConstantUI)currentPanel).getVehicleLoadInput()[0],
+					((ConstantUI)currentPanel).getVehicleLoadInput()[1], 
+					((ConstantUI)currentPanel).getVehicleLoadInput()[2]);
+			
 
+			
+		ArrayList<DistanceVO> newDistances	=((ConstantUI)currentPanel).getDistanceInput();
+		for(DistanceVO vo:newDistances)
+			constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance());
+		
+		
+		
 		} else if (e.getActionCommand().equals("AddEmployee")) {
 
 			UserMessageVO vo = ((AddEmployeePanel) currentPanel).getTextInput();
