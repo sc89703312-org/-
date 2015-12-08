@@ -30,12 +30,12 @@ public class AccountUI extends MainPanel{
 		this.add(new FinanceGuide(controller));
 		
 		date = new DateComboBoxPanel();
-		date.setBounds(200+94, 180,400,50);
+		date.setBounds(200+94, 210,400,60);
 		this.add(date);
 		
 		add = new JButton(add1);
 		add.setRolloverIcon(add2);
-		add.setBounds(390,537,100,30);
+		add.setBounds(400,537,80,30);
 		add.setBorderPainted(false);
 		add.setContentAreaFilled(false);
 		add.setActionCommand("CreateAccount");
@@ -48,7 +48,7 @@ public class AccountUI extends MainPanel{
 		search.setActionCommand("SearchAccount");
 		search.setBorderPainted(false);
 		search.setContentAreaFilled(false);
-		search.setBounds(410,537,80,30);
+		search.setBounds(500,537,80,30);
 		this.add(search);
 	}
 	
