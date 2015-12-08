@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOperationInfo;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.dataservice.CommodityDataService;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.StationPO;
@@ -14,9 +15,11 @@ import edu.nju.express.vo.StationVO;
 public class StationBl implements StationOperationInfo{
 	
 	StationDataService stationDataService;
+	CommodityDataService commodityDataService;
 	
 	public StationBl(){
 		stationDataService = RMIHelper.getStationDataService();
+		commodityDataService = RMIHelper.getCommodityDataService();
 	}
 
 	public ResultMessage addStation(String id, String location){
@@ -25,6 +28,7 @@ public class StationBl implements StationOperationInfo{
 		
 		try {
 			result = stationDataService.addStation(id, location);
+			commodityDataService.addCommodity(id,location,1000);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,6 +44,7 @@ public class StationBl implements StationOperationInfo{
 		
 		try {
 			result = stationDataService.removeStation(id);
+			commodityDataService.removeCommodity(id);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

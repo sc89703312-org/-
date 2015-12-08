@@ -14,4 +14,5 @@ public interface ExitReceiptDao {
 	public ResultMessage approve(String id);
 	public String nextID(String comID);
 	
+	public void flush();
 }

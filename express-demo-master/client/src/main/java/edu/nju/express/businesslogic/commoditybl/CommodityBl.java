@@ -13,6 +13,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.dataservice.CommodityDataService;
+import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.ComGoodsPO;
 import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.ComZonePO;
@@ -39,6 +40,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		this.stationInfo = stationInfo;
 		this.userID = userID;
 		comID = userID.substring(0, 2);
+		this.commodityDataService = RMIHelper.getCommodityDataService();
 	}
 
 	@Override

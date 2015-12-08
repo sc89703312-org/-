@@ -28,6 +28,7 @@ public class RMIHelper {
 	private static ConstantDataService constantDataService;
 	private static LogRecordDataService logRecordDataService;
 	private static LoginInfoDataService loginInfoDataService;
+	private static CommodityDataService commodityDataService;
 	
 	
 	public static boolean  isStarted = false;
@@ -70,6 +71,8 @@ public class RMIHelper {
 	             
 	             loginInfoDataService = new LoginInfoDataService_Impl();
 	             
+	             commodityDataService = new CommodityDataService_Impl();
+	             
 	            Naming.rebind("payment-service",paymentdataservice);
 
 	            Naming.rebind("vehicle-service", vehicledataservice);
@@ -97,6 +100,8 @@ public class RMIHelper {
 	            Naming.rebind("station-service", stationDataService);
 	            
 	            Naming.rebind("login-info", loginInfoDataService);
+	            
+	            Naming.rebind("commodity-service", commodityDataService);
 	            
 	        } catch (MalformedURLException e) {
 	            e.printStackTrace();
@@ -137,6 +142,7 @@ public class RMIHelper {
 		    bankingDataService.flush();
 		    stationDataService.flush();
 		    loginInfoDataService.flush();
+		    commodityDataService.flush();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

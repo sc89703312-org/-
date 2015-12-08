@@ -28,6 +28,10 @@ public class ComInfoPO extends PersistentObj implements Serializable{
 		
 	}
 	
+	public ComInfoPO(String comID, String location){
+		this(comID,location,1000);
+	}
+	
 	public void addComGoodsPO(ComGoodsPO po){
 		goods_list.add(po);
 	}

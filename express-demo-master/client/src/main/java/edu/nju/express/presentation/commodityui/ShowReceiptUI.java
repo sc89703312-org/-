@@ -21,6 +21,8 @@ public class ShowReceiptUI extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	ShowCheckUI saveUI;
 
 	CommodityController controller;
 	EnterReceiptVO enter;
@@ -31,8 +33,11 @@ public class ShowReceiptUI extends MainPanel{
 	MyNormalTable table;
 	JButton back;
 	
-	public ShowReceiptUI(CommodityController c, EnterReceiptVO vo){
+	public ShowReceiptUI(CommodityController c, EnterReceiptVO vo, ShowCheckUI ui){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
+		this.saveUI = ui;
 		this.controller = c;
 		this.enter = vo;
 		this.add(new CommodityGuide(c));
@@ -64,8 +69,9 @@ public class ShowReceiptUI extends MainPanel{
 		
 	}
 	
-	public ShowReceiptUI(CommodityController c, ExitReceiptVO vo){
+	public ShowReceiptUI(CommodityController c, ExitReceiptVO vo, ShowCheckUI ui){
 		
+		this.saveUI = ui;
 		this.controller = c;
 		this.exit = vo;
 		this.add(new CommodityGuide(c));
@@ -113,6 +119,10 @@ public class ShowReceiptUI extends MainPanel{
 					voList.get(i).getShelf()+"",voList.get(i).getShelf()+""};
 			table.getTableModel().addRow(data);
 		}
+	}
+	
+	public ShowCheckUI getSaveUI(){
+		return this.saveUI;
 	}
 	
 }

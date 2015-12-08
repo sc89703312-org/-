@@ -32,6 +32,8 @@ public class ExitSubUI extends MainPanel{
 	
 	public ExitSubUI(CommodityController c, ExitReceiptVO vo){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
 		this.controller = c;
 		this.vo = vo;
 		

@@ -22,7 +22,7 @@ public class MainPanel extends JPanel {
 	int HEIGHT = 600;
 	int BAR_HEIGHT = 50;
 	Image logo;
-	Image bg = new ImageIcon("ui/image/bg.png").getImage();
+	protected Image bg = new ImageIcon("ui/image/bg.png").getImage();
 	Icon quitIcon1 = new ImageIcon("ui/button/X_darkGray.png");
 	Icon quitIcon2 = new ImageIcon("ui/button/X_green.png");
 	

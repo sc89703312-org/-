@@ -27,6 +27,7 @@ public class RMIHelper {
     private static LogRecordDataService logRecordDataService;
     private static StationDataService stationDataService;
     private static LoginInfoDataService loginInfoDataService;
+    private static CommodityDataService commodityDataService;
     
     public static void init() {
         try {
@@ -46,6 +47,7 @@ public class RMIHelper {
             logRecordDataService = (LogRecordDataService)Naming.lookup("rmi://" + IP + "/log-service");
             stationDataService = (StationDataService)Naming.lookup("rmi://" + IP + "/station-service");
             loginInfoDataService = (LoginInfoDataService)Naming.lookup("rmi://" + IP + "/login-info")  ;
+            commodityDataService = (CommodityDataService)Naming.lookup("rmi://" + IP + "/commodity-service");
       
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -77,7 +79,9 @@ public class RMIHelper {
     public static HallDataService getHallDataService(){
     	return hallDataService;
     }
-
+    public static CommodityDataService getCommodityDataService(){
+    	return commodityDataService;
+    }
     public static UserDataService getUserDataService(){
     	return userDataService;
     }

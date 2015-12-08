@@ -19,4 +19,6 @@ public interface ComInfoDao {
 	public void addGoods(String comID, ArrayList<ComGoodsPO> list);
 	public void removeGoods(String comID, ArrayList<ComGoodsPO> list);
 	
+	public void flush();
+	
 }

@@ -31,6 +31,8 @@ public class ExitManageUI extends MainPanel{
 	
 	public ExitManageUI(CommodityController c, ArrayList<TransferReceiptVO> list){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
 		this.controller = c;
 		this.volist = list;
 		

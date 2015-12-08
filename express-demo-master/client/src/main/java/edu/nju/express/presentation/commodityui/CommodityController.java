@@ -175,6 +175,51 @@ public class CommodityController implements UIController{
 			frame.repaint();
 			
 		}
+		else if(e.getActionCommand().equals("confirmdate")){
+			
+			ShowCheckUI ui = (ShowCheckUI)(((JButton)e.getSource()).getParent());
+			String start = ui.getStartDate();
+			String end = ui.getEndDate();
+			
+			ArrayList<EnterReceiptVO> enterList = service.showCheckEnter(start, end);
+			ArrayList<ExitReceiptVO> exitList = service.showCheckExit(start, end);
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new ShowCheckUI(this,enterList,exitList);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("showreceipt")){
+			
+			ShowCheckUI ui = (ShowCheckUI)(((JButton)e.getSource()).getParent());
+			String type = ui.getSelectType();
+			if(type.equals("入库单")){
+				EnterReceiptVO vo = ui.getEnter();
+				currentPanel = new ShowReceiptUI(this,vo,ui);
+			}
+			else if(type.equals("出库单")){
+				ExitReceiptVO vo = ui.getExit();
+				currentPanel = new ShowReceiptUI(this,vo,ui);
+			}
+			
+			frame.getContentPane().removeAll();
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("back")){
+			
+			ShowReceiptUI ui = (ShowReceiptUI)(((JButton)e.getSource()).getParent());
+			currentPanel = ui.getSaveUI();
+			frame.getContentPane().removeAll();
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
 		
 		
 	}

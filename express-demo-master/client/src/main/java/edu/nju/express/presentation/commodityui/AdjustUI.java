@@ -1,5 +1,7 @@
 package edu.nju.express.presentation.commodityui;
 
+import javax.swing.ImageIcon;
+
 import edu.nju.express.presentation.MainPanel;
 
 public class AdjustUI extends MainPanel{
@@ -12,6 +14,8 @@ public class AdjustUI extends MainPanel{
 	CommodityController controller;
 	
 	public AdjustUI(CommodityController c){
+		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
 		
 		this.controller = c;
 		

@@ -31,6 +31,8 @@ public class EnterManageUI extends MainPanel{
 	
 	public EnterManageUI(CommodityController c, ArrayList<ArriveReceiptVO> list){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
 		this.controller = c;
 		this.volist = list;
 		
@@ -61,6 +63,8 @@ public class EnterManageUI extends MainPanel{
 		createnter.setActionCommand("createnter");
 		createnter.addActionListener(controller);
 		this.add(createnter);
+		
+		
 		
 	}
 	

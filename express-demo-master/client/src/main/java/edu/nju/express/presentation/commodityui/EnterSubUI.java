@@ -32,6 +32,8 @@ public class EnterSubUI extends MainPanel{
 	
 	public EnterSubUI(CommodityController c, EnterReceiptVO vo){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
 		this.controller = c;
 		this.vo = vo;
 		

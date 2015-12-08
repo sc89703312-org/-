@@ -185,11 +185,11 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 	}
 
 	@Override
-	public void addCommodity(String location, int totalSpace)
+	public void addCommodity(String comID, String location, int totalSpace)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		
-		ComInfoPO po = new ComInfoPO(comInfoDao.nextID(),location,totalSpace);
+		ComInfoPO po = new ComInfoPO(comID,location,totalSpace);
 		comInfoDao.add(po);
 		
 	}
@@ -296,6 +296,13 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 		// TODO Auto-generated method stub
 		
 		return exitDao.approve(id);
+	}
+	
+	@Override
+	public void flush(){
+		comInfoDao.flush();
+		enterDao.flush();
+		exitDao.flush();
 	}
 
 }

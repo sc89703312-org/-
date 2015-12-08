@@ -30,6 +30,8 @@ public class MoveGoodsUI extends MainPanel{
 	
 	public MoveGoodsUI(CommodityController c, ArrayList<ComGoodsVO> list){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
 		this.controller = c;
 		this.voList = list;
 		

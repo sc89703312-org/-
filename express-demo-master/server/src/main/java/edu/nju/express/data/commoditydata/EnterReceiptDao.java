@@ -14,4 +14,6 @@ public interface EnterReceiptDao {
 	public ResultMessage approve(String id);
 	public String nextID(String comID);
 	
+	public void flush();
+	
 }
