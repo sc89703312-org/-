@@ -193,4 +193,18 @@ public class OrderVO extends Observable implements Serializable{
 	public String getDeliver(){
 		return this.Deliver;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderVO [senderName=" + senderName + ", senderAddress=" + senderAddress + ", senderPost=" + senderPost
+				+ ", senderTel=" + senderTel + ", senderPhone=" + senderPhone + ", receiverName=" + receiverName
+				+ ", receiverAddress=" + receiverAddress + ", receiverPost=" + receiverPost + ", receiverTel="
+				+ receiverTel + ", receiverPhone=" + receiverPhone + ", goodsState=" + goodsState + ", num=" + num
+				+ ", weight=" + weight + ", volume=" + volume + ", goodsName=" + goodsName + ", size=" + size
+				+ ", pkgCost=" + pkgCost + ", totalCost=" + totalCost + ", id=" + id + ", type=" + type
+				+ ", arrivalState=" + arrivalState + ", expectedTime=" + expectedTime + ", currentSpot=" + currentSpot
+				+ ", Deliver=" + Deliver + "]";
+	}
+	
+	
 }

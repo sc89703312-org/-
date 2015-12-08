@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.postmanui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -16,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
@@ -38,6 +40,8 @@ public class CreateOrderPanel extends MainPanel {
 	static int interval = 10;
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
 	private static Color color = new Color(44, 62, 80);
+	private static Icon fee1 = new ImageIcon("ui/button/fee1.png");
+	private static Icon fee2 = new ImageIcon("ui/button/fee2.png");
 
 	PostmanController controller;
 
@@ -50,7 +54,8 @@ public class CreateOrderPanel extends MainPanel {
 	JLabel totalCost, expectedArrival;
 
 	double total, expect;
-	double pkgCost = 0;
+	double pkgCost;
+	String city1, city2;
 
 	JButton confirm, caculate;
 	static JScrollPane s = new JScrollPane();
@@ -147,7 +152,7 @@ public class CreateOrderPanel extends MainPanel {
 		p.add(size);
 		p.add(goodsName);
 
-		JLabel l1 = new JLabel("快递种类    ");
+		JLabel l1 = new JLabel("快递种类     ");
 		l1.setOpaque(false);
 		l1.setFont(font);
 		l1.setForeground(color);
@@ -158,6 +163,7 @@ public class CreateOrderPanel extends MainPanel {
 		p1.setOpaque(false);
 		p1.add(l1);
 		p1.add(typeBox);
+		p1.setPreferredSize(new Dimension(350, 50));
 		p.add(p1);
 
 		JLabel l2 = new JLabel("包装种类     ");
@@ -174,26 +180,51 @@ public class CreateOrderPanel extends MainPanel {
 		pkgCostBox.addItem("木箱");
 		p.add(pkgCostBox);
 		p2.add(pkgCostBox);
+		p2.setPreferredSize(new Dimension(350, 50));
 		p.add(p2);
 
-		totalCost = new JLabel("报价：  " + total);
+		JLabel l = new JLabel();
+		l.setOpaque(false);
+		l.setPreferredSize(new Dimension(200, 10));
+		p.add(l);
+
+		totalCost = new JLabel();
 		totalCost.setFont(font);
 		totalCost.setForeground(color);
+		totalCost.setPreferredSize(new Dimension(200, 60));
 		p.add(totalCost);
 
-		expectedArrival = new JLabel("预计送达时间：" + expect);
+		expectedArrival = new JLabel();
 		expectedArrival.setFont(font);
 		expectedArrival.setForeground(color);
+		expectedArrival.setPreferredSize(new Dimension(200, 60));
 		p.add(expectedArrival);
 
-		caculate = new JButton("计算报价");
-		caculate.setBounds(400, 537, 80, 30);
+		caculate = new JButton(fee1);
+		caculate.setRolloverIcon(fee2);
+		caculate.setContentAreaFilled(false);
+		caculate.setBorderPainted(false);
+		caculate.setBounds(360, 537, 120, 30);
 		caculate.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				city1 = (addressR.getText().split(" "))[0];
+				city2 = (addressS.getText().split(" "))[0];
 				total = calculate();
-				totalCost.setText("报价：  " + total);
+				double distance = FeeCalculator.getDistance(city1, city2);
+				if (distance <= 300)
+					expect = 2;
+				else if (distance <= 1500)
+					expect = 4;
+				else
+					expect = 5;
+				totalCost.setText("   报价： " + total + " 元        ");
+				expectedArrival.setText("预计送达时间： " + expect + " 天        ");
+				totalCost.setHorizontalAlignment(JLabel.CENTER);
+				expectedArrival.setHorizontalAlignment(JLabel.CENTER);
+				s.getVerticalScrollBar().setValue(s.getVerticalScrollBar().getMaximum());
+
 			}
 
 		});
@@ -202,7 +233,7 @@ public class CreateOrderPanel extends MainPanel {
 		confirm = new ConfirmButton();
 		confirm.setBounds(500, 537, 80, 30);
 		confirm.setActionCommand("SubmitOrder");
-		caculate.addActionListener(controller);
+		confirm.addActionListener(controller);
 		this.add(confirm);
 	}
 
@@ -211,20 +242,18 @@ public class CreateOrderPanel extends MainPanel {
 		Etype type;
 		type = Etype.getType((String) typeBox.getSelectedItem());
 
-		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(), phoneS.getText(),
-				nameR.getText(), addressR.getText(), postR.getText(), telR.getText(), phoneR.getText(),
-				Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
+		OrderVO ordervo = new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(),
+				phoneS.getText(), nameR.getText(), addressR.getText(), postR.getText(), telR.getText(),
+				phoneR.getText(), Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
 				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
-				total, id.getText(), type, ArrivalState.NO, "2015/12/08", LoginInfo.getUserID().substring(0, 6));
+				total, id.getText(), type, ArrivalState.NO, "2015/12/08", city1);
+		return ordervo;
 	}
 
 	private double calculate() {
 		double result = 0;
-		String city1 = (addressR.getText().split(" "))[0];
-		String city2 = (addressS.getText().split(" "))[0];
-
-		result = FeeCalculator.getPkgCost((String) pkgCostBox.getSelectedItem())
-				+ FeeCalculator.getTransFee(city1, city2, Etype.getType((String) typeBox.getSelectedItem()));
+		pkgCost = FeeCalculator.getPkgCost((String) pkgCostBox.getSelectedItem());
+		result = pkgCost + FeeCalculator.getTransFee(city1, city2, Etype.getType((String) typeBox.getSelectedItem()));
 
 		return result;
 	}
