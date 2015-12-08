@@ -21,7 +21,6 @@ public class MyEditableTable extends JTable {
 	private static Color foreColor = new Color(44, 62, 80);
 	private static Color foreColor2 = new Color(172, 229, 216);
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
-	private static ArrayList<Integer> editedRows = new ArrayList<Integer>();
 
 	public MyEditableTable(String[] header, DefaultTableModel model) {
 		super(model);
@@ -43,15 +42,7 @@ public class MyEditableTable extends JTable {
 				if (isCellEditable(row, column)) {
 					final int i = row;
 					setForeground(foreColor2);
-					addFocusListener(new FocusAdapter() {
-						@Override
-						public void focusGained(FocusEvent e) {
-							// TODO Auto-generated method stub
-							super.focusGained(e);
-							editedRows.add(i);
-						}
-						
-					});
+					
 				} else
 					setForeground(foreColor);
 
@@ -77,7 +68,13 @@ public class MyEditableTable extends JTable {
 		this.getColumn(header[5]).setMaxWidth(80);
 	}
 
-	public ArrayList<Integer> getEditedRows(){
-		return editedRows;
+	public ArrayList<String> getEditedRows(){
+		ArrayList<String> edited = new ArrayList<String>();
+		for(int i = 0;i<this.getRowCount();i++){
+			edited.add((String)(this.getValueAt(i, 4)));
+			System.out.println((String)(this.getValueAt(i, 4)));
+		}
+		
+		return edited;
 	}
 }

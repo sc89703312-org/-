@@ -39,13 +39,13 @@ public class PostmanGuide extends JPanel {
 		createOrder.setRolloverIcon(crt2);
 		createOrder.setBorderPainted(false);
 		createOrder.setContentAreaFilled(false);
-		createOrder.setBounds(0,44,82,82);
+		createOrder.setBounds(1,44,82,82);
 		createOrder.setActionCommand("CreateOrderUI");
 		createOrder.addActionListener(controller);
 
 		inquireOrder = new JButton(inq1);
 		inquireOrder.setRolloverIcon(inq2);
-		inquireOrder.setBounds(0,144,82,82);
+		inquireOrder.setBounds(1,144,82,82);
 		inquireOrder.setBorderPainted(false);
 		inquireOrder.setContentAreaFilled(false);
 		inquireOrder.setActionCommand("InquireOrderUI");
@@ -55,7 +55,7 @@ public class PostmanGuide extends JPanel {
 		confirmReceival.setRolloverIcon(cfm2);
 		confirmReceival.setContentAreaFilled(false);
 		confirmReceival.setBorderPainted(false);
-		confirmReceival.setBounds(0,244,82,82);
+		confirmReceival.setBounds(1,244,82,82);
 		confirmReceival.setActionCommand("ConfirmReceivalUI");
 		confirmReceival.addActionListener(controller);
 

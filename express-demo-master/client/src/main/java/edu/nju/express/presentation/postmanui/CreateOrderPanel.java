@@ -2,6 +2,8 @@ package edu.nju.express.presentation.postmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
@@ -44,7 +47,11 @@ public class CreateOrderPanel extends MainPanel {
 	LabelTextField num, weight, size, goodsName;
 	JComboBox<String> typeBox, pkgCostBox;
 	JLabel totalCost, expectedArrival;
+	
+	String city1,city2;
 	double total, expect;
+	double pkgCost = 0;
+
 	JButton confirm, caculate;
 	static JScrollPane s = new JScrollPane();
 
@@ -181,8 +188,15 @@ public class CreateOrderPanel extends MainPanel {
 
 		caculate = new JButton("计算报价");
 		caculate.setBounds(400, 537, 80, 30);
-		caculate.setActionCommand("CaculateFee");
-		caculate.addActionListener(controller);
+		caculate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				total = calculate();
+			}
+
+			
+		});
 		this.add(caculate);
 
 		confirm = new ConfirmButton();
@@ -193,7 +207,21 @@ public class CreateOrderPanel extends MainPanel {
 	}
 
 	public OrderVO getInput() {
-		double pkgCost = 0;
+
+		Etype type;
+		type = Etype.getType((String) typeBox.getSelectedItem());
+
+		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(), phoneS.getText(),
+				nameR.getText(), addressR.getText(), postR.getText(), telR.getText(), phoneR.getText(),
+				Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
+				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
+				total, id.getText(), type, ArrivalState.NO, "2015/12/08", LoginInfo.getUserID().substring(0, 6));
+	}
+	
+	private double calculate() {
+		double result = 0;
+		city1 = addressR
+		
 		switch (((String)pkgCostBox.getSelectedItem())) {
 		case "快递袋":
 			pkgCost = 2;
@@ -207,17 +235,12 @@ public class CreateOrderPanel extends MainPanel {
 			pkgCost = 10;
 			break;
 		}
+		result +=pkgCost;
 		
-		Etype type;
-		type = Etype.getType((String)typeBox.getSelectedItem());
+		System.out.println(Distance.get("BeiJing", "GuangZhou"));
+		double distance = Distance.get(city1, city2);
 		
 		
-		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(),
-				telS.getText(), phoneS.getText(), nameR.getText(), addressR.getText(),
-				postR.getText(), telR.getText(), phoneR.getText(), Integer.parseInt(num.getText()),
-				Double.parseDouble(weight.getText()),Double.parseDouble(size.getText()),
-				goodsName.getText(),Double.parseDouble(size.getText()), 
-				pkgCost, total, id.getText(),
-				type, ArrivalState.NO, "2015/12/08", LoginInfo.getUserID().substring(0, 6));
+		return 0;
 	}
 }

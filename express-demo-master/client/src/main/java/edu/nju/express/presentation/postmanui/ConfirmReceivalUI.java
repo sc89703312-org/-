@@ -62,7 +62,7 @@ public class ConfirmReceivalUI extends MainPanel{
 		
 		date= new DateComboBoxPanel();
 		time.add(date);
-		time.setBounds(200,240,400,40);
+		time.setBounds(200,240,400,50);
 		p.add(time);
 
 		confirm = new ConfirmButton();
