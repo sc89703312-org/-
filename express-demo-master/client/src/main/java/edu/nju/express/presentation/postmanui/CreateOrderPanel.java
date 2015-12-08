@@ -20,6 +20,7 @@ import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettin
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
@@ -47,8 +48,7 @@ public class CreateOrderPanel extends MainPanel {
 	LabelTextField num, weight, size, goodsName;
 	JComboBox<String> typeBox, pkgCostBox;
 	JLabel totalCost, expectedArrival;
-	
-	String city1,city2;
+
 	double total, expect;
 	double pkgCost = 0;
 
@@ -176,12 +176,12 @@ public class CreateOrderPanel extends MainPanel {
 		p2.add(pkgCostBox);
 		p.add(p2);
 
-		totalCost = new JLabel("报价："+total);
+		totalCost = new JLabel("报价：  " + total);
 		totalCost.setFont(font);
 		totalCost.setForeground(color);
 		p.add(totalCost);
 
-		expectedArrival = new JLabel("预计送达时间："+expect);
+		expectedArrival = new JLabel("预计送达时间：" + expect);
 		expectedArrival.setFont(font);
 		expectedArrival.setForeground(color);
 		p.add(expectedArrival);
@@ -189,13 +189,13 @@ public class CreateOrderPanel extends MainPanel {
 		caculate = new JButton("计算报价");
 		caculate.setBounds(400, 537, 80, 30);
 		caculate.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				total = calculate();
+				totalCost.setText("报价：  " + total);
 			}
 
-			
 		});
 		this.add(caculate);
 
@@ -217,30 +217,15 @@ public class CreateOrderPanel extends MainPanel {
 				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
 				total, id.getText(), type, ArrivalState.NO, "2015/12/08", LoginInfo.getUserID().substring(0, 6));
 	}
-	
+
 	private double calculate() {
 		double result = 0;
-		city1 = addressR
-		
-		switch (((String)pkgCostBox.getSelectedItem())) {
-		case "快递袋":
-			pkgCost = 2;
-			break;
+		String city1 = (addressR.getText().split(" "))[0];
+		String city2 = (addressS.getText().split(" "))[0];
 
-		case "纸箱":
-			pkgCost = 5;
-			break;
-			
-		case "木箱":
-			pkgCost = 10;
-			break;
-		}
-		result +=pkgCost;
-		
-		System.out.println(Distance.get("BeiJing", "GuangZhou"));
-		double distance = Distance.get(city1, city2);
-		
-		
-		return 0;
+		result = FeeCalculator.getPkgCost((String) pkgCostBox.getSelectedItem())
+				+ FeeCalculator.getTransFee(city1, city2, Etype.getType((String) typeBox.getSelectedItem()));
+
+		return result;
 	}
 }

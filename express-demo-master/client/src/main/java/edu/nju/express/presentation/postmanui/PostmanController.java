@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.nju.express.blservice.ConstantSettingBlService;
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.businesslogic.DataFactory;
-import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.vo.OrderVO;
 
