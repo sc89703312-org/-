@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.vo.ReceivalVO;
 
 
 
@@ -49,8 +50,11 @@ public class PostmanController implements UIController {
 			
 		}else if(e.getActionCommand().equals("SubmitOrder")){
 			
+			order.createOrder(((CreateOrderPanel)currentPanel).getInput());
+			
 		}else if(e.getActionCommand().equals("ConfirmReceival")){
-			System.out.println(((ConfirmReceivalUI)currentPanel).getTextInput());
+			ReceivalVO rvo = ((ConfirmReceivalUI)currentPanel).getTextInput();
+			order.receiverCfm(rvo.getId());
 		}
 	}
 
