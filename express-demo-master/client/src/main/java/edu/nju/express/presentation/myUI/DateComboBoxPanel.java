@@ -34,9 +34,9 @@ public class DateComboBoxPanel extends JPanel {
 		month.setPreferredSize(new Dimension(65, 32));
 		day.setPreferredSize(new Dimension(65, 32));
 		
-		for (int i = 2015; i <= 2030; i++)
+		for (int i = 1965; i <= 2025; i++)
 			year.addItem(i+"");
-		year.setSelectedItem(c.get(Calendar.YEAR));
+		year.setSelectedItem(c.get(Calendar.YEAR)+"");
 
 		for (int i = 1; i <= 12; i++)
 			month.addItem(String.format("%02d",i));
