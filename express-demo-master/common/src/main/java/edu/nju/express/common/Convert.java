@@ -231,7 +231,8 @@ public class Convert {
 	public static Balancepo vo_to_po_Balance(Balancevo vo){
 		return new Balancepo(vo.getDate(), vo.getMoney(), 
 				                      vo.getName(), vo.getBanking(),
-				                      vo.getItem(), vo.getRemark());
+				                      vo.getItem(), vo.getRemark(),
+				                      vo.getId());
 	}
 	
 	
@@ -239,7 +240,7 @@ public class Convert {
 	public static Balancevo po_to_vo_Balance(Balancepo po){
 		return new Balancevo(po.getDate(), po.getMoney(), 
 				                      po.getName(), po.getBanking(),
-				                      po.getItem(), po.getRemark());
+				                      po.getItem(), po.getRemark(),po.getId());
 	}
 
 	

@@ -164,7 +164,8 @@ public class BalanceUI extends MainPanel implements ActionListener {
 	public Balancevo createBalanceVO(){
 		return new Balancevo(date.getDate(), Double.parseDouble(amount.getText()),
 				name.getText(), banking.getText(),
-				Item.getItem((String)itemBox.getSelectedItem()), remark.getText());
+				Item.getItem((String)itemBox.getSelectedItem()), remark.getText(),
+				id.getText());
 	}
 	
 	

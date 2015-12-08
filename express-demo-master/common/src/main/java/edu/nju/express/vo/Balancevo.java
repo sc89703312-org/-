@@ -15,7 +15,7 @@ public class Balancevo extends ReceiptVOBase{
 	String id;
 	
 	public Balancevo(String date,double money,String name,
-			               String banking,Item item,String remark) {
+			               String banking,Item item,String remark,String id) {
 		// TODO Auto-generated constructor stub
 	
 	this.date = date;
@@ -26,7 +26,7 @@ public class Balancevo extends ReceiptVOBase{
 	this.remark = remark;
 	
 	
-	id="Cost"+date+banking;
+	this.id=id;
 	}
 	
 	

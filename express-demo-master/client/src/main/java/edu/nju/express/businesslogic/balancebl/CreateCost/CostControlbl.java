@@ -115,8 +115,8 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	public Balancepo convertVO(Balancevo vo){
 		return new Balancepo(vo.getDate(), vo.getMoney(), 
 				                      vo.getName(), vo.getBanking(),
-				                      vo.getItem(), vo.getRemark()
-				                     );
+				                      vo.getItem(), vo.getRemark(),
+				                    vo.getId() );
 	}
 	
 	
@@ -124,7 +124,8 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	public Balancevo convertPO(Balancepo po){
 		return new Balancevo(po.getDate(), po.getMoney(), 
 				                      po.getName(), po.getBanking(),
-				                      po.getItem(), po.getRemark());
+				                      po.getItem(), po.getRemark(),
+				                      po.getId());
 	}
 	
 	

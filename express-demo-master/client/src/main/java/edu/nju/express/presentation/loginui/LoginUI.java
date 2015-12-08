@@ -19,6 +19,8 @@ import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
 import edu.nju.express.log.ui.frame.Frame;
 import edu.nju.express.presentation.administratorui.Administor_Frame;
+import edu.nju.express.presentation.clerk_hallui.Hall_Frame;
+import edu.nju.express.presentation.clerk_stationui.Station_Frame;
 import edu.nju.express.presentation.financeui.Finance_Frame;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
 import edu.nju.express.presentation.managerui.Manager_Frame;
@@ -160,6 +162,8 @@ public class LoginUI extends MyFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				new Hall_Frame();
 			}else if (role==Role.CLERK_STATION) {
 				LoginUI.this.closeFrame();
 				try {
@@ -168,6 +172,7 @@ public class LoginUI extends MyFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				new Station_Frame();
 			}else if (role==Role.STOREKEEPER) {
 				LoginUI.this.closeFrame();
 				try {
