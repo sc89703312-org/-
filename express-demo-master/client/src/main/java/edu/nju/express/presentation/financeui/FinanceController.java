@@ -15,6 +15,7 @@ import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
 import edu.nju.express.businesslogic.balancebl.balance.Balancebl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.vo.BankingAccountVO;
 
 public class FinanceController implements UIController {
@@ -96,6 +97,15 @@ public class FinanceController implements UIController {
 			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
 		
+			if(((BalanceUI)currentPanel).getComBoxComponent().equals("工资")){
+//					double salary = cost.caculateClerkSalary();
+				
+				double salary = cost.caculatePostManSalary(((BalanceUI)currentPanel).getRemark());
+					((BalanceUI)currentPanel).setAmount(salary);
+			}
+				
+			
+			
 		}else if (e.getActionCommand().equals("SearchBanking")) {
 			ArrayList<BankingAccountVO> list = banking.showAccount(((BankingUI)currentPanel).getKeyWords());
 			((BankingUI)currentPanel).clear();

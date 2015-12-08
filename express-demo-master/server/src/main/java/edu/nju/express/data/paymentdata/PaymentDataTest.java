@@ -84,6 +84,21 @@ public class PaymentDataTest extends CommonData<Paymentpo> implements PaymentDao
 
 
 
+
+	@Override
+	public double caculatePostManSalary(String postManID) {
+		// TODO Auto-generated method stub
+		double total = 0;
+		ArrayList<Paymentpo> payments = inList.showAll();
+		for(Paymentpo po:payments){
+			if(po.getCourier_id().equals(postManID))
+				total+=po.getPay();
+		}
+		return total;
+	}
+
+
+
 	
 
 }

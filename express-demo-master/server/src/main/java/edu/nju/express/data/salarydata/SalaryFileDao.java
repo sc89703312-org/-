@@ -90,7 +90,7 @@ public class SalaryFileDao  implements SalaryDao{
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
-				return new SalaryPO(2000, 500, 0.15);
+				return new SalaryPO(4000, 500, 0.15);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

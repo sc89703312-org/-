@@ -9,6 +9,8 @@ import edu.nju.express.businesslogic.balancebl.CostList.Info.CostControlInfo;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.CostApproveInfo;
+import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
+import edu.nju.express.businesslogic.strategybl.salarysettingbl.SalarySettingBl;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
@@ -25,7 +27,7 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 
 	
 
-	
+	Paymentdataservice paymentdataservice;
 	
 	balancedataservice balancedataservice;
 	
@@ -42,6 +44,7 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	this.account = account;
 	
 
+	paymentdataservice = RMIHelper.getPaymentDataService();
 	
 	
 	
@@ -184,6 +187,48 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+
+
+	@Override
+	public double caculatePostManSalary(String id) {
+		// TODO Auto-generated method stub
+		try {
+			return paymentdataservice.caculatePostManSalary(id)*SalarySettingBl.getPostmanWage();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+
+
+
+	@Override
+	public double caculateDriverSalary(String turns) {
+		// TODO Auto-generated method stub
+		return Integer.parseInt(turns)*SalarySettingBl.getDriverWage();
+	}
+
+
+
+
+	@Override
+	public double caculateFare(String transferID) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
+	@Override
+	public double caculateClerkSalary() {
+		// TODO Auto-generated method stub
+		return SalarySettingBl.getClerkSalary();
 	}
 	
 }

@@ -25,6 +25,8 @@ public interface PaymentDao {
 	
 	public ArrayList<Paymentpo> showAll();
 	
+	public double caculatePostManSalary(String postManID);
+	
 	public ArrayList<String> viewAllOrderListByHall(String HallID);
 	
 	public void flush();

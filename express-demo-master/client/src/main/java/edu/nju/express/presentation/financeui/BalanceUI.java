@@ -100,5 +100,20 @@ public class BalanceUI extends MainPanel {
 		history.setActionCommand("BalanceHistory");
 		this.add(history);
 	}
+	
+	
+	
+	public String getComBoxComponent(){
+		return (String)itemBox.getSelectedItem();
+	}
 
+	
+	public void setAmount(double salary){
+		this.amount.setText(salary+"");
+	}
+	
+	
+	public String getRemark(){
+		return remark.getText();
+	}
 }

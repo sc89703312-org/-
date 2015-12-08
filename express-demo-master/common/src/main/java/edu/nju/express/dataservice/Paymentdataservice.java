@@ -17,6 +17,8 @@ public interface Paymentdataservice extends Remote{
 	public ResultMessage update(String id,Paymentpo po) throws RemoteException;
 	public Paymentpo find(String id) throws RemoteException;
 	
+	public double caculatePostManSalary(String postManID) throws RemoteException;
+	
 	public ArrayList<Paymentpo> viewByHall(String number) throws RemoteException;
 	public ArrayList<Paymentpo> viewByDate(String date) throws RemoteException;
 	
