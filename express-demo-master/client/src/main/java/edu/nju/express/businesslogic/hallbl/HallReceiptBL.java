@@ -42,6 +42,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		this.orderInfo = orderInfo;
 		this.vehiclebl = vehiclebl;
 		this.setOrderSpot = setOrderSpot;
+		this.paymentInfo = paymentInfo;
 		hallDataService = RMIHelper.getHallDataService();	
 		stationDataService = RMIHelper.getStationDataService();
 	}
@@ -124,7 +125,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	public ArrayList<OrderVO> showCurrentOrder() {
 		// TODO Auto-generated method stub
 		
-		hallID = LoginInfo.getUserID().substring(0, 5);
+		hallID = LoginInfo.getUserID().substring(0, 6);
+		System.out.println(hallID);
 		
 		try {
 			ArrayList<String> orderIDList = paymentInfo.getOrderListByHall(hallID);
@@ -171,7 +173,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			ArrayList<OrderVO> orderlist) {
 		// TODO Auto-generated method stub
 		
-		hallID = LoginInfo.getUserID().substring(0, 5);
+		hallID = LoginInfo.getUserID().substring(0, 6);
 		
 		try {
 			location = hallDataService.getLocation(hallID);
@@ -195,7 +197,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	public void subDeliverReceipt(String deliver, ArrayList<OrderVO> orderlist) {
 		// TODO Auto-generated method stub
 		
-		hallID = LoginInfo.getUserID().substring(0, 5);
+		hallID = LoginInfo.getUserID().substring(0, 6);
 		
 		try {
 			location = hallDataService.getLocation(hallID);

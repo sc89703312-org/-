@@ -8,6 +8,7 @@ import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.accountbl.Accountbl;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
+import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
 import edu.nju.express.businesslogic.strategybl.salarysettingbl.SalarySettingBl;
@@ -46,47 +47,16 @@ public class client {
 
 
 
-//		DataFactory.createAccountblInstance().createAccount();
-//	System.out.println(DataFactory.createAccountblInstance().viewAccount("2015/12/09").getAccountList().get(4).getMoney()
-//	);	
+//		Paymentbl paymentbl = DataFactory.createPaymentBLInstance();
+//		
+//	    ArrayList<String> orderList = paymentbl.getOrderListByHall("025001");
+//
+//	    for(String order:orderList)
+//	    	System.out.println(order);
 	
 		new LoginUI();		
 
 		
-//		try {
-//			System.out.println(RMIHelper.getAccountdataservice().find("2015/12/09").getAccountsList().get(1).getMoney());
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		};
 
-//
-//		Accountbl accountbl =DataFactory.createAccountblInstance();
-//		Accountvo accountvo  =    accountbl.viewAccount("2015/12/09");
-//		System.out.println(accountvo.getAccountList().get(3).getName());
-
-//		
-//		try {
-//		
-//			System.out.println(RMIHelper.getBalanceDataService().getAll().get(1).getId());
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
-
-//		System.out.println(ConstantSettingBl.getVehicleLoad()[2]);
-
-//		ConstantSettingBl constantSettingBl = DataFactory.createConstantSettingBLInstance();
-		
-		
-        
-        
-//        ArrayList<String> cityDistance =  ConstantSettingBl.getCityDistance();
-//		
-//		
-//        for(String distanceList:cityDistance)
-//		System.out.println(distanceList);
 	}
 }
