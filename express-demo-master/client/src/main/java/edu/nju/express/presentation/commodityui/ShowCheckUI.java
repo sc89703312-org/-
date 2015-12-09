@@ -94,6 +94,8 @@ public class ShowCheckUI extends MainPanel{
 	
 	public ShowCheckUI(CommodityController c, ArrayList<EnterReceiptVO> enter, ArrayList<ExitReceiptVO> exit){
 		
+		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		
 		this.controller = c;
 		this.enterList = enter;
 		this.exitList = exit;
@@ -118,6 +120,24 @@ public class ShowCheckUI extends MainPanel{
 		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
+		
+		showreceipt = new JButton(img1);
+		showreceipt.setRolloverIcon(img2);
+		showreceipt.setContentAreaFilled(false);
+		showreceipt.setBorderPainted(false);
+		showreceipt.setBounds(450,537,120,30);
+		showreceipt.setActionCommand("showreceipt");
+		showreceipt.addActionListener(controller);
+		this.add(showreceipt);
+		
+		confirmdate = new JButton(img3);
+		confirmdate.setRolloverIcon(img4);
+		confirmdate.setContentAreaFilled(false);
+		confirmdate.setBorderPainted(false);
+		confirmdate.setBounds(745,80,80,30);
+		confirmdate.setActionCommand("confirmdate");
+		confirmdate.addActionListener(controller);
+		this.add(confirmdate);
 		
 	}
 	
@@ -211,11 +231,11 @@ public class ShowCheckUI extends MainPanel{
 	
 	private void initData(){
 		for(int i=0;i<enterList.size();i++){
-			String[] data = {"入库单",enterList.get(i).getId(),enterList.get(i).getDate(),enterList.get(i).getList().size()+""};
+			String[] data = {"入库单",enterList.get(i).getId().substring(12, enterList.get(i).getId().length()),enterList.get(i).getDate(),enterList.get(i).getList().size()+""};
 			table.getTableModel().addRow(data);
 		}
 		for(int i=0;i<exitList.size();i++){
-			String[] data = {"出库单",exitList.get(i).getId(),exitList.get(i).getDate(),exitList.get(i).getList().size()+""};
+			String[] data = {"出库单",exitList.get(i).getId().substring(11, exitList.get(i).getId().length()),exitList.get(i).getDate(),exitList.get(i).getList().size()+""};
 			table.getTableModel().addRow(data);
 		}
 	}

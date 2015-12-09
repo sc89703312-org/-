@@ -359,7 +359,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		}
 		ArrayList<EnterReceiptVO> voList = new ArrayList<EnterReceiptVO>();
 		for(int i=0;i<poList.size();i++)
-			if(poList.get(i).getDate().compareTo(start)>=0&&poList.get(i).getDate().compareTo(end)<=0)
+			//if(poList.get(i).getDate().compareTo(start)>=0&&poList.get(i).getDate().compareTo(end)<=0)
 				voList.add(Convert.po_to_vo_enter(poList.get(i)));
 		return voList;
 	}

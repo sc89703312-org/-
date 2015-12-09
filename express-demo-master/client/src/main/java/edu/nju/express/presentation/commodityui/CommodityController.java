@@ -185,6 +185,9 @@ public class CommodityController implements UIController{
 			ArrayList<EnterReceiptVO> enterList = service.showCheckEnter(start, end);
 			ArrayList<ExitReceiptVO> exitList = service.showCheckExit(start, end);
 			
+			System.out.println(start+" "+end);
+			System.out.println(enterList.size());
+			
 			frame.getContentPane().removeAll();
 			currentPanel = new ShowCheckUI(this,enterList,exitList);
 			frame.add(currentPanel);

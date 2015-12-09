@@ -68,10 +68,10 @@ public class ExitFileDao extends CommonData<ExitReceiptPO> implements ExitReceip
 		String nextID = "";
 		if(list.size()!=0){
 		    String id = list.get(list.size()-1).getId();
-		    nextID = "0"+Integer.parseInt(id.substring(11, id.length()))+1;
+		    nextID = "0"+(int)(Integer.parseInt(id.substring(11, id.length()))+1);
 		}
 		else 
-			nextID = comID + "100000";
+			nextID = comID + "300000";
 		return nextID;
 	}
 
