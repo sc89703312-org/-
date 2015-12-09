@@ -1,6 +1,10 @@
 package edu.nju.express.presentation.managerui;
 
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -17,6 +21,7 @@ public class AddHallPanel extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Image bg = new ImageIcon("ui/image/manager/添加营业厅.png").getImage();
 	
 	JButton cancel;
 	JButton confirm;
@@ -29,7 +34,9 @@ public class AddHallPanel extends MainPanel{
 	public AddHallPanel(ManageController c) {
 		this.controller = c;
 		initComponents();
-		this.add(new ManageGuide(c));
+		ManageGuide guide = new ManageGuide(c);
+		guide.organization.setIcon(null);
+		this.add(guide);
 	}
 
 	private void initComponents() {
@@ -52,6 +59,11 @@ public class AddHallPanel extends MainPanel{
 		this.add(cancel);
 		cancel.setActionCommand("OrganizationUI");
 		cancel.addActionListener(controller);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 	
 	public HallVO getTextInput(){

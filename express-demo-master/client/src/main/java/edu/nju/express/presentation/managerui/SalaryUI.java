@@ -1,5 +1,10 @@
 package edu.nju.express.presentation.managerui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -11,7 +16,8 @@ public class SalaryUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private static final Image bg = new ImageIcon("ui/image/manager/工资制定.png").getImage();
+	
 	private ManageController controller;
 	private double clerk, driver, postman;
 
@@ -27,6 +33,7 @@ public class SalaryUI extends MainPanel {
 		initData();
 
 		guide = new ManageGuide(controller);
+		guide.salary.setIcon(null);
 		this.add(guide);
 		
 		clerkField = new LabelTextField("业务员月薪：",-1,"元/月");
@@ -66,5 +73,8 @@ public class SalaryUI extends MainPanel {
 		return text;
 	}
 	
-	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
+	}
 }

@@ -1,6 +1,11 @@
 package edu.nju.express.presentation.managerui;
 
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.CancelButton;
 import edu.nju.express.presentation.myUI.ConfirmButton;
@@ -12,6 +17,8 @@ public class DeleteStationPanel extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Image bg = new ImageIcon("ui/image/manager/添加中转中心.png").getImage();
+	
 	
 	ConfirmButton confirm;
 	CancelButton cancel;
@@ -22,7 +29,9 @@ public class DeleteStationPanel extends MainPanel{
 	public DeleteStationPanel(ManageController c) {
 		this.controller = c;
 		initComponents();
-		this.add(new ManageGuide(c));
+		ManageGuide guide = new ManageGuide(c);
+		guide.organization.setIcon(null);
+		this.add(guide);
 	}
 
 	private void initComponents() {
@@ -45,5 +54,10 @@ public class DeleteStationPanel extends MainPanel{
 	
 	public String getID(){
 		return id.getText();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

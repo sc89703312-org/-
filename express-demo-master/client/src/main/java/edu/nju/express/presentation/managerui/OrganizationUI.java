@@ -1,6 +1,8 @@
 package edu.nju.express.presentation.managerui;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +31,8 @@ public class OrganizationUI extends MainPanel {
 	private static Icon addH2 = new ImageIcon("ui/button/addhall2.png");
 	private static Icon delH1 = new ImageIcon("ui/button/deletehall1.png");
 	private static Icon delH2 = new ImageIcon("ui/button/deletehall2.png");
-
+	private static final Image bg = new ImageIcon("ui/image/manager/机构管理.png").getImage();
+	
 	private ArrayList<HallVO> hallList;
 	private ArrayList<StationVO> stationList;
 
@@ -40,7 +43,9 @@ public class OrganizationUI extends MainPanel {
 	public OrganizationUI(ManageController c) {
 		this.controller = c;
 
-		this.add(new ManageGuide(c));
+		ManageGuide guide = new ManageGuide(c);
+		guide.organization.setIcon(null);
+		this.add(guide);
 
 		initButtons();
 
@@ -125,5 +130,10 @@ public class OrganizationUI extends MainPanel {
 	private void initData() {
 		stationList = controller.getStationList();
 		hallList = controller.getHallList();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

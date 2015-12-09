@@ -60,12 +60,12 @@ public class MyEditableTable extends JTable {
 
 		this.getTableHeader().setVisible(false);
 
-		this.getColumn(header[0]).setMaxWidth(80);
-		this.getColumn(header[1]).setMaxWidth(10);
-		this.getColumn(header[2]).setMaxWidth(80);
-		this.getColumn(header[3]).setMaxWidth(50);
-		this.getColumn(header[4]).setMaxWidth(90);
-		this.getColumn(header[5]).setMaxWidth(80);
+		this.getColumn(header[0]).setMaxWidth(50);
+		this.getColumn(header[1]).setMaxWidth(8);
+		this.getColumn(header[2]).setMaxWidth(50);
+		this.getColumn(header[3]).setMaxWidth(30);
+		this.getColumn(header[4]).setMaxWidth(60);
+		this.getColumn(header[5]).setMaxWidth(50);
 	}
 
 	public ArrayList<String> getEditedRows(){

@@ -1,6 +1,8 @@
 package edu.nju.express.presentation.managerui;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -9,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-import edu.nju.express.common.Role;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.EmployeeVO;
@@ -19,6 +20,7 @@ public class EmployeeListUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Image bg = new ImageIcon("ui/image/manager/人员管理.png").getImage();
 	private static Icon add1 = new ImageIcon("ui/button/addemployee1.png");
 	private static Icon add2 = new ImageIcon("ui/button/addemployee2.png");
 	private static Icon delete1 = new ImageIcon("ui/button/deleteemployee1.png");
@@ -70,7 +72,9 @@ public class EmployeeListUI extends MainPanel {
 	}
 
 	private void initGuide() {
-		this.add(new ManageGuide(controller));
+		ManageGuide guide = new ManageGuide(controller);
+		guide.employee.setIcon(null);
+		this.add(guide);
 	}
 
 	private void initdata() {
@@ -92,6 +96,11 @@ public class EmployeeListUI extends MainPanel {
 
 		this.add(table);
 
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 
 }

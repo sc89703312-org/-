@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,6 +30,7 @@ import edu.nju.express.vo.DistanceVO;
 public class ConstantUI extends MainPanel{
 
 	private static final long serialVersionUID = 1L;
+	private static final Image bg = new ImageIcon("ui/image/manager/常量制定.png").getImage();
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
 	private static Color color = new Color(44,62,80);
 	private static String split = " ";
@@ -79,15 +83,17 @@ public class ConstantUI extends MainPanel{
 		
 		initData();
 		
-		p.add(new JLabel());
+		JLabel l1 = new JLabel("·城市间距离(双击数字可修改)：");
+		l1.setName("title");
+		p.add(l1);
 		initTable();
-		table.setPreferredScrollableViewportSize(new Dimension(400,90));
+		table.setPreferredScrollableViewportSize(new Dimension(248,90));
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBorder(new EmptyBorder(0, 0, 0, 0));
 		sp.setOpaque(false);
 		sp.getViewport().setOpaque(false);
 		sp.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		sp.setPreferredSize(new Dimension( 440, 120));
+		sp.setPreferredSize(new Dimension( 260, 120));
 		JPanel p0 = new JPanel();
 		p0.setOpaque(false);
 		p0.add(sp);
@@ -95,6 +101,11 @@ public class ConstantUI extends MainPanel{
 		p.add(p0);
 		p.add(new JLabel());
 		
+		
+		JLabel l2 = new JLabel("·快递价格：        ");
+		l2.setName("title");
+		p.add(l2);
+		initTable();
 		priceEco = new JLabel("经济快递：     "+price2+"      元");
 		priceFast = new JLabel("次晨特快：     "+price3+"      元");
 		priceEco.setFont(font);
@@ -107,7 +118,7 @@ public class ConstantUI extends MainPanel{
 		priceFast.setPreferredSize(new Dimension(400,40));
 		priceEco.setHorizontalAlignment(JLabel.CENTER);
 		priceFast.setHorizontalAlignment(JLabel.CENTER);
-		priceStd = new LabelTextField("标准快递：", -1,"元");
+		priceStd = new LabelTextField("标准快递： ", -1," 元");
 		priceStd.setText(price1);
 		priceStd.getTextField().addFocusListener(new FocusAdapter() {
 			@Override
@@ -140,6 +151,11 @@ public class ConstantUI extends MainPanel{
 		p.add(p2);
 		p.add(new JLabel());
 		
+		
+		JLabel l3 = new JLabel("·运输成本：");
+		l3.setBounds(120, 270, 400, 40);
+		l3.setName("title");
+		p.add(l3);
 		vanCField = new LabelTextField("公路:", -1, "元/公里·吨");
 		vanCField.setText(vanCost);
 		railCField = new LabelTextField("铁路:",-1,"元/公里·吨");
@@ -154,6 +170,10 @@ public class ConstantUI extends MainPanel{
 		p.add(airCField);
 		p.add(new JLabel());
 		
+		
+		JLabel l4 = new JLabel("·交通载量：");
+		l4.setName("title");
+		p.add(l4);
 		vanLField = new LabelTextField("公路:", -1, "吨");
 		vanLField.setText(vanLoad);
 		railLField = new LabelTextField("铁路:",-1,"吨");
@@ -172,6 +192,12 @@ public class ConstantUI extends MainPanel{
 			co.setBackground(new Color(0,0,0,0));
 			if(co.getName()==null)
 				co.setPreferredSize(new Dimension(400,40));
+			else if(co.getName().equals("title")){
+				co.setFont(new Font("黑体",font.PLAIN,18));
+				co.setForeground(new Color(39,194,156));
+				co.setPreferredSize(new Dimension(480,48));
+				((JLabel)co).setHorizontalAlignment(JLabel.LEFT);
+			}
 		}
 		
 		
@@ -269,4 +295,8 @@ public class ConstantUI extends MainPanel{
 		return input2;
 	}
 
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
+	}
 }

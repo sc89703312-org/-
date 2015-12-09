@@ -3,7 +3,10 @@ package edu.nju.express.presentation.managerui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +26,7 @@ public class AddEmployeePanel extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Image bg = new ImageIcon("ui/image/manager/添加人员.png").getImage();
 	static Font font = new Font("黑体", Font.PLAIN, 18);
 	static Color color = new Color(44, 62,80);
 	
@@ -39,7 +43,10 @@ public class AddEmployeePanel extends MainPanel {
 
 		controller = c;
 		initComponents();
-		this.add(new ManageGuide(c));
+		
+		ManageGuide guide = new ManageGuide(c);
+		guide.employee.setIcon(null);
+		this.add(guide);
 	}
 
 	private void initComponents() {
@@ -82,5 +89,10 @@ public class AddEmployeePanel extends MainPanel {
 	public UserMessageVO getTextInput() {
 		return new UserMessageVO(StaffChange.add, id.getText(), name.getText(),
 				Role.getRole((String) roleBox.getSelectedItem()));
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

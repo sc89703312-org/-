@@ -1,5 +1,9 @@
 package edu.nju.express.presentation.managerui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
@@ -13,6 +17,8 @@ public class DismissEmployeePanel extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static Image bg = new ImageIcon("ui/image/manager/删除人员.png").getImage();
+	
 
 	ManageController controller;
 
@@ -26,7 +32,9 @@ public class DismissEmployeePanel extends MainPanel {
 	public DismissEmployeePanel(ManageController c) {
 		controller = c;
 		initComponents();
-		this.add(new ManageGuide(c));
+		ManageGuide guide = new ManageGuide(c);
+		guide.employee.setIcon(null);
+		this.add(guide);
 	}
 
 	private void initComponents() {
@@ -50,6 +58,11 @@ public class DismissEmployeePanel extends MainPanel {
 
 	public String getID() {
 		return id.getText();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 
 }
