@@ -245,7 +245,7 @@ public class CreateOrderPanel extends MainPanel {
 				phoneS.getText(), nameR.getText(), addressR.getText(), postR.getText(), telR.getText(),
 				phoneR.getText(), Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
 				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
-				total, id.getText(), type, ArrivalState.NO, "2015/12/08",cityS);
+				total, id.getText(), type, ArrivalState.NO, expect+"天",cityS);
 	}
 
 	private double calculate() {
