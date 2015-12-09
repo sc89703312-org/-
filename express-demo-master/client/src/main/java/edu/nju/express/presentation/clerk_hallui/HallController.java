@@ -57,7 +57,7 @@ public class HallController implements UIController {
 			
 		}else if(e.getActionCommand().equals("addPayment")){
 			frame.getContentPane().removeAll();
-			this.currentPanel = new PaymentUI(this);
+			this.currentPanel = new HallPaymentUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();

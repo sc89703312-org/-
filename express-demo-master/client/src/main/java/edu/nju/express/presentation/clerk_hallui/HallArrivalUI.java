@@ -99,7 +99,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				generateData();
+				generateData(transferIdField.getText());
 			}
 			
 		});
@@ -234,7 +234,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	}
 
 	//生成托运单号
-	public void generateData(){
+	public void generateData(String transferId){
 		this.orderList = new ArrayList<String>();
 		String[] row = new String[2];
 		//mock orderList

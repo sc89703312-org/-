@@ -113,10 +113,14 @@ public class DriverUI extends JPanel implements MouseListener{
 				// TODO Auto-generated method stub
 				
 				//新建信息无前置条件
-					
+				if(!mainpanel.getComponentAt(396, 526).equals(addBtn)){
+					mainpanel.remove(mainpanel.getComponentAt(396, 526));
+					mainpanel.add(addBtn);
+				}
 					mainpanel.remove(mainpanel.getComponentAt(130, 130));
 					clearPanel();// clear components(public)
 					enableInfoPanel();
+					trashBtn.setEnabled(true);
 					//clear searchpanel
 					searchField.clearText();
 					mainpanel.add(newPanel);
@@ -138,10 +142,10 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//只要点击edit就remove “添加”按钮
-				mainpanel.remove(mainpanel.getComponentAt(396, 526));
+				mainpanel.remove(addBtn);
 
 				if(isNew){
-					mainpanel.remove(mainpanel.getComponentAt(130, 120));
+					mainpanel.remove(newPanel);
 					mainpanel.add(errorPanel1);
 					mainpanel.validate();
 					mainpanel.repaint();
@@ -150,7 +154,7 @@ public class DriverUI extends JPanel implements MouseListener{
 					enableInfoPanel();
 					//编辑时不让删除
 					trashBtn.setEnabled(false);
-										mainpanel.add(saveBtn);
+					mainpanel.add(saveBtn);
 					mainpanel.validate();
 					mainpanel.repaint();
 				}
@@ -169,14 +173,14 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(isNew){
-					mainpanel.remove(mainpanel.getComponentAt(130, 130));
+					mainpanel.remove(newPanel);
 					mainpanel.add(errorPanel2);
 					
 					mainpanel.validate();
 					mainpanel.repaint();
 				}
 				else if(isInfo){
-					mainpanel.remove(mainpanel.getComponentAt(130, 130));
+					mainpanel.remove(newPanel);
 					mainpanel.add(deleteConfirmPanel);
 					newBtn.setEnabled(false);
 					editBtn.setEnabled(false);
@@ -203,9 +207,11 @@ public class DriverUI extends JPanel implements MouseListener{
 				trashBtn.setEnabled(true);
 				initInfoPanel(getDriver(searchField.getText()));
 				newBtn.setIcon(new0);
+				newBtn.repaint();
 				editBtn.setIcon(edit0);
+				editBtn.repaint();
 				trashBtn.setIcon(trash0);
-				mainpanel.remove(mainpanel.getComponentAt(300, 300));
+				trashBtn.repaint();
 				mainpanel.add(newPanel);
 				mainpanel.validate();
 				mainpanel.repaint();
@@ -309,7 +315,6 @@ public class DriverUI extends JPanel implements MouseListener{
 		cellphoneField.setText("");
 		
 		//ddlDate 暂时不写了！！
-		
 	}
 	
 	/**
@@ -321,19 +326,19 @@ public class DriverUI extends JPanel implements MouseListener{
 		
 		nameField.getTextField().setEditable(true);
 		
-		genderBox.setEditable(false);
+		genderBox.setEditable(true);
 		
-		birthBoxPanel.getYearComboBox().setEditable(false);
-		birthBoxPanel.getMonthComboBox().setEditable(false);
-		birthBoxPanel.getDayComboBox().setEditable(false);
+		birthBoxPanel.getYearComboBox().setEditable(true);
+		birthBoxPanel.getMonthComboBox().setEditable(true);
+		birthBoxPanel.getDayComboBox().setEditable(true);
 		
-		identityField.getTextField().setEditable(false);
+		identityField.getTextField().setEditable(true);
 		
-		cellphoneField.getTextField().setEditable(false);
+		cellphoneField.getTextField().setEditable(true);
 		
-		licenseLimitBoxPanel.getYearComboBox().setEditable(false);
-		licenseLimitBoxPanel.getMonthComboBox().setEditable(false);
-		licenseLimitBoxPanel.getDayComboBox().setEditable(false);
+		licenseLimitBoxPanel.getYearComboBox().setEditable(true);
+		licenseLimitBoxPanel.getMonthComboBox().setEditable(true);
+		licenseLimitBoxPanel.getDayComboBox().setEditable(true);
 		
 	}
 	
@@ -446,7 +451,9 @@ public class DriverUI extends JPanel implements MouseListener{
 				// TODO Auto-generated method stub
 				setIsNew(true);
 				deleteDriver(driverIdField.getText());
-				mainpanel.remove(mainpanel.getComponentAt(292, 215));
+				mainpanel.remove(mainpanel.getComponentAt(396, 526));
+				//remove deleteConfirmPanel
+				mainpanel.remove(mainpanel.getComponentAt(355, 257));
 				newBtn.setEnabled(true);
 				editBtn.setEnabled(true);
 				mainpanel.validate();
@@ -464,7 +471,9 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				mainpanel.remove(mainpanel.getComponentAt(292, 215));
+				mainpanel.remove(mainpanel.getComponentAt(396, 526));
+				//remove deleteConfirmPanel
+				mainpanel.remove(mainpanel.getComponentAt(355, 257));
 				mainpanel.add(newPanel);
 				newBtn.setEnabled(true);
 				editBtn.setEnabled(true);
@@ -553,8 +562,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	 */
 	public Drivervo getDriver(String id){
 		
-//		return vehicleBL.viewDriver(id);
-		return null;
+		return vehicleBL.viewDriver(id);
 	}
 	
 	/**
@@ -563,8 +571,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	 */
 	public ResultMessage deleteDriver(String id){
 		
-//		return vehicleBL.deleteDriver(id);
-		return null;
+		return vehicleBL.deleteDriver(id);
 	}
 	
 	/**
@@ -573,8 +580,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	 */
 	public ResultMessage addDriver(Drivervo vo){
 		
-//		return vehicleBL.addDriver(vo);
-		return null;
+		return vehicleBL.addDriver(vo);
 	}
 	
 	/**
@@ -584,7 +590,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	 */
 	public void modifyDriver(String id, Drivervo vo){
 		
-//		vehicleBL.modifyDriver(id, vo);
+		vehicleBL.modifyDriver(id, vo);
 		
 	}
 	
