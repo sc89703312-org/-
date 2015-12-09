@@ -64,8 +64,6 @@ public class EnterManageUI extends MainPanel{
 		createnter.addActionListener(controller);
 		this.add(createnter);
 		
-		
-		
 	}
 	
 	private void initData(){

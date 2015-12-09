@@ -67,22 +67,25 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		
+		System.out.println("!!");
+		
 		ComInfoPO com = comInfoDao.find(comID);
-		ComZonePO po = com.getZone();
+		ComZonePO po = com.getZone();		
 		boolean[] planeSpace = po.getIsEmptyPlane();
 		boolean[] trainSpace = po.getIsEmptyTrain();
 		boolean[] carSpace = po.getIsEmptyCar();
-		boolean[] temSpace = po.getIsEmptyTem();
-		for(int i=planeSpace.length;i<space[0];i++)
+		boolean[] temSpace = po.getIsEmptyTem();			
+		
+		for(int i=space[0];i<planeSpace.length;i++)
 			if(planeSpace[i]==false)
 				return ResultMessageV2.ERROR;
-		for(int i=trainSpace.length;i<space[1];i++)
+		for(int i=space[1];i<trainSpace.length;i++)
 			if(trainSpace[i]==false)
 				return ResultMessageV2.ERROR;
-		for(int i=carSpace.length;i<space[2];i++)
+		for(int i=space[2];i<carSpace.length;i++)
 			if(carSpace[i]==false)
 				return ResultMessageV2.ERROR;
-		for(int i=temSpace.length;i<space[3];i++)
+		for(int i=space[3];i<temSpace.length;i++)
 			if(temSpace[i]==false)
 				return ResultMessageV2.ERROR;
 		
@@ -92,13 +95,25 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 		boolean[] newTem = new boolean[space[3]];
 		
 		for(int i=0;i<space[0];i++)
-			newPlane[i] = planeSpace[i];
-		for(int i=0;i<space[0];i++)
-			newTrain[i] = trainSpace[i];
-		for(int i=0;i<space[0];i++)
-			newCar[i] = carSpace[i];
-		for(int i=0;i<space[0];i++)
-			newTem[i] = temSpace[i];
+			if(i<planeSpace.length)
+			    newPlane[i] = planeSpace[i];
+			else
+				newPlane[i] = true;
+		for(int i=0;i<space[1];i++)
+			if(i<trainSpace.length)
+			    newTrain[i] = trainSpace[i];
+			else
+				newTrain[i] = true;
+		for(int i=0;i<space[2];i++)
+			if(i<carSpace.length)
+			    newCar[i] = carSpace[i];
+			else
+				newTrain[i] = true;
+		for(int i=0;i<space[3];i++)
+			if(i<temSpace.length)
+			    newTem[i] = temSpace[i];
+			else
+				newTem[i] = true;
 		
 		po.setIsEmptyPlane(newPlane);
 		po.setIsEmptyTrain(newTrain);
@@ -116,7 +131,7 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 		
 		ComZonePO po = comInfoDao.find(comID).getZone();
 		
-		return modifyZone(comID,po.getSpace());
+		return modifyZone(comID,po.getInitSpace());
 	}
 
 	@Override

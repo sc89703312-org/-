@@ -95,6 +95,11 @@ public class ComZonePO  implements Serializable{
 		return result;
 	}
 	
+	public int[] getInitSpace(){
+		int result[] = {initPlane,initTrain,initCar,initTem};
+		return result;
+	}
+	
 	public boolean[] getIsEmptyPlane(){
 		return isEmptyPlane;
 	}

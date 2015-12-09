@@ -12,6 +12,7 @@ import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.ComGoodsVO;
+import edu.nju.express.vo.ComZoneVO;
 import edu.nju.express.vo.EnterReceiptVO;
 import edu.nju.express.vo.ExitReceiptVO;
 import edu.nju.express.vo.TransferReceiptVO;
@@ -79,8 +80,10 @@ public class CommodityController implements UIController{
 		}
 		else if(e.getActionCommand().equals("ComAdjustUI")){
 			
+			ComZoneVO vo = service.showZone();
+			
 			frame.getContentPane().removeAll();
-			currentPanel = new AdjustUI(this);
+			currentPanel = new AdjustUI(this,vo);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
@@ -222,6 +225,42 @@ public class CommodityController implements UIController{
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("confirmeditzone")){
+			
+			AdjustUI ui = (AdjustUI)(((JButton)e.getSource()).getParent());
+			int[] space = ui.getSpace();
+			
+			service.editZone(space);
+			
+			currentPanel = new AdjustUI(this,service.showZone());
+			frame.getContentPane().removeAll();
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("init")){
+			
+			System.out.println("init");
+			
+			service.initZone();
+			
+			currentPanel = new AdjustUI(this,service.showZone());
+			frame.getContentPane().removeAll();
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("ctrlz")){
+		
+			currentPanel = new AdjustUI(this,service.showZone());
+			frame.getContentPane().removeAll();
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();			
 			
 		}
 		
