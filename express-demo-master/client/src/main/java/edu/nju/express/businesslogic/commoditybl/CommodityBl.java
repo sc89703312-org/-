@@ -39,7 +39,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
-		comID = userID.substring(0, 2);
+		comID = userID.substring(0, 3);
+		System.out.println(comID);
 		this.commodityDataService = RMIHelper.getCommodityDataService();
 	}
 
@@ -163,6 +164,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		EnterReceiptPO po = new EnterReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
 			commodityDataService.addEnterReceipt(po);
+			System.out.println(po.getId());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

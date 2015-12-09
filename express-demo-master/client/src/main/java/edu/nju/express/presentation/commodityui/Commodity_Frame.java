@@ -25,6 +25,7 @@ public class Commodity_Frame extends MyFrame {
 		this.setSize(900, 600);
 		this.setLocationRelativeTo(null);
 		this.setUndecorated(true);
+	
    
         JPanel p = null;
         p = new EnterManageUI(new CommodityController(this), service.showArriveReceiptList());

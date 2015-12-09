@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class ArriveReceiptVO extends ReceiptVOBase{
 
-	String id;
-	String date;
 	String from;
 	String location;
 	
@@ -19,6 +17,8 @@ public class ArriveReceiptVO extends ReceiptVOBase{
 		this. date = date;
 		this.from = from;
 		this.location = location;
+		
+		this.orderList = list;
 		
 	}
 	

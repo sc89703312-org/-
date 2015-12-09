@@ -60,7 +60,6 @@ public class Convert {
 		ArrayList<OrderVO> volist = new ArrayList<OrderVO>();
 		for(int i=0;i<polist.size();i++)
 			volist.add(po_to_vo_order(polist.get(i)));
-		
 		return volist;
 		
 	}
@@ -77,15 +76,14 @@ public class Convert {
 	
 	public static ArriveReceiptVO po_to_vo_arrive(ArriveReceiptPO po){
 		
-		ArriveReceiptVO vo = new ArriveReceiptVO(po.getID(),po.getDate(),po.getFrom(),po.getLocation(),po_to_vo_orderlist(po.getOrderList()));
-		
+		ArriveReceiptVO vo = new ArriveReceiptVO(po.getId(),po.getDate(),po.getFrom(),po.getLocation(),po_to_vo_orderlist(po.getOrderList()));
 		return vo;
 		
 	}
 	
 	public static ArriveReceiptPO vo_to_po_arrive(ArriveReceiptVO vo){
 		
-		ArriveReceiptPO po = new ArriveReceiptPO(vo.getID(),vo.getDate(),vo.getFrom(),vo.getLocation(),vo_to_po_orderlist(vo.getList()));
+		ArriveReceiptPO po = new ArriveReceiptPO(vo.getId(),vo.getDate(),vo.getFrom(),vo.getLocation(),vo_to_po_orderlist(vo.getList()));
 		
 		return po;
 		

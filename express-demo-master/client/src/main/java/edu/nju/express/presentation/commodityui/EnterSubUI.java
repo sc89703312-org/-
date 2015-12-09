@@ -69,8 +69,16 @@ public class EnterSubUI extends MainPanel{
 	private void initData(){
 		ArrayList<ComGoodsVO> voList = vo.getList();
 		for(int i=0;i<voList.size();i++){
-			String[] data = {voList.get(i).getOrder().getID(),voList.get(i).getLine()+"",
-					voList.get(i).getShelf()+"",voList.get(i).getShelf()+""};
+			int type = voList.get(i).getType();
+			String area = "";
+			switch(type){
+			case 0: area = "航空区";break;
+			case 1: area = "铁运区";break;
+			case 2: area = "汽运区";break;
+			case 3: area = "机动区";break;
+			}
+			String[] data = {voList.get(i).getOrder().getID(),area,voList.get(i).getLine()+"",
+					voList.get(i).getShelf()+"",voList.get(i).getCell()+""};
 			table.getTableModel().addRow(data);
 		}
 	}

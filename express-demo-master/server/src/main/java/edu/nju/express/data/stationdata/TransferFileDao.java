@@ -34,7 +34,7 @@ public class TransferFileDao extends CommonData<TransferReceiptPO> implements Tr
 			return Integer.parseInt(po.getId().substring(15, po.getId().length()))+1+"";
 		}
 		else
-			return stationID+"0000";
+			return stationID+"100000";
 	}
 
 	@Override
@@ -79,9 +79,9 @@ public class TransferFileDao extends CommonData<TransferReceiptPO> implements Tr
 	@Override
 	public ResultMessage approve(String id) {
 		// TODO Auto-generated method stub
-		TransferReceiptPO po = find(id);
+		TransferReceiptPO po = find("TransferReceipt"+id);
 		po.approve();
-		update(id,po);
+		update("TransferReceipt"+id,po);
 		return null;
 	}
 

@@ -65,8 +65,13 @@ public class EnterFileDao extends CommonData<EnterReceiptPO> implements EnterRec
 	public String nextID(String comID) {
 		// TODO Auto-generated method stub
 		ArrayList<EnterReceiptPO> list = showAllReceipt(comID);
-		String id = list.get(list.size()-1).getId();
-		String nextID = Integer.parseInt(id.substring(12, id.length()))+1+"";
+		String nextID;
+		if(list.size()!=0){
+		    String id = list.get(list.size()-1).getId();
+		    nextID = Integer.parseInt(id.substring(12, id.length()))+1+"";
+		}
+		else
+		    nextID = comID+"200000";
 		return nextID;
 	}
 

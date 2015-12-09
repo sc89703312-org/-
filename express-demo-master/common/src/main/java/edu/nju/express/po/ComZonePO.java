@@ -142,6 +142,7 @@ public class ComZonePO  implements Serializable{
 				if(isEmptyPlane[i]){
 					result[0] = 1;
 					result[1] = i+1;
+					isEmptyPlane[i] = false;
 					break;
 				}
 			break;
@@ -150,6 +151,7 @@ public class ComZonePO  implements Serializable{
 				if(isEmptyTrain[i]){
 					result[0] = 1;
 					result[1] = i+1;
+					isEmptyTrain[i] = false;
 					break;
 				}
 			break;
@@ -158,6 +160,7 @@ public class ComZonePO  implements Serializable{
 				if(isEmptyCar[i]){
 					result[0] = 1;
 					result[1] = i+1;
+					isEmptyCar[i] = false;
 					break;
 				}
 			break;
@@ -168,6 +171,7 @@ public class ComZonePO  implements Serializable{
 				if(isEmptyTem[i]){
 					result[0] = 4;
 					result[1] = i+1;
+					isEmptyTem[i] = false;
 					break;
 				}
 		

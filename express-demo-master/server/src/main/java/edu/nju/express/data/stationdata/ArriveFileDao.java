@@ -34,7 +34,7 @@ public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements Arrive
 			return Integer.parseInt(po.getId().substring(15, po.getId().length()))+1+"";
 		}
 		else
-			return stationID+"0000";
+			return stationID+"000000";
 	}
 
 	@Override
@@ -79,9 +79,9 @@ public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements Arrive
 	@Override
 	public ResultMessage approve(String id) {
 		// TODO Auto-generated method stub
-		ArriveReceiptPO po = find(id);
+		ArriveReceiptPO po = find("ArriveReceipt"+id);
 		po.approve();
-		update(id,po);
+		update("ArriveReceipt"+id,po);
 		return null;
 	}
 

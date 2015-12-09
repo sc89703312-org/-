@@ -69,12 +69,10 @@ public class EnterManageUI extends MainPanel{
 	}
 	
 	private void initData(){
-		Object[] data = {"0250001","2015/12/7","Shanghai","1"};
-		for(int i=1;i<=40;i++){
-			data[0] = "0"+250000+i;
-			data[3] = i+"";
-			table.getTableModel().addRow(data);
-		}
+        for(int i=0;i<volist.size();i++){
+        	String[] data = {volist.get(i).getId().substring(13, volist.get(i).getId().length()),volist.get(i).getDate(),volist.get(i).getFrom(),volist.get(i).getList().size()+""};
+        	table.getTableModel().addRow(data);
+        }
 	}
 	
 	public ArriveReceiptVO getSelectReceipt(){

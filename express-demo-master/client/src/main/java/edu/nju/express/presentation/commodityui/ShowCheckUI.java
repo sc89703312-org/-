@@ -85,7 +85,7 @@ public class ShowCheckUI extends MainPanel{
 		confirmdate.setRolloverIcon(img4);
 		confirmdate.setContentAreaFilled(false);
 		confirmdate.setBorderPainted(false);
-		confirmdate.setBounds(835,80,80,30);
+		confirmdate.setBounds(745,80,80,30);
 		confirmdate.setActionCommand("confirmdate");
 		confirmdate.addActionListener(controller);
 		this.add(confirmdate);
@@ -180,18 +180,18 @@ public class ShowCheckUI extends MainPanel{
 		endd.setFont(font);
 		endd.setForeground(color);
 		
-		startyear.setBounds(150, 80, 90, 25);
-		startmonth.setBounds(275, 80, 65, 25);
-		startday.setBounds(375,80,65,25);
-		endyear.setBounds(510,80,90,25);
-		endmonth.setBounds(635,80,65,25);
-		endday.setBounds(735,80,65,25);
-		starty.setBounds(240, 80, 35, 25);
-		startm.setBounds(340, 80, 35, 25);
-		startd.setBounds(440,80,35,25);
-		endy.setBounds(600, 80, 35, 25);
-		endm.setBounds(700, 80, 35, 25);
-		endd.setBounds(800,80,35,25);
+		startyear.setBounds(140, 82, 90, 25);
+		startmonth.setBounds(250, 82, 65, 25);
+		startday.setBounds(335,82,65,25);
+		endyear.setBounds(440,82,90,25);
+		endmonth.setBounds(550,82,65,25);
+		endday.setBounds(635,82,65,25);
+		starty.setBounds(230, 82, 20, 25);
+		startm.setBounds(315, 82, 20, 25);
+		startd.setBounds(400,82,20,25);
+		endy.setBounds(530, 82, 20, 25);
+		endm.setBounds(615, 82, 20, 25);
+		endd.setBounds(700,82,20,25);
 		
 		this.add(startyear);
 		this.add(startmonth);

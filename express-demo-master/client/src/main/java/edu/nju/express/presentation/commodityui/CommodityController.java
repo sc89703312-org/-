@@ -37,6 +37,7 @@ public class CommodityController implements UIController{
 		if(e.getActionCommand().equals("EnterManageUI")){
 			
 			ArrayList<ArriveReceiptVO> volist = service.showArriveReceiptList();
+			System.out.println(volist.size());
 			
 			frame.getContentPane().removeAll();
 			currentPanel = new EnterManageUI(this,volist);

@@ -36,7 +36,7 @@ public class ExitManageUI extends MainPanel{
 		this.controller = c;
 		this.volist = list;
 		
-		String[] header = {"编号","提交日期","货物来源","货物数量"};
+		String[] header = {"编号","提交日期","货物目的地","货物数量"};
 		table = new MyNormalTable(header);
 		initData();
 		
@@ -66,12 +66,10 @@ public class ExitManageUI extends MainPanel{
 	}
 	
 	private void initData(){
-		Object[] data = {"0251001","2015/12/7","Shanghai","1"};
-		for(int i=1;i<=40;i++){
-			data[0] = "0"+251000+i;
-			data[3] = i+"";
-			table.getTableModel().addRow(data);
-		}
+        for(int i=0;i<volist.size();i++){
+        	String[] data = {volist.get(i).getId(),volist.get(i).getDate(),volist.get(i).getTo(),volist.get(i).getList().size()+""};
+        	table.getTableModel().addRow(data);
+        }
 	}
 	
 	public TransferReceiptVO getSelectReceipt(){
