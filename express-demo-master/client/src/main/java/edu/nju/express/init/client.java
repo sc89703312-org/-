@@ -45,13 +45,16 @@ public class client {
 		
 
 
-	
+
+//		DataFactory.createAccountblInstance().createAccount();
+//	System.out.println(DataFactory.createAccountblInstance().viewAccount("2015/12/09").getAccountList().get(4).getMoney()
+//	);	
 	
 		new LoginUI();		
 
 		
 //		try {
-//			System.out.println(RMIHelper.getAccountdataservice().find("2015/12/09").getAccountsList().get(1).getName());
+//			System.out.println(RMIHelper.getAccountdataservice().find("2015/12/09").getAccountsList().get(1).getMoney());
 //		} catch (RemoteException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -60,7 +63,7 @@ public class client {
 //
 //		Accountbl accountbl =DataFactory.createAccountblInstance();
 //		Accountvo accountvo  =    accountbl.viewAccount("2015/12/09");
-//		System.out.println(accountvo.getAccountList().get(0).getName());
+//		System.out.println(accountvo.getAccountList().get(3).getName());
 
 //		
 //		try {

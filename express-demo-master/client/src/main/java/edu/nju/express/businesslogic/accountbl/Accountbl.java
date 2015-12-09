@@ -238,7 +238,7 @@ public class Accountbl implements Accountblservice{
 		ArrayList<BankingAccountPO> bankaccounts = new ArrayList<>();
 		
 		for(int i=0;i<volist.size();i++){
-			bankaccounts.add(new BankingAccountPO(volist.get(i).getName()));
+			bankaccounts.add(new BankingAccountPO(volist.get(i).getName(),volist.get(i).getMoney()));
 		}
 		return bankaccounts;
 	}

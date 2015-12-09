@@ -74,8 +74,12 @@ public class AccountPanel extends MainPanel{
 		JLabel l1= new JLabel("银行账户");
 		l1.setName("title");
 		ArrayList<BankingAccountVO> bl = vo.getAccountList();
+
 		for(BankingAccountVO b: bl){
-			p.add(new JLabel(""+b.getName()+":   "+b.getMoney()+"元"));
+			System.out.println(b.getName()+"   "+b.getMoney());
+			JLabel tempLabel = new JLabel(""+b.getName()+":   "+b.getMoney()+"元");
+			tempLabel.setVisible(true);
+			p.add(tempLabel);
 		}
 		
 		
