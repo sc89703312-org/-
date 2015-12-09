@@ -98,10 +98,10 @@ public class Logistic_Panel extends JPanel{
 		
 		
 		
-		goodInfo[0] = new MyLabel(410, 260, 150, 150);
+		goodInfo[0] = new MyLabel(360, 260, 250, 150);
 		goodInfo[0].setVisible(false);
 		goodInfo[0].setOpaque(false);
-		goodInfo[0].setFont(new Font("微软雅黑", Font.BOLD, 65));
+		goodInfo[0].setFont(new Font("微软雅黑", Font.BOLD, 62));
 		goodInfo[0].setForeground(new Color(32,180,220));
 		this.add(goodInfo[0]);
 		

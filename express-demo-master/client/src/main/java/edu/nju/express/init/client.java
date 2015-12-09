@@ -57,9 +57,9 @@ public class client {
 		
 		
 		
-		ArrayList<LogMessage> messages = LogController.viewAllMsg();
-		for(LogMessage message:messages)
-			System.out.println(message.toString());
+//		ArrayList<LogMessage> messages = LogController.viewAllMsg();
+//		for(LogMessage message:messages)
+//			System.out.println(message.toString());
 
 
 //		Paymentbl paymentbl = DataFactory.createPaymentBLInstance();
@@ -69,7 +69,7 @@ public class client {
 //	    for(String order:orderList)
 //	    	System.out.println(order);
 	
-//		new LoginUI();		
+		new LoginUI();		
 
 //		ConstantSettingBl constantSettingBl = DataFactory.createConstantSettingBLInstance();
 //		constantSettingBl.deleteCity("北京");
