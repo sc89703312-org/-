@@ -20,17 +20,23 @@ import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.BankingAccountVO;
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:22:24
+ * 
+ * 进行付款单创建管理
+ */
 
 
 public class CostControlbl implements CostControlService,CostControlInfo,CostApproveInfo{
 
 	
-
+    
 	Paymentdataservice paymentdataservice;
 	
 	balancedataservice balancedataservice;
-	
+	/** 银行账户信息 */
 	BankingInfo account;
 	
 
@@ -51,8 +57,16 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	}
 	
 	
+	/**
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CostControlService#createCost(edu.nju.express.vo.Balancevo)
+	 */
 	
 	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:24:11
+	 */
 	@Override
 	public ResultMessage createCost(Balancevo vo) {
 		// TODO Auto-generated method stub
@@ -103,7 +117,10 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 
 	
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:24:30
+	 */
 	@Override
 	public void endCostControl() {
 		// TODO Auto-generated method stub
@@ -132,8 +149,11 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 				                      po.getId());
 	}
 	
-	
-	
+	/**
+	 * 对银行账户余额进行修改
+	 * @param name
+	 * @param cost
+	 */
 	public void modify(String name,int cost){
 		account.modify(-cost, name);
 	}
@@ -141,6 +161,11 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 
 
 
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:26:00
+	 * 
+	 */
 	@Override
 	public ArrayList<Balancevo> viewAllCost() {
 		// TODO Auto-generated method stub
@@ -164,7 +189,12 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	
 	
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:26:22
+	 * 
+	 * 返回所有未审批的付款单
+	 */
 	@Override
 	public ArrayList<Balancevo> viewAllCostSubmitted(){
       ArrayList<Balancevo> temps=new ArrayList<>();
@@ -183,6 +213,14 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 		return temps;
 		
 	}
+	
+	
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:27:10
+	 * 根据ID审批单据
+	 */
 	
 	@Override
 	public void approveCost(String id){

@@ -12,10 +12,15 @@ public class Paymentpo extends ReceiptPOBase  implements Serializable{
 	 */
 	private static final long serialVersionUID = -4832837392996360235L;
 
+	/** 收款金额 */
 	double payment;
+	/** 快递员编号*/
 	String courier_id;
+	/** 订单号 */
 	String order_id;
+	/** 银行账户 */
 	String bankaccount;
+	/**所属营业厅编号*/
 	String hall_id;
 	
 

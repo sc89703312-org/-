@@ -12,12 +12,25 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.Paymentvo;
 
+ /**
+  * 
+  * @author lenovo
+  * @version 2015年12月9日22:19:43
+  * 
+  * 进行成本管理
+  */
 
 
 
 public class Balancebl implements Balanceblservice{
 
+	/**
+	 * 收款单列表
+	 * 
+	 */
 	PaymentList paymentList;
+	
+	/**付款单列表*/
 	CostList  costList;
 	
 	
@@ -35,7 +48,10 @@ public class Balancebl implements Balanceblservice{
 	
 	
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:20:50
+	 */
 	
 
 	@Override
@@ -47,7 +63,10 @@ public class Balancebl implements Balanceblservice{
 	}
 
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:21:22
+	 */
 	@Override
 	public ArrayList<Balancevo> viewCost(String start, String end) {
 		// TODO Auto-generated method stub
@@ -55,6 +74,14 @@ public class Balancebl implements Balanceblservice{
 		
       return costList.getListByDate(start, end);
 	}
+	
+	
+
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:21:22
+	 */
 
 	@Override
 	public void endBalance() {
@@ -65,6 +92,11 @@ public class Balancebl implements Balanceblservice{
 
 
 
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:21:22
+	 */
 
 	@Override
 	public double[] viewBalance() {

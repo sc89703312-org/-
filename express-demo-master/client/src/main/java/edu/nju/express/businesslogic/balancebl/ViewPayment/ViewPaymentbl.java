@@ -7,6 +7,13 @@ import edu.nju.express.businesslogic.balancebl.Caculate;
 import edu.nju.express.businesslogic.balancebl.PaymentList.PaymentList;
 import edu.nju.express.vo.Paymentvo;
 
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:32:59
+ * 
+ * 用于财务人员查看所有的收款单
+ */
 
 
 public class ViewPaymentbl implements ViewPaymentService{

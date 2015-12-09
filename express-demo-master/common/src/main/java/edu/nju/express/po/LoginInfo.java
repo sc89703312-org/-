@@ -17,12 +17,17 @@ public class LoginInfo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-	
+	/** 登陆ID */
 	private  String id;
+	/** 用户名称*/
 	private  static String userName;
+	/** 用户ID*/
 	private  static String userID;
+	/** 登陆名称*/
 	private  String name;
+	/** 登陆时间 */
 	private  String loginTime;
+	/** 登陆IP地址*/
 	private  String clientIP;
 	
 	private  InetAddress addr;

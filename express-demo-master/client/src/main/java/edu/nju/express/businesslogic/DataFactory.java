@@ -26,6 +26,14 @@ import edu.nju.express.businesslogic.vehiclebl.CarControl;
 import edu.nju.express.businesslogic.vehiclebl.Vehiclebl;
 import edu.nju.express.po.LoginInfo;
 
+
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:51:37
+ * 
+ * 用于创建各种具体的业务逻辑层的对象
+ */
 public class DataFactory {
 
 	public static Bankingbl createBankingInstance(){

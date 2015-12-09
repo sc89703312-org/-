@@ -8,7 +8,13 @@ import edu.nju.express.dataservice.LogRecordDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.LogMessage;
 
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:53:42
+ * 
+ * 记录主要操作日志
+ */
 
 
 
@@ -31,7 +37,11 @@ public class LogController {
 	
 	
 	
-	
+	/**
+	 * 
+	 * @param msg
+	 * 插入日志信息
+	 */
 	public static void insertLog(LogMessage msg){
 		try {
 			logRecordDataService.insertLog(msg);
@@ -41,7 +51,10 @@ public class LogController {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @return 日志列表
+	 */
 	public static ArrayList<LogMessage> viewAllMsg(){
 		try {
 			return logRecordDataService.viewAllLogs();
@@ -54,7 +67,11 @@ public class LogController {
 
 
 
-
+/**
+ * 
+ * @param date
+ * @return 根据日期返回的日志列表
+ */
 	public static ArrayList<LogMessage> getLogsByDate(String date) {
 		// TODO Auto-generated method stub
 		try {

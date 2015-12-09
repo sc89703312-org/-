@@ -10,12 +10,25 @@ public class Driverpo extends PersistentObj implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/** 司机姓名 */
 	String name;
+	
+	/**出生日期 */
 	String birthdate;
+	
+	/**身份证号 */
 	String certificate;
+	
+	/**手机号码 */
 	String phone;
+	
+	/**所属营业厅编号*/
 	String hall_id;
+	
+	/**性别 */
 	boolean sex;
+	
+	/**使用期限*/
 	String ddl;
 	
 	

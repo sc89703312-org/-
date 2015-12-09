@@ -34,11 +34,18 @@ import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
 
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:07:21
+ * 
+ * 用于实现期初建账的业务逻辑层
+ */
 
 
 public class Accountbl implements Accountblservice{
 
+	
 	ManagementInfo managementBl;
 	OrganizationInfo organizationBl;
 	CarControlInfo carControl;
@@ -47,6 +54,9 @@ public class Accountbl implements Accountblservice{
 	
 	
 	accountdataservice accountdataservice;
+	
+	
+	
 	
 	
 	public Accountbl(ManagementInfo managementBl,
@@ -73,7 +83,13 @@ public class Accountbl implements Accountblservice{
 	
 	
 	
-
+/**
+ * @author lenovo
+ * @version 2015年12月9日22:13:09
+ * 
+ * 
+ *        
+ */
 
 	@Override
 	public Accountvo viewAccount(String date) {
@@ -110,6 +126,9 @@ public class Accountbl implements Accountblservice{
 
 
 
+	/**
+	 * @see 
+	 */
 
 	@Override
 	public void createAccount() {
@@ -147,7 +166,10 @@ public class Accountbl implements Accountblservice{
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return String  获得日期
+	 */
 	public String getDate(){
 		
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");    
@@ -158,7 +180,13 @@ public class Accountbl implements Accountblservice{
 	
 	
 	
-	
+	/**
+	 * 
+	 * @param polist
+	 * @return volist
+	 * 
+	 * 将营业厅的POList转化为VOlist
+	 */
 	
 	public ArrayList<HallVO> convertHallPO (ArrayList<HallPo> polist){
 		ArrayList<HallVO> halls = new ArrayList<>();

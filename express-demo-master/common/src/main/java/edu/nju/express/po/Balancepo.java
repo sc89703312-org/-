@@ -15,11 +15,19 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-
+    /** 付款单付款 */
 	double money;
+	
+	/** 付款人姓名 */
 	String name;
+	
+	/**付款账号 */
 	String banking;
+	
+	/** 付款单付款类型 */
 	Item item;
+	
+	/** 备注 */
 	String remark;
 
 

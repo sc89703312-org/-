@@ -5,11 +5,21 @@ import java.util.ArrayList;
 import edu.nju.express.businesslogic.balancebl.PaymentList.Info.PaymentInfo;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.vo.Paymentvo;
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:30:45
+ * 
+ * 存放所有营业厅生成的收款单 并提供按日期查看和结算以及按营业厅进行查看和结算
+ */
 
 public class PaymentList {
 
+	
+	/** 储存VO的列表 */
 	private ArrayList<Paymentvo> tempPayments ;
+	
+	/** 收款单业务逻辑 */
 	PaymentInfo paymentbl;
 	
 	public PaymentList(PaymentInfo paymentBl) {

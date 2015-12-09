@@ -9,7 +9,14 @@ import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Driverpo;
 import edu.nju.express.vo.Drivervo;
 
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:49:41
+ * 
+ * 用于营业厅业务员进行司机信息管理
+ * 包括对司机进行增删改查
+ */
 
 public class Vehiclebl implements Vehicleblservice{
 
@@ -21,7 +28,11 @@ public class Vehiclebl implements Vehicleblservice{
 	vehicledataservice = RMIHelper.getVehicleDataService();
 	}
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:50:34
+	 * 增加司机
+	 */
 	@Override
 	public ResultMessage addDriver(Drivervo vo) {
 		// TODO Auto-generated method stub
@@ -45,6 +56,11 @@ public class Vehiclebl implements Vehicleblservice{
 		return ResultMessage.VALID;
 	}
 
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:50:34
+	 * 删除司机
+	 */
 	@Override
 	public ResultMessage deleteDriver(String id) {
 		// TODO Auto-generated method stub
@@ -85,6 +101,13 @@ public class Vehiclebl implements Vehicleblservice{
 		return ResultMessage.VALID;
 	}
 
+	
+
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:50:34
+	 * 查看司机
+	 */
 	@Override
 	public Drivervo viewDriver(String id) {
 		// TODO Auto-generated method stub

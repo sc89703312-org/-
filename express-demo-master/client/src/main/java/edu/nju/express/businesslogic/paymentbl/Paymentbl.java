@@ -20,14 +20,32 @@ import edu.nju.express.vo.BankingAccountVO;
 import edu.nju.express.vo.Paymentvo;
 
 
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:41:49
+ * 
+ * 用于营业厅财务人员进行收款管理 包括新建收款单等
+ */
 
 
 public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInfo,PaymentOrderInfo {
 
+	
+	
+	/** 收款单PO的列表 */
 	ArrayList<Paymentpo> tempArrayList = new ArrayList<Paymentpo>();
+	
+	/** 收款单VO的列表 */
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
+	
+	/** 收款单的数据实现*/
 	Paymentdataservice paymentDataService ;
+	
+	/** 暂时存放的收款单对象 */
 	private Paymentpo temp;
+	
+	/** 银行账户的业务逻辑 */
 	BankingInfo account;
 	
 	public Paymentbl(BankingInfo account) {
@@ -38,7 +56,12 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	}
 	
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:44:10
+	 * 创建收款单
+	 * 
+	 */
 	@Override
 	public ResultMessage createReceipt(Paymentvo vo) {
 		// TODO Auto-generated method stub
@@ -86,7 +109,12 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	}
 	
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:44:47
+	 * 根据ID获取对应收款单
+	 * 
+	 */
 	@Override
 	public Paymentvo getPayment(String id) {
 		// TODO Auto-generated method stub
@@ -110,6 +138,12 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		
 	}
 
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:45:22
+	 * 查看所有的收款单
+	 */
 	@Override
 	public ArrayList<Paymentvo> viewAll() {
 		// TODO Auto-generated method stub
@@ -130,7 +164,11 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		return tempVoList;
 	}
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:45:43
+	 * 返回所有未审批的收款单
+	 */
 	@Override
 	public ArrayList<Paymentvo> viewAllPaymentSubmitted(){
 		
@@ -147,6 +185,12 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		}
 		return temps;
 	}
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:46:10
+	 * 收款单审批通过
+	 */
 	@Override
 	public void approvePayment(String id){
 		try {
@@ -191,6 +235,11 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 
 
 
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:46:34
+	 * 根据营业厅编号来获取订单号列表
+	 */
 	@Override
 	public ArrayList<String> getOrderListByHall(String HallId) {
 		// TODO Auto-generated method stub

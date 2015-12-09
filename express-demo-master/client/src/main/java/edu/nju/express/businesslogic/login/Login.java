@@ -9,13 +9,23 @@ import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.UserPO;
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:36:39
+ * 
+ * 用于登陆模块的验证操作以及设置登录信息
+ */
 
 public class Login {
 	
-	
+	/** 用户数据层实现 */
 	UserDataService userDataService;
+	
+	/** 登陆数据层实现 */
 	LoginInfoDataService loginInfoDataService;
+	
+	/** 登陆人员列表*/
     ArrayList<UserPO> users;
 	
 	public Login() {
@@ -27,7 +37,14 @@ public class Login {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param account
+	 * @param password
+	 * @return 根据输入的账户和密码进行检测
+	 * 
+	 * 如果账户或者密码不存在则返回 Null   否则返回相应的Role
+	 */
 	public Role login(String account,String password){
 		
 		    boolean accountValid = false;

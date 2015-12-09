@@ -11,7 +11,13 @@ import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Carpo;
 import edu.nju.express.vo.Carvo;
 
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日22:47:17
+ * 
+ * 用于营业厅业务员进行车辆信息管理
+ */
 
 
 public class CarControl implements CarControlService,CarControlInfo{
@@ -25,7 +31,11 @@ public class CarControl implements CarControlService,CarControlInfo{
 	}
 	
 	
-	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:47:48
+	 * 新增车辆
+	 */
 	@Override
 	public ResultMessage addCar(Carvo vo) {
 		// TODO Auto-generated method stub
@@ -49,6 +59,12 @@ public class CarControl implements CarControlService,CarControlInfo{
 		return ResultMessage.VALID;
 	}
 
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:48:11
+	 * 删除车辆信息
+	 */
 	@Override
 	public ResultMessage deleteCar(String id) {
 		// TODO Auto-generated method stub
@@ -69,6 +85,12 @@ public class CarControl implements CarControlService,CarControlInfo{
 		return ResultMessage.VALID;
 	}
 
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:48:29
+	 * 修改车辆信息
+	 */
 	@Override
 	public ResultMessage modifyCar(String id, Carvo vo) {
 		// TODO Auto-generated method stub
@@ -89,6 +111,11 @@ public class CarControl implements CarControlService,CarControlInfo{
 		return ResultMessage.VALID;
 	}
 
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:48:51
+	 * 查看车辆
+	 */
 	@Override
 	public Carvo viewCar(String id) {
 		// TODO Auto-generated method stub
@@ -134,6 +161,11 @@ public class CarControl implements CarControlService,CarControlInfo{
 	}
 
 
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日22:49:11
+	 * 获取所有的车辆的列表
+	 */
 
 	@Override
 	public ArrayList<Carvo> getAll() {

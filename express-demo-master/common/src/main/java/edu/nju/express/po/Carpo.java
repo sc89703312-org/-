@@ -11,10 +11,19 @@ public class Carpo extends PersistentObj implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
+	/** 发动机类型 */
 	String motor;
+	
+	/**车牌号*/
 	String car;
+	
+	/**底盘号*/
 	String base;
+	
+	/**购买时间*/
 	String purchase;
+	
+	/**使用年限*/
 	int use;
 	
 	public Carpo(String id,String motor,String car,String base,String purchase,int use) {
