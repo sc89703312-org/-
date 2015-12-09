@@ -14,16 +14,33 @@ import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.BankingAccountVO;
 
-
+/**
+ * 
+ * @author ShiroKo
+ * @version 2015-12-9 22:47
+ * 
+ *  银行账户的业务逻辑模块，用于实现银行账户的增删改查
+ *
+ */
 
 public class Bankingbl implements BankingBlService, BankingInfo{
 	
+	/* 银行账户模块的数据层接口 */
 	BankingDataService bankingDataService;
 	
+	/*
+	 * 构造方法
+	 */
 	public Bankingbl(){
 		bankingDataService = RMIHelper.getBankingDataService();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.BankingBlService#addAccount(java.lang.String)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+	 */
 	@Override
 	public void addAccount(String name) {
 		// TODO Auto-generated method stub
@@ -38,6 +55,12 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.BankingBlService#removeAccount(java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+	 */
 	@Override
 	public ResultMessage removeAccount(String name) {
 		// TODO Auto-generated method stub
@@ -55,6 +78,12 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.BankingBlService#modifyAccount(java.lang.String, java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+	 */
 	@Override
 	public ResultMessage modifyAccount(String newName, String name) {
 		// TODO Auto-generated method stub
@@ -72,6 +101,12 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.BankingBlService#showAccount(java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+	 */
 	@Override
 	public ArrayList<BankingAccountVO> showAccount(String subName) {
 		// TODO Auto-generated method stub
@@ -94,6 +129,13 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		return null;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.paymentbl.Info.BankingInfo#modify(int, java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+	 */
+	@Override
     public void modify(int modify,String name) {
     		
     	try {
@@ -108,6 +150,13 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 		
 	}	
 	
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.paymentbl.Info.BankingInfo#getMoney(java.lang.String)
+     * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+     */
+	@Override
 	public int getMoney(String name){
 			
 		int result = -1;
@@ -126,6 +175,12 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 
     }
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.BankingBlService#getAllAccounts()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:49
+	 */
 	@Override
 	public ArrayList<BankingAccountVO> getAllAccounts() {
 		// TODO Auto-generated method stub

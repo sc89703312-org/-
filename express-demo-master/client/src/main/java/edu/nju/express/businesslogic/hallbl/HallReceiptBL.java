@@ -27,18 +27,38 @@ import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
+/**
+ * 
+ * @author ShiroKo
+ * @version 2015-12-9 22:21
+ * 
+ *  营业厅单据的业务逻辑模块，实现营业厅相关单据的生成、提交与审批的相关功能
+ *
+ */
+
 public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	
+	/* 营业厅ID */
 	String hallID;
+	/* 营业厅位置 */
 	String location;
 	
+	/* 收款单模块的接口，用于获得该营业厅的相关Order */
 	PaymentOrderInfo paymentInfo;
+	/* 订单模块的接口，用于获得相应订单 */
 	OrderInfo orderInfo;
+	/* 订单模块的接口，用于设置订单位置 */
 	SetOrderSpot setOrderSpot;
+	/* 司机模块的接口，用于管理司机 */
 	Vehiclebl vehiclebl;
+	/* 营业厅模块数据层接口，用于处理营业厅单据相关PO的改动 */
 	HallDataService hallDataService;
+	/* 中转中心模块数据层接口，用于处理中转中心单据相关PO的改动 */
     StationDataService stationDataService;
 	
+    /*
+     * 构造方法
+     */
 	public HallReceiptBL(PaymentOrderInfo paymentInfo, OrderInfo orderInfo,Vehiclebl vehiclebl,SetOrderSpot setOrderSpot){
 		this.orderInfo = orderInfo;
 		this.vehiclebl = vehiclebl;
@@ -48,6 +68,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		stationDataService = RMIHelper.getStationDataService();
 	}
 
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.blservice.HallReceiptBlService#createArrivalReceipt(java.lang.String)
+     * @author ShiroKo
+     * @version 2015-12-9 22:29
+     */
 	@Override
 	public ArrivalReceiptVO createArrivalReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -96,6 +122,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallReceiptBlService#subArrivalReceipt(edu.nju.express.vo.ArrivalReceiptVO)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:30
+	 */
 	@Override
 	public void subArrivalReceipt(ArrivalReceiptVO vo) {
 		// TODO Auto-generated method stub
@@ -122,6 +154,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallReceiptBlService#showCurrentOrder()
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:30
+	 */
 	@Override
 	public ArrayList<OrderVO> showCurrentOrder() {
 		// TODO Auto-generated method stub
@@ -168,6 +206,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallReceiptBlService#subHallTransferReceipt(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.ArrayList)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public void subHallTransferReceipt(String transportID, String to,
 			String carID, String supervisor, String guard,
@@ -194,6 +238,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallReceiptBlService#subDeliverReceipt(java.lang.String, java.util.ArrayList)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public void subDeliverReceipt(String deliver, ArrayList<OrderVO> orderlist) {
 		// TODO Auto-generated method stub
@@ -217,6 +267,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	 /*
+	  * (non-Javadoc)
+	  * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#viewAllArrivalReceiptSubmitted()
+	  * @author ShiroKo
+	  * @version 2015-12-9 22:31
+	  */
 	@Override
 	public ArrayList<ArrivalReceiptVO> viewAllArrivalReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -236,6 +292,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#approveArrivalReceipt(java.lang.String)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public void approveArrivalReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -246,7 +308,13 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			e.printStackTrace();
 		}
 	}
-
+    
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#viewAllArrivalReceipt()
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public ArrayList<ArrivalReceiptVO> viewAllArrivalReceipt() {
 		// TODO Auto-generated method stub
@@ -266,6 +334,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#viewAllHallTransferReceiptSubmitted()
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public ArrayList<HallTransferReceiptVO> viewAllHallTransferReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -285,6 +359,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#approveHallTransferReceipt(java.lang.String)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public void approveHallTransferReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -298,6 +378,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#viewAllHallTransferReceipt()
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public ArrayList<HallTransferReceiptVO> viewAllHallTransferReceipt() {
 		// TODO Auto-generated method stub		
@@ -317,6 +403,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#viewAllDeliverReceiptSubmitted()
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public ArrayList<DeliverReceiptVO> viewAllDeliverReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -336,6 +428,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#approveDeliverReceipt(java.lang.String)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:31
+	 */
 	@Override
 	public void approveDeliverReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -349,6 +447,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		
 	}
 
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo#viewAllDeliverReceipt()
+     * @author ShiroKo
+	 * @version 2015-12-9 22:31
+     */
 	@Override
 	public ArrayList<DeliverReceiptVO> viewAllDeliverReceipt() {
 		// TODO Auto-generated method stub

@@ -2,12 +2,10 @@ package edu.nju.express.businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.express.blservice.CommodityBlService;
 import edu.nju.express.businesslogic.accountbl.Info.CommodityInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo;
-import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
 import edu.nju.express.common.Convert;
 import edu.nju.express.common.Etype;
 import edu.nju.express.common.MyDate;
@@ -16,11 +14,9 @@ import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.dataservice.CommodityDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.ComGoodsPO;
-import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.ComZonePO;
 import edu.nju.express.po.EnterReceiptPO;
 import edu.nju.express.po.ExitReceiptPO;
-import edu.nju.express.po.OrderPO;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.ComGoodsVO;
 import edu.nju.express.vo.ComZoneVO;
@@ -29,23 +25,48 @@ import edu.nju.express.vo.ExitReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
+/**
+ * 
+ * @author ShiroKo
+ * @version 2015-12-9 22:51
+ * 
+ * 仓库的业务逻辑模块，实现仓库及其单据、货物的增删改查
+ *
+ */
+
 public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityApproveInfo{
 	
+	/* 仓库模块的数据层接口 */
 	CommodityDataService commodityDataService;
+	/* 获得仓库需要的中转中心单据的中转模块接口 */
 	StationInfo stationInfo;
+	/* 用户ID */
 	String userID;
+	/* 仓库ID */
 	String comID;
+	/* 仓库位置 */
 	String location;
 	
+	/* 正在处理的到达单ID */
 	String currentArriveID;
+	/* 正在处理的中转单单ID */
 	String currentTransferID;
 	
+	/*
+	 * 构造方法
+	 */
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
 		this.commodityDataService = RMIHelper.getCommodityDataService();
 	}
-
+    
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showArriveReceiptList()
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList() {
 		// TODO Auto-generated method stub
@@ -53,7 +74,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return stationInfo.viewApproveArrive(comID);
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showEnterReceipt(edu.nju.express.vo.ArriveReceiptVO)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public EnterReceiptVO showEnterReceipt(ArriveReceiptVO vo) throws Exception{
 		// TODO Auto-generated method stub
@@ -108,7 +134,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return new EnterReceiptVO(comGoodsList,commodityDataService.getNextEnterID(comID),location,MyDate.getCurrentDate());
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#editEnterReceipt(edu.nju.express.vo.EnterReceiptVO, java.lang.Object[][])
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ResultMessageV2 editEnterReceipt(EnterReceiptVO vo, Object data[][]) {
 		// TODO Auto-generated method stub
@@ -161,6 +192,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return ResultMessageV2.SUCCESS;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#subEnterReceipt(edu.nju.express.vo.EnterReceiptVO)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public void subEnterReceipt(EnterReceiptVO vo) {
 		// TODO Auto-generated method stub
@@ -183,6 +220,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showTransferReceiptList()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<TransferReceiptVO> showTransferReceiptList() {
 		// TODO Auto-generated method stub
@@ -190,6 +233,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return stationInfo.viewApproveTransfer(comID);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showExitReceipt(edu.nju.express.vo.TransferReceiptVO)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ExitReceiptVO showExitReceipt(TransferReceiptVO vo) {
 		// TODO Auto-generated method stub
@@ -230,6 +279,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#subExitReceipt(edu.nju.express.vo.ExitReceiptVO)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public void subExitReceipt(ExitReceiptVO vo) {
 		// TODO Auto-generated method stub
@@ -253,6 +308,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showInventory()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<ComGoodsVO> showInventory() {
 		// TODO Auto-generated method stub
@@ -276,12 +337,24 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return volist;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#outputInventory(java.util.ArrayList)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public void outputInventory(ArrayList<ComGoodsVO> list) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showCheck(java.lang.String, java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public int[] showCheck(String start, String end) {
 		// TODO Auto-generated method stub
@@ -345,6 +418,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return result;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showCheckEnter(java.lang.String, java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<EnterReceiptVO> showCheckEnter(String start,String end){
 		
@@ -364,6 +443,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return voList;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showCheckExit(java.lang.String, java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<ExitReceiptVO> showCheckExit(String start,String end){
 		
@@ -383,6 +468,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return voList;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#showZone()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ComZoneVO showZone() {
 		// TODO Auto-generated method stub
@@ -407,6 +498,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#editZone(int[])
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ResultMessageV2 editZone(int[] space) {
 		// TODO Auto-generated method stub
@@ -425,6 +522,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#initZone()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ResultMessageV2 initZone() {
 		// TODO Auto-generated method stub
@@ -443,6 +546,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return result;		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.CommodityBlService#moveGoods(java.lang.Object[][])
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ResultMessageV2 moveGoods(Object[][] data) {
 		// TODO Auto-generated method stub
@@ -509,6 +618,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return ResultMessageV2.SUCCESS;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo#viewAllEnterReceiptSubmitted()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<EnterReceiptVO> viewAllEnterReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -525,6 +640,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return volist;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo#approveEnterReceipt(java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ResultMessage approveEnterReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -537,6 +658,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo#viewAllExitReceiptSubmitted()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<ExitReceiptVO> viewAllExitReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -553,6 +680,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return volist;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo#approveExitReceipt(java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ResultMessage approveExitReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -565,6 +698,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo#viewAllEnterReceipt()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<EnterReceiptVO> viewAllEnterReceipt() {
 		// TODO Auto-generated method stub
@@ -581,6 +720,12 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		return volist;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo#viewAllExitReceipt()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:56
+	 */
 	@Override
 	public ArrayList<ExitReceiptVO> viewAllExitReceipt() {
 		// TODO Auto-generated method stub

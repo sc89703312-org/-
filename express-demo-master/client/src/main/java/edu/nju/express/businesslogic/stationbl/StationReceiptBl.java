@@ -26,18 +26,34 @@ import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
 
-
+/**
+ * 
+ * @author ShiroKo
+ * @version 2015-12-9 22:39
+ * 
+ * 中转中心单据的业务逻辑模块，用于实现中转中心相关单据的生成提交与审批
+ *
+ */
 
 public class StationReceiptBl implements StationReceiptBlService, StationInfo, StationApproveInfo{
 	
+    /* 中转中心模块的数据层接口 */
 	StationDataService stationDataService;
+	/* 营业厅模块的数据层接口 */
 	HallDataService hallDataService;
+	/* 获得订单信息的接口 */
 	OrderInfo orderInfo;
+	/* 设置订单位置的接口 */
 	SetOrderSpot setOrderSpot;
 	
+	/* 中转中心的ID */
 	String stationID;
+	/* 中转中心的位置 */
 	String location;
 	
+	/*
+	 * 构造方法
+	 */
 	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
 		stationDataService = RMIHelper.getStationDataService();
 		hallDataService = RMIHelper.getHallDataService();
@@ -45,7 +61,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		this.setOrderSpot = setOrderSpot;
 	}
 	
-	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.StationReceiptBlService#creatArriveReceipt(java.lang.String)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public ArriveReceiptVO creatArriveReceipt(String id) {
 		// TODO Auto-generated method stub
@@ -94,6 +115,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.StationReceiptBlService#subArriveReceipt(edu.nju.express.vo.ArriveReceiptVO)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public void subArriveReceipt(ArriveReceiptVO vo) {
 		// TODO Auto-generated method stub
@@ -120,6 +147,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.StationReceiptBlService#showCurrentOrder()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public ArrayList<OrderVO> showCurrentOrder() {
 		// TODO Auto-generated method stub
@@ -158,6 +191,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.StationReceiptBlService#subTransferReceipt(java.util.ArrayList, java.lang.String, java.lang.String, java.lang.String, edu.nju.express.common.Etype)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public void subTransferReceipt(ArrayList<OrderVO> orderlist,
 			String to, String transportID, String supervisor, Etype etype) {
@@ -182,7 +221,13 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 
 	}
 	
-
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo#approveArriveReceipt(java.lang.String)
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
+    @Override
 	public ResultMessage approveArriveReceipt(String id){
 		
 		ResultMessage result = null;
@@ -198,6 +243,13 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 	
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo#approveTransferReceipt(java.lang.String)
+     * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+     */
+    @Override
 	public ResultMessage approveTransferReceipt(String id){
         
 		ResultMessage result = null;
@@ -213,67 +265,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 	
-	public ArrayList<ArriveReceiptVO> viewAllArrive(){
-		
-		ArrayList<ArriveReceiptVO> voList = new ArrayList<ArriveReceiptVO>();
-		ArrayList<ArriveReceiptPO> poList = new ArrayList<ArriveReceiptPO>();
-		
-		try {
-			poList = stationDataService.getArriveReceipt();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i=0;i<poList.size();i++){
-			
-			ArrayList<OrderPO> orderpolist= poList.get(i).getOrderList();
-			ArrayList<OrderVO> ordervolist= new ArrayList<OrderVO>();
-			
-			for(int j=0;j<orderpolist.size();j++){
-				
-				OrderPO orderpo = orderpolist.get(j);
-				OrderVO ordervo = Convert.po_to_vo_order(orderpo);
-				ordervolist.add(ordervo);
-				
-			}
-			
-			ArriveReceiptVO vo = new ArriveReceiptVO(poList.get(i).getID(),poList.get(i).getDate(),
-					poList.get(i).getFrom(),poList.get(i).getLocation(),ordervolist);
-			
-			voList.add(vo);
-			
-		}
-		
-		return voList;
-		
-	}
-	
-	
-	public ArrayList<TransferReceiptVO> viewAllTransfer(){
-		
-		ArrayList<TransferReceiptVO> voList = new ArrayList<TransferReceiptVO>();
-		ArrayList<TransferReceiptPO> poList = new ArrayList<TransferReceiptPO>();
-		
-		try {
-			poList = stationDataService.getTransferReceipt();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i=0;i<poList.size();i++){
-			
-		    TransferReceiptVO vo = Convert.po_to_vo_transfer(poList.get(i));
-			voList.add(vo);
-			
-		}
-		
-		return voList;
-		
-	}
-	
-	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo#viewAllArriveReceiptSubmitted()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public ArrayList<ArriveReceiptVO> viewAllArriveReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -312,6 +309,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo#viewAllTransferReceiptSubmitted()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public ArrayList<TransferReceiptVO> viewAllTransferReceiptSubmitted() {
 		// TODO Auto-generated method stub
@@ -337,6 +340,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo#viewAllArriveReceipt()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public ArrayList<ArriveReceiptVO> viewAllArriveReceipt() {
 		// TODO Auto-generated method stub
@@ -353,6 +362,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		return volist;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo#viewAllTransferReceipt()
+	 * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+	 */
 	@Override
 	public ArrayList<TransferReceiptVO> viewAllTransferReceipt() {
 		// TODO Auto-generated method stub
@@ -369,7 +384,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		return volist;
 	}
 
-
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.commoditybl.StationInfo#viewApproveArrive(java.lang.String)
+     * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+     */
 	@Override
 	public ArrayList<ArriveReceiptVO> viewApproveArrive(String comID) {
 		// TODO Auto-generated method stub
@@ -388,7 +408,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 	}
 
-
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.commoditybl.StationInfo#viewApproveTransfer(java.lang.String)
+     * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+     */
 	@Override
 	public ArrayList<TransferReceiptVO> viewApproveTransfer(String comID) {
 		// TODO Auto-generated method stub
@@ -407,7 +432,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	
 	}
 
-
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.commoditybl.StationInfo#handleArrive(java.lang.String)
+     * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+     */
 	@Override
 	public void handleArrive(String id) {
 		// TODO Auto-generated method stub
@@ -419,7 +449,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		}
 	}
 
-
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.commoditybl.StationInfo#handleTransfer(java.lang.String)
+     * 	 * @author ShiroKo
+	 * @version 2015-12-9 22:42
+     */
 	@Override
 	public void handleTransfer(String id) {
 		// TODO Auto-generated method stub

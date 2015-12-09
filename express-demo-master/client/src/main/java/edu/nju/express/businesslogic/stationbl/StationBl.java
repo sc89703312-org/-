@@ -11,17 +11,36 @@ import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.StationPO;
 import edu.nju.express.vo.StationVO;
 
+/**
+ * 
+ * @author ShiroKo
+ * @version 2015-12-9 22:38
+ * 
+ *  中转中心聚业务逻辑模块，用于实现中转中心的增删改查
+ *
+ */
 
 public class StationBl implements StationOperationInfo{
 	
+	/* 中转中心模块数据层的接口 */
 	StationDataService stationDataService;
+	/* 仓库模块数据层的接口 */
 	CommodityDataService commodityDataService;
 	
+	/*
+	 * 构造方法
+	 */
 	public StationBl(){
 		stationDataService = RMIHelper.getStationDataService();
 		commodityDataService = RMIHelper.getCommodityDataService();
 	}
-
+ 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOperationInfo#addStation(java.lang.String, java.lang.String)
+	 * @author ShiroKo
+	 * @version 2015-12-9 22:36
+	 */
 	public ResultMessage addStation(String id, String location){
 		
 		ResultMessage result = null;
@@ -38,6 +57,12 @@ public class StationBl implements StationOperationInfo{
 		
 	}
 	
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOperationInfo#deleteStation(java.lang.String)
+     * @author ShiroKo
+	 * @version 2015-12-9 22:36
+     */
 	public ResultMessage deleteStation(String id){
 		
         ResultMessage result = null;
@@ -54,6 +79,12 @@ public class StationBl implements StationOperationInfo{
 		
 	}
 	
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOperationInfo#showStation()
+     * @author ShiroKo
+	 * @version 2015-12-9 22:36
+     */
     public ArrayList<StationVO> showStation() {
     	
     	ArrayList<StationPO> poList = null;
