@@ -10,7 +10,13 @@ import edu.nju.express.data.accountdata.AccountDataTest;
 import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.po.Accountpo;
 
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月9日23:50:11
+ * 
+ * 对账目信息进行读写操作
+ */
 
 public class AccountDataService_Impl extends UnicastRemoteObject implements accountdataservice{
 
@@ -21,7 +27,7 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
+	/** 账目数据接口 */
 	AccountDao accountDao;
 	
 	
@@ -38,6 +44,11 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 	
 	}
 
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日23:53:20
+	 * @return 对存储数据文件进行插入
+	 */
 	@Override
 	public ResultMessage insert(Accountpo po) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -48,6 +59,13 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 		
 	}
 
+	
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日23:53:20
+	 * @return 对存储数据文件进行查找
+	 */
 	@Override
 	public Accountpo find(String date) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -59,6 +77,12 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 		return accountDao.find(date);
 	}
 
+	
+	/**
+	 * @author lenovo
+	 * @version 2015年12月9日23:53:20
+	 * @return 对存储数据文件进行获取
+	 */
 	@Override
 	public ArrayList<Accountpo> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
