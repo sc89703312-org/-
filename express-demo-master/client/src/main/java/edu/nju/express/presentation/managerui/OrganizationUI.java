@@ -104,9 +104,15 @@ public class OrganizationUI extends MainPanel {
 		String[] rowData = new String[4];
 
 		Map<String, String> city = new HashMap<String, String>();
+		
+		
 		for (StationVO vo : stationList) {
 			city.put(vo.getId(), vo.getName());
 		}
+		
+		
+		
+		
 		for (HallVO vo : hallList) {
 			rowData[2] = vo.getName();
 			rowData[3] = vo.getId();

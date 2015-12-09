@@ -200,10 +200,16 @@ public class ManageController implements UIController {
 	}
 	
 	ArrayList<StationVO> getStationList(){
+		ArrayList<StationVO> stations = org.viewStationList();
+		for(StationVO vo:stations)
+			System.out.println(vo.getId()+" "+vo.getName());
 		return org.viewStationList();
 	}
 	
 	ArrayList<HallVO> getHallList(){
+		ArrayList<HallVO> halls = org.viewHallList();
+		for(HallVO vo:halls)
+			System.out.println(vo.getId()+" "+vo.getName());
 		return org.viewHallList();
 	}
 	
