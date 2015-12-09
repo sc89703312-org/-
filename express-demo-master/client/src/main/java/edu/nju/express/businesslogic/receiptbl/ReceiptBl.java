@@ -18,7 +18,11 @@ import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.Paymentvo;
 import edu.nju.express.vo.ReceiptVOBase;
 
-
+/**
+ * 处理单据的功能实现
+ * @author Dora
+ * @version 2015-12-9 21:27:49
+ */
 
 public class ReceiptBl implements ReceiptBlService {
 
@@ -28,13 +32,18 @@ public class ReceiptBl implements ReceiptBlService {
 	PaymentApproveInfo paymentBL;
 	StationApproveInfo stationBL;
 	
-	
+	/**
+	 * @param commodityBL
+	 * @param costBL
+	 * @param hallBL
+	 * @param paymentBL
+	 * @param stationBL
+	 */
 	public ReceiptBl(CommodityApproveInfo commodityBL,
 	CostApproveInfo costBL,
 	HallApproveInfo hallBL,
 	PaymentApproveInfo paymentBL,
 	StationApproveInfo stationBL) {
-		// TODO Auto-generated constructor stub	
 	this.commodityBL = commodityBL;	
 	this.costBL = costBL;	
 	this.hallBL = hallBL;		
@@ -44,6 +53,13 @@ public class ReceiptBl implements ReceiptBlService {
 	}
 	
 	
+	/**
+	 * 查看所有单据
+	 * @see CommodityApproveInfo
+	 * @see PaymentApproveInfo
+	 * @see HallApproveInfo
+	 * @see StationApproveInfo
+	 */
 	@Override
 	public ArrayList<ReceiptVOBase> view() {
 		// TODO Auto-generated method stub
@@ -65,7 +81,13 @@ public class ReceiptBl implements ReceiptBlService {
 
 	
 	
-	
+	/**
+	 * 审批单据
+	 * @see CommodityApproveInfo
+	 * @see PaymentApproveInfo
+	 * @see HallApproveInfo
+	 * @see StationApproveInfo
+	 */
 	@Override
 	public void approve(String id) {
 		// TODO Auto-generated method stub
@@ -106,6 +128,9 @@ public class ReceiptBl implements ReceiptBlService {
 		
 	}
 
+	/**
+	 * 修改单据
+	 */
 	@Override
 	public ResultMessage modify(ReceiptVOBase vo) {
 		// TODO Auto-generated method stub

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.StationVO;
-
+/**
+ * 机构管理模块需要的中转站模块接口
+ * @author Dora
+ *
+ */
 public interface StationOperationInfo {
 
 	

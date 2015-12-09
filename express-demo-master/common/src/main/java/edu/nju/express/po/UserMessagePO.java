@@ -5,13 +5,14 @@ import java.io.Serializable;
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
 
-
+/**
+ * 人员变动申请的持久化对象
+ * @author Dora
+ * @version 2015-12-9 22:29:00
+ */
 
 public class UserMessagePO extends PersistentObj implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7595964527752101953L;
 	private StaffChange operation;
 
@@ -19,7 +20,7 @@ public class UserMessagePO extends PersistentObj implements Serializable{
 	private Role role;
 	
 	/**
-	 * @param operation
+	 * @param operation 对人员的操作
 	 * @param id
 	 * @param name
 	 * @param role

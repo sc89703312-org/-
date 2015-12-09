@@ -2,7 +2,11 @@ package edu.nju.express.po;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * 常量的持久化对象
+ * @author Dora
+ * @version 2015-12-9 22:31:13
+ */
 public class ConstantPO extends PersistentObj implements Serializable{
 
 	private static final long serialVersionUID = -1926679450602183759L;
@@ -16,6 +20,19 @@ public class ConstantPO extends PersistentObj implements Serializable{
 		return serialVersionUID;
 	}
 	
+	/**
+	 * 
+	 * @param cityList 城市名称列表
+	 * @param cityDistance 城市距离列表
+	 * @param price 标准快递价格
+	 * @param vanCost
+	 * @param railwayCost
+	 * @param airplaneCost
+	 * @param vanLoad
+	 * @param railwayLoad
+	 * @param airplaneLoad
+	 * @param cityIDList 城市编号列表
+	 */
 	public ConstantPO( ArrayList<String> cityList,ArrayList<String> cityDistance
 			,double price,double vanCost,double railwayCost,double airplaneCost,
 			int vanLoad,int railwayLoad,int airplaneLoad,ArrayList<String> cityIDList) {

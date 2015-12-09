@@ -2,6 +2,11 @@ package edu.nju.express.po;
 
 import java.io.Serializable;
 
+/**
+ * 薪水的持久化对象
+ * @author Dora
+ * @version 2015-12-9 22:30:06
+ */
 public class SalaryPO extends PersistentObj implements Serializable{
 	/**
 	 * 
@@ -14,7 +19,12 @@ public class SalaryPO extends PersistentObj implements Serializable{
 	
 	private double postmanWage;
 
-	
+	/**
+	 * 
+	 * @param clerkSalary 业务员月薪
+	 * @param driverWage 司机提成
+	 * @param postmanWage 快递员提成
+	 */
 	public SalaryPO(double clerkSalary ,double driverWage,double  postmanWage) {
 		// TODO Auto-generated constructor stub
 	

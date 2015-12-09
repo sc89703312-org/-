@@ -15,7 +15,12 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.ConstantVO;
 
 
-
+/**
+ * 常量制定的功能实现
+ * @author Dora
+ * @version 2015-12-9 23:18:41
+ * 
+ */
 public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCityInfo {
 
 	
@@ -28,7 +33,10 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	}
 	
 	
-	
+	/*
+	 *从数据层获得两城市之间距离的功能实现
+	 * @see edu.nju.express.blservice.ConstantSettingBlService#setDistance(java.lang.String, java.lang.String, double)
+	 */
 	@Override
 	public ResultMessage setDistance(String id1, String id2, double distance) {
 		// TODO Auto-generated method stub
@@ -45,6 +53,10 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 		return ResultMessage.VALID;
 	}
 
+	/*
+	 * 设置标准快递价格
+	 * @see edu.nju.express.blservice.ConstantSettingBlService#setPrice(double)
+	 */
 	@Override
 	public ResultMessage setPrice(double p) {
 		
@@ -65,6 +77,10 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 		return ResultMessage.VALID;
 	}
 
+	/*
+	 * 设置交通运输成本
+	 * @see edu.nju.express.blservice.ConstantSettingBlService#setVehicleCost(double, double, double)
+	 */
 	@Override
 	public ResultMessage setVehicleCost(double van, double railway, double airplane) {
 		
@@ -88,6 +104,11 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 		return ResultMessage.VALID;
 	}
 
+	/*
+	 * 设置交通运输载量
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.ConstantSettingBlService#setVehicleLoad(int, int, int)
+	 */
 	@Override
 	public ResultMessage setVehicleLoad(int van, int railway, int airplane) {
 	
@@ -114,7 +135,11 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 	
 	
-	
+	/*
+	 * 增加城市
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo#addCity(java.lang.String, java.lang.String)
+	 */
 	
 	public void addCity(String CityID,String id){
 		
@@ -130,7 +155,9 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	}
 	
 	
-	
+	/*
+	 * 获取城市名称列表
+	 */
 	public static ArrayList<String> getCityList(){
 		try {
 			return constantDataService.getCityList();
@@ -141,7 +168,9 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 		return null;
 	}
 	
-	
+	/*
+	 * 获取城市距离列表
+	 */
 	public static ArrayList<String> getCityDistance(){
 	try {
 		return	constantDataService.getCityDistance();
@@ -154,7 +183,9 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	
 	
 	
-	
+	/*
+	 * 获取标准快递价格
+	 */
 	public static double getPrice(){
 		try {
 			return constantDataService.getPrice();
@@ -165,7 +196,9 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 		return 0;
 	}
 	
-	
+	/*
+	 * 获取运输成本
+	 */
 	public static double[] getVehicleCost(){
 		try {
 			return constantDataService.getVehicleCost();
@@ -176,7 +209,9 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 		return null;
 	}
 	
-	
+	/*
+	 * 获取运输载量
+	 */
 	public static int[] getVehicleLoad(){
 		try {
 			return constantDataService.getVehicleLoad();
@@ -188,7 +223,11 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	}
 
 
-
+	/*
+	 * 得到常量显示的vo
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.ConstantSettingBlService#getConstant()
+	 */
 	@Override
 	public ConstantVO getConstant() {
 		// TODO Auto-generated method stub
@@ -213,6 +252,11 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 
 
+	/*
+	 * 从数据层删除城市
+	 * (non-Javadoc)
+	 * @see edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo#deleteCity(java.lang.String)
+	 */
 	@Override
 	public void deleteCity(String CityID) {
 		// TODO Auto-generated method stub

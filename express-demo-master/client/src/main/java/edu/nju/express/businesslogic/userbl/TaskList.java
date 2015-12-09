@@ -8,7 +8,11 @@ import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.vo.UserMessageVO;
 
-
+/**
+ * 查看管理员任务列表
+ * @author Dora
+ * @version 2015-12-9 23:11:23
+ */
 
 public class TaskList {
 
@@ -18,6 +22,11 @@ public class TaskList {
 		userMessageData = RMIHelper.getUserMessageDataService();
 	}
 	
+	/**
+	 * 获得人员变动任务vo的列表
+	 * @author Dora
+	 * @return
+	 */
 	public ArrayList<UserMessageVO> viewTask() {
 		ArrayList<UserMessagePO> listPo = null;
 		
@@ -36,7 +45,9 @@ public class TaskList {
 	}
 	
 	
-	
+	/*
+	 * 将人员变动操作的持久化对象转化为vo
+	 */
 	UserMessageVO convertToVO(UserMessagePO po) {
 
 		return new UserMessageVO(po.getOperation(), po.getId(), po.getName(), po.getRole());

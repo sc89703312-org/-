@@ -15,7 +15,11 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.EmployeeVO;
 
 
-
+/**
+ * 人员管理模块功能实现
+ * @author Dora
+ * @version 2015-12-9 23:26:55
+ */
 public class ManagementBl implements ManagementBlService,ManagementInfo{
 
 	UserCreateMessageInfo userBL;
@@ -25,7 +29,10 @@ public class ManagementBl implements ManagementBlService,ManagementInfo{
 	}
 	
 
-
+	/**
+	 * 增加一个人员增加任务
+	 * @see UserBl;
+	 */
 	@Override
 	public ResultMessage addEmployee(String id, String name, Role role) {
 		
@@ -34,6 +41,10 @@ public class ManagementBl implements ManagementBlService,ManagementInfo{
 		return userBL.createUserMessage(StaffChange.add, id, name, role);
 	}
 
+	/**
+	 * 增加一个人员删除任务
+	 * @see UserBl;
+	 */
 	@Override
 	public ResultMessage dismissEmployee(String id) {
 		
@@ -45,6 +56,10 @@ public class ManagementBl implements ManagementBlService,ManagementInfo{
 
 
 
+	/**
+	 * 查看人员列表
+	 * @see UserBl;
+	 */
 	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList() {
 		return userBL.viewEmployeeList();

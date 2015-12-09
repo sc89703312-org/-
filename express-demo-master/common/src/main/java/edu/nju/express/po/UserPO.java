@@ -3,13 +3,15 @@ package edu.nju.express.po;
 import java.io.Serializable;
 
 import edu.nju.express.common.Role;
-
+/**
+ * 账号持久化对象
+ * @author Dora
+ * @version 2015-12-9 22:27:48
+ */
 
 
 public class UserPO  extends PersistentObj implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 3613670690872702254L;
 
 	private String name;
@@ -17,10 +19,10 @@ public class UserPO  extends PersistentObj implements Serializable{
 	private String password;
 	
 	/**
-	 * @param id
-	 * @param name
-	 * @param role
-	 * @param password
+	 * @param id 人员工号
+	 * @param name 人员姓名
+	 * @param role 职务
+	 * @param password 账号密码
 	 */
 	public UserPO(String id, String name, Role role, String password) {
 		super();

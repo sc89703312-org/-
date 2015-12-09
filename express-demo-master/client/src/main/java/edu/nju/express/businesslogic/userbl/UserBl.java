@@ -15,13 +15,17 @@ import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.UserMessageVO;
-
+/**
+ * 账号管理的功能实现
+ * @author Dora
+ * @version 2015-12-9 23:14:26
+ */
 public class UserBl implements UserBlService ,UserCreateMessageInfo{
+
 
 	UserDataService userData;
 	UserMessageDataService userMessageData;
 	TaskList task;
-
 	public UserBl() {
 		userData = RMIHelper.getUserDataService();
 		userMessageData = RMIHelper.getUserMessageDataService();
@@ -29,7 +33,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 	
 	
-	
+	/**
+	 * 添加人员的功能实现
+	 */
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
 		try {
@@ -42,6 +48,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		return ResultMessage.INVALID;
 	}
 
+	/**
+	 * 删除人员的功能实现
+	 */
 	@Override
 	public ResultMessage deleteUser(String id) {
 		try {
@@ -55,6 +64,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		return ResultMessage.INVALID;
 	}
 
+	/**
+	 * 修改人员的功能实现
+	 */
 	@Override
 	public ResultMessage modifyUser(String id, String name, Role role, String password) {
 		try {
@@ -68,8 +80,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	}
 
 	
-	
-	
+	/**
+	 * 查看人员列表的功能实现
+	 */
 	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList() {
 		ArrayList<UserPO> listPo = null;
@@ -88,7 +101,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 	
 	
-	
+	/*
+	 * 将账号的持久化对象转化为vo
+	 */
 	EmployeeVO convertToVO(UserPO po) {
 
 		return new EmployeeVO(po.getId(), po.getName(), po.getRole());
@@ -96,7 +111,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 	
 	
-	
+	/**
+	 * 查看人员管理任务的功能实现
+	 */
 	@Override
 	public ArrayList<UserMessageVO> viewTask() {
 		task = new TaskList();
@@ -105,7 +122,9 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	
 	
 	
-	
+	/**
+	 * 生成一个人员变动管理任务的功能实现
+	 */
 	@Override
 	public ResultMessage createUserMessage(StaffChange operation, String id, String name, Role role) {
 
@@ -139,6 +158,12 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		return rm;
 	}
 
+	/**
+	 * 删除一个人员管理任务
+	 * @author Dora
+	 * @param id
+	 * @return
+	 */
 	public ResultMessage deleteUserMessage(String id) {
 
 		try {
