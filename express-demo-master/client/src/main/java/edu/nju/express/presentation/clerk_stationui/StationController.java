@@ -5,15 +5,20 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.nju.express.blservice.StationReceiptBlService;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.presentation.UIController;
 
 public class StationController implements UIController{
 	JFrame f;
 	JPanel currentPanel;
 	
+	StationReceiptBlService receipt;
+	
 	public StationController(JFrame f){
 		this.f = f;
 		this.currentPanel = (JPanel) f.getContentPane();
+		this.receipt = DataFactory.createStationReceiptBlInstance();
 	}
 
 	@Override

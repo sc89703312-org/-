@@ -19,6 +19,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -33,7 +34,8 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	int width = 900, height = 600;
-	UIController controller;
+	StationController controller;
+	StationReceiptBlService receipt;
 	JPanel mainpanel, panel;
 	JLabel bg;
 	JButton exit, submitBtn, getOrderBtn;
@@ -50,8 +52,9 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	Color color = new Color(44, 62,80);
 	
 	
-	public StationArrivalUI(UIController c){
+	public StationArrivalUI(StationController c){
 		this.controller = c;
+		this.receipt = c.receipt;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
@@ -204,19 +207,9 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
-	//生成托运单号
-		public void generateData(){
-			this.orderList = new ArrayList<String>();
-			String[] row = new String[2];
-			//mock orderList
-			for(int i=0; i<30; i++){
-				orderList.add("1234567890");
-			}
-			for(int i=0; i<orderList.size(); i++){
-				row[0] = orderList.get(i);
-				row[1] = "完整";
-				table.getTableModel().addRow(row);
-			}
+	//set panel
+		public void generateData(String id){
+			
 
 		}
 

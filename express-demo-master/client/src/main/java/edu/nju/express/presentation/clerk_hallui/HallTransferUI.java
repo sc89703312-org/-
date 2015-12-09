@@ -190,6 +190,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//...........................................
+				feeField.setText("1000");
 			}
 			
 		});
