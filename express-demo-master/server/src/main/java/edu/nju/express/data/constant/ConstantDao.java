@@ -24,7 +24,9 @@ public interface ConstantDao {
 	
 	public ArrayList<String> getCityDistance();
 	
-	public void addCity(String CityID);
+	public void addCity(String CityID,String id);
+	
+	public void deleteCity(String CityID);
 	
 	public void setCityDistance(String CityID1,String CityID2, double distance);
 }

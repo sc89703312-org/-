@@ -11,6 +11,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import javax.xml.transform.Templates;
+
 import edu.nju.express.po.ConstantPO;
 
 public class ConstantFileDao implements ConstantDao {
@@ -81,6 +83,7 @@ public class ConstantFileDao implements ConstantDao {
 				
 				ArrayList<String> cityList = new ArrayList<>();
 				ArrayList<String> cityDistance = new ArrayList<>();
+				ArrayList<String> cityIDList = new ArrayList<String>();
 				double price = 23;
 				double vanCost = 2;
 				double railwayCost = 0.2;
@@ -94,11 +97,16 @@ public class ConstantFileDao implements ConstantDao {
 				cityList.add("广州");
 				cityList.add("南京");
 				
+				cityIDList.add("010");
+				cityIDList.add("021");
+				cityIDList.add("020");
+				cityIDList.add("025");
+				
 				cityDistance.add("0 1064.7 1888.8 900");
 				cityDistance.add("1064.7 0 1213 266");
 				cityDistance.add("188.8 1213 0 1132");
 				cityDistance.add("900 266 1132 0");
-				return new ConstantPO(cityList, cityDistance, price, vanCost, railwayCost, airplaneCost, vanLoad, railwayLoad, airplaneLoad);
+				return new ConstantPO(cityList, cityDistance, price, vanCost, railwayCost, airplaneCost, vanLoad, railwayLoad, airplaneLoad,cityIDList);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -206,12 +214,15 @@ public class ConstantFileDao implements ConstantDao {
 
 
 	@Override
-	public void addCity(String CityID) {
+	public void addCity(String CityID,String id) {
 		// TODO Auto-generated method stub
 		ArrayList<String> cityList = constantPO.getCityList();
+		ArrayList<String> cityIDList = constantPO.getCityIDList();
 		int num = cityList.size();
 		cityList.add(CityID);
+		cityIDList.add(id);
 		constantPO.setCityList(cityList);
+		constantPO.setCityIDList(cityIDList);
 		String last="";
 		ArrayList<String> cityDistanceList = new ArrayList<>();
 		for(int i=0;i<num;i++){
@@ -313,5 +324,67 @@ public class ConstantFileDao implements ConstantDao {
 	
 		constantPO.setCityDistance(cityDistance);
 		
+	}
+
+
+
+
+
+	@Override
+	public void deleteCity(String CityID) {
+		// TODO Auto-generated method stub
+		
+		
+		ArrayList<String> cityIDList = constantPO.getCityIDList();
+		ArrayList<String> cityList = constantPO.getCityList();
+		
+		
+		
+		
+		int num = cityIDList.indexOf(CityID);
+		
+		cityIDList.remove(num);
+		cityList.remove(num);
+		
+	
+		constantPO.setCityIDList(cityIDList);
+		constantPO.setCityList(cityList);
+		
+		
+		ArrayList<String> cityDistanceList = constantPO.getCityDistance();
+		ArrayList<String> tempList = new ArrayList<>();
+		cityDistanceList.remove(num);
+		
+		for(int i=0;i<cityDistanceList.size();i++){
+			
+			String line = "";
+			String [] temps = cityDistanceList.get(i).split(" ");
+			
+			if(num==temps.length){
+				for(int j=0;j<num;j++){
+					if(j!=num-1)
+						line+=temps[j]+" ";
+					else {
+						line+=temps[j];
+					}
+				}
+			}else {
+				for(int j=0;j<temps.length;j++){
+					if(j!=num){
+						if(j!=temps.length-1)
+							line+=temps[j]+" ";
+						else {
+							line+=temps[j];
+						}
+				}
+			}
+			}
+			tempList.add(line);
+			
+		}
+		
+		
+		
+		constantPO.setCityDistance(tempList);
 	}
 }

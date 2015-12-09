@@ -8,6 +8,7 @@ public class ConstantPO extends PersistentObj implements Serializable{
 	private static final long serialVersionUID = -1926679450602183759L;
 	private ArrayList<String> cityList;
 	private ArrayList<String> cityDistance;
+	private ArrayList<String> cityIDList;
 	private double price;
 	private double vanCost, railwayCost, airplaneCost;
 	private int vanLoad, railwayLoad, airplaneLoad;
@@ -17,7 +18,7 @@ public class ConstantPO extends PersistentObj implements Serializable{
 	
 	public ConstantPO( ArrayList<String> cityList,ArrayList<String> cityDistance
 			,double price,double vanCost,double railwayCost,double airplaneCost,
-			int vanLoad,int railwayLoad,int airplaneLoad) {
+			int vanLoad,int railwayLoad,int airplaneLoad,ArrayList<String> cityIDList) {
 		// TODO Auto-generated constructor stub
 	
 	this.cityList = cityList;
@@ -29,6 +30,7 @@ public class ConstantPO extends PersistentObj implements Serializable{
 	this.vanLoad = vanLoad;
 	this.railwayLoad = railwayLoad;
 	this.airplaneLoad = airplaneLoad;
+	this.cityIDList = cityIDList;
 	
 	
 	
@@ -79,6 +81,10 @@ public class ConstantPO extends PersistentObj implements Serializable{
 	public ArrayList<String> getCityList() {
 		return cityList;
 	}
+	
+	public ArrayList<String> getCityIDList(){
+		return cityIDList;
+	}
 	public ArrayList<String> getCityDistance() {
 		return cityDistance;
 	}
@@ -89,5 +95,7 @@ public class ConstantPO extends PersistentObj implements Serializable{
 		this.cityDistance = cityDistance;
 	}
 
-	
+	public void setCityIDList(ArrayList<String> cityIDList){
+		this.cityIDList = cityIDList;
+	}
 }

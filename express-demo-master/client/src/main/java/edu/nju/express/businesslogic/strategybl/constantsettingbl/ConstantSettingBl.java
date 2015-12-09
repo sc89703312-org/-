@@ -116,13 +116,13 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 	
 	
 	
-	public void addCity(String CityID){
+	public void addCity(String CityID,String id){
 		
 		LogController.insertLog(new LogMessage("新增城市", LoginInfo.getUserName()));
 		
 		
 		try {
-			constantDataService.addCity(CityID);
+			constantDataService.addCity(CityID,id);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -209,6 +209,19 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+
+
+	@Override
+	public void deleteCity(String CityID) {
+		// TODO Auto-generated method stub
+		try {
+			constantDataService.deleteCity(CityID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -45,7 +45,7 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 	 ResultMessage temp=	stationbl.addStation(id, name);
 		
      	if(temp.equals(ResultMessage.VALID))
-			constantSettingBL.addCity(name);
+			constantSettingBL.addCity(name,id);
 		
      	LogController.insertLog(new LogMessage("增加中转站", LoginInfo.getUserName()));
 		
@@ -59,8 +59,14 @@ public class OrganizationBl implements OrganizationBlService,OrganizationInfo{
 		
 		LogController.insertLog(new LogMessage("删除中转站", LoginInfo.getUserName()));
 		
-		
-		return stationbl.deleteStation(id);
+		   ResultMessage temp=	stationbl.deleteStation(id);
+			
+	     	if(temp.equals(ResultMessage.VALID))
+				constantSettingBL.deleteCity(id);
+			
+	     	LogController.insertLog(new LogMessage("删除中转站", LoginInfo.getUserName()));
+			
+			return temp;
 		
 	}
 

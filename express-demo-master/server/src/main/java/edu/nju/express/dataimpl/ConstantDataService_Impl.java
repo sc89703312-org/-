@@ -88,9 +88,9 @@ public class ConstantDataService_Impl extends UnicastRemoteObject implements Con
 	}
 
 	@Override
-	public void addCity(String CityID) throws RemoteException {
+	public void addCity(String CityID,String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		constantDao.addCity(CityID);
+		constantDao.addCity(CityID, id);
 	}
 
 	@Override
@@ -98,6 +98,12 @@ public class ConstantDataService_Impl extends UnicastRemoteObject implements Con
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		constantDao.setCityDistance(CityID1, CityID2, distance);
+	}
+
+	@Override
+	public void deleteCity(String CityID) throws RemoteException {
+		// TODO Auto-generated method stub
+		constantDao.deleteCity(CityID);
 	}
 
 }
