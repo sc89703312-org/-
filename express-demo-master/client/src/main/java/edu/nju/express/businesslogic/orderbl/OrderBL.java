@@ -38,6 +38,11 @@ public class OrderBL implements OrderBLService,
 	
 	
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.OrderBLService#createOrder(edu.nju.express.vo.OrderVO)
+	 */
 	@Override
 	public ResultMessage createOrder(OrderVO vo) {
 		// TODO Auto-generated method stub
@@ -54,7 +59,11 @@ public class OrderBL implements OrderBLService,
 
 	
 	
-	
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.OrderBLService#view(java.lang.String)
+	 */
 	@Override
 	public OrderVO view(String id) {
 		// TODO Auto-generated method stub
@@ -69,7 +78,11 @@ public class OrderBL implements OrderBLService,
 
 	
 	
-	
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.OrderBLService#viewAll()
+	 */
 	@Override
 	public ArrayList<OrderVO> viewAll() {
 		// TODO Auto-generated method stub
@@ -89,7 +102,9 @@ public class OrderBL implements OrderBLService,
 	
 	
 	/**
-	 * 
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.OrderBLService#receiverCfm(java.lang.String)
 	 */
 	@Override
 	public void receiverCfm(String id) {
@@ -102,6 +117,11 @@ public class OrderBL implements OrderBLService,
 		}
 	}
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.OrderBLService#endOrder()
+	 */
 	@Override
 	public void endOrder() {
 		// TODO Auto-generated method stub
@@ -159,7 +179,11 @@ public class OrderBL implements OrderBLService,
 	}
 
 
-
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.common.SetOrderSpot#setDeliver(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void setDeliver(String id, String name) {
 		// TODO Auto-generated method stub

@@ -18,6 +18,11 @@ public class LogisticsBL implements LogisticsBLService{
 		
 	}
 	
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.LogisticsBLService#view(java.lang.String)
+	 */
 	@Override
 	public LogisticsVO view(String id) {
 		// TODO Auto-generated method stub
