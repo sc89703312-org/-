@@ -6,6 +6,7 @@ import edu.nju.express.common.CommonData;
 import edu.nju.express.common.ReceiptState;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.po.ArriveReceiptPO;
+import edu.nju.express.po.TransferReceiptPO;
 
 public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements ArriveReceiptDao{
 
@@ -71,7 +72,7 @@ public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements Arrive
 		ArrayList<ArriveReceiptPO> list = showAll();
 		ArrayList<ArriveReceiptPO> newlist = new ArrayList<ArriveReceiptPO>();
 		for(int i=0;i<list.size();i++)
-			if(list.get(i).getState()==ReceiptState.APPROVED)
+			if(list.get(i).getState()==ReceiptState.APPROVED&&list.get(i).isHandle()==false)
 				newlist.add(list.get(i));
 		return newlist;
 	}
@@ -83,6 +84,14 @@ public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements Arrive
 		po.approve();
 		update("ArriveReceipt"+id,po);
 		return null;
+	}
+
+	@Override
+	public void handle(String id) {
+		// TODO Auto-generated method stub
+		ArriveReceiptPO po = find(id);
+		po.handle();
+		update(id,po);
 	}
 
 }

@@ -57,7 +57,7 @@ public class ShowInventoryUI extends MainPanel{
 		movegoods.setRolloverIcon(img2);
 		movegoods.setContentAreaFilled(false);
 		movegoods.setBorderPainted(false);
-		movegoods.setBounds(450,537,80,30);
+		movegoods.setBounds(450,537,120,30);
 		movegoods.setActionCommand("movegoods");
 		movegoods.addActionListener(controller);
 		this.add(movegoods);
@@ -66,8 +66,16 @@ public class ShowInventoryUI extends MainPanel{
 	
 	private void initData(){
 		for(int i=0;i<voList.size();i++){
-			String[] data = {voList.get(i).getOrder().getID(),voList.get(i).getLine()+"",
-					voList.get(i).getShelf()+"",voList.get(i).getShelf()+""};
+			int type = voList.get(i).getType();
+			String area = "";
+			switch(type){
+			case 0: area = "航空区";break;
+			case 1: area = "铁运区";break;
+			case 2: area = "汽运区";break;
+			case 3: area = "机动区";break;
+			}
+			String[] data = {voList.get(i).getOrder().getID(),area,voList.get(i).getLine()+"",
+					voList.get(i).getShelf()+"",voList.get(i).getCell()+""};
 			table.getTableModel().addRow(data);
 		}
 	}

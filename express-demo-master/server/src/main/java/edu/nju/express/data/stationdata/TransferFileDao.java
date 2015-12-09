@@ -71,7 +71,7 @@ public class TransferFileDao extends CommonData<TransferReceiptPO> implements Tr
 		ArrayList<TransferReceiptPO> list = showAll();
 		ArrayList<TransferReceiptPO> newlist = new ArrayList<TransferReceiptPO>();
 		for(int i=0;i<list.size();i++)
-			if(list.get(i).getState()==ReceiptState.APPROVED)
+			if(list.get(i).getState()==ReceiptState.APPROVED&&list.get(i).isHandle()==false)
 				newlist.add(list.get(i));
 		return newlist;
 	}

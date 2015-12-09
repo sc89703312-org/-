@@ -36,6 +36,9 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	String comID;
 	String location;
 	
+	String currentArriveID;
+	String currentTransferID;
+	
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
@@ -61,6 +64,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		currentArriveID = vo.getId();
 		
 		ArrayList<OrderVO> orderList = vo.getList();
 		ArrayList<ComGoodsVO> comGoodsList = new ArrayList<ComGoodsVO>();
@@ -97,7 +102,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	        comGoodsList.add(new ComGoodsVO(orderList.get(i),type,line,shelf,cell));
 	        
 		}
-		
+		System.out.println(commodityDataService.getNextEnterID(comID));
 		return new EnterReceiptVO(comGoodsList,commodityDataService.getNextEnterID(comID),location,Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE);
 	}
 
@@ -156,15 +161,17 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public void subEnterReceipt(EnterReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
+		System.out.println(vo.getId());
+		
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
 		for(int i=0;i<goodsvo.size();i++)
 			goodspo.add(new ComGoodsPO(Convert.vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
-			
+
 		EnterReceiptPO po = new EnterReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
 			commodityDataService.addEnterReceipt(po);
-			System.out.println(po.getId());
+			stationInfo.handleArrive(currentArriveID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -188,6 +195,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		currentTransferID = vo.getId();
 		
 		ArrayList<OrderVO> orderList = vo.getList();
 		ArrayList<ComGoodsVO> comGoodsList = new ArrayList<ComGoodsVO>();
@@ -226,6 +235,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		ExitReceiptPO po = new ExitReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
 		try {
 			commodityDataService.addExitReceipt(po);
+			stationInfo.handleTransfer(currentTransferID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

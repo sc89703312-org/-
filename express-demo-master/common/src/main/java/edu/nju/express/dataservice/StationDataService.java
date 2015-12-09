@@ -40,8 +40,11 @@ public interface StationDataService extends Remote{
 	//public void modifyTransferReceipt(String id, TransferReceiptPO po) throws RemoteException;
 	
 	public TransferReceiptPO getTransfer(String id) throws RemoteException;
-	public void handle(String id) throws RemoteException;
+	public void handleTransfer(String id) throws RemoteException;
+	public void handleArrive(String id) throws RemoteException;
 	
 	public void flush()throws RemoteException;
+
+	
 	
 }

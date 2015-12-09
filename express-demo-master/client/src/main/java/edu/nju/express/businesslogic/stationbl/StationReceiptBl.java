@@ -38,7 +38,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	String location;
 	
 	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
-		stationID = LoginInfo.getUserID().substring(0, 3);
 		stationDataService = RMIHelper.getStationDataService();
 		hallDataService = RMIHelper.getHallDataService();
 		this.orderInfo= orderInfo;
@@ -49,6 +48,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	@Override
 	public ArriveReceiptVO creatArriveReceipt(String id) {
 		// TODO Auto-generated method stub
+		
+		stationID = LoginInfo.getUserID().substring(0, 3);
 		
 		try {
 			this.location = stationDataService.getLocation(stationID);
@@ -96,6 +97,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	public void subArriveReceipt(ArriveReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
+		stationID = LoginInfo.getUserID().substring(0, 3);
+		
 		try {
 			this.location = stationDataService.getLocation(stationID);
 		} catch (RemoteException e) {
@@ -119,6 +122,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	@Override
 	public ArrayList<OrderVO> showCurrentOrder() {
 		// TODO Auto-generated method stub
+		
+		stationID = LoginInfo.getUserID().substring(0, 3);
 		
 		try {
 			ArrayList<ArriveReceiptPO> arrivelist = stationDataService.getArriveReceipt(stationID);
@@ -156,6 +161,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	public void subTransferReceipt(ArrayList<OrderVO> orderlist,
 			String to, String transportID, String supervisor, Etype etype) {
 		// TODO Auto-generated method stub
+		
+		stationID = LoginInfo.getUserID().substring(0, 3);
 		
 		try {
 			this.location = stationDataService.getLocation(stationID);
@@ -397,6 +404,30 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		}
 		return null;
 	
+	}
+
+
+	@Override
+	public void handleArrive(String id) {
+		// TODO Auto-generated method stub
+		try {
+			stationDataService.handleArrive(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public void handleTransfer(String id) {
+		// TODO Auto-generated method stub
+		try {
+			stationDataService.handleTransfer(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
