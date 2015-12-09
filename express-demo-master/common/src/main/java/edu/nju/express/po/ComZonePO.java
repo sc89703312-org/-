@@ -149,7 +149,7 @@ public class ComZonePO  implements Serializable{
 		case 2:
 			for(int i=0;i<trainSpace;i++)
 				if(isEmptyTrain[i]){
-					result[0] = 1;
+					result[0] = 2;
 					result[1] = i+1;
 					isEmptyTrain[i] = false;
 					break;
@@ -158,7 +158,7 @@ public class ComZonePO  implements Serializable{
 		case 3:
 			for(int i=0;i<carSpace;i++)
 				if(isEmptyCar[i]){
-					result[0] = 1;
+					result[0] = 3;
 					result[1] = i+1;
 					isEmptyCar[i] = false;
 					break;

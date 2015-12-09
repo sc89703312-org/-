@@ -240,8 +240,9 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		for(int i=0;i<goodsvo.size();i++)
 			goodspo.add(new ComGoodsPO(Convert.vo_to_po_order(goodsvo.get(i).getOrder()),goodsvo.get(i).getType(),goodsvo.get(i).getLine(),goodsvo.get(i).getShelf(),goodsvo.get(i).getCell()));
 			
-		ExitReceiptPO po = new ExitReceiptPO(goodspo,vo.getID(),vo.getDate(),vo.getLocation());
+		ExitReceiptPO po = new ExitReceiptPO(goodspo,vo.getId(),vo.getDate(),vo.getLocation());
 		try {
+			System.out.println(po);
 			commodityDataService.addExitReceipt(po);
 			stationInfo.handleTransfer(currentTransferID);
 		} catch (RemoteException e) {

@@ -69,10 +69,10 @@ public class ShowInventoryUI extends MainPanel{
 			int type = voList.get(i).getType();
 			String area = "";
 			switch(type){
-			case 0: area = "航空区";break;
-			case 1: area = "铁运区";break;
-			case 2: area = "汽运区";break;
-			case 3: area = "机动区";break;
+			case 1: area = "航空区";break;
+			case 2: area = "铁运区";break;
+			case 3: area = "汽运区";break;
+			case 4: area = "机动区";break;
 			}
 			String[] data = {voList.get(i).getOrder().getID(),area,voList.get(i).getLine()+"",
 					voList.get(i).getShelf()+"",voList.get(i).getCell()+""};

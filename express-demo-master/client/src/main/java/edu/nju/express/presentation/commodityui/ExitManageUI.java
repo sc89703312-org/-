@@ -39,6 +39,7 @@ public class ExitManageUI extends MainPanel{
 		String[] header = {"编号","提交日期","货物目的地","货物数量"};
 		table = new MyNormalTable(header);
 		initData();
+		table.setRowSelectionAllowed(true);
 		
 		this.add(new CommodityGuide(c));
 		
@@ -67,7 +68,7 @@ public class ExitManageUI extends MainPanel{
 	
 	private void initData(){
         for(int i=0;i<volist.size();i++){
-        	String[] data = {volist.get(i).getId(),volist.get(i).getDate(),volist.get(i).getTo(),volist.get(i).getList().size()+""};
+        	String[] data = {volist.get(i).getId().substring(15, volist.get(i).getId().length()),volist.get(i).getDate(),volist.get(i).getTo(),volist.get(i).getList().size()+""};
         	table.getTableModel().addRow(data);
         }
 	}

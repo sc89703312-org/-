@@ -269,7 +269,8 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 		// TODO Auto-generated method stub
 		
 		exitDao.add(po);
-		this.removeGoods(po.getId().substring(0, 3), po);
+		System.out.println(po.getId().substring(11, 14));
+		this.removeGoods(po.getId().substring(11, 14), po);
 		
 	}
 
