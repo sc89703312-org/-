@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -212,13 +213,12 @@ public class CreateOrderPanel extends MainPanel {
 				cityR = (addressR.getText().split(" "))[0];
 				cityS = (addressS.getText().split(" "))[0];
 				total = calculate();
-				double distance = FeeCalculator.getDistance(cityR, cityS);
-				if (distance <= 300)
-					expect = 2;
-				else if (distance <= 1500)
-					expect = 4;
-				else
-					expect = 5;
+				
+				System.out.println(FeeCalculator.getDistance("北京", "广州"));
+				System.out.println(FeeCalculator.getDistance( "广州","上海"));
+				
+				expect = FeeCalculator.getExpectedDays(cityS, cityR);
+				
 				totalCost.setText("   报价： " + total + " 元        ");
 				expectedArrival.setText("预计送达时间： " + expect + " 天        ");
 				totalCost.setHorizontalAlignment(JLabel.CENTER);
@@ -241,11 +241,17 @@ public class CreateOrderPanel extends MainPanel {
 
 		Etype type;
 		type = Etype.getType((String) typeBox.getSelectedItem());
-		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(),
-				phoneS.getText(), nameR.getText(), addressR.getText(), postR.getText(), telR.getText(),
-				phoneR.getText(), Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, (int) expect);
+		String expectedDate = c.get(Calendar.YEAR) + "/" + String.format("%02d", c.get(Calendar.MONTH+1)) + "/"
+				+ String.format("%02d", c.get(Calendar.DATE));
+		System.out.println(expectedDate);
+
+		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(), phoneS.getText(),
+				nameR.getText(), addressR.getText(), postR.getText(), telR.getText(), phoneR.getText(),
+				Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
 				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
-				total, id.getText(), type, ArrivalState.NO, expect+"天",cityS);
+				total, id.getText(), type, ArrivalState.NO, expectedDate, cityS);
 	}
 
 	private double calculate() {
