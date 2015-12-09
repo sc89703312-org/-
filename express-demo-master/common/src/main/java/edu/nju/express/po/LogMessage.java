@@ -35,17 +35,28 @@ public class LogMessage extends PersistentObj implements Serializable {
 	
 	this.message = message;
 	
-	this.id = time;
+	this.id      = sdf.format(new Date());
 	
-	this.date = time.substring(0,10);
+	this.date = id.substring(0,10);
 	}
 	
 	
 	
+	@Override
+    public String getDate() {
+		
+		return this.date;
+		
+	};
 	
+	
+	@Override
+	public String getId(){
+		return this.id;
+	}
 	
 	
 	public String toString() {
-		return "[" + this.time + "] [" + this.username + "] " + this.message;
+		return "[" + this.id + "] [" + this.username + "] " + this.message;
 	}
 }
