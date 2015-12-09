@@ -3,13 +3,12 @@ package edu.nju.express.presentation.postmanui;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.businesslogic.DataFactory;
-import edu.nju.express.common.ArrivalState;
-import edu.nju.express.common.Etype;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.vo.OrderVO;
 
@@ -22,8 +21,8 @@ public class PostmanController implements UIController {
 
 	public PostmanController(JFrame f) {
 		this.frame = f;
+		currentPanel = (JPanel)frame.getContentPane();
 		order = DataFactory.createOrderBLInstance();
-		currentPanel = (JPanel)f.getContentPane();
 	}
 
 	@Override
@@ -57,17 +56,11 @@ public class PostmanController implements UIController {
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("SubmitOrder")) {
-			System.out.println("yingyingying");
 			
-			
-			CreateOrderPanel panel = (CreateOrderPanel) currentPanel;
-			
-			OrderVO tempVo = panel.getInput();
+			OrderVO tempVo = ((CreateOrderPanel) ((JButton)e.getSource()).getParent()).getInput();
+			System.out.println(tempVo);
 			
 			System.out.println(order.createOrder(tempVo));
-//			System.out.println(order.createOrder(new OrderVO("丁盛阳","NJU","NJU","025-83621002","13900001234","顾晗","NJU",
-//				"NJU","025-83621001","13900001231",1,20.5,30.0,"book",10*20,5.0,15.0,"0000000005",Etype.FAST,
-//				ArrivalState.NO,"2 days","Nanjing")));
 		
 		} else if (e.getActionCommand().equals("ConfirmReceival")) {
 			

@@ -55,7 +55,7 @@ public class CreateOrderPanel extends MainPanel {
 
 	double total, expect;
 	double pkgCost;
-	String city1, city2;
+	String cityR, cityS;
 
 	JButton confirm, caculate;
 	static JScrollPane s = new JScrollPane();
@@ -209,10 +209,10 @@ public class CreateOrderPanel extends MainPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				city1 = (addressR.getText().split(" "))[0];
-				city2 = (addressS.getText().split(" "))[0];
+				cityR = (addressR.getText().split(" "))[0];
+				cityS = (addressS.getText().split(" "))[0];
 				total = calculate();
-				double distance = FeeCalculator.getDistance(city1, city2);
+				double distance = FeeCalculator.getDistance(cityR, cityS);
 				if (distance <= 300)
 					expect = 2;
 				else if (distance <= 1500)
@@ -239,29 +239,19 @@ public class CreateOrderPanel extends MainPanel {
 
 	public OrderVO getInput() {
 
-//		Etype type;
-//		type = Etype.getType((String) typeBox.getSelectedItem());
-//		System.out.println(new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(),
-//				phoneS.getText(), nameR.getText(), addressR.getText(), postR.getText(), telR.getText(),
-//				phoneR.getText(), Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
-//				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
-//				total, id.getText(), type, ArrivalState.NO, "2015/12/08", (addressS.getText().split(" "))[0]));
-//		OrderVO ordervo = new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(),
-//				phoneS.getText(), nameR.getText(), addressR.getText(), postR.getText(), telR.getText(),
-//				phoneR.getText(), Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
-//				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
-//				total, id.getText(), type, ArrivalState.NO, "2015/12/08",(addressS.getText().split(" "))[0]);
-//		
-//		
-		return new OrderVO("SHRF","NJU","NJU","025-83621002","13900001234","SC","NJU",
-				"NJU","025-83621001","13900001231",1,20.5,30.0,"book",10*20,5.0,15.0,"0000000010",Etype.FAST,
-				ArrivalState.NO,"2 days","Nanjing");
+		Etype type;
+		type = Etype.getType((String) typeBox.getSelectedItem());
+		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(),
+				phoneS.getText(), nameR.getText(), addressR.getText(), postR.getText(), telR.getText(),
+				phoneR.getText(), Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
+				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
+				total, id.getText(), type, ArrivalState.NO, "2015/12/08",cityS);
 	}
 
 	private double calculate() {
 		double result = 0;
 		pkgCost = FeeCalculator.getPkgCost((String) pkgCostBox.getSelectedItem());
-		result = pkgCost + FeeCalculator.getTransFee(city1, city2, Etype.getType((String) typeBox.getSelectedItem()));
+		result = pkgCost + FeeCalculator.getTransFee(cityR, cityS, Etype.getType((String) typeBox.getSelectedItem()));
 
 		return result;
 	}
