@@ -174,7 +174,7 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 			goods.get(i).setShelf(Integer.parseInt((String) data[i][3]));
 			goods.get(i).setCell(Integer.parseInt((String) data[i][4]));
 			String type = (String) data[i][1];
-			if(type.equals("航运区"))
+			if(type.equals("航空区"))
 				isEmptyPlane[index] = false;
 			if(type.equals("铁运区"))
 				isEmptyTrain[index] = false;

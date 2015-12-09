@@ -10,6 +10,7 @@ import edu.nju.express.businesslogic.receiptbl.Info.CommodityApproveInfo;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
 import edu.nju.express.common.Convert;
 import edu.nju.express.common.Etype;
+import edu.nju.express.common.MyDate;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.dataservice.CommodityDataService;
@@ -104,7 +105,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	        
 		}
 		System.out.println(commodityDataService.getNextEnterID(comID));
-		return new EnterReceiptVO(comGoodsList,commodityDataService.getNextEnterID(comID),location,Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE);
+		return new EnterReceiptVO(comGoodsList,commodityDataService.getNextEnterID(comID),location,MyDate.getCurrentDate());
 	}
 
 	
@@ -220,7 +221,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		}
 		
 		try {
-			return new ExitReceiptVO(comGoodsList,commodityDataService.getNextExitID(comID),location,Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE);
+			return new ExitReceiptVO(comGoodsList,commodityDataService.getNextExitID(comID),location,MyDate.getCurrentDate());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

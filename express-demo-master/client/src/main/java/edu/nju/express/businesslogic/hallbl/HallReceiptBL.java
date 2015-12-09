@@ -10,6 +10,7 @@ import edu.nju.express.businesslogic.receiptbl.Info.HallApproveInfo;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.businesslogic.vehiclebl.Vehiclebl;
 import edu.nju.express.common.Convert;
+import edu.nju.express.common.MyDate;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.SetOrderSpot;
 import edu.nju.express.dataservice.HallDataService;
@@ -64,7 +65,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
             try {
 				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
 				if(transfervo.getDestination().equals(location)){
-				    ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(id),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getOrderlist());
+				    ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(id),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
 				    return vo;
 				}
 				else
@@ -79,7 +80,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			try {
 				TransferReceiptVO transfervo = Convert.po_to_vo_transfer(stationDataService.getTransfer(id));
 				if(transfervo.getTo().equals(location)){
-					ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(hallID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getList());
+					ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(hallID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getList());
 					return vo;
 				}
 				else
@@ -183,7 +184,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		}
 		
 		try {
-			HallTransferReceiptVO vo = new HallTransferReceiptVO(hallDataService.nextHallTransferID(hallID), location, Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE, hallID, transportID, to, carID, supervisor, guard, orderlist);
+			HallTransferReceiptVO vo = new HallTransferReceiptVO(hallDataService.nextHallTransferID(hallID), location, MyDate.getCurrentDate(), hallID, transportID, to, carID, supervisor, guard, orderlist);
 			hallDataService.addHallTransfer(Convert.vo_to_po_halltransfer(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -207,7 +208,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		}
 		
 		try {
-			DeliverReceiptVO vo = new DeliverReceiptVO(hallDataService.nextDeliverID(hallID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,location,deliver,orderlist);
+			DeliverReceiptVO vo = new DeliverReceiptVO(hallDataService.nextDeliverID(hallID),MyDate.getCurrentDate(),location,deliver,orderlist);
 			hallDataService.addHallDeliver(Convert.vo_to_po_deliver(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

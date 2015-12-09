@@ -10,6 +10,7 @@ import edu.nju.express.businesslogic.receiptbl.Info.StationApproveInfo;
 import edu.nju.express.businesslogic.stationbl.Info.OrderInfo;
 import edu.nju.express.common.Convert;
 import edu.nju.express.common.Etype;
+import edu.nju.express.common.MyDate;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.SetOrderSpot;
 import edu.nju.express.dataservice.HallDataService;
@@ -62,7 +63,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
             try {
 				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
 				if(transfervo.getDestination().equals(location)){
-				    ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getOrderlist());
+				    ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
 				    return vo;
 				}
 				else
@@ -77,7 +78,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			try {
 				TransferReceiptVO transfervo = Convert.po_to_vo_transfer(stationDataService.getTransfer(id));
 				if(transfervo.getTo().equals(location)){
-					ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,transfervo.getLocation(),location,transfervo.getList());
+					ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getList());
 					return vo;
 				}
 				else
@@ -172,7 +173,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		}
 		
 		try {
-			TransferReceiptVO vo = new TransferReceiptVO(stationDataService.nextTransferID(stationID),Calendar.YEAR+"/"+Calendar.MONTH+"/"+Calendar.DATE,to,location,transportID,supervisor,etype,orderlist);
+			TransferReceiptVO vo = new TransferReceiptVO(stationDataService.nextTransferID(stationID),MyDate.getCurrentDate(),to,location,transportID,supervisor,etype,orderlist);
 			stationDataService.addTransferReceipt(Convert.vo_to_po_transfer(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
