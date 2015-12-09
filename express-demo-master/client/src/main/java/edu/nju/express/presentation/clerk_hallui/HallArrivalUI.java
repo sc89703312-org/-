@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -227,7 +228,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 				}
 				receipt.subArrivalReceipt(new ArrivalReceiptVO(transferIdField.getText(),
 						dateBox.getDate(), (String)fromBox.getSelectedItem(),
-						HallLocation.getHallLocation(hall_id), orderList));
+						Location.getHallLocation(hall_id), orderList));
 			}
 			
 		});

@@ -20,12 +20,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.StationReceiptBlService;
+import edu.nju.express.common.GoodsState;
+import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.vo.ArriveReceiptVO;
+import edu.nju.express.vo.OrderVO;
 
 public class StationArrivalUI extends JPanel implements MouseListener{
 
@@ -44,13 +49,14 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	DateComboBoxPanel dateBox;
 	MyComboBox<String> fromBox;
 	MyTablePanel table;
-	ArrayList<String> orderList;
+	ArrayList<OrderVO> orderList;
 	
 	static JScrollPane scroll = new JScrollPane();
 	final MyScrollBarUI ui = new MyScrollBarUI();
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
 	
+	String location = Location.getStationLocation(LoginInfo.getUserID().substring(0, 3));
 	
 	public StationArrivalUI(StationController c){
 		this.controller = c;
@@ -126,7 +132,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				generateData();
+				generateData(getOrderField.getText());
 			}
 		
 		});
@@ -177,6 +183,19 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		submitBtn = new JButton("提交");
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
+		submitBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				for(int i=0; i<orderList.size(); i++){
+					orderList.get(i).setGoodState(convert((String)table.getTable().getValueAt(i, 1)));
+				}
+				submit(new ArriveReceiptVO(idField.getText(), dateBox.getDate(), 
+						(String)fromBox.getSelectedItem(), location, orderList));
+			}
+			
+		});
 		mainpanel.add(submitBtn);
 		
 	}
@@ -207,11 +226,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
-	//set panel
-		public void generateData(String id){
-			
-
-		}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -240,6 +255,35 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	//set panel
+	public void generateData(String id){
+		orderList = new ArrayList<OrderVO>();
+		int length = receipt.creatArriveReceipt(id).getList().size();
+		for(int i=0; i<length; i++){
+			orderList.add(receipt.creatArriveReceipt(id).getList().get(i));
+		}
+		Object[] row = new Object[2];
+		for(int i=0; i<length; i++){
+			row[0] = orderList.get(i).getID();
+			row[1] = "完整";
+		}
+		table.getTableModel().addRow(row);
+
+	}
+	
+	public void submit(ArriveReceiptVO vo){
+		receipt.subArriveReceipt(vo);
+	}
+	
+	public GoodsState convert(String goodState){
+		switch(goodState){
+		case "完整": return GoodsState.COMPLETE;
+		case "损坏": return GoodsState.DAMAGED;
+		default: return GoodsState.LOST;
+		}
 		
 	}
 

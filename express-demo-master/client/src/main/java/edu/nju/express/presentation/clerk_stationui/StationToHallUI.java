@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -31,7 +32,8 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	int width = 900, height = 600;
-	UIController controller;
+	StationController controller;
+	StationReceiptBlService receipt;
 	JPanel mainpanel, panel, op;
 	JLabel bg;
 	JButton exit, submitBtn;
@@ -53,6 +55,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	
 	public StationToHallUI(StationController c){
 		this.controller = c;
+		this.receipt = c.receipt;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);

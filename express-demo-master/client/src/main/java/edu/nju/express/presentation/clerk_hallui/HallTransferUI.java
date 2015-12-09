@@ -155,7 +155,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
-		initData();
+//		initData();
 //		Object[] data1 = { false, "1234567890" };
 //		Object[] data2 = { false, "1234567891" };
 //		Object[] data3 = { false, "1234567892" };
