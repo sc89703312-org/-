@@ -18,7 +18,7 @@ public class FeeCalculator {
 
 		ArrayList<String> refe = ConstantSettingBl.getCityList();
 		ArrayList<String> list = ConstantSettingBl.getCityDistance();
-
+		
 		int num1 = refe.indexOf(cityname1);
 		int num2 = refe.indexOf(cityname2);
 		if (num1 == -1 || num2 == -1) {
@@ -79,4 +79,20 @@ public class FeeCalculator {
 
 		return -1;
 	}
+	
+	public static int getExpectedDays(String city1,String city2){
+		double distance = FeeCalculator.getDistance(city1, city2);
+		int expect;
+		if (distance <= 300)
+			expect = 1;
+		else if(distance <=1000)
+			expect = 2;
+		else if (distance <= 1500)
+			expect = 4;
+		else
+			expect = 5;
+		
+		return expect;
+	}
+	
 }

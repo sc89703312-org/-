@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.managerui;
 
-import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -25,6 +26,7 @@ public class ReceiptApprovalUI extends MainPanel {
 	static int height = 600;
 	static int x = 240;
 	static int y = 50;
+	private static Image bg = new ImageIcon("ui/image/manager/单据审批.png").getImage();
 	private static Icon img1 = new ImageIcon("ui/button/approve1.png");
 	private static Icon img2 = new ImageIcon("ui/button/approve2.png");
 	private ReceiptBlService receiptBl;
@@ -43,7 +45,10 @@ public class ReceiptApprovalUI extends MainPanel {
 		table = new MyCheckBoxTable(header);
 		initData();
 
-		this.add(new ManageGuide(c));
+		ManageGuide guide = new ManageGuide(c);
+		guide.receipt.setIcon(null);
+		this.add(guide);
+		
 
 		JScrollPane s = new JScrollPane(table);
 		s.setBounds(128,112,727,420);
@@ -117,5 +122,10 @@ public class ReceiptApprovalUI extends MainPanel {
 
 	public ArrayList<String> getIDtoApprove() {
 		return table.getSelectedID();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }
