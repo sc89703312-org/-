@@ -30,7 +30,7 @@ public class FeeCalculator {
 		return Double.parseDouble(result);
 	}
 
-	//如果是不同城市，需要两次在营业厅之间运输和一次在城市间运输
+	//两个城市之间
 	public static double getTransFee(String cityname1, String cityname2, Etype type) {
 
 		double price = ConstantSettingBl.getPrice();
@@ -43,7 +43,7 @@ public class FeeCalculator {
 			break;
 		}
 
-		BigDecimal bd = new BigDecimal((60.0 + getDistance(cityname1, cityname2)) / 1000.0 * price);
+		BigDecimal bd = new BigDecimal( getDistance(cityname1, cityname2) / 1000.0 * price);
 		return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	
@@ -63,7 +63,7 @@ public class FeeCalculator {
 		BigDecimal bd = new BigDecimal(30.0  / 1000.0 * price);
 		return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
-
+	
 	public static double getPkgCost(String pkg) {
 
 		switch (pkg) {

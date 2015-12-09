@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import edu.nju.express.common.Etype;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.LabelTextField;
 
@@ -18,11 +19,13 @@ public class StationRailwayUI extends StationTransportUI{
 	
 	
 	
-	public StationRailwayUI(UIController c){
+	public StationRailwayUI(StationController c){
 		super(c);
 		bg = new JLabel(new ImageIcon("ui/image/station/railway.png"));
 		bg.setBounds(0, 0, width, height);
 		mainpanel.add(bg);
+		
+		etype = Etype.ECONOMICAL;
 	}
 	
 	public void addTransportIdField(){

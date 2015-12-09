@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import edu.nju.express.presentation.UIController;
+import edu.nju.express.common.Etype;
 import edu.nju.express.presentation.myUI.LabelTextField;
 
 public class StationHighwayUI extends StationTransportUI{
@@ -19,11 +19,13 @@ public class StationHighwayUI extends StationTransportUI{
 	private static final long serialVersionUID = 1L;
 	
 	
-	public StationHighwayUI(UIController c){
+	public StationHighwayUI(StationController c){
 		super(c);
 		bg = new JLabel(new ImageIcon("ui/image/station/highway.png"));
 		bg.setBounds(0, 0, width, height);
 		mainpanel.add(bg);
+		
+		etype = Etype.STANDARD;
 	}
 	
 	public void addTransportIdField(){

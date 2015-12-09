@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,12 +18,18 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import edu.nju.express.presentation.UIController;
+import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.blservice.StationReceiptBlService;
+import edu.nju.express.common.Etype;
+import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.FeeCalculator;
+import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.vo.OrderVO;
 
 public class StationTransportUI extends JPanel implements MouseListener{
 
@@ -31,7 +38,9 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	int width = 900, height = 600;
-	UIController controller;
+	StationController controller;
+	StationReceiptBlService receipt;
+	OrderBLService order;
 	JPanel mainpanel,panel,op;
 	JLabel bg; 
 	JButton exit, submitBtn;
@@ -45,13 +54,19 @@ public class StationTransportUI extends JPanel implements MouseListener{
 					feeField;
 	JButton calFeeBtn;
 	
+	String station_id = LoginInfo.getUserID().substring(0, 3);
+	//子类在构造方法中要set etype
+	Etype etype;
+	
 	static JScrollPane scroll = new JScrollPane();
 	final MyScrollBarUI ui = new MyScrollBarUI();
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
 	
-	public StationTransportUI(UIController c){
+	public StationTransportUI(StationController c){
 		this.controller = c;
+		this.receipt = c.receipt;
+		this.order = c.order;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
@@ -151,15 +166,16 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
+		initData();
 		//init data
-		Object[] data1 = { false, "1234567890" };
-		Object[] data2 = { false, "1234567891" };
-		Object[] data3 = { false, "1234567892" };
-		for (int i = 0; i < 10; i++) {
-			checkTable.getTableModel().addRow(data1);
-			checkTable.getTableModel().addRow(data2);
-			checkTable.getTableModel().addRow(data3);
-		}
+//		Object[] data1 = { false, "1234567890" };
+//		Object[] data2 = { false, "1234567891" };
+//		Object[] data3 = { false, "1234567892" };
+//		for (int i = 0; i < 10; i++) {
+//			checkTable.getTableModel().addRow(data1);
+//			checkTable.getTableModel().addRow(data2);
+//			checkTable.getTableModel().addRow(data3);
+//		}
 		
 		JScrollPane s = new JScrollPane(checkTable);
 		s.setBounds(0, 60, 710, 325);
@@ -179,6 +195,24 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		
 		calFeeBtn = new JButton("计算运费");
 		calFeeBtn.setBounds(420, 400, 80, 45);
+		calFeeBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(getSelectedOrders().size()>0){
+					double weight = 0;
+					for(OrderVO vo: getSelectedOrders()){
+						weight += vo.getWeight();
+					}
+					feeField.setText(calFee(weight) + "");
+				}
+				else{
+					feeField.setText("0");
+				}
+			}
+			
+		});
 		op.add(calFeeBtn);
 		
 		panel.add(op);
@@ -216,6 +250,16 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		submitBtn = new JButton("提交");
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
+		submitBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(), 
+						transportIdField.getText(), supervisorField.getText(), etype);
+			}
+			
+		});
 		mainpanel.add(submitBtn);
 		
 	}
@@ -279,6 +323,39 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void initData(){
+		Object[] row = new Object[2];
+		int length = receipt.showCurrentOrder().size();
+		for(int i=0; i<length; i++){
+			row[0] = false;
+			row[1] = receipt.showCurrentOrder().get(i).getID();
+			
+		}
+		checkTable.getTableModel().addRow(row);
+		
+	}
+	
+	public ArrayList<OrderVO> getSelectedOrders(){
+		String orderId;
+		ArrayList<OrderVO> selectedOrderList = new ArrayList<OrderVO>();
+
+		for (int i = 0; i < checkTable.getRowCount(); i++) {
+			if ((boolean) checkTable.getValueAt(i, 0) == true){
+				orderId = (String) checkTable.getValueAt(i, 1);
+				selectedOrderList.add(order.view(orderId));
+			}
+		}
+		return selectedOrderList;
+	}
+	
+	
+	
+	public Double calFee(double weight){
+		String thisCity = Location.getStationLocation(station_id);
+		String toCity = (String)toBox.getSelectedItem();
+		return weight*FeeCalculator.getTransFee(thisCity, toCity, etype);
 	}
 
 }

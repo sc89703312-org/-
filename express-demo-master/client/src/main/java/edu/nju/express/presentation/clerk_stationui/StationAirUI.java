@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import edu.nju.express.presentation.UIController;
+import edu.nju.express.common.Etype;
 import edu.nju.express.presentation.myUI.LabelTextField;
 
 public class StationAirUI extends StationTransportUI{
@@ -15,11 +15,13 @@ public class StationAirUI extends StationTransportUI{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public StationAirUI(UIController c){
+	public StationAirUI(StationController c){
 		super(c);
 		bg = new JLabel(new ImageIcon("ui/image/station/air.png"));
 		bg.setBounds(0, 0, width, height);
 		mainpanel.add(bg);
+		
+		etype = Etype.FAST;
 	}
 	
 	public void addTransportIdField(){
@@ -57,5 +59,6 @@ public class StationAirUI extends StationTransportUI{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
 }
