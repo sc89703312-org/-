@@ -42,7 +42,7 @@ public class ManageGuide extends JPanel {
 
 	void initGuide() {
 		
-		receipt = new JButton();
+		receipt = new JButton(receipt1);
 		receipt.setRolloverIcon(receipt2);
 		receipt.setBorderPainted(false);
 		receipt.setContentAreaFilled(false);
@@ -50,7 +50,7 @@ public class ManageGuide extends JPanel {
 		receipt.setActionCommand("ReceiptUI");
 		receipt.addActionListener(controller);
 		
-		employee = new JButton();
+		employee = new JButton(employ1);
 		employee.setRolloverIcon(employ2);
 		employee.setBounds(1,144,82,82);
 		employee.setBorderPainted(false);
@@ -58,7 +58,7 @@ public class ManageGuide extends JPanel {
 		employee.setActionCommand("EmployeeUI");
 		employee.addActionListener(controller);
 		
-		organization = new JButton();
+		organization = new JButton(org1);
 		organization.setRolloverIcon(org2);
 		organization.setContentAreaFilled(false);
 		organization.setBorderPainted(false);
@@ -66,7 +66,7 @@ public class ManageGuide extends JPanel {
 		organization.setActionCommand("OrganizationUI");
 		organization.addActionListener(controller);
 		
-		salary = new JButton();
+		salary = new JButton(salary1);
 		salary.setRolloverIcon(salary2);
 		salary.setContentAreaFilled(false);
 		salary.setBorderPainted(false);
@@ -74,7 +74,7 @@ public class ManageGuide extends JPanel {
 		salary.setActionCommand("SalaryUI");
 		salary.addActionListener(controller);
 		
-		constant = new JButton();
+		constant = new JButton(cons1);
 		constant.setRolloverIcon(cons2);
 		constant.setBounds(0,444,82,82);
 		constant.setContentAreaFilled(false);

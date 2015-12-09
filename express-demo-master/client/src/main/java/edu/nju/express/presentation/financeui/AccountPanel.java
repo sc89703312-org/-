@@ -2,6 +2,7 @@ package edu.nju.express.presentation.financeui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
@@ -33,21 +35,25 @@ public class AccountPanel extends MainPanel{
 		this.controller = controller;
 		this.add(new FinanceGuide(controller));
 		
-		this.add(new ReturnButton());
+		ReturnButton jbtReturn = new ReturnButton();
+		jbtReturn.setActionCommand("AccountUI");
+		this.add(jbtReturn);
 		
 		JPanel p = new JPanel();
 		p.setOpaque(false);
-		p.setBounds(94, 112, 900 - 175, 600 - 180);
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		this.add(p);
 
 		final JScrollPane s = new JScrollPane(p);
+		s.setBounds(208, 112, 645, 420);
 		s.setOpaque(false);
+	//	s.setLayout(null);
+		s.setBorder(new EmptyBorder(0, 0, 0, 0));
 		s.getViewport().setOpaque(false);
 		s.getVerticalScrollBar().setOpaque(false);
-
 		final MyScrollBarUI ui = new MyScrollBarUI();
 		s.getVerticalScrollBar().setUI(ui);
+		this.add(s);
 
 		s.getVerticalScrollBar().addMouseListener(new MouseAdapter() {
 			@Override
@@ -71,51 +77,53 @@ public class AccountPanel extends MainPanel{
 		p.add(new JLabel(date));
 		
 		
-		JLabel l1= new JLabel("银行账户");
+		JLabel l1= new JLabel("银行账户:");
 		l1.setName("title");
+		p.add(l1);
 		ArrayList<BankingAccountVO> bl = vo.getAccountList();
-
 		for(BankingAccountVO b: bl){
-			System.out.println(b.getName()+"   "+b.getMoney());
-			JLabel tempLabel = new JLabel(""+b.getName()+":   "+b.getMoney()+"元");
-			tempLabel.setVisible(true);
-			p.add(tempLabel);
+			p.add(new JLabel(""+b.getName()+":	"+b.getMoney()+"元"));
 		}
 		
 		
 		ArrayList<StationVO> sl = vo.getStationList();
-		JLabel l2= new JLabel("中转站");
+		JLabel l2= new JLabel("中转站:");
 		l2.setName("title");
+		p.add(l2);
 		for(StationVO svo: sl){
-			p.add(new JLabel(svo.getName()+" "+svo.getId()));
+			p.add(new JLabel(svo.getName()+"	"+svo.getId()));
 		}
 		
 		
 		ArrayList<HallVO> hl=vo.getHallList();
-		JLabel l3= new JLabel("营业厅");
+		JLabel l3= new JLabel("营业厅:");
 		l3.setName("title");
+		p.add(l3);
 		for(HallVO h: hl){
-			p.add(new JLabel(h.getName()+" "+h.getId()+" "));
+			p.add(new JLabel(h.getName()+"	"+h.getId()+" "));
 		}
 	
 		
 		ArrayList<EmployeeVO> el = vo.getUserList();
-		JLabel l4= new JLabel("人员");
+		JLabel l4= new JLabel("人员:");
 		l4.setName("title");
+		p.add(l4);
 		for(EmployeeVO e:el)
-			p.add(new JLabel(e.getId()+" "+e.getName()));
+			p.add(new JLabel(e.getId()+"	"+e.getName()));
 		
 		
 		ArrayList<Carvo> cl = vo.getCarList();
-		JLabel l5= new JLabel("车辆");
+		JLabel l5= new JLabel("车辆:");
 		l5.setName("title");
+		p.add(l5);
 		for(Carvo c:cl)
-			p.add(new JLabel(c.getId()+" "+c.getCar()+" "+c.getPurchase()));
+			p.add(new JLabel(c.getId()+"	"+c.getCar()+"	"+c.getPurchase()));
 		
 		
 		ArrayList<ComGoodsVO> cgl = vo.getCommodity();
-		JLabel l6= new JLabel("库存");
+		JLabel l6= new JLabel("库存:");
 		l6.setName("title");
+		p.add(l6);
 		//快递编号、入库日期、目的地、区号、排号、架号、位号
 		for(ComGoodsVO cg:cgl)
 			p.add(new JLabel(cg.getOrder().getID()));
@@ -126,6 +134,13 @@ public class AccountPanel extends MainPanel{
 			l.setOpaque(false);
 			l.setForeground(fore);
 			l.setFont(font);
+			
+			if(c.getName()!=null){
+				c.setFont(new Font("微软雅黑",font.BOLD,19));
+				c.setPreferredSize(new Dimension(200,50));
+			}else{
+				c.setPreferredSize(new Dimension(200,30));
+			}
 		}
 	}
 
