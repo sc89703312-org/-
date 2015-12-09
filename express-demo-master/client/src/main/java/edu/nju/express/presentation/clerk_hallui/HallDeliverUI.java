@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,10 +19,16 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.blservice.HallReceiptBlService;
+import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.common.ResultMessage;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.vo.ArrivalReceiptVO;
+import edu.nju.express.vo.DeliverReceiptVO;
+import edu.nju.express.vo.OrderVO;
 
 public class HallDeliverUI extends JPanel implements MouseListener{
 
@@ -33,6 +40,8 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	int width = 900;
 	int height = 600;
 	HallController controller;
+	HallReceiptBlService receipt;
+	OrderBLService order;
 	JPanel mainpanel;
 	JLabel addOrderLabel;
 	MyCheckBoxTable checkTable;
@@ -42,7 +51,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	JTextArea orderArea;
 	JLabel bg;
 	JButton exit, submitBtn;
-	
+		
 	JScrollPane scrollpane = new JScrollPane();
 	final MyScrollBarUI ui = new MyScrollBarUI();
 	Font font = new Font("黑体", Font.PLAIN, 18);
@@ -51,6 +60,8 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	
 	public HallDeliverUI(HallController controller){
 		this.controller = controller;
+		this.receipt = controller.receipt;
+		this.order = controller.order;
 		mainpanel = new JPanel();
 		mainpanel.setBounds(0, 0, width, height);
 		mainpanel.setLayout(null);
@@ -105,15 +116,15 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
-		//init data
-		Object[] data1 = { false, "1234567890" };
-		Object[] data2 = { false, "1234567891" };
-		Object[] data3 = { false, "1234567892" };
-		for (int i = 0; i < 10; i++) {
-			checkTable.getTableModel().addRow(data1);
-			checkTable.getTableModel().addRow(data2);
-			checkTable.getTableModel().addRow(data3);
-		}
+		initData();
+//		Object[] data1 = { false, "1234567890" };
+//		Object[] data2 = { false, "1234567891" };
+//		Object[] data3 = { false, "1234567892" };
+//		for (int i = 0; i < 10; i++) {
+//			checkTable.getTableModel().addRow(data1);
+//			checkTable.getTableModel().addRow(data2);
+//			checkTable.getTableModel().addRow(data3);
+//		}
 		
 		JScrollPane s = new JScrollPane(checkTable);
 		s.setBounds(0, 240, 710, 325);
@@ -165,6 +176,15 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		submitBtn = new JButton("提交");
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
+		submitBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				submit(deliverIdField.getText(), getSelectedOrders());
+			}
+			
+		});
 		mainpanel.add(submitBtn);
 		
 		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
@@ -210,6 +230,35 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void initData(){
+		Object[] row = new Object[2];
+		int length = receipt.showCurrentOrder().size();
+		for(int i=0; i<length; i++){
+			row[0] = false;
+			row[1] = receipt.showCurrentOrder().get(i).getID();
+			
+		}
+		checkTable.getTableModel().addRow(row);
+		
+	}
+	
+	public ArrayList<OrderVO> getSelectedOrders(){
+		String orderId;
+		ArrayList<OrderVO> selectedOrderList = new ArrayList<OrderVO>();
+
+		for (int i = 0; i < checkTable.getRowCount(); i++) {
+			if ((boolean) checkTable.getValueAt(i, 0) == true){
+				orderId = (String) checkTable.getValueAt(i, 1);
+				selectedOrderList.add(order.view(orderId));
+			}
+		}
+		return selectedOrderList;
+	}
+	
+	public void submit(String id, ArrayList<OrderVO> orderlist){
+		receipt.subDeliverReceipt(id, orderlist);;
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import edu.nju.express.blservice.CarControlService;
 import edu.nju.express.blservice.HallReceiptBlService;
+import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.blservice.Vehicleblservice;
 import edu.nju.express.businesslogic.DataFactory;
@@ -20,6 +21,7 @@ public class HallController implements UIController {
 	CarControlService car;
 	HallReceiptBlService receipt;
 	Paymentblservice payment;
+	OrderBLService order;
 	
 	public HallController(MyFrame f){
 		this.frame = f;
@@ -29,6 +31,7 @@ public class HallController implements UIController {
 		this.car = DataFactory.createCarBLInstance();
 		this.receipt = DataFactory.createHallReceiptBLInstance();
 		this.payment = DataFactory.createPaymentBLInstance();
+		this.order = DataFactory.createOrderBLInstance();
 		
 	}
 	@Override

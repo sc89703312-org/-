@@ -99,7 +99,9 @@ public class OrderVO extends Observable implements Serializable{
 		stateChanged();
 	}
 	
-	
+	public void setGoodState(GoodsState g){
+		this.goodsState = g;
+	}
 
 	public String getSenderName(){
 		return this.senderName;

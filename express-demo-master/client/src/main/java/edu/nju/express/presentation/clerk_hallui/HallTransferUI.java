@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,11 +18,15 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.blservice.HallReceiptBlService;
+import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.vo.OrderVO;
 
 public class HallTransferUI extends JPanel implements MouseListener{
 	
@@ -30,6 +35,8 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	HallController controller;
+	HallReceiptBlService receipt;
+	OrderBLService order;
 	JPanel mainpanel;
 	JPanel boxpanel;
 	
@@ -46,7 +53,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	JLabel dateLabel, toLabel, addOrderLabel;
 	DateComboBoxPanel dateBox;
 	MyComboBox<String> toBox;
-	LabelTextField carrierIdField, supervisorField,
+	LabelTextField carrierIdField,carField, supervisorField,
 					guardField,feeField;
 	JLabel bg;
 	
@@ -56,9 +63,13 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	Color color = new Color(44, 62,80);
 	Color areaColor = new Color(210, 232, 232);
 
+	String hall_id = LoginInfo.getUserID().substring(0, 6);
+	
 	
 	public HallTransferUI(HallController controller){
 		this.controller = controller;
+		this.receipt = controller.receipt;
+		this.order = controller.order;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, width, height);
@@ -106,12 +117,14 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		carrierIdField.setBounds(80,120-45, 400, 45);
 		panel.add(carrierIdField);
 		
-		
+		carField = new LabelTextField("车辆代号", 10);
+		carField.setBounds(110, 135, 300, 45);
+		panel.add(carField);
 		
 		toLabel = new JLabel("到达地");
 		toLabel.setFont(font);
 		toLabel.setForeground(color);
-		toLabel.setBounds(130, 135, 80, 40);
+		toLabel.setBounds(130, 135+45, 80, 40);
 		panel.add(toLabel);
 		
 		
@@ -122,38 +135,38 @@ public class HallTransferUI extends JPanel implements MouseListener{
 			toBox.addItem(toList[i]);
 		}
 		toBox.setSelectedItem(toList[0]);
-		toBox.setBounds(210, 135, 230, 30);
+		toBox.setBounds(210, 135+45, 230, 30);
 		panel.add(toBox);
 		
 		supervisorField = new LabelTextField("监装员  ",10);
-		supervisorField.setBounds(110, 185, 300, 45);
+		supervisorField.setBounds(110, 185+45, 300, 45);
 		panel.add(supervisorField);
 		
 		guardField = new LabelTextField("押运员  ",10);
-		guardField.setBounds(110, 245, 300, 45);
+		guardField.setBounds(110, 245+45, 300, 45);
 		panel.add(guardField);
 		
 		addOrderLabel = new JLabel("请在此处勾选出本次装箱所有托运单号");
 		addOrderLabel.setFont(font);
 		addOrderLabel.setForeground(color);
-		addOrderLabel.setBounds(20, 300, 400, 40);
+		addOrderLabel.setBounds(20, 300+45, 400, 40);
 		panel.add(addOrderLabel);
 		
 		
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
-		//init data
-		Object[] data1 = { false, "1234567890" };
-		Object[] data2 = { false, "1234567891" };
-		Object[] data3 = { false, "1234567892" };
-		for (int i = 0; i < 10; i++) {
-			checkTable.getTableModel().addRow(data1);
-			checkTable.getTableModel().addRow(data2);
-			checkTable.getTableModel().addRow(data3);
-		}
+		initData();
+//		Object[] data1 = { false, "1234567890" };
+//		Object[] data2 = { false, "1234567891" };
+//		Object[] data3 = { false, "1234567892" };
+//		for (int i = 0; i < 10; i++) {
+//			checkTable.getTableModel().addRow(data1);
+//			checkTable.getTableModel().addRow(data2);
+//			checkTable.getTableModel().addRow(data3);
+//		}
 		
 		JScrollPane s = new JScrollPane(checkTable);
-		s.setBounds(0, 350, 710, 325);
+		s.setBounds(0, 350+45, 710, 325);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
@@ -165,12 +178,21 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		
 		feeField = new LabelTextField("运费  ",10);
-		feeField.setBounds(110, 705, 300, 45);
+		feeField.setBounds(110, 705+45, 300, 45);
 		panel.add(feeField);
 		
 		calFeeBtn = new JButton("生成运费");
-		calFeeBtn.setBounds(410, 705, 100, 40);
+		calFeeBtn.setBounds(410, 705+45, 100, 40);
 		calFeeBtn.addMouseListener(this);
+		calFeeBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//...........................................
+			}
+			
+		});
 		panel.add(calFeeBtn);
 		
 		/*
@@ -180,7 +202,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		scrollpane.setViewportView(panel);
 		//感人。。。。layout==null时要加这句
-		panel.setPreferredSize(new Dimension(723, 800));
+		panel.setPreferredSize(new Dimension(723, 840));
 		wrapScrollPane(scrollpane, ui);
 		scrollpane.setBounds(130, 120, 720, 400);
 		mainpanel.add(scrollpane);
@@ -198,7 +220,10 @@ public class HallTransferUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				receipt.subHallTransferReceipt(carrierIdField.getText(), 
+						(String)toBox.getSelectedItem(), carField.getText(), 
+						supervisorField.getText(), guardField.getText(), 
+						getSelectedOrders());
 			}
 			
 		});
@@ -257,9 +282,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource().equals(submitBtn)){
-			System.out.println("Submit successfully!");
-		}
 	}
 
 	@Override
@@ -277,6 +299,31 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+	}
+	
+	public void initData(){
+		Object[] row = new Object[2];
+		int length = receipt.showCurrentOrder().size();
+		for(int i=0; i<length; i++){
+			row[0] = false;
+			row[1] = receipt.showCurrentOrder().get(i).getID();
+			
+		}
+		checkTable.getTableModel().addRow(row);
+		
+	}
+	
+	public ArrayList<OrderVO> getSelectedOrders(){
+		String orderId;
+		ArrayList<OrderVO> selectedOrderList = new ArrayList<OrderVO>();
+
+		for (int i = 0; i < checkTable.getRowCount(); i++) {
+			if ((boolean) checkTable.getValueAt(i, 0) == true){
+				orderId = (String) checkTable.getValueAt(i, 1);
+				selectedOrderList.add(order.view(orderId));
+			}
+		}
+		return selectedOrderList;
 	}
 	
 	

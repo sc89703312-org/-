@@ -19,13 +19,18 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.express.blservice.HallReceiptBlService;
+import edu.nju.express.common.GoodsState;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.HallTransferReceiptVO;
+import edu.nju.express.vo.OrderVO;
 
 public class HallArrivalUI extends JPanel implements MouseListener{
 	
@@ -35,7 +40,8 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	int width = 900;
 	int height = 600;
-	UIController controller;
+	HallController controller;
+	HallReceiptBlService  receipt;
 	JPanel mainpanel, panel;
 	JButton exit, submitBtn, saveOrderBtn, confirmBtn;
 	JLabel bg;
@@ -44,15 +50,18 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	MyComboBox<String> fromBox;
 	LabelTextField transferIdField;
 	MyTablePanel table;
-	ArrayList<String> orderList;
+	ArrayList<OrderVO> orderList;
 	
 	static JScrollPane s = new JScrollPane();
 	final MyScrollBarUI ui = new MyScrollBarUI();
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
 	
-	public HallArrivalUI(UIController controller){
+	String hall_id = LoginInfo.getUserID().substring(0, 6);
+	
+	public HallArrivalUI(HallController controller){
 		this.controller = controller;
+		this.receipt = controller.receipt;
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0,0,width,height);
@@ -99,6 +108,8 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				//set panel with return value of createArrival
 				generateData(transferIdField.getText());
 			}
 			
@@ -206,6 +217,20 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		submitBtn = new JButton("提交");
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
+		submitBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				for(int i=0; i<orderList.size(); i++){
+					orderList.get(i).setGoodState(convert((String)table.getTable().getValueAt(i, 1)));
+				}
+				receipt.subArrivalReceipt(new ArrivalReceiptVO(transferIdField.getText(),
+						dateBox.getDate(), (String)fromBox.getSelectedItem(),
+						HallLocation.getHallLocation(hall_id), orderList));
+			}
+			
+		});
 		mainpanel.add(submitBtn);
 		
 		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
@@ -226,31 +251,6 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	
 	
 	
-	
-	//getvo()
-	public HallTransferReceiptVO getTransferVO(){
-
-		return null;
-	}
-
-	//生成托运单号
-	public void generateData(String transferId){
-		this.orderList = new ArrayList<String>();
-		String[] row = new String[2];
-		//mock orderList
-		for(int i=0; i<30; i++){
-			orderList.add("1234567890");
-		}
-		for(int i=0; i<orderList.size(); i++){
-			row[0] = orderList.get(i);
-			row[1] = "完整";
-			table.getTableModel().addRow(row);
-		}
-
-	}
-
-
-
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -282,5 +282,43 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		
 	}
 	
+
+	//生成托运单号
+	public void generateData(String transferId){
+		orderList = new ArrayList<OrderVO>();
+		
+		String dateStr = receipt.createArrivalReceipt(transferId).getDate();
+		String[] date = dateStr.split("/");
+		dateBox.getYearComboBox().setSelectedItem(date[0]);
+		dateBox.getMonthComboBox().setSelectedItem(date[1]);
+		dateBox.getDayComboBox().setSelectedItem(date[2]);
+		
+		String from = receipt.createArrivalReceipt(transferId).getFrom();
+		//先这样, 要根据hall_id初始化不同的地点
+		fromBox.addItem(from);
+		fromBox.setSelectedItem(from);
+		
+		int length = receipt.createArrivalReceipt(transferId).getOrderList().size();
+		for(int i=0; i<length; i++){
+			orderList.add(receipt.createArrivalReceipt(transferId).getOrderList().get(i));
+		}
+		
+		String[] row = new String[2];
+		for(int i=0; i<length; i++){
+			row[0] = orderList.get(i).getID();
+			row[1] = "完整";
+			table.getTableModel().addRow(row);
+		}
+		
+	}
+	
+	public GoodsState convert(String goodState){
+		switch(goodState){
+		case "完整": return GoodsState.COMPLETE;
+		case "损坏": return GoodsState.DAMAGED;
+		default: return GoodsState.LOST;
+		}
+		
+	}
 	
 }
