@@ -119,7 +119,7 @@ public class Accountbl implements Accountblservice{
 		ArrayList<HallVO> halls = organizationBl.viewHallList();
 		ArrayList<BankingAccountVO> accounts= bankingbl.getAllAccounts();
 	    ArrayList<Carvo> cars = carControl.getAll();
-	    ArrayList<ComGoodsVO> goods = commoditybl.showInventory();
+	    ArrayList<ComGoodsVO> goods = new ArrayList<>();
 	    
 
 	    Accountvo accountvo = new Accountvo(halls, stations,

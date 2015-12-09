@@ -53,6 +53,7 @@ public class AccountUI extends MainPanel{
 	}
 	
 	public String getDate() {
+		System.out.println(date.getDate());
 		return date.getDate();
 	}
 

@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.DataFactory;
+import edu.nju.express.businesslogic.accountbl.Accountbl;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
@@ -20,6 +21,7 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.Paymentpo;
 import edu.nju.express.presentation.loginui.LoginUI;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
+import edu.nju.express.vo.Accountvo;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.BankingAccountVO;
 import edu.nju.express.vo.OrderVO;
@@ -48,10 +50,17 @@ public class client {
 		new LoginUI();		
 
 		
-		
+//		try {
+//			System.out.println(RMIHelper.getAccountdataservice().find("2015/12/09").getAccountsList().get(1).getName());
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		};
 
-
-		
+//
+//		Accountbl accountbl =DataFactory.createAccountblInstance();
+//		Accountvo accountvo  =    accountbl.viewAccount("2015/12/09");
+//		System.out.println(accountvo.getAccountList().get(0).getName());
 
 //		
 //		try {

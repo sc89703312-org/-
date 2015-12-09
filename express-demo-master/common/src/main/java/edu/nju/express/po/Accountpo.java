@@ -48,7 +48,7 @@ public class Accountpo extends PersistentObj implements Serializable {
 	this.bank_list = bank_list;
 	this.goods_list = goods_list;
 	this.date = date;
-	this.id = date +"_Account";
+	this.id = date ;
 	}
 	
 	public ArrayList<HallPo> getHallList(){

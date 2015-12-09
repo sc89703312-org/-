@@ -115,7 +115,7 @@ public class LoginUI extends MyFrame{
 			
 			
 			if(role==Role.ACCOUNTANT){
-				
+				System.out.println("??");
 				LoginUI.this.closeFrame();
 			
 				try {
