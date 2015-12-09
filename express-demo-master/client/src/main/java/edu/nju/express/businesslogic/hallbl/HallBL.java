@@ -16,7 +16,7 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 public class HallBL implements HallBLService,HallOperationInfo {
 
-	
+	/*持有营业厅业务数据层接口的应用*/
 	HallDataService hallDataService;
 	
 	
@@ -29,7 +29,11 @@ public class HallBL implements HallBLService,HallOperationInfo {
 	
 	
 	
-	
+	/**增加营业厅，包含营业厅的编号和位置信息
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallBLService#addHall(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public ResultMessage addHall(String id, String location) {
 		// TODO Auto-generated method stub
@@ -47,7 +51,11 @@ public class HallBL implements HallBLService,HallOperationInfo {
 
 	
 	
-	
+	/**删除营业厅
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallBLService#removeHall(java.lang.String)
+	 */
 	@Override
 	public ResultMessage removeHall(String id) {
 		// TODO Auto-generated method stub
@@ -61,7 +69,11 @@ public class HallBL implements HallBLService,HallOperationInfo {
 	}
 
 	
-	
+	/**获得所有营业厅的信息VO
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.blservice.HallBLService#showHall()
+	 */
 	@Override
 	public ArrayList<HallVO> showHall() {
 		// TODO Auto-generated method stub
@@ -77,7 +89,11 @@ public class HallBL implements HallBLService,HallOperationInfo {
 	
 
 	
-	
+	/**把营业厅的PO转化打包成VO
+	 * @author guhan
+	 * @param polist 营业厅po的list
+	 * @return 营业厅vo的list
+	 */
 	public ArrayList<HallVO> convertHallPO (ArrayList<HallPo> polist){
 		ArrayList<HallVO> halls = new ArrayList<>();
 		

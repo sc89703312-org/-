@@ -15,29 +15,54 @@ public class OrderPO extends ReceiptPOBase implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**寄件人姓名*/
 	String senderName;
+	/**寄件人地址*/
 	String senderAddress;
+	/**寄件人单位*/
 	String senderPost;
+	/**寄件人电话*/
 	String senderTel;
+	/**寄件人手机*/
 	String senderPhone;
+	/**收件人姓名*/
 	String receiverName;
+	/**收件人地址*/
 	String receiverAddress;
+	/**收件人单位*/
 	String receiverPost;
+	/**收件人电话*/
 	String receiverTel;
+	/**收件人手机*/
 	String receiverPhone;
+	/**原件数*/
 	int num;
+	/**质量*/
 	double weight;
+	/**体积*/
 	double volume;
+	/**品名*/
 	String goodsName;
+	/**尺寸*/
 	double size;
+	/**包装费*/
 	double pkgCost;
+	/**合计*/
 	double totalCost;
+	/**快递类型*/
 	Etype type;
+	/**到达状态*/
 	ArrivalState arrivalState =ArrivalState.NO;
+	/**货物到达营业厅或中转中心时的保存状态*/
 	GoodsState goodsState = GoodsState.COMPLETE;
+	/**预计送达时间*/
 	String expectedTime;
+	/**当前位置信息*/
 	String currentSpot;
+	/**物流轨迹*/
 	ArrayList<String> history;
+	/**派件人*/
 	String Deliver=null;
 	
 	public OrderPO(String sname,String saddress,String spost,String stel,String sphone,String rname,String raddress

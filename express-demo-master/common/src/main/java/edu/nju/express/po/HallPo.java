@@ -8,7 +8,8 @@ public class HallPo extends PersistentObj implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	/**营业厅名称，即位置*/
 	String name;
 
 	

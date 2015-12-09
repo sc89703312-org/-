@@ -13,13 +13,21 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**单据发自哪个营业厅*/
 	private String location;
+	/**营业厅编号*/
 	private String hallID;
+	/**汽运编号*/
 	private String transportID;
+	/**到达地*/
 	private String to;
+	/**车辆代号*/
 	private String carID;
+	/**监装员*/
 	private String supervisor;
+	/**押运员*/
 	private String guard;
+	/**本次装车所有托运单号*/
 	private ArrayList<OrderPO> orderlist;
 	
 	public HallTransferReceiptPO(String id, String location, String date,String hallID,String transportID,String to, String carID,

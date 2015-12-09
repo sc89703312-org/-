@@ -25,7 +25,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 		orderDao = new OrderFileDao("order");
 	}
 	
-	
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#insert(edu.nju.express.po.OrderPO)
+	 */
 	@Override
 	public ResultMessage insert(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -33,6 +37,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#update(edu.nju.express.po.OrderPO)
+	 */
 	@Override
 	public ResultMessage update(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -40,6 +49,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#delete(java.lang.String)
+	 */
 	@Override
 	public ResultMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -47,12 +61,22 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#find(java.lang.String)
+	 */
 	@Override
 	public OrderPO find(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return orderDao.find(id);
 	}
 	
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#getAll()
+	 */
 	@Override
 	public ArrayList<OrderPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -60,6 +84,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#flush()
+	 */
 	@Override
 	public void flush() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -67,6 +96,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#addHistory(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void addHistory(String spot,String id) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -74,6 +108,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#setDeliver(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void setDeliver(String name,String id) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -81,6 +120,11 @@ public class OrderDataService_Impl extends UnicastRemoteObject implements orderd
 	}
 
 
+	/**
+	 * @author guhan
+	 * (non-Javadoc)
+	 * @see edu.nju.express.dataservice.orderdataservice#setArrivalState(edu.nju.express.common.ArrivalState, java.lang.String)
+	 */
 	@Override
 	public void setArrivalState(ArrivalState arrivalState,String id)
 			throws RemoteException {
