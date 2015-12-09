@@ -39,7 +39,6 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
     StationDataService stationDataService;
 	
 	public HallReceiptBL(PaymentOrderInfo paymentInfo, OrderInfo orderInfo,Vehiclebl vehiclebl,SetOrderSpot setOrderSpot){
-		hallID = LoginInfo.getUserID().substring(0, 5);
 		this.orderInfo = orderInfo;
 		this.vehiclebl = vehiclebl;
 		this.setOrderSpot = setOrderSpot;
@@ -50,6 +49,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	@Override
 	public ArrivalReceiptVO createArrivalReceipt(String id) {
 		// TODO Auto-generated method stub
+		
+		hallID = LoginInfo.getUserID().substring(0, 5);
 		
 		try {
 			location = hallDataService.getLocation(hallID);
@@ -97,6 +98,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	public void subArrivalReceipt(ArrivalReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
+		hallID = LoginInfo.getUserID().substring(0, 5);
+		
 		try {
 			location = hallDataService.getLocation(hallID);
 		} catch (RemoteException e1) {
@@ -120,6 +123,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	@Override
 	public ArrayList<OrderVO> showCurrentOrder() {
 		// TODO Auto-generated method stub
+		
+		hallID = LoginInfo.getUserID().substring(0, 5);
 		
 		try {
 			ArrayList<String> orderIDList = paymentInfo.getOrderListByHall(hallID);
@@ -166,6 +171,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			ArrayList<OrderVO> orderlist) {
 		// TODO Auto-generated method stub
 		
+		hallID = LoginInfo.getUserID().substring(0, 5);
+		
 		try {
 			location = hallDataService.getLocation(hallID);
 		} catch (RemoteException e1) {
@@ -187,6 +194,8 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	@Override
 	public void subDeliverReceipt(String deliver, ArrayList<OrderVO> orderlist) {
 		// TODO Auto-generated method stub
+		
+		hallID = LoginInfo.getUserID().substring(0, 5);
 		
 		try {
 			location = hallDataService.getLocation(hallID);

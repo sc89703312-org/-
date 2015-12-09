@@ -42,14 +42,13 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
-		comID = userID.substring(0, 3);
-		System.out.println(comID);
 		this.commodityDataService = RMIHelper.getCommodityDataService();
 	}
 
 	@Override
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList() {
 		// TODO Auto-generated method stub
+		comID = userID.substring(0, 3);
 		return stationInfo.viewApproveArrive(comID);
 	}
 
@@ -57,6 +56,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public EnterReceiptVO showEnterReceipt(ArriveReceiptVO vo) throws Exception{
 		// TODO Auto-generated method stub
+		
+		comID = userID.substring(0, 3);
 		
 		try {
 			location = commodityDataService.getLocation(comID);
@@ -111,6 +112,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public ResultMessageV2 editEnterReceipt(EnterReceiptVO vo, Object data[][]) {
 		// TODO Auto-generated method stub
 		
+		comID = userID.substring(0, 3);
+		
 		ComZonePO comZonePO = null;
 		try {
 			comZonePO = commodityDataService.getZone(comID);
@@ -161,7 +164,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public void subEnterReceipt(EnterReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
-		System.out.println(vo.getId());
+		comID = userID.substring(0, 3);
 		
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
@@ -182,12 +185,15 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ArrayList<TransferReceiptVO> showTransferReceiptList() {
 		// TODO Auto-generated method stub
+		comID = userID.substring(0, 3);
 		return stationInfo.viewApproveTransfer(comID);
 	}
 
 	@Override
 	public ExitReceiptVO showExitReceipt(TransferReceiptVO vo) {
 		// TODO Auto-generated method stub
+		
+		comID = userID.substring(0, 3);
 		
 		try {
 			location = commodityDataService.getLocation(comID);
@@ -227,6 +233,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public void subExitReceipt(ExitReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
+		comID = userID.substring(0, 3);
+		
 		ArrayList<ComGoodsVO> goodsvo = vo.getList();
 		ArrayList<ComGoodsPO> goodspo = new ArrayList<ComGoodsPO>();
 		for(int i=0;i<goodsvo.size();i++)
@@ -246,6 +254,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ArrayList<ComGoodsVO> showInventory() {
 		// TODO Auto-generated method stub
+		
+		comID = userID.substring(0, 3);
 		
 		ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
 		ArrayList<ComGoodsPO> polist = null;
@@ -273,6 +283,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public int[] showCheck(String start, String end) {
 		// TODO Auto-generated method stub
+		
+		comID = userID.substring(0, 3);
 		
 		int result[] = new int[20];
 		for(int i=0;i<20;i++)
@@ -333,6 +345,9 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	
 	@Override
 	public ArrayList<EnterReceiptVO> showCheckEnter(String start,String end){
+		
+		comID = userID.substring(0, 3);
+		
 		ArrayList<EnterReceiptPO> poList = null;
 		try {
 			poList = commodityDataService.getEnterReceipt(comID);
@@ -349,6 +364,9 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	
 	@Override
 	public ArrayList<ExitReceiptVO> showCheckExit(String start,String end){
+		
+		comID = userID.substring(0, 3);
+		
 		ArrayList<ExitReceiptPO> poList = null;
 		try {
 			poList = commodityDataService.getExitReceipt(comID);
@@ -366,6 +384,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ComZoneVO showZone() {
 		// TODO Auto-generated method stub
+		
+		comID = userID.substring(0, 3);
 		
 	   ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
 	   ComZonePO zonepo = null;
@@ -389,6 +409,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public ResultMessageV2 editZone(int[] space) {
 		// TODO Auto-generated method stub
 
+		comID = userID.substring(0, 3);
+		
 		ResultMessageV2 result = null;
 		
 		try {
@@ -405,6 +427,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public ResultMessageV2 initZone() {
 		// TODO Auto-generated method stub
 		
+		comID = userID.substring(0, 3);
+		
         ResultMessageV2 result = null;
 		
 		try {
@@ -420,6 +444,8 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	@Override
 	public ResultMessageV2 moveGoods(Object[][] data) {
 		// TODO Auto-generated method stub
+		
+		comID = userID.substring(0, 3);
 		
 		ComZonePO comZonePO = null;
 		try {
