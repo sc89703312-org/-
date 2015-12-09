@@ -15,5 +15,6 @@ public interface ArriveReceiptDao {
 	public ArrayList<ArriveReceiptPO> getApproveArrive(String stationID);
 	public ResultMessage approve(String id);
 	public void flush();
+	public void handle(String id);
 	
 }

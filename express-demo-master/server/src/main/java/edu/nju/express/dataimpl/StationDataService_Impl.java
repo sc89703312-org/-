@@ -158,7 +158,12 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	}
 	
 	@Override
-	public void handle(String id)throws RemoteException{
+	public void handleArrive(String id)throws RemoteException{
+		arriveDao.handle(id);
+	}
+	
+	@Override
+	public void handleTransfer(String id)throws RemoteException{
 		transferDao.handle(id);
 	}
 

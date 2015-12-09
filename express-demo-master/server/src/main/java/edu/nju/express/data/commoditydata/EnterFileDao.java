@@ -68,7 +68,8 @@ public class EnterFileDao extends CommonData<EnterReceiptPO> implements EnterRec
 		String nextID;
 		if(list.size()!=0){
 		    String id = list.get(list.size()-1).getId();
-		    nextID = Integer.parseInt(id.substring(12, id.length()))+1+"";
+		    nextID = "0" + Integer.parseInt(id.substring(12, id.length()))+1;
+		    System.out.println(nextID);
 		}
 		else
 		    nextID = comID+"200000";

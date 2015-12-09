@@ -12,5 +12,9 @@ public interface StationInfo {
 	public ArrayList<ArriveReceiptVO> viewApproveArrive(String comID);
 	
 	public ArrayList<TransferReceiptVO> viewApproveTransfer(String comID);
+	
+	public void handleArrive(String id);
+	
+	public void handleTransfer(String id);
 
 }
