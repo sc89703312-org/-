@@ -45,7 +45,14 @@ import edu.nju.express.vo.StationVO;
 public class client {
 
 	public static void main(String[] s){
-		RMIHelper.init();
+		
+		
+		try {
+			RMIHelper.init();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		System.out.println("Client creates!");
 		
 

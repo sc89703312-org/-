@@ -40,6 +40,7 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 	public ArrayList<Balancepo> find(String date) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Prepares to get some po");
+
 		return balanceDao.findByDate(date);
 	}
 

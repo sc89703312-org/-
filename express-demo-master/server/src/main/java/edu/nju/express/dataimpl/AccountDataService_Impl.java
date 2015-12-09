@@ -75,8 +75,7 @@ public class AccountDataService_Impl extends UnicastRemoteObject implements acco
 	public void flush() throws RemoteException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Flush");
-		
+
 		accountDao.flush();
 		
 	}
