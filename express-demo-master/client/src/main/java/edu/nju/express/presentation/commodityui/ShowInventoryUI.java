@@ -24,13 +24,16 @@ public class ShowInventoryUI extends MainPanel{
 	ArrayList<ComGoodsVO> voList;
 	private static Icon img1 = new ImageIcon("ui/button/movegoods1.png");
 	private static Icon img2 = new ImageIcon("ui/button/movegoods2.png");
+	private static Icon img3 = new ImageIcon("ui/button/refreshcom.png");
+	private static Icon img4 = new ImageIcon("ui/button/refreshcom2.png");
 	
 	MyNormalTable table;
 	JButton movegoods;
+	JButton refreshinventory;
 	
 	public ShowInventoryUI(CommodityController c, ArrayList<ComGoodsVO> list){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showinventory.png").getImage();
 		
 		this.controller = c;
 		this.voList = list;
@@ -61,6 +64,15 @@ public class ShowInventoryUI extends MainPanel{
 		movegoods.setActionCommand("movegoods");
 		movegoods.addActionListener(controller);
 		this.add(movegoods);
+		
+		refreshinventory = new JButton(img3);
+		refreshinventory.setRolloverIcon(img4);
+		refreshinventory.setContentAreaFilled(false);
+		refreshinventory.setBorderPainted(false);
+		refreshinventory.setBounds(810,80,30,30);
+		refreshinventory.setActionCommand("refreshinventory");
+		refreshinventory.addActionListener(controller);
+		this.add(refreshinventory);
 		
 	}
 	

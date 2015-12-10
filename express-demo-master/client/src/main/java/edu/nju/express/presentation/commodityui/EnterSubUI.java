@@ -1,10 +1,13 @@
 package edu.nju.express.presentation.commodityui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
@@ -26,13 +29,21 @@ public class EnterSubUI extends MainPanel{
 	ArrayList<Object[]> data;
 	private static Icon img1 = new ImageIcon("ui/button/subenter1.png");
 	private static Icon img2 = new ImageIcon("ui/button/subenter2.png");
+	private static Icon img3 = new ImageIcon("ui/button/backcom.png");
+	private static Icon img4 = new ImageIcon("ui/button/backcom2.png");
+	
+	Font font = new Font("黑体",Font.PLAIN,16);
+	Color color = new Color(100,100,100);
+	
+	JLabel title;
 	
 	MyNormalTable table;
 	JButton subenter;
+	JButton backenter;
 	
 	public EnterSubUI(CommodityController c, EnterReceiptVO vo){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showenter.png").getImage();
 		
 		this.controller = c;
 		this.vo = vo;
@@ -42,6 +53,13 @@ public class EnterSubUI extends MainPanel{
 		initData();
 		
 		this.add(new CommodityGuide(c));
+		
+		title = new JLabel("编号： "+vo.getId()+"        "+"日期： "+vo.getDate());
+		title.setFont(font);
+		title.setForeground(color);
+		title.setBackground(new Color(229,233,234));
+		title.setBounds(180,80,700,30);
+		this.add(title);
 		
 		JScrollPane s = new JScrollPane(table);
 		s.setBounds(128,112,727,420);
@@ -63,6 +81,15 @@ public class EnterSubUI extends MainPanel{
 		subenter.setActionCommand("subenter");
 		subenter.addActionListener(controller);
 		this.add(subenter);
+		
+		backenter = new JButton(img3);
+		backenter.setRolloverIcon(img4);
+		backenter.setContentAreaFilled(false);
+		backenter.setBorderPainted(false);
+		backenter.setBounds(810,80,30,30);
+		backenter.setActionCommand("backenter");
+		backenter.addActionListener(controller);
+		this.add(backenter);
 		
 	}
 	

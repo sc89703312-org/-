@@ -48,7 +48,7 @@ public class ShowCheckUI extends MainPanel{
 	
 	public ShowCheckUI(CommodityController c){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showcheck.png").getImage();
 		
 		this.controller = c;
 		

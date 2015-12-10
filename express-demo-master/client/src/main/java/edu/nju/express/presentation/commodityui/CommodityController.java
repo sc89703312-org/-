@@ -263,6 +263,83 @@ public class CommodityController implements UIController{
 			frame.repaint();			
 			
 		}
+		else if(e.getActionCommand().equals("refresharrive")){
+			
+			ArrayList<ArriveReceiptVO> volist = service.showArriveReceiptList();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new EnterManageUI(this,volist);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("refreshtransfer")){
+			
+			ArrayList<TransferReceiptVO> volist = service.showTransferReceiptList();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new ExitManageUI(this,volist);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("refreshinventory")){
+			
+			ArrayList<ComGoodsVO> volist = service.showInventory();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new ShowInventoryUI(this,volist);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("refreshadjust")){
+			
+			ComZoneVO vo = service.showZone();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new AdjustUI(this,vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("backenter")){
+			
+			ArrayList<ArriveReceiptVO> volist = service.showArriveReceiptList();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new EnterManageUI(this,volist);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("backexit")){
+			
+			ArrayList<TransferReceiptVO> volist = service.showTransferReceiptList();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new ExitManageUI(this,volist);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
+		else if(e.getActionCommand().equals("backinventory")){
+			
+			ArrayList<ComGoodsVO> volist = service.showInventory();
+			
+			frame.getContentPane().removeAll();
+			currentPanel = new ShowInventoryUI(this,volist);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			
+		}
 		
 		
 	}

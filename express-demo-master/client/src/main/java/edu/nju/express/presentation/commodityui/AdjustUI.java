@@ -26,6 +26,8 @@ public class AdjustUI extends MainPanel{
 	private static Icon img4 = new ImageIcon("ui/button/init2.png");
 	private static Icon img5 = new ImageIcon("ui/button/ctrlz1.png");
 	private static Icon img6 = new ImageIcon("ui/button/ctrlz2.png");
+	private static Icon img7 = new ImageIcon("ui/button/refreshcom.png");
+	private static Icon img8 = new ImageIcon("ui/button/refreshcom2.png");
 	
 	LabelTextField planeSpace;
 	LabelTextField trainSpace;
@@ -39,10 +41,11 @@ public class AdjustUI extends MainPanel{
 	JButton confirm;
 	JButton init;
 	JButton ctrlz;
+	JButton refreshadjust;
 	
 	public AdjustUI(CommodityController c, ComZoneVO vo){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/adjust.png").getImage();
 		this.vo = vo;		
 		this.controller = c;
 		
@@ -115,6 +118,15 @@ public class AdjustUI extends MainPanel{
 		ctrlz.setActionCommand("ctrlz");
 		ctrlz.addActionListener(controller);
 		this.add(ctrlz);
+		
+		refreshadjust = new JButton(img7);
+		refreshadjust.setRolloverIcon(img8);
+		refreshadjust.setContentAreaFilled(false);
+		refreshadjust.setBorderPainted(false);
+		refreshadjust.setBounds(810,80,30,30);
+		refreshadjust.setActionCommand("refreshadjust");
+		refreshadjust.addActionListener(controller);
+		this.add(refreshadjust);
 		
 	}
 	

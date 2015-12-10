@@ -131,7 +131,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	        
 		}
 		System.out.println(commodityDataService.getNextEnterID(comID));
-		return new EnterReceiptVO(comGoodsList,commodityDataService.getNextEnterID(comID),location,MyDate.getCurrentDate());
+		return new EnterReceiptVO(comGoodsList,commodityDataService.getNextEnterID(comID),MyDate.getCurrentDate(),location);
 	}
 
 	/*
@@ -270,7 +270,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		}
 		
 		try {
-			return new ExitReceiptVO(comGoodsList,commodityDataService.getNextExitID(comID),location,MyDate.getCurrentDate());
+			return new ExitReceiptVO(comGoodsList,commodityDataService.getNextExitID(comID),MyDate.getCurrentDate(),location);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

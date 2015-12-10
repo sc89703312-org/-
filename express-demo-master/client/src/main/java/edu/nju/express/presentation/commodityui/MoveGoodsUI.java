@@ -24,13 +24,16 @@ public class MoveGoodsUI extends MainPanel{
 	ArrayList<ComGoodsVO> voList;
 	private static Icon img1 = new ImageIcon("ui/button/confirmmove1.png");
 	private static Icon img2 = new ImageIcon("ui/button/confirmmove2.png");
+	private static Icon img3 = new ImageIcon("ui/button/backcom.png");
+	private static Icon img4 = new ImageIcon("ui/button/backcom2.png");
 	
 	MyNormalEditableTable table;
 	JButton confirmmove;
+	JButton backinventory;
 	
 	public MoveGoodsUI(CommodityController c, ArrayList<ComGoodsVO> list){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/movegoods.png").getImage();
 		
 		this.controller = c;
 		this.voList = list;
@@ -61,6 +64,15 @@ public class MoveGoodsUI extends MainPanel{
 		confirmmove.setActionCommand("confirmmove");
 		confirmmove.addActionListener(controller);
 		this.add(confirmmove);
+		
+		backinventory = new JButton(img3);
+		backinventory.setRolloverIcon(img4);
+		backinventory.setContentAreaFilled(false);
+		backinventory.setBorderPainted(false);
+		backinventory.setBounds(810,80,30,30);
+		backinventory.setActionCommand("backinventory");
+		backinventory.addActionListener(controller);
+		this.add(backinventory);
 		
 	}
 	

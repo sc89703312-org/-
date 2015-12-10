@@ -1,10 +1,13 @@
 package edu.nju.express.presentation.commodityui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
@@ -30,12 +33,17 @@ public class ShowReceiptUI extends MainPanel{
 	private static Icon img1 = new ImageIcon("ui/button/commodityreturn1.png");
 	private static Icon img2 = new ImageIcon("ui/button/commodityreturn2.png");
 	
+	Font font = new Font("黑体",Font.PLAIN,16);
+	Color color = new Color(100,100,100);
+	
+	JLabel title;
+	
 	MyNormalTable table;
 	JButton back;
 	
 	public ShowReceiptUI(CommodityController c, EnterReceiptVO vo, ShowCheckUI ui){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showcheck.png").getImage();
 		
 		this.saveUI = ui;
 		this.controller = c;
@@ -45,6 +53,13 @@ public class ShowReceiptUI extends MainPanel{
 		String[] header = {"订单号","分区","排号","架号","位号"};
 		table = new MyNormalTable(header);
 		initEnter();
+		
+		title = new JLabel("编号： "+vo.getId().substring(12, vo.getId().length())+"        "+"日期： "+vo.getDate());
+		title.setFont(font);
+		title.setForeground(color);
+		title.setBackground(new Color(229,233,234));
+		title.setBounds(180,80,700,30);
+		this.add(title);
 		
 		JScrollPane s = new JScrollPane(table);
 		s.setBounds(128,112,727,420);
@@ -79,6 +94,13 @@ public class ShowReceiptUI extends MainPanel{
 		String[] header = {"订单号","分区","排号","架号","位号"};
 		table = new MyNormalTable(header);
 		initExit();
+		
+		title = new JLabel("编号： "+vo.getId().substring(11, vo.getId().length())+"        "+"日期： "+vo.getDate());
+		title.setFont(font);
+		title.setForeground(color);
+		title.setBackground(new Color(229,233,234));
+		title.setBounds(180,80,700,30);
+		this.add(title);
 		
 		JScrollPane s = new JScrollPane(table);
 		s.setBounds(128,112,727,420);

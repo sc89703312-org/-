@@ -25,13 +25,16 @@ public class EnterManageUI extends MainPanel{
 	ArrayList<Object[]> list;
 	private static Icon img1 = new ImageIcon("ui/button/createnter1.png");
 	private static Icon img2 = new ImageIcon("ui/button/createnter2.png");
+	private static Icon img3 = new ImageIcon("ui/button/refreshcom.png");
+	private static Icon img4 = new ImageIcon("ui/button/refreshcom2.png");
 	
 	MyNormalTable table;
 	JButton createnter;
+	JButton refresharrive;
 	
 	public EnterManageUI(CommodityController c, ArrayList<ArriveReceiptVO> list){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showarrive.png").getImage();
 		
 		this.controller = c;
 		this.volist = list;
@@ -63,6 +66,15 @@ public class EnterManageUI extends MainPanel{
 		createnter.setActionCommand("createnter");
 		createnter.addActionListener(controller);
 		this.add(createnter);
+		
+		refresharrive = new JButton(img3);
+		refresharrive.setRolloverIcon(img4);
+		refresharrive.setContentAreaFilled(false);
+		refresharrive.setBorderPainted(false);
+		refresharrive.setBounds(810,80,30,30);
+		refresharrive.setActionCommand("refresharrive");
+		refresharrive.addActionListener(controller);
+		this.add(refresharrive);
 		
 	}
 	

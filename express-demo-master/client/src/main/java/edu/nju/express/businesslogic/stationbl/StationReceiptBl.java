@@ -160,26 +160,31 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		stationID = LoginInfo.getUserID().substring(0, 3);
 		
 		try {
+			
 			ArrayList<ArriveReceiptPO> arrivelist = stationDataService.getArriveReceipt(stationID);
 			ArrayList<TransferReceiptPO> transferlist = stationDataService.getTransferReceipt(stationID);
-			ArrayList<OrderPO> polist = new ArrayList<OrderPO>();
+			ArrayList<OrderPO> arrivepolist = new ArrayList<OrderPO>();
+			ArrayList<OrderPO> transferpolist = new ArrayList<OrderPO>();
+          
 			for(int i=0;i<arrivelist.size();i++)
-				polist.addAll(arrivelist.get(i).getOrderList());
-			for(int i=0;i<transferlist.size();i++)
-				polist.addAll(transferlist.get(i).getOrderList());
-			for(int i=0;i<polist.size();i++){
-				for(int j=i+1;j<polist.size();j++){
-					OrderPO po = polist.get(j);
-					if(polist.get(i).getID().equals(po.getID())){
-						polist.remove(po);
-						j--;
-					}
-				}
-			}
+            	arrivepolist.addAll(arrivelist.get(i).getOrderList());
+            for(int i=0;i<transferlist.size();i++)
+            	transferpolist.addAll(transferlist.get(i).getOrderList());
+            
+
+            for(int i=0;i<arrivepolist.size();i++)
+            	for(int j=0;j<transferpolist.size();j++)
+            		if(arrivepolist.get(i).getId().equals(transferpolist.get(i).getId())){
+            			arrivepolist.remove(i);
+            			transferpolist.remove(j);
+            			i--;
+            			break;
+            		}
+            
 			
 			ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
-			for(int i=0;i<polist.size();i++)
-				orderlist.add(Convert.po_to_vo_order(polist.get(i)));
+			for(int i=0;i<arrivepolist.size();i++)
+				orderlist.add(Convert.po_to_vo_order(arrivepolist.get(i)));
 			
 			return orderlist;
 			

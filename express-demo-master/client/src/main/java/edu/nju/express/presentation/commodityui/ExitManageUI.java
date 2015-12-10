@@ -25,13 +25,16 @@ public class ExitManageUI extends MainPanel{
 	ArrayList<Object[]> list;
 	private static Icon img1 = new ImageIcon("ui/button/createxit1.png");
 	private static Icon img2 = new ImageIcon("ui/button/createxit2.png");
+	private static Icon img3 = new ImageIcon("ui/button/refreshcom.png");
+	private static Icon img4 = new ImageIcon("ui/button/refreshcom2.png");
 	
 	MyNormalTable table;
 	JButton createxit;
+	JButton refreshtransfer;
 	
 	public ExitManageUI(CommodityController c, ArrayList<TransferReceiptVO> list){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showtransfer.png").getImage();
 		
 		this.controller = c;
 		this.volist = list;
@@ -63,6 +66,15 @@ public class ExitManageUI extends MainPanel{
 		createxit.setActionCommand("createxit");
 		createxit.addActionListener(controller);
 		this.add(createxit);
+		
+		refreshtransfer = new JButton(img3);
+		refreshtransfer.setRolloverIcon(img4);
+		refreshtransfer.setContentAreaFilled(false);
+		refreshtransfer.setBorderPainted(false);
+		refreshtransfer.setBounds(810,80,30,30);
+		refreshtransfer.setActionCommand("refreshtransfer");
+		refreshtransfer.addActionListener(controller);
+		this.add(refreshtransfer);
 		
 	}
 	

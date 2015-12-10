@@ -1,10 +1,13 @@
 package edu.nju.express.presentation.commodityui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
@@ -26,13 +29,21 @@ public class ExitSubUI extends MainPanel{
 	ArrayList<Object[]> data;
 	private static Icon img1 = new ImageIcon("ui/button/subenter1.png");
 	private static Icon img2 = new ImageIcon("ui/button/subenter2.png");
+	private static Icon img3 = new ImageIcon("ui/button/backcom.png");
+	private static Icon img4 = new ImageIcon("ui/button/backcom2.png");
+	
+	Font font = new Font("黑体",Font.PLAIN,16);
+	Color color = new Color(100,100,100);
+	
+	JLabel title;
 	
 	MyNormalTable table;
 	JButton subexit;
+	JButton backexit;
 	
 	public ExitSubUI(CommodityController c, ExitReceiptVO vo){
 		
-		this.bg = new ImageIcon("ui/image/combg.png").getImage();
+		this.bg = new ImageIcon("ui/image/commodity/showexit.png").getImage();
 		
 		this.controller = c;
 		this.vo = vo;
@@ -42,6 +53,13 @@ public class ExitSubUI extends MainPanel{
 		initData();
 		
 		this.add(new CommodityGuide(c));
+		
+		title = new JLabel("编号： "+vo.getId()+"        "+"日期： "+vo.getDate());
+		title.setFont(font);
+		title.setForeground(color);
+		title.setBackground(new Color(229,233,234));
+		title.setBounds(180,80,700,30);
+		this.add(title);
 		
 		JScrollPane s = new JScrollPane(table);
 		s.setBounds(128,112,727,420);
@@ -63,6 +81,15 @@ public class ExitSubUI extends MainPanel{
 		subexit.setActionCommand("subexit");
 		subexit.addActionListener(controller);
 		this.add(subexit);
+		
+		backexit = new JButton(img3);
+		backexit.setRolloverIcon(img4);
+		backexit.setContentAreaFilled(false);
+		backexit.setBorderPainted(false);
+		backexit.setBounds(810,80,30,30);
+		backexit.setActionCommand("backexit");
+		backexit.addActionListener(controller);
+		this.add(backexit);
 		
 	}
 	

@@ -180,13 +180,13 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			for(int i=0;i<orderIDList.size();i++){
 				for(int j=0;j<transferList.size();j++)
 					for(int k=0;k<transferList.get(j).getOrderlist().size();k++)
-						if(orderIDList.get(i).equals(transferList.get(j).getOrderlist().get(k))){
+						if(orderIDList.get(i).equals(transferList.get(j).getOrderlist().get(k).getId())){
 							orderIDList.remove(orderIDList.get(i));
 							i--;
 						}
 				for(int j=0;j<deliverList.size();j++)
 					for(int k=0;k<deliverList.get(j).getOrderList().size();k++)
-						if(orderIDList.get(i).equals(deliverList.get(j).getOrderList().get(k))){
+						if(orderIDList.get(i).equals(deliverList.get(j).getOrderList().get(k).getId())){
 							orderIDList.remove(orderIDList.get(i));
 							i--;
 						}
