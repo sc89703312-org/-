@@ -84,4 +84,6 @@ public interface balancedataservice extends Remote {
 	public ArrayList<Balancepo> viewAllCostSubmitted() throws RemoteException;
 	
 
+	
+	public ArrayList<Balancepo> getCostByDate() throws RemoteException;
 }

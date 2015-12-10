@@ -72,4 +72,9 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	public String getID(){
 		return this.id;
 	}
+	
+	@Override
+	public String getDate(){
+		return this.date;
+	}
 }

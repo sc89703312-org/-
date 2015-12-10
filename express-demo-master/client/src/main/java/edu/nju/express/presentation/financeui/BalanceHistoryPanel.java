@@ -65,6 +65,6 @@ public class BalanceHistoryPanel extends MainPanel {
 	}
 
 	private void initData() {
-		list = costControlBL.viewAllCost();
+		list = costControlBL.viewCostByDate();
 	}
 }

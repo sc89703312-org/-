@@ -8,8 +8,10 @@ import javax.xml.ws.LogicalMessage;
 
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.accountbl.Accountbl;
+import edu.nju.express.businesslogic.balancebl.CreateCost.CostController;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
+import edu.nju.express.businesslogic.paymentbl.PaymentController;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
@@ -57,33 +59,13 @@ public class client {
 		
 
 		
-//		LogController.insertLog(new LogMessage("统计报表分析", "Echo"));
 
 		
+		new LoginUI();
 		
-		
-		
-		
-//		ArrayList<LogMessage> messages = LogController.viewAllMsg();
-//		for(LogMessage message:messages)
-//			System.out.println(message.toString());
 
+		
 
-//		Paymentbl paymentbl = DataFactory.createPaymentBLInstance();
-//		
-//	    ArrayList<String> orderList = paymentbl.getOrderListByHall("025001");
-//
-//	    for(String order:orderList)
-//	    	System.out.println(order);
-	
-		new LoginUI();		
-
-//		ConstantSettingBl constantSettingBl = DataFactory.createConstantSettingBLInstance();
-//		constantSettingBl.deleteCity("北京");
-//		
-//	    ArrayList<String> cityDistances = ConstantSettingBl.getCityDistance();
-//	    for(String list:cityDistances)
-//	    	System.out.println(list);
 		
 
 	}

@@ -28,4 +28,6 @@ public interface BalanceDao {
     public Balancepo findById(String id);
 	
 	public void flush();
+	
+	public ArrayList<Balancepo> getCostByDate();
 }

@@ -71,4 +71,11 @@ public class CostController implements CostControlService{
 		return costControlBL.caculateClerkSalary();
 	}
 
+
+	@Override
+	public ArrayList<Balancevo> viewCostByDate() {
+		// TODO Auto-generated method stub
+		return costControlBL.viewCostByDate();
+	}
+
 }

@@ -276,5 +276,26 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 		// TODO Auto-generated method stub
 		return SalarySettingBl.getClerkSalary();
 	}
+
+
+	@Override
+	public ArrayList<Balancevo> viewCostByDate() {
+		// TODO Auto-generated method stub
+		ArrayList<Balancevo> costs = new  ArrayList<>();
+		ArrayList<Balancepo> costList;
+		try {
+			costList = balancedataservice.getCostByDate();
+			
+		    for(int i=0;i<costList.size();i++){
+			   costs.add(convertPO(costList.get(i)));
+		}
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return costs;
+	}
 	
 }

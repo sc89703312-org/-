@@ -83,6 +83,12 @@ public class BalanceDataService_Impl extends UnicastRemoteObject implements bala
 		return balanceDao.findById(id);
 	}
 
+	@Override
+	public ArrayList<Balancepo> getCostByDate() throws RemoteException {
+		// TODO Auto-generated method stub
+		return balanceDao.getCostByDate();
+	}
+
 
 
 }

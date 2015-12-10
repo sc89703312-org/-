@@ -45,6 +45,9 @@ public interface CostControlService {
 	public ArrayList<Balancevo> viewAllCost();
 	
 	
+	public ArrayList<Balancevo> viewCostByDate();
+	
+	
 	
 	
 	/**
