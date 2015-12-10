@@ -227,8 +227,10 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 		
 		try {
 			Balancepo submitted = balancedataservice.findById(id);
+			if(submitted!=null){
 			submitted.approve();
 			balancedataservice.update(submitted, id);
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -192,12 +192,12 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		if(e.getSource()==search){
 			System.out.println("???");
 			
-			
+
 			for(int i=0;i<listB.size();i++)
-			tableB.getTableModel().removeRow(i);
+			tableB.getTableModel().removeRow(0);
 			
 			for(int i=0;i<listP.size();i++)
-			tableP.getTableModel().removeRow(i);
+			tableP.getTableModel().removeRow(0);
 			
 			
 			

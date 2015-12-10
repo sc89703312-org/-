@@ -92,6 +92,9 @@ public class ReceiptBl implements ReceiptBlService {
 	public void approve(String id) {
 		// TODO Auto-generated method stub
 		
+		System.out.println("Before Approve : "+id);
+		
+		
 		switch (ConcludeTypeById.conclude(id)) {
 		case 0:
 			paymentBL.approvePayment(id);
