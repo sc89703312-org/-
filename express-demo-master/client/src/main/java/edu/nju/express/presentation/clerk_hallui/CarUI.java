@@ -40,7 +40,7 @@ public class CarUI extends JPanel implements MouseListener{
 	private JPanel mainpanel;
 	private JLabel bg;
 	private JButton newBtn, editBtn, trashBtn;
-	private JPanel newPanel, errorPanel1, errorPanel2, deleteConfirmPanel;
+	private JPanel newPanel, errorPanel1, nullPointerPanel, errorPanel2, deleteConfirmPanel;
 	private JButton saveBtn, addBtn;
 	private MySearchFieldPanel searchField;
 	private LabelTextField idField, numberField;
@@ -63,6 +63,7 @@ public class CarUI extends JPanel implements MouseListener{
 		initButton();
 		initNewPanel();
 		initErrorPanel1();
+		initNullPointerPanel();
 		initErrorPanel2();
 		initDeleteConfirmPanel();
 		
@@ -106,28 +107,30 @@ public class CarUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 				//新建信息无前置条件
-					if(!mainpanel.getComponentAt(396, 526).equals(addBtn)){
-						mainpanel.remove(mainpanel.getComponentAt(396, 526));
-						mainpanel.add(addBtn);
-					}
-					mainpanel.remove(mainpanel.getComponentAt(130, 130));
-					clearPanel();// clear components(public)
-					enableInfoPanel();
-					trashBtn.setEnabled(true);
-					//clear searchpanel
-					searchField.clearText();
-					mainpanel.add(newPanel);
-					setIsNew(true);
-					mainpanel.validate();
-					mainpanel.repaint();
+				mainpanel.remove(saveBtn);
+				mainpanel.add(addBtn);
+				mainpanel.remove(mainpanel.getComponentAt(130, 130));
+				mainpanel.remove(errorPanel1);
+				mainpanel.remove(errorPanel2);
+				mainpanel.remove(nullPointerPanel);
+
+				clearPanel();// clear components(public)
+				enableInfoPanel();
+				trashBtn.setEnabled(true);
+				//clear searchpanel
+				searchField.clearText();
+				mainpanel.add(newPanel);
+				setIsNew(true);
+				mainpanel.validate();
+				mainpanel.repaint();
 			}
-			
+
 		});
 		newBtn.addMouseListener(this);
 		mainpanel.add(newBtn);
-		
+
 		editBtn = new JButton(edit0);
 		editBtn.setBounds(767, 81, 30, 30);
 		editBtn.setBorderPainted(false);
@@ -136,24 +139,25 @@ public class CarUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//只要点击edit就remove “添加”按钮
-//				mainpanel.remove(mainpanel.getComponentAt(396, 526));
+				//只要点击edit就remove “添加”"保存"按钮
 				mainpanel.remove(addBtn);
-
+				mainpanel.remove(saveBtn);
 				if(isNew){
 					mainpanel.remove(newPanel);
+					mainpanel.remove(nullPointerPanel);
+					mainpanel.remove(errorPanel2);
 					mainpanel.add(errorPanel1);
-					mainpanel.validate();
-					mainpanel.repaint();
+					
 				}
 				else if(isInfo){
 					enableInfoPanel();
 					//编辑时不让删除
 					trashBtn.setEnabled(false);
 					mainpanel.add(saveBtn);
-					mainpanel.validate();
-					mainpanel.repaint();
+					
 				}
+				mainpanel.validate();
+				mainpanel.repaint();
 			}
 			
 		});
@@ -169,20 +173,22 @@ public class CarUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(isNew){
+					mainpanel.remove(addBtn);
 					mainpanel.remove(newPanel);
+					mainpanel.remove(errorPanel1);
+					mainpanel.remove(nullPointerPanel);
 					mainpanel.add(errorPanel2);
 					
-					mainpanel.validate();
-					mainpanel.repaint();
 				}
 				else if(isInfo){
 					mainpanel.remove(newPanel);
 					mainpanel.add(deleteConfirmPanel);
 					newBtn.setEnabled(false);
 					editBtn.setEnabled(false);
-					mainpanel.validate();
-					mainpanel.repaint();
+					
 				}
+				mainpanel.validate();
+				mainpanel.repaint();
 			}
 			
 		});
@@ -198,19 +204,31 @@ public class CarUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				setIsInfo(true);
-				setIsNew(false);
+				
+				
 				trashBtn.setEnabled(true);
-				initInfoPanel(getCar(searchField.getText()));
+				mainpanel.remove(addBtn);
+				if(getCar(searchField.getText())!=null){
+					setIsInfo(true);
+					setIsNew(false);
+					initInfoPanel(getCar(searchField.getText()));
+					if(mainpanel.getComponentAt(130, 130).equals(nullPointerPanel)){
+						mainpanel.remove(nullPointerPanel);
+						mainpanel.add(newPanel);
+						mainpanel.add(saveBtn);
+					}
+				}else{
+					setIsNew(true);
+					//remove 当前编辑区的panel
+					mainpanel.remove(mainpanel.getComponentAt(130, 130));
+					mainpanel.add(nullPointerPanel);
+				}
 				newBtn.setIcon(new0);
 				newBtn.repaint();
 				editBtn.setIcon(edit0);
 				editBtn.repaint();
 				trashBtn.setIcon(trash0);
 				trashBtn.repaint();
-				mainpanel.remove(mainpanel.getComponentAt(300, 300));
-				mainpanel.remove(mainpanel.getComponentAt(396, 526));
-				mainpanel.add(newPanel);
 				mainpanel.validate();
 				mainpanel.repaint();
 			}
@@ -298,6 +316,21 @@ public class CarUI extends JPanel implements MouseListener{
 		errorLabel.setForeground(color);
 		errorLabel.setBounds(120, 180, 500, 40);
 		errorPanel1.add(errorLabel);
+		
+	}
+	
+	public void initNullPointerPanel(){
+		nullPointerPanel = new JPanel();
+		nullPointerPanel.setLayout(null);
+		nullPointerPanel.setVisible(true);
+		nullPointerPanel.setOpaque(false);
+		nullPointerPanel.setBounds(128, 117, 729, 452);
+		
+		JLabel errorLabel = new JLabel("Q A Q 司机编号不存在");
+		errorLabel.setFont(font);
+		errorLabel.setForeground(color);
+		errorLabel.setBounds(250, 180, 500, 40);
+		nullPointerPanel.add(errorLabel);
 		
 	}
 	

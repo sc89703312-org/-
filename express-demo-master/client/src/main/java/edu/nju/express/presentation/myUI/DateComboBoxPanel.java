@@ -25,7 +25,7 @@ public class DateComboBoxPanel extends JPanel {
 
 		this.setOpaque(false);
 		
-		Calendar c = Calendar.getInstance(Locale.CHINA);
+		
 		
 		year = new MyComboBox<String>();
 		month = new MyComboBox<String>();
@@ -34,17 +34,18 @@ public class DateComboBoxPanel extends JPanel {
 		month.setPreferredSize(new Dimension(65, 32));
 		day.setPreferredSize(new Dimension(65, 32));
 		
+		
 		for (int i = 1965; i <= 2025; i++)
 			year.addItem(i+"");
-		year.setSelectedItem(c.get(Calendar.YEAR)+"");
-
+		
 		for (int i = 1; i <= 12; i++)
 			month.addItem(String.format("%02d",i));
-		month.setSelectedItem(String.format("%02d",c.get(Calendar.MONTH)+1));
 		
-		for (int i = 1; i <= c.getActualMaximum(Calendar.DAY_OF_MONTH); i++)
+		for (int i = 1; i <= 31; i++)
 			day.addItem(String.format("%02d",i));
-		day.setSelectedItem(String.format("%02d",c.get(Calendar.DATE)));
+		
+		setToday();
+
 		
 		JLabel y = new JLabel("年");
 		y.setFont(font);
@@ -95,10 +96,11 @@ public class DateComboBoxPanel extends JPanel {
 		day.setSelectedItem(item);
 	}
 	
-	public void set(String y, String m,String d){
-		year.setSelectedItem(y);
-		month.setSelectedItem(m);
-		day.setSelectedItem(d);
+	public void setToday(){
+		Calendar c = Calendar.getInstance(Locale.CHINA);
+		year.setSelectedItem(c.get(Calendar.YEAR)+"");
+		month.setSelectedItem(String.format("%02d",c.get(Calendar.MONTH)+1));
+		day.setSelectedItem(String.format("%02d",c.get(Calendar.DATE)));
 	}
 
 }
