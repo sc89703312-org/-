@@ -1,6 +1,12 @@
 package edu.nju.express.presentation.administratorui;
 
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +28,7 @@ public class AdministerGuide extends JPanel{
 	private static Icon delete2=new ImageIcon("ui/icon/删除人员2.png");
 	private static Icon modify1=new ImageIcon("ui/icon/修改人员1.png");
 	private static Icon modify2=new ImageIcon("ui/icon/修改人员2.png");
+	private static Font font = new Font("黑体",Font.BOLD,14);
 	
 	AdministratorController controller;
 	
@@ -85,5 +92,25 @@ public class AdministerGuide extends JPanel{
 		this.add(add);
 		this.add(delete);
 		this.add(modify);
+	}
+	
+	public void refreshMessage(){
+		repaint();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		int message = controller.getMessages();
+		if(message != 0 ){
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2d.setColor(new Color(240,170,78));
+			g2d.fillOval(76-12, 50, 24,24);
+			g2d.setFont(font);
+			g2d.setColor(new Color(246,249,249));
+			int width = g2d.getFontMetrics().stringWidth(message+"");
+			g2d.drawString(message+"", 76 - width/2, 66);
+		}
 	}
 }

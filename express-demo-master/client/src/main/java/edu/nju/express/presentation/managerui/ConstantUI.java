@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -22,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
-import edu.nju.express.presentation.myUI.MyEditableTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.vo.ConstantVO;
 import edu.nju.express.vo.DistanceVO;
@@ -69,7 +70,7 @@ public class ConstantUI extends MainPanel{
 		p.setBounds(128, 112, 715, 1000);
 		p.setOpaque(false);
 		
-		JScrollPane s = new JScrollPane();
+		final JScrollPane s = new JScrollPane();
 		s.setViewportView(p);
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
@@ -79,6 +80,23 @@ public class ConstantUI extends MainPanel{
 		s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		s.getVerticalScrollBar().setOpaque(false);
+		s.getVerticalScrollBar().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				super.mouseEntered(e);
+				s.getVerticalScrollBar().repaint();
+				;
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseExited(e);
+				s.getVerticalScrollBar().repaint();
+				;
+
+			}
+		});
 		this.add(s);
 		
 		initData();

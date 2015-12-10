@@ -3,6 +3,8 @@ package edu.nju.express.presentation.managerui;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -13,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.EmployeeVO;
 
 public class EmployeeListUI extends MainPanel {
@@ -42,7 +45,6 @@ public class EmployeeListUI extends MainPanel {
 
 		controller = c;
 		initGuide();
-		initdata();
 		initButtons();
 		initTable();
 		
@@ -69,6 +71,16 @@ public class EmployeeListUI extends MainPanel {
 
 		this.add(jbtAdd);
 		this.add(jbtDelete);
+		
+		JButton refresh = new RefreshButton();
+		this.add(refresh);
+		refresh.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+			}
+		});
 	}
 
 	private void initGuide() {
@@ -79,6 +91,13 @@ public class EmployeeListUI extends MainPanel {
 
 	private void initdata() {
 		list = controller.getEmployeeList();
+		
+		model = table.getTableModel();
+		for (int i = 0; i < list.size(); i++) {
+			Object[] row = { list.get(i).getId(), list.get(i).getName(), list.get(i).getRole().getName() };
+			model.addRow(row);
+		}
+
 	}
 
 	private void initTable() {
@@ -87,15 +106,18 @@ public class EmployeeListUI extends MainPanel {
 		table.setRowHeight(TABLE_ROW_HEIGHT);
 		table.getTable().setPreferredScrollableViewportSize(new Dimension(715,390));
 		table.setBounds(128,107,726,425);
-
-		model = table.getTableModel();
-		for (int i = 0; i < list.size(); i++) {
-			Object[] row = { list.get(i).getId(), list.get(i).getName(), list.get(i).getRole().getName() };
-			model.addRow(row);
-		}
-
 		this.add(table);
 
+		initdata();
+
+	}
+	
+	private void refresh(){
+		int n = table.getTable().getRowCount();
+		for(int i =0 ;i<n;i++){
+			table.getTableModel().removeRow(0);
+		}
+		initdata();
 	}
 	
 	@Override

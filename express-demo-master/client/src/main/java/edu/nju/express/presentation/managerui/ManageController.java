@@ -213,4 +213,8 @@ public class ManageController implements UIController {
 		return org.viewHallList();
 	}
 	
+	public int getMessages(){
+		return receipt.view().size();
+	}
+	
 }

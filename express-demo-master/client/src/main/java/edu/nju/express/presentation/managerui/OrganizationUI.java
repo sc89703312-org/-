@@ -3,6 +3,8 @@ package edu.nju.express.presentation.managerui;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
 
@@ -49,9 +52,17 @@ public class OrganizationUI extends MainPanel {
 
 		initButtons();
 
-		initData();
-
 		initTable();
+		
+		RefreshButton refresh = new RefreshButton();
+		this.add(refresh);
+		refresh.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+			}
+		});
 	}
 
 	private void initButtons() {
@@ -104,19 +115,24 @@ public class OrganizationUI extends MainPanel {
 		table.getTable().setPreferredScrollableViewportSize(new Dimension(727,390));
 		table.setBounds(128,107,726,422);
 		this.add(table);
+		
+		
+		initData();
+	}
+
+	private void initData() {
+		stationList = controller.getStationList();
+		hallList = controller.getHallList();
+		
 		DefaultTableModel model = table.getTableModel();
 
 		String[] rowData = new String[4];
 
 		Map<String, String> city = new HashMap<String, String>();
 		
-		
 		for (StationVO vo : stationList) {
 			city.put(vo.getId(), vo.getName());
 		}
-		
-		
-		
 		
 		for (HallVO vo : hallList) {
 			rowData[2] = vo.getName();
@@ -126,10 +142,13 @@ public class OrganizationUI extends MainPanel {
 			model.addRow(rowData);
 		}
 	}
-
-	private void initData() {
-		stationList = controller.getStationList();
-		hallList = controller.getHallList();
+	
+	private void refresh(){
+		int n = table.getTable().getRowCount();
+		for(int i =0 ;i<n;i++){
+			table.getTableModel().removeRow(0);
+		}
+		initData();
 	}
 	
 	@Override

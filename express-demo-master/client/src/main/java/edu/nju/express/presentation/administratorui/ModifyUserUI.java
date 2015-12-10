@@ -3,7 +3,10 @@ package edu.nju.express.presentation.administratorui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,6 +20,8 @@ import edu.nju.express.vo.UserVO;
 public class ModifyUserUI extends MainPanel {
 
 	private static final long serialVersionUID = 1L;
+	private final Image bg = new ImageIcon("ui/image/admin/修改人员.png").getImage();
+
 	private static int width=900,height=600;
 	private static int x =94;
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
@@ -83,5 +88,10 @@ public class ModifyUserUI extends MainPanel {
 	public UserVO getTextInput() {
 		return new UserVO(id.getText(), name.getText(), Role.getRole((String) roleBox.getSelectedItem()),
 				password.getText());
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

@@ -2,8 +2,11 @@ package edu.nju.express.presentation.managerui;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.security.auth.Refreshable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +18,7 @@ import edu.nju.express.common.ConcludeTypeById;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.ReceiptVOBase;
 
 public class ReceiptApprovalUI extends MainPanel {
@@ -30,28 +34,28 @@ public class ReceiptApprovalUI extends MainPanel {
 	private static Icon img1 = new ImageIcon("ui/button/approve1.png");
 	private static Icon img2 = new ImageIcon("ui/button/approve2.png");
 	private ReceiptBlService receiptBl;
-	ManageController controller;
-	ArrayList<Object[]> list;
-	ArrayList<ReceiptVOBase> voList;
+	private ManageGuide guide;
+	private ManageController controller;
+	private ArrayList<Object[]> list;
+	private ArrayList<ReceiptVOBase> voList;
 
-	MyCheckBoxTable table;
-	JButton jbtApprove;
+	private MyCheckBoxTable table;
+	private JButton jbtApprove;
 
 	public ReceiptApprovalUI(ManageController c) {
 		controller = c;
 
-		receiptBl=c.receipt;
-		String[] header= { "全选", "单据种类", "单据编号", "提交时间" };
+		receiptBl = c.receipt;
+		String[] header = { "全选", "单据种类", "单据编号", "提交时间" };
 		table = new MyCheckBoxTable(header);
 		initData();
 
-		ManageGuide guide = new ManageGuide(c);
+		guide = new ManageGuide(c);
 		guide.receipt.setIcon(null);
 		this.add(guide);
-		
 
 		JScrollPane s = new JScrollPane(table);
-		s.setBounds(128,112,727,420);
+		s.setBounds(128, 112, 727, 420);
 		s.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
@@ -61,24 +65,35 @@ public class ReceiptApprovalUI extends MainPanel {
 		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
+		
+		JButton refresh = new RefreshButton();
+		refresh.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+				
+			}
+		});
+		this.add(refresh);
 
 		jbtApprove = new JButton(img1);
 		jbtApprove.setRolloverIcon(img2);
 		jbtApprove.setContentAreaFilled(false);
 		jbtApprove.setBorderPainted(false);
-		jbtApprove.setBounds(450,537,80,30);
+		jbtApprove.setBounds(450, 537, 80, 30);
 		jbtApprove.setActionCommand("Approve");
 		jbtApprove.addActionListener(controller);
 		this.add(jbtApprove);
 	}
 
 	private void initData() {
-		
+
 		ArrayList<ReceiptVOBase> receipts = receiptBl.view();
-		
-		Object[] data1 =new Object[4] ;
+
+		Object[] data1 = new Object[4];
 		for (int i = 0; i < receipts.size(); i++) {
-			
+
 			data1[0] = false;
 			String id = receipts.get(i).getId();
 			switch (ConcludeTypeById.conclude(id)) {
@@ -112,18 +127,28 @@ public class ReceiptApprovalUI extends MainPanel {
 			default:
 				break;
 			}
-			
+
 			data1[2] = receipts.get(i).getId();
 			data1[3] = receipts.get(i).getDate();
 			table.getTableModel().addRow(data1);
 		}
 	}
 
+	private void refresh() {
+
+		int n = table.getRowCount();
+		for (int i = 0; i < n; i++) {
+			table.getTableModel().removeRow(0);
+		}
+		initData();
+		guide.refreshMessage();
+
+	}
 
 	public ArrayList<String> getIDtoApprove() {
 		return table.getSelectedID();
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(bg, 0, 0, null);

@@ -24,7 +24,7 @@ public class MainPanel extends JPanel {
 
 	int WIDTH = 900;
 	int HEIGHT = 600;
-	protected Image logo;
+	protected Icon logo = new ImageIcon("ui/icon/logo.png");
 	protected Image bg = new ImageIcon("ui/image/bg.png").getImage();
 	protected Icon quitIcon1 = new ImageIcon("ui/button/X_darkGray.png");
 	protected Icon quitIcon2 = new ImageIcon("ui/button/X_green.png");
@@ -40,6 +40,10 @@ public class MainPanel extends JPanel {
 		this.setOpaque(false);
 
 		userInfo = LoginInfo.getUserName()+"  "+LoginInfo.getUserID();
+		
+		JLabel logoLabel = new JLabel(logo);
+		logoLabel.setBounds(118, 16, 100, 40);
+		this.add(logoLabel);
 		
 		JLabel iconLabel = new JLabel(icon);
 		iconLabel.setBounds(570, 19, 30, 30);

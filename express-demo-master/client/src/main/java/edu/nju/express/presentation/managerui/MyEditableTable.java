@@ -1,4 +1,4 @@
-package edu.nju.express.presentation.myUI;
+package edu.nju.express.presentation.managerui;
 
 import java.awt.Color;
 import java.awt.Component;

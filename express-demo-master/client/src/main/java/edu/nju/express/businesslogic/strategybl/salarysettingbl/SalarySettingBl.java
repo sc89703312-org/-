@@ -13,7 +13,11 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.SalaryVO;
 
 
-
+/**
+ * 薪水制定功能实现
+ * @author Dora
+ *
+ */
 public class SalarySettingBl implements SalarySettingBlService {
 
 	
@@ -29,7 +33,10 @@ public class SalarySettingBl implements SalarySettingBlService {
 	
 	
 	
-	
+	/**
+	 * 设置业务员薪水
+	 * @see edu.nju.express.blservice.SalarySettingBlService#setClerkSalary(double)
+	 */
 	@Override
 	public ResultMessage setClerkSalary(double salary) {
 		
@@ -49,6 +56,10 @@ public class SalarySettingBl implements SalarySettingBlService {
 		return ResultMessage.VALID;
 	}
 
+	/**
+	 * 设置司机薪水
+	 * @see edu.nju.express.blservice.SalarySettingBlService#setDriverWage(double)
+	 */
 	@Override
 	public ResultMessage setDriverWage(double wage) {
 		
@@ -68,6 +79,10 @@ public class SalarySettingBl implements SalarySettingBlService {
 		return ResultMessage.VALID;
 	}
 
+	/**
+	 * 设置快递员薪水
+	 * @see edu.nju.express.blservice.SalarySettingBlService#setPostmanWage(double)
+	 */
 	@Override
 	public ResultMessage setPostmanWage(double wage) {
 		
@@ -88,7 +103,9 @@ public class SalarySettingBl implements SalarySettingBlService {
 	}
 	
 	
-	
+	/*
+	 * 获得营业员薪水
+	 */
 	public static double getClerkSalary(){
 		try {
 			return salaryDataService.getClerkSalary();
@@ -99,7 +116,9 @@ public class SalarySettingBl implements SalarySettingBlService {
 		return 0;
 	}
 	
-	
+	/*
+	 * 获得司机薪水
+	 */
 	public static double getDriverWage(){
 		try {
 			return salaryDataService.getDriverWage();
@@ -111,7 +130,9 @@ public class SalarySettingBl implements SalarySettingBlService {
 	}
 	
 	
-	
+	/*
+	 * 获得快递员薪水
+	 */
 	
 	public static double getPostmanWage(){
 		try {
@@ -127,7 +148,9 @@ public class SalarySettingBl implements SalarySettingBlService {
 
 
 
-
+	/*
+	 * 获得薪水信息vo
+	 */
 	@Override
 	public SalaryVO getSalary() {
 		// TODO Auto-generated method stub

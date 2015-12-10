@@ -1,5 +1,9 @@
 package edu.nju.express.presentation.administratorui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -13,6 +17,8 @@ public class DeleteUserUI extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final Image bg = new ImageIcon("ui/image/admin/删除人员.png").getImage();
+
 	
 	AdministratorController controller;
 
@@ -47,7 +53,10 @@ public class DeleteUserUI extends MainPanel{
 	}
 
 	
-
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
+	}
 	
 	
 }

@@ -85,4 +85,7 @@ public class AdministratorController implements UIController{
 		return user.viewTask();
 	}
 
+	public int getMessages(){
+		return user.viewTask().size();
+	}
 }
