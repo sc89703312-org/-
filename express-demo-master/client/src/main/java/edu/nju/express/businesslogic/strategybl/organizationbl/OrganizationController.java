@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.strategybl.organizationbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.OrganizationBlService;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
@@ -17,8 +18,8 @@ public class OrganizationController implements OrganizationBlService{
 	/**
 	 * @param organization
 	 */
-	public OrganizationController(OrganizationBlService organization) {
-		this.organization = organization;
+	public OrganizationController() {
+		this.organization = DataFactory.createOrganizationBl();
 	}
 
 	@Override

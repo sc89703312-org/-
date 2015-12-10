@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.userbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.UserBlService;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.vo.UserMessageVO;
@@ -16,8 +17,8 @@ public class UserController implements UserBlService{
 	/**
 	 * @param user
 	 */
-	public UserController(UserBlService user) {
-		this.user = user;
+	public UserController() {
+		this.user = DataFactory.createUserBlInstance();
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class UserController implements UserBlService{
 	@Override
 	public ArrayList<UserMessageVO> viewTask() {
 		// TODO Auto-generated method stub
-		return null;
+		return user.viewTask();
 	}
 
 }

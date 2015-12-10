@@ -3,20 +3,26 @@ package edu.nju.express.businesslogic.paymentbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.Paymentblservice;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.Paymentvo;
 
-
+/**
+ * 
+ * @author lenovo
+ * @version 2015年12月10日11:35:10
+ * 营业厅业务员对收款单进行新建并提供查询
+ */
 
 public class PaymentController implements Paymentblservice {
 
 	
 	Paymentblservice paymentblservice;
 	
-	public PaymentController(Paymentblservice paymentblservice) {
+	public PaymentController() {
 		// TODO Auto-generated constructor stub
 	
-		this.paymentblservice = paymentblservice ;
+		this.paymentblservice = DataFactory.createPaymentBLInstance() ;
 	
 	}
 	

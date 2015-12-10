@@ -3,6 +3,7 @@ package edu.nju.express.businesslogic.strategybl.managementbl;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.ManagementBlService;
+import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.vo.EmployeeVO;
@@ -18,8 +19,8 @@ public class ManagementController implements ManagementBlService{
 	/**
 	 * @param management
 	 */
-	public ManagementController(ManagementBlService management) {
-		this.management = management;
+	public ManagementController() {
+		this.management = DataFactory.createManagementBlInstance();
 	}
 
 	@Override
