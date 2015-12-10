@@ -109,11 +109,11 @@ public class ManageGuide extends JPanel {
 			Graphics2D g2d = (Graphics2D)g;
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2d.setColor(new Color(240,173,78));
-			g2d.fillOval(78-12, 50, 24,24);
+			g2d.fillOval(79-12, 50, 24,24);
 			g2d.setFont(font);
 			g2d.setColor(new Color(246,249,249));
 			int width = g2d.getFontMetrics().stringWidth(message+"");
-			g2d.drawString(message+"", 78 - width/2, 66);
+			g2d.drawString(message+"", 79 - width/2, 66);
 		}
 	}
 }
