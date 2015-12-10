@@ -32,7 +32,7 @@ public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements Arrive
 		ArrayList<ArriveReceiptPO> list = getAllReceipt(location);
 		if(list.size()!=0){
 			ArriveReceiptPO po = list.get(list.size()-1);
-			return Integer.parseInt(po.getId().substring(15, po.getId().length()))+1+"";
+			return "0"+(int)(Integer.parseInt(po.getId().substring(14, po.getId().length()))+1);
 		}
 		else
 			return stationID+"000000";

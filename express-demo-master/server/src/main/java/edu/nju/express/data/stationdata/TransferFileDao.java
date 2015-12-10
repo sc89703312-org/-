@@ -31,7 +31,7 @@ public class TransferFileDao extends CommonData<TransferReceiptPO> implements Tr
 		ArrayList<TransferReceiptPO> list = getAllReceipt(location);
 		if(list.size()!=0){
 			TransferReceiptPO po = list.get(list.size()-1);
-			return Integer.parseInt(po.getId().substring(15, po.getId().length()))+1+"";
+			return "0"+(int)(Integer.parseInt(po.getId().substring(15, po.getId().length()))+1);
 		}
 		else
 			return stationID+"100000";

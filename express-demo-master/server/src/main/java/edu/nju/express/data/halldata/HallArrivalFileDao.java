@@ -24,7 +24,7 @@ public class HallArrivalFileDao extends CommonData<ArrivalReceiptPO> implements 
 		ArrayList<ArrivalReceiptPO> list = getAll(location);
 		if(list.size()!=0){
 			String num = list.get(list.size()-1).getId().substring(16, list.get(list.size()-1).getId().length());
-			return Integer.parseInt(num)+1+"";
+			return "0"+(int)(Integer.parseInt(num)+1);
 		}
 		else
 			return hallID+"0000";
