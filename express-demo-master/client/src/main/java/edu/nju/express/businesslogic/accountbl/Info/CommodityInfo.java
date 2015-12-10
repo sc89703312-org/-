@@ -20,5 +20,5 @@ public interface CommodityInfo {
 	 * @return 库存的列表
 	 * @version 2015年12月9日22:04:55
 	 */
-	public ArrayList<ComGoodsVO> showInventory();
+	public ArrayList<ComGoodsVO> showAllCityInventory();
 }
