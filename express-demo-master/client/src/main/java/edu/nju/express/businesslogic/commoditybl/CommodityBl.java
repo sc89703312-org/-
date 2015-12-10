@@ -14,6 +14,7 @@ import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.dataservice.CommodityDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.ComGoodsPO;
+import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.ComZonePO;
 import edu.nju.express.po.EnterReceiptPO;
 import edu.nju.express.po.ExitReceiptPO;
@@ -740,6 +741,33 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 				for(int i=0;i<polist.size();i++)
 					volist.add(Convert.po_to_vo_exit(polist.get(i)));
 				return volist;
+	}
+
+    /*
+     * (non-Javadoc)
+     * @see edu.nju.express.businesslogic.accountbl.Info.CommodityInfo#showAllCityInventory()
+     */
+	@Override
+	public ArrayList<ComGoodsVO> showAllCityInventory() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<ComInfoPO> po = new ArrayList<ComInfoPO>();
+		try {
+			po = commodityDataService.getCommodity();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<ComGoodsVO> volist = new ArrayList<ComGoodsVO>();
+		for(int i=0;i<po.size();i++){
+			ArrayList<ComGoodsPO> polist = po.get(i).getComGoodsList();
+			for(int j=0;j<polist.size();j++){
+			    ComGoodsVO vo = new ComGoodsVO(Convert.po_to_vo_order(polist.get(j).getOrder()),polist.get(j).getType(),polist.get(j).getLine(),polist.get(j).getShelf(),polist.get(j).getCell());
+			    volist.add(vo);
+			}
+		}
+		
+		return volist;
 	}
 	
 	
