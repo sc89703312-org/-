@@ -18,9 +18,10 @@ public class InquireOderUI extends MainPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Image bg = new ImageIcon("ui/image/bg1.png").getImage();
+	private static final Image bg = new ImageIcon("ui/image/postman/查询订单.png").getImage();
 	MyTablePanel table;
 	MySearchFieldPanel search;
+	PostmanGuide guide;
 
 	PostmanController controller;
 	ArrayList<OrderVO> list;
@@ -30,10 +31,12 @@ public class InquireOderUI extends MainPanel {
 		controller = c;
 		initData();
 
-		this.add(new PostmanGuide(c));
+		guide = new PostmanGuide(c);
+		this.add(guide);
+		guide.inquireOrder.setIcon(null);
 
 		search = new MySearchFieldPanel(c);
-		search.setBounds(380, 68, 400, 40);
+		search.setBounds(380, 108, 400, 40);
 		search.setActionCommand("SearchOrder");
 		this.add(search);
 
@@ -51,8 +54,8 @@ public class InquireOderUI extends MainPanel {
 			table.getTableModel().addRow(rowData);
 		}
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(715, 390));
-		table.setBounds(128, 112, 727, 422);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(715, 360));
+		table.setBounds(128, 172, 727, 392);
 		this.add(table);
 	}
 
@@ -80,8 +83,6 @@ public class InquireOderUI extends MainPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
 		g.drawImage(bg,0, 0, null);
 	}
 }

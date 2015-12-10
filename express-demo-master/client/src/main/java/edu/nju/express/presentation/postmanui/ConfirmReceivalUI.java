@@ -2,7 +2,10 @@ package edu.nju.express.presentation.postmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -15,6 +18,7 @@ import edu.nju.express.vo.ReceivalVO;
 
 public class ConfirmReceivalUI extends MainPanel{
 	private static final long serialVersionUID = 1L;
+	private static final Image bg = new ImageIcon("ui/image/postman/确认收货.png").getImage();
 	private static int width=900,height=600;
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
 	private static Color color = new Color(44, 62,80);
@@ -32,7 +36,9 @@ public class ConfirmReceivalUI extends MainPanel{
 	public ConfirmReceivalUI(PostmanController c) {
 		controller = c;
 		
-		this.add(new PostmanGuide(c));
+		PostmanGuide guide = new PostmanGuide(c);
+		this.add(guide);
+		guide.confirmReceival.setIcon(null);
 		
 		initComponents();
 	}
@@ -74,5 +80,10 @@ public class ConfirmReceivalUI extends MainPanel{
 
 	public ReceivalVO getTextInput() {
 		return new ReceivalVO(id.getText(), date.getDate(), name.getText());
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

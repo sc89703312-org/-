@@ -40,7 +40,9 @@ public class ModifyUserUI extends MainPanel {
 	public ModifyUserUI(AdministratorController c) {
 		controller = c;
 		this.setLayout(null);
-		this.add(new AdministerGuide(controller));
+		AdministerGuide guide = new AdministerGuide(controller);
+		this.add(guide);
+		guide.modify.setIcon(null);
 		this.setOpaque(false);
 		initComponents();
 	}

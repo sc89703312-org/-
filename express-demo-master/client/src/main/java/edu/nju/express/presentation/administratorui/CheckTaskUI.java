@@ -111,6 +111,7 @@ public class CheckTaskUI extends MainPanel {
 	private void initGuide() {
 		guide = new AdministerGuide(controller);
 		this.add(guide);
+		guide.check.setIcon(null);
 	}
 	
 	@Override

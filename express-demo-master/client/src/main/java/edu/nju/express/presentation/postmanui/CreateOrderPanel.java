@@ -3,6 +3,8 @@ package edu.nju.express.presentation.postmanui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -35,6 +37,8 @@ import edu.nju.express.vo.OrderVO;
 public class CreateOrderPanel extends MainPanel {
 
 	private static final long serialVersionUID = 1L;
+	private static final Image bg = new ImageIcon("ui/image/postman/新建订单.png").getImage();
+	
 	static int width = 900;
 	static int height = 600;
 	static int y = 50;
@@ -69,8 +73,10 @@ public class CreateOrderPanel extends MainPanel {
 	public CreateOrderPanel(PostmanController c) {
 		controller = c;
 
-		this.add(new PostmanGuide(c));
-
+		PostmanGuide guide = new PostmanGuide(c);
+		this.add(guide);
+		guide.createOrder.setIcon(null);
+		
 		JPanel p = new JPanel();
 		p.setOpaque(false);
 		p.setBounds(94, 112, width - 175, height - 180);
@@ -260,5 +266,10 @@ public class CreateOrderPanel extends MainPanel {
 		result = pkgCost + FeeCalculator.getTransFee(cityR, cityS, Etype.getType((String) typeBox.getSelectedItem()));
 
 		return result;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

@@ -29,7 +29,9 @@ public class DeleteUserUI extends MainPanel{
 	public DeleteUserUI(AdministratorController c) {
 		controller = c;
 		this.setLayout(null);
-		this.add(new AdministerGuide(controller));
+		AdministerGuide guide = new AdministerGuide(controller);
+		this.add(guide);
+		guide.delete.setIcon(null);
 		initComponents();
 		this.setOpaque(false);
 	}
