@@ -32,7 +32,7 @@ import edu.nju.express.vo.TransferReceiptVO;
 public class Convert {
 	
 	public static OrderVO po_to_vo_order(OrderPO po){
-		System.out.println(po.getSenderName());
+//		System.out.println(po.getSenderName());
 //		System.out.println(po.getSenderAddress());
 //		System.out.println(po.getSenderPost());
 //		System.out.println(po.getReceiverTel());

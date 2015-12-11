@@ -296,6 +296,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		
 		String from = receipt.createArrivalReceipt(transferId).getFrom();
 		//先这样, 要根据hall_id初始化不同的地点
+		
 		fromBox.addItem(from);
 		fromBox.setSelectedItem(from);
 		
