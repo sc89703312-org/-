@@ -165,13 +165,13 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			ArrayList<TransferReceiptPO> transferlist = stationDataService.getTransferReceipt(stationID);
 			ArrayList<OrderPO> arrivepolist = new ArrayList<OrderPO>();
 			ArrayList<OrderPO> transferpolist = new ArrayList<OrderPO>();
-          
+			
 			for(int i=0;i<arrivelist.size();i++)
             	arrivepolist.addAll(arrivelist.get(i).getOrderList());
             for(int i=0;i<transferlist.size();i++)
             	transferpolist.addAll(transferlist.get(i).getOrderList());
+  
             
-
             for(int i=0;i<arrivepolist.size();i++)
             	for(int j=0;j<transferpolist.size();j++)
             		if(arrivepolist.get(i).getId().equals(transferpolist.get(j).getId())){
@@ -185,6 +185,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
 			for(int i=0;i<arrivepolist.size();i++)
 				orderlist.add(Convert.po_to_vo_order(arrivepolist.get(i)));
+			
+			System.out.println(orderlist.size());
 			
 			return orderlist;
 			

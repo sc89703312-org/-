@@ -31,8 +31,8 @@ public class CommodityTest {
 		list.add(order2);
 		list.add(order3);
 		
-		ArriveReceiptPO arrivepo = new ArriveReceiptPO("025000000","2015/12/09","ShangHai","NanJing",list);
-		TransferReceiptPO transferpo = new TransferReceiptPO("025100000","2015/12/09","ShangHai","NanJing","23333","小刘",Etype.ECONOMICAL,list);
+		ArriveReceiptPO arrivepo = new ArriveReceiptPO("025000000","2015/12/09","ShangHai","南京",list);
+		TransferReceiptPO transferpo = new TransferReceiptPO("025100000","2015/12/09","ShangHai","南京","23333","小刘",Etype.ECONOMICAL,list);
 		
         try {
 			StationDataService_Impl station = new StationDataService_Impl();
@@ -63,8 +63,8 @@ public class CommodityTest {
 		list2.add(order5);
 		list2.add(order6);
 		
-		ArriveReceiptPO arrivepo2 = new ArriveReceiptPO("025000001","2015/12/09","ShangHai","NanJing",list2);
-		TransferReceiptPO transferpo2 = new TransferReceiptPO("025100001","2015/12/09","ShangHai","NanJing","23333","小刘",Etype.ECONOMICAL,list2);
+		ArriveReceiptPO arrivepo2 = new ArriveReceiptPO("025000001","2015/12/09","ShangHai","南京",list2);
+		TransferReceiptPO transferpo2 = new TransferReceiptPO("025100001","2015/12/09","ShangHai","南京","23333","小刘",Etype.ECONOMICAL,list2);
 		
         try {
 			StationDataService_Impl station = new StationDataService_Impl();
