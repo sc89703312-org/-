@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -42,7 +40,6 @@ public class MyEditableTable extends JTable {
 				if (isCellEditable(row, column)) {
 					final int i = row;
 					setForeground(foreColor2);
-					
 				} else
 					setForeground(foreColor);
 
@@ -71,8 +68,8 @@ public class MyEditableTable extends JTable {
 	public ArrayList<String> getEditedRows(){
 		ArrayList<String> edited = new ArrayList<String>();
 		for(int i = 0;i<this.getRowCount();i++){
+			System.out.println(this.getValueAt(i, 4));
 			edited.add((String)(this.getValueAt(i, 4)));
-//			System.out.println((String)(this.getValueAt(i, 4)));
 		}
 		
 		return edited;

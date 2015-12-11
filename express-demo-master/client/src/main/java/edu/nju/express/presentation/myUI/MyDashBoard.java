@@ -13,12 +13,12 @@ import java.awt.geom.Arc2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MyDashBoard extends JPanel {
+public class MyDashBoard extends JPanel implements Runnable{
 
-	int temp = 0;
+	public int temp = 0;
 	private int percent;
-	private static int width = 140;
-	private static int height = 140;
+	private static int width = 120;
+	private static int height = 120;
 	private static Color fore = new Color(44, 62, 80);
 	private static Font font = new Font("黑体", Font.BOLD, 30);
 	// 绿黄红
@@ -64,7 +64,8 @@ public class MyDashBoard extends JPanel {
 		g2d.setColor(fore);
 		g2d.setFont(font);
 		g2d.setStroke(new BasicStroke(2));
-		g2d.drawString(temp + "", width / 2 - 18, height / 2 + 10);
+		int fw = g2d.getFontMetrics().stringWidth(temp + "");
+		g2d.drawString(temp + "", width / 2 - fw/2, height / 2 + 10);
 	}
 
 	public static void main(String[] args) {
@@ -80,9 +81,15 @@ public class MyDashBoard extends JPanel {
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		p.run();
+
+	}
+
+	@Override
+	public void run() {
 		for (int i = 0; i <= percent; i++) {
-			p.temp = i;
-			p.repaint();
+			this.temp = i;
+			this.repaint();
 			try {
 				Thread.sleep(20 - i / 5);
 			} catch (InterruptedException e) {
@@ -90,7 +97,6 @@ public class MyDashBoard extends JPanel {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 }

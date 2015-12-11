@@ -33,6 +33,7 @@ public class MainPanel extends JPanel {
 	private Color color = new Color(44,62,80);
 	
 	protected JButton quit;
+	protected JLabel logoLabel;
 	protected String userInfo;
 
 	public MainPanel() {
@@ -41,7 +42,7 @@ public class MainPanel extends JPanel {
 
 		userInfo = LoginInfo.getUserName()+"  "+LoginInfo.getUserID();
 		
-		JLabel logoLabel = new JLabel(logo);
+		logoLabel = new JLabel(logo);
 		logoLabel.setBounds(118, 16, 100, 40);
 		this.add(logoLabel);
 		

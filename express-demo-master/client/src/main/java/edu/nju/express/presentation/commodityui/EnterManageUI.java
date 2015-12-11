@@ -11,12 +11,13 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.ArriveReceiptVO;
 
 public class EnterManageUI extends MainPanel{
 
 	/**
-	 * 
+	 * 入库管理
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +34,7 @@ public class EnterManageUI extends MainPanel{
 	JButton refresharrive;
 	
 	public EnterManageUI(CommodityController c, ArrayList<ArriveReceiptVO> list){
-		
+		this.remove(logoLabel);
 		this.bg = new ImageIcon("ui/image/commodity/showarrive.png").getImage();
 		
 		this.controller = c;
@@ -67,11 +68,7 @@ public class EnterManageUI extends MainPanel{
 		createnter.addActionListener(controller);
 		this.add(createnter);
 		
-		refresharrive = new JButton(img3);
-		refresharrive.setRolloverIcon(img4);
-		refresharrive.setContentAreaFilled(false);
-		refresharrive.setBorderPainted(false);
-		refresharrive.setBounds(810,80,30,30);
+		refresharrive = new RefreshButton();
 		refresharrive.setActionCommand("refresharrive");
 		refresharrive.addActionListener(controller);
 		this.add(refresharrive);

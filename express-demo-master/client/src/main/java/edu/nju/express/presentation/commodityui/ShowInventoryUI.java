@@ -11,12 +11,13 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.ComGoodsVO;
 
 public class ShowInventoryUI extends MainPanel{
 
 	/**
-	 * 
+	 * 库存盘点
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -32,9 +33,8 @@ public class ShowInventoryUI extends MainPanel{
 	JButton refreshinventory;
 	
 	public ShowInventoryUI(CommodityController c, ArrayList<ComGoodsVO> list){
-		
 		this.bg = new ImageIcon("ui/image/commodity/showinventory.png").getImage();
-		
+		this.remove(logoLabel);
 		this.controller = c;
 		this.voList = list;
 		
@@ -65,11 +65,7 @@ public class ShowInventoryUI extends MainPanel{
 		movegoods.addActionListener(controller);
 		this.add(movegoods);
 		
-		refreshinventory = new JButton(img3);
-		refreshinventory.setRolloverIcon(img4);
-		refreshinventory.setContentAreaFilled(false);
-		refreshinventory.setBorderPainted(false);
-		refreshinventory.setBounds(810,80,30,30);
+		refreshinventory = new RefreshButton();
 		refreshinventory.setActionCommand("refreshinventory");
 		refreshinventory.addActionListener(controller);
 		this.add(refreshinventory);

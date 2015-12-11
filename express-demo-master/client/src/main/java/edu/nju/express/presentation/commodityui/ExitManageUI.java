@@ -11,12 +11,13 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyNormalTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.TransferReceiptVO;
 
 public class ExitManageUI extends MainPanel{
 
 	/**
-	 * 
+	 * 出库管理
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +34,7 @@ public class ExitManageUI extends MainPanel{
 	JButton refreshtransfer;
 	
 	public ExitManageUI(CommodityController c, ArrayList<TransferReceiptVO> list){
-		
+		this.remove(logoLabel);
 		this.bg = new ImageIcon("ui/image/commodity/showtransfer.png").getImage();
 		
 		this.controller = c;
@@ -67,11 +68,7 @@ public class ExitManageUI extends MainPanel{
 		createxit.addActionListener(controller);
 		this.add(createxit);
 		
-		refreshtransfer = new JButton(img3);
-		refreshtransfer.setRolloverIcon(img4);
-		refreshtransfer.setContentAreaFilled(false);
-		refreshtransfer.setBorderPainted(false);
-		refreshtransfer.setBounds(810,80,30,30);
+		refreshtransfer = new RefreshButton();
 		refreshtransfer.setActionCommand("refreshtransfer");
 		refreshtransfer.addActionListener(controller);
 		this.add(refreshtransfer);
