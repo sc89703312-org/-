@@ -174,7 +174,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 
             for(int i=0;i<arrivepolist.size();i++)
             	for(int j=0;j<transferpolist.size();j++)
-            		if(arrivepolist.get(i).getId().equals(transferpolist.get(i).getId())){
+            		if(arrivepolist.get(i).getId().equals(transferpolist.get(j).getId())){
             			arrivepolist.remove(i);
             			transferpolist.remove(j);
             			i--;
