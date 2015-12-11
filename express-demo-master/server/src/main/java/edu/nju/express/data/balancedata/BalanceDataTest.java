@@ -75,19 +75,21 @@ public class BalanceDataTest extends CommonData<Balancepo> implements BalanceDao
 	@Override
 	public ArrayList<Balancepo> getCostByDate() {
 		// TODO Auto-generated method stub
-		
+		ArrayList<Balancepo> tempList = new ArrayList<>();
 		ArrayList<Balancepo> costList = inList.showAll();
+		for(Balancepo po:costList)
+			tempList.add(po);
 		
-		for(int i=0;i<costList.size();i++){
-			for(int j=i+1;j<costList.size();j++)
-				if(costList.get(i).getDate().compareTo(costList.get(j).getDate())>0){
-					Balancepo temp = costList.get(i);
+		for(int i=0;i<tempList.size();i++){
+			for(int j=i+1;j<tempList.size();j++)
+				if(tempList.get(i).getDate().compareTo(tempList.get(j).getDate())>0){
+					Balancepo temp = tempList.get(i);
 					
-					costList.add(i, costList.get(j));
-					costList.remove(i+1);
+					tempList.add(i, tempList.get(j));
+					tempList.remove(i+1);
 					
-					costList.add(j, temp);
-					costList.remove(j+1);
+					tempList.add(j, temp);
+					tempList.remove(j+1);
 				}
 					
 		}
@@ -96,7 +98,7 @@ public class BalanceDataTest extends CommonData<Balancepo> implements BalanceDao
 		
 		
 		
-		return costList;
+		return tempList;
 	}
 
 

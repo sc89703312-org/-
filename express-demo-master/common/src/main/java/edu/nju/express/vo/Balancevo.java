@@ -30,6 +30,7 @@ public class Balancevo extends ReceiptVOBase{
 	}
 	
 	
+
 	
 	public String getDate(){
 		return date;

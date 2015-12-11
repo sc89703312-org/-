@@ -30,6 +30,8 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 	/** 备注 */
 	String remark;
 
+	String date;
+	String id;
 
 	
 	public Balancepo(String date,double money,String name,
@@ -69,7 +71,8 @@ public class Balancepo extends ReceiptPOBase implements Serializable {
 		return remark;
 	}
 	
-	public String getID(){
+	@Override
+	public String getId(){
 		return this.id;
 	}
 	
