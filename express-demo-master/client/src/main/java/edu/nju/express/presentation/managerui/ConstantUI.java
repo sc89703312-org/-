@@ -281,10 +281,18 @@ public class ConstantUI extends MainPanel{
 		
 		
 		ArrayList<String> infos = table.getEditedRows();
+		
+		
+		for(String info:infos)
+			System.out.println(info);
+		
+		
+		
 		int m=0;
 		
 		for(int i =0;i<cityList.size()-1;i++){
 			for(int j = i+1;j<cityList.size();j++){
+
 				tempList.add(new DistanceVO(cityList.get(i), cityList.get(j), Double.parseDouble(infos.get(m))));
 			    m++;
 			}

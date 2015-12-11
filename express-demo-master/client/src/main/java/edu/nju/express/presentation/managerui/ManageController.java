@@ -157,11 +157,12 @@ public class ManageController implements UIController {
 
 			
 		ArrayList<DistanceVO> newDistances	=((ConstantUI)currentPanel).getDistanceInput();
-		for(DistanceVO vo:newDistances)
+		for(DistanceVO vo:newDistances){
+
 			constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance());
 		
 		
-		
+		}
 		} else if (e.getActionCommand().equals("AddEmployee")) {
 
 			UserMessageVO vo = ((AddEmployeePanel) currentPanel).getTextInput();

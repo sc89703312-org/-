@@ -64,8 +64,13 @@ public class client {
 		new LoginUI();
 		
 
+		ConstantSettingBl constantSettingBl = DataFactory.createConstantSettingBLInstance();
+		constantSettingBl.setDistance("北京", "南京", 900);
 
 
+	ArrayList<String> cityList =	ConstantSettingBl.getCityDistance();
+	for(String a:cityList)
+		System.out.println(a);
 
 		
 

@@ -245,6 +245,8 @@ public class ConstantFileDao implements ConstantDao {
 		
 		ArrayList<String> cityList = constantPO.getCityList();
 		
+
+		
 		int city_1 = 0 , city_2 =0;
 		
 		
@@ -262,7 +264,6 @@ public class ConstantFileDao implements ConstantDao {
 			}
 			city_2++;
 		}
-		
 		
 		String[] temp1=constantPO.getCityDistance().get(city_1).split(" ");
 		String temp ="";
@@ -318,8 +319,6 @@ public class ConstantFileDao implements ConstantDao {
 		
 		
 		
-		System.out.println(cityDistance.get(city_1));
-		System.out.println(cityDistance.get(city_2));
 		
 	
 		constantPO.setCityDistance(cityDistance);
