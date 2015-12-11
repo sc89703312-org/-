@@ -62,28 +62,28 @@ public class PaymentDataservice_Impl extends UnicastRemoteObject implements Paym
 	@Override
 	public ArrayList<Paymentpo> viewByHall(String number) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("Prepares to view payments by hall");
+		
 		return paymentDao.viewByHall(number);
 	}
 
 	@Override
 	public ArrayList<Paymentpo> viewByDate(String date) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("Prepares to view payments by date");
+		
 		return paymentDao.viewByDate(date);
 	}
 
 	@Override
 	public ArrayList<Paymentpo> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("Show all the po and the length is "+paymentDao.showAll().size());
+		
 		return paymentDao.showAll();
 	}
 
 	@Override
 	public void flush() throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("data_impl does");
+		
 		paymentDao.flush();
 	}
 
