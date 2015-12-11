@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import javax.management.modelmbean.ModelMBean;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -227,8 +228,25 @@ public class ConstantUI extends MainPanel{
 	private void initTable() {
 		String[] header = {"城市1","-","城市2","：","距离","公里"};
 		
+		
 		DefaultTableModel model = new DefaultTableModel(null,header){
+			
 			private static final long serialVersionUID = 1L;
+			
+			
+			
+
+			@Override
+			public void setValueAt(Object o,int row,int column){
+				super.setValueAt(o, row, column);
+				
+				cityDistance.add(row,(String) o);
+				cityDistance.remove(row);
+				fireTableDataChanged();
+			}
+			
+			
+			
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				if(column == 4)

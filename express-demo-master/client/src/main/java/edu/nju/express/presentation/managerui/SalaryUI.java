@@ -46,7 +46,7 @@ public class SalaryUI extends MainPanel {
 		driverField.setBounds(200+94, 250, 400, 40);
 		this.add(driverField);
 		
-		postmanField = new LabelTextField("司机提成：  ",-1,"元/次");
+		postmanField = new LabelTextField("快递员提成：  ",-1,"元/次");
 		postmanField.setText(postman + "");
 		postmanField.setBounds(200+94, 330, 400, 40);
 		this.add(postmanField);
