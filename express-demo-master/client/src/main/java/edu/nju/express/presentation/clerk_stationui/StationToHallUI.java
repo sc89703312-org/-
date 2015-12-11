@@ -160,7 +160,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 			toBox.addItem(toList.get(i));
 		}
 		toBox.setSelectedItem(toList.get(0));
-		toBox.setBounds(210, 190, 100, 35);
+		toBox.setBounds(210, 190, 300, 35);
 		panel.add(toBox);
 		
 		supervisorField = new LabelTextField("监装员  ", 10);
@@ -300,9 +300,9 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		for(int i=0; i<length; i++){
 			row[0] = false;
 			row[1] = receipt.showCurrentOrder().get(i).getID();
-			
+			checkTable.getTableModel().addRow(row);
 		}
-		checkTable.getTableModel().addRow(row);
+		
 		
 	}
 	

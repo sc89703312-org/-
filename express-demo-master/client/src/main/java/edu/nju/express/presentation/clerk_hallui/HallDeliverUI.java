@@ -238,9 +238,9 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		for(int i=0; i<length; i++){
 			row[0] = false;
 			row[1] = receipt.showCurrentOrder().get(i).getID();
-			
+			checkTable.getTableModel().addRow(row);
 		}
-		checkTable.getTableModel().addRow(row);
+		
 		
 	}
 	
