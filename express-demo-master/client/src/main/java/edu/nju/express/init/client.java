@@ -23,6 +23,7 @@ import edu.nju.express.common.Item;
 import edu.nju.express.common.Role;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.Balancepo;
+import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.Paymentpo;
@@ -64,13 +65,7 @@ public class client {
 		new LoginUI();
 		
 
-		ConstantSettingBl constantSettingBl = DataFactory.createConstantSettingBLInstance();
-		constantSettingBl.setDistance("北京", "南京", 900);
-
-
-	ArrayList<String> cityList =	ConstantSettingBl.getCityDistance();
-	for(String a:cityList)
-		System.out.println(a);
+	
 
 		
 
