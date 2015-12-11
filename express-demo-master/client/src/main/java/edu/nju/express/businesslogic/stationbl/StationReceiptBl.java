@@ -165,7 +165,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			ArrayList<TransferReceiptPO> transferlist = stationDataService.getTransferReceipt(stationID);
 			ArrayList<OrderPO> arrivepolist = new ArrayList<OrderPO>();
 			ArrayList<OrderPO> transferpolist = new ArrayList<OrderPO>();
-<<<<<<< Updated upstream
 			
 			for(int i=0;i<arrivelist.size();i++)
             	arrivepolist.addAll(arrivelist.get(i).getOrderList());
@@ -173,7 +172,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
             	transferpolist.addAll(transferlist.get(i).getOrderList());
   
             
-=======
 			System.out.println("Station showCurrentOrder:"+arrivelist.size());
 			for(int i=0;i<arrivelist.size();i++){
 				arrivepolist.addAll(arrivelist.get(i).getOrderList());
@@ -182,7 +180,6 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 				transferpolist.addAll(transferlist.get(i).getOrderList());
 
 
->>>>>>> Stashed changes
             for(int i=0;i<arrivepolist.size();i++)
             	for(int j=0;j<transferpolist.size();j++)
             		if(arrivepolist.get(i).getId().equals(transferpolist.get(j).getId())){
