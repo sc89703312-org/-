@@ -151,7 +151,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				submitPayment(new Paymentvo(dateBox.getDate(), Double.parseDouble(moneyField.getText()),
-						deliverField.getText(),orderField.getText(),"aaaaaaaa"));
+						deliverField.getText(),orderField.getText(),"sc925200"));
 				clearPanel();
 			}
 			

@@ -43,12 +43,15 @@ public class HallTransferFileDao extends CommonData<HallTransferReceiptPO> imple
 	@Override
 	public ArrayList<HallTransferReceiptPO> getAll(String location) {
 		// TODO Auto-generated method stub
-		ArrayList<HallTransferReceiptPO> list = showAll();
+		ArrayList<HallTransferReceiptPO> list = (showAll()==null) ? (new ArrayList<HallTransferReceiptPO>()) : showAll();
 
 		ArrayList<HallTransferReceiptPO> newlist = new ArrayList<HallTransferReceiptPO>();
-		for(int i=0;i<list.size();i++)
+		System.out.println(list.size());
+		for(int i=0;i<list.size();i++){
+//			System.out.println(list.size());
 			if(list.get(i).getLocation().equals(location))
 				newlist.add(list.get(i));
+		}
 		return newlist;
 	}
 

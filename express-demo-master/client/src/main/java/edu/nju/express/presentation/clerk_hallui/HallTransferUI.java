@@ -155,7 +155,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
-//		initData();
+		initData();
 //		Object[] data1 = { false, "1234567890" };
 //		Object[] data2 = { false, "1234567891" };
 //		Object[] data3 = { false, "1234567892" };
@@ -304,7 +304,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	
 	public void initData(){
 		Object[] row = new Object[2];
-		int length = receipt.showCurrentOrder().size();
+		int length = (receipt.showCurrentOrder()==null) ? 0 : receipt.showCurrentOrder().size();
 		for(int i=0; i<length; i++){
 			row[0] = false;
 			row[1] = receipt.showCurrentOrder().get(i).getID();

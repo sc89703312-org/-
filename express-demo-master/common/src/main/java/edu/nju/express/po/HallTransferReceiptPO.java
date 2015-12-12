@@ -34,6 +34,7 @@ public class HallTransferReceiptPO extends ReceiptPOBase implements Serializable
 			String supervisor,String guard,ArrayList<OrderPO> orderlist){
 		
 		this.id = "HallTransferReceipt"+id;
+		this.location = location;
 		this.date=date;
 		this.state = ReceiptState.SUBMITTED;
 		this.hallID=hallID;
