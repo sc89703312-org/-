@@ -7,6 +7,7 @@ import edu.nju.express.common.Role;
 import edu.nju.express.dataservice.LoginInfoDataService;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.init.RMIHelper;
+import edu.nju.express.io.IO;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.UserPO;
 /**
@@ -82,6 +83,8 @@ public class Login {
 
 					LoginInfo.setUserName(users.get(i).getName());
 					LoginInfo.setUserID(users.get(i).getId());
+					LoginInfo.setUserPassword(users.get(i).getPassword());
+
 
 					try {
 						loginInfoDataService.insert(new LoginInfo(

@@ -30,6 +30,8 @@ public class LoginInfo implements Serializable{
 	/** 登陆IP地址*/
 	private  String clientIP;
 	
+	private static String passWord;
+	
 	private  InetAddress addr;
 	private  String hostAddr;
 
@@ -52,6 +54,15 @@ public class LoginInfo implements Serializable{
 	public static void setUserID(String ID){
 		LoginInfo.userID = ID;
 	}
+	
+	public static void setUserPassword(String password){
+		LoginInfo.passWord = password;
+	}
+	
+	public static String getUserPassword(){
+		return passWord;
+	}
+	
 	
 	public static String getUserName(){
 		return userName;

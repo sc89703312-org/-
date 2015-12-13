@@ -20,7 +20,9 @@ import javax.swing.JLabel;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.businesslogic.login.Login;
 import edu.nju.express.common.Role;
+import edu.nju.express.io.IO;
 import edu.nju.express.log.ui.frame.Frame;
+import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.administratorui.Administor_Frame;
 import edu.nju.express.presentation.clerk_hallui.Hall_Frame;
 import edu.nju.express.presentation.clerk_stationui.Station_Frame;
@@ -51,10 +53,15 @@ public class LoginUI extends MyFrame {
 	MyButton login;
 	MyButton logistics;
 	MyButton errorConfirm;
+	MyButton recordPassword;
+	String  record = "false";
+	String userName;
+	String userPassword;
 
 	MyPasswordField passwordField;
 	MyTextFieldV2 userNameField;
 	MyLabel label_field1, label_field2, label_field3, label_field4, label_field5, label_field6;
+	MyLabel recordLabel;
 	MyBackground background;
 
 	Image bg;
@@ -72,10 +79,17 @@ public class LoginUI extends MyFrame {
 		this.setUndecorated(true);
 		this.setLayout(null);
 
-		new LoadPictures().start();
+		
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		String temp[]=IO.readTxt().split(" ");
+		record = temp[0];
+		userName = temp[1];
+		userPassword = temp[2];
+		
+		new LoadPictures().start();
 
 	}
 
@@ -107,9 +121,15 @@ public class LoginUI extends MyFrame {
 
 		@SuppressWarnings("deprecation")
 		Role role = loginBL.login(userNameField.getText(), passwordField.getText());
+		
+		
+		if(role!=null)
+			recordPassword();
+		
+		
 
 		if (role == Role.ACCOUNTANT) {
-			System.out.println("??");
+
 			LoginUI.this.closeFrame();
 
 			try {
@@ -229,6 +249,20 @@ public class LoginUI extends MyFrame {
 		public void run() {
 			bg = new ImageIcon("ui/image/login/login_4.png").getImage();
 			exit_icon = new ImageIcon("ui/image/login/exit.png");
+			
+			
+			
+			recordLabel = new MyLabel(339, 359, 30, 30);
+			recordLabel.setIcon(new ImageIcon("ui/image/login/record.png"));		
+			recordLabel.setVisible(false);
+			recordLabel.setOpaque(false);
+			
+			if(record.equals("true"))
+				recordLabel.setVisible(true);
+			
+			LoginUI.this.add(recordLabel);
+			
+			
 
 			label_field6 = new MyLabel(0, 0, 900, 600);
 			label_field6.setIcon(new ImageIcon("ui/image/login/报错_1.png"));
@@ -284,6 +318,11 @@ public class LoginUI extends MyFrame {
 					label_field1.setVisible(false);
 				}
 			});
+			
+			if(record.equals("true"))
+				userNameField.setText(userName);
+			
+			
 			LoginUI.this.add(userNameField);
 
 			login = new MyButton(487, 341, 130, 40);
@@ -318,6 +357,41 @@ public class LoginUI extends MyFrame {
 			});
 			logistics.addActionListener(new btnListener());
 			LoginUI.this.add(logistics);
+			
+			
+			
+			recordPassword = new MyButton(339, 359, 30, 30);
+			recordPassword.addMouseListener(new MouseAdapter() {
+
+				public void mouseEntered(MouseEvent arg0) {
+					
+				}
+
+				public void mouseExited(MouseEvent arg0) {
+					
+				}
+				@Override
+				public void mouseClicked(MouseEvent arg0){
+					if(record.equals("true")){
+						record = "false";
+						recordLabel.setVisible(false);
+					}else {
+						record = "true";
+						recordLabel.setVisible(true);
+					}
+					
+					
+					System.out.println("Current state is: "+record);
+				}
+				
+				
+			});
+			
+			LoginUI.this.add(recordPassword);
+			
+			
+			
+			
 
 			passwordField = new MyPasswordField(390, 280, 220, 40);
 			passwordField.setFont(new Font("Arail", Font.PLAIN, 20));
@@ -332,6 +406,11 @@ public class LoginUI extends MyFrame {
 					label_field2.setVisible(false);
 				}
 			});
+			
+			
+			if(record.equals("true"))
+				passwordField.setText(userPassword);
+			
 			LoginUI.this.add(passwordField);
 
 			passwordField.addKeyListener(new KeyAdapter() {
@@ -378,4 +457,9 @@ public class LoginUI extends MyFrame {
 		}
 	}
 
+	
+	
+	private void recordPassword(){
+		IO.writerTxt(record+" "+LoginInfo.getUserID()+" "+LoginInfo.getUserPassword());
+	}
 }
