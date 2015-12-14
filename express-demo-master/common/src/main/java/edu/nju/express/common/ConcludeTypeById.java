@@ -20,8 +20,10 @@ public class ConcludeTypeById {
 			return 6;
 		}else if (ID.startsWith("DeliverReceipt")) {
 			return 7;
-		}else {
+		}else if(ID.startsWith("HallTransferReceipt")){
 			return 8;
+		}else {
+			return 9;
 		}
 	}
 }

@@ -104,25 +104,25 @@ public class ReceiptApprovalUI extends MainPanel {
 				data1[1] = "付款单";
 				break;
 			case 2:
-				data1[1] = "";
+				data1[1] = "中转中心到达单";
 				break;
 			case 3:
-				data1[1] = "";
+				data1[1] = "中转中心中转单";
 				break;
 			case 4:
-				data1[1] = "";
+				data1[1] = "中转中心入库单";
 				break;
 			case 5:
-				data1[1] = "";
+				data1[1] = "中转中心出库单";
 				break;
 			case 6:
-				data1[1] = "";
+				data1[1] = "营业厅到达单";
 				break;
 			case 7:
-				data1[1] = "";
+				data1[1] = "营业厅派送单";
 				break;
 			case 8:
-				data1[1] = "";
+				data1[1] = "营业厅装车单";
 				break;
 			default:
 				break;
