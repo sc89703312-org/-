@@ -249,7 +249,8 @@ public class CreateOrderPanel extends MainPanel {
 		type = Etype.getType((String) typeBox.getSelectedItem());
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, (int) expect);
-		String expectedDate = c.get(Calendar.YEAR) + "/" + String.format("%02d", c.get(Calendar.MONTH+1)) + "/"
+		System.out.println((int)expect);
+		String expectedDate = c.get(Calendar.YEAR) + "/" + String.format("%02d", 1 + c.get(Calendar.MONTH)) + "/"
 				+ String.format("%02d", c.get(Calendar.DATE));
 		System.out.println(expectedDate);
 
