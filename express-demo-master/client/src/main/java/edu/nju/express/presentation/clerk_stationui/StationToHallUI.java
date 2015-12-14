@@ -147,20 +147,17 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		panel.add(toLabel);
 		
 		//根据station属性确定是哪个城市的营业厅
-		Location.init();
+		if(Location.station.size() == 0)
+			Location.init();
 		ArrayList<String> toList = new ArrayList<String>(Location.getHallList(station_id));
-//		int length = Location.getHallList(station_id).size();
-//		
-//		for(int i=0; i<length; i++){
-//			toList.add(Location.getHallList(station_id).get(i));
-//		}
+		
 		
 		toBox = new MyComboBox<String>();
 		for(int i=0; i<toList.size(); i++){
 			toBox.addItem(toList.get(i));
 		}
 		toBox.setSelectedItem(toList.get(0));
-		toBox.setBounds(210, 190, 300, 35);
+		toBox.setBounds(210, 190, 210, 30);
 		panel.add(toBox);
 		
 		supervisorField = new LabelTextField("监装员  ", 10);

@@ -23,14 +23,12 @@ import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
-import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.ArrivalReceiptVO;
-import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 
 public class HallArrivalUI extends JPanel implements MouseListener{
@@ -139,10 +137,10 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		panel.add(table);
 
 
-		//saveOrderBtn
-		saveOrderBtn = new JButton("save");
-		saveOrderBtn.setBounds(600, 440, 80, 40);
-		panel.add(saveOrderBtn);
+//		//saveOrderBtn
+//		saveOrderBtn = new JButton("save");
+//		saveOrderBtn.setBounds(600, 440, 80, 40);
+//		panel.add(saveOrderBtn);
 		
 		
 //		//idField
@@ -171,12 +169,20 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		panel.add(fromLabel);
 		
 		fromBox = new MyComboBox<String>();
-		String[] fromList = {"南京","上海","北京","广州"};
-		for(int i=0; i<fromList.length; i++){
-			fromBox.addItem(fromList[i]);
+		String cityID = hall_id.substring(0, 3);
+		ArrayList<String> fromList = new ArrayList<String>();
+		
+		fromList.add(Location.getStationLocation(cityID)+"中转站");
+		for(int i=0; i<Location.getHallList(hall_id.substring(0, 3)).size(); i++){
+			fromList.add(Location.getHallList(cityID).get(i));
 		}
-		fromBox.setSelectedItem(fromList[0]);
-		fromBox.setBounds(210, 550, 100, 35);
+//		fromList = {"南京中转站","栖霞区营业厅","浦口区营业厅","鼓楼区营业厅","玄武区营业厅"};
+		fromBox.removeAllItems();
+		for(int i=0; i<fromList.size(); i++){
+			fromBox.addItem(fromList.get(i));
+		}
+		fromBox.setSelectedItem(fromList.get(0));
+		fromBox.setBounds(210, 550, 220, 35);
 		panel.add(fromBox);
 		
 	}
@@ -286,24 +292,25 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 
 	//生成托运单号
 	public void generateData(String transferId){
+		String searchId = "HallTransferReceipt"+transferId;
 		orderList = new ArrayList<OrderVO>();
-		System.out.println(transferId);
+//		System.out.println(transferId);
 		
-//		String dateStr = receipt.createArrivalReceipt(transferId).getDate();
-//		String[] date = dateStr.split("/");
-//		dateBox.getYearComboBox().setSelectedItem(date[0]);
-//		dateBox.getMonthComboBox().setSelectedItem(date[1]);
-//		dateBox.getDayComboBox().setSelectedItem(date[2]);
-//		
-//		String from = receipt.createArrivalReceipt(transferId).getFrom();
-//		//先这样, 要根据hall_id初始化不同的地点
-//		
-//		fromBox.addItem(from);
-//		fromBox.setSelectedItem(from);
+		String dateStr = receipt.createArrivalReceipt(searchId).getDate();
+		String[] date = dateStr.split("/");
+		dateBox.getYearComboBox().setSelectedItem(date[0]);
+		dateBox.getMonthComboBox().setSelectedItem(date[1]);
+		dateBox.getDayComboBox().setSelectedItem(date[2]);
 		
-		int length = receipt.createArrivalReceipt(transferId).getOrderList().size();
+		String from = receipt.createArrivalReceipt(searchId).getFrom();
+		//先这样, 要根据hall_id初始化不同的地点
+		
+		fromBox.addItem(from);
+		fromBox.setSelectedItem(from);
+		
+		int length = receipt.createArrivalReceipt(searchId).getOrderList().size();
 		for(int i=0; i<length; i++){
-			orderList.add(receipt.createArrivalReceipt(transferId).getOrderList().get(i));
+			orderList.add(receipt.createArrivalReceipt(searchId).getOrderList().get(i));
 		}
 		
 		String[] row = new String[2];

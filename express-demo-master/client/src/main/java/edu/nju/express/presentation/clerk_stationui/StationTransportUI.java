@@ -120,12 +120,12 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		panel.add(fromLabel);
 		
 		fromBox = new MyComboBox<String>();
-		String[] fromList = {"南京","上海","北京","广州"};
+		String[] fromList = {"南京中转站","上海中转站","北京中转站","广州中转站"};
 		for(int i=0; i<fromList.length; i++){
 			fromBox.addItem(fromList[i]);
 		}
 		fromBox.setSelectedItem(fromList[0]);
-		fromBox.setBounds(210, 190, 100, 35);
+		fromBox.setBounds(210, 190, 200, 35);
 		panel.add(fromBox);
 		
 		toLabel = new JLabel("到达地");
@@ -135,12 +135,12 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		panel.add(toLabel);
 		
 		toBox = new MyComboBox<String>();
-		String[] toList = {"南京","上海","北京","广州"};
+		String[] toList = {"南京中转站","上海中转站","北京中转站","广州中转站"};
 		for(int i=0; i<toList.length; i++){
 			toBox.addItem(toList[i]);
 		}
 		toBox.setSelectedItem(toList[0]);
-		toBox.setBounds(210, 245, 100, 35);
+		toBox.setBounds(210, 245, 200, 35);
 		panel.add(toBox);
 		
 		containerField = new LabelTextField("货柜号  ", 15);

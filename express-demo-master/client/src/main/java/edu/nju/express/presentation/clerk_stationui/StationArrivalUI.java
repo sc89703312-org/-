@@ -56,7 +56,9 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
 	
-	String location = Location.getStationLocation(LoginInfo.getUserID().substring(0, 3));
+	
+	String cityID = LoginInfo.getUserID().substring(0, 3);
+	String location = Location.getStationLocation(cityID);
 	
 	public StationArrivalUI(StationController c){
 		this.controller = c;
@@ -112,11 +114,23 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		panel.add(fromLabel);
 		
 		fromBox = new MyComboBox<String>();
-		String[] fromList = {"栖霞区营业厅","鼓楼区营业厅","玄武区营业厅","浦口区营业厅"};
-		for(int i=0; i<fromList.length; i++){
-			fromBox.addItem(fromList[i]);
+		ArrayList<String> fromList = new ArrayList<String>();
+		fromList.add("南京中转站");
+		fromList.add("北京中转站");
+		fromList.add("上海中转站");
+		fromList.add("广州中转站");
+		if(Location.station.size() == 0)
+			Location.init();
+		
+		System.out.println("location:"+cityID);
+		for(int i=0; i<Location.getHallList(cityID).size(); i++){
+			fromList.add(Location.getHallList(cityID).get(i));
 		}
-		fromBox.setSelectedItem(fromList[0]);
+//		String[] fromList = {"栖霞区营业厅","鼓楼区营业厅","玄武区营业厅","浦口区营业厅"};
+		for(int i=0; i<fromList.size(); i++){
+			fromBox.addItem(fromList.get(i));
+		}
+		fromBox.setSelectedItem(fromList.get(0));
 		fromBox.setBounds(170, 185, 200, 30);
 		panel.add(fromBox);
 		
@@ -260,10 +274,11 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 
 	//set panel
 	public void generateData(String id){
+		String searchId = "ArriveReceipt" + id;
 		orderList = new ArrayList<OrderVO>();
-		int length = receipt.creatArriveReceipt(id).getList().size();
+		int length = receipt.creatArriveReceipt(searchId).getList().size();
 		for(int i=0; i<length; i++){
-			orderList.add(receipt.creatArriveReceipt(id).getList().get(i));
+			orderList.add(receipt.creatArriveReceipt(searchId).getList().get(i));
 		}
 		Object[] row = new Object[2];
 		for(int i=0; i<length; i++){

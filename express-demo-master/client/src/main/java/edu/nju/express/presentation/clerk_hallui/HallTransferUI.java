@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -124,18 +125,33 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		toLabel = new JLabel("到达地");
 		toLabel.setFont(font);
 		toLabel.setForeground(color);
-		toLabel.setBounds(130, 135+45, 80, 40);
+		toLabel.setBounds(130, 135+60, 80, 40);
 		panel.add(toLabel);
 		
 		
 		toBox = new MyComboBox<String>();
 		//根据所在城市确定到达地
-		String[] toList = {"南京中转站","栖霞区营业厅","浦口区营业厅","鼓楼区营业厅","玄武区营业厅"};
-		for(int i=0; i<toList.length; i++){
-			toBox.addItem(toList[i]);
+		String cityID = hall_id.substring(0, 3);
+		ArrayList<String> toList = new ArrayList<String>();
+		
+		toList.add(Location.getStationLocation(cityID)+"中转站");
+			//同一次登录只要调用一次
+			if(Location.station.size() == 0)
+				Location.init();
+			
+
+			for(int i=0; i<Location.getHallList(hall_id.substring(0, 3)).size(); i++){
+				toList.add(Location.getHallList(cityID).get(i));
+			}
+		
+		System.out.println("toList.size()"+ toList.size());
+//		toList = {"南京中转站","栖霞区营业厅","浦口区营业厅","鼓楼区营业厅","玄武区营业厅"};
+		toBox.removeAllItems();
+		for(int i=0; i<toList.size(); i++){
+			toBox.addItem(toList.get(i));
 		}
-		toBox.setSelectedItem(toList[0]);
-		toBox.setBounds(210, 135+45, 230, 30);
+		toBox.setSelectedItem(toList.get(0));
+		toBox.setBounds(210, 135+60, 220, 30);
 		panel.add(toBox);
 		
 		supervisorField = new LabelTextField("监装员  ",10);
