@@ -2,6 +2,7 @@ package org.server.orderdata;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,4 +51,47 @@ public class OrderDataTest {
 		for(OrderPO po:orderLit)
 			System.out.println(po.getID()+"  "+po.getCurrentSpot());
 	}
+	
+	
+	@Test 
+	public void testGetAnOrder() throws RemoteException{
+		
+		System.out.println("搜索制定订单");
+		
+		Scanner in = new Scanner(System.in);
+		OrderPO temp = orderData.find(in.next());
+		
+		if(temp!=null)
+		   System.out.println(temp.getID()+" "+temp.getGoodsName()+"  "+
+		temp.getCurrentSpot());
+		else
+			System.out.println("订单不存在");
+		
+	}
+	
+	
+	@Test 
+	public void testModifyAnOrder() throws RemoteException{
+		
+		System.out.println("输入订单号");
+		
+		Scanner in = new Scanner(System.in);
+		OrderPO temp = orderData.find(in.next());
+		
+		if(temp!=null)
+		   System.out.println(temp.getID()+" "+temp.getGoodsName()+"  "+
+		temp.getCurrentSpot());
+		else
+			System.out.println("订单不存在");
+		
+		
+		String currentSpot = in.next();
+		orderData.addHistory(currentSpot, temp.getID());
+		temp = orderData.find(temp.getID());
+		for(String spot :temp.viewHistory())
+			System.out.println(spot);
+		
+	}
+	
+	
 }
