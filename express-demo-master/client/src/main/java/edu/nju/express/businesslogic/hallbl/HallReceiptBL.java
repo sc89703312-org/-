@@ -78,7 +78,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	public ArrivalReceiptVO createArrivalReceipt(String id) {
 		// TODO Auto-generated method stub
 		
-		hallID = LoginInfo.getUserID().substring(0, 5);
+		hallID = LoginInfo.getUserID().substring(0, 6);
 		
 		try {
 			location = hallDataService.getLocation(hallID);
@@ -90,8 +90,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		if(id.contains("HallTransferReceipt")){
             try {
 				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
+				
+				
+				System.out.println(location+"    "+transfervo.getDestination());
+				
 				if(transfervo.getDestination().equals(location)){
-				    ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(id),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
+				    ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(hallID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
 				    return vo;
 				}
 				else
@@ -132,7 +136,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	public void subArrivalReceipt(ArrivalReceiptVO vo) {
 		// TODO Auto-generated method stub
 		
-		hallID = LoginInfo.getUserID().substring(0, 5);
+		hallID = LoginInfo.getUserID().substring(0, 6);
 		
 		try {
 			location = hallDataService.getLocation(hallID);

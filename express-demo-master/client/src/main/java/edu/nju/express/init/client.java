@@ -13,6 +13,7 @@ import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
 import edu.nju.express.businesslogic.balancebl.CreateCost.CostController;
 import edu.nju.express.businesslogic.balancebl.balance.Balancebl;
 import edu.nju.express.businesslogic.bankingbl.Bankingbl;
+import edu.nju.express.businesslogic.hallbl.HallReceiptBL;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.paymentbl.PaymentController;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
@@ -67,7 +68,21 @@ public class client {
 		
 		new LoginUI();
 		
-		
+//		HallReceiptBL hallReceiptBL = DataFactory.createHallReceiptBLInstance();
+////		
+//		try {
+//			ArrayList<HallTransferReceiptPO> list =RMIHelper.getHallDataService().getAllHallTransfer();
+//		
+//		
+//			System.out.println(list.size());
+//			for(HallTransferReceiptPO po:list)
+//				System.out.println(po.getCarID());
+//		
+//		
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		
 

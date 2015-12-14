@@ -419,10 +419,10 @@ public class LoginUI extends MyFrame {
 				@Override
 				public void keyPressed(KeyEvent e) {
 					// TODO Auto-generated method stub
-					System.out.println(12331);
+
 					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 						login();
-						System.out.println(213);
+
 					}
 				}
 			});

@@ -19,6 +19,7 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 		
 		this.date=date;
 		this.hallID=hallID;
+		this.location = location;
 		this.transportID=transportID;
 		this.to=to;
 		this.carID=carID;
@@ -60,5 +61,6 @@ public class HallTransferReceiptVO extends ReceiptVOBase{
 	public ArrayList<OrderVO> getOrderlist(){
 		return orderlist;
 	}
+	
 	
 }

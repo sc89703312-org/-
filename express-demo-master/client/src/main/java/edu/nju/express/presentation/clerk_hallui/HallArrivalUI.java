@@ -287,18 +287,19 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	//生成托运单号
 	public void generateData(String transferId){
 		orderList = new ArrayList<OrderVO>();
+		System.out.println(transferId);
 		
-		String dateStr = receipt.createArrivalReceipt(transferId).getDate();
-		String[] date = dateStr.split("/");
-		dateBox.getYearComboBox().setSelectedItem(date[0]);
-		dateBox.getMonthComboBox().setSelectedItem(date[1]);
-		dateBox.getDayComboBox().setSelectedItem(date[2]);
-		
-		String from = receipt.createArrivalReceipt(transferId).getFrom();
-		//先这样, 要根据hall_id初始化不同的地点
-		
-		fromBox.addItem(from);
-		fromBox.setSelectedItem(from);
+//		String dateStr = receipt.createArrivalReceipt(transferId).getDate();
+//		String[] date = dateStr.split("/");
+//		dateBox.getYearComboBox().setSelectedItem(date[0]);
+//		dateBox.getMonthComboBox().setSelectedItem(date[1]);
+//		dateBox.getDayComboBox().setSelectedItem(date[2]);
+//		
+//		String from = receipt.createArrivalReceipt(transferId).getFrom();
+//		//先这样, 要根据hall_id初始化不同的地点
+//		
+//		fromBox.addItem(from);
+//		fromBox.setSelectedItem(from);
 		
 		int length = receipt.createArrivalReceipt(transferId).getOrderList().size();
 		for(int i=0; i<length; i++){
