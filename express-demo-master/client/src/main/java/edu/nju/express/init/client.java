@@ -31,6 +31,7 @@ import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.Paymentpo;
+import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.presentation.loginui.LoginUI;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
 import edu.nju.express.vo.Accountvo;
@@ -70,19 +71,19 @@ public class client {
 		
 //		HallReceiptBL hallReceiptBL = DataFactory.createHallReceiptBLInstance();
 ////		
-//		try {
-//			ArrayList<HallTransferReceiptPO> list =RMIHelper.getHallDataService().getAllHallTransfer();
-//		
-//		
-//			System.out.println(list.size());
-//			for(HallTransferReceiptPO po:list)
-//				System.out.println(po.getCarID());
-//		
-//		
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			ArrayList<TransferReceiptPO> list =RMIHelper.getStationDataService().getTransferReceipt();
+		
+		
+			System.out.println(list.size());
+			for(TransferReceiptPO po:list)
+				System.out.println(po.getID());
+		
+		
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
 
