@@ -37,6 +37,7 @@ public class AccountPanel extends MainPanel{
 		
 		ReturnButton jbtReturn = new ReturnButton();
 		jbtReturn.setActionCommand("AccountUI");
+		jbtReturn.addActionListener(controller);
 		this.add(jbtReturn);
 		
 		JPanel p = new JPanel();

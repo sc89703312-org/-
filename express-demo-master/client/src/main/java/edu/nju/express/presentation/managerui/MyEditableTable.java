@@ -19,13 +19,25 @@ public class MyEditableTable extends JTable {
 	private static Color foreColor = new Color(44, 62, 80);
 	private static Color foreColor2 = new Color(172, 229, 216);
 	private static Font font = new Font("黑体", Font.PLAIN, 18);
+	private static String[] header = {"城市1","-","城市2","：","距离","公里"};
 
-	public MyEditableTable(String[] header, DefaultTableModel model) {
-		super(model);
 
+	public MyEditableTable() {
+		super(new DefaultTableModel(null, header) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				if (column == 4)
+					return true;
+				return false;
+			}
+
+		});
 		this.setRowHeight(ROW_HEIGHT);
 		this.setFont(font);
-		this.setCellSelectionEnabled(false);
+//		this.setCellSelectionEnabled(false);
 		this.setOpaque(false);
 		this.setShowGrid(false);
 		this.setForeground(foreColor);
@@ -38,7 +50,6 @@ public class MyEditableTable extends JTable {
 					boolean hasFocus, int row, int column) {
 				setOpaque(false);
 				if (isCellEditable(row, column)) {
-					final int i = row;
 					setForeground(foreColor2);
 				} else
 					setForeground(foreColor);
@@ -47,7 +58,9 @@ public class MyEditableTable extends JTable {
 			}
 		};
 		dtr.setHorizontalAlignment(JLabel.CENTER);
-		for (int i = 0; i < header.length; i++) {
+		for (int i = 0; i < header.length; i++)
+
+		{
 			this.getColumn(header[i]).setCellRenderer(dtr);
 		}
 
@@ -63,15 +76,16 @@ public class MyEditableTable extends JTable {
 		this.getColumn(header[3]).setMaxWidth(30);
 		this.getColumn(header[4]).setMaxWidth(60);
 		this.getColumn(header[5]).setMaxWidth(50);
+
 	}
 
-	public ArrayList<String> getEditedRows(){
-		ArrayList<String> edited = new ArrayList<String>();
-		for(int i = 0;i<this.getRowCount();i++){
-			System.out.println(this.getValueAt(i, 4));
-			edited.add((String)(this.getValueAt(i, 4)));
+	public ArrayList<String> getInput() {
+		ArrayList<String> input = new ArrayList<String>();
+
+		for (int i = 0; i < this.getRowCount(); i++) {
+			input.add((String)this.getValueAt(i, 4));
 		}
-		
-		return edited;
+
+		return input;
 	}
 }
