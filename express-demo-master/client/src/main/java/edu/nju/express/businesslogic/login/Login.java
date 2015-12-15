@@ -1,9 +1,13 @@
 package edu.nju.express.businesslogic.login;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.common.Role;
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.LoginInfoDataService;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.init.RMIHelper;
@@ -31,9 +35,20 @@ public class Login {
 	
 	public Login() {
 		// TODO Auto-generated constructor stub
-	
-		userDataService = RMIHelper.getUserDataService();
-		loginInfoDataService = RMIHelper.getLoginInfoDataService();
+	try {
+		userDataService = (UserDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/user-service");
+		
+			loginInfoDataService = (LoginInfoDataService)Naming.lookup("rmi://" + RMIConfig.HOST + "/login-info")  ;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		users = new ArrayList<>();
 	}
 	

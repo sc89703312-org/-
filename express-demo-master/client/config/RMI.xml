@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
+	<Data>
+		<name>RMI</name>
+		<host>127.0.0.1</host>
+		<port>1099</port>
+	</Data>
+        
+        <Data>
+		<name>Test</name>
+		<field>I don't know XML</field>
+	</Data>
+        
+        
+
+</Config>

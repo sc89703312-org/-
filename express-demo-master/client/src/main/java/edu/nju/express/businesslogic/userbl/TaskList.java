@@ -1,8 +1,12 @@
 package edu.nju.express.businesslogic.userbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.UserMessageDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.UserMessagePO;
@@ -19,7 +23,18 @@ public class TaskList {
 	UserMessageDataService userMessageData;
 
 	public TaskList() {
-		userMessageData = RMIHelper.getUserMessageDataService();
+		try {
+			userMessageData = (UserMessageDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/usermessage-service");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**

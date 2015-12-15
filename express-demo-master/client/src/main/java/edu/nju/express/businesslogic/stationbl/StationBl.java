@@ -1,10 +1,14 @@
 package edu.nju.express.businesslogic.stationbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.StationOperationInfo;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.CommodityDataService;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
@@ -31,8 +35,21 @@ public class StationBl implements StationOperationInfo{
 	 * 构造方法
 	 */
 	public StationBl(){
-		stationDataService = RMIHelper.getStationDataService();
-		commodityDataService = RMIHelper.getCommodityDataService();
+		try {
+			
+			stationDataService = (StationDataService)Naming.lookup("rmi://" + RMIConfig.HOST + "/station-service");
+		
+			commodityDataService = (CommodityDataService)Naming.lookup("rmi://" + RMIConfig.HOST + "/commodity-service");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
  
 	/*

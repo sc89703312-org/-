@@ -1,11 +1,15 @@
 package edu.nju.express.businesslogic.bankingbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.BankingBlService;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.BankingDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -32,7 +36,18 @@ public class Bankingbl implements BankingBlService, BankingInfo{
 	 * 构造方法
 	 */
 	public Bankingbl(){
-		bankingDataService = RMIHelper.getBankingDataService();
+		try {
+			bankingDataService = (BankingDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/banking_service");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/*

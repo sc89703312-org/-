@@ -1,10 +1,14 @@
 package edu.nju.express.businesslogic.strategybl.salarysettingbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import edu.nju.express.blservice.SalarySettingBlService;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.SalaryDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -21,7 +25,7 @@ import edu.nju.express.vo.SalaryVO;
 public class SalarySettingBl implements SalarySettingBlService {
 
 	
-	public static SalaryDataService salaryDataService= RMIHelper.getSalaryDataService();
+	public static SalaryDataService salaryDataService =RMIHelper.getSalaryDataService();
 	
 	public SalarySettingBl() {
 		// TODO Auto-generated constructor stub

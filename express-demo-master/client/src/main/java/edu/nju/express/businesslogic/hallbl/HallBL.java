@@ -1,11 +1,15 @@
 package edu.nju.express.businesslogic.hallbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.HallBLService;
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.HallOperationInfo;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.HallDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.HallPo;
@@ -24,7 +28,18 @@ public class HallBL implements HallBLService,HallOperationInfo {
 		// TODO Auto-generated constructor stub
 	
 		
-		hallDataService = RMIHelper.getHallDataService();
+		try {
+			hallDataService = (HallDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/hall-service");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

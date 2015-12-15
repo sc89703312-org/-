@@ -1,5 +1,8 @@
 package edu.nju.express.businesslogic.paymentbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -10,6 +13,7 @@ import edu.nju.express.businesslogic.hallbl.info.PaymentOrderInfo;
 import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.businesslogic.receiptbl.Info.PaymentApproveInfo;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.Paymentdataservice;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -51,7 +55,18 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	public Paymentbl(BankingInfo account) {
 		// TODO Auto-generated constructor stub
 	
-	paymentDataService =RMIHelper.getPaymentDataService();
+	try {
+		paymentDataService =(Paymentdataservice) Naming.lookup("rmi://" + RMIConfig.HOST + "/payment-service");
+	} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (NotBoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	this.account = account;
 	}
 	
