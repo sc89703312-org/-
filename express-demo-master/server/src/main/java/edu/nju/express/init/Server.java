@@ -12,9 +12,7 @@ import edu.nju.express.ui.frame.ServerFrame;
 public class Server {
 
 	
-	private InetAddress addr;
-	private static String hostAddr;
-	private static String hostName;
+
 	
 	
 	
@@ -23,10 +21,11 @@ public class Server {
 		RMIHelper.init();
 		System.out.println("Server creates!");
 		
-	  new ServerFrame();
+	    new ServerFrame();
 		
 	
 
+	    
 
 		
 		

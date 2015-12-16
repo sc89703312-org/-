@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataimpl.*;
 import edu.nju.express.dataservice.*;
 
@@ -38,10 +39,10 @@ public class RMIHelper {
 		 
 		 
 		 
-		 
+
 		 
 	        try {
-	            LocateRegistry.createRegistry(1099);
+	            LocateRegistry.createRegistry(Integer.parseInt(RMIConfig.PORT));
 
 	             paymentdataservice = new PaymentDataservice_Impl();
 	            
