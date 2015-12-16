@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.BoxLayout;
@@ -22,8 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Etype;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.MainPanel;
@@ -216,8 +219,23 @@ public class CreateOrderPanel extends MainPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
 				cityR = (addressR.getText().split(" "))[0];
 				cityS = (addressS.getText().split(" "))[0];
+				
+				ArrayList<String> cityList = ConstantSettingBl.getCityList();
+				
+				System.out.println(cityR+"   "+cityS);
+				
+				if(!cityList.contains(cityS))
+					PromptDialog.show("输入有误", "     请检查收件人地址");
+				
+				if(!cityList.contains(cityR))
+					PromptDialog.show("输入有误", "     请检查寄件人地址");
+				
 				total = calculate();
 				
 				System.out.println(FeeCalculator.getDistance("北京", "广州"));
@@ -254,11 +272,21 @@ public class CreateOrderPanel extends MainPanel {
 				+ String.format("%02d", c.get(Calendar.DATE));
 		System.out.println(expectedDate);
 
+		if(num.getText().equals("")||
+		   weight.getText().equals("")||
+		   size.getText().equals("")||
+		   id.getText().length()!=10)
+		{
+			PromptDialog.show("订单填写有误", "   请检查必要项是否正确填写");
+			return null;
+		}
+		
+		
 		return new OrderVO(nameS.getText(), addressS.getText(), postS.getText(), telS.getText(), phoneS.getText(),
 				nameR.getText(), addressR.getText(), postR.getText(), telR.getText(), phoneR.getText(),
 				Integer.parseInt(num.getText()), Double.parseDouble(weight.getText()),
 				Double.parseDouble(size.getText()), goodsName.getText(), Double.parseDouble(size.getText()), pkgCost,
-				total, id.getText(), type, ArrivalState.NO, expectedDate, cityS);
+				total, id.getText(), type, ArrivalState.NO, expectedDate, addressS.getText());
 	}
 
 	private double calculate() {

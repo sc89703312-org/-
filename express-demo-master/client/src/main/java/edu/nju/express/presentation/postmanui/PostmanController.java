@@ -58,8 +58,8 @@ public class PostmanController implements UIController {
 		} else if (e.getActionCommand().equals("SubmitOrder")) {
 			
 			OrderVO tempVo = ((CreateOrderPanel) ((JButton)e.getSource()).getParent()).getInput();
-			System.out.println(tempVo);
-			
+
+			if(tempVo!=null)
 			System.out.println(order.createOrder(tempVo));
 		
 		} else if (e.getActionCommand().equals("ConfirmReceival")) {
