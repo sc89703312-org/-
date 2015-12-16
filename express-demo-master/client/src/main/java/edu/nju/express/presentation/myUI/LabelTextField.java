@@ -61,5 +61,9 @@ public class LabelTextField extends JPanel {
 	public void setText(String text) {
 		field.setText(text);
 	}
+	
+	public void setError(){
+		field.setError();
+	}
 
 }

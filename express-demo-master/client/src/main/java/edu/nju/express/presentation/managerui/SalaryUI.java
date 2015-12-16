@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.SalaryVO;
 
 public class SalaryUI extends MainPanel {
@@ -70,6 +71,10 @@ public class SalaryUI extends MainPanel {
 		text[0] = clerkField.getText();
 		text[1] = driverField.getText();
 		text[2] = postmanField.getText();
+		
+		if(Double.parseDouble(text[0]) <= 0 ){
+			clerkField.setError();
+		}
 		return text;
 	}
 	

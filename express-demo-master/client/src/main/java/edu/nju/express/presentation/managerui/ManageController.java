@@ -13,7 +13,10 @@ import edu.nju.express.blservice.OrganizationBlService;
 import edu.nju.express.blservice.ReceiptBlService;
 import edu.nju.express.blservice.SalarySettingBlService;
 import edu.nju.express.businesslogic.DataFactory;
+import edu.nju.express.common.ResultMessage;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ConstantVO;
 import edu.nju.express.vo.DistanceVO;
 import edu.nju.express.vo.EmployeeVO;
@@ -134,7 +137,10 @@ public class ManageController implements UIController {
 		} else if (e.getActionCommand().equals("Approve")) {
 
 			currentPanel = (JPanel) (((JButton) e.getSource()).getParent());
-			for (String id : ((ReceiptApprovalUI) currentPanel).getIDtoApprove()) {
+			ArrayList<String> list = ((ReceiptApprovalUI) currentPanel).getIDtoApprove();
+			if(list.isEmpty())
+				WarningDialog.show("", "未选择任何单据");
+			for (String id : list) {
 				receipt.approve(id);
 			}
 		} else if (e.getActionCommand().equals("SetSalary")) {
@@ -166,8 +172,13 @@ public class ManageController implements UIController {
 		} else if (e.getActionCommand().equals("AddEmployee")) {
 
 			UserMessageVO vo = ((AddEmployeePanel) currentPanel).getTextInput();
-			manage.addEmployee(vo.getId(), vo.getName(), vo.getRole());
+			if(manage.addEmployee(vo.getId(), vo.getName(), vo.getRole())==ResultMessage.INVALID){
+				System.out.println(1322);
+				WarningDialog.show("无法新增人员", "该人员编号已存在");
+			}
 
+			
+			
 		} else if (e.getActionCommand().equals("DismissEmployee")) {
 
 			String id = ((DismissEmployeePanel) currentPanel).getID();

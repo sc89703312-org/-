@@ -72,6 +72,11 @@ public class MyTextField extends JPanel {
 		});
 
 	}
+	
+	public void setError(){
+		state = 3;
+		p.repaint();
+	}
 
 	@Override
 	protected void paintComponent(Graphics g) {

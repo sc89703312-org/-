@@ -25,4 +25,5 @@ public class ConfirmButton extends JButton{
 		this.setBounds(450,537,80,30);
 	}
 	
+	public void addTick(){}
 }
