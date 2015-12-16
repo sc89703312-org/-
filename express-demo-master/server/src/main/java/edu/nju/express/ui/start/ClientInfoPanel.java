@@ -61,7 +61,7 @@ public class ClientInfoPanel extends ServerPanel {
 	public ClientInfoPanel(ServerFrame parent) {
 		this.setSize(dimension);
 		// this.setBorder(BorderFactory.createTitledBorder(getBorder(), "客户端信息", TitledBorder.CENTER, TitledBorder.TOP, UIConfig.TEXT_FONT));
-		this.addUsersTable();
+		this.initUserTable();
 		this.addRefreshBtn();
 
 		this.parent = parent;
@@ -91,6 +91,22 @@ public class ClientInfoPanel extends ServerPanel {
 		this.add(usersTable);
 	}
 
+	
+	private void initUserTable(){
+		String[] columnNames = {"用户名", "时间", "姓名", "登录IP"};
+		String[][] rowData = new String[0][columnNames.length];
+		
+		usersTable = new ServerTable(columnNames, rowData);
+		Point usersTablePoint = new Point(PaddingX, PaddingY);
+		usersTable.setLocation(usersTablePoint);
+		Dimension usersTableDimen = new Dimension(dimension.width - PaddingX * 2, dimension.height - PaddingY * 2);
+		usersTable.setSize(usersTableDimen);
+		usersTable.init();
+		this.add(usersTable);
+	}
+	
+	
+	
 	private void addRefreshBtn() {
 		refreshBtn = new ServerButton(IMG_REFRESH_TEXT);
 		refreshBtn.setSize(btnDimen);
