@@ -4,13 +4,15 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+
+import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.*;
 
 
 
 
 public class RMIHelper {
-    private static final String IP = "127.0.0.1";//Can be read from config file
+    private static final String IP = RMIConfig.HOST;//Can be read from config file
    
     
     private static Paymentdataservice paymentDataservice;
