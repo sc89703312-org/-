@@ -11,6 +11,9 @@ import org.junit.Test;
 import edu.nju.express.dataimpl.CommodityDataService_Impl;
 import edu.nju.express.po.ComGoodsPO;
 import edu.nju.express.po.ComZonePO;
+import edu.nju.express.po.EnterReceiptPO;
+import edu.nju.express.po.ExitReceiptPO;
+
 
 public class CommodityDataTest {
 	
@@ -82,7 +85,44 @@ public class CommodityDataTest {
 		
 		ComZonePO zone = commodity.getZone(comID);
 		System.out.println("CellPerShelf: "+zone.getCellPerShelf()+
-				"  ShelfPerLine"+
-		zone.getShelfPerLine());
+				" ShelfPerLine:"+
+		zone.getShelfPerLine()+
+		"PlaneSpace"+zone.getSpace()[0]+
+		"TrainSpace"+zone.getSpace()[1]+
+		"CarSpace"+zone.getSpace()[2]+
+		"TemSpace"+zone.getSpace()[3]);
 	}
+	
+	@Test
+	public void testGetEnter() throws RemoteException{
+		
+		System.out.println("测试获取仓库入库单");
+		
+		Scanner sc = new Scanner(System.in);
+		String comID = sc.next();
+		
+		ArrayList<EnterReceiptPO> list = commodity.getEnterReceipt(comID);
+		for(int i=0;i<list.size();i++){
+			System.out.println("入库单ID："+list.get(i).getId());
+			System.out.println("货物数量："+list.get(i).getGoods().size());
+		}
+		
+	}
+	
+	@Test
+	public void testGetExit() throws RemoteException{
+		
+		System.out.println("测试获取仓库出库单");
+		
+		Scanner sc = new Scanner(System.in);
+		String comID = sc.next();
+		
+		ArrayList<ExitReceiptPO> list = commodity.getExitReceipt(comID);
+		for(int i=0;i<list.size();i++){
+			System.out.println("出库单ID："+list.get(i).getId());
+			System.out.println("货物数量："+list.get(i).getGoods().size());
+		}
+		
+	}
+	
 }
