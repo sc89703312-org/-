@@ -131,27 +131,27 @@ public class CreateOrderPanel extends MainPanel {
 		dp.add(date);
 		p.add(dp);
 
-		nameS = new LabelTextField("收件人姓名  ", 6);
-		addressS = new LabelTextField("收件人地址  ", 17);
-		postS = new LabelTextField("收件人单位  ", 13);
-		telS = new LabelTextField("收件人电话  ", 10);
-		phoneS = new LabelTextField("收件人手机  ", 11);
-		p.add(nameS);
-		p.add(addressS);
-		p.add(postS);
-		p.add(telS);
-		p.add(phoneS);
-
-		nameR = new LabelTextField("寄件人姓名  ", 6);
-		addressR = new LabelTextField("寄件人地址  ", 17);
-		postR = new LabelTextField("寄件人单位  ", 13);
-		telR = new LabelTextField("寄件人电话  ", 10);
-		phoneR = new LabelTextField("寄件人手机  ", 11);
+		nameR = new LabelTextField("收件人姓名  ", 6);
+		addressR = new LabelTextField("收件人地址  ", 17);
+		postR = new LabelTextField("收件人单位  ", 13);
+		telR = new LabelTextField("收件人电话  ", 10);
+		phoneR = new LabelTextField("收件人手机  ", 11);
 		p.add(nameR);
 		p.add(addressR);
 		p.add(postR);
 		p.add(telR);
 		p.add(phoneR);
+
+		nameS = new LabelTextField("寄件人姓名  ", 6);
+		addressS = new LabelTextField("寄件人地址  ", 17);
+		postS = new LabelTextField("寄件人单位  ", 13);
+		telS = new LabelTextField("寄件人电话  ", 10);
+		phoneS = new LabelTextField("寄件人手机  ", 11);
+		p.add(nameS);
+		p.add(addressS);
+		p.add(postS);
+		p.add(telS);
+		p.add(phoneS);
 
 		num = new LabelTextField("原件数      ", 4);
 		weight = new LabelTextField("重量        ", 0, "kg       ");

@@ -15,6 +15,7 @@ import edu.nju.express.blservice.SalarySettingBlService;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.log.ui.warning.PromptDialog;
+import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ConstantVO;
@@ -40,7 +41,7 @@ public class ManageController implements UIController {
 		currentPanel = (JPanel) f.getContentPane();
 		manage = DataFactory.createManagementBlInstance();
 		org = DataFactory.createOrganizationBl();
-	    receipt = DataFactory.createReceiptBlInstance();
+		receipt = DataFactory.createReceiptBlInstance();
 		salary = DataFactory.createSalarySettingBlInstance();
 		constant = DataFactory.createConstantSettingBLInstance();
 	}
@@ -138,63 +139,82 @@ public class ManageController implements UIController {
 
 			currentPanel = (JPanel) (((JButton) e.getSource()).getParent());
 			ArrayList<String> list = ((ReceiptApprovalUI) currentPanel).getIDtoApprove();
-			if(list.isEmpty())
+			if (list.isEmpty())
 				WarningDialog.show("", "未选择任何单据");
 			for (String id : list) {
 				receipt.approve(id);
 			}
+			
+			
 		} else if (e.getActionCommand().equals("SetSalary")) {
 			
-			String[] input = ((SalaryUI) currentPanel).getText();
+			SalaryUI ui = (SalaryUI) currentPanel;
+
+			String[] input = ui.getText();
+
+			if (!NumberValidation.isPositiveDecimal(input[0])) {
+				ui.clerkField.setError();
+				return;
+			}
+			if (!NumberValidation.isPositiveDecimal(input[1])) {
+				ui.driverField.setError();
+				return;
+			}
+			if (!NumberValidation.isPositiveDecimal(input[2])) {
+				ui.driverField.setError();
+				return;
+			}
+
 			salary.setClerkSalary(Double.parseDouble(input[0]));
 			salary.setDriverWage(Double.parseDouble(input[1]));
 			salary.setPostmanWage(Double.parseDouble(input[2]));
+
 			
 		} else if (e.getActionCommand().equals("ModifyConstant")) {
-            
-			constant.setPrice(((ConstantUI)currentPanel).getPriceInput());
-			constant.setVehicleCost(((ConstantUI)currentPanel).getVehicleCostInput()[0],
-					((ConstantUI)currentPanel).getVehicleCostInput()[1], 
-					((ConstantUI)currentPanel).getVehicleCostInput()[2]);
-			constant.setVehicleLoad(((ConstantUI)currentPanel).getVehicleLoadInput()[0],
-					((ConstantUI)currentPanel).getVehicleLoadInput()[1], 
-					((ConstantUI)currentPanel).getVehicleLoadInput()[2]);
 			
+			ConstantUI ui = (ConstantUI) currentPanel;
 
+				
+			constant.setPrice(ui.getPriceInput());
 			
-		ArrayList<DistanceVO> newDistances	=((ConstantUI)currentPanel).getDistanceInput();
-		for(DistanceVO vo:newDistances){
+		/*
+			constant.setVehicleCost(ui.getVehicleCostInput()[0],
+					ui.getVehicleCostInput()[1],
+					ui.getVehicleCostInput()[2]);
+			constant.setVehicleLoad(ui.getVehicleLoadInput()[0],
+					ui.getVehicleLoadInput()[1],
+					ui.getVehicleLoadInput()[2]);*/
 
-			constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance());
-		
-		
-		}
+			ArrayList<DistanceVO> newDistances = ((ConstantUI) currentPanel).getDistanceInput();
+			for (DistanceVO vo : newDistances) {
+
+				constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance());
+
+			}
 		} else if (e.getActionCommand().equals("AddEmployee")) {
 
 			UserMessageVO vo = ((AddEmployeePanel) currentPanel).getTextInput();
-			if(manage.addEmployee(vo.getId(), vo.getName(), vo.getRole())==ResultMessage.INVALID){
+			if (manage.addEmployee(vo.getId(), vo.getName(), vo.getRole()) == ResultMessage.INVALID) {
 				System.out.println(1322);
 				WarningDialog.show("无法新增人员", "该人员编号已存在");
 			}
 
-			
-			
 		} else if (e.getActionCommand().equals("DismissEmployee")) {
 
 			String id = ((DismissEmployeePanel) currentPanel).getID();
 			manage.dismissEmployee(id);
 
-		}else if(e.getActionCommand().equals("AddStation")){
-			StationVO vo = ((AddStationPanel)currentPanel).getTextInput();
-			System.out.println(vo.getId()+" "+ vo.getName());
+		} else if (e.getActionCommand().equals("AddStation")) {
+			StationVO vo = ((AddStationPanel) currentPanel).getTextInput();
+			System.out.println(vo.getId() + " " + vo.getName());
 			System.out.println(org.createStation(vo.getId(), vo.getName()));
-		}else if(e.getActionCommand().equals("DeleteStation")){
-			System.out.println(org.deleteStation(((DeleteStationPanel)currentPanel).getID()));
-		}else if(e.getActionCommand().equals("AddHall")){
-			HallVO vo = ((AddHallPanel)currentPanel).getTextInput();
+		} else if (e.getActionCommand().equals("DeleteStation")) {
+			System.out.println(org.deleteStation(((DeleteStationPanel) currentPanel).getID()));
+		} else if (e.getActionCommand().equals("AddHall")) {
+			HallVO vo = ((AddHallPanel) currentPanel).getTextInput();
 			System.out.println(org.createHall(vo.getId(), vo.getName()));
-		}else if(e.getActionCommand().equals("DeleteHall")){
-			System.out.println(org.deleteHall(((DeleteHallPanel)currentPanel).getID()));
+		} else if (e.getActionCommand().equals("DeleteHall")) {
+			System.out.println(org.deleteHall(((DeleteHallPanel) currentPanel).getID()));
 		}
 
 	}
@@ -210,23 +230,23 @@ public class ManageController implements UIController {
 	ConstantVO getConstantData() {
 		return constant.getConstant();
 	}
-	
-	ArrayList<StationVO> getStationList(){
+
+	ArrayList<StationVO> getStationList() {
 		ArrayList<StationVO> stations = org.viewStationList();
-		for(StationVO vo:stations)
-			System.out.println(vo.getId()+" "+vo.getName());
+		for (StationVO vo : stations)
+			System.out.println(vo.getId() + " " + vo.getName());
 		return org.viewStationList();
 	}
-	
-	ArrayList<HallVO> getHallList(){
+
+	ArrayList<HallVO> getHallList() {
 		ArrayList<HallVO> halls = org.viewHallList();
-		for(HallVO vo:halls)
-			System.out.println(vo.getId()+" "+vo.getName());
+		for (HallVO vo : halls)
+			System.out.println(vo.getId() + " " + vo.getName());
 		return org.viewHallList();
 	}
-	
-	public int getMessages(){
+
+	public int getMessages() {
 		return receipt.view().size();
 	}
-	
+
 }

@@ -6,6 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.WarningDialog;
@@ -25,9 +26,9 @@ public class SalaryUI extends MainPanel {
 	private ManageGuide guide;
 	private ConfirmButton confirm;
 	
-	private LabelTextField clerkField;
-	private LabelTextField driverField;
-	private LabelTextField postmanField;
+	LabelTextField clerkField;
+	LabelTextField driverField;
+	LabelTextField postmanField;
 
 	public SalaryUI(ManageController c) {
 		this.controller = c;
@@ -72,9 +73,7 @@ public class SalaryUI extends MainPanel {
 		text[1] = driverField.getText();
 		text[2] = postmanField.getText();
 		
-		if(Double.parseDouble(text[0]) <= 0 ){
-			clerkField.setError();
-		}
+		
 		return text;
 	}
 	
