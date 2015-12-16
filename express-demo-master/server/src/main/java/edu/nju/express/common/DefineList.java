@@ -135,10 +135,15 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 			return ResultMessage.INVALID;
 		
 		int index = binaryFind(0, list.size()-1, id);
+		
+		if(index>=0){
 		list.remove(index);
 		list.add(index,po);
 		
 		return ResultMessage.VALID;
+		}else {
+			return ResultMessage.INVALID;
+		}
 	}
 	
 	

@@ -38,14 +38,20 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	 */
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
+		
+		ResultMessage message = ResultMessage.INVALID;
+		
+		
 		try {
-			userData.insert(new UserPO(id, name, role, password));
+		        message =	userData.insert(new UserPO(id, name, role, password));
+		
+		    if(message==ResultMessage.VALID)
 			deleteUserMessage(id);
-			return ResultMessage.VALID;
+
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return ResultMessage.INVALID;
+		return message;
 	}
 
 	/**
@@ -53,15 +59,18 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	 */
 	@Override
 	public ResultMessage deleteUser(String id) {
+	
+		ResultMessage message = ResultMessage.INVALID;
+		
 		try {
 
-			userData.delete(id);
-			return ResultMessage.VALID;
+			message =	userData.delete(id);
+
 
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return ResultMessage.INVALID;
+		return message;
 	}
 
 	/**
@@ -69,14 +78,18 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	 */
 	@Override
 	public ResultMessage modifyUser(String id, String name, Role role, String password) {
+		
+		ResultMessage message = ResultMessage.INVALID;
+		
+		
 		try {
 			
-				userData.modify(new UserPO(id, name, role, password));
-				return ResultMessage.VALID;
+			message =	userData.modify(new UserPO(id, name, role, password));
+				
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return ResultMessage.INVALID;
+		return message;
 	}
 
 	
