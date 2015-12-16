@@ -69,7 +69,21 @@ public class client {
 		
 		new LoginUI();
 		
-
+//		HallReceiptBL hallReceiptBL = DataFactory.createHallReceiptBLInstance();
+////		
+		try {
+			ArrayList<TransferReceiptPO> list =RMIHelper.getStationDataService().getTransferReceipt();
+		
+		
+			System.out.println(list.size());
+			for(TransferReceiptPO po:list)
+				System.out.println(po.getID());
+		
+		
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
 

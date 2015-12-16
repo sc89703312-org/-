@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.orderbl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -13,7 +10,6 @@ import edu.nju.express.common.ArrivalState;
 import edu.nju.express.common.Convert;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.SetOrderSpot;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.orderdataservice;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -37,18 +33,7 @@ public class OrderBL implements OrderBLService,
 	public OrderBL(){
 		
 		
-		try {
-			orderdataservice = (orderdataservice) Naming.lookup("rmi://" + RMIConfig.HOST + "/order-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		orderdataservice =RMIHelper.getOrderdataservice();
 	}
 	
 	

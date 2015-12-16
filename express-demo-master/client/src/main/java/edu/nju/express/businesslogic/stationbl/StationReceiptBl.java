@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.stationbl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +13,6 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.common.MyDate;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.SetOrderSpot;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.HallDataService;
 import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
@@ -59,21 +55,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	 * 构造方法
 	 */
 	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
-		
-		try {
-		stationDataService = (StationDataService)Naming.lookup("rmi://" + RMIConfig.HOST + "/station-service");
-		
-			hallDataService = (HallDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/hall-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		stationDataService = RMIHelper.getStationDataService();
+		hallDataService = RMIHelper.getHallDataService();
 		this.orderInfo= orderInfo;
 		this.setOrderSpot = setOrderSpot;
 	}

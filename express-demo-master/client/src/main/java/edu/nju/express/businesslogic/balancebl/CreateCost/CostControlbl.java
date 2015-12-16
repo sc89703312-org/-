@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.balancebl.CreateCost;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -15,7 +12,6 @@ import edu.nju.express.businesslogic.receiptbl.Info.CostApproveInfo;
 import edu.nju.express.businesslogic.strategybl.constantsettingbl.ConstantSettingBl;
 import edu.nju.express.businesslogic.strategybl.salarysettingbl.SalarySettingBl;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -49,34 +45,12 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	public CostControlbl(BankingInfo account) {
 		// TODO Auto-generated constructor stub
 	
-		try {
-			balancedataservice = (balancedataservice) Naming.lookup("rmi://" + RMIConfig.HOST + "/balance-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	balancedataservice = RMIHelper.getBalanceDataService();
 	
 	this.account = account;
 	
 
-	 try {
-		paymentdataservice = (Paymentdataservice) Naming.lookup("rmi://" + RMIConfig.HOST + "/payment-service");
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (NotBoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	paymentdataservice = RMIHelper.getPaymentDataService();
 	
 	
 	

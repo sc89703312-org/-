@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.userbl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -11,7 +8,6 @@ import edu.nju.express.businesslogic.strategybl.managementbl.Info.UserCreateMess
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.Role;
 import edu.nju.express.common.StaffChange;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.dataservice.UserMessageDataService;
 import edu.nju.express.init.RMIHelper;
@@ -31,21 +27,8 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	UserMessageDataService userMessageData;
 	TaskList task;
 	public UserBl() {
-		
-		try {
-		userData = (UserDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/user-service");
-		
-			userMessageData = (UserMessageDataService) Naming.lookup("rmi://" + RMIConfig.HOST + "/usermessage-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		userData = RMIHelper.getUserDataService();
+		userMessageData = RMIHelper.getUserMessageDataService();
 	}
 
 	

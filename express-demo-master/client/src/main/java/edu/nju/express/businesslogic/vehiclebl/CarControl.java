@@ -1,15 +1,11 @@
 package edu.nju.express.businesslogic.vehiclebl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.CarControlService;
 import edu.nju.express.businesslogic.accountbl.Info.CarControlInfo;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Carpo;
@@ -31,18 +27,7 @@ public class CarControl implements CarControlService,CarControlInfo{
 	
 	public CarControl() {
 		// TODO Auto-generated constructor stub
-		try {
-			vehicledataservice = (vehicledataservice) Naming.lookup("rmi://" + RMIConfig.HOST + "/vehicle-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	vehicledataservice = RMIHelper.getVehicleDataService();
 	}
 	
 	

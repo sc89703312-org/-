@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.accountbl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +14,6 @@ import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
 import edu.nju.express.businesslogic.vehiclebl.CarControl;
 import edu.nju.express.common.Convert;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -79,18 +75,7 @@ public class Accountbl implements Accountblservice{
 	
 	
 	    
-	    try {
-			accountdataservice = (accountdataservice) Naming.lookup("rmi://" + RMIConfig.HOST + "/account-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    accountdataservice = RMIHelper.getAccountdataservice();
 		
 	
 	}

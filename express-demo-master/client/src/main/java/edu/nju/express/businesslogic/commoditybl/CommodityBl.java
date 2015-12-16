@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.commoditybl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -14,7 +11,6 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.common.MyDate;
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.common.ResultMessageV2;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.CommodityDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.ComGoodsPO;
@@ -63,18 +59,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
-		try {
-			commodityDataService = (CommodityDataService)Naming.lookup("rmi://" + RMIConfig.HOST + "/commodity-service");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.commodityDataService = RMIHelper.getCommodityDataService();
 	}
     
 	/*

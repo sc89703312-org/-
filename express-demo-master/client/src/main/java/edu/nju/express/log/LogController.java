@@ -1,13 +1,9 @@
 package edu.nju.express.log;
 
 import java.awt.Component;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.LogRecordDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.LogMessage;
@@ -27,7 +23,8 @@ public class LogController {
 	
 
 	public static final String logFilesName = null;
-	static LogRecordDataService logRecordDataService =RMIHelper.getLogRecordDataService();
+	static LogRecordDataService logRecordDataService = RMIHelper.getLogRecordDataService();
+
 	
 	
 	public LogController() {
@@ -35,7 +32,6 @@ public class LogController {
 	
 	
 		
-
 	
 	}
 	

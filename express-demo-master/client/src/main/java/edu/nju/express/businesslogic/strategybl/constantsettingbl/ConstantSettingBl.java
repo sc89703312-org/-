@@ -1,8 +1,5 @@
 package edu.nju.express.businesslogic.strategybl.constantsettingbl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -10,7 +7,6 @@ import edu.nju.express.blservice.ConstantSettingBlService;
 import edu.nju.express.businesslogic.strategybl.organizationbl.Info.ConstantAddCityInfo;
 import edu.nju.express.common.BasicValues;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.ConstantDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
@@ -29,13 +25,11 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 	
 	
-	public static ConstantDataService constantDataService =RMIHelper.getConstantDataService();
+	public static ConstantDataService constantDataService = RMIHelper.getConstantDataService();
+	
 	
 	public ConstantSettingBl() {
 		// TODO Auto-generated constructor stub
-		
-		
-	
 	}
 	
 	
