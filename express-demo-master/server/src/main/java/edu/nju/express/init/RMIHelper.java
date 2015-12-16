@@ -8,11 +8,12 @@ import java.rmi.registry.LocateRegistry;
 import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataimpl.*;
 import edu.nju.express.dataservice.*;
+import edu.nju.express.ui.frame.ServerFrame;
 
 
 
 
-public class RMIHelper {
+public class RMIHelper extends Thread{
 
 	
 	private static Paymentdataservice paymentdataservice;
@@ -35,15 +36,22 @@ public class RMIHelper {
 	public static boolean  isStarted = false;
 	
 	
-	 public static void init() {
-		 
-		 
-		 
+	
 
-		 
+		@Override
+		public void run(){
+			
+	
+	
 	        try {
 	            LocateRegistry.createRegistry(Integer.parseInt(RMIConfig.PORT));
+	            
+	            
+	             loginInfoDataService = new LoginInfoDataService_Impl();
+	             
+	             
 
+	             
 	             paymentdataservice = new PaymentDataservice_Impl();
 	            
 	             vehicledataservice = new VehicleDataService_Impl();
@@ -70,7 +78,7 @@ public class RMIHelper {
 	             
 	             stationDataService = new StationDataService_Impl();
 	             
-	             loginInfoDataService = new LoginInfoDataService_Impl();
+
 	             
 	             commodityDataService = new CommodityDataService_Impl();
 	             
@@ -111,8 +119,9 @@ public class RMIHelper {
 	        }
 
 
-	    }
-
+	    
+	}
+	
 
 	
 
