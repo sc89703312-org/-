@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
@@ -109,24 +110,6 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 		orderField.setBounds(120, 215, 300, 45);
 		panel.add(orderField);
 		
-//		orderArea = new JTextArea(10,500);
-//		orderArea.setLineWrap(true);
-//		orderArea.setWrapStyleWord(true);
-//		orderArea.setEditable(true);
-//		orderArea.setFont(font);
-//		orderArea.setBackground(areaColor);
-//		final JScrollPane orderpane = new JScrollPane();
-//		final MyScrollBarUI ui2 = new MyScrollBarUI();
-//		orderpane.setViewportView(orderArea);
-//		wrapScrollPane(orderpane, ui2);
-//		orderpane.setBounds(110, 255, 400, 100);
-//		panel.add(orderpane);
-		
-//		addOrderBtn = new JButton("add");
-//		addOrderBtn.setBounds(460, 360, 50, 30);
-//		addOrderBtn.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-//		addOrderBtn.addActionListener(controller);
-//		panel.add(addOrderBtn);
 		
 		mainpanel.add(panel);
 		
@@ -150,9 +133,14 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				submitPayment(new Paymentvo(dateBox.getDate(), Double.parseDouble(moneyField.getText()),
-						deliverField.getText(),orderField.getText(),"sc925200"));
-				clearPanel();
+				if(!isFilled()){
+					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+				}
+				else{
+					submitPayment(new Paymentvo(dateBox.getDate(), Double.parseDouble(moneyField.getText()),
+							deliverField.getText(),orderField.getText(),"sc925200"));
+					clearPanel();
+				}
 			}
 			
 		});

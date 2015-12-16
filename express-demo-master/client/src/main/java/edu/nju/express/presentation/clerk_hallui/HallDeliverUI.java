@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -172,9 +173,14 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				submit(deliverIdField.getText(), getSelectedOrders());
+				if(!isFilled()){
+					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+				}
+				else{
+					submit(deliverIdField.getText(), getSelectedOrders());
+				}
 			}
-			
+
 		});
 		mainpanel.add(submitBtn);
 		

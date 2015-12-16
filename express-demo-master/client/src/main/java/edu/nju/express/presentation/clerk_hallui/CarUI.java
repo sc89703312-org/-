@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -473,7 +474,7 @@ public class CarUI extends JPanel implements MouseListener{
 	}
 	
 	public ArrayList<Carvo> getAll(){
-		return car.;
+		return car.getAll();
 	}
 	
 	public Carvo getCar(String id){
