@@ -1,15 +1,9 @@
 package edu.nju.express.init;
 
-
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import edu.nju.express.config.RMIConfig;
-import edu.nju.express.dataimpl.LoginInfoDataService_Impl;
-import edu.nju.express.dataservice.LoginInfoDataService;
 import edu.nju.express.ui.frame.ServerFrame;
 
 
@@ -17,26 +11,25 @@ import edu.nju.express.ui.frame.ServerFrame;
 
 public class Server {
 
-	private static LoginInfoDataService loginInfoDataService;
+	
 
 	
 	
 	
 	
 	public static void main(String[] s){
-		
-		
-		new ServerFrame();
-		
-		
-		new RMIHelper().start();
+		RMIHelper.init();
 		System.out.println("Server creates!");
 		
-		
-		
-	    
+	    new ServerFrame();
 		
 	
+
+	    
+
+		
+		
+		
 		
 		new Thread(new Runnable() {
 			
