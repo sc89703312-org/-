@@ -207,6 +207,7 @@ public class DriverUI extends JPanel implements MouseListener{
 				
 				trashBtn.setEnabled(true);
 				mainpanel.remove(addBtn);
+				mainpanel.remove(saveBtn);
 				if(getDriver(searchField.getText())!=null){
 					setIsInfo(true);
 					setIsNew(false);

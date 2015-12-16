@@ -208,6 +208,7 @@ public class CarUI extends JPanel implements MouseListener{
 				
 				trashBtn.setEnabled(true);
 				mainpanel.remove(addBtn);
+				mainpanel.remove(saveBtn);
 				if(getCar(searchField.getText())!=null){
 					setIsInfo(true);
 					setIsNew(false);
@@ -268,7 +269,8 @@ public class CarUI extends JPanel implements MouseListener{
 		});
 	}
 
-	public void initInfoPanel(Carvo vo){
+	public void initInfoPanel(Carvo vo){ 
+		
 		idField.setText(vo.getId());
 		idField.getTextField().setEditable(false);
 		
@@ -468,6 +470,10 @@ public class CarUI extends JPanel implements MouseListener{
 		else if(e.getSource().equals(saveBtn)){
 			saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
 		}
+	}
+	
+	public ArrayList<Carvo> getAll(){
+		return car.;
 	}
 	
 	public Carvo getCar(String id){

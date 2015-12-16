@@ -47,8 +47,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	MyCheckBoxTable checkTable;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
-	LabelTextField idField, deliverIdField;
-	JTextArea orderArea;
+	LabelTextField  deliverIdField;
 	JLabel bg;
 	JButton exit, submitBtn;
 		
@@ -102,7 +101,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		dateBox.setBounds(120, 80-45, 500, 40);
 		panel.add(dateBox);
 		
-		
+		//即快递员
 		deliverIdField = new LabelTextField("派送员  ",19);
 		deliverIdField.setBounds(120, 135-45, 300, 45);
 		panel.add(deliverIdField);
@@ -117,14 +116,6 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
 		initData();
-//		Object[] data1 = { false, "1234567890" };
-//		Object[] data2 = { false, "1234567891" };
-//		Object[] data3 = { false, "1234567892" };
-//		for (int i = 0; i < 10; i++) {
-//			checkTable.getTableModel().addRow(data1);
-//			checkTable.getTableModel().addRow(data2);
-//			checkTable.getTableModel().addRow(data3);
-//		}
 		
 		JScrollPane s = new JScrollPane(checkTable);
 		s.setBounds(0, 240, 710, 325);
@@ -259,6 +250,12 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	
 	public void submit(String id, ArrayList<OrderVO> orderlist){
 		receipt.subDeliverReceipt(id, orderlist);;
+	}
+	
+	public boolean isFilled(){
+		boolean deliverId = (deliverIdField.getText()==null)?false: true;
+		boolean order = (getSelectedOrders().isEmpty())?false:true;
+		return deliverId && order;
 	}
 
 }

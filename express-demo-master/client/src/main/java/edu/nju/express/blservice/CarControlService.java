@@ -1,5 +1,7 @@
 package edu.nju.express.blservice;
 
+import java.util.ArrayList;
+
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.Carvo;
 
@@ -77,5 +79,7 @@ public interface CarControlService {
 	 * 
 	 */
 	public void endCar();
+	
+	public ArrayList<Carvo> getAll();
 	
 }

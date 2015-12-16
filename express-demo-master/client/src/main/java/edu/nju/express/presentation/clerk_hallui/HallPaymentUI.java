@@ -232,4 +232,12 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	public ResultMessage submitPayment(Paymentvo vo){
 		return payment.createReceipt(vo);
 	}
+	
+	public boolean isFilled(){
+		boolean deliver = (deliverField.getText()==null)?false:true;
+		boolean order = (orderField.getText()==null)?false:true;
+		boolean money = (moneyField.getText()==null)?false:true;
+				
+		return deliver && order && money;
+	}
 }

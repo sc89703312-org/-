@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
@@ -134,10 +135,10 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		String cityID = hall_id.substring(0, 3);
 		ArrayList<String> toList = new ArrayList<String>();
 		
+		//同一次登录只要调用一次
+		if(Location.station.size() == 0)
+			Location.init();
 		toList.add(Location.getStationLocation(cityID)+"中转站");
-			//同一次登录只要调用一次
-			if(Location.station.size() == 0)
-				Location.init();
 			
 
 			for(int i=0; i<Location.getHallList(hall_id.substring(0, 3)).size(); i++){
@@ -237,10 +238,15 @@ public class HallTransferUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(!isFilled()){
+					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+				}
+				else{
 				receipt.subHallTransferReceipt(carrierIdField.getText(), 
 						(String)toBox.getSelectedItem(), carField.getText(), 
 						supervisorField.getText(), guardField.getText(), 
 						getSelectedOrders());
+				}
 			}
 			
 		});
@@ -343,7 +349,14 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		return selectedOrderList;
 	}
 	
-	
+	public boolean isFilled(){
+		boolean carrierId = (carrierIdField.getText()==null)? false:true;
+		boolean car = (carField.getText()==null)? false : true;
+		boolean supervisor = (supervisorField.getText()==null)? false : true;
+		boolean guard = (guardField.getText()!=null) ? false : true;
+		boolean order = (getSelectedOrders().isEmpty())?false:true;
+		return carrierId && car && supervisor && guard && order;
+	}
 	
 
 }

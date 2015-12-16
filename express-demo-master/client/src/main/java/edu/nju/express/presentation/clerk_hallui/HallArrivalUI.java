@@ -42,7 +42,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	HallController controller;
 	HallReceiptBlService  receipt;
 	JPanel mainpanel, panel;
-	JButton exit, submitBtn, saveOrderBtn, confirmBtn;
+	JButton exit, submitBtn, confirmBtn;
 	JLabel bg;
 	JLabel dateLabel, fromLabel;
 	DateComboBoxPanel dateBox;
@@ -137,17 +137,6 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		panel.add(table);
 
 
-//		//saveOrderBtn
-//		saveOrderBtn = new JButton("save");
-//		saveOrderBtn.setBounds(600, 440, 80, 40);
-//		panel.add(saveOrderBtn);
-		
-		
-//		//idField
-//		idField = new LabelTextField("到达单编号",15);
-//		idField.setBounds(110, 430, 300, 45);
-//		panel.add(idField);
-//		
 		
 		//dateLabel
 		dateLabel = new JLabel("到达日期");
@@ -329,6 +318,12 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		default: return GoodsState.LOST;
 		}
 		
+	}
+	
+	public boolean isFilled(){
+		boolean transferId = (transferIdField.getText()==null)?false:true;
+		
+		return transferId;
 	}
 	
 }
