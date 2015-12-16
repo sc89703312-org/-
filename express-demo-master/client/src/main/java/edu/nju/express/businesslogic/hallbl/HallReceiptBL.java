@@ -201,25 +201,35 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			ArrayList<String> orderIDList = paymentInfo.getOrderListByHall(hallID);
 			ArrayList<ArrivalReceiptPO> arrivalList = hallDataService.getAllHallArrival(hallID);
 			for(int i=0;i<arrivalList.size();i++)
-				for(int j=0;j<arrivalList.get(i).getOrderList().size();j++)
-					orderIDList.add(arrivalList.get(i).getOrderList().get(j).getID());
+				for(int j=0;j<arrivalList.get(i).getOrderList().size();j++){
+					boolean exist = false;
+					for(int k=0;k<orderIDList.size();k++)
+			            if(orderIDList.get(k).equals(arrivalList.get(i).getOrderList().get(j).getId()))
+			            	exist = true;
+					if(!exist)
+						orderIDList.add(arrivalList.get(i).getOrderList().get(j).getId());
+				}
 			
-			ArrayList<HallTransferReceiptPO> transferList = hallDataService.getAllHallTransfer(hallID);
+			
+			ArrayList<HallTransferReceiptPO> transferList = hallDataService.getAllHallTransfer(hallID);		
 			ArrayList<DeliverReceiptPO> deliverList = hallDataService.getAllHallDeliver(hallID);
 			
 			for(int i=0;i<orderIDList.size();i++){
+				
 				for(int j=0;j<transferList.size();j++)
 					for(int k=0;k<transferList.get(j).getOrderlist().size();k++)
 						if(orderIDList.get(i).equals(transferList.get(j).getOrderlist().get(k).getId())){
 							orderIDList.remove(orderIDList.get(i));
 							i--;
 						}
+				
 				for(int j=0;j<deliverList.size();j++)
 					for(int k=0;k<deliverList.get(j).getOrderList().size();k++)
 						if(orderIDList.get(i).equals(deliverList.get(j).getOrderList().get(k).getId())){
 							orderIDList.remove(orderIDList.get(i));
 							i--;
 						}
+				
 			}
 			
 			ArrayList<OrderVO> orderList = new ArrayList<OrderVO>();

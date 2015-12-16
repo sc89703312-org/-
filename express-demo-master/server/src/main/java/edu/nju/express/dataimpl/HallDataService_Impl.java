@@ -400,6 +400,7 @@ public class HallDataService_Impl extends UnicastRemoteObject implements HallDat
 	@Override
 	public String getLocation(String id) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println(hallDao.getLocation(id));
 		return hallDao.getLocation(id);
 	}
 
