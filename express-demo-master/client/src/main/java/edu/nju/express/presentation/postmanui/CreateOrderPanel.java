@@ -231,15 +231,14 @@ public class CreateOrderPanel extends MainPanel {
 				System.out.println(cityR+"   "+cityS);
 				
 				if(!cityList.contains(cityS))
-					PromptDialog.show("输入有误", "     请检查收件人地址");
+					PromptDialog.show("输入有误", "     请检查寄件人地址");
 				
 				if(!cityList.contains(cityR))
-					PromptDialog.show("输入有误", "     请检查寄件人地址");
+					PromptDialog.show("输入有误", "     请检查收件人地址");
 				
 				total = calculate();
 				
-				System.out.println(FeeCalculator.getDistance("北京", "广州"));
-				System.out.println(FeeCalculator.getDistance( "广州","上海"));
+
 				
 				expect = FeeCalculator.getExpectedDays(cityS, cityR);
 				
@@ -276,6 +275,7 @@ public class CreateOrderPanel extends MainPanel {
 		   weight.getText().equals("")||
 		   size.getText().equals("")||
 		   id.getText().length()!=10)
+		
 		{
 			PromptDialog.show("订单填写有误", "   请检查必要项是否正确填写");
 			return null;

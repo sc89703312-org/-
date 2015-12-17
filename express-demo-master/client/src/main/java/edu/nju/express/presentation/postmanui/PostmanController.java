@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.xml.ws.handler.MessageContext;
 
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.businesslogic.DataFactory;
+import edu.nju.express.common.ResultMessage;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.vo.OrderVO;
 
@@ -59,12 +62,40 @@ public class PostmanController implements UIController {
 			
 			OrderVO tempVo = ((CreateOrderPanel) ((JButton)e.getSource()).getParent()).getInput();
 
-			if(tempVo!=null)
-			System.out.println(order.createOrder(tempVo));
-		
+			ResultMessage message = ResultMessage.INVALID;
+			if(tempVo!=null){
+			    message =order.createOrder(tempVo);
+			if(message==ResultMessage.INVALID)
+				PromptDialog.show("输入错误", "订单号已存在");
+			}
 		} else if (e.getActionCommand().equals("ConfirmReceival")) {
 			
-			order.receiverCfm(((ConfirmReceivalUI) currentPanel).getTextInput().getId());
+			String id = ((ConfirmReceivalUI) currentPanel).getTextInput().getId();
+			ArrayList<OrderVO> orders = order.viewAll();
+			boolean isContained = false;
+
+			for(OrderVO vo:orders)
+			{
+				if(vo.getID().equals(id))
+				{
+					isContained = true;
+					break;
+				}
+			}
+				if(isContained){
+					order.receiverCfm(id);
+					PromptDialog.show("收货成功", "                你真棒");
+					frame.getContentPane().removeAll();
+					currentPanel = new ConfirmReceivalUI(this);
+					frame.add(currentPanel);
+					frame.validate();
+					frame.repaint();
+
+				}else {
+					PromptDialog.show("输入有误", "             输入ID不存在");
+				}
+			
+			
 		
 		} else if (e.getActionCommand().equals("SearchOrder")) {
 			InquireOderUI inqUI = (InquireOderUI) currentPanel;
