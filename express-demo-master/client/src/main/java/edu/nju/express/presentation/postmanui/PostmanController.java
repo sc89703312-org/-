@@ -99,9 +99,27 @@ public class PostmanController implements UIController {
 		
 		} else if (e.getActionCommand().equals("SearchOrder")) {
 			InquireOderUI inqUI = (InquireOderUI) currentPanel;
-			vo = order.view(inqUI.getOrder());
-			inqUI.addRow(vo);
+			String id  = inqUI.getOrder();
+			ArrayList<OrderVO> orders = order.viewAll();
+			boolean isContain = false;
+			for(OrderVO vo:orders)
+			{
+				if(id.equals(vo.getID()))
+				{
+					isContain = true;
+					break;
+				}
+				
+			}
 			
+			if(isContain){
+			
+			vo = order.view(inqUI.getOrder());
+			PromptDialog.show("查询成功", "                你真棒");
+			inqUI.addRow(vo);
+			}else {
+				PromptDialog.show("输入有误", "            检查ID");
+			}
 		}
 	}
 
