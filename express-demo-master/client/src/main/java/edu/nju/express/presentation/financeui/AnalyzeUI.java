@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.DateComboBoxV2;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTextField;
 
@@ -29,9 +30,7 @@ public class AnalyzeUI extends MainPanel {
 
 	private FinanceController controller;
 
-	private JPanel date;
-	private static MyTextField date1;
-	private static LabelTextField date2;
+	private static DateComboBoxV2 date;
 	private JButton search;
 
 	
@@ -93,7 +92,7 @@ public class AnalyzeUI extends MainPanel {
 	}
 
 	private void initDate() {
-		date = new JPanel();
+		/*date = new JPanel();
 		date.setOpaque(false);
 		date.setBounds(270, 400, 500, 60);
 		date1 = new MyTextField(0);
@@ -107,14 +106,19 @@ public class AnalyzeUI extends MainPanel {
 		search.setRolloverIcon(search2);
 		search.addActionListener(controller);
 		search.setActionCommand("BussinessConditionUI");
-		date.add(search);
+		date.add(search);*/
+		
+		date = new DateComboBoxV2();
+		date.setBounds(200, 420, 610, 60);
+		date.getSearchButton().addActionListener(controller);
+		date.getSearchButton().setActionCommand("BussinessConditionUI");
 		this.add(date);
 	}
 
 	public static String[] getDates() {
 		String[] d = new String[2];
-		d[0] = date1.getText();
-		d[1] = date2.getText();
+		d[0] = (date.getDate())[0];
+		d[1] = (date.getDate())[1];
 		return d;
 	}
 

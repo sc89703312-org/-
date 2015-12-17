@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.common.Item;
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.myUI.DateComboBoxV2;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.presentation.myUI.MyTextField;
@@ -47,7 +48,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	private static Icon export1= new ImageIcon("ui/button/export1.png");
 	private static Icon export2 = new ImageIcon("ui/button/export2.png");
 
-	private JPanel date;
+	private DateComboBoxV2 date;
 	private MyTextField date1;
 	private LabelTextField date2;
 	private JButton search;
@@ -73,7 +74,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		this.frame = frame;
 		balanceBL = controller.balance;
 		
-		date = new JPanel();
+/*		date = new JPanel();
 		date.setOpaque(false);
 		date.setBounds(120, 68, 500, 50);
 		date1 = new MyTextField(0);
@@ -88,13 +89,18 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		search.addActionListener(this);
 		search.setActionCommand("SearchList");
 		date.add(search);
+		this.add(date);*/
+		date = new DateComboBoxV2();
+		date.setBounds(115, 76, 610, 50);
+		date.getSearchButton().addActionListener(controller);
+		date.getSearchButton().setActionCommand("BussinessConditionUI");
 		this.add(date);
 		
 		export = new JButton(export1);
 		export.setRolloverIcon(export2);
 		export.setBorderPainted(false);
 		export.setContentAreaFilled(false);
-		export.setBounds(680, 82, 80, 30);
+		export.setBounds(750, 82, 80, 30);
 		this.add(export);
 		export.setActionCommand("export");
 		export.addActionListener(this);
