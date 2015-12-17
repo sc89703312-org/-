@@ -3,6 +3,7 @@ package edu.nju.express.presentation.financeui;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -106,7 +107,7 @@ public class FinanceController implements UIController {
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
 		   
 		
-			if(cost.createCost(((BalanceUI)currentPanel).createBalanceVO())==ResultMessage.VALID){
+			if(cost.createCost(((BalanceUI)((JButton)e.getSource()).getParent()).createBalanceVO())==ResultMessage.VALID){
 				System.out.println("Cost Create SuccessFully");
 			}
 			else
