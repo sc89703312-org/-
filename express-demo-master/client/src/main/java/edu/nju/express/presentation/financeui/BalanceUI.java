@@ -52,7 +52,10 @@ public class BalanceUI extends MainPanel implements ActionListener {
 		this.controller = c;
 		costBL = c.cost;
 
-		this.add(new FinanceGuide(c));
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.balance.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/成本管理.png").getImage();
 		
 		JPanel p = new JPanel();
 		p.setBounds(x - 130, 100, width - x+90, height - y);

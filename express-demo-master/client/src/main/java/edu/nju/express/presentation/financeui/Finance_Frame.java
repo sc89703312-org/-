@@ -29,7 +29,7 @@ public class Finance_Frame extends MyFrame  {
         this.setUndecorated(true);
    
         JPanel p = null;
-        p = new PaymentUI(new FinanceController(this));
+        p = new BalanceUI(new FinanceController(this));
         this.add(p);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

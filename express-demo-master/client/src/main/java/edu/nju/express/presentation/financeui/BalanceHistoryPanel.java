@@ -3,6 +3,8 @@ package edu.nju.express.presentation.financeui;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.common.Item;
 import edu.nju.express.presentation.MainPanel;
@@ -28,11 +30,15 @@ public class BalanceHistoryPanel extends MainPanel {
 	BalanceHistoryPanel(FinanceController c) {
 		this.controller = c;
 		
-		this.add(new FinanceGuide(c));
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.balance.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/历史单据.png").getImage();
+		
 		costControlBL = controller.cost;
 		ReturnButton jbtReturn = new ReturnButton();
 		jbtReturn.addActionListener(controller);
-		jbtReturn.setActionCommand("PaymentUI");
+		jbtReturn.setActionCommand("BalanceUI");
 		this.add(jbtReturn);
 		
 		initTable();
@@ -55,10 +61,10 @@ public class BalanceHistoryPanel extends MainPanel {
 			table.getTableModel().addRow(rowdata);
 		}
 		table.setRowHeight(30);
-		int[]  cwidth = {150,100,100,100,100,250};
+		int[]  cwidth = {150,100,100,100,100,176};
 		table.setColumnWidth(cwidth);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(716,390));
-		table.setBounds(128, 106, 727, 426);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726,390));
+		table.setBounds(123, 106, 737, 426);
 		this.add(table);
 		
 		

@@ -30,7 +30,6 @@ public class BankingUI extends MainPanel {
 	private static Icon del2  = new ImageIcon("ui/button/删除账号2.png");
 	private static Icon mod1  = new ImageIcon("ui/button/修改账号1.png");
 	private static Icon mod2  = new ImageIcon("ui/button/修改账号2.png");
-	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 	
 	private FinanceController controller;
 	private BankingBlService bankingBL;
@@ -49,10 +48,14 @@ public class BankingUI extends MainPanel {
 		this.controller = c;
 
         bankingBL = c.banking;
-		this.add(new FinanceGuide(c));
+        FinanceGuide guide =new FinanceGuide(controller);
+		guide.banking.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/账户管理.png").getImage();
+
 
 		search = new MySearchFieldPanel(c);
-		search.setBounds(380,68, 400, 40);
+		search.setBounds(380,75, 400, 40);
 		search.setActionCommand("SearchBanking");
 		this.add(search);
 
@@ -97,8 +100,8 @@ public class BankingUI extends MainPanel {
 		}
 		this.add(table);
 		table.setRowHeight(28);
-		table.setBounds(128, 106, 727, 428);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
+		table.setBounds(128, 126, 727, 408);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 370));
 	}
 
 
@@ -107,12 +110,6 @@ public class BankingUI extends MainPanel {
 		
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		g.drawImage(bg, 0, 0, null);
-	}
 	
 	
 	

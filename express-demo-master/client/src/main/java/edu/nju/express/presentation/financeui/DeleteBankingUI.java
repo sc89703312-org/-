@@ -1,5 +1,6 @@
 package edu.nju.express.presentation.financeui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -24,9 +25,12 @@ public class DeleteBankingUI extends MainPanel{
 	public DeleteBankingUI(FinanceController c) {
 		controller = c;
 		this.setLayout(null);
-		this.add(new FinanceGuide(controller));
 		initComponents();
-		this.setOpaque(false);
+
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.banking.setIcon(null);
+		this.add(guide);
+		bg = new ImageIcon("ui/image/finance/账户填写.png").getImage();
 	}
 	
 	private void initComponents() {

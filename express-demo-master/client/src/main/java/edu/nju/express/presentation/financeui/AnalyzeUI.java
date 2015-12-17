@@ -8,7 +8,6 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -27,7 +26,6 @@ public class AnalyzeUI extends MainPanel {
 	private Color color = new Color(44, 62,80);
 	private static Icon search1 = new ImageIcon("ui/button/searchbutton1.png");
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
-	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 
 	private FinanceController controller;
 
@@ -44,8 +42,11 @@ public class AnalyzeUI extends MainPanel {
 	public AnalyzeUI(FinanceController c) {
 
 		controller = c;
-		this.add(new FinanceGuide(controller));
-
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.analyze.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/报表分析.png").getImage();
+		
 		
 	    balanceBL = c.balance;
 		
@@ -58,7 +59,11 @@ public class AnalyzeUI extends MainPanel {
 	private void initBalance() {
 		initData();
 		
-		JLabel l1 = new JLabel("总收入：    "+balance[0]);
+		MyBalancePanel p = new MyBalancePanel(balance[0], balance[1]);
+		this.add(p);
+		Thread t = new Thread(p);
+		t.start();
+		/*JLabel l1 = new JLabel("总收入：    "+balance[0]);
 		l1.setBounds(400, 160, 400, 40);
 		l1.setFont(font);
 		l1.setForeground(color);
@@ -77,7 +82,7 @@ public class AnalyzeUI extends MainPanel {
 		l3.setFont(font);
 		l3.setForeground(color);
 		l3.setOpaque(false);
-		this.add(l3);
+		this.add(l3);*/
 		
 		
 	}
@@ -90,7 +95,7 @@ public class AnalyzeUI extends MainPanel {
 	private void initDate() {
 		date = new JPanel();
 		date.setOpaque(false);
-		date.setBounds(250, 400, 500, 60);
+		date.setBounds(270, 400, 500, 60);
 		date1 = new MyTextField(0);
 		date2 = new LabelTextField("- ", 0);
 		date.add(date1);
@@ -113,10 +118,4 @@ public class AnalyzeUI extends MainPanel {
 		return d;
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		g.drawImage(bg, 0, 0, null);
-	}
 }

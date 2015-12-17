@@ -27,10 +27,15 @@ public class AccountUI extends MainPanel{
 	
 	public AccountUI(FinanceController controller) {
 		this.controller = controller;
-		this.add(new FinanceGuide(controller));
+		
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.account.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/期初建帐.png").getImage();
+
 		
 		date = new DateComboBoxPanel();
-		date.setBounds(200+94, 210,400,60);
+		date.setBounds(200+94, 260,400,60);
 		this.add(date);
 		
 		add = new JButton(add1);

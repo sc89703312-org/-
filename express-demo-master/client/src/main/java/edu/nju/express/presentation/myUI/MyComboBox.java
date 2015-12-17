@@ -44,7 +44,7 @@ public class MyComboBox<E> extends JComboBox<E> {
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
 		this.setUI(new MyComboBoxUI());
 		this.setRenderer(new MyRenderer());
-		this.setPreferredSize(new Dimension(120, 32));
+		this.setPreferredSize(new Dimension(120, 33));
 		this.setMaximumRowCount(4);
 
 	}
@@ -56,7 +56,7 @@ public class MyComboBox<E> extends JComboBox<E> {
 		g2d.setColor(grid);
 		g2d.setStroke(new BasicStroke(2f));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.drawRoundRect(0, 0, getWidth() - 2, getHeight() - 2, getHeight() - 2, getHeight() - 2);
+		g2d.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, getHeight() - 3, getHeight() - 3);
 	}
 
 	private class MyComboBoxUI extends BasicComboBoxUI {

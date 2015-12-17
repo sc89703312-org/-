@@ -30,7 +30,6 @@ public class PaymentUI extends MainPanel implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 	static Font font = new Font("黑体", Font.PLAIN, 18);
 	static Color color = new Color(44, 62,80);
 
@@ -49,7 +48,10 @@ public class PaymentUI extends MainPanel implements ActionListener{
 		viewBL = c.view;
 		ui = this;
 
-		this.add(new FinanceGuide(c));
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.payment.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/结算管理.png").getImage();
 
 		showTable();
 
@@ -80,22 +82,20 @@ public class PaymentUI extends MainPanel implements ActionListener{
 		
 		
 		
-		JPanel p = new JPanel();
-		p.setOpaque(false);
 		JPanel p1 = new JPanel();
 		p1.setOpaque(false);
 		p1.add(selectDate);
 		p1.add(date);
-		p.add(p1);
 		
 		JPanel p2 = new JPanel();
 		p2.setOpaque(false);
 		p2.add(selectHall);
 		p2.add(hall);
-		p.add(p2);
-		p.setBounds(-120, 65, 800, 90);
-		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-		this.add(p);
+		
+		p1.setBounds(-40,78,650,45);
+		p2.setBounds(34,130,500,45);
+		this.add(p1);
+		this.add(p2);
 
 	}
 
@@ -118,8 +118,8 @@ public class PaymentUI extends MainPanel implements ActionListener{
 		Object[] last = {"总计",sum,"",""};
 		table.getTableModel().addRow(last);
 		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
-		table.setBounds(128, 160, 727, 425);;
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 370));
+		table.setBounds(128, 180, 727, 405);;
 		
 		this.add(table);
 	}
@@ -130,12 +130,7 @@ public class PaymentUI extends MainPanel implements ActionListener{
 		
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		g.drawImage(bg,0,0,null);
-	}
+	
 	
 	
 	public void clearTable(){
@@ -175,9 +170,7 @@ public class PaymentUI extends MainPanel implements ActionListener{
 		}
 		Object[] last = {"总计",sum,"",""};
 		table.getTableModel().addRow(last);
-		table.setRowHeight(30);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(716, 390));
-		table.setBounds(128, 160, 727, 425);;
+	
 	}
 	
 	

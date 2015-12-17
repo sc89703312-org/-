@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.financeui;
 
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import edu.nju.express.blservice.BankingBlService;
@@ -26,9 +27,13 @@ public class AddBankingUI extends MainPanel {
 		controller = c;
 		bankingBL = controller.banking;
 		this.setLayout(null);
-		this.add(new FinanceGuide(controller));
 		this.setOpaque(false);
 		initComponents();
+		
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.banking.setIcon(null);
+		this.add(guide);
+		bg = new ImageIcon("ui/image/finance/账户填写.png").getImage();
 	}
 
 

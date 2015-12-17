@@ -46,7 +46,6 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	private static Icon search2 = new ImageIcon("ui/button/searchbutton2.png");
 	private static Icon export1= new ImageIcon("ui/button/export1.png");
 	private static Icon export2 = new ImageIcon("ui/button/export2.png");
-	private static Image bg = new ImageIcon("ui/image/bg1.png").getImage();
 
 	private JPanel date;
 	private MyTextField date1;
@@ -65,7 +64,10 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	
 	public BussinessConditionPanel(FinanceController controller,JFrame frame) {
 
-		this.add(new FinanceGuide(controller));
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.analyze.setIcon(null);
+		this.add(guide);
+		bg = new ImageIcon("ui/image/finance/经营情况表.png").getImage();
 		
 		
 		this.frame = frame;
@@ -338,10 +340,4 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	    }
 	}
 	
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		g.drawImage(bg, 0, 0, null);
-	}
 }

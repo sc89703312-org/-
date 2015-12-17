@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,12 +34,23 @@ public class AccountPanel extends MainPanel{
 	
 	public AccountPanel(FinanceController controller, Accountvo vo) {
 		this.controller = controller;
-		this.add(new FinanceGuide(controller));
+		FinanceGuide guide =new FinanceGuide(controller);
+		guide.account.setIcon(null);
+		this.add(guide);
+		this.bg = new ImageIcon("ui/image/finance/建帐.png").getImage();
+
 		
 		ReturnButton jbtReturn = new ReturnButton();
 		jbtReturn.setActionCommand("AccountUI");
 		jbtReturn.addActionListener(controller);
 		this.add(jbtReturn);
+		
+		String date = vo.getDate();
+		JLabel dateLabel=new JLabel(date);
+		dateLabel.setFont(font);
+		dateLabel.setForeground(fore);
+		dateLabel.setBounds(148, 78, 200, 35);
+		this.add(dateLabel);
 		
 		JPanel p = new JPanel();
 		p.setOpaque(false);
@@ -74,8 +86,7 @@ public class AccountPanel extends MainPanel{
 		});
 		
 		
-		String date = vo.getDate();
-		p.add(new JLabel(date));
+		
 		
 		
 		JLabel l1= new JLabel("银行账户:");
@@ -126,9 +137,10 @@ public class AccountPanel extends MainPanel{
 		l6.setName("title");
 		p.add(l6);
 		//快递编号、入库日期、目的地、区号、排号、架号、位号
-		for(ComGoodsVO cg:cgl)
-			p.add(new JLabel(cg.getOrder().getID()));
-		
+		for(ComGoodsVO cg:cgl){
+			System.out.println(cg.getOrder().getID()+" "+cg.getType()+" "+cg.getLine()+"排"+cg.getShelf()+"架"+cg.getCell()+"位");
+			p.add(new JLabel(cg.getOrder().getID()+" "+cg.getType()+" "+cg.getLine()+"排"+cg.getShelf()+"架"+cg.getCell()+"位"));
+		}
 		
 		for(Component c: p.getComponents()){
 			JLabel l = (JLabel) c;
@@ -140,7 +152,7 @@ public class AccountPanel extends MainPanel{
 				c.setFont(new Font("微软雅黑",font.BOLD,19));
 				c.setPreferredSize(new Dimension(200,50));
 			}else{
-				c.setPreferredSize(new Dimension(200,30));
+				c.setPreferredSize(new Dimension(400,30));
 			}
 		}
 	}
