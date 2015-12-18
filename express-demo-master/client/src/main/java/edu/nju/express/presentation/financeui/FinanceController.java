@@ -14,8 +14,10 @@ import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.blservice.ViewPaymentService;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.vo.Accountvo;
+import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.BankingAccountVO;
 
 public class FinanceController implements UIController {
@@ -106,12 +108,25 @@ public class FinanceController implements UIController {
 			frame.repaint();
 		}else if (e.getActionCommand().equals("SubmitBalance")) {
 		   
-		
-			if(cost.createCost(((BalanceUI)((JButton)e.getSource()).getParent()).createBalanceVO())==ResultMessage.VALID){
-				System.out.println("Cost Create SuccessFully");
+			Balancevo temp = ((BalanceUI)((JButton)e.getSource()).getParent()).createBalanceVO();
+			ResultMessage message = ResultMessage.INVALID;
+			if(temp!=null)
+			{
+				message = cost.createCost(temp);
+				
+				if(message == ResultMessage.INVALID)
+					PromptDialog.show("创建失败", "  请检查编号和银行账户");
+				else{
+					PromptDialog.show("创建成功", "         你真棒");
+					frame.getContentPane().removeAll();;
+					currentPanel = new BalanceUI(this);
+					frame.add(currentPanel);
+					frame.validate();
+					frame.repaint();
+				}
 			}
-			else
-				System.out.println("Cost Create False");
+			
+			
 				
 			
 			

@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.Balanceblservice;
 import edu.nju.express.common.Item;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.DateComboBoxV2;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -92,8 +93,8 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		this.add(date);*/
 		date = new DateComboBoxV2();
 		date.setBounds(115, 76, 610, 50);
-		date.getSearchButton().addActionListener(controller);
-		date.getSearchButton().setActionCommand("BussinessConditionUI");
+		date.getSearchButton().addActionListener(this);
+//		date.getSearchButton().setActionCommand("BussinessConditionUI");
 		this.add(date);
 		
 		export = new JButton(export1);
@@ -197,10 +198,18 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource()==search){
-			System.out.println("???");
+		if(e.getSource()==date.getSearchButton()){
+			
+			
+			if(date.getDate()[0].compareTo(date.getDate()[1])>0)
+			{
+				PromptDialog.show("日期选择无效", "开始日期不能大于截至日期");
+			}
 			
 
+			else {
+				
+			
 			for(int i=0;i<listB.size();i++)
 			tableB.getTableModel().removeRow(0);
 			
@@ -209,8 +218,8 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 			
 			
 			
-			listB = balanceBL.viewCost(date1.getText(), date2.getText());
-			listP = balanceBL.viewReport(date1.getText(), date2.getText());
+			listB = balanceBL.viewCost(date.getDate()[0], date.getDate()[1]);
+			listP = balanceBL.viewReport(date.getDate()[0], date.getDate()[1]);
 
 			
 				Object[] rowdata = new Object[6];
@@ -239,7 +248,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 					
 					tableP.getTableModel().addRow(rowdata_1);
 				}
-		
+		}
 	}else if (e.getSource()==export) {
 		outputExcel();
 	}
