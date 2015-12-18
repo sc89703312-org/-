@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.nju.express.dataimpl.CommodityDataService_Impl;
 import edu.nju.express.dataimpl.HallDataService_Impl;
+import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.HallPo;
 import edu.nju.express.po.HallTransferReceiptPO;
 
@@ -13,10 +14,9 @@ public class CommodityTest2 {
 	public static void main(String[] args){
 		try {
 			CommodityDataService_Impl impl = new CommodityDataService_Impl();
-			impl.addCommodity("025", "南京", 1000);
-			impl.addCommodity("021", "上海", 1000);
-			impl.addCommodity("020", "广州", 1000);
-			impl.addCommodity("010", "北京", 1000);
+            ArrayList<ComInfoPO> list = impl.getCommodity();
+            for(int i=0;i<list.size();i++)
+            	System.out.println(list.get(i).id);
 			impl.flush();
 			
 //		    HallDataService_Impl impl = new HallDataService_Impl();

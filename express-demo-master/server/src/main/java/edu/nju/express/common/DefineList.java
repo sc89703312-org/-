@@ -33,7 +33,7 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 	public DefineList(String file) {
 		// TODO Auto-generated constructor stub
 	
-	path = "data/"+ file+".txt";
+	path = "data/"+ file+".ser";
 	list = getAll();
 	
 	}
@@ -177,6 +177,7 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 
 	
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<E> getAll(){
 		list.clear();
 		ObjectInputStream is = null;
@@ -192,11 +193,12 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 		}
 		try {
 			is = new ObjectInputStream(new FileInputStream(file));
-			while (true) {
-				@SuppressWarnings("unchecked")
-				E temp = (E) is.readObject();
-				list.add(temp);
-			}
+//			while (true) {
+//				@SuppressWarnings("unchecked")
+//				E temp = (E) is.readObject();
+//				list.add(temp);
+//			}
+			list   =  (ArrayList<E>)is.readObject();
 		} catch (Exception ex) {
 			try {
 				
@@ -230,10 +232,13 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 		}
 	 
 	 
-	 for(int i=0;i<list.size();i++){
+//	 for(int i=0;i<list.size();i++){
 	 try {
 		 
-		E po  = list.get(i);
+//		E po  = list.get(i);
+		 
+		 
+		 
 		 
 			ObjectOutputStream os;
 			File file = new File(path);
@@ -243,7 +248,7 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 			} else {
 				os = new MyObjectOutputStream(fos);
 			}
-			os.writeObject(po);
+			os.writeObject(list);
 			os.flush();
 			os.close();
 		} catch (FileNotFoundException e) {
@@ -252,7 +257,7 @@ public class DefineList<E extends PersistentObj> implements Serializable {
 			e.printStackTrace();
 		}
 	 }
-	}
+//	}
 	
 	
 	public class MyObjectOutputStream extends ObjectOutputStream {

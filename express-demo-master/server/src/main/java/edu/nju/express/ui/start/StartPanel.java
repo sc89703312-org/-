@@ -101,6 +101,7 @@ public class StartPanel extends ServerPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+//				RMIHelper.end();
 				System.exit(0);
 			}
 		});

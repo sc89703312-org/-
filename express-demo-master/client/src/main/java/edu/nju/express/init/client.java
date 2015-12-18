@@ -27,11 +27,13 @@ import edu.nju.express.common.Item;
 import edu.nju.express.common.Role;
 import edu.nju.express.log.LogController;
 import edu.nju.express.po.Balancepo;
+import edu.nju.express.po.ComInfoPO;
 import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.Paymentpo;
 import edu.nju.express.po.TransferReceiptPO;
+import edu.nju.express.po.UserPO;
 import edu.nju.express.presentation.loginui.LoginUI;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
 import edu.nju.express.vo.Accountvo;
@@ -64,27 +66,11 @@ public class client {
 		System.out.println("Client creates!");
 		
 
-		
 
-		
+
+
 		new LoginUI();
-		
-//		HallReceiptBL hallReceiptBL = DataFactory.createHallReceiptBLInstance();
-////		
-		try {
-			ArrayList<TransferReceiptPO> list =RMIHelper.getStationDataService().getTransferReceipt();
-		
-		
-			System.out.println(list.size());
-			for(TransferReceiptPO po:list)
-				System.out.println(po.getID());
-		
-		
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	
 		
 
 	}

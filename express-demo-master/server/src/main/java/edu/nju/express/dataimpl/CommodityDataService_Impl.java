@@ -58,6 +58,7 @@ public class CommodityDataService_Impl extends UnicastRemoteObject implements Co
 	@Override
 	public ComZonePO getZone(String comID) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println(comID);
 		ComInfoPO po = comInfoDao.find(comID);
 		return po.getZone();
 	}

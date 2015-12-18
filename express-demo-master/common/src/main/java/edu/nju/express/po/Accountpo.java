@@ -15,17 +15,17 @@ public class Accountpo extends PersistentObj implements Serializable {
 
 	
 	/** 营业厅列表 */
-	ArrayList<HallPo> hall_list = new ArrayList<HallPo>();
+	 ArrayList<HallPo> hall_list = new ArrayList<HallPo>();
 	/** 中转中心列表 */
-	ArrayList<StationPO> station_list  = new ArrayList<StationPO>();
+	 ArrayList<StationPO> station_list  = new ArrayList<StationPO>();
 	/** 用户列表 */
-	ArrayList<UserPO> user_list = new ArrayList<UserPO>();
+	 ArrayList<UserPO> user_list = new ArrayList<UserPO>();
 	/** 车辆列表 */
-	ArrayList<Carpo> car_list = new ArrayList<Carpo>();
+	 ArrayList<Carpo> car_list = new ArrayList<Carpo>();
 	/** 银行账户列表 */
-	ArrayList<BankingAccountPO> bank_list = new ArrayList<BankingAccountPO>();
+	 ArrayList<BankingAccountPO> bank_list = new ArrayList<BankingAccountPO>();
 	/** 库存列表*/
-    ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
+	  ArrayList<ComGoodsPO> goods_list = new ArrayList<ComGoodsPO>();
 	
 	
 	//	String date;
