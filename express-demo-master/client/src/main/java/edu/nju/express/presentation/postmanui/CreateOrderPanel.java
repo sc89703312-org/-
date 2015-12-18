@@ -292,7 +292,13 @@ public class CreateOrderPanel extends MainPanel {
 	private double calculate() {
 		double result = 0;
 		pkgCost = FeeCalculator.getPkgCost((String) pkgCostBox.getSelectedItem());
-		double w = Double.parseDouble(weight.getText());
+		double w = 0;
+		
+		if(!weight.getText().equals(""))
+				w=Double.parseDouble(weight.getText());
+		
+		
+		
 		result = pkgCost + FeeCalculator.getTransFee(cityR, cityS, Etype.getType((String) typeBox.getSelectedItem()),w);
 
 		System.out.println(pkgCost+" "+FeeCalculator.getTransFee(cityR, cityS, Etype.getType((String) typeBox.getSelectedItem()),w));
