@@ -143,6 +143,12 @@ public class AdjustUI extends MainPanel {
 		carSpace.setBounds(180, 370, 300, 50);
 		temSpace.setBounds(520, 370, 300, 50);
 */
+		
+		System.out.println(goodsNum[0] / space[0]);
+		System.out.println(goodsNum[1] / space[1]);
+		System.out.println(goodsNum[2] / space[2]);
+		System.out.println(goodsNum[3] / space[3]);
+		
 		MyDashBoard dp = new MyDashBoard(goodsNum[0] / space[0]);
 		MyDashBoard dtr = new MyDashBoard(goodsNum[1] / space[1]);
 		MyDashBoard dc = new MyDashBoard(goodsNum[2] / space[2]);

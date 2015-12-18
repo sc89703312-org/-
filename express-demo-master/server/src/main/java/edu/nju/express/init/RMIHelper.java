@@ -2,8 +2,10 @@ package edu.nju.express.init;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
 
 import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataimpl.*;
@@ -31,12 +33,12 @@ public class RMIHelper extends Thread{
 	private static LogRecordDataService logRecordDataService;
 	private static LoginInfoDataService loginInfoDataService;
 	private static CommodityDataService commodityDataService;
-	
+	static Remote registry;
 	
 	public static boolean  isStarted = false;
 	
 	
-	
+		           
 
 		@Override
 		public void run(){
@@ -44,8 +46,8 @@ public class RMIHelper extends Thread{
 	
 	
 	        try {
-	            LocateRegistry.createRegistry(Integer.parseInt(RMIConfig.PORT));
-	            
+
+	          registry =   LocateRegistry.createRegistry(Integer.parseInt(RMIConfig.PORT));
 	            
 	             loginInfoDataService = new LoginInfoDataService_Impl();
 	             
@@ -153,6 +155,7 @@ public class RMIHelper extends Thread{
 		    stationDataService.flush();
 		    loginInfoDataService.flush();
 		    commodityDataService.flush();
+		    UnicastRemoteObject.unexportObject(registry, true);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

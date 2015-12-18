@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.security.auth.Refreshable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.blservice.ReceiptBlService;
 import edu.nju.express.common.ConcludeTypeById;
 import edu.nju.express.presentation.MainPanel;
-import edu.nju.express.presentation.myUI.MyCheckBoxTable;
+import edu.nju.express.presentation.myUI.MyCheckBoxButtonTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.RefreshButton;
 import edu.nju.express.vo.ReceiptVOBase;
@@ -39,15 +38,15 @@ public class ReceiptApprovalUI extends MainPanel {
 	private ArrayList<Object[]> list;
 	private ArrayList<ReceiptVOBase> voList;
 
-	private MyCheckBoxTable table;
+	private MyCheckBoxButtonTable table;
 	private JButton jbtApprove;
 
 	public ReceiptApprovalUI(ManageController c) {
 		controller = c;
 
 		receiptBl = c.receipt;
-		String[] header = { "全选", "单据种类", "单据编号", "提交时间" };
-		table = new MyCheckBoxTable(header);
+		String[] header = { "全选", "单据种类", "单据编号", "提交时间" ,"详情"};
+		table = new MyCheckBoxButtonTable(header);
 		initData();
 
 		guide = new ManageGuide(c);
@@ -91,7 +90,7 @@ public class ReceiptApprovalUI extends MainPanel {
 
 		ArrayList<ReceiptVOBase> receipts = receiptBl.view();
 
-		Object[] data1 = new Object[4];
+		Object[] data1 = new Object[5];
 		for (int i = 0; i < receipts.size(); i++) {
 
 			data1[0] = false;
@@ -130,6 +129,13 @@ public class ReceiptApprovalUI extends MainPanel {
 
 			data1[2] = receipts.get(i).getId();
 			data1[3] = receipts.get(i).getDate();
+			JButton jbt  = new JButton();
+			jbt.setOpaque(false);
+	//		jbt.setIcon(new ImageIcon("ui/button/detail1.png"));
+	//		jbt.setRolloverIcon(new ImageIcon("ui/button/detail2.png"));
+			jbt.setContentAreaFilled(false);
+			jbt.setBorderPainted(false);
+			data1[4] = jbt;
 			table.getTableModel().addRow(data1);
 		}
 	}

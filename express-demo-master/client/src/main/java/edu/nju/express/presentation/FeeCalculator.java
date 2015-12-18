@@ -22,7 +22,7 @@ public class FeeCalculator {
 		int num1 = refe.indexOf(cityname1);
 		int num2 = refe.indexOf(cityname2);
 		if (num1 == -1 || num2 == -1) {
-			return -1;
+			return 0;
 		}
 
 		String result = (list.get(num1).split(split))[num2];
@@ -31,15 +31,15 @@ public class FeeCalculator {
 	}
 
 	//两个城市之间
-	public static double getTransFee(String cityname1, String cityname2, Etype type) {
+	public static double getTransFee(String cityname1, String cityname2, Etype type,double weight) {
 
 		double price = ConstantSettingBl.getPrice();
 		switch (type) {
 		case ECONOMICAL:
-			price = price / 23.0 * 18.0;
+			price = price / 23.0 * 18.0 *weight;
 			break;
 		case FAST:
-			price = price / 23.0 * 25.0;
+			price = price / 23.0 * 25.0 *weight;
 			break;
 		}
 
@@ -65,6 +65,8 @@ public class FeeCalculator {
 	}
 	
 	public static double getPkgCost(String pkg) {
+		
+		System.out.println(pkg);
 
 		switch (pkg) {
 		case "快递袋":

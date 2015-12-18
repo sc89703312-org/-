@@ -150,7 +150,7 @@ public class StartPanel extends ServerPanel {
 				if (!RMIHelper.isStarted) {
 					startBtn.setEnabled(false);
 					stopBtn.setEnabled(true);
-//					RMIHelper.init();
+					new RMIHelper().start();
 					serverInfoPanel.setStarted(true);
 					RMIHelper.isStarted = true;
 				}

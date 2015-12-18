@@ -29,7 +29,7 @@ public class Server {
 		new ServerFrame();
 		
 		
-		new RMIHelper().start();
+//		new RMIHelper().start();
 		System.out.println("Server creates!");
 		
 		
