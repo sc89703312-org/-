@@ -229,6 +229,24 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		
 	}
 	
+	public void clearPanel(){
+//		carrierIdField
+		carrierIdField.setText("");
+		
+//		carField
+		carField.setText("");
+		
+//		supervisorField
+		supervisorField.setText("");
+		
+//		guardField
+		guardField.setText("");
+		
+//		feeField
+		feeField.setText("");
+		
+	}
+	
 	public void initMargin(){
 		submitBtn = new JButton("提交");
 		submitBtn.setBounds(424, 523, 100, 40);
@@ -246,6 +264,8 @@ public class HallTransferUI extends JPanel implements MouseListener{
 						(String)toBox.getSelectedItem(), carField.getText(), 
 						supervisorField.getText(), guardField.getText(), 
 						getSelectedOrders());
+				//clearPanel
+				clearPanel();
 				}
 			}
 			
@@ -353,7 +373,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		boolean carrierId = (carrierIdField.getText()==null)? false:true;
 		boolean car = (carField.getText()==null)? false : true;
 		boolean supervisor = (supervisorField.getText()==null)? false : true;
-		boolean guard = (guardField.getText()!=null) ? false : true;
+		boolean guard = (guardField.getText()==null) ? false : true;
 		boolean order = (getSelectedOrders().isEmpty())?false:true;
 		return carrierId && car && supervisor && guard && order;
 	}
