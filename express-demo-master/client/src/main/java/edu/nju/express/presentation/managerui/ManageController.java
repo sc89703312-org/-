@@ -18,10 +18,12 @@ import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.WarningDialog;
+import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.ConstantVO;
 import edu.nju.express.vo.DistanceVO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.HallVO;
+import edu.nju.express.vo.ReceiptVOBase;
 import edu.nju.express.vo.SalaryVO;
 import edu.nju.express.vo.StationVO;
 import edu.nju.express.vo.UserMessageVO;
@@ -130,7 +132,6 @@ public class ManageController implements UIController {
 		} else if (e.getActionCommand().equals("DeleteHallUI")) {
 
 			frame.getContentPane().removeAll();
-			;
 			currentPanel = new DeleteHallPanel(this);
 			frame.add(currentPanel);
 			frame.validate();
@@ -144,10 +145,9 @@ public class ManageController implements UIController {
 			for (String id : list) {
 				receipt.approve(id);
 			}
-			
-			
+
 		} else if (e.getActionCommand().equals("SetSalary")) {
-			
+
 			SalaryUI ui = (SalaryUI) currentPanel;
 
 			String[] input = ui.getText();
@@ -169,21 +169,18 @@ public class ManageController implements UIController {
 			salary.setDriverWage(Double.parseDouble(input[1]));
 			salary.setPostmanWage(Double.parseDouble(input[2]));
 
-			
 		} else if (e.getActionCommand().equals("ModifyConstant")) {
-			
+
 			ConstantUI ui = (ConstantUI) currentPanel;
 
-				
 			constant.setPrice(ui.getPriceInput());
-			
-		/*
-			constant.setVehicleCost(ui.getVehicleCostInput()[0],
-					ui.getVehicleCostInput()[1],
-					ui.getVehicleCostInput()[2]);
-			constant.setVehicleLoad(ui.getVehicleLoadInput()[0],
-					ui.getVehicleLoadInput()[1],
-					ui.getVehicleLoadInput()[2]);*/
+
+			/*
+			 * constant.setVehicleCost(ui.getVehicleCostInput()[0],
+			 * ui.getVehicleCostInput()[1], ui.getVehicleCostInput()[2]);
+			 * constant.setVehicleLoad(ui.getVehicleLoadInput()[0],
+			 * ui.getVehicleLoadInput()[1], ui.getVehicleLoadInput()[2]);
+			 */
 
 			ArrayList<DistanceVO> newDistances = ((ConstantUI) currentPanel).getDistanceInput();
 			for (DistanceVO vo : newDistances) {
@@ -215,6 +212,45 @@ public class ManageController implements UIController {
 			System.out.println(org.createHall(vo.getId(), vo.getName()));
 		} else if (e.getActionCommand().equals("DeleteHall")) {
 			System.out.println(org.deleteHall(((DeleteHallPanel) currentPanel).getID()));
+		}
+
+	}
+
+	public void viewReceiptUI(String type, ReceiptVOBase vo) {
+		System.out.println(type);
+		System.out.println(vo.getDate());
+		switch (type) {
+		case "收款单":
+			frame.getContentPane().removeAll();
+			// currentPanel = new BalanceReceipt(this, (Balancevo)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			break;
+		case "付款单":
+			frame.getContentPane().removeAll();
+			currentPanel = new BalanceReceipt(this, (Balancevo) vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
+			break;
+		case "中转中心到达单":
+			break;
+		case "中转中心中转单":
+			break;
+		case "中转中心入库单":
+			break;
+		case "中转中心出库单":
+			break;
+		case "营业厅到达单":
+			break;
+		case "营业厅派送单":
+			break;
+		case "营业厅装车单":
+			break;
+		default:
+			break;
+
 		}
 
 	}

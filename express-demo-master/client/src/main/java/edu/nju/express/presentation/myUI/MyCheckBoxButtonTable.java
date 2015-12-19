@@ -26,8 +26,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-import edu.nju.express.presentation.myUI.JTableButton.JTableButtonMouseListener;
-import edu.nju.express.presentation.myUI.JTableButton.JTableButtonRenderer;
+import edu.nju.express.common.ConcludeTypeById;
 
 public class MyCheckBoxButtonTable extends JTable {
 
@@ -39,6 +38,8 @@ public class MyCheckBoxButtonTable extends JTable {
 	Color backColor2 = new Color(172,229,216);
 	Color gridColor = new Color(143,143,143,50);
 	Font font = new Font("黑体", Font.PLAIN, 15);
+	String selectId;
+	String type;
 
 	JTable table;
 	static String[] headerStr;
@@ -112,7 +113,8 @@ public class MyCheckBoxButtonTable extends JTable {
 		JTableButtonRenderer button = new JTableButtonRenderer(table.getDefaultRenderer(JButton.class));
 		tcm.getColumn(4).setCellRenderer(button);
 		
-		table.addMouseListener(new JTableButtonMouseListener(table));
+		
+		
 		
 		this.getColumn("全选").setMaxWidth(25);
 		this.getColumn("详情").setMaxWidth(32);
@@ -202,7 +204,7 @@ public class MyCheckBoxButtonTable extends JTable {
 		return (DefaultTableModel) this.getModel();
 	}
 	
-	class JTableButtonMouseListener implements MouseListener {
+	/*class JTableButtonMouseListener implements MouseListener {
 		private JTable __table;
 
 		private void __forwardEventToButton(MouseEvent e) {
@@ -218,7 +220,6 @@ public class MyCheckBoxButtonTable extends JTable {
 
 			value = __table.getValueAt(row, column);
 			
-			System.out.println(row+" "+column+" "+getValueAt(row, 2));
 
 			if (!(value instanceof JButton))
 				return;
@@ -227,6 +228,10 @@ public class MyCheckBoxButtonTable extends JTable {
 
 			buttonEvent = (MouseEvent) SwingUtilities.convertMouseEvent(__table, e, button);
 			button.dispatchEvent(buttonEvent);
+			
+		
+			
+			
 			// This is necessary so that when a button is pressed and released
 			// it gets rendered properly. Otherwise, the button may still appear
 			// pressed down when it has been released.
@@ -238,8 +243,12 @@ public class MyCheckBoxButtonTable extends JTable {
 		}
 
 		public void mouseClicked(MouseEvent e) {
-			__forwardEventToButton(e);
-			System.out.println(123);
+		//	__forwardEventToButton(e);
+			TableColumnModel columnModel = __table.getColumnModel();
+			int column = columnModel.getColumnIndexAtX(e.getX());
+			int row = e.getY() / __table.getRowHeight();
+			selectId = (String)getValueAt(row, 2);
+			System.out.println(row+" "+column+" "+getValueAt(row, 2)+" "+getValueAt(row, 1));
 			
 		}
 
@@ -255,5 +264,7 @@ public class MyCheckBoxButtonTable extends JTable {
 		public void mouseReleased(MouseEvent e) {
 		}
 
-	}
+	}*/
+
+	
 }

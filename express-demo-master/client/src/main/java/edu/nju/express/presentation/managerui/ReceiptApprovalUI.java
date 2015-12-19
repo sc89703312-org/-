@@ -4,13 +4,20 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableColumnModel;
 
 import edu.nju.express.blservice.ReceiptBlService;
 import edu.nju.express.common.ConcludeTypeById;
@@ -37,6 +44,8 @@ public class ReceiptApprovalUI extends MainPanel {
 	private ManageController controller;
 	private ArrayList<Object[]> list;
 	private ArrayList<ReceiptVOBase> voList;
+	private String selectId;
+	private Map<String, ReceiptVOBase> id2vo;
 
 	private MyCheckBoxButtonTable table;
 	private JButton jbtApprove;
@@ -45,9 +54,11 @@ public class ReceiptApprovalUI extends MainPanel {
 		controller = c;
 
 		receiptBl = c.receipt;
-		String[] header = { "全选", "单据种类", "单据编号", "提交时间" ,"详情"};
+		String[] header = { "全选", "单据种类", "单据编号", "提交时间", "详情" };
 		table = new MyCheckBoxButtonTable(header);
+
 		initData();
+		table.addMouseListener(new JTableButtonMouseListener(table));
 
 		guide = new ManageGuide(c);
 		guide.receipt.setIcon(null);
@@ -64,14 +75,14 @@ public class ReceiptApprovalUI extends MainPanel {
 		s.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		s.getVerticalScrollBar().setOpaque(false);
 		this.add(s);
-		
+
 		JButton refresh = new RefreshButton();
 		refresh.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				refresh();
-				
+
 			}
 		});
 		this.add(refresh);
@@ -89,12 +100,14 @@ public class ReceiptApprovalUI extends MainPanel {
 	private void initData() {
 
 		ArrayList<ReceiptVOBase> receipts = receiptBl.view();
+		id2vo = new HashMap<String, ReceiptVOBase>();
 
 		Object[] data1 = new Object[5];
 		for (int i = 0; i < receipts.size(); i++) {
 
 			data1[0] = false;
 			String id = receipts.get(i).getId();
+			id2vo.put(id, receipts.get(i));
 			switch (ConcludeTypeById.conclude(id)) {
 			case 0:
 				data1[1] = "收款单";
@@ -129,10 +142,9 @@ public class ReceiptApprovalUI extends MainPanel {
 
 			data1[2] = receipts.get(i).getId();
 			data1[3] = receipts.get(i).getDate();
-			JButton jbt  = new JButton();
-			jbt.setOpaque(false);
-	//		jbt.setIcon(new ImageIcon("ui/button/detail1.png"));
-	//		jbt.setRolloverIcon(new ImageIcon("ui/button/detail2.png"));
+			JButton jbt = new JButton();
+			jbt.setIcon(new ImageIcon("ui/button/detail1.png"));
+			jbt.setRolloverIcon(new ImageIcon("ui/button/detail2.png"));
 			jbt.setContentAreaFilled(false);
 			jbt.setBorderPainted(false);
 			data1[4] = jbt;
@@ -159,4 +171,63 @@ public class ReceiptApprovalUI extends MainPanel {
 	protected void paintComponent(Graphics g) {
 		g.drawImage(bg, 0, 0, null);
 	}
+
+	class JTableButtonMouseListener implements MouseListener {
+		private JTable __table;
+
+		private void __forwardEventToButton(MouseEvent e) {
+			TableColumnModel columnModel = __table.getColumnModel();
+			int column = columnModel.getColumnIndexAtX(e.getX());
+			int row = e.getY() / __table.getRowHeight();
+			Object value;
+			JButton button;
+			MouseEvent buttonEvent;
+
+			if (row >= __table.getRowCount() || row < 0 || column >= __table.getColumnCount() || column < 0)
+				return;
+
+			value = __table.getValueAt(row, column);
+
+			if (!(value instanceof JButton))
+				return;
+
+			button = (JButton) value;
+
+			buttonEvent = (MouseEvent) SwingUtilities.convertMouseEvent(__table, e, button);
+			button.dispatchEvent(buttonEvent);
+
+			// This is necessary so that when a button is pressed and released
+			// it gets rendered properly. Otherwise, the button may still appear
+			// pressed down when it has been released.
+			__table.repaint();
+		}
+
+		public JTableButtonMouseListener(JTable table) {
+			__table = table;
+		}
+
+		public void mouseClicked(MouseEvent e) {
+			// __forwardEventToButton(e);
+			TableColumnModel columnModel = __table.getColumnModel();
+			int column = columnModel.getColumnIndexAtX(e.getX());
+			int row = e.getY() / __table.getRowHeight();
+			selectId = (String) table.getValueAt(row, 2);
+			controller.viewReceiptUI((String) table.getValueAt(row, 1),id2vo.get(selectId));
+			
+		}
+
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		public void mouseExited(MouseEvent e) {
+		}
+
+		public void mousePressed(MouseEvent e) {
+		}
+
+		public void mouseReleased(MouseEvent e) {
+		}
+
+	}
+
 }
