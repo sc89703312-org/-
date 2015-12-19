@@ -29,6 +29,7 @@ import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.OrderVO;
 
@@ -146,12 +147,20 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				generateData(getOrderField.getText());
+				if(getOrderField.getText().length()==0){
+					WarningDialog.show("温馨提示", "输入内容不能为空");
+				}
+				else if(searchOrder()==null){
+					WarningDialog.show("T ^ T", "您输入的中转单编号不存在");
+				}
+				else{
+					generateData();
+				}
 			}
-		
+
 		});
 		panel.add(getOrderBtn);
-		
+
 		String[] header = {"托运单号","货物到达状态"};
 		DefaultTableModel model = new DefaultTableModel(null,header){
 			/**
@@ -202,13 +211,18 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				for(int i=0; i<orderList.size(); i++){
-					orderList.get(i).setGoodState(convert((String)table.getTable().getValueAt(i, 1)));
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "请检查填写项是否齐全");
 				}
-				submit(new ArriveReceiptVO(idField.getText(), dateBox.getDate(), 
-						(String)fromBox.getSelectedItem(), location, orderList));
+				else{
+					for(int i=0; i<orderList.size(); i++){
+						orderList.get(i).setGoodState(convert((String)table.getTable().getValueAt(i, 1)));
+					}
+					submit(new ArriveReceiptVO(idField.getText(), dateBox.getDate(), 
+							(String)fromBox.getSelectedItem(), location, orderList));
+				}
 			}
-			
+
 		});
 		mainpanel.add(submitBtn);
 		
@@ -271,14 +285,19 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public ArriveReceiptVO searchOrder(){
+		String searchId = "ArriveReceipt" + getOrderField.getText();
+		return receipt.creatArriveReceipt(searchId);
+	}
 
 	//set panel
-	public void generateData(String id){
-		String searchId = "ArriveReceipt" + id;
+	public void generateData(){
+		
 		orderList = new ArrayList<OrderVO>();
-		int length = receipt.creatArriveReceipt(searchId).getList().size();
+		int length = searchOrder().getList().size();
 		for(int i=0; i<length; i++){
-			orderList.add(receipt.creatArriveReceipt(searchId).getList().get(i));
+			orderList.add(searchOrder().getList().get(i));
 		}
 		Object[] row = new Object[2];
 		for(int i=0; i<length; i++){
@@ -300,6 +319,12 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		default: return GoodsState.LOST;
 		}
 		
+	}
+	
+	public boolean isFilled(){
+		boolean id = (idField.getText().trim().length()==0) ? false : true;
+		boolean stationId = (stationIdField.getText().trim().length()==0) ? false : true;
+		return id && stationId;
 	}
 
 }

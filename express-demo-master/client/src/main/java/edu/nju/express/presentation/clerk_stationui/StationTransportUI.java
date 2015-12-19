@@ -29,6 +29,7 @@ import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
 public class StationTransportUI extends JPanel implements MouseListener{
@@ -46,10 +47,12 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	JButton exit, submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
-	JLabel addOrderLabel, fromLabel, toLabel;
+	JLabel addOrderLabel,  toLabel;
 	MyCheckBoxTable checkTable;
+	/*中转单编号*/
 	LabelTextField idField;
-	MyComboBox<String> fromBox, toBox;
+	MyComboBox<String>  toBox;
+	/*车次号、航班号*/
 	LabelTextField transportIdField, containerField, supervisorField, 
 					feeField;
 	JButton calFeeBtn;
@@ -113,25 +116,12 @@ public class StationTransportUI extends JPanel implements MouseListener{
 //		panel.add(transportIdField);
 		addTransportIdField();
 		
-		fromLabel = new JLabel("出发地");
-		fromLabel.setFont(font);
-		fromLabel.setForeground(color);
-		fromLabel.setBounds(130, 190, 80, 40);
-		panel.add(fromLabel);
 		
-		fromBox = new MyComboBox<String>();
-		String[] fromList = {"南京中转站","上海中转站","北京中转站","广州中转站"};
-		for(int i=0; i<fromList.length; i++){
-			fromBox.addItem(fromList[i]);
-		}
-		fromBox.setSelectedItem(fromList[0]);
-		fromBox.setBounds(210, 190, 200, 35);
-		panel.add(fromBox);
 		
 		toLabel = new JLabel("到达地");
 		toLabel.setFont(font);
 		toLabel.setForeground(color);
-		toLabel.setBounds(130, 245, 80, 40);
+		toLabel.setBounds(130, 200, 80, 40);
 		panel.add(toLabel);
 		
 		toBox = new MyComboBox<String>();
@@ -140,22 +130,22 @@ public class StationTransportUI extends JPanel implements MouseListener{
 			toBox.addItem(toList[i]);
 		}
 		toBox.setSelectedItem(toList[0]);
-		toBox.setBounds(210, 245, 200, 35);
+		toBox.setBounds(210, 200, 200, 30);
 		panel.add(toBox);
 		
 		containerField = new LabelTextField("货柜号  ", 15);
-		containerField.setBounds(120, 295, 300, 45);
+		containerField.setBounds(120, 250, 300, 45);
 		panel.add(containerField);
 		
 		supervisorField = new LabelTextField("监装员  ", 10);
-		supervisorField.setBounds(120, 355, 300, 45);
+		supervisorField.setBounds(120, 310, 300, 45);
 		panel.add(supervisorField);
 		
 		op = new JPanel();
 		op.setLayout(null);
 		op.setOpaque(false);
 		op.setVisible(true);
-		op.setBounds(0, 400, 724, 500);
+		op.setBounds(0, 355, 724, 500);
 		
 		addOrderLabel = new JLabel("请在此处勾选出本次装箱所有托运单号");
 		addOrderLabel.setFont(font);
@@ -167,15 +157,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
 		initData();
-		//init data
-//		Object[] data1 = { false, "1234567890" };
-//		Object[] data2 = { false, "1234567891" };
-//		Object[] data3 = { false, "1234567892" };
-//		for (int i = 0; i < 10; i++) {
-//			checkTable.getTableModel().addRow(data1);
-//			checkTable.getTableModel().addRow(data2);
-//			checkTable.getTableModel().addRow(data3);
-//		}
+		
 		
 		JScrollPane s = new JScrollPane(checkTable);
 		s.setBounds(0, 60, 710, 325);
@@ -227,6 +209,11 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		mainpanel.add(scroll);
 	}
 	
+	
+	/**
+	 * 子类重写这个方法，体现为"车次号" 或"航班号" 
+	 * @author guhan
+	 */
 	public void addTransportIdField(){
 		
 	}
@@ -255,8 +242,13 @@ public class StationTransportUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(), 
-						transportIdField.getText(), supervisorField.getText(), etype);
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "请检查填写信息是否齐全");
+				}
+				else{
+					receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(), 
+							transportIdField.getText(), supervisorField.getText(), etype);
+				}
 			}
 			
 		});
@@ -328,12 +320,13 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	public void initData(){
 		Object[] row = new Object[2];
 		int length = receipt.showCurrentOrder().size();
-		for(int i=0; i<length; i++){
-			row[0] = false;
-			row[1] = receipt.showCurrentOrder().get(i).getID();
-			checkTable.getTableModel().addRow(row);
-		}
-		
+		System.out.println("length of current orders: "+length);
+//		for(int i=0; i<length; i++){
+//			row[0] = false;
+//			row[1] = receipt.showCurrentOrder().get(i).getID();
+//			checkTable.getTableModel().addRow(row);
+//		}
+//		
 		
 	}
 	
@@ -350,7 +343,15 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		return selectedOrderList;
 	}
 	
-	
+	public boolean isFilled(){
+		boolean id = (idField.getText().trim().length()==0) ? false : true;
+		boolean transportId = (transportIdField.getText().trim().length()==0) ? false : true;
+		boolean container = (containerField.getText().trim().length()==0) ? false : true;
+		boolean supervisor = (supervisorField.getText().trim().length()==0) ? false : true;
+		boolean fee = (feeField.getText().trim().length()==0) ? false : true;
+		boolean order = (getSelectedOrders().size()==0) ? false : true;
+		return id && transportId && container && supervisor && fee && order;
+	}
 	
 	public Double calFee(double weight){
 		String thisCity = Location.getStationLocation(station_id);

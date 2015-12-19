@@ -116,7 +116,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	}
 	
 	public void clearPanel(){
-		
+		dateBox.setToday();
 		deliverField.setText("");
 		moneyField.setText("");
 		orderField.setText("");

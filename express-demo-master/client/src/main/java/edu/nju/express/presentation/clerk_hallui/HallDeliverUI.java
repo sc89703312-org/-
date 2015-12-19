@@ -137,6 +137,17 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		mainpanel.add(scrollpane);
 	}
 	
+	public void clearPanel(){
+		dateBox.setToday();
+		
+		deliverIdField.setText("");
+		
+		//checkTable
+		for(int i = 0; i < checkTable.getRowCount(); i ++){
+			checkTable.setValueAt(false, i, 0);
+		}
+	}
+	
 	
 	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
 		s.setOpaque(false);
@@ -178,6 +189,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 				}
 				else{
 					submit(deliverIdField.getText(), getSelectedOrders());
+					clearPanel();
 				}
 			}
 
@@ -259,8 +271,8 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	}
 	
 	public boolean isFilled(){
-		boolean deliverId = (deliverIdField.getText()==null)?false: true;
-		boolean order = (getSelectedOrders().isEmpty())?false:true;
+		boolean deliverId = (deliverIdField.getText().length()==0)?false: true;
+		boolean order = (getSelectedOrders().size()==0)?false:true;
 		return deliverId && order;
 	}
 

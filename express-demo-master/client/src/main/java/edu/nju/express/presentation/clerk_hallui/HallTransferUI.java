@@ -20,8 +20,10 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.common.Etype;
 import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -173,14 +175,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
 		initData();
-//		Object[] data1 = { false, "1234567890" };
-//		Object[] data2 = { false, "1234567891" };
-//		Object[] data3 = { false, "1234567892" };
-//		for (int i = 0; i < 10; i++) {
-//			checkTable.getTableModel().addRow(data1);
-//			checkTable.getTableModel().addRow(data2);
-//			checkTable.getTableModel().addRow(data3);
-//		}
 		
 		JScrollPane s = new JScrollPane(checkTable);
 		s.setBounds(0, 350+45, 710, 325);
@@ -205,9 +199,16 @@ public class HallTransferUI extends JPanel implements MouseListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//...........................................
-				feeField.setText("1000");
+				if(getSelectedOrders().size()>0){
+					double weight = 0;
+					for(OrderVO vo: getSelectedOrders()){
+						weight += vo.getWeight();
+					}
+					feeField.setText(calFee(weight) + "");
+				}
+				else{
+					feeField.setText("0");
+				}
 			}
 			
 		});
@@ -245,6 +246,17 @@ public class HallTransferUI extends JPanel implements MouseListener{
 //		feeField
 		feeField.setText("");
 		
+//		dateBox
+		dateBox.setToday();
+		
+//		toBox
+		toBox.setSelectedIndex(0);
+
+		//checkTable
+		for(int i = 0; i < checkTable.getRowCount(); i ++){
+			checkTable.setValueAt(false, i, 0);
+		}
+
 	}
 	
 	public void initMargin(){
@@ -378,5 +390,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		return carrierId && car && supervisor && guard && order;
 	}
 	
-
+	public double calFee(double weight){
+		return FeeCalculator.getTransFee(Etype.STANDARD, weight);
+	}
 }

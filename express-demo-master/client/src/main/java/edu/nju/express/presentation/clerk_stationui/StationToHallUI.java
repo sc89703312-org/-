@@ -28,6 +28,7 @@ import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
 public class StationToHallUI extends JPanel implements MouseListener{
@@ -107,10 +108,15 @@ public class StationToHallUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(),
-						transportIdField.getText(), supervisorField.getText(), Etype.STANDARD);
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "请检查填写项是否齐全");
+				}
+				else{
+					receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(),
+							transportIdField.getText(), supervisorField.getText(), Etype.STANDARD);
+				}
 			}
-			
+
 		});
 		mainpanel.add(submitBtn);
 		
@@ -184,14 +190,6 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		String[] header = {"全选","订单号"};
 		checkTable = new MyCheckBoxTable(header);
 		initData();
-//		Object[] data1 = { false, "1234567890" };
-//		Object[] data2 = { false, "1234567891" };
-//		Object[] data3 = { false, "1234567892" };
-//		for (int i = 0; i < 10; i++) {
-//			checkTable.getTableModel().addRow(data1);
-//			checkTable.getTableModel().addRow(data2);
-//			checkTable.getTableModel().addRow(data3);
-//		}
 		
 		JScrollPane s = new JScrollPane(checkTable);
 		s.setBounds(0, 60, 710, 325);
@@ -315,5 +313,17 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		}
 		return selectedOrderList;
 	}
+	
+	public boolean isFilled(){
+		boolean id = (idField.getText().trim().length()==0) ? false : true;
+		boolean transportId = (transportIdField.getText().trim().length()==0) ? false : true;
+		boolean supervisor = (supervisorField.getText().trim().length()==0) ? false : true;
+		boolean guard = (guardField.getText().trim().length()==0) ? false : true;
+		boolean order = (getSelectedOrders().size()==0) ? false : true;
+		return id && transportId && supervisor && guard;
+		
+	}
+	
+	//计算运费的方法    
 
 }

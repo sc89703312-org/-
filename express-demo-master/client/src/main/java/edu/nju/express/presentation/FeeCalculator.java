@@ -48,15 +48,15 @@ public class FeeCalculator {
 	}
 	
 	//如果是同城快递，只需要一次营业厅间的运费
-	public static double getTransFee(Etype type) {
+	public static double getTransFee(Etype type, double weight) {
 
 		double price = ConstantSettingBl.getPrice();
 		switch (type) {
 		case ECONOMICAL:
-			price = price / 23.0 * 18.0;
+			price = price / 23.0 * 18.0 *weight;
 			break;
 		case FAST:
-			price = price / 23.0 * 25.0;
+			price = price / 23.0 * 25.0 *weight;
 			break;
 		}
 
