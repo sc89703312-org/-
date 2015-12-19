@@ -32,14 +32,26 @@ public class BankingFileDao extends CommonData<BankingAccountPO> implements Bank
 	public ResultMessage modify(String newname, String name) {
 		// TODO Auto-generated method stub
 		BankingAccountPO po = this.find(name);
-		ResultMessage result = delete(name);
 		
-		if(result==ResultMessage.VALID)
-			po.changeName(newname);
+		if(po == null)
+			return ResultMessage.INVALID;
 		
-		insert(po);
+		ResultMessage message = ResultMessage.INVALID;
 		
-		return result;
+		delete(name);
+		
+		po.changeName(newname);
+		
+		message = insert(po);
+		
+		if(message == ResultMessage.INVALID)
+		{
+			po.changeName(name);
+			insert(po);
+			return ResultMessage.INVALID;
+		}else {
+			return ResultMessage.VALID;
+		}
 	}
 
 	@Override

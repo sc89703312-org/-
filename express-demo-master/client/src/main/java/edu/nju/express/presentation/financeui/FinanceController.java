@@ -131,30 +131,63 @@ public class FinanceController implements UIController {
 			
 			
 		}else if (e.getActionCommand().equals("SearchBanking")) {
+			
 			ArrayList<BankingAccountVO> list = banking.showAccount(((BankingUI)currentPanel).getKeyWords());
+			
+			if(list.size()!=0){
 			((BankingUI)currentPanel).clear();
 			((BankingUI)currentPanel).setNewComponents(list);
-			
+			}else {
+				PromptDialog.show("", "    未查找到相关用户");
+			}
 			
 		}else if (e.getActionCommand().equals("AddBanking")) {
+			
+			ArrayList<BankingAccountVO> accounts = banking.getAllAccounts();
+			boolean isContained = false;
+			
+			for(BankingAccountVO vo:accounts)
+			{
+				if(((AddBankingUI)currentPanel).getTextInput().equals(vo.getName()))
+				{
+					isContained = true;
+					break;
+				}
+			}
+			
+			
+			if(isContained)
+			{
+				PromptDialog.show("添加无效", "     输入的账号已存在");
+			}
+			else{
+			
 			banking.addAccount(((AddBankingUI)currentPanel).getTextInput());
 			frame.getContentPane().removeAll();
 			currentPanel = new BankingUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+			}
 		}else if (e.getActionCommand().equals("DeleteBanking")) {
 			ResultMessage isValid = banking.removeAccount(((DeleteBankingUI)currentPanel).getID());
 			if(isValid==ResultMessage.VALID)
-				System.out.println("Delete Successfully");
-			else {
-				System.out.println("The id doesn't exsit");
-			}
+			{
+				PromptDialog.show("删除成功", "         你真棒");
+		
 			frame.getContentPane().removeAll();
 			currentPanel = new BankingUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+			
+			}
+				
+			
+			else {
+				PromptDialog.show("删除失败", "    输入账户不存在");
+			}
+			
 			
 			
 		}else if (e.getActionCommand().equals("ModifyBanking")) {
@@ -162,15 +195,19 @@ public class FinanceController implements UIController {
 			ResultMessage isValid = banking.modifyAccount(((ModifyBankingUI)currentPanel).getID()[1],
 					((ModifyBankingUI)currentPanel).getID()[0]);
 			if(isValid==ResultMessage.VALID)
-				System.out.println("Modify Successfully");
-			else {
-				System.out.println("The id doesn't exsit");
+			{
+				PromptDialog.show("修改成功", "          你真棒");
+				frame.getContentPane().removeAll();
+				currentPanel = new BankingUI(this);
+				frame.add(currentPanel);
+				frame.validate();
+				frame.repaint();
 			}
-			frame.getContentPane().removeAll();
-			currentPanel = new BankingUI(this);
-			frame.add(currentPanel);
-			frame.validate();
-			frame.repaint();
+			else 
+			{
+				PromptDialog.show("修改失败", "      输入无效");
+			}
+			
 		}else if (e.getActionCommand().equals("SearchList")) {
 		}else if (e.getActionCommand().equals("Export")) {
 			((BussinessConditionPanel)currentPanel).getTables();
@@ -181,7 +218,7 @@ public class FinanceController implements UIController {
 			
 		}else if(e.getActionCommand().equals("SearchAccount")){
 			Accountvo avo = account.viewAccount(((AccountUI)currentPanel).getDate());
-
+            
 			frame.getContentPane().removeAll();
 			currentPanel = new AccountPanel(this, avo);
 			frame.add(currentPanel);
