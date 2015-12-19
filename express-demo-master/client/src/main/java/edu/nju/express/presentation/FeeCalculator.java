@@ -36,14 +36,14 @@ public class FeeCalculator {
 		double price = ConstantSettingBl.getPrice();
 		switch (type) {
 		case ECONOMICAL:
-			price = price / 23.0 * 18.0 *weight;
+			price = price / 23.0 * 18.0;
 			break;
 		case FAST:
-			price = price / 23.0 * 25.0 *weight;
+			price = price / 23.0 * 25.0;
 			break;
 		}
 
-		BigDecimal bd = new BigDecimal( getDistance(cityname1, cityname2) / 1000.0 * price);
+		BigDecimal bd = new BigDecimal( getDistance(cityname1, cityname2) / 1000.0 * price * weight);
 		return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	
@@ -53,14 +53,14 @@ public class FeeCalculator {
 		double price = ConstantSettingBl.getPrice();
 		switch (type) {
 		case ECONOMICAL:
-			price = price / 23.0 * 18.0 *weight;
+			price = price / 23.0 * 18.0;
 			break;
 		case FAST:
-			price = price / 23.0 * 25.0 *weight;
+			price = price / 23.0 * 25.0;
 			break;
 		}
 
-		BigDecimal bd = new BigDecimal(30.0  / 1000.0 * price);
+		BigDecimal bd = new BigDecimal(30.0  / 1000.0 * price * weight);
 		return bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	

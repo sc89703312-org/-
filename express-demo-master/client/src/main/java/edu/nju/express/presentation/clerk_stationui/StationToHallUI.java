@@ -22,6 +22,7 @@ import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
+import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -51,7 +52,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	LabelTextField idField;
 	MyComboBox<String> fromBox, toBox;
 	//transortid 是指车辆代号
-	LabelTextField transportIdField, containerField, supervisorField, guardField, 
+	LabelTextField transportIdField, supervisorField, guardField, 
 					feeField;
 	JButton calFeeBtn;
 	
@@ -114,6 +115,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 				else{
 					receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(),
 							transportIdField.getText(), supervisorField.getText(), Etype.STANDARD);
+					clearPanel();
 				}
 			}
 
@@ -214,8 +216,13 @@ public class StationToHallUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//..............................................
-				feeField.setText("1000");
+				double weight = 0;
+//				System.out.println("selected orders : "+getSelectedOrders().size());
+				for(int i = 0; i < getSelectedOrders().size(); i ++){
+					System.out.println(getSelectedOrders().get(i).getWeight());
+					weight += getSelectedOrders().get(i).getWeight();
+				}
+				feeField.setText(calFee(weight) + "");
 			}
 			
 		});
@@ -230,6 +237,24 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		scroll.setBounds(129, 120, 720, 400);
 		mainpanel.add(scroll);
 		
+	}
+
+	public void clearPanel(){
+		idField.setText("");
+
+		transportIdField.setText("");
+
+		dateBox.setToday();
+
+		toBox.setSelectedIndex(0);
+
+		guardField.setText("");
+
+		supervisorField.setText("");
+
+		for(int i=0; i<checkTable.getTableModel().getRowCount(); i++){
+			checkTable.setValueAt(false, i, 0);
+		}
 	}
 	
 	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
@@ -325,5 +350,9 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	}
 	
 	//计算运费的方法    
+	public double calFee(double weight){
+		return FeeCalculator.getTransFee(Etype.STANDARD, weight);
+		
+	}
 
 }

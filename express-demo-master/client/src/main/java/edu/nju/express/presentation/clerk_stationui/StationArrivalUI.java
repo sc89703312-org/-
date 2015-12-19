@@ -189,6 +189,18 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		mainpanel.add(scroll);
 	}
 	
+	public void clearPanel(){
+		stationIdField.setText("");
+		
+		idField.setText("");
+		
+		getOrderField.setText("");
+		
+		dateBox.setToday();
+		
+		fromBox.setSelectedIndex(0);
+	}
+	
 	public void initMargin(){
 		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
 		exit.setBounds(840, 18, 30, 30);
@@ -220,6 +232,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 					}
 					submit(new ArriveReceiptVO(idField.getText(), dateBox.getDate(), 
 							(String)fromBox.getSelectedItem(), location, orderList));
+					clearPanel();
 				}
 			}
 

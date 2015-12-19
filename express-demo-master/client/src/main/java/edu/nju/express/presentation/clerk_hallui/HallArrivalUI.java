@@ -185,7 +185,17 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		
 	}
 	
-	
+	public void clearPanel(){
+		transferIdField.setText("");
+		
+		dateBox.setToday();
+		
+		fromBox.setSelectedIndex(0);
+		
+		for(int i=table.getTableModel().getRowCount()-1; i>=0; i++){
+			table.getTableModel().removeRow(i);
+		}
+	}
 	
 	public void initScrollPane(){
 		s.setViewportView(panel);
@@ -236,6 +246,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 					receipt.subArrivalReceipt(new ArrivalReceiptVO(transferIdField.getText(),
 							dateBox.getDate(), (String)fromBox.getSelectedItem(),
 							Location.getHallLocation(hall_id), orderList));
+					clearPanel();
 				}
 			}
 

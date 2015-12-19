@@ -182,16 +182,11 @@ public class StationTransportUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(getSelectedOrders().size()>0){
 					double weight = 0;
 					for(OrderVO vo: getSelectedOrders()){
 						weight += vo.getWeight();
 					}
 					feeField.setText(calFee(weight) + "");
-				}
-				else{
-					feeField.setText("0");
-				}
 			}
 			
 		});
@@ -217,9 +212,25 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	public void addTransportIdField(){
 		
 	}
+
+	public void clearPanel(){
+		idField.setText("");
 		
-	
-	
+		transportIdField.setText("");
+		
+		dateBox.setToday();
+		
+		toBox.setSelectedIndex(0);
+		
+		containerField.setText("");
+		
+		supervisorField.setText("");
+		
+		for(int i=0; i<checkTable.getTableModel().getRowCount(); i++){
+			checkTable.setValueAt(false, i, 0);
+		}
+	}
+
 	public void initMargin(){
 		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
 		exit.setBounds(840, 18, 30, 30);
@@ -248,6 +259,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 				else{
 					receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(), 
 							transportIdField.getText(), supervisorField.getText(), etype);
+					clearPanel();
 				}
 			}
 			
@@ -255,6 +267,8 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		mainpanel.add(submitBtn);
 		
 	}
+	
+	
 	
 	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
 		s.setOpaque(false);
@@ -321,12 +335,12 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		Object[] row = new Object[2];
 		int length = receipt.showCurrentOrder().size();
 		System.out.println("length of current orders: "+length);
-//		for(int i=0; i<length; i++){
-//			row[0] = false;
-//			row[1] = receipt.showCurrentOrder().get(i).getID();
-//			checkTable.getTableModel().addRow(row);
-//		}
-//		
+		for(int i=0; i<length; i++){
+			row[0] = false;
+			row[1] = receipt.showCurrentOrder().get(i).getID();
+			checkTable.getTableModel().addRow(row);
+		}
+		
 		
 	}
 	

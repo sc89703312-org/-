@@ -166,13 +166,10 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			ArrayList<OrderPO> arrivepolist = new ArrayList<OrderPO>();
 			ArrayList<OrderPO> transferpolist = new ArrayList<OrderPO>();
 			
-			for(int i=0;i<arrivelist.size();i++)
-            	arrivepolist.addAll(arrivelist.get(i).getOrderList());
-            for(int i=0;i<transferlist.size();i++)
-            	transferpolist.addAll(transferlist.get(i).getOrderList());
+			
   
             
-			System.out.println("Station showCurrentOrder:"+arrivelist.size());
+			System.out.println("Station showCurrentOrder arrivelist:"+arrivelist.size());
 			for(int i=0;i<arrivelist.size();i++){
 				arrivepolist.addAll(arrivelist.get(i).getOrderList());
 			}
@@ -191,10 +188,11 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
             
 			
 			ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
-			for(int i=0;i<arrivepolist.size();i++)
+			for(int i=0;i<arrivepolist.size();i++){
 				orderlist.add(Convert.po_to_vo_order(arrivepolist.get(i)));
-			
-			System.out.println(orderlist.size());
+				System.out.println(orderlist.get(i).getID());
+			}
+			System.out.println("station show currentorder orderlist: "+orderlist.size());
 			
 			return orderlist;
 			

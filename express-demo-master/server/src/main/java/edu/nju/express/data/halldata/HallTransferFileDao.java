@@ -24,7 +24,7 @@ public class HallTransferFileDao extends CommonData<HallTransferReceiptPO> imple
 		// TODO Auto-generated method stub
 		ArrayList<HallTransferReceiptPO> list = getAll(location);
 		if(list.size()!=0){
-			String num = list.get(list.size()-1).getId().substring(16, list.get(list.size()-1).getId().length());
+			String num = list.get(list.size()-1).getId().substring(19, list.get(list.size()-1).getId().length());
 			return "0"+(int)(Integer.parseInt(num)+1);
 		}
 		else
