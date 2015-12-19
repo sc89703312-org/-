@@ -222,9 +222,9 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	}
 	
 	public boolean isFilled(){
-		boolean deliver = (deliverField.getText()==null)?false:true;
-		boolean order = (orderField.getText()==null)?false:true;
-		boolean money = (moneyField.getText()==null)?false:true;
+		boolean deliver = (deliverField.getText().trim().length()==0)?false:true;
+		boolean order = (orderField.getText().trim().length()==0)?false:true;
+		boolean money = (moneyField.getText().trim().length()==0)?false:true;
 				
 		return deliver && order && money;
 	}

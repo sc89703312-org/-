@@ -1,5 +1,7 @@
 package edu.nju.express.businesslogic.vehiclebl;
 
+import java.util.ArrayList;
+
 import edu.nju.express.blservice.Vehicleblservice;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
@@ -53,6 +55,12 @@ public class DriverController implements Vehicleblservice {
 	public void endVehicle() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<Drivervo> getAll() {
+		// TODO Auto-generated method stub
+		return driver.getAll();
 	}
 
 }

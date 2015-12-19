@@ -370,11 +370,11 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	}
 	
 	public boolean isFilled(){
-		boolean carrierId = (carrierIdField.getText()==null)? false:true;
-		boolean car = (carField.getText()==null)? false : true;
-		boolean supervisor = (supervisorField.getText()==null)? false : true;
-		boolean guard = (guardField.getText()==null) ? false : true;
-		boolean order = (getSelectedOrders().isEmpty())?false:true;
+		boolean carrierId = (carrierIdField.getText().length()==0)? false:true;
+		boolean car = (carField.getText().length()==0)? false : true;
+		boolean supervisor = (supervisorField.getText().length()==0)? false : true;
+		boolean guard = (guardField.getText().length()==0) ? false : true;
+		boolean order = (getSelectedOrders().size()==0)?false:true;
 		return carrierId && car && supervisor && guard && order;
 	}
 	

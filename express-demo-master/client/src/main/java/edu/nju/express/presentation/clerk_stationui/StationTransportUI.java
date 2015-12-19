@@ -355,7 +355,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	public Double calFee(double weight){
 		String thisCity = Location.getStationLocation(station_id);
 		String toCity = (String)toBox.getSelectedItem();
-		return weight*FeeCalculator.getTransFee(thisCity, toCity, etype);
+		return FeeCalculator.getTransFee(thisCity, toCity, etype, weight);
 	}
 
 }

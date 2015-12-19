@@ -88,24 +88,30 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		}
 		
 		if(id.contains("HallTransferReceipt")){
-            try {
-				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
-				
-				
-				System.out.println(location+"    "+transfervo.getDestination());
-				
-				if(transfervo.getDestination().equals(location)){
-				    ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(hallID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
-				    return vo;
+			try {
+				if(hallDataService.findHallTransfer(id)!=null){
+					HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
+
+
+					System.out.println(location+"    "+transfervo.getDestination());
+
+
+					if(transfervo.getDestination().equals(location)){
+						ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(hallID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
+						return vo;
+					}
+					else
+						return null;
 				}
-				else
+				else{
 					return null;
-			    } catch (RemoteException e) {
+				}
+			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
-			    }
 			}
+		}
 		else if(id.contains("TransferReceipt")){
 			try {
 				TransferReceiptVO transfervo = Convert.po_to_vo_transfer(stationDataService.getTransfer(id));

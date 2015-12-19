@@ -1,5 +1,7 @@
 package edu.nju.express.blservice;
 
+import java.util.ArrayList;
+
 import edu.nju.express.common.ResultMessage;
 import edu.nju.express.vo.Drivervo;
 
@@ -55,7 +57,12 @@ public interface Vehicleblservice {
 	 */
 	public Drivervo viewDriver(String id);
 	
-	
+	/**
+	 * @author guhan
+	 * @return ArrayList<Drivervo> 得到所有司机信息返回给界面层
+	 * 
+	 */
+	public ArrayList<Drivervo> getAll();
 
 	/**
 	 * @author lenovo
@@ -64,4 +71,6 @@ public interface Vehicleblservice {
 	 * @version  2015年12月9日21:53:52
 	 */
 	public void endVehicle();
+	
+	
 }

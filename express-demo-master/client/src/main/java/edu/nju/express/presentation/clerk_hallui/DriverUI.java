@@ -1,16 +1,19 @@
 package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.Vehicleblservice;
 import edu.nju.express.common.ResultMessage;
@@ -19,6 +22,8 @@ import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyButton;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
+import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Drivervo;
 
 public class DriverUI extends JPanel implements MouseListener{
@@ -40,7 +45,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	private Vehicleblservice vehicleBL;
 	private JPanel mainpanel;
 	private JLabel bg;
-	private JPanel newPanel, errorPanel1, nullPointerPanel,errorPanel2, deleteConfirmPanel;
+	private JPanel listPanel, newPanel, deleteConfirmPanel;
 	private JButton newBtn, editBtn, trashBtn;
 	private JLabel  genderLabel, birthLabel, licenseLimitLabel;
 	private LabelTextField driverIdField, nameField, identityField, cellphoneField;
@@ -48,12 +53,16 @@ public class DriverUI extends JPanel implements MouseListener{
 	private DateComboBoxPanel birthBoxPanel, licenseLimitBoxPanel;
 	private MyButton addBtn, saveBtn;
 	private MySearchFieldPanel searchField;
+	private MyTablePanel table;
+	
 	private boolean isInfo = false;
 	private boolean isNew = true;
 	
 	
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
+	
+	ArrayList<Drivervo> driverList;
 	
 //	String driverID = "12345";
 	String hall_id = "025001";
@@ -68,13 +77,11 @@ public class DriverUI extends JPanel implements MouseListener{
 		mainpanel.setVisible(true);
 		mainpanel.setOpaque(false);
 		initButton();
+		initListPanel();
 		initNewPanel();
-		initErrorPanel1();
-		initNullPointerPanel();
-		initErrorPanel2();
 		initDeleteConfirmPanel();
 		
-		mainpanel.add(newPanel);
+		mainpanel.add(listPanel);
 		
 		
 		bg = new JLabel(new ImageIcon("ui/image/hall/driver.png"));
@@ -104,7 +111,7 @@ public class DriverUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(exit);
 		//初始化为新建司机信息
-		newBtn = new JButton(new1);
+		newBtn = new JButton(new0);
 		newBtn.setBounds(729, 81, 30, 30);
 		newBtn.setBorderPainted(false);
 		newBtn.addActionListener(new ActionListener(){
@@ -140,24 +147,22 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//只要点击edit就remove “添加”按钮
-				mainpanel.remove(addBtn);
-				mainpanel.remove(saveBtn);
+				
 				if(isNew){
-					mainpanel.remove(newPanel);
-					mainpanel.remove(nullPointerPanel);
-					mainpanel.add(errorPanel1);
-					mainpanel.validate();
-					mainpanel.repaint();
+					WarningDialog.show("温馨提示", "请先查找您要编辑的司机信息");
 				}
 				else if(isInfo){
+					mainpanel.remove(addBtn);
+					
 					enableInfoPanel();
 					//编辑时不让删除
 					trashBtn.setEnabled(false);
 					//
 					mainpanel.add(saveBtn);
-					mainpanel.validate();
-					mainpanel.repaint();
+					
 				}
+				mainpanel.validate();
+				mainpanel.repaint();
 			}
 			
 		});
@@ -173,12 +178,7 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(isNew){
-					mainpanel.remove(addBtn);
-					mainpanel.remove(newPanel);
-					mainpanel.remove(nullPointerPanel);
-					mainpanel.remove(errorPanel1);
-					mainpanel.add(errorPanel2);
-					
+					WarningDialog.show("温馨提示", "请先查找您要删除的司机信息");
 				}
 				else if(isInfo){
 					mainpanel.remove(newPanel);
@@ -205,25 +205,23 @@ public class DriverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				trashBtn.setEnabled(true);
-				mainpanel.remove(addBtn);
-				mainpanel.remove(saveBtn);
-				if(getDriver(searchField.getText())!=null){
+				
+				if(searchField.getText().length()==0){
+					WarningDialog.show("温馨提示", "输入内容不能为空");
+				}
+				else if(getDriver(searchField.getText())==null){
+					WarningDialog.show("T ^ T", "sorry，"+searchField.getText()+"不在");
+				}
+				else{
+					mainpanel.remove(listPanel);
+					trashBtn.setEnabled(true);
+					mainpanel.remove(addBtn);
+					mainpanel.remove(saveBtn);
 					setIsInfo(true);
 					setIsNew(false);
 					initInfoPanel(getDriver(searchField.getText()));
-					if(mainpanel.getComponentAt(130, 130).equals(nullPointerPanel)){
-						mainpanel.remove(nullPointerPanel);
-						mainpanel.add(newPanel);
-						mainpanel.add(saveBtn);
-					}
-				}else{
-					setIsNew(true);
-					//remove 当前编辑区的panel
-					mainpanel.remove(mainpanel.getComponentAt(130, 130));
-					mainpanel.add(nullPointerPanel);
+					mainpanel.add(newPanel);
 				}
-				
 				newBtn.setIcon(new0);
 				newBtn.repaint();
 				editBtn.setIcon(edit0);
@@ -233,11 +231,11 @@ public class DriverUI extends JPanel implements MouseListener{
 				mainpanel.validate();
 				mainpanel.repaint();
 			}
-			
+
 		});
 		searchField.setBounds(480, 76, 200, 40);
 		mainpanel.add(searchField);
-		
+
 		addBtn = new MyButton(395, 525, 110, 45);
 		addBtn.setIcon(new ImageIcon("ui/image/hall/add0.png"));
 		addBtn.addMouseListener(this);
@@ -246,16 +244,27 @@ public class DriverUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				addDriver(new Drivervo(driverIdField.getText(), nameField.getText(),
-						birthBoxPanel.getDate(), identityField.getText(), 
-						cellphoneField.getText(), hall_id, 
-						genderBox.getSelectedIndex()==0?true:false,
-						licenseLimitBoxPanel.getDate()
-						));
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "请检查信息项是否齐全");
+				}
+				else{
+					addDriver(new Drivervo(driverIdField.getText(), nameField.getText(),
+							birthBoxPanel.getDate(), identityField.getText(), 
+							cellphoneField.getText(), hall_id, 
+							genderBox.getSelectedIndex()==0?true:false,
+									licenseLimitBoxPanel.getDate()
+							));
+
+					mainpanel.remove(newPanel);
+					mainpanel.remove(addBtn);
+					refreshData();
+					mainpanel.add(listPanel);
+					mainpanel.validate();
+					mainpanel.repaint();
+				}
 			}
-			
+
 		});
-		mainpanel.add(addBtn);     //初始为newPanel
 
 		saveBtn = new MyButton(395, 525, 110, 45);
 		saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
@@ -265,15 +274,26 @@ public class DriverUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				modifyDriver(driverIdField.getText(),
-						new Drivervo(driverIdField.getText(), nameField.getText(),
-						birthBoxPanel.getDate(), identityField.getText(), 
-						cellphoneField.getText(), hall_id, 
-						genderBox.getSelectedIndex()==0?true:false,
-						licenseLimitBoxPanel.getDate()
-						));
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "请检查填写信息是否齐全");
+				}
+				else{
+					modifyDriver(driverIdField.getText(),
+							new Drivervo(driverIdField.getText(), nameField.getText(),
+									birthBoxPanel.getDate(), identityField.getText(), 
+									cellphoneField.getText(), hall_id, 
+									genderBox.getSelectedIndex()==0?true:false,
+											licenseLimitBoxPanel.getDate()
+									));
+					mainpanel.remove(newPanel);
+					mainpanel.remove(saveBtn);
+					refreshData();
+					mainpanel.add(listPanel);
+					mainpanel.validate();
+					mainpanel.repaint();
+				}
 			}
-			
+
 		});
 	}
 	
@@ -282,8 +302,10 @@ public class DriverUI extends JPanel implements MouseListener{
 	 */
 	public void initInfoPanel(Drivervo vo){
 		driverIdField.setText(vo.getId());
+		driverIdField.getTextField().setEditable(false);
 		
 		nameField.setText(vo.getName());
+		nameField.getTextField().setEditable(false);
 		
 		genderBox.setSelectedIndex(vo.getSex()==true?0:1);
 		
@@ -294,10 +316,12 @@ public class DriverUI extends JPanel implements MouseListener{
 		birthBoxPanel.getDayComboBox().setSelectedItem(split[2]);
 		
 		identityField.setText(vo.getCertificate());
+		identityField.getTextField().setEditable(false);
 		
 		cellphoneField.setText(vo.getPhone());
+		cellphoneField.getTextField().setEditable(false);
 		
-		//阿西吧。。。。又来一个日期box
+		
 		String ddlDate = vo.getDdl();
 		System.out.println(ddlDate);
 		String[] ddl = ddlDate.split("/");
@@ -314,14 +338,15 @@ public class DriverUI extends JPanel implements MouseListener{
 		nameField.setText("");
 		
 		genderBox.setSelectedIndex(0);
-		
-		//birthDate 暂时不写了！！
+
+		birthBoxPanel.setToday();
 		
 		identityField.setText("");
 		
 		cellphoneField.setText("");
 		
-		//ddlDate 暂时不写了！！
+		licenseLimitBoxPanel.setToday();
+		
 	}
 	
 	/**
@@ -333,7 +358,40 @@ public class DriverUI extends JPanel implements MouseListener{
 		
 		nameField.getTextField().setEditable(true);
 		
+		identityField.getTextField().setEditable(true);
+		
+		cellphoneField.getTextField().setEditable(true);
+		
 	}	
+	
+	public void initListPanel(){
+		listPanel = new JPanel();
+		listPanel.setLayout(null);
+		listPanel.setOpaque(false);
+		listPanel.setVisible(true);
+		listPanel.setBounds(128, 117, 729, 403);
+		
+		String[] header = {"司机编号","司机姓名"};
+		DefaultTableModel model = new DefaultTableModel(null,header){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+
+		table = new MyTablePanel(model,header);
+		table.setBounds(0, 0, 710, 350);
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(690,350));
+		listPanel.add(table);
+		
+		//refresh driver data
+		refreshData();
+	}
 	
 	
 	public void initNewPanel(){
@@ -400,49 +458,7 @@ public class DriverUI extends JPanel implements MouseListener{
 		
 	}
 	
-	public void initErrorPanel1(){
-		errorPanel1 = new JPanel();
-		errorPanel1.setLayout(null);
-		errorPanel1.setVisible(true);
-		errorPanel1.setOpaque(false);
-		errorPanel1.setBounds(128, 117, 729, 452);
-		
-		JLabel errorLabel = new JLabel("(＞﹏＜)在上方的搜索框中输入司机编号才能编辑~");
-		errorLabel.setFont(font);
-		errorLabel.setForeground(color);
-		errorLabel.setBounds(120, 180, 500, 40);
-		errorPanel1.add(errorLabel);
-		
-	}
 	
-	public void initNullPointerPanel(){
-		nullPointerPanel = new JPanel();
-		nullPointerPanel.setLayout(null);
-		nullPointerPanel.setVisible(true);
-		nullPointerPanel.setOpaque(false);
-		nullPointerPanel.setBounds(128, 117, 729, 452);
-		
-		JLabel errorLabel = new JLabel("Q A Q 司机编号不存在");
-		errorLabel.setFont(font);
-		errorLabel.setForeground(color);
-		errorLabel.setBounds(250, 180, 500, 40);
-		nullPointerPanel.add(errorLabel);
-		
-	}
-	
-	public void initErrorPanel2(){
-		errorPanel2 = new JPanel();
-		errorPanel2.setLayout(null);
-		errorPanel2.setVisible(true);
-		errorPanel2.setOpaque(false);
-		errorPanel2.setBounds(128, 117, 729, 452);
-		
-		JLabel errorLabel = new JLabel("(＞﹏＜)还没输入要删除的司机编号呢~");
-		errorLabel.setFont(font);
-		errorLabel.setForeground(color);
-		errorLabel.setBounds(120, 180, 500, 40);
-		errorPanel2.add(errorLabel);
-	}
 	
 	public void initDeleteConfirmPanel(){
 		deleteConfirmPanel = new JPanel();
@@ -460,9 +476,10 @@ public class DriverUI extends JPanel implements MouseListener{
 				// TODO Auto-generated method stub
 				setIsNew(true);
 				deleteDriver(driverIdField.getText());
-				mainpanel.remove(mainpanel.getComponentAt(396, 526));
 				//remove deleteConfirmPanel
-				mainpanel.remove(mainpanel.getComponentAt(355, 257));
+				mainpanel.remove(deleteConfirmPanel);
+				refreshData();
+				mainpanel.add(listPanel);
 				newBtn.setEnabled(true);
 				editBtn.setEnabled(true);
 				mainpanel.validate();
@@ -564,6 +581,10 @@ public class DriverUI extends JPanel implements MouseListener{
 		}
 	}
 	
+	public ArrayList<Drivervo> getAll(){
+		return vehicleBL.getAll();
+	}
+	
 	/**
 	 * 
 	 * @param id
@@ -603,5 +624,35 @@ public class DriverUI extends JPanel implements MouseListener{
 		
 	}
 	
+	public void refreshData(){
+		//清空table
+		int rowCount = table.getTableModel().getRowCount();
+		for(int i = rowCount - 1; i >= 0 ; i --){
+			table.getTableModel().removeRow(i);
+		}
+		
+		driverList = new ArrayList<Drivervo>();
+		int length = getAll().size();
+		for(int i = 0; i < length; i ++){
+			driverList.add(getAll().get(i));
+		}
+		
+		String[] row = new String[2];
+		for(int i = 0; i < driverList.size(); i ++){
+			row[0] = driverList.get(i).getId();
+			row[1] = driverList.get(i).getName();
+			table.getTableModel().addRow(row);
+		}
+		
+	}
+	
+	public boolean isFilled(){
+		boolean driverId, name, identity, cellphone;
+		driverId = (driverIdField.getText().length() == 0) ? false : true;
+		name = (nameField.getText().length() == 0) ? false : true;
+		identity = (identityField.getText().length() == 0) ? false : true;
+		cellphone = (cellphoneField.getText().length() == 0) ? false : true;
+		return driverId && name && identity && cellphone;
+	}
 	
 }

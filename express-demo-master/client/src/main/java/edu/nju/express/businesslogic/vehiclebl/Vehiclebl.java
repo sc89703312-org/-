@@ -1,6 +1,7 @@
 package edu.nju.express.businesslogic.vehiclebl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import edu.nju.express.blservice.Vehicleblservice;
 import edu.nju.express.common.ResultMessage;
@@ -151,6 +152,22 @@ public class Vehiclebl implements Vehicleblservice{
 				                 po.getBirthDate(), po.getCertificate(),
 				                 po.getPhone() ,po.getHallId(),
 				                 po.getSex(),po.getDdl());
+	}
+
+	@Override
+	public ArrayList<Drivervo> getAll() {
+		// TODO Auto-generated method stub
+		ArrayList<Drivervo> drivers = new ArrayList<Drivervo>();
+		try {
+			ArrayList<Driverpo> temp = vehicledataservice.getAllDrivers();
+			for(int i = 0; i < temp.size(); i ++){
+				drivers.add(convertPO(temp.get(i)));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return drivers;
 	}
 	
 	

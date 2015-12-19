@@ -204,9 +204,15 @@ public class CarUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(getCar(searchField.getText())==null){
+				if(searchField.getText().length()==0){
+					WarningDialog.show("温馨提示", "搜索内容不能为空");
+					
+				}
+				else if(getCar(searchField.getText())==null){
 					WarningDialog.show("T ^ T", "Sorry, 没有这辆车");
-				}else{
+					
+				}
+				else{
 
 					if(mainpanel.getComponentAt(130, 130).equals(listPanel)){
 						mainpanel.remove(listPanel);
@@ -215,18 +221,11 @@ public class CarUI extends JPanel implements MouseListener{
 					trashBtn.setEnabled(true);
 					mainpanel.remove(addBtn);
 					mainpanel.remove(saveBtn);
-					if(getCar(searchField.getText())!=null){
 						setIsInfo(true);
 						setIsNew(false);
 						initInfoPanel(getCar(searchField.getText()));
 
-					}else{
-						setIsNew(true);
-						//remove 当前编辑区的panel
-						mainpanel.remove(mainpanel.getComponentAt(130, 130));
-						//					mainpanel.add(nullPointerPanel);
-						WarningDialog.show("温馨提示", "搜索内容不能为空");
-					}
+					
 				}
 				newBtn.setIcon(new0);
 				newBtn.repaint();
@@ -414,7 +413,7 @@ public class CarUI extends JPanel implements MouseListener{
 				mainpanel.remove(mainpanel.getComponentAt(355, 257));
 				mainpanel.add(addBtn);
 				newBtn.setEnabled(true);
-				editBtn.setEnabled(true);
+				editBtn.setEnabled(true); 
 				mainpanel.remove(newPanel);
 				refreshTable();
 				mainpanel.add(listPanel);

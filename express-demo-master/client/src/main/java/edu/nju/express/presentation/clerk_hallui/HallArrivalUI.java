@@ -29,6 +29,7 @@ import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.MyTablePanel;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.OrderVO;
 
@@ -108,11 +109,18 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				//set panel with return value of createArrival
-				generateData(transferIdField.getText());
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "装车单编号不能为空");
+				}
+				else if(searchTransfer()==null){
+					WarningDialog.show("T ^ T", "对不起，没找到您要的装车单");
+				}
+				else{
+					//set panel with return value of createArrival
+					generateData();
+				}
 			}
-			
+
 		});
 		panel.add(confirmBtn);
 		
@@ -283,28 +291,39 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		
 	}
 	
+	public ArrivalReceiptVO searchTransfer(){
+		String searchId = "HallTransferReceipt"+transferIdField.getText();
+		return receipt.createArrivalReceipt(searchId);
+	}
+	
 
 	//生成托运单号
-	public void generateData(String transferId){
-		String searchId = "HallTransferReceipt"+transferId;
+	public void generateData(){
+		;
 		orderList = new ArrayList<OrderVO>();
 //		System.out.println(transferId);
 		
-		String dateStr = receipt.createArrivalReceipt(searchId).getDate();
+		String dateStr = searchTransfer().getDate();
 		String[] date = dateStr.split("/");
 		dateBox.getYearComboBox().setSelectedItem(date[0]);
 		dateBox.getMonthComboBox().setSelectedItem(date[1]);
 		dateBox.getDayComboBox().setSelectedItem(date[2]);
 		
-		String from = receipt.createArrivalReceipt(searchId).getFrom();
+		String from = searchTransfer().getFrom();
 		//先这样, 要根据hall_id初始化不同的地点
 		
 		fromBox.addItem(from);
 		fromBox.setSelectedItem(from);
 		
-		int length = receipt.createArrivalReceipt(searchId).getOrderList().size();
+		//先清空table
+		int tablelen = table.getTableModel().getRowCount();
+		for(int i = tablelen-1; i>=0; i --){
+			table.getTableModel().removeRow(i);
+		}
+		
+		int length = searchTransfer().getOrderList().size();
 		for(int i=0; i<length; i++){
-			orderList.add(receipt.createArrivalReceipt(searchId).getOrderList().get(i));
+			orderList.add(searchTransfer().getOrderList().get(i));
 		}
 		
 		String[] row = new String[2];
@@ -326,7 +345,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	}
 	
 	public boolean isFilled(){
-		boolean transferId = (transferIdField.getText()==null)?false:true;
+		boolean transferId = (transferIdField.getText().trim().length()==0)?false:true;
 		
 		return transferId;
 	}
