@@ -138,27 +138,12 @@ public class AdjustUI extends MainPanel {
 	}
 
 	private void initDashBoards() {
-		/*planeSpace.setBounds(180, 170, 300, 50);
-		trainSpace.setBounds(520, 170, 300, 50);
-		carSpace.setBounds(180, 370, 300, 50);
-		temSpace.setBounds(520, 370, 300, 50);
-*/
 		
-		System.out.println(goodsNum[0] / space[0]);
-		System.out.println(goodsNum[1] / space[1]);
-		System.out.println(goodsNum[2] / space[2]);
-		System.out.println(goodsNum[3] / space[3]);
-		
-		MyDashBoard dp = new MyDashBoard(goodsNum[0] / space[0]);
-		MyDashBoard dtr = new MyDashBoard(goodsNum[1] / space[1]);
-		MyDashBoard dc = new MyDashBoard(goodsNum[2] / space[2]);
-		MyDashBoard dte = new MyDashBoard(goodsNum[3] / space[3]);
-		/*
-		MyDashBoard dp = new MyDashBoard(20);
-		MyDashBoard dtr = new MyDashBoard(30);
-		MyDashBoard dc = new MyDashBoard(40);
-		MyDashBoard dte = new MyDashBoard(50);*/
-		
+		MyDashBoard dp = new MyDashBoard((int)((double)goodsNum[0] / space[0] *100));
+		MyDashBoard dtr = new MyDashBoard((int)((double)goodsNum[1] / space[1] *100));
+		MyDashBoard dc = new MyDashBoard((int)((double)goodsNum[2] / space[2] *100));
+		MyDashBoard dte = new MyDashBoard((int)((double)goodsNum[3] / space[3] *100));
+
 		dp.setBounds(260, 180, (int)dp.getPreferredSize().getWidth(),(int)dp.getPreferredSize().getHeight());
 		dtr.setBounds(600, 180, (int)dtr.getPreferredSize().getWidth(),(int)dtr.getPreferredSize().getHeight());
 		dc.setBounds(260, 390, (int)dc.getPreferredSize().getWidth(),(int)dc.getPreferredSize().getHeight());
