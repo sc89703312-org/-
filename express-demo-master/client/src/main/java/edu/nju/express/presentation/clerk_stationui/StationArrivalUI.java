@@ -299,8 +299,12 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		
 	}
 	
+	
 	public ArriveReceiptVO searchOrder(){
-		String searchId = "ArriveReceipt" + getOrderField.getText();
+		//有BUG！！！！！！！！！！！！！！！！！！！！！
+		
+		String sign = (getOrderField.getText().length() == 10)?"HallTransferReceipt":"TransferReceipt";
+		String searchId = sign + getOrderField.getText();
 		return receipt.creatArriveReceipt(searchId);
 	}
 
