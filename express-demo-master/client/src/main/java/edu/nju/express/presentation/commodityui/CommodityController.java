@@ -9,7 +9,9 @@ import javax.swing.JButton;
 
 import edu.nju.express.blservice.CommodityBlService;
 import edu.nju.express.businesslogic.DataFactory;
+import edu.nju.express.common.ResultMessageV2;
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.ComGoodsVO;
 import edu.nju.express.vo.ComZoneVO;
@@ -159,32 +161,44 @@ public class CommodityController implements UIController {
 
 			MoveGoodsUI ui = (MoveGoodsUI) (((JButton) e.getSource()).getParent());
 			Object[][] data = ui.getTableObjects();
-			service.moveGoods(data);
-			ArrayList<ComGoodsVO> voList = service.showInventory();
-
-			frame.getContentPane().removeAll();
-			currentPanel = new ShowInventoryUI(this, voList);
-			frame.add(currentPanel);
-			frame.validate();
-			frame.repaint();
+			ResultMessageV2 result = service.moveGoods(data);
+			System.out.println(result);
+			
+			if(result==ResultMessageV2.SUCCESS){
+				System.out.println("success");
+			    ArrayList<ComGoodsVO> voList = service.showInventory();
+			    frame.getContentPane().removeAll();
+			    currentPanel = new ShowInventoryUI(this, voList);
+			    frame.add(currentPanel);
+			    frame.validate();
+			    frame.repaint();
+			}
+			else{
+				System.out.println("error");
+				WarningDialog.show("移动错误", "         请正确移动货物");
+			}
 
 		} else if (e.getActionCommand().equals("confirmdate")) {
 
 			ShowCheckUI ui = (ShowCheckUI) (((JButton) e.getSource()).getParent());
 			String start = ui.getStartDate();
 			String end = ui.getEndDate();
+			
+            if(start.compareTo(end)<=0){
+			    ArrayList<EnterReceiptVO> enterList = service.showCheckEnter(start, end);
+			    ArrayList<ExitReceiptVO> exitList = service.showCheckExit(start, end);
 
-			ArrayList<EnterReceiptVO> enterList = service.showCheckEnter(start, end);
-			ArrayList<ExitReceiptVO> exitList = service.showCheckExit(start, end);
+			    System.out.println(start + " " + end);
+			    System.out.println(enterList.size());
 
-			System.out.println(start + " " + end);
-			System.out.println(enterList.size());
-
-			frame.getContentPane().removeAll();
-			currentPanel = new ShowCheckUI(this, enterList, exitList);
-			frame.add(currentPanel);
-			frame.validate();
-			frame.repaint();
+			    frame.getContentPane().removeAll();
+			    currentPanel = new ShowCheckUI(this, enterList, exitList);
+			    frame.add(currentPanel);
+			    frame.validate();
+			    frame.repaint();
+            }
+            else
+            	WarningDialog.show("时间区间错误", "         请检查时间区间");
 
 		} else if (e.getActionCommand().equals("showreceipt")) {
 
@@ -216,14 +230,18 @@ public class CommodityController implements UIController {
 
 			AdjustUI ui = (AdjustUI) (((JButton) e.getSource()).getParent());
 			int[] space = ui.getSpace();
+			ResultMessageV2 result = service.editZone(space);
 
-			service.editZone(space);
-
-			currentPanel = new AdjustUI(this, service.showZone());
-			frame.getContentPane().removeAll();
-			frame.add(currentPanel);
-			frame.validate();
-			frame.repaint();
+			if(result==ResultMessageV2.SUCCESS){
+			    currentPanel = new AdjustUI(this, service.showZone());
+			    frame.getContentPane().removeAll();
+			    frame.add(currentPanel);
+			    frame.validate();
+			    frame.repaint();
+			}
+			else{
+				WarningDialog.show("空间调整错误", "         请检查当前库存");
+			}
 
 		} else if (e.getActionCommand().equals("init")) {
 
@@ -315,6 +333,20 @@ public class CommodityController implements UIController {
 			frame.validate();
 			frame.repaint();
 
+		}
+		else if (e.getActionCommand().equals("exportinventory")){
+			
+			ShowInventoryUI ui = (ShowInventoryUI) (((JButton) e.getSource()).getParent());
+			
+			ui.outputExcel();
+			
+		}
+		else if (e.getActionCommand().equals("exportcheck")){
+			
+           ShowCheckUI ui = (ShowCheckUI) (((JButton) e.getSource()).getParent());
+			
+			ui.outputExcel();
+			
 		}
 
 	}

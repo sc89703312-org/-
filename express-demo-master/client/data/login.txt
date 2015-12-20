@@ -1,1 +1,1 @@
-true manager saber
+true 0250001 1

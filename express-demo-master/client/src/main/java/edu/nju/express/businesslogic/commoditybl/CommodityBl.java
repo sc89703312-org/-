@@ -569,6 +569,7 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		
 		int shelfPerLine = comZonePO.getShelfPerLine();
 		int cellPerShelf = comZonePO.getCellPerShelf();
+		int[] space = comZonePO.getSpace();
 		
 		boolean isEmptyPlane[] = comZonePO.getIsEmptyPlane();
 		boolean isEmptyTrain[] = comZonePO.getIsEmptyTrain();
@@ -587,26 +588,42 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 		for(int i=0;i<data.length;i++){
 			int index = (Integer.parseInt((String) data[i][2])-1)*shelfPerLine*cellPerShelf+(Integer.parseInt((String) data[i][3])-1)*cellPerShelf+(Integer.parseInt((String) data[i][4])-1);
 			String type = (String) data[i][1];
-			if(type.equals("航运区"))
+			
+			if(Integer.parseInt((String) data[i][3])>shelfPerLine||Integer.parseInt((String) data[i][3])<1||Integer.parseInt((String) data[i][4])>cellPerShelf||Integer.parseInt((String) data[i][4])<1)
+				return ResultMessageV2.ERROR;
+		
+			if(type.equals("航空区")){
+				if(index<0||index>space[0]-1)
+					return ResultMessageV2.ERROR;
 				if(isEmptyPlane[index])
 					isEmptyPlane[index] = false;
 				else
 					return ResultMessageV2.ERROR;
-			if(type.equals("铁运区"))
+			}
+			if(type.equals("铁运区")){
+				if(index<0||index>space[1]-1)
+					return ResultMessageV2.ERROR;
 				if(isEmptyTrain[index])
 					isEmptyTrain[index] = false;
 				else
 					return ResultMessageV2.ERROR;
-			if(type.equals("汽运区"))
+			}
+			if(type.equals("汽运区")){
+				if(index<0||index>space[2]-1)
+					return ResultMessageV2.ERROR;
 				if(isEmptyCar[index])
 					isEmptyCar[index] = false;
 				else
 					return ResultMessageV2.ERROR;
-			if(type.equals("机动区"))
+			}
+			if(type.equals("机动区")){
+				if(index<0||index>space[3]-1)
+					return ResultMessageV2.ERROR;
 				if(isEmptyTem[index])
 					isEmptyTem[index] = false;
 				else
 					return ResultMessageV2.ERROR;
+			}
 		}
 		
 		try {
