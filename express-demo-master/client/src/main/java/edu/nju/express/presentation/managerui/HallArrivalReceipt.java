@@ -53,7 +53,7 @@ public class HallArrivalReceipt extends MainPanel {
 		model.addRow(rowdata);
 		num++;
 		
-		rowdata[0] = "目的地";
+		rowdata[0] = "所在地";
 		rowdata[1] = vo.getLocation();
 		model.addRow(rowdata);
 		num++;

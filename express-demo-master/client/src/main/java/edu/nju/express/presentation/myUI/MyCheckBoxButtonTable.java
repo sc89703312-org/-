@@ -6,18 +6,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -124,6 +119,9 @@ public class MyCheckBoxButtonTable extends JTable {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				int column = columnModel.getColumnIndexAtX(e.getX());
+				if(column != 0 )
+					return;
 				boolean b = !check.isSelected();
 				check.setSelected(b);
 				for (int i = 0; i < table.getRowCount(); i++) {

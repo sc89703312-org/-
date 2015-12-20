@@ -104,6 +104,9 @@ public class MyCheckBoxTable extends JTable {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				int column = columnModel.getColumnIndexAtX(e.getX());
+				if(column != 0 )
+					return;
 				boolean b = !check.isSelected();
 				check.setSelected(b);
 				for (int i = 0; i < table.getRowCount(); i++) {

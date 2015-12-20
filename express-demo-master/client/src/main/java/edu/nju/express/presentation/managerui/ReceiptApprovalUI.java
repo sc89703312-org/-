@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -144,7 +145,6 @@ public class ReceiptApprovalUI extends MainPanel {
 			data1[3] = receipts.get(i).getDate();
 			JButton jbt = new JButton();
 			jbt.setIcon(new ImageIcon("ui/button/detail1.png"));
-			jbt.setRolloverIcon(new ImageIcon("ui/button/detail2.png"));
 			jbt.setContentAreaFilled(false);
 			jbt.setBorderPainted(false);
 			data1[4] = jbt;
@@ -172,10 +172,10 @@ public class ReceiptApprovalUI extends MainPanel {
 		g.drawImage(bg, 0, 0, null);
 	}
 
-	class JTableButtonMouseListener implements MouseListener {
+	class JTableButtonMouseListener extends MouseAdapter{
 		private JTable __table;
 
-		private void __forwardEventToButton(MouseEvent e) {
+		/*private void __forwardEventToButton(MouseEvent e) {
 			TableColumnModel columnModel = __table.getColumnModel();
 			int column = columnModel.getColumnIndexAtX(e.getX());
 			int row = e.getY() / __table.getRowHeight();
@@ -201,7 +201,7 @@ public class ReceiptApprovalUI extends MainPanel {
 			// pressed down when it has been released.
 			__table.repaint();
 		}
-
+*/
 		public JTableButtonMouseListener(JTable table) {
 			__table = table;
 		}
@@ -211,23 +211,22 @@ public class ReceiptApprovalUI extends MainPanel {
 			TableColumnModel columnModel = __table.getColumnModel();
 			int column = columnModel.getColumnIndexAtX(e.getX());
 			int row = e.getY() / __table.getRowHeight();
+			Object value;
+			
+			if (row >= __table.getRowCount() || row < 0 || column >= __table.getColumnCount() || column < 0)
+				return;
+
+			value = __table.getValueAt(row, column);
+
+			if (!(value instanceof JButton))
+				return;
+			
 			selectId = (String) table.getValueAt(row, 2);
 			controller.viewReceiptUI((String) table.getValueAt(row, 1),id2vo.get(selectId));
 			
 		}
 
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		public void mousePressed(MouseEvent e) {
-		}
-
-		public void mouseReleased(MouseEvent e) {
-		}
-
+	
 	}
 
 }
