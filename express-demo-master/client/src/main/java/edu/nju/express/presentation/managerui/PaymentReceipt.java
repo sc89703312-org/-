@@ -6,9 +6,9 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTable;
 import edu.nju.express.presentation.myUI.ReturnButton;
-import edu.nju.express.vo.Balancevo;
+import edu.nju.express.vo.Paymentvo;
 
-public class BalanceReceipt extends MainPanel {
+public class PaymentReceipt extends MainPanel {
 
 	/**
 	 * 
@@ -17,10 +17,12 @@ public class BalanceReceipt extends MainPanel {
 
 	private ManageController controller;
 
-	public BalanceReceipt(ManageController c, Balancevo vo) {
+
+
+	public PaymentReceipt(ManageController c, Paymentvo vo) {
 		this.controller = c;
 
-		ManageGuide guide = new ManageGuide(controller);
+		ManageGuide guide =new ManageGuide(controller);
 		guide.receipt.setIcon(null);
 		this.add(guide);
 		this.bg = new ImageIcon("ui/image/manager/详细信息.png").getImage();
@@ -30,42 +32,39 @@ public class BalanceReceipt extends MainPanel {
 		jbtRe.addActionListener(controller);
 		jbtRe.setActionCommand("ReceiptUI");
 
-		String[] header = { "1", "2" };
+		String[] header = {"1","2"};
 		MyTable table = new MyTable(header);
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		Object[] rowdata = new String[2];
-
+		
 		rowdata[0] = "编号";
 		rowdata[1] = vo.getId();
 		model.addRow(rowdata);
-
-		rowdata[0] = "时间";
+		
+		rowdata[0] = "日期";
 		rowdata[1] = vo.getDate();
 		model.addRow(rowdata);
-
-		rowdata[0] = "条目";
-		rowdata[1] = vo.getItem().getName();
+		
+		rowdata[0] = "收款金额";
+		rowdata[1] = vo.getPay()+"元";
 		model.addRow(rowdata);
-
-		rowdata[0] = "付款金额";
-		rowdata[1] = vo.getMoney() + "元";
+		
+		rowdata[0] = "快递员编号";
+		rowdata[1] = vo.getCourier_id();
 		model.addRow(rowdata);
-
-		rowdata[0] = "付款人";
-		rowdata[1] = vo.getName();
+		
+		rowdata[0] = "订单编号";
+		rowdata[1] = vo.getOrder_id();
 		model.addRow(rowdata);
-
-		rowdata[0] = "付款账号";
-		rowdata[1] = vo.getBanking();
-		model.addRow(rowdata);
-
-		rowdata[0] = "备注";
-		rowdata[1] = vo.getRemark();
-		model.addRow(rowdata);
-
+		
+		
+		
 		this.add(table);
-		table.setBounds(128, 112, 726, 7 * table.ROW_HEIGHT);
-
+		table.setBounds(128, 112, 726, 5*table.ROW_HEIGHT);
+		
 	}
-
+	
+	
+	
+	
 }

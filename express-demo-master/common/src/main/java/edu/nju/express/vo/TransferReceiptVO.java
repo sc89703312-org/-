@@ -4,6 +4,15 @@ import java.util.ArrayList;
 
 import edu.nju.express.common.Etype;
 
+/**
+ * 中转单
+ * 中转单包含装车日期、本中转中心中转单编号
+ * （中转中心编号+日期+0000000七位数字），
+ * 航班号、出发地、到达地、货柜号、监装员、
+ * 本次装箱所有托运单号、运费（运费根据出发地
+ * 和目的地自动生成）
+ */
+
 
 public class TransferReceiptVO extends ReceiptVOBase{
 	

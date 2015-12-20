@@ -6,9 +6,12 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTable;
 import edu.nju.express.presentation.myUI.ReturnButton;
-import edu.nju.express.vo.Balancevo;
+import edu.nju.express.vo.ArrivalReceiptVO;
+import edu.nju.express.vo.Paymentvo;
+import edu.nju.express.vo.StationVO;
+import edu.nju.express.vo.TransferReceiptVO;
 
-public class BalanceReceipt extends MainPanel {
+public class StationTransReceipt extends MainPanel {
 
 	/**
 	 * 
@@ -17,7 +20,7 @@ public class BalanceReceipt extends MainPanel {
 
 	private ManageController controller;
 
-	public BalanceReceipt(ManageController c, Balancevo vo) {
+	public StationTransReceipt(ManageController c, TransferReceiptVO vo) {
 		this.controller = c;
 
 		ManageGuide guide = new ManageGuide(controller);
@@ -39,32 +42,24 @@ public class BalanceReceipt extends MainPanel {
 		rowdata[1] = vo.getId();
 		model.addRow(rowdata);
 
-		rowdata[0] = "时间";
+		rowdata[0] = "日期";
 		rowdata[1] = vo.getDate();
 		model.addRow(rowdata);
 
-		rowdata[0] = "条目";
-		rowdata[1] = vo.getItem().getName();
+		rowdata[0] = "目的地";
+		rowdata[1] = vo.getTo();
 		model.addRow(rowdata);
 
-		rowdata[0] = "付款金额";
-		rowdata[1] = vo.getMoney() + "元";
+		rowdata[0] = "所在地";
+		rowdata[1] = vo.getLocation();
 		model.addRow(rowdata);
 
-		rowdata[0] = "付款人";
-		rowdata[1] = vo.getName();
-		model.addRow(rowdata);
-
-		rowdata[0] = "付款账号";
-		rowdata[1] = vo.getBanking();
-		model.addRow(rowdata);
-
-		rowdata[0] = "备注";
-		rowdata[1] = vo.getRemark();
+		rowdata[0] = "监装员";
+		rowdata[1] = vo.getSupervisor();
 		model.addRow(rowdata);
 
 		this.add(table);
-		table.setBounds(128, 112, 726, 7 * table.ROW_HEIGHT);
+		table.setBounds(128, 112, 726, 5 * table.ROW_HEIGHT);
 
 	}
 

@@ -7,8 +7,12 @@ import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.MyTable;
 import edu.nju.express.presentation.myUI.ReturnButton;
 import edu.nju.express.vo.Balancevo;
+import edu.nju.express.vo.ComGoodsVO;
+import edu.nju.express.vo.EnterReceiptVO;
+import edu.nju.express.vo.ExitReceiptVO;
+import junit.extensions.ExceptionTestCase;
 
-public class BalanceReceipt extends MainPanel {
+public class ComQuitReceipt extends MainPanel {
 
 	/**
 	 * 
@@ -17,7 +21,7 @@ public class BalanceReceipt extends MainPanel {
 
 	private ManageController controller;
 
-	public BalanceReceipt(ManageController c, Balancevo vo) {
+	public ComQuitReceipt(ManageController c, ExitReceiptVO vo) {
 		this.controller = c;
 
 		ManageGuide guide = new ManageGuide(controller);
@@ -43,28 +47,24 @@ public class BalanceReceipt extends MainPanel {
 		rowdata[1] = vo.getDate();
 		model.addRow(rowdata);
 
-		rowdata[0] = "条目";
-		rowdata[1] = vo.getItem().getName();
+		rowdata[0] = "所在地";
+		rowdata[1] = vo.getLocation();
 		model.addRow(rowdata);
 
-		rowdata[0] = "付款金额";
-		rowdata[1] = vo.getMoney() + "元";
-		model.addRow(rowdata);
+		for (ComGoodsVO v : vo.getList()) {
+			rowdata[0] = "订单编号";
+			rowdata[1] = v.getOrder().getID();
+			model.addRow(rowdata);
+			rowdata[0] = "分区";
+			rowdata[1] = v.getType();
+			model.addRow(rowdata);
 
-		rowdata[0] = "付款人";
-		rowdata[1] = vo.getName();
-		model.addRow(rowdata);
-
-		rowdata[0] = "付款账号";
-		rowdata[1] = vo.getBanking();
-		model.addRow(rowdata);
-
-		rowdata[0] = "备注";
-		rowdata[1] = vo.getRemark();
-		model.addRow(rowdata);
-
+			rowdata[0] = "位置";
+			rowdata[1] = v.getLine() + "排" + v.getShelf() + "架" + v.getCell() + "位";
+			model.addRow(rowdata);
+		}
 		this.add(table);
-		table.setBounds(128, 112, 726, 7 * table.ROW_HEIGHT);
+		table.setBounds(128, 112, 726, 3 + 3 * vo.getList().size() * table.ROW_HEIGHT);
 
 	}
 

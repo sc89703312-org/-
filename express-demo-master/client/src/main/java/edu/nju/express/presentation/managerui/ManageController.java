@@ -14,18 +14,25 @@ import edu.nju.express.blservice.ReceiptBlService;
 import edu.nju.express.blservice.SalarySettingBlService;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.WarningDialog;
+import edu.nju.express.vo.ArrivalReceiptVO;
+import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.ConstantVO;
+import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.DistanceVO;
 import edu.nju.express.vo.EmployeeVO;
+import edu.nju.express.vo.EnterReceiptVO;
+import edu.nju.express.vo.ExitReceiptVO;
+import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.HallVO;
+import edu.nju.express.vo.Paymentvo;
 import edu.nju.express.vo.ReceiptVOBase;
 import edu.nju.express.vo.SalaryVO;
 import edu.nju.express.vo.StationVO;
+import edu.nju.express.vo.TransferReceiptVO;
 import edu.nju.express.vo.UserMessageVO;
 
 public class ManageController implements UIController {
@@ -222,7 +229,7 @@ public class ManageController implements UIController {
 		switch (type) {
 		case "收款单":
 			frame.getContentPane().removeAll();
-			// currentPanel = new BalanceReceipt(this, (Balancevo)vo);
+			currentPanel = new PaymentReceipt(this, (Paymentvo)vo);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
@@ -235,18 +242,53 @@ public class ManageController implements UIController {
 			frame.repaint();
 			break;
 		case "中转中心到达单":
+			frame.getContentPane().removeAll();
+			currentPanel = new StationArrivalReceipt(this, (ArriveReceiptVO) vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		case "中转中心中转单":
+			frame.getContentPane().removeAll();
+			currentPanel = new StationTransReceipt(this,(TransferReceiptVO)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		case "中转中心入库单":
+			frame.getContentPane().removeAll();
+			currentPanel = new ComEnterReceipt(this,(EnterReceiptVO)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		case "中转中心出库单":
+			frame.getContentPane().removeAll();
+			currentPanel = new ComQuitReceipt(this,(ExitReceiptVO)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		case "营业厅到达单":
+			frame.getContentPane().removeAll();
+			currentPanel = new HallArrivalReceipt(this,(ArrivalReceiptVO)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		case "营业厅派送单":
+			frame.getContentPane().removeAll();
+			currentPanel = new DeliverReceipt(this,(DeliverReceiptVO)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		case "营业厅装车单":
+			frame.getContentPane().removeAll();
+			currentPanel = new HallTransReceipt(this,(HallTransferReceiptVO)vo);
+			frame.add(currentPanel);
+			frame.validate();
+			frame.repaint();
 			break;
 		default:
 			break;

@@ -153,6 +153,8 @@ public class MyCheckBoxButtonTable extends JTable {
 			else{
 				setBackground(backColor2);
 			}
+			
+			
 			if(row!=-1)
 				setSelected(value != null&& (Boolean) value);
 			return this;

@@ -3,7 +3,9 @@ package edu.nju.express.vo;
 import java.util.ArrayList;
 
 import edu.nju.express.common.*;
-
+/**
+ * 营业厅到达单
+ */
 
 
 public class ArrivalReceiptVO extends ReceiptVOBase{
