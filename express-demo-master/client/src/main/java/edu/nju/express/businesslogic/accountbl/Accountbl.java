@@ -17,6 +17,7 @@ import edu.nju.express.common.ResultMessage;
 import edu.nju.express.dataservice.accountdataservice;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.log.LogController;
+import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.Accountpo;
 import edu.nju.express.po.BankingAccountPO;
 import edu.nju.express.po.Carpo;
@@ -103,6 +104,11 @@ public class Accountbl implements Accountblservice{
 			e.printStackTrace();
 		}
 				
+		if(po==null)
+		{
+			PromptDialog.show("查询失败", "  输入日期未建账");
+			return null;
+		}
 		
 		Accountvo vo = new Accountvo
 				(convertHallPO(po.getHallList()),

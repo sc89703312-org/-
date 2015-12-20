@@ -219,13 +219,14 @@ public class FinanceController implements UIController {
 		}else if(e.getActionCommand().equals("SearchAccount")){
 			Accountvo avo = account.viewAccount(((AccountUI)currentPanel).getDate());
             
+			if(avo!=null){
 			frame.getContentPane().removeAll();
 			currentPanel = new AccountPanel(this, avo);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
 		}
-
+		}
 	}
 
 	
