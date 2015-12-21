@@ -23,7 +23,6 @@ import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
-import edu.nju.express.presentation.UIController;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
@@ -301,7 +300,6 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	
 	
 	public ArriveReceiptVO searchOrder(){
-		//有BUG！！！！！！！！！！！！！！！！！！！！！
 		
 		String sign = (getOrderField.getText().length() == 10)?"HallTransferReceipt":"TransferReceipt";
 		String searchId = sign + getOrderField.getText();

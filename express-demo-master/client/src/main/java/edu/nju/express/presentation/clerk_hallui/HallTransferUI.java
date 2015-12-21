@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
 import edu.nju.express.common.Etype;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
@@ -30,6 +29,7 @@ import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyComboBox;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
 public class HallTransferUI extends JPanel implements MouseListener{
@@ -269,7 +269,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(!isFilled()){
-					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
 				}
 				else{
 				receipt.subHallTransferReceipt(carrierIdField.getText(), 

@@ -19,10 +19,10 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Paymentvo;
 
 public class HallPaymentUI extends JPanel implements MouseListener{
@@ -134,7 +134,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(!isFilled()){
-					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
 				}
 				else{
 					submitPayment(new Paymentvo(dateBox.getDate(), Double.parseDouble(moneyField.getText()),

@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.common.GoodsState;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
@@ -192,7 +191,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		
 		fromBox.setSelectedIndex(0);
 		
-		for(int i=table.getTableModel().getRowCount()-1; i>=0; i++){
+		for(int i=table.getTableModel().getRowCount()-1; i>0; i++){
 			table.getTableModel().removeRow(i);
 		}
 	}
@@ -238,7 +237,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(!isFilled()){
-					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
 				}else{
 					for(int i=0; i<orderList.size(); i++){
 						orderList.get(i).setGoodState(convert((String)table.getTable().getValueAt(i, 1)));

@@ -15,20 +15,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
-import edu.nju.express.common.ResultMessage;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
-import edu.nju.express.vo.ArrivalReceiptVO;
-import edu.nju.express.vo.DeliverReceiptVO;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
 public class HallDeliverUI extends JPanel implements MouseListener{
@@ -185,7 +181,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(!isFilled()){
-					PromptDialog.show("提交内容不能为空", "请检查填写是否齐全");
+					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
 				}
 				else{
 					submit(deliverIdField.getText(), getSelectedOrders());
