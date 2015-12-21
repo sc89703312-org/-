@@ -17,7 +17,7 @@ public class DeleteStationPanel extends MainPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static Image bg = new ImageIcon("ui/image/manager/添加中转中心.png").getImage();
+	private static Image bg = new ImageIcon("ui/image/manager/删除中转中心.png").getImage();
 	
 	
 	ConfirmButton confirm;

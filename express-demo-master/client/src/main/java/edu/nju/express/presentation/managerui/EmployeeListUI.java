@@ -104,7 +104,7 @@ public class EmployeeListUI extends MainPanel {
 		String[] header = { "ID", "姓名", "职务" };
 		table = new MyTablePanel(header);
 		table.setRowHeight(TABLE_ROW_HEIGHT);
-		table.getTable().setPreferredScrollableViewportSize(new Dimension(715,390));
+		table.getTable().setPreferredScrollableViewportSize(new Dimension(726,390));
 		table.setBounds(128,107,726,425);
 		this.add(table);
 
