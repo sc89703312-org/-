@@ -73,6 +73,8 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		stationID = LoginInfo.getUserID().substring(0, 3);
 		
+		System.out.println(id+"!!");
+		
 		try {
 			this.location = stationDataService.getLocation(stationID);
 		} catch (RemoteException e) {
@@ -102,8 +104,10 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 					ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getList());
 					return vo;
 				}
-				else
+				else{
+					System.out.println("!!!!");
 					return null;
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

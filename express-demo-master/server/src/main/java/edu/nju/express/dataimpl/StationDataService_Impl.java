@@ -24,6 +24,7 @@ public class StationDataService_Impl extends UnicastRemoteObject implements Stat
 	private static final long serialVersionUID = 1L;
 	StationDao stationDao;
 	ArriveReceiptDao arriveDao;
+	
 	TransferReceiptDao transferDao;
 
 	public StationDataService_Impl() throws RemoteException {

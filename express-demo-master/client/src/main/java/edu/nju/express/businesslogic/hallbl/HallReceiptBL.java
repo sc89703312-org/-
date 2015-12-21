@@ -191,12 +191,14 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 			
 			for(int i=0;i<orderIDList.size();i++){
 				
+				boolean same = false;
+				
 				for(int j=0;j<transferList.size();j++)
 					for(int k=0;k<transferList.get(j).getOrderlist().size();k++)
 						if(orderIDList.get(i).equals(transferList.get(j).getOrderlist().get(k).getId())){
 							orderIDList.remove(i);
 							transferList.get(j).getOrderlist().remove(k);
-							i--;
+							same = true;
 							k--;
 						}
 				
@@ -205,9 +207,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 						if(orderIDList.get(i).equals(deliverList.get(j).getOrderList().get(k).getId())){
 							orderIDList.remove(i);
 							deliverList.get(j).getOrderList().remove(k);
-							i--;
+							same = true;
 							k--;
 						}
+				
+				if(same)
+					i--;
 				
 			}
 			
