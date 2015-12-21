@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.express.presentation.NumberValidation;
+
 public class MyEditableTable extends JTable {
 
 	private static final long serialVersionUID = 1L;
@@ -84,6 +86,9 @@ public class MyEditableTable extends JTable {
 
 		for (int i = 0; i < this.getRowCount(); i++) {
 			input.add((String)this.getValueAt(i, 4));
+			
+			if(!NumberValidation.isPositiveDecimal((String)getValueAt(i, 4)))
+				return null;
 		}
 
 		return input;

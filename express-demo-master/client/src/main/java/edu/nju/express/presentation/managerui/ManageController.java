@@ -180,14 +180,15 @@ public class ManageController implements UIController {
 			if(ui.getPriceInput()==-1||ui.getVehicleCostInput()==null||ui.getVehicleLoadInput()==null)
 				return;
 			
+			
 			ArrayList<DistanceVO> newDistances = ((ConstantUI) currentPanel).getDistanceInput();
+			if(newDistances == null){
+				WarningDialog.show("操作失败","请检查城市间距离");
+			}
+				
 			for (DistanceVO vo : newDistances) {
 
-				if(constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance())==ResultMessage.INVALID){
-					WarningDialog.show("修改失败", "请检查城市间距离");
-					return;
-				}
-
+				constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance());
 			}
 			
 			constant.setPrice(ui.getPriceInput());
@@ -197,6 +198,8 @@ public class ManageController implements UIController {
 
 			int[] load = ui.getVehicleLoadInput();
 			constant.setVehicleLoad(load[0], load[1], load[2]);
+			
+			WarningDialog.show("操作成功", "常量信息已更新");
 			
 		} else if (e.getActionCommand().equals("AddEmployee")) {
 

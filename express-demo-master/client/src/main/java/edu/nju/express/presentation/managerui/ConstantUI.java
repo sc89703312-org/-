@@ -266,6 +266,9 @@ public class ConstantUI extends MainPanel {
 
 		ArrayList<String> infos = table.getInput();
 
+		if(infos == null)
+			return null;
+		
 		int m = 0;
 
 		for (int i = 0; i < cityList.size() - 1; i++) {
