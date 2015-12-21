@@ -4,8 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;  
   /**
    * 检测是否是整数、小数
-   * @author Dora
-   *
    */
 public class NumberValidation {  
       
@@ -22,6 +20,10 @@ public class NumberValidation {
     public static boolean isPositiveInteger(String orginal) {  
         return isMatch("^\\+{0,1}[1-9]\\d*", orginal);  
     }  
+    
+    public static boolean isNumeric(String orginal) {  
+        return isMatch("^\\d+$", orginal);  
+    } 
   
     //负整数
     public static boolean isNegativeInteger(String orginal) {  

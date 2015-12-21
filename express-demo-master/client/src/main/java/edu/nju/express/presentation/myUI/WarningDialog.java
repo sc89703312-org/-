@@ -3,18 +3,19 @@ package edu.nju.express.presentation.myUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
 /**
  * 提示框
- * @author cylong
- * @version 2014年12月28日 下午6:51:35
  */
 public class WarningDialog extends JDialog {
 
-	/** serialVersionUID */
 	private static final long serialVersionUID = 2857496548979951207L;
+	
 
 	/** 窗口大小 */
 	private Dimension dimen = new Dimension(300, 200);
@@ -39,15 +40,21 @@ public class WarningDialog extends JDialog {
 		this.add(comp);
 		this.setVisible(true);
 	}
+	
+	
 
 	public static void show(String title, String prompt) {
 		WarningDialog promptDialog = new WarningDialog();
-		promptDialog.setComp(new WarningPanel(title, "\n"+"               "+prompt));
+		promptDialog.setComp(new WarningPanel(title, prompt));
 		promptDialog.start(); // 固定时间关闭窗口
 	}
 	
 	public static void showConnectionError() {
 		show("网络异常", "请检查网络状况和与服务器的连接是否正常");
+	}
+	
+	public static void showSucess() {
+		show("提交成功", "稍后返回主页面");
 	}
 
 	private class Vanish extends Thread {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.myUI.MySearchFieldPanel;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.vo.OrderVO;

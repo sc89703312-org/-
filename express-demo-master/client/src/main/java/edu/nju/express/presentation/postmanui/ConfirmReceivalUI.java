@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -79,6 +80,10 @@ public class ConfirmReceivalUI extends MainPanel{
 
 
 	public ReceivalVO getTextInput() {
+		if(id.getText().equals("")||id.getText().length()!=10||!NumberValidation.isNumeric(id.getText())){
+			id.setError();
+			return null;
+		}
 		return new ReceivalVO(id.getText(), date.getDate(), name.getText());
 	}
 	
