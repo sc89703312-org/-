@@ -92,6 +92,18 @@ public class AddUserUI extends MainPanel {
 	}
 
 	public UserVO getTextInput() {
+		if(id.getText().equals("")){
+			id.setError();
+			return null;
+		}
+		if(name.getText().equals("")){
+			name.setError();
+			return null;
+		}
+		if(password.getText().equals("")){
+			password.setError();
+			return null;
+		}
 		return new UserVO(id.getText(), name.getText(), Role.getRole((String) roleBox.getSelectedItem()),
 				password.getText());
 	}

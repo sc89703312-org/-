@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import edu.nju.express.blservice.UserBlService;
 import edu.nju.express.businesslogic.DataFactory;
 import edu.nju.express.common.ResultMessage;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.UIController;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.UserMessageVO;
 import edu.nju.express.vo.UserVO;
 
@@ -30,15 +30,16 @@ public class AdministratorController implements UIController{
 		System.out.println(e.getActionCommand());
 		
 		if(e.getActionCommand().equals("DeleteUser")){
-			
+			if(((DeleteUserUI)currentPanel).getID()==null)
+				return ;
 			String id = ((DeleteUserUI)currentPanel).getID() ;
 			System.out.println(id);
 			ResultMessage message =user.deleteUser(id);
 			
 			if(message==ResultMessage.INVALID)
-				PromptDialog.show("输入无效", "           输入ID不存在");
+				WarningDialog.show("输入无效", "该人员编号不存在");
 			else{
-				PromptDialog.show("删除成功", "               你真棒");
+				WarningDialog.show("操作成功", "该人员已成功被删除");
 				frame.getContentPane().removeAll();
 				currentPanel = new DeleteUserUI(this);
 				frame.add(currentPanel);
@@ -47,6 +48,9 @@ public class AdministratorController implements UIController{
 			}
 			
 		}else if(e.getActionCommand().equals("AddUser")){
+			
+			if(((AddUserUI)currentPanel).getTextInput()==null)
+				return ;
 			
 			UserVO vo = ((AddUserUI)currentPanel).getTextInput();
 			System.out.println(vo.getRole());
@@ -58,9 +62,9 @@ public class AdministratorController implements UIController{
 			System.out.println(message);
 			
 			if(message==ResultMessage.INVALID)
-				PromptDialog.show("输入无效", "           存在已有ID");
+				WarningDialog.show("输入无效", "该人员编号已存在");
 			else{
-				PromptDialog.show("添加成功", "               你真棒");
+				WarningDialog.show("操作成功", "该人员已成功被增加");
 				frame.getContentPane().removeAll();;
 				currentPanel = new AddUserUI(this);
 				frame.add(currentPanel);
@@ -71,7 +75,8 @@ public class AdministratorController implements UIController{
 			
 			
 		}else if(e.getActionCommand().equals("ModifyUser")){
-			
+			if(((ModifyUserUI)currentPanel).getTextInput()==null)
+				return ;
 			UserVO vo = ((ModifyUserUI)currentPanel).getTextInput();
 			System.out.println(vo.getRole());
 			
@@ -79,9 +84,9 @@ public class AdministratorController implements UIController{
 			message = user.modifyUser(vo.getId(), vo.getName(), vo.getRole(), vo.getPassword());
 			
 			if(message == ResultMessage.INVALID)
-			  PromptDialog.show("输入无效", "       输入ID不存在");
+			  WarningDialog.show("输入无效", "该人员编号不存在");
 			else{
-				PromptDialog.show("修改成功", "               你真棒");
+				WarningDialog.show("操作成功", "账号信息已成功修改");
 				frame.getContentPane().removeAll();
 				currentPanel = new ModifyUserUI(this);
 				frame.add(currentPanel);
