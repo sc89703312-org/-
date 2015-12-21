@@ -67,6 +67,15 @@ public class AddHallPanel extends MainPanel{
 	}
 	
 	public HallVO getTextInput(){
+		if(id.getText().equals("")){
+			id.setError();
+			return null;
+		}
+		if(name.getText().equals("")){
+			name.setError();
+			return null;
+		}
+		
 		return new HallVO(id.getText(), name.getText());
 	}
 }

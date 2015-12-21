@@ -64,6 +64,14 @@ public class AddStationPanel extends MainPanel{
 	}
 	
 	public StationVO getTextInput(){
+		if(id.getText().equals("")){
+			id.setError();
+			return null;
+		}
+		if(name.getText().equals("")){
+			name.setError();
+			return null;
+		}
 		return new StationVO(id.getText(), name.getText());
 	}
 }

@@ -87,6 +87,15 @@ public class AddEmployeePanel extends MainPanel {
 
 
 	public UserMessageVO getTextInput() {
+		if(id.getText().equals("")){
+			id.setError();
+			return null;
+		}
+		if(name.getText().equals("")){
+			name.setError();
+			return null;
+		}
+		
 		return new UserMessageVO(StaffChange.add, id.getText(), name.getText(),
 				Role.getRole((String) roleBox.getSelectedItem()));
 	}

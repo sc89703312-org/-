@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.presentation.MainPanel;
+import edu.nju.express.presentation.NumberValidation;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
@@ -279,10 +280,26 @@ public class ConstantUI extends MainPanel {
 	}
 
 	public double getPriceInput() {
+		if (!NumberValidation.isPositiveDecimal(priceStd.getText())) {
+			priceStd.setError();
+			return -1;
+		}
 		return Double.parseDouble(priceStd.getText());
 	}
 
 	public double[] getVehicleCostInput() {
+		if (!NumberValidation.isPositiveDecimal(vanCField.getText())) {
+			vanCField.setError();
+			return null;
+		}
+		if (!NumberValidation.isPositiveDecimal(railCField.getText())) {
+			railCField.setError();
+			return null;
+		}
+		if (!NumberValidation.isPositiveDecimal(airCField.getText())) {
+			airCField.setError();
+			return null;
+		}
 		double[] input1 = new double[3];
 		input1[0] = Double.parseDouble(vanCField.getText());
 		input1[1] = Double.parseDouble(railCField.getText());
@@ -291,6 +308,18 @@ public class ConstantUI extends MainPanel {
 	}
 
 	public int[] getVehicleLoadInput() {
+		if (!NumberValidation.isPositiveInteger(vanLField.getText())) {
+			vanLField.setError();
+			return null;
+		}
+		if (!NumberValidation.isPositiveInteger(railLField.getText())) {
+			railLField.setError();
+			return null;
+		}
+		if (!NumberValidation.isPositiveInteger(airLField.getText())) {
+			airLField.setError();
+			return null;
+		}
 		int[] input2 = new int[3];
 		input2[0] = Integer.parseInt(vanLField.getText());
 		input2[1] = Integer.parseInt(railLField.getText());

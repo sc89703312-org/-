@@ -55,6 +55,13 @@ public class DeleteHallPanel extends MainPanel{
 	}
 	
 	public String getID(){
+		
+		if(id.getText().equals("")){
+			id.setError();
+			return null;
+		}
+	
+		
 		return id.getText();
 	}
 	

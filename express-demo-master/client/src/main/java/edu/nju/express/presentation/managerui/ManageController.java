@@ -69,20 +69,16 @@ public class ManageController implements UIController {
 			frame.repaint();
 		} else if (e.getActionCommand().equals("EmployeeUI")) {
 
-			frame.getContentPane().removeAll();
-			;
-			currentPanel = new EmployeeListUI(this);
-			frame.add(currentPanel);
-			frame.validate();
-			frame.repaint();
+			showEmployeeUI();
+			
 		} else if (e.getActionCommand().equals("OrganizationUI")) {
 
 			frame.getContentPane().removeAll();
-			;
 			currentPanel = new OrganizationUI(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+			
 		} else if (e.getActionCommand().equals("SalaryUI")) {
 
 			frame.getContentPane().removeAll();
@@ -116,22 +112,20 @@ public class ManageController implements UIController {
 			frame.repaint();
 		} else if (e.getActionCommand().equals("AddStationUI")) {
 			frame.getContentPane().removeAll();
-			;
 			currentPanel = new AddStationPanel(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
 		} else if (e.getActionCommand().equals("DeleteStationUI")) {
 			frame.getContentPane().removeAll();
-			;
 			currentPanel = new DeleteStationPanel(this);
 			frame.add(currentPanel);
 			frame.validate();
 			frame.repaint();
+			
 		} else if (e.getActionCommand().equals("AddHallUI")) {
 
 			frame.getContentPane().removeAll();
-			;
 			currentPanel = new AddHallPanel(this);
 			frame.add(currentPanel);
 			frame.validate();
@@ -148,7 +142,7 @@ public class ManageController implements UIController {
 			currentPanel = (JPanel) (((JButton) e.getSource()).getParent());
 			ArrayList<String> list = ((ReceiptApprovalUI) currentPanel).getIDtoApprove();
 			if (list.isEmpty())
-				WarningDialog.show("", "未选择任何单据");
+				WarningDialog.show("操作失败", "未选择任何单据");
 			for (String id : list) {
 				receipt.approve(id);
 			}
@@ -175,52 +169,129 @@ public class ManageController implements UIController {
 			salary.setClerkSalary(Double.parseDouble(input[0]));
 			salary.setDriverWage(Double.parseDouble(input[1]));
 			salary.setPostmanWage(Double.parseDouble(input[2]));
+			
+			WarningDialog.show("操作成功", "薪水信息已更新");
 
 		} else if (e.getActionCommand().equals("ModifyConstant")) {
 
 			ConstantUI ui = (ConstantUI) currentPanel;
 
-			constant.setPrice(ui.getPriceInput());
-
-			/*
-			 * constant.setVehicleCost(ui.getVehicleCostInput()[0],
-			 * ui.getVehicleCostInput()[1], ui.getVehicleCostInput()[2]);
-			 * constant.setVehicleLoad(ui.getVehicleLoadInput()[0],
-			 * ui.getVehicleLoadInput()[1], ui.getVehicleLoadInput()[2]);
-			 */
-
+			
+			if(ui.getPriceInput()==-1||ui.getVehicleCostInput()==null||ui.getVehicleLoadInput()==null)
+				return;
+			
 			ArrayList<DistanceVO> newDistances = ((ConstantUI) currentPanel).getDistanceInput();
 			for (DistanceVO vo : newDistances) {
 
-				constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance());
+				if(constant.setDistance(vo.getId1(), vo.getId2(), vo.getDistance())==ResultMessage.INVALID){
+					WarningDialog.show("修改失败", "请检查城市间距离");
+					return;
+				}
 
 			}
+			
+			constant.setPrice(ui.getPriceInput());
+			
+			double[] cost = ui.getVehicleCostInput();
+			constant.setVehicleCost(cost[0], cost[1], cost[2]);
+
+			int[] load = ui.getVehicleLoadInput();
+			constant.setVehicleLoad(load[0], load[1], load[2]);
+			
 		} else if (e.getActionCommand().equals("AddEmployee")) {
 
+			if(((AddEmployeePanel) currentPanel).getTextInput()==null)
+				return;
 			UserMessageVO vo = ((AddEmployeePanel) currentPanel).getTextInput();
 			if (manage.addEmployee(vo.getId(), vo.getName(), vo.getRole()) == ResultMessage.INVALID) {
-				System.out.println(1322);
-				WarningDialog.show("无法新增人员", "该人员编号已存在");
+				WarningDialog.show("操作失败", "该人员编号已存在");
+			}else{
+				WarningDialog.show("操作成功", "等待管理员新建账号");
+				showEmployeeUI();
 			}
-
+			
+			
 		} else if (e.getActionCommand().equals("DismissEmployee")) {
 
+			
 			String id = ((DismissEmployeePanel) currentPanel).getID();
-			manage.dismissEmployee(id);
+			
+			if(id == null)
+				return;
+			
+			if(manage.dismissEmployee(id)==ResultMessage.INVALID)
+				WarningDialog.show("操作失败", "该人员编号不存在");
+			else{
+				WarningDialog.show("操作成功", "等待管理员删除账号");
+				showEmployeeUI();
+			}
+			
 
 		} else if (e.getActionCommand().equals("AddStation")) {
+			
+			
+			if( ((AddStationPanel) currentPanel).getTextInput()==null)
+				return;
+			
 			StationVO vo = ((AddStationPanel) currentPanel).getTextInput();
-			System.out.println(vo.getId() + " " + vo.getName());
-			System.out.println(org.createStation(vo.getId(), vo.getName()));
+			if(org.createStation(vo.getId(), vo.getName())==ResultMessage.INVALID)
+				WarningDialog.show("操作失败", "该城市编号已存在");
+			else{
+				WarningDialog.show("操作成功", "请尽快更新城市间距离");
+				frame.getContentPane().removeAll();
+				currentPanel = new OrganizationUI(this);
+				frame.add(currentPanel);
+				frame.validate();
+				frame.repaint();
+			}
 		} else if (e.getActionCommand().equals("DeleteStation")) {
-			System.out.println(org.deleteStation(((DeleteStationPanel) currentPanel).getID()));
-		} else if (e.getActionCommand().equals("AddHall")) {
-			HallVO vo = ((AddHallPanel) currentPanel).getTextInput();
-			System.out.println(org.createHall(vo.getId(), vo.getName()));
-		} else if (e.getActionCommand().equals("DeleteHall")) {
-			System.out.println(org.deleteHall(((DeleteHallPanel) currentPanel).getID()));
-		}
+			String id = ((DeleteStationPanel) currentPanel).getID();
+			
+			if(id == null)
+				return;
+			
+			
+			if (org.deleteStation(id) == ResultMessage.INVALID)
+				WarningDialog.show("操作失败", "该城市编号不存在");
+			else {
+				WarningDialog.show("操作成功", "机构列表已更新");
+				frame.getContentPane().removeAll();
+				currentPanel = new OrganizationUI(this);
+				frame.add(currentPanel);
+				frame.validate();
+				frame.repaint();
+			}
 
+		} else if (e.getActionCommand().equals("AddHall")) {
+			if(((AddHallPanel) currentPanel).getTextInput()==null)
+				return ;
+			
+			HallVO vo = ((AddHallPanel) currentPanel).getTextInput();
+			if (org.createHall(vo.getId(), vo.getName()) == ResultMessage.INVALID)
+				WarningDialog.show("操作失败", "该营业厅已存在");
+			else {
+				WarningDialog.show("操作成功", "机构列表已更新");
+				frame.getContentPane().removeAll();
+				currentPanel = new OrganizationUI(this);
+				frame.add(currentPanel);
+				frame.validate();
+				frame.repaint();
+			}
+		} else if (e.getActionCommand().equals("DeleteHall")) {
+			String id = ((DeleteHallPanel) currentPanel).getID();
+			if(id==null)
+				return;
+			if(org.deleteHall(id)==ResultMessage.INVALID)
+				WarningDialog.show("操作失败", "该营业厅编号不存在");
+			else{
+				WarningDialog.show("操作成功", "机构列表已更新");
+				frame.getContentPane().removeAll();
+				currentPanel = new OrganizationUI(this);
+				frame.add(currentPanel);
+				frame.validate();
+				frame.repaint();
+			}
+		}
 	}
 
 	public void viewReceiptUI(String type, ReceiptVOBase vo) {
@@ -327,4 +398,11 @@ public class ManageController implements UIController {
 		return receipt.view().size();
 	}
 
+	private void showEmployeeUI(){
+		frame.getContentPane().removeAll();
+		currentPanel = new EmployeeListUI(this);
+		frame.add(currentPanel);
+		frame.validate();
+		frame.repaint();
+	}
 }
