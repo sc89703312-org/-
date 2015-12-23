@@ -130,6 +130,7 @@ public class BankingUI extends MainPanel {
 			rowdata[1] = list.get(i).getMoney();
 			table.getTableModel().addRow(rowdata);
 		}
+		this.repaint();
 	}
 	
 	public String getKeyWords(){

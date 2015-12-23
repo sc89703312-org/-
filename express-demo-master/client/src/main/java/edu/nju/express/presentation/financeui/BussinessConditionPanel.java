@@ -33,6 +33,7 @@ import edu.nju.express.presentation.myUI.DateComboBoxV2;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.Paymentvo;
 
@@ -103,8 +104,6 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		export.setContentAreaFilled(false);
 		export.setBounds(750, 82, 80, 30);
 		this.add(export);
-		export.setActionCommand("export");
-		export.addActionListener(this);
 
 		initData();
 		

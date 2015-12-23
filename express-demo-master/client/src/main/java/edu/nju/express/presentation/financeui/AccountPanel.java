@@ -26,6 +26,11 @@ import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
 
+/**
+ * 期初建账信息列表
+ * @author Dora
+ *
+ */
 public class AccountPanel extends MainPanel{
 	private static Color fore = new Color(44, 62, 80);
 	private static Font font = new Font("黑体", Font.PLAIN, 18);

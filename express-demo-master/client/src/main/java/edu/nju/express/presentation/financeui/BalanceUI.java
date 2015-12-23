@@ -180,13 +180,18 @@ public class BalanceUI extends MainPanel implements ActionListener {
 		
 		if(amount.getText().equals(""))
 		{
-			PromptDialog.show("", "   请生成总费用");
+			amount.setError();
 			return null;
 		}
 		
 		if(id.getText().equals(""))
 		{
-			PromptDialog.show("", "   请输入单据编号");
+			id.setError();
+			return null;
+		}
+		
+		if(banking.getText().equals("")){
+			banking.setError();
 			return null;
 		}
 		

@@ -11,7 +11,7 @@ public class AccountUI extends MainPanel{
 	
 	
 	/**
-	 * 
+	 * 期初建账
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final Icon add1 = new ImageIcon("ui/button/建帐1.png");
