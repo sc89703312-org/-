@@ -18,6 +18,7 @@ import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.init.client;
 import edu.nju.express.po.ArriveReceiptPO;
+import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.po.TransferReceiptPO;
@@ -84,7 +85,13 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 		
 		if(id.contains("HallTransferReceipt")){
             try {
-				HallTransferReceiptVO transfervo = Convert.po_to_vo_halltransfer(hallDataService.findHallTransfer(id));
+            	HallTransferReceiptPO transferpo = hallDataService.findHallTransfer(id);
+            	HallTransferReceiptVO transfervo = null;
+            	if(transferpo==null)
+            		return null;
+            	else
+				    transfervo = Convert.po_to_vo_halltransfer(transferpo);
+				System.out.println(location+"."+transfervo.getDestination());
 				if(transfervo.getDestination().equals(location)){
 				    ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getOrderlist());
 				    return vo;
@@ -99,7 +106,12 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 			}
 		else if(id.contains("TransferReceipt")){
 			try {
-				TransferReceiptVO transfervo = Convert.po_to_vo_transfer(stationDataService.getTransfer(id));
+				TransferReceiptPO transferpo = stationDataService.getTransfer(id);
+				TransferReceiptVO transfervo = null;
+				if(transferpo==null)
+					return null;
+				else
+					transfervo = Convert.po_to_vo_transfer(transferpo);
 				if(transfervo.getTo().equals(location)){
 					ArriveReceiptVO vo = new ArriveReceiptVO(stationDataService.nextArriveID(stationID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getList());
 					return vo;

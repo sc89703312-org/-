@@ -31,6 +31,10 @@ public class StationPO extends PersistentObj implements Serializable{
 		return name;
 	}
 	
+	public void rename(String newname){
+		this.name = newname;
+	}
+	
 //	//public void addArriveReceipt(ArriveReceiptPO po){
 //		arrive_list.add(po);
 //	}

@@ -21,6 +21,7 @@ import edu.nju.express.po.DeliverReceiptPO;
 import edu.nju.express.po.HallTransferReceiptPO;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.OrderPO;
+import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.HallTransferReceiptVO;
@@ -114,7 +115,12 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		}
 		else if(id.contains("TransferReceipt")){
 			try {
-				TransferReceiptVO transfervo = Convert.po_to_vo_transfer(stationDataService.getTransfer(id));
+				TransferReceiptPO transferpo = stationDataService.getTransfer(id);
+				TransferReceiptVO transfervo = null;
+				if(transferpo==null)
+					return null;
+				else
+					transfervo = Convert.po_to_vo_transfer(transferpo);
 				if(transfervo.getTo().equals(location)){
 					ArrivalReceiptVO vo = new ArrivalReceiptVO(hallDataService.nextArrivalID(hallID),MyDate.getCurrentDate(),transfervo.getLocation(),location,transfervo.getList());
 					return vo;

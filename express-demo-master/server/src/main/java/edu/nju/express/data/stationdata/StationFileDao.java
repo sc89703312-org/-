@@ -42,5 +42,11 @@ public class StationFileDao extends CommonData<StationPO> implements StationDao{
 		// TODO Auto-generated method stub
 		return showAll();
 	}
+	
+	public void rename(String id, String newname){
+		StationPO po = find(id);
+		po.rename(newname);
+		update(id,po);
+	}
 
 }
