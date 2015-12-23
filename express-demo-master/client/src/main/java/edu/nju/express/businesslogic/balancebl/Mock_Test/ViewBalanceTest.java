@@ -14,10 +14,10 @@ import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.Paymentvo;
 
-/*
+
 
 public class ViewBalanceTest {
-
+/*
 	Paymentbl paymentbl = new MockPayment(new MockBanking());
 	
 	CostControlbl controlbl = new MockCost(new MockBanking());
@@ -61,6 +61,5 @@ public class ViewBalanceTest {
 	}
 	
 	
-	
+*/	
 }
-*/

@@ -7,9 +7,9 @@ import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
 
 
-/*
-public class MockOrganization extends OrganizationBl {
 
+public class MockOrganization {
+/*
 	ArrayList<StationVO> stations = new ArrayList<StationVO>();
 	
 	ArrayList<HallVO> halls = new ArrayList<HallVO>();
@@ -53,6 +53,5 @@ public class MockOrganization extends OrganizationBl {
 	@Override
 	public ArrayList<HallVO> viewHallList() {
 		return halls;
-	}
+	}*/
 }
-*/

@@ -7,10 +7,10 @@ import edu.nju.express.businesslogic.userbl.UserBl;
 import edu.nju.express.common.Role;
 import edu.nju.express.vo.EmployeeVO;
 
+
+
+public class MockManagement {
 /*
-
-public class MockManagement extends ManagementBl{
-
 	ArrayList<EmployeeVO> tempList = new ArrayList<EmployeeVO>();
 	
 	
@@ -44,6 +44,5 @@ public class MockManagement extends ManagementBl{
 	public ArrayList<EmployeeVO> viewEmployeeList() {
 		return tempList;
 	}
-	
+*/	
 }
-*/

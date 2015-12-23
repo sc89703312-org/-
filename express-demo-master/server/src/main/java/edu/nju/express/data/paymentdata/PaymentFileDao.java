@@ -1,4 +1,4 @@
-/*package edu.nju.express.data.paymentdata;
+package edu.nju.express.data.paymentdata;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,8 +15,8 @@ import edu.nju.express.po.Paymentpo;
 
 
 
-public class PaymentFileDao implements PaymentDao {
-
+public class PaymentFileDao {
+/*
 	ArrayList<Paymentpo> list = new ArrayList<Paymentpo>();
 	
 	public PaymentFileDao() {
@@ -191,6 +191,5 @@ public class PaymentFileDao implements PaymentDao {
 
 
 
-
-}
 */
+}

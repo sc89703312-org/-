@@ -7,9 +7,9 @@ import edu.nju.express.businesslogic.paymentbl.Info.BankingInfo;
 import edu.nju.express.vo.BankingAccountVO;
 
 
-/*
-public class MockBanking implements BankingInfo {
 
+public class MockBanking  {
+/*
 	ArrayList<BankingAccountVO> accounts = new ArrayList<BankingAccountVO>();
 	
 	
@@ -71,6 +71,5 @@ public class MockBanking implements BankingInfo {
 		public ArrayList<BankingAccountVO> getAllAccounts(){
 			return accounts;
 		}
-	
+*/	
 }
-*/

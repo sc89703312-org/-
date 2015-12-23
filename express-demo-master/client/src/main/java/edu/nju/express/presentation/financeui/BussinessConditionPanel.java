@@ -103,6 +103,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 		export.setBorderPainted(false);
 		export.setContentAreaFilled(false);
 		export.setBounds(750, 82, 80, 30);
+		export.addActionListener(this);
 		this.add(export);
 
 		initData();
@@ -249,6 +250,7 @@ public class BussinessConditionPanel extends MainPanel implements ActionListener
 				}
 		}
 	}else if (e.getSource()==export) {
+		System.out.println("??");
 		outputExcel();
 	}
 		

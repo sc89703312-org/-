@@ -1,4 +1,4 @@
-/*package edu.nju.express.data.accountdata;
+package edu.nju.express.data.accountdata;
 
 
 import java.io.File;
@@ -17,8 +17,8 @@ import edu.nju.express.po.Accountpo;
 
 
 
-public class AccountFileDao implements AccountDao {
-	
+public class AccountFileDao {
+	/*
 	
 	ArrayList<Accountpo> list = new ArrayList<Accountpo>() ;
 	
@@ -164,6 +164,5 @@ public class AccountFileDao implements AccountDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-}
 */
+}

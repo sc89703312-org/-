@@ -12,10 +12,10 @@ import edu.nju.express.common.Item;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.Paymentvo;
 
-/*
+
 
 public class ModifyMoneyTest {
-
+/*
 	@Test
 	
 	public void testPay(){
@@ -63,6 +63,5 @@ public class ModifyMoneyTest {
 		assertEquals(90000,  banking.getMoney("sc"));
 		
 		assertEquals(80000,  banking.getMoney("a"));
-	}
+	}*/
 }
-*/

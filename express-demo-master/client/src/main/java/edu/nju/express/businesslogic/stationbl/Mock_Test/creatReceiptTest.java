@@ -12,9 +12,9 @@ import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
 import edu.nju.express.common.ResultMessage;
 
-/*
-public class creatReceiptTest {
 
+public class creatReceiptTest {
+/*
 	OrderBL orderBl = new MockOrder();
 	StationReceiptBl stationReceipt = new StationReceiptBl(orderBL);
 	
@@ -35,6 +35,6 @@ public class creatReceiptTest {
 	    
 	    assertEquals(ResultMessage.VALID,stationReceipt.creatTransferReceipt(idList, "000000002", "2015/11/16", "Shanghai", "Nanjing"));
 	}
-	
+*/	
 }
-*/
+

@@ -10,10 +10,10 @@ import edu.nju.express.common.ReceiptState;
 import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.ReceiptVOBase;
 
-/*
+
 
 public class RceiptTester {
-
+/*
 	ReceiptBl receipt = new ReceiptBl();
 	ArrayList<ReceiptVOBase> listVo;
 
@@ -38,6 +38,5 @@ public class RceiptTester {
 		for (int i = 0; i < list.size(); i++) {
 			assertEquals((((MockHall)(receipt.hall)).listPo).get(i).getState(), ReceiptState.APPROVED);
 		}
-	}
+	}*/
 }
-*/

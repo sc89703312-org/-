@@ -7,10 +7,10 @@ import edu.nju.express.businesslogic.balancebl.CreateCost.CostControlbl;
 import edu.nju.express.common.Item;
 import edu.nju.express.vo.Balancevo;
 
+
+
+public class MockCost  {
 /*
-
-public class MockCost extends CostControlbl {
-
 	ArrayList<Balancevo>  tempList = new ArrayList<Balancevo>();
 	
 	
@@ -43,6 +43,5 @@ public class MockCost extends CostControlbl {
 		// TODO Auto-generated method stub
 		return tempList;
 	}
-
-}
 */
+}

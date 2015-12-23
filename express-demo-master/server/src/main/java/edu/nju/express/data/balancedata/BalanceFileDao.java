@@ -1,4 +1,4 @@
-/*package edu.nju.express.data.balancedata;
+package edu.nju.express.data.balancedata;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import edu.nju.express.po.Balancepo;
 
 
-public class BalanceFileDao implements BalanceDao {
-
+public class BalanceFileDao  {
+/*
 	
 	ArrayList<Balancepo> list = new ArrayList<Balancepo>();
 	
@@ -181,6 +181,5 @@ public class BalanceFileDao implements BalanceDao {
 		return null;
 	}
 	
-	
+*/	
 }
-*/

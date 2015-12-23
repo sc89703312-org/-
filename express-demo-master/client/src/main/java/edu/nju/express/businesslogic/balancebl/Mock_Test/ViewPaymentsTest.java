@@ -12,9 +12,9 @@ import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.vo.Paymentvo;
 
 
-/*
-public class ViewPaymentsTest {
 
+public class ViewPaymentsTest {
+/*
 	
 	Paymentbl paymentbl = new MockPayment(new MockBanking());
 	
@@ -49,6 +49,6 @@ public class ViewPaymentsTest {
 	
 	
 	
-	
+*/	
 }
-*/
+

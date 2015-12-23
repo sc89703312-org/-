@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import edu.nju.express.businesslogic.paymentbl.Paymentbl;
 import edu.nju.express.vo.Paymentvo;
 
-/*
-public class MockPayment extends Paymentbl{
-	
+
+public class MockPayment {
+/*	
 	private ArrayList<Paymentvo> tempList = new ArrayList<Paymentvo>();
 	
 	
@@ -44,6 +44,6 @@ public class MockPayment extends Paymentbl{
 		
 	}
 	
-
-}
 */
+}
+

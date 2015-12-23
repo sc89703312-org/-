@@ -14,7 +14,7 @@ import edu.nju.express.vo.HallTransferReceiptVO;
 
 
 
-//public class MockHall extends HallReceiptBL{
+public class MockHall {
 
 	//public MockHall(OrderBL orderBL, Vehiclebl vehiclebl) {
 		//super(null, null);
@@ -61,5 +61,5 @@ import edu.nju.express.vo.HallTransferReceiptVO;
 
 	
 	*/
-//}
+}
 
