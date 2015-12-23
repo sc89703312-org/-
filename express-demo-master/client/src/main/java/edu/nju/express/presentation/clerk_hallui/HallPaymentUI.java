@@ -42,6 +42,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	LabelTextField deliverField, moneyField, orderField;
+	boolean deliverErr, orderErr;
 	JLabel addOrderLabel;
 	JTextArea orderArea;
 	JLabel bg;
@@ -136,6 +137,15 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 				if(!isFilled()){
 					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
 				}
+				else if(!isError()){
+					if(!deliverErr){
+						deliverField.setError();
+					}
+					if(!orderErr){
+						orderField.setError();
+					}
+					WarningDialog.show("数据格式错误", "");
+				}
 				else{
 					submitPayment(new Paymentvo(dateBox.getDate(), Double.parseDouble(moneyField.getText()),
 							deliverField.getText(),orderField.getText(),"sc925200"));
@@ -227,5 +237,11 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 		boolean money = (moneyField.getText().trim().length()==0)?false:true;
 				
 		return deliver && order && money;
+	}
+	
+	public boolean isError(){
+		deliverErr = (deliverField.getText().trim().length()==8) ? true : false;
+		orderErr = (orderField.getText().trim().length()==10) ? true : false;
+		return deliverErr && orderErr;
 	}
 }

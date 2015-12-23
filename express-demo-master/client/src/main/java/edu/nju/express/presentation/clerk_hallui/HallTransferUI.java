@@ -59,6 +59,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	MyComboBox<String> toBox;
 	LabelTextField carrierIdField,carField, supervisorField,
 					guardField,feeField;
+	private boolean carrierErr, carErr;
 	JLabel bg;
 	
 	static JScrollPane scrollpane = new JScrollPane();
@@ -231,19 +232,19 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	}
 	
 	public void clearPanel(){
-//		carrierIdField
+//		carrierIdField	 0250012015122300001   19 bit
 		carrierIdField.setText("");
 		
-//		carField
+//		carField			02500100001			11 bit
 		carField.setText("");
 		
-//		supervisorField
+//		supervisorField		String name
 		supervisorField.setText("");
 		
-//		guardField
+//		guardField			String name
 		guardField.setText("");
 		
-//		feeField
+//		feeField				double positive
 		feeField.setText("");
 		
 //		dateBox
@@ -270,6 +271,15 @@ public class HallTransferUI extends JPanel implements MouseListener{
 				// TODO Auto-generated method stub
 				if(!isFilled()){
 					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
+				}
+				else if(!isError()){
+					if(!carrierErr){
+						carrierIdField.setError();
+					}
+					if(!carErr){
+						carField.setError();
+					}
+					WarningDialog.show("数据格式错误", "本营业厅汽运编号应为19位"+"\n"+"车辆代号应为11位");
 				}
 				else{
 				receipt.subHallTransferReceipt(carrierIdField.getText(), 
@@ -388,6 +398,12 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		boolean guard = (guardField.getText().length()==0) ? false : true;
 		boolean order = (getSelectedOrders().size()==0)?false:true;
 		return carrierId && car && supervisor && guard && order;
+	}
+	
+	public boolean isError(){
+		carrierErr = (carrierIdField.getText().trim().length()==19) ? true : false;
+		carErr = (carField.getText().trim().length()==11) ? true : false;
+		return carrierErr && carErr;
 	}
 	
 	public double calFee(double weight){

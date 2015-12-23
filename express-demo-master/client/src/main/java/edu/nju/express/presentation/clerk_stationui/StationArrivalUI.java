@@ -44,7 +44,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	JPanel mainpanel, panel;
 	JLabel bg;
 	JButton exit, submitBtn, getOrderBtn;
-	LabelTextField stationIdField, idField, getOrderField;
+	LabelTextField idField, getOrderField;
 	JLabel dateLabel, fromLabel, arrivalStateLabel;
 	DateComboBoxPanel dateBox;
 	MyComboBox<String> fromBox;
@@ -89,28 +89,28 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		panel.setVisible(true);
 		panel.setOpaque(false);
 		
-		stationIdField = new LabelTextField("中转中心编号",4);
-		stationIdField.setBounds(60, 10, 400, 45);
-		panel.add(stationIdField);
+//		stationIdField = new LabelTextField("中转中心编号",4);
+//		stationIdField.setBounds(60, 10, 400, 45);
+//		panel.add(stationIdField);
 		
 		dateLabel = new JLabel("到达日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(100, 70, 80, 40);
+		dateLabel.setBounds(100, 70-45, 80, 40);
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(110, 70, 500, 40);
+		dateBox.setBounds(110, 70-45, 500, 40);
 		panel.add(dateBox);
 		
-		idField = new LabelTextField("中转单编号", 19);
-		idField.setBounds(100, 125, 300, 45);
+		idField = new LabelTextField("到达单编号", 19);
+		idField.setBounds(100, 125-45, 300, 45);
 		panel.add(idField);
 		
 		fromLabel = new JLabel("出发地");
 		fromLabel.setFont(font);
 		fromLabel.setForeground(color);
-		fromLabel.setBounds(100, 185, 70, 40);
+		fromLabel.setBounds(100, 185-45, 70, 40);
 		panel.add(fromLabel);
 		
 		fromBox = new MyComboBox<String>();
@@ -131,16 +131,16 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			fromBox.addItem(fromList.get(i));
 		}
 		fromBox.setSelectedItem(fromList.get(0));
-		fromBox.setBounds(170, 185, 200, 30);
+		fromBox.setBounds(170, 185-45, 200, 30);
 		panel.add(fromBox);
 		
 		
 		getOrderField = new LabelTextField("获取到达订单", 19);
-		getOrderField.setBounds(90, 235, 350, 45);
+		getOrderField.setBounds(90, 235-45, 350, 45);
 		panel.add(getOrderField);
 		
 		getOrderBtn = new JButton("获取");
-		getOrderBtn.setBounds(440, 240, 60, 35);
+		getOrderBtn.setBounds(440, 240-45, 60, 35);
 		getOrderBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -176,7 +176,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			}
 		};
 		table = new MyTablePanel(model,header);
-		table.setBounds(5, 300, 700, 350);
+		table.setBounds(5, 300-45, 700, 350);
 		table.getTable().setPreferredScrollableViewportSize(new Dimension(690,350));
 		panel.add(table);
 		
@@ -189,7 +189,6 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	}
 	
 	public void clearPanel(){
-		stationIdField.setText("");
 		
 		idField.setText("");
 		
@@ -237,7 +236,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 
 		});
 		mainpanel.add(submitBtn);
-		
+		 
 	}
 	
 	public void wrapScrollPane(final JScrollPane s, final MyScrollBarUI ui){
@@ -308,7 +307,22 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 
 	//set panel
 	public void generateData(){
+		//dateBox
+		String date = searchOrder().getDate();
+		String[] dateSplit = date.split("/");
+		dateBox.getYearComboBox().setSelectedItem(dateSplit[0]);
+		dateBox.getMonthComboBox().setSelectedItem(dateSplit[1]);
+		dateBox.getDayComboBox().setSelectedItem(dateSplit[2]);
 		
+		//fromBox
+		fromBox.setSelectedItem(searchOrder().getFrom());
+
+		//先清空table
+		int tablelen = table.getTableModel().getRowCount();
+		for(int i = tablelen-1; i>=0; i --){
+			table.getTableModel().removeRow(i);
+		}
+
 		orderList = new ArrayList<OrderVO>();
 		int length = searchOrder().getList().size();
 		for(int i=0; i<length; i++){
@@ -338,8 +352,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	
 	public boolean isFilled(){
 		boolean id = (idField.getText().trim().length()==0) ? false : true;
-		boolean stationId = (stationIdField.getText().trim().length()==0) ? false : true;
-		return id && stationId;
+		return id;
 	}
 
 }
