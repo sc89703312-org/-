@@ -99,7 +99,7 @@ public class AccountPanel extends MainPanel{
 		p.add(l1);
 		ArrayList<BankingAccountVO> bl = vo.getAccountList();
 		for(BankingAccountVO b: bl){
-			p.add(new JLabel(""+b.getName()+":	"+b.getMoney()+"元"));
+			p.add(new JLabel(b.getName()+"    "+b.getMoney()+"元"));
 		}
 		
 		
@@ -108,7 +108,7 @@ public class AccountPanel extends MainPanel{
 		l2.setName("title");
 		p.add(l2);
 		for(StationVO svo: sl){
-			p.add(new JLabel(svo.getName()+"	"+svo.getId()));
+			p.add(new JLabel(svo.getName()+"    "+svo.getId()));
 		}
 		
 		
@@ -117,7 +117,7 @@ public class AccountPanel extends MainPanel{
 		l3.setName("title");
 		p.add(l3);
 		for(HallVO h: hl){
-			p.add(new JLabel(h.getName()+"	"+h.getId()+" "));
+			p.add(new JLabel(h.getName()+"    "+h.getId()));
 		}
 	
 		
@@ -126,7 +126,7 @@ public class AccountPanel extends MainPanel{
 		l4.setName("title");
 		p.add(l4);
 		for(EmployeeVO e:el)
-			p.add(new JLabel(e.getId()+"	"+e.getName()));
+			p.add(new JLabel(e.getId()+"    "+e.getName()));
 		
 		
 		ArrayList<Carvo> cl = vo.getCarList();
@@ -134,7 +134,7 @@ public class AccountPanel extends MainPanel{
 		l5.setName("title");
 		p.add(l5);
 		for(Carvo c:cl)
-			p.add(new JLabel(c.getId()+"	"+c.getCar()+"	"+c.getPurchase()));
+			p.add(new JLabel(c.getId()+"    "+c.getCar()+"    "+c.getPurchase()));
 		
 		
 		ArrayList<ComGoodsVO> cgl = vo.getCommodity();
@@ -143,8 +143,8 @@ public class AccountPanel extends MainPanel{
 		p.add(l6);
 		//快递编号、入库日期、目的地、区号、排号、架号、位号
 		for(ComGoodsVO cg:cgl){
-			System.out.println(cg.getOrder().getID()+" "+cg.getType()+" "+cg.getLine()+"排"+cg.getShelf()+"架"+cg.getCell()+"位");
-			p.add(new JLabel(cg.getOrder().getID()+" "+cg.getType()+" "+cg.getLine()+"排"+cg.getShelf()+"架"+cg.getCell()+"位"));
+			System.out.println(cg.getOrder().getID()+"    "+cg.getType()+"    "+cg.getLine()+"排"+cg.getShelf()+"架"+cg.getCell()+"位");
+			p.add(new JLabel(cg.getOrder().getID()+"    "+cg.getType()+"    "+cg.getLine()+"排"+cg.getShelf()+"架"+cg.getCell()+"位"));
 		}
 		
 		for(Component c: p.getComponents()){
@@ -155,7 +155,7 @@ public class AccountPanel extends MainPanel{
 			
 			if(c.getName()!=null){
 				c.setFont(new Font("微软雅黑",font.BOLD,19));
-				c.setPreferredSize(new Dimension(200,50));
+				c.setPreferredSize(new Dimension(200,60));
 			}else{
 				c.setPreferredSize(new Dimension(400,30));
 			}

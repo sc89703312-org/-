@@ -106,7 +106,6 @@ public class Accountbl implements Accountblservice{
 				
 		if(po==null)
 		{
-			PromptDialog.show("查询失败", "  输入日期未建账");
 			return null;
 		}
 		

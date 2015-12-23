@@ -11,7 +11,6 @@ import edu.nju.express.common.StaffChange;
 import edu.nju.express.dataservice.UserDataService;
 import edu.nju.express.dataservice.UserMessageDataService;
 import edu.nju.express.init.RMIHelper;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.po.UserPO;
 import edu.nju.express.vo.EmployeeVO;
@@ -161,10 +160,8 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 			try {
 				if (userData.find(id) != null) {
 					userMessageData.insert(new UserMessagePO(operation, id, name, role));
-					PromptDialog.show("删除成功", "");
 					rm = ResultMessage.VALID;
 				}else {
-					PromptDialog.show("删除失败", "     id不存在");
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();

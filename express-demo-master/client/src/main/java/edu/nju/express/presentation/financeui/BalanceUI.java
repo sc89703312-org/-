@@ -14,13 +14,12 @@ import javax.swing.JPanel;
 
 import edu.nju.express.blservice.CostControlService;
 import edu.nju.express.common.Item;
-import edu.nju.express.log.ui.warning.PromptDialog;
 import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
-import edu.nju.express.presentation.myUI.MyTextField;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Balancevo;
 
 public class BalanceUI extends MainPanel implements ActionListener {
@@ -158,14 +157,14 @@ public class BalanceUI extends MainPanel implements ActionListener {
 			
 			if(getRemark().equals(""))
 			{
-				PromptDialog.show("", "   请输入快递员编号");
+				WarningDialog.show("", "请输入快递员编号");
 			}else			
 			   salary = costBL.caculatePostManSalary(getRemark());
 		}else if (getComBoxComponent().equals("司机提成")) {
 			
 			if(getRemark().equals(""))
 			{
-				PromptDialog.show("", "   请输入运送次数");
+				WarningDialog.show("", "请输入运送次数");
 			}
 			else
 			   salary = costBL.caculateDriverSalary(getRemark());
