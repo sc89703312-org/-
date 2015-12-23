@@ -395,7 +395,7 @@ public class LoginUI extends MyFrame {
 			
 
 			passwordField = new MyPasswordField(390, 280, 220, 40);
-			passwordField.setFont(new Font("Arail", Font.PLAIN, 20));
+			passwordField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 			passwordField.setForeground(Color.WHITE);
 			passwordField.addMouseListener(new MouseAdapter() {
 

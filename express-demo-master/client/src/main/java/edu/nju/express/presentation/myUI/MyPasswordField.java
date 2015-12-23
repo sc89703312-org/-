@@ -15,5 +15,6 @@ public class MyPasswordField extends JPasswordField {
 		this.setOpaque(false);
 		this.setForeground(Color.WHITE);
 		this.setBorder(BorderFactory.createEmptyBorder());
+		setEchoChar('●');
 	}
 }

@@ -80,7 +80,7 @@ public class ClientInfoPanel extends ServerPanel {
 			rowData[i][0] = tempInfo.getID();
 			rowData[i][1] = tempInfo.getTime();
 			rowData[i][2] = tempInfo.getName();
-			rowData[i][3] = tempInfo.getClientIP();
+			rowData[i][3] = tempInfo.getAddress();
 		}
 		usersTable = new ServerTable(columnNames, rowData);
 		Point usersTablePoint = new Point(PaddingX, PaddingY);

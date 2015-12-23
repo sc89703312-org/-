@@ -32,6 +32,7 @@ public class LoginInfoDataService_Impl extends UnicastRemoteObject implements Lo
 	@Override
 	public void insert(LoginInfo info) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println(info.getAddress());
 		infos.add(info);
 		
 		ArrayList<LoginInfo> temp =getAll();

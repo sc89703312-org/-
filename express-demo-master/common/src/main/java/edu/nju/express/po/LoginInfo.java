@@ -44,6 +44,8 @@ public class LoginInfo implements Serializable{
 		this.id = id;
         this.name = userName;
 		setTime();
+		
+		hostAddr = getClientIP();
 	}
 	
 	
@@ -96,7 +98,7 @@ public class LoginInfo implements Serializable{
 	}
 	
 	
-	public  String getClientIP() {
+	private  String getClientIP() {
 	
 		try {
 			addr = InetAddress.getLocalHost();
@@ -110,7 +112,11 @@ public class LoginInfo implements Serializable{
 	}
 	
 	
+	public String getAddress(){
+		return hostAddr;
+	}
+	
 	public  String getInfo(){
-		return "["+loginTime+"]"+" "+name+" "+id+" "+getClientIP();
+		return "["+loginTime+"]"+" "+name+" "+id+" "+getAddress();
 	}
 }
