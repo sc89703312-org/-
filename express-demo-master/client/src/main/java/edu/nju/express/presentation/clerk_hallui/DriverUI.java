@@ -49,6 +49,7 @@ public class DriverUI extends JPanel implements MouseListener{
 	private JButton newBtn, editBtn, trashBtn;
 	private JLabel  genderLabel, birthLabel, licenseLimitLabel;
 	private LabelTextField driverIdField, nameField, identityField, cellphoneField;
+	boolean driverErr, identityErr, cellphoneErr;
 	private MyComboBox<String> genderBox;
 	private DateComboBoxPanel birthBoxPanel, licenseLimitBoxPanel;
 	private MyButton addBtn, saveBtn;
@@ -247,6 +248,16 @@ public class DriverUI extends JPanel implements MouseListener{
 				if(!isFilled()){
 					WarningDialog.show("温馨提示", "请检查信息项是否齐全");
 				}
+				else if(!isError()){
+					if(!driverErr)
+						driverIdField.setError();
+					if(!identityErr)
+						identityField.setError();
+					if(!cellphoneErr)
+						cellphoneField.setError();
+					WarningDialog.show("数据格式错误", "司机编号应为10位"+"\n"
+						+"身份证号为18位"+"\n"+"手机号为11位");
+				}
 				else{
 					addDriver(new Drivervo(driverIdField.getText(), nameField.getText(),
 							birthBoxPanel.getDate(), identityField.getText(), 
@@ -276,6 +287,16 @@ public class DriverUI extends JPanel implements MouseListener{
 				// TODO Auto-generated method stub
 				if(!isFilled()){
 					WarningDialog.show("温馨提示", "请检查填写信息是否齐全");
+				}
+				else if(!isError()){
+					if(!driverErr)
+						driverIdField.setError();
+					if(!identityErr)
+						identityField.setError();
+					if(!cellphoneErr)
+						cellphoneField.setError();
+					WarningDialog.show("数据格式错误", "司机编号应为10位"+"\n"
+						+"身份证号为18位"+"\n"+"手机号为11位");
 				}
 				else{
 					modifyDriver(driverIdField.getText(),
@@ -655,4 +676,10 @@ public class DriverUI extends JPanel implements MouseListener{
 		return driverId && name && identity && cellphone;
 	}
 	
+	public boolean isError(){
+		driverErr = (driverIdField.getText().trim().length()==10) ? true : false;
+		identityErr = (identityField.getText().trim().length()==18) ? true : false;
+		cellphoneErr = (cellphoneField.getText().trim().length()==11) ? true : false;
+		return driverErr && identityErr && cellphoneErr;
+	}
 }

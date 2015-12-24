@@ -23,6 +23,7 @@ import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
@@ -43,7 +44,8 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	HallController controller;
 	HallReceiptBlService  receipt;
 	JPanel mainpanel, panel;
-	JButton exit, submitBtn, confirmBtn;
+	JButton exit, confirmBtn;
+	ConfirmButton submitBtn;
 	JLabel bg;
 	JLabel dateLabel, fromLabel;
 	DateComboBoxPanel dateBox;
@@ -100,9 +102,13 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		panel.add(transferIdField);
 		
 		//confirmBtn
-		confirmBtn = new JButton("确认");
+		confirmBtn = new JButton();
 		confirmBtn.setFont(new Font("Microsoft YaHei", Font.PLAIN, 15));
-		confirmBtn.setBounds(530, 15, 80, 40);
+		confirmBtn.setBounds(530, 20, 80, 40);
+		confirmBtn.setIcon(new ImageIcon("ui/image/hall/confirm0.png"));
+		confirmBtn.setBorderPainted(false);
+		confirmBtn.setContentAreaFilled(false);
+		confirmBtn.addMouseListener(this);
 		confirmBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -228,7 +234,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	
 	
 	public void initMargin(){
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -245,6 +251,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 					receipt.subArrivalReceipt(new ArrivalReceiptVO(transferIdField.getText(),
 							dateBox.getDate(), (String)fromBox.getSelectedItem(),
 							Location.getHallLocation(hall_id), orderList));
+					WarningDialog.show("", "提交成功！");
 					clearPanel();
 				}
 			}
@@ -292,13 +299,17 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(confirmBtn)){
+			confirmBtn.setIcon(new ImageIcon("ui/image/hall/confirm1.png"));
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(confirmBtn)){
+			confirmBtn.setIcon(new ImageIcon("ui/image/hall/confirm0.png"));
+		}
 	}
 	
 	public ArrivalReceiptVO searchTransfer(){

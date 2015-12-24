@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyScrollBarUI;
@@ -38,7 +39,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	JPanel mainpanel;
 	
 	JButton addOrderBtn;
-	JButton submitBtn;
+	ConfirmButton submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	LabelTextField deliverField, moneyField, orderField;
@@ -126,7 +127,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	
 	public void initMargin(){
 		
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -149,6 +150,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 				else{
 					submitPayment(new Paymentvo(dateBox.getDate(), Double.parseDouble(moneyField.getText()),
 							deliverField.getText(),orderField.getText(),"sc925200"));
+					WarningDialog.show("", "提交成功！");
 					clearPanel();
 				}
 			}

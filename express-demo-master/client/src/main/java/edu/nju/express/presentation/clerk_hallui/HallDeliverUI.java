@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.blservice.OrderBLService;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -45,8 +46,10 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	LabelTextField  deliverIdField;
+	boolean deliverErr;
 	JLabel bg;
-	JButton exit, submitBtn;
+	JButton exit;
+	ConfirmButton submitBtn;
 		
 	JScrollPane scrollpane = new JScrollPane();
 	final MyScrollBarUI ui = new MyScrollBarUI();
@@ -172,7 +175,7 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 	}
 	
 	public void initMargin(){
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -183,8 +186,13 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 				if(!isFilled()){
 					WarningDialog.show("提交内容不能为空", "请检查填写是否齐全");
 				}
+				else if(!isError()){
+					deliverIdField.setError();
+					WarningDialog.show("数据格式错误", "派件员编号应该为8位数");
+				}
 				else{
 					submit(deliverIdField.getText(), getSelectedOrders());
+					WarningDialog.show("", "提交成功！");
 					clearPanel();
 				}
 			}
@@ -270,6 +278,11 @@ public class HallDeliverUI extends JPanel implements MouseListener{
 		boolean deliverId = (deliverIdField.getText().length()==0)?false: true;
 		boolean order = (getSelectedOrders().size()==0)?false:true;
 		return deliverId && order;
+	}
+	
+	public boolean isError(){
+		deliverErr = (deliverIdField.getText().trim().length()==8) ? true : false;
+		return deliverErr;
 	}
 
 }

@@ -24,6 +24,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -44,16 +45,20 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	OrderBLService order;
 	JPanel mainpanel, panel, op;
 	JLabel bg;
-	JButton exit, submitBtn;
+	JButton exit;
+	ConfirmButton submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	JLabel addOrderLabel, toLabel;
 	MyCheckBoxTable checkTable;
+	/*装车单编号/汽运编号*/
 	LabelTextField idField;
+	boolean idErr, carErr;
 	MyComboBox<String> fromBox, toBox;
 	//transortid 是指车辆代号
 	LabelTextField transportIdField, supervisorField, guardField, 
 					feeField;
+	
 	JButton calFeeBtn;
 	
 	static JScrollPane scroll = new JScrollPane();
@@ -101,7 +106,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(exit);
 		
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -112,10 +117,19 @@ public class StationToHallUI extends JPanel implements MouseListener{
 				if(!isFilled()){
 					WarningDialog.show("温馨提示", "请检查填写项是否齐全");
 				}
+				else if(!isError()){
+					if(!idErr)
+						idField.setError();
+					if(!carErr)
+						transportIdField.setError();
+					WarningDialog.show("数据格式错误", "汽运编号为19位"+"\n"+"车辆代号为10位");
+				}
 				else{
 					receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(),
 							transportIdField.getText(), supervisorField.getText(), Etype.STANDARD);
+					WarningDialog.show("", "提交成功！");
 					clearPanel();
+					
 				}
 			}
 
@@ -209,8 +223,12 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		feeField.setBounds(120, 400, 300, 45);
 		op.add(feeField);
 		
-		calFeeBtn = new JButton("计算运费");
-		calFeeBtn.setBounds(420, 400, 80, 45);
+		calFeeBtn = new JButton();
+		calFeeBtn.setBounds(420, 410, 90, 30);
+		calFeeBtn.setBorderPainted(false);
+		calFeeBtn.setContentAreaFilled(false);
+		calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
+		calFeeBtn.addMouseListener(this);
 		calFeeBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -305,13 +323,17 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee1.png"));
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
+		}
 	}
 	
 	public void initData(){
@@ -347,6 +369,12 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		boolean order = (getSelectedOrders().size()==0) ? false : true;
 		return id && transportId && supervisor && guard;
 		
+	}
+	
+	public boolean isError(){
+		idErr = (idField.getText().trim().length()==19) ? true : false;
+		carErr = (transportIdField.getText().trim().length()==10) ? true : false;
+		return idErr && carErr;
 	}
 	
 	//计算运费的方法    

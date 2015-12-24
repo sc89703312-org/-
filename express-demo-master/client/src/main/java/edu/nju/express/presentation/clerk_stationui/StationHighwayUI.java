@@ -55,13 +55,17 @@ public class StationHighwayUI extends StationTransportUI{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee1.png"));
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
+		}
 	}
 
 }

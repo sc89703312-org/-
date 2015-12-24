@@ -24,6 +24,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -44,13 +45,15 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	OrderBLService order;
 	JPanel mainpanel,panel,op;
 	JLabel bg; 
-	JButton exit, submitBtn;
+	JButton exit;
+	ConfirmButton submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
 	JLabel addOrderLabel,  toLabel;
 	MyCheckBoxTable checkTable;
 	/*中转单编号*/
 	LabelTextField idField;
+	boolean idErr;
 	MyComboBox<String>  toBox;
 	/*车次号、航班号*/
 	LabelTextField transportIdField, containerField, supervisorField, 
@@ -175,8 +178,12 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		feeField.setBounds(120, 400, 300, 45);
 		op.add(feeField);
 		
-		calFeeBtn = new JButton("计算运费");
-		calFeeBtn.setBounds(420, 400, 80, 45);
+		calFeeBtn = new JButton();
+		calFeeBtn.setBounds(420, 410, 90, 30);
+		calFeeBtn.setBorderPainted(false);
+		calFeeBtn.setContentAreaFilled(false);
+		calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
+		calFeeBtn.addMouseListener(this);
 		calFeeBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -245,7 +252,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(exit);
 		
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -256,9 +263,15 @@ public class StationTransportUI extends JPanel implements MouseListener{
 				if(!isFilled()){
 					WarningDialog.show("温馨提示", "请检查填写信息是否齐全");
 				}
+				else if(!isError()){
+					if(!idErr)
+						idField.setError();
+					WarningDialog.show("数据格式错误","中转单编号为19位");
+				}
 				else{
 					receipt.subTransferReceipt(getSelectedOrders(), (String)toBox.getSelectedItem(), 
 							transportIdField.getText(), supervisorField.getText(), etype);
+					WarningDialog.show("", "提交成功！");
 					clearPanel();
 				}
 			}
@@ -328,7 +341,9 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
+		}
 	}
 	
 	public void initData(){
@@ -371,6 +386,11 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		String thisCity = Location.getStationLocation(station_id);
 		String toCity = (String)toBox.getSelectedItem();
 		return FeeCalculator.getTransFee(thisCity, toCity, etype, weight);
+	}
+	
+	public boolean isError(){
+		idErr = (idField.getText().trim().length()==19) ? true : false;
+		return idErr;
 	}
 
 }

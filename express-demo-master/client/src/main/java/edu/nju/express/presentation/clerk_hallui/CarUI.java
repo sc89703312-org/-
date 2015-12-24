@@ -48,6 +48,7 @@ public class CarUI extends JPanel implements MouseListener{
 	private JButton saveBtn, addBtn;
 	private MySearchFieldPanel searchField;
 	private LabelTextField idField, numberField;
+	boolean carErr;
 	private JLabel usetime, beginLabel, endLabel;
 	private DateComboBoxPanel begin, end;
 	private MyTablePanel table;
@@ -249,19 +250,24 @@ public class CarUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				boolean isFilled = (idField.getText().length() > 0) && (numberField.getText().length() > 0);
-				if(isFilled){
-					addCar(new Carvo(idField.getText(), "motor", numberField.getText(),
-							"base", "purchase", 1));
-				
-				mainpanel.remove(newPanel);
-				refreshTable();
-				mainpanel.add(listPanel);
-				mainpanel.remove(addBtn);
-				}
-				else{
+				if(!isFilled()){
 					WarningDialog.show("温馨提示", "请检查填写项是否齐全");
 				}
+				else if(!isError()){
+					idField.setError();
+					WarningDialog.show("数据格式错误", "车辆代号应为10位");
+				}
+				else{
+					modifyCar(idField.getText(), new Carvo(idField.getText(), "motor",
+							numberField.getText(),
+							"base", begin.getDate()+end.getDate(), 1));
+					mainpanel.remove(newPanel);
+					refreshTable();
+					mainpanel.add(listPanel);
+					mainpanel.remove(addBtn);
+				}
+				
+				
 				mainpanel.validate();
 				mainpanel.repaint();
 			}
@@ -277,16 +283,19 @@ public class CarUI extends JPanel implements MouseListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				boolean isFilled = (idField.getText().length() > 0) && (numberField.getText().length() > 0);
 //				System.out.println("is car field filled?  "+ isFilled);
 //			    System.out.println("idField " + idField.getText() + "\n" + "numberField "+numberField.getText());
-				if(isFilled){
+				if(!isFilled()){
+					WarningDialog.show("温馨提示", "请检查填写项是否齐全");
+				}
+				else if(!isError()){
+					idField.setError();
+					WarningDialog.show("数据格式错误", "车辆代号应为10位");
+				}
+				else{
 					modifyCar(idField.getText(), new Carvo(idField.getText(), "motor",
 							numberField.getText(),
 							"base", begin.getDate()+end.getDate(), 1));
-					//不跳到表格的页面，仅停留在当前页面
-				}else{
-					WarningDialog.show("温馨提示", "请检查填写项是否齐全");
 				}
 			}
 
@@ -555,5 +564,16 @@ public class CarUI extends JPanel implements MouseListener{
 			row[1] = carList.get(i).getCar();
 			table.getTableModel().addRow(row);
 		}
+	}
+	
+	public boolean isFilled(){
+		boolean id = (idField.getText().trim().length()==0) ? false : true;
+		boolean number = (numberField.getText().trim().length()==0) ? false : true;
+		return id && number;
+	}
+	
+	public boolean isError(){
+		carErr = (idField.getText().trim().length()==10) ? true : false;
+		return carErr;
 	}
 }

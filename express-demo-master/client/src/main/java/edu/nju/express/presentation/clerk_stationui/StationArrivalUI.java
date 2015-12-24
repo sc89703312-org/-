@@ -23,6 +23,7 @@ import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyComboBox;
@@ -43,7 +44,8 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	StationReceiptBlService receipt;
 	JPanel mainpanel, panel;
 	JLabel bg;
-	JButton exit, submitBtn, getOrderBtn;
+	JButton exit, getOrderBtn;
+	ConfirmButton submitBtn;
 	LabelTextField idField, getOrderField;
 	JLabel dateLabel, fromLabel, arrivalStateLabel;
 	DateComboBoxPanel dateBox;
@@ -139,8 +141,12 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		getOrderField.setBounds(90, 235-45, 350, 45);
 		panel.add(getOrderField);
 		
-		getOrderBtn = new JButton("获取");
-		getOrderBtn.setBounds(440, 240-45, 60, 35);
+		getOrderBtn = new JButton();
+		getOrderBtn.setBounds(440, 240-45, 80, 40);
+		getOrderBtn.setIcon(new ImageIcon("ui/image/hall/confirm0.png"));
+		getOrderBtn.setBorderPainted(false);
+		getOrderBtn.setContentAreaFilled(false);
+		getOrderBtn.addMouseListener(this);
 		getOrderBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -213,7 +219,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(exit);
 		
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -288,13 +294,17 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(getOrderBtn)){
+			getOrderBtn.setIcon(new ImageIcon("ui/image/hall/confirm1.png"));
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(getOrderBtn)){
+			getOrderBtn.setIcon(new ImageIcon("ui/image/hall/confirm0.png"));
+		}
 	}
 	
 	
@@ -352,6 +362,7 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	
 	public boolean isFilled(){
 		boolean id = (idField.getText().trim().length()==0) ? false : true;
+		
 		return id;
 	}
 

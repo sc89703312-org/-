@@ -24,6 +24,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyCheckBoxTable;
@@ -52,7 +53,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	JButton addOrderBtn;
 	JButton calFeeBtn;
 	MyCheckBoxTable checkTable;
-	JButton submitBtn;
+	ConfirmButton submitBtn;
 	JButton exit;
 	JLabel dateLabel, toLabel, addOrderLabel;
 	DateComboBoxPanel dateBox;
@@ -194,7 +195,10 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		panel.add(feeField);
 		
 		calFeeBtn = new JButton("生成运费");
-		calFeeBtn.setBounds(410, 705+45, 100, 40);
+		calFeeBtn.setBounds(410, 705+45+10, 90,30);
+		calFeeBtn.setBorderPainted(false);
+		calFeeBtn.setContentAreaFilled(false);
+		calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
 		calFeeBtn.addMouseListener(this);
 		calFeeBtn.addActionListener(new ActionListener(){
 
@@ -261,7 +265,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	}
 	
 	public void initMargin(){
-		submitBtn = new JButton("提交");
+		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
 		submitBtn.addMouseListener(this);
 		submitBtn.addActionListener(new ActionListener(){
@@ -282,15 +286,16 @@ public class HallTransferUI extends JPanel implements MouseListener{
 					WarningDialog.show("数据格式错误", "本营业厅汽运编号应为19位"+"\n"+"车辆代号应为11位");
 				}
 				else{
-				receipt.subHallTransferReceipt(carrierIdField.getText(), 
-						(String)toBox.getSelectedItem(), carField.getText(), 
-						supervisorField.getText(), guardField.getText(), 
-						getSelectedOrders());
-				//clearPanel
-				clearPanel();
+					receipt.subHallTransferReceipt(carrierIdField.getText(), 
+							(String)toBox.getSelectedItem(), carField.getText(), 
+							supervisorField.getText(), guardField.getText(), 
+							getSelectedOrders());
+					WarningDialog.show("", "提交成功！");
+					//clearPanel
+					clearPanel();
 				}
 			}
-			
+
 		});
 		mainpanel.add(submitBtn);
 		
@@ -358,12 +363,17 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee1.png"));
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource().equals(calFeeBtn)){
+			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
+		}
 	}
 	
 	public void initData(){
