@@ -3,6 +3,8 @@ package edu.nju.express.presentation.clerk_stationui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -24,6 +26,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -33,7 +36,7 @@ import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
-public class StationToHallUI extends JPanel implements MouseListener{
+public class StationToHallUI extends MainPanel implements MouseListener{
 
 	/**
 	 * 
@@ -44,8 +47,6 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	StationReceiptBlService receipt;
 	OrderBLService order;
 	JPanel mainpanel, panel, op;
-	JLabel bg;
-	JButton exit;
 	ConfirmButton submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
@@ -65,7 +66,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	final MyScrollBarUI ui = new MyScrollBarUI();
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62, 80);
-	
+	Image bg = (new ImageIcon("ui/image/station/toHall.png")).getImage();
 	String station_id = LoginInfo.getUserID().substring(0, 3);
 	
 	public StationToHallUI(StationController c){
@@ -81,9 +82,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		initMargin();
 		initPanel();
 		
-		bg = new JLabel(new ImageIcon("ui/image/station/toHall.png"));
-		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
+		
 		this.add(mainpanel);
 		this.add(new StationGuide(controller));
 		this.setLayout(null);
@@ -93,18 +92,6 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	}
 	
 	public void initMargin(){
-		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 		
 		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
@@ -155,17 +142,17 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		panel.add(dateBox);
 		
 		idField = new LabelTextField("汽运编号",19);
-		idField.setBounds(110, 70, 300, 45);
+		idField.setBounds(120, 70, 300, 45);
 		panel.add(idField);
 		
 		transportIdField = new LabelTextField("车辆代号", 10);
-		transportIdField.setBounds(110, 130, 300, 45);
+		transportIdField.setBounds(120, 130, 300, 45);
 		panel.add(transportIdField);
 		
 		toLabel = new JLabel("到达地");
 		toLabel.setFont(font);
 		toLabel.setForeground(color);
-		toLabel.setBounds(130, 190, 80, 40);
+		toLabel.setBounds(130, 190, 70, 40);
 		panel.add(toLabel);
 		
 		//根据station属性确定是哪个城市的营业厅
@@ -179,7 +166,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 			toBox.addItem(toList.get(i));
 		}
 		toBox.setSelectedItem(toList.get(0));
-		toBox.setBounds(210, 190, 210, 30);
+		toBox.setBounds(210, 195, 195, 30);
 		panel.add(toBox);
 		
 		supervisorField = new LabelTextField("监装员  ", 10);
@@ -367,7 +354,7 @@ public class StationToHallUI extends JPanel implements MouseListener{
 		boolean supervisor = (supervisorField.getText().trim().length()==0) ? false : true;
 		boolean guard = (guardField.getText().trim().length()==0) ? false : true;
 		boolean order = (getSelectedOrders().size()==0) ? false : true;
-		return id && transportId && supervisor && guard;
+		return id && transportId && supervisor && guard && order;
 		
 	}
 	
@@ -381,6 +368,11 @@ public class StationToHallUI extends JPanel implements MouseListener{
 	public double calFee(double weight){
 		return FeeCalculator.getTransFee(Etype.STANDARD, weight);
 		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 
 }

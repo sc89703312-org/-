@@ -3,6 +3,8 @@ package edu.nju.express.presentation.clerk_stationui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,6 +25,7 @@ import edu.nju.express.blservice.StationReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -33,7 +36,7 @@ import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.OrderVO;
 
-public class StationArrivalUI extends JPanel implements MouseListener{
+public class StationArrivalUI extends MainPanel implements MouseListener{
 
 	/**
 	 * 
@@ -43,8 +46,8 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	StationController controller;
 	StationReceiptBlService receipt;
 	JPanel mainpanel, panel;
-	JLabel bg;
-	JButton exit, getOrderBtn;
+	Image bg = (new ImageIcon("ui/image/station/station_arrival.png")).getImage();
+	JButton  getOrderBtn;
 	ConfirmButton submitBtn;
 	LabelTextField idField, getOrderField;
 	JLabel dateLabel, fromLabel, arrivalStateLabel;
@@ -74,9 +77,6 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		initMargin();
 		initPanel();
 		
-		bg = new JLabel(new ImageIcon("ui/image/station/station_arrival.png"));
-		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
 		this.add(mainpanel);
 		this.add(new StationGuide(controller));
 		this.setLayout(null);
@@ -133,12 +133,12 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 			fromBox.addItem(fromList.get(i));
 		}
 		fromBox.setSelectedItem(fromList.get(0));
-		fromBox.setBounds(170, 185-45, 200, 30);
+		fromBox.setBounds(200, 185-40, 195, 30);
 		panel.add(fromBox);
 		
 		
 		getOrderField = new LabelTextField("获取到达订单", 19);
-		getOrderField.setBounds(90, 235-45, 350, 45);
+		getOrderField.setBounds(70, 235-45, 350, 45);
 		panel.add(getOrderField);
 		
 		getOrderBtn = new JButton();
@@ -206,18 +206,6 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 	}
 	
 	public void initMargin(){
-		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 		
 		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);
@@ -366,4 +354,8 @@ public class StationArrivalUI extends JPanel implements MouseListener{
 		return id;
 	}
 
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
+	}
 }

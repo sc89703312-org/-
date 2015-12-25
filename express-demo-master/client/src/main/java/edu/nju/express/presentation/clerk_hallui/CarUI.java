@@ -3,6 +3,8 @@ package edu.nju.express.presentation.clerk_hallui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -17,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.express.blservice.CarControlService;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
 import edu.nju.express.presentation.myUI.MyButton;
@@ -25,7 +28,7 @@ import edu.nju.express.presentation.myUI.MyTablePanel;
 import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Carvo;
 
-public class CarUI extends JPanel implements MouseListener{
+public class CarUI extends MainPanel implements MouseListener{
 	/**
 	 * 
 	 */
@@ -42,10 +45,10 @@ public class CarUI extends JPanel implements MouseListener{
 	private HallController controller;
 	private CarControlService car;
 	private JPanel mainpanel;
-	private JLabel bg;
+	private Image bg = (new ImageIcon("ui/image/hall/car.png")).getImage();
 	private JButton newBtn, editBtn, trashBtn;
 	private JPanel listPanel, newPanel, deleteConfirmPanel;
-	private JButton saveBtn, addBtn;
+	private JButton saveBtn, addBtn, confirm, cancel;
 	private MySearchFieldPanel searchField;
 	private LabelTextField idField, numberField;
 	boolean carErr;
@@ -80,12 +83,9 @@ public class CarUI extends JPanel implements MouseListener{
 		
 		
 		
-		bg = new JLabel(new ImageIcon("ui/image/hall/car.png"));
-		bg.setBounds(0, 0, width, height);
 		
 		
 		this.add(mainpanel);
-		this.add(bg);
 		this.add(new HallGuide(controller));
 		this.setLayout(null);
 		this.setOpaque(false);
@@ -94,18 +94,6 @@ public class CarUI extends JPanel implements MouseListener{
 	}
 	
 	public void initButton(){
-		JButton exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 		//初始化为新建司机信息
 		newBtn = new JButton(new0);
 		newBtn.setBounds(729, 81, 30, 30);
@@ -242,7 +230,7 @@ public class CarUI extends JPanel implements MouseListener{
 		searchField.setBounds(480, 76, 200, 40);
 		mainpanel.add(searchField);
 		
-		addBtn = new MyButton(395, 525, 110, 45);
+		addBtn = new MyButton(395, 522, 110, 45);
 		addBtn.setIcon(new ImageIcon("ui/image/hall/add0.png"));
 		addBtn.addMouseListener(this);
 		addBtn.addActionListener(new ActionListener(){
@@ -275,7 +263,7 @@ public class CarUI extends JPanel implements MouseListener{
 		});
 		// 初始化改为listPanel, 所以先不加这个按钮
 
-		saveBtn = new MyButton(395, 525, 110, 45);
+		saveBtn = new MyButton(395, 522, 110, 45);
 		saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
 		saveBtn.addMouseListener(this);
 		saveBtn.addActionListener(new ActionListener(){
@@ -407,8 +395,13 @@ public class CarUI extends JPanel implements MouseListener{
 		deleteConfirmPanel.setOpaque(false);
 		deleteConfirmPanel.setBounds(291, 214, 360, 240);
 		
-		JButton confirm = new JButton("确认");
-		confirm.setBounds(58, 144, 90, 40);
+		confirm = new JButton();
+		confirm.setBounds(58, 144, 80, 40);
+		confirm.setIcon(new ImageIcon("ui/image/hall/confirm0.png"));
+		confirm.setOpaque(false);
+		confirm.setBorderPainted(false);
+		confirm.setContentAreaFilled(false);
+		confirm.addMouseListener(this);
 		confirm.addActionListener(new ActionListener(){
 
 			@Override
@@ -433,8 +426,13 @@ public class CarUI extends JPanel implements MouseListener{
 		});
 		deleteConfirmPanel.add(confirm);
 		
-		JButton cancel = new JButton("取消");
-		cancel.setBounds(221, 144, 90, 40);
+		cancel = new JButton();
+		cancel.setBounds(221, 144, 80, 40);
+		cancel.setIcon(new ImageIcon("ui/image/hall/cancel0.png"));
+		cancel.setOpaque(false);
+		cancel.setBorderPainted(false);
+		cancel.setContentAreaFilled(false);
+		cancel.addMouseListener(this);
 		cancel.addActionListener(new ActionListener(){
 //当前页面不变
 			@Override
@@ -477,12 +475,12 @@ public class CarUI extends JPanel implements MouseListener{
 			editBtn.setIcon(edit0);
 			trashBtn.setIcon(trash0);
 		}
-		if(e.getSource().equals(editBtn)){
+		if(e.getSource().equals(editBtn)&&!isNew){
 			newBtn.setIcon(new0);
 			editBtn.setIcon(edit1);
 			trashBtn.setIcon(trash0);
 		}
-		if(e.getSource().equals(trashBtn)){
+		if(e.getSource().equals(trashBtn)&&!isNew){
 			newBtn.setIcon(new0);
 			editBtn.setIcon(edit0);
 			trashBtn.setIcon(trash1);
@@ -510,7 +508,12 @@ public class CarUI extends JPanel implements MouseListener{
 		else if(e.getSource().equals(saveBtn)){
 			saveBtn.setIcon(new ImageIcon("ui/image/hall/save1.png"));
 		}
-		
+		else if(e.getSource().equals(confirm)){
+			confirm.setIcon(new ImageIcon("ui/image/hall/confirm1.png"));
+		}
+		else if(e.getSource().equals(cancel)){
+			cancel.setIcon(new ImageIcon("ui/image/hall/cancel1.png"));
+		}
 	}
 
 	@Override
@@ -521,6 +524,12 @@ public class CarUI extends JPanel implements MouseListener{
 		}
 		else if(e.getSource().equals(saveBtn)){
 			saveBtn.setIcon(new ImageIcon("ui/image/hall/save0.png"));
+		}
+		else if(e.getSource().equals(confirm)){
+			confirm.setIcon(new ImageIcon("ui/image/hall/confirm0.png"));
+		}
+		else if(e.getSource().equals(cancel)){
+			cancel.setIcon(new ImageIcon("ui/image/hall/cancel0.png"));
 		}
 	}
 
@@ -575,5 +584,10 @@ public class CarUI extends JPanel implements MouseListener{
 	public boolean isError(){
 		carErr = (idField.getText().trim().length()==10) ? true : false;
 		return carErr;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

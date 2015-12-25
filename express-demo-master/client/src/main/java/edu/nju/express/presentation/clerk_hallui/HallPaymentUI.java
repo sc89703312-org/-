@@ -2,6 +2,8 @@ package edu.nju.express.presentation.clerk_hallui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nju.express.blservice.Paymentblservice;
 import edu.nju.express.common.ResultMessage;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -26,7 +29,7 @@ import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Paymentvo;
 
-public class HallPaymentUI extends JPanel implements MouseListener{
+public class HallPaymentUI extends MainPanel implements MouseListener{
 
 	/**
 	 * 
@@ -46,8 +49,7 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 	boolean deliverErr, orderErr;
 	JLabel addOrderLabel;
 	JTextArea orderArea;
-	JLabel bg;
-	JButton exit;
+	Image bg = (new ImageIcon("ui/image/hall/payment.png")).getImage();
 	
 	Font font = new Font("黑体", Font.PLAIN, 18);
 	Color color = new Color(44, 62,80);
@@ -67,9 +69,6 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 		
 		
 		
-		bg = new JLabel(new ImageIcon("ui/image/hall/payment.png"));
-		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
 		this.add(mainpanel);
 		this.add(new HallGuide(controller));
 		this.setLayout(null);
@@ -91,17 +90,17 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 		dateLabel = new JLabel("收款日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(90, 80-45, 80, 45);
+		dateLabel.setBounds(125, 80-45, 80, 45);
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(120, 80-45, 500, 40);
+		dateBox.setBounds(115, 80-45, 500, 40);
 		panel.add(dateBox);
 		
 		
 		
 		deliverField = new LabelTextField("收款快递员编号",19);
-		deliverField.setBounds(80, 140-45, 500, 45);
+		deliverField.setBounds(35, 140-45, 400, 45);
 		panel.add(deliverField);
 		
 		moneyField = new LabelTextField("金额   ",10);
@@ -158,19 +157,6 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(submitBtn);
 		
-		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.setContentAreaFilled(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 	}
 	
 	
@@ -245,5 +231,10 @@ public class HallPaymentUI extends JPanel implements MouseListener{
 		deliverErr = (deliverField.getText().trim().length()==8) ? true : false;
 		orderErr = (orderField.getText().trim().length()==10) ? true : false;
 		return deliverErr && orderErr;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }

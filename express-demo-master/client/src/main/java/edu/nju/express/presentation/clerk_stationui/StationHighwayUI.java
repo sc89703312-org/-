@@ -1,5 +1,7 @@
 package edu.nju.express.presentation.clerk_stationui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -17,13 +19,11 @@ public class StationHighwayUI extends StationTransportUI{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	Image bg = new ImageIcon("ui/image/station/highway.png").getImage();
 	
 	public StationHighwayUI(StationController c){
 		super(c);
-		bg = new JLabel(new ImageIcon("ui/image/station/highway.png"));
-		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
+		
 		
 		etype = Etype.STANDARD;
 	}
@@ -66,6 +66,11 @@ public class StationHighwayUI extends StationTransportUI{
 		if(e.getSource().equals(calFeeBtn)){
 			calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
 		}
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 
 }

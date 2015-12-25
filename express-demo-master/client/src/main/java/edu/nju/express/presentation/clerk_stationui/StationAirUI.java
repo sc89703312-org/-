@@ -1,5 +1,7 @@
 package edu.nju.express.presentation.clerk_stationui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
@@ -15,11 +17,11 @@ public class StationAirUI extends StationTransportUI{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	Image bg = new ImageIcon("ui/image/station/air.png").getImage();
+	
 	public StationAirUI(StationController c){
 		super(c);
-		bg = new JLabel(new ImageIcon("ui/image/station/air.png"));
-		bg.setBounds(0, 0, width, height);
-		mainpanel.add(bg);
+		
 		
 		etype = Etype.FAST;
 	}
@@ -64,5 +66,8 @@ public class StationAirUI extends StationTransportUI{
 		}
 	}
 	
-	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
+	}
 }

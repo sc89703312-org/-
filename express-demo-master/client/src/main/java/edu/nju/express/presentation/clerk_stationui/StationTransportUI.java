@@ -3,6 +3,7 @@ package edu.nju.express.presentation.clerk_stationui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -24,6 +25,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -33,8 +35,8 @@ import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
-public class StationTransportUI extends JPanel implements MouseListener{
-
+public class StationTransportUI extends MainPanel implements MouseListener{
+	
 	/**
 	 * 
 	 */
@@ -44,8 +46,8 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	StationReceiptBlService receipt;
 	OrderBLService order;
 	JPanel mainpanel,panel,op;
-	JLabel bg; 
-	JButton exit;
+	/*背景图片*/
+	Image bg; 
 	ConfirmButton submitBtn;
 	JLabel dateLabel;
 	DateComboBoxPanel dateBox;
@@ -82,9 +84,6 @@ public class StationTransportUI extends JPanel implements MouseListener{
 		initMargin();
 		initPanel();
 		
-//		bg = new JLabel(new ImageIcon(imgName));
-//		bg.setBounds(0, 0, width, height);
-//		mainpanel.add(bg);
 		this.add(mainpanel);
 		this.add(new StationGuide(controller));
 		this.setLayout(null);
@@ -133,7 +132,7 @@ public class StationTransportUI extends JPanel implements MouseListener{
 			toBox.addItem(toList[i]);
 		}
 		toBox.setSelectedItem(toList[0]);
-		toBox.setBounds(210, 200, 200, 30);
+		toBox.setBounds(210, 200, 195, 30);
 		panel.add(toBox);
 		
 		containerField = new LabelTextField("货柜号  ", 15);
@@ -239,18 +238,6 @@ public class StationTransportUI extends JPanel implements MouseListener{
 	}
 
 	public void initMargin(){
-		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 		
 		submitBtn = new ConfirmButton();
 		submitBtn.setBounds(424, 523, 100, 40);

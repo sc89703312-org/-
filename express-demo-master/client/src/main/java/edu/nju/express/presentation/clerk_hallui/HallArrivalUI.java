@@ -3,6 +3,8 @@ package edu.nju.express.presentation.clerk_hallui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,6 +25,7 @@ import edu.nju.express.blservice.HallReceiptBlService;
 import edu.nju.express.common.GoodsState;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -33,7 +36,7 @@ import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.OrderVO;
 
-public class HallArrivalUI extends JPanel implements MouseListener{
+public class HallArrivalUI extends MainPanel implements MouseListener{
 	
 	/**
 	 * 
@@ -44,9 +47,9 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 	HallController controller;
 	HallReceiptBlService  receipt;
 	JPanel mainpanel, panel;
-	JButton exit, confirmBtn;
+	JButton  confirmBtn;
 	ConfirmButton submitBtn;
-	JLabel bg;
+	Image bg = (new ImageIcon("ui/image/hall/arrival.png")).getImage();
 	JLabel dateLabel, fromLabel;
 	DateComboBoxPanel dateBox;
 	MyComboBox<String> fromBox;
@@ -75,10 +78,6 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		initMargin();
 		
 		
-		bg = new JLabel();
-		bg.setBounds(0, 0, width, height);
-		bg.setIcon(new ImageIcon("ui/image/hall/arrival.png"));
-		mainpanel.add(bg);
 		
 		this.add(mainpanel);
 		this.add(new HallGuide(controller));
@@ -156,12 +155,12 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		dateLabel = new JLabel("到达日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(100, 495, 90, 40);
+		dateLabel.setBounds(110, 495, 90, 40);
 		panel.add(dateLabel);
 		
 		//comboBox:year, month, day
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(120, 495, 500, 40);
+		dateBox.setBounds(115, 495, 500, 40);
 		panel.add(dateBox);
 		
 		//fromLabel, fromBox
@@ -185,7 +184,7 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 			fromBox.addItem(fromList.get(i));
 		}
 		fromBox.setSelectedItem(fromList.get(0));
-		fromBox.setBounds(210, 550, 220, 35);
+		fromBox.setBounds(210, 550, 220, 30);
 		panel.add(fromBox);
 		
 	}
@@ -259,20 +258,6 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(submitBtn);
 		
-		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.setContentAreaFilled(false);
-		exit.addMouseListener(this);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 	}
 	
 	
@@ -371,4 +356,8 @@ public class HallArrivalUI extends JPanel implements MouseListener{
 		return transferId;
 	}
 	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
+	}
 }

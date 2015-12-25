@@ -3,6 +3,8 @@ package edu.nju.express.presentation.clerk_hallui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -24,6 +26,7 @@ import edu.nju.express.common.Etype;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.presentation.FeeCalculator;
 import edu.nju.express.presentation.Location;
+import edu.nju.express.presentation.MainPanel;
 import edu.nju.express.presentation.myUI.ConfirmButton;
 import edu.nju.express.presentation.myUI.DateComboBoxPanel;
 import edu.nju.express.presentation.myUI.LabelTextField;
@@ -33,7 +36,7 @@ import edu.nju.express.presentation.myUI.MyScrollBarUI;
 import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.OrderVO;
 
-public class HallTransferUI extends JPanel implements MouseListener{
+public class HallTransferUI extends MainPanel implements MouseListener{
 	
 	/**
 	 * 
@@ -54,14 +57,13 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	JButton calFeeBtn;
 	MyCheckBoxTable checkTable;
 	ConfirmButton submitBtn;
-	JButton exit;
 	JLabel dateLabel, toLabel, addOrderLabel;
 	DateComboBoxPanel dateBox;
 	MyComboBox<String> toBox;
 	LabelTextField carrierIdField,carField, supervisorField,
 					guardField,feeField;
 	private boolean carrierErr, carErr;
-	JLabel bg;
+	private Image bg = (new ImageIcon("ui/image/hall/transfer.png")).getImage();
 	
 	static JScrollPane scrollpane = new JScrollPane();
 	final MyScrollBarUI ui = new MyScrollBarUI();
@@ -86,10 +88,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		initPanel();
 		
 		
-		bg = new JLabel();
-		bg.setBounds(0, 0, width, height);
-		bg.setIcon(new ImageIcon("ui/image/hall/transfer.png"));
-		mainpanel.add(bg);
 		 
 		
 		this.add(mainpanel);
@@ -112,25 +110,25 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		dateLabel = new JLabel("装车日期");
 		dateLabel.setFont(font);
 		dateLabel.setForeground(color);
-		dateLabel.setBounds(100, 70-45, 90, 40);
+		dateLabel.setBounds(110, 70-40, 90, 40);
 		panel.add(dateLabel);
 		
 		dateBox = new DateComboBoxPanel();
-		dateBox.setBounds(120, 70-45, 500, 40);
+		dateBox.setBounds(110, 70-40, 500, 40);
 		panel.add(dateBox);
 		
-		carrierIdField = new LabelTextField("本营业厅汽运编号",19);
-		carrierIdField.setBounds(80,120-45, 400, 45);
+		carrierIdField = new LabelTextField("汽运编号",19);
+		carrierIdField.setBounds(110,120-40, 300, 45);
 		panel.add(carrierIdField);
 		
 		carField = new LabelTextField("车辆代号", 10);
-		carField.setBounds(110, 135, 300, 45);
+		carField.setBounds(110, 130, 300, 45);
 		panel.add(carField);
 		
 		toLabel = new JLabel("到达地");
 		toLabel.setFont(font);
 		toLabel.setForeground(color);
-		toLabel.setBounds(130, 135+60, 80, 40);
+		toLabel.setBounds(125, 135+50, 80, 40);
 		panel.add(toLabel);
 		
 		
@@ -156,7 +154,7 @@ public class HallTransferUI extends JPanel implements MouseListener{
 			toBox.addItem(toList.get(i));
 		}
 		toBox.setSelectedItem(toList.get(0));
-		toBox.setBounds(210, 135+60, 220, 30);
+		toBox.setBounds(200, 135+55, 195, 30);
 		panel.add(toBox);
 		
 		supervisorField = new LabelTextField("监装员  ",10);
@@ -194,8 +192,8 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		feeField.setBounds(110, 705+45, 300, 45);
 		panel.add(feeField);
 		
-		calFeeBtn = new JButton("生成运费");
-		calFeeBtn.setBounds(410, 705+45+10, 90,30);
+		calFeeBtn = new JButton();
+		calFeeBtn.setBounds(420, 705+45+10, 90,30);
 		calFeeBtn.setBorderPainted(false);
 		calFeeBtn.setContentAreaFilled(false);
 		calFeeBtn.setIcon(new ImageIcon("ui/image/hall/calFee0.png"));
@@ -299,20 +297,6 @@ public class HallTransferUI extends JPanel implements MouseListener{
 		});
 		mainpanel.add(submitBtn);
 		
-		exit = new JButton(new ImageIcon("ui/button/X_darkgray.png"));
-		exit.setBounds(840, 18, 30, 30);
-		exit.setOpaque(false);
-		exit.setBorderPainted(false);
-		exit.setContentAreaFilled(false);
-		exit.addMouseListener(this);
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-		mainpanel.add(exit);
 	}
 	
 	
@@ -418,5 +402,10 @@ public class HallTransferUI extends JPanel implements MouseListener{
 	
 	public double calFee(double weight){
 		return FeeCalculator.getTransFee(Etype.STANDARD, weight);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(bg, 0, 0, null);
 	}
 }
