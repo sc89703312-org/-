@@ -354,8 +354,8 @@ public class CommodityController implements UIController {
 	public boolean getAlarm() {
 		int alarmpercent = 90;
 		ComZoneVO vo = service.showZone();
-		int percent1 = 95;
-	//	int percent1 = vo.getGoodsNum()[0] / vo.getSpace()[0];
+	//	int percent1 = 95;
+		int percent1 = vo.getGoodsNum()[0] / vo.getSpace()[0];
 		int percent2 = vo.getGoodsNum()[1] / vo.getSpace()[1];
 		int percent3 = vo.getGoodsNum()[2] / vo.getSpace()[2];
 		int percent4 = vo.getGoodsNum()[3] / vo.getSpace()[3];
