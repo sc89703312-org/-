@@ -1,15 +1,7 @@
 package org.server.salarydata;
 
-import java.rmi.RemoteException;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.SalaryDataService_Impl;
-
 public class SalaryDataTest {
-
+/*
 	SalaryDataService_Impl salary;
 	
 	public SalaryDataTest() {
@@ -60,5 +52,5 @@ public class SalaryDataTest {
 		System.out.println("获取司机提成    按次计算");
 		System.out.println(salary.getDriverWage());
 	}
-	
+	*/
 }

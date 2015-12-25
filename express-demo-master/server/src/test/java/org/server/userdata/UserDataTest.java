@@ -1,18 +1,8 @@
 package org.server.userdata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.UserDataService_Impl;
-import edu.nju.express.po.UserPO;
-
 public class UserDataTest {
 	
-	
+	/*
 	UserDataService_Impl  user;
 	
 	public UserDataTest() {
@@ -51,4 +41,6 @@ public class UserDataTest {
 		for(UserPO po:users)
 			System.out.println(po.getId()+"  "+po.getName()+"    "+po.getRole());
 	}
+	
+	*/
 }

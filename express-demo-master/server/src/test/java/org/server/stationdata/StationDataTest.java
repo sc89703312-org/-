@@ -1,19 +1,7 @@
 package org.server.stationdata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.StationDataService_Impl;
-import edu.nju.express.po.ArriveReceiptPO;
-import edu.nju.express.po.TransferReceiptPO;
-
 public class StationDataTest {
-
+/*
 	StationDataService_Impl impl;
 	
 	public StationDataTest(){
@@ -86,5 +74,5 @@ public class StationDataTest {
 		}
 		
 	}
-	
+	*/
 }

@@ -1,15 +1,7 @@
 package org.server.constantdata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.ConstantDataService_Impl;
-
 public class ConstantDataTest {
+	/*
 	
 	ConstantDataService_Impl constant;
 	
@@ -99,5 +91,5 @@ public class ConstantDataTest {
 				           "railway: "+cost[1]+" "+
 				           "airplane: "+cost[2]);
 	}
-	
+	*/
 }

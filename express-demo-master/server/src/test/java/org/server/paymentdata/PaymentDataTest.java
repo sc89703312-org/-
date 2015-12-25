@@ -1,22 +1,7 @@
 package org.server.paymentdata;
 
-import static org.junit.Assert.*;
-
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.omg.PortableServer.POA;
-
-import edu.nju.express.common.ResultMessage;
-import edu.nju.express.dataimpl.PaymentDataservice_Impl;
-import edu.nju.express.po.Paymentpo;
-
 public class PaymentDataTest {
-
+/*
 	PaymentDataservice_Impl paymentData;
 	
 	
@@ -136,4 +121,5 @@ public class PaymentDataTest {
 		for(String orderID:orderList)
 			System.out.println(orderID);
 	}
+	*/
 }

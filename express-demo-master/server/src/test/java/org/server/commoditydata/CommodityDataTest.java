@@ -1,21 +1,7 @@
 package org.server.commoditydata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.CommodityDataService_Impl;
-import edu.nju.express.po.ComGoodsPO;
-import edu.nju.express.po.ComZonePO;
-import edu.nju.express.po.EnterReceiptPO;
-import edu.nju.express.po.ExitReceiptPO;
-
-
 public class CommodityDataTest {
+	/*
 	
 	CommodityDataService_Impl commodity ;
 	
@@ -124,5 +110,5 @@ public class CommodityDataTest {
 		}
 		
 	}
-	
+	*/
 }

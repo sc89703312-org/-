@@ -1,17 +1,5 @@
 package edu.nju.express.businesslogic.stationbl.Mock_Test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.junit.Test;
-
-import edu.nju.express.businesslogic.orderbl.OrderBL;
-import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
-import edu.nju.express.common.ResultMessage;
-
 
 public class creatReceiptTest {
 /*

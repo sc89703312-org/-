@@ -1,15 +1,5 @@
 package edu.nju.express.businesslogic.receiptbl.Mock;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import org.junit.Test;
-
-import edu.nju.express.common.ReceiptState;
-import edu.nju.express.vo.DeliverReceiptVO;
-import edu.nju.express.vo.ReceiptVOBase;
-
 
 
 public class RceiptTester {

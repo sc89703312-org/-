@@ -1,18 +1,7 @@
 package org.server.bankingdata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.BankingDataService_Impl;
-import edu.nju.express.dataservice.BankingDataService;
-import edu.nju.express.po.BankingAccountPO;
-
 public class BankingDataTest {
-
+/*
 	
 	BankingDataService bankingBL;
 	
@@ -63,5 +52,5 @@ public class BankingDataTest {
 	
 	
 
-	
+	*/
 }

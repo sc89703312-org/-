@@ -1,17 +1,7 @@
 package org.server.usermessagedata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.UserMessageDataService_Impl;
-import edu.nju.express.po.UserMessagePO;
-
 public class UserMessageDataTest {
-	
+	/*
 	UserMessageDataService_Impl userMessage;
 	
 	
@@ -53,4 +43,5 @@ public class UserMessageDataTest {
 		for(UserMessagePO po:list)
 			System.out.println(po.getName()+"   "+po.getOperation()+"    "+po.getRole());
 	}
+	*/
 }

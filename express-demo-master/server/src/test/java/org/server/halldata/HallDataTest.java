@@ -1,19 +1,7 @@
 package org.server.halldata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.HallDataService_Impl;
-import edu.nju.express.po.ArrivalReceiptPO;
-import edu.nju.express.po.DeliverReceiptPO;
-import edu.nju.express.po.HallTransferReceiptPO;
-
 public class HallDataTest {
+	/*
 
 	HallDataService_Impl impl;
 	
@@ -106,5 +94,5 @@ public class HallDataTest {
 		
 	}
 	
-	
+	*/
 }

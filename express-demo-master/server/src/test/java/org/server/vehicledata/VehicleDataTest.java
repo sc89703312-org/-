@@ -1,18 +1,7 @@
 package org.server.vehicledata;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.dataimpl.VehicleDataService_Impl;
-import edu.nju.express.po.Carpo;
-import edu.nju.express.po.Driverpo;
-
 public class VehicleDataTest {
-	
+	/*
 	
 	VehicleDataService_Impl vehicle;
 	
@@ -68,5 +57,5 @@ public class VehicleDataTest {
 		for(Carpo po:cars)
 			System.out.println(po.getId()+"    "+po.getCar());
 	}
-	
+	*/
 }

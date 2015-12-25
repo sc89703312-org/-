@@ -1,12 +1,5 @@
 package edu.nju.express.businesslogic.strategybl.organizationbl.Mock;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import edu.nju.express.businesslogic.strategybl.organizationbl.OrganizationBl;
-import edu.nju.express.common.ResultMessage;
-
 public class OrganizationTester {
 /*
 	@Test

@@ -1,14 +1,5 @@
 package edu.nju.express.businesslogic.hallbl.Mock_Test;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import edu.nju.express.businesslogic.hallbl.HallReceiptBL;
-import edu.nju.express.common.GoodsState;
-import edu.nju.express.common.ReceiptState;
-import edu.nju.express.vo.ArrivalReceiptVO;
-
 public class CreateReceiptTester {
 	/*
 	@Test

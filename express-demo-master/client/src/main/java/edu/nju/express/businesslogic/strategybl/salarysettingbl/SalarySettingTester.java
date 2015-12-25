@@ -1,16 +1,8 @@
 package edu.nju.express.businesslogic.strategybl.salarysettingbl;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import edu.nju.express.common.BasicValues;
-import edu.nju.express.common.ResultMessage;
-
-
 
 public class SalarySettingTester {
-
+/*
 	@Test
 	public void test(){
 		
@@ -27,4 +19,6 @@ public class SalarySettingTester {
 		assertEquals(salary.setDriverWage(50), ResultMessage.VALID);
 		assertEquals(BasicValues.driverWage, 50, 0);
 	}
+	
+	*/
 }

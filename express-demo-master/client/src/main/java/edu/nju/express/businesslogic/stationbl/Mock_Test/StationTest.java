@@ -1,14 +1,7 @@
 package edu.nju.express.businesslogic.stationbl.Mock_Test;
 
-import java.util.ArrayList;
-
-import edu.nju.express.businesslogic.stationbl.StationBl;
-import edu.nju.express.businesslogic.stationbl.StationReceiptBl;
-import edu.nju.express.init.RMIHelper;
-import edu.nju.express.vo.StationVO;
-
 public class StationTest {
-
+/*
 	public static void main(String[] args){
 		RMIHelper.init();
 		System.out.println("Client creates!");
@@ -26,5 +19,5 @@ public class StationTest {
 
 		
 	}
-	
+	*/
 }
