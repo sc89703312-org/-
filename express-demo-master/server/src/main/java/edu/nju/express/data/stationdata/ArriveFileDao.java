@@ -80,9 +80,10 @@ public class ArriveFileDao extends CommonData<ArriveReceiptPO> implements Arrive
 	@Override
 	public ResultMessage approve(String id) {
 		// TODO Auto-generated method stub
-		ArriveReceiptPO po = find("ArriveReceipt"+id);
+		System.out.println(id);
+		ArriveReceiptPO po = find(id);
 		po.approve();
-		update("ArriveReceipt"+id,po);
+		update(id,po);
 		return null;
 	}
 

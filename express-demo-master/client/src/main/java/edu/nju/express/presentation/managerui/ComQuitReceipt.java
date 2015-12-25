@@ -10,7 +10,6 @@ import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.ComGoodsVO;
 import edu.nju.express.vo.EnterReceiptVO;
 import edu.nju.express.vo.ExitReceiptVO;
-import junit.extensions.ExceptionTestCase;
 
 public class ComQuitReceipt extends MainPanel {
 

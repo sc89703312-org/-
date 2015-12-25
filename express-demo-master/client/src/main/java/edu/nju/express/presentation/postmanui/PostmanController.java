@@ -68,9 +68,14 @@ public class PostmanController implements UIController {
 			message = order.createOrder(tempVo);
 			if (message == ResultMessage.INVALID)
 				WarningDialog.show("提交失败", "订单号已存在");
-			else
-			WarningDialog.showSucess();
-
+			else{
+				WarningDialog.showSucess();
+				frame.getContentPane().removeAll();
+				currentPanel = new CreateOrderPanel(this);
+				frame.add(currentPanel);
+				frame.validate();
+				frame.repaint();
+			}
 	}else if(e.getActionCommand().equals("ConfirmReceival"))
 
 	{

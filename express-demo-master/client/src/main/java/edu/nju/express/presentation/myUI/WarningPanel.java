@@ -52,7 +52,7 @@ public class WarningPanel extends JPanel {
 		this.add(titleLabel);
 		
 		promptLabel = new JLabel(prompt,JLabel.CENTER);
-		promptLabel.setBounds(0, 90, 300, 30);
+		promptLabel.setBounds(0, 60, 300, 90);
 		promptLabel.setFont(font2);
 		promptLabel.setOpaque(false);
 		this.add(promptLabel);
