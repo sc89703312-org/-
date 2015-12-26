@@ -1,29 +1,24 @@
 package edu.nju.express.presentation.myUI;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import edu.nju.express.presentation.myUI.MyButton;
 
 
 public class WarningPanel extends JPanel {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = -6879231059190210680L;
-	private static Image img = new ImageIcon("ui/image/dialog.png").getImage();
+//	private static Image img = new ImageIcon("ui/image/dialog.png").getImage();
 
 	/** 标题 */
 	private JLabel titleLabel;
@@ -39,13 +34,17 @@ public class WarningPanel extends JPanel {
 	private Color fore2 = new Color(44,62,80);
 
 	private Listener listener;
+	private String str;
 
 	public WarningPanel(String title, String prompt) {
 		this.setOpaque(false);
 		this.listener = new Listener();
 		this.setLayout(null);
-		titleLabel = new JLabel(title,JLabel.CENTER);
-		titleLabel.setBounds(0, 6, 300, 30);
+		
+		str = title+": "+prompt;
+		
+		/*titleLabel = new JLabel(title,JLabel.CENTER);
+		titleLabel.setBounds(0, 6, 726,29);
 		titleLabel.setPreferredSize(preDimen);
 		titleLabel.setFont(font1);
 		titleLabel.setForeground(fore1);
@@ -62,7 +61,7 @@ public class WarningPanel extends JPanel {
 		confirmBtn.setPreferredSize(preDimen);
 		confirmBtn.addMouseListener(listener);
 //		this.add(confirmBtn, BorderLayout.SOUTH);
-		
+*/		
 	}
 
 	private class Listener extends MouseAdapter {
@@ -82,6 +81,12 @@ public class WarningPanel extends JPanel {
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		g.drawImage(img, 0, 0, null);
+//		g.drawImage(img, 0, 0, null);
+		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setColor(new Color(170,209,236));
+		g.fillRect(0, 0, 726, 30);
+		g.setFont(new Font("黑体", Font.PLAIN, 17));
+		g.setColor(fore2);
+		g.drawString(str, 15, 21);
 	}
 }

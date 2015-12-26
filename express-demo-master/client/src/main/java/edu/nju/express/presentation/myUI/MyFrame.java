@@ -1,6 +1,7 @@
 package edu.nju.express.presentation.myUI;
 
 import java.awt.Color;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ public class MyFrame extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	static Point location;
 	
 	public MyFrame() {
 		// TODO Auto-generated constructor stub
@@ -93,6 +95,7 @@ public class MyFrame extends JFrame{
 				if (isDragged) {
 					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
 					setLocation(loc);
+					MyFrame.this.location = loc;
 				}
 			}
 		});
@@ -132,4 +135,7 @@ public class MyFrame extends JFrame{
 		}
 	}
 
+	public static Point getLoc(){
+		return location;
+	}
 }

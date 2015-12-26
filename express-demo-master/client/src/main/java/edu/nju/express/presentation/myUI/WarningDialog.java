@@ -3,10 +3,9 @@ package edu.nju.express.presentation.myUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
 /**
@@ -15,10 +14,9 @@ import javax.swing.JDialog;
 public class WarningDialog extends JDialog {
 
 	private static final long serialVersionUID = 2857496548979951207L;
-	
 
 	/** 窗口大小 */
-	private Dimension dimen = new Dimension(300, 200);
+	private Dimension dimen = new Dimension(726, 30);
 
 	private Vanish vanish;
 
@@ -27,7 +25,18 @@ public class WarningDialog extends JDialog {
 		// 创建透明色
 		this.setBackground(new Color(0, 0, 0, 0.0f));
 		this.setSize(dimen);
-		this.setLocationRelativeTo(null);
+		
+		if(MyFrame.getLoc() == null){
+			this.setLocationRelativeTo(null);
+			this.setLocation(getLocation().x+128-87, getLocation().y+504-285);
+			
+		}else{
+			this.setLocation(MyFrame.getLoc().x+128,MyFrame.getLoc().y+504);
+		}
+		if (MyFrame.getLoc() == null) {
+		}
+		
+		
 		this.setVisible(true);
 		vanish = new Vanish(); // 固定时间窗口消失
 	}
@@ -40,19 +49,17 @@ public class WarningDialog extends JDialog {
 		this.add(comp);
 		this.setVisible(true);
 	}
-	
-	
 
 	public static void show(String title, String prompt) {
 		WarningDialog promptDialog = new WarningDialog();
 		promptDialog.setComp(new WarningPanel(title, prompt));
 		promptDialog.start(); // 固定时间关闭窗口
 	}
-	
+
 	public static void showConnectionError() {
 		show("网络异常", "请检查网络状况和与服务器的连接是否正常");
 	}
-	
+
 	public static void showSucess() {
 		show("提交成功", "稍后返回主页面");
 	}
@@ -65,7 +72,7 @@ public class WarningDialog extends JDialog {
 		public void run() {
 			try {
 				Thread.sleep(1000);
-				while(true) {
+				while (true) {
 					Thread.sleep(20);
 					hyalineValue -= 0.05f;
 					if (hyalineValue < 0) {
