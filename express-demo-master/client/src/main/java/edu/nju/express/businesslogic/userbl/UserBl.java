@@ -1,5 +1,8 @@
 package edu.nju.express.businesslogic.userbl;
 
+
+import static edu.nju.express.init.RMIHelper.userDataService;
+import static edu.nju.express.init.RMIHelper.userMessageDataService;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -23,12 +26,8 @@ import edu.nju.express.vo.UserMessageVO;
 public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 
-	UserDataService userData;
-	UserMessageDataService userMessageData;
 	TaskList task;
 	public UserBl() {
-		userData = RMIHelper.getUserDataService();
-		userMessageData = RMIHelper.getUserMessageDataService();
 	}
 
 	
@@ -43,7 +42,7 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		
 		
 		try {
-		        message =	userData.insert(new UserPO(id, name, role, password));
+		        message =	userDataService.insert(new UserPO(id, name, role, password));
 		
 		    if(message==ResultMessage.VALID)
 			deleteUserMessage(id);
@@ -64,7 +63,7 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		
 		try {
 
-			message =	userData.delete(id);
+			message =	userDataService.delete(id);
 
 
 		} catch (RemoteException e) {
@@ -84,7 +83,7 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		
 		try {
 			
-			message =	userData.modify(new UserPO(id, name, role, password));
+			message =	userDataService.modify(new UserPO(id, name, role, password));
 				
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -101,7 +100,7 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		ArrayList<UserPO> listPo = null;
 		ArrayList<EmployeeVO> listVo = new ArrayList<EmployeeVO>();
 		try {
-			listPo = userData.getAll();
+			listPo = userDataService.getAll();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -146,8 +145,8 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 
 			try {
 
-				if (userMessageData.find(id) ==null&&userData.find(id)==null) {
-					userMessageData.insert(new UserMessagePO(operation, id, name, role));
+				if (userMessageDataService.find(id) ==null&&userDataService.find(id)==null) {
+					userMessageDataService.insert(new UserMessagePO(operation, id, name, role));
 					rm = ResultMessage.VALID;
 				}
 
@@ -158,8 +157,8 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 		} else if (operation == StaffChange.delete) {
 
 			try {
-				if (userData.find(id) != null) {
-					userMessageData.insert(new UserMessagePO(operation, id, name, role));
+				if (userDataService.find(id) != null) {
+					userMessageDataService.insert(new UserMessagePO(operation, id, name, role));
 					rm = ResultMessage.VALID;
 				}else {
 				}
@@ -181,7 +180,7 @@ public class UserBl implements UserBlService ,UserCreateMessageInfo{
 	public ResultMessage deleteUserMessage(String id) {
 
 		try {
-			return userMessageData.delete(id);
+			return userMessageDataService.delete(id);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

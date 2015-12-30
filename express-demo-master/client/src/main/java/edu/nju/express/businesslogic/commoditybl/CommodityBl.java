@@ -25,7 +25,7 @@ import edu.nju.express.vo.EnterReceiptVO;
 import edu.nju.express.vo.ExitReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
-
+import static edu.nju.express.init.RMIHelper.commodityDataService;
 /**
  * 
  * @author ShiroKo
@@ -38,7 +38,6 @@ import edu.nju.express.vo.TransferReceiptVO;
 public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityApproveInfo{
 	
 	/* 仓库模块的数据层接口 */
-	CommodityDataService commodityDataService;
 	/* 获得仓库需要的中转中心单据的中转模块接口 */
 	StationInfo stationInfo;
 	/* 用户ID */
@@ -59,7 +58,6 @@ public class CommodityBl implements CommodityBlService,CommodityInfo, CommodityA
 	public CommodityBl(StationInfo stationInfo, String userID){
 		this.stationInfo = stationInfo;
 		this.userID = userID;
-		this.commodityDataService = RMIHelper.getCommodityDataService();
 	}
     
 	/*

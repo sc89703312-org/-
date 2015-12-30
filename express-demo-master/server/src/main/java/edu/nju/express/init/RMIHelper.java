@@ -10,6 +10,8 @@ import java.rmi.server.UnicastRemoteObject;
 import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataimpl.*;
 import edu.nju.express.dataservice.*;
+import edu.nju.express.net.CheckImpl;
+import edu.nju.express.net.CheckService;
 import edu.nju.express.ui.frame.ServerFrame;
 
 
@@ -32,6 +34,7 @@ public class RMIHelper extends Thread{
 	private static ConstantDataService constantDataService;
 	private static LogRecordDataService logRecordDataService;
 	private static LoginInfoDataService loginInfoDataService;
+	private static CheckService checkService;
 	private static CommodityDataService commodityDataService;
 	static Remote registry;
 	
@@ -80,6 +83,7 @@ public class RMIHelper extends Thread{
 	             
 	             stationDataService = new StationDataService_Impl();
 	             
+	             checkService = new CheckImpl();
 
 	             
 	             commodityDataService = new CommodityDataService_Impl();
@@ -113,6 +117,8 @@ public class RMIHelper extends Thread{
 	            Naming.rebind("login-info", loginInfoDataService);
 	            
 	            Naming.rebind("commodity-service", commodityDataService);
+	            
+	            Naming.rebind("check", checkService);
 	            
 	        } catch (MalformedURLException e) {
 	            e.printStackTrace();

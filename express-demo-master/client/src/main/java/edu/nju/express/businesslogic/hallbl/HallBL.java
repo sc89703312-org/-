@@ -13,18 +13,16 @@ import edu.nju.express.vo.ArrivalReceiptVO;
 import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.TransferReceiptVO;
-
+import static edu.nju.express.init.RMIHelper.hallDataService;
 public class HallBL implements HallBLService,HallOperationInfo {
 
 	/*持有营业厅业务数据层接口的应用*/
-	HallDataService hallDataService;
 	
 	
 	public HallBL() {
 		// TODO Auto-generated constructor stub
 	
 		
-		hallDataService = RMIHelper.getHallDataService();
 	}
 	
 	

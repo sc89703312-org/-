@@ -60,6 +60,10 @@ public class WarningDialog extends JDialog {
 		show("网络异常", "请检查网络状况和与服务器的连接是否正常");
 	}
 
+	public static void showSucessConnect() {
+		show("连接恢复", "即可享用");
+	}
+	
 	public static void showSucess() {
 		show("提交成功", "稍后返回主页面");
 	}

@@ -11,7 +11,7 @@ import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.SalaryVO;
-
+import static edu.nju.express.init.RMIHelper.salaryDataService;
 
 /**
  * 薪水制定功能实现
@@ -21,7 +21,6 @@ import edu.nju.express.vo.SalaryVO;
 public class SalarySettingBl implements SalarySettingBlService {
 
 	
-	public static SalaryDataService salaryDataService= RMIHelper.getSalaryDataService();
 	
 	public SalarySettingBl() {
 		// TODO Auto-generated constructor stub

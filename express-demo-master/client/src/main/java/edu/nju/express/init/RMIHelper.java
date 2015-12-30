@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 import edu.nju.express.config.RMIConfig;
 import edu.nju.express.dataservice.*;
+import edu.nju.express.net.CheckService;
 
 
 
@@ -15,21 +16,22 @@ public class RMIHelper {
     private static final String IP = RMIConfig.HOST;//Can be read from config file
    
     
-    private static Paymentdataservice paymentDataservice;
-    private static vehicledataservice vehicledataservice;
-    private static balancedataservice balancedataservice;
-    private static BankingDataService bankingDataService;
-    private static accountdataservice accountdataservice;
-    private static orderdataservice orderdataservice;
-    private static HallDataService hallDataService;
-    private static UserDataService userDataService;
-    private static UserMessageDataService userMessageDataService;
-    private static SalaryDataService salaryDataService;
-    private static ConstantDataService constantDataService;
-    private static LogRecordDataService logRecordDataService;
-    private static StationDataService stationDataService;
-    private static LoginInfoDataService loginInfoDataService;
-    private static CommodityDataService commodityDataService;
+    public static Paymentdataservice paymentDataservice;
+    public static vehicledataservice vehicledataservice;
+    public static balancedataservice balancedataservice;
+    public static BankingDataService bankingDataService;
+    public static accountdataservice accountdataservice;
+    public static orderdataservice orderdataservice;
+    public static HallDataService hallDataService;
+    public static UserDataService userDataService;
+    public static UserMessageDataService userMessageDataService;
+    public static SalaryDataService salaryDataService;
+    public static ConstantDataService constantDataService;
+    public static LogRecordDataService logRecordDataService;
+    public static StationDataService stationDataService;
+    public static LoginInfoDataService loginInfoDataService;
+    public static CommodityDataService commodityDataService;
+    public static CheckService checkService;
     
     public static void init() {
         try {
@@ -50,7 +52,7 @@ public class RMIHelper {
             stationDataService = (StationDataService)Naming.lookup("rmi://" + IP + "/station-service");
             loginInfoDataService = (LoginInfoDataService)Naming.lookup("rmi://" + IP + "/login-info")  ;
             commodityDataService = (CommodityDataService)Naming.lookup("rmi://" + IP + "/commodity-service");
-      
+            checkService = (CheckService)Naming.lookup("rmi://" + IP + "/check");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
@@ -60,49 +62,52 @@ public class RMIHelper {
         }
     }
 
-    public static Paymentdataservice getPaymentDataService() {
-        return paymentDataservice;
-    }
-    public static vehicledataservice getVehicleDataService() {
-        return vehicledataservice;
-    }
-    public static balancedataservice getBalanceDataService() {
-        return balancedataservice;
-    }
-    public static BankingDataService getBankingDataService(){
-    	return bankingDataService;
-    }
-    public static accountdataservice getAccountdataservice(){
-    	return accountdataservice;
-    }
-    public static orderdataservice getOrderdataservice(){
-    	return orderdataservice;
-    }
-    public static HallDataService getHallDataService(){
-    	return hallDataService;
-    }
-    public static CommodityDataService getCommodityDataService(){
-    	return commodityDataService;
-    }
-    public static UserDataService getUserDataService(){
-    	return userDataService;
-    }
-    public static UserMessageDataService getUserMessageDataService(){
-    	return userMessageDataService;
-    }
-    public static SalaryDataService getSalaryDataService(){
-    	return salaryDataService;
-    }
-    public static ConstantDataService getConstantDataService(){
-    	return constantDataService;
-    }
-    public static LogRecordDataService getLogRecordDataService(){
-    	return logRecordDataService;
-    }
-    public static StationDataService getStationDataService(){
-    	return stationDataService;
-    }
-    public static LoginInfoDataService getLoginInfoDataService(){
-    	return loginInfoDataService;
-    }
+//    public static Paymentdataservice getPaymentDataService() {
+//        return paymentDataservice;
+//    }
+//    public static vehicledataservice getVehicleDataService() {
+//        return vehicledataservice;
+//    }
+//    public static balancedataservice getBalanceDataService() {
+//        return balancedataservice;
+//    }
+//    public static BankingDataService getBankingDataService(){
+//    	return bankingDataService;
+//    }
+//    public static accountdataservice getAccountdataservice(){
+//    	return accountdataservice;
+//    }
+//    public static orderdataservice getOrderdataservice(){
+//    	return orderdataservice;
+//    }
+//    public static HallDataService getHallDataService(){
+//    	return hallDataService;
+//    }
+//    public static CommodityDataService getCommodityDataService(){
+//    	return commodityDataService;
+//    }
+//    public static UserDataService getUserDataService(){
+//    	return userDataService;
+//    }
+//    public static UserMessageDataService getUserMessageDataService(){
+//    	return userMessageDataService;
+//    }
+//    public static SalaryDataService getSalaryDataService(){
+//    	return salaryDataService;
+//    }
+//    public static ConstantDataService getConstantDataService(){
+//    	return constantDataService;
+//    }
+//    public static LogRecordDataService getLogRecordDataService(){
+//    	return logRecordDataService;
+//    }
+//    public static StationDataService getStationDataService(){
+//    	return stationDataService;
+//    }
+//    public static LoginInfoDataService getLoginInfoDataService(){
+//    	return loginInfoDataService;
+//    }
+//    public static CheckService getCheckService(){
+//    	return checkService;
+//    }
 }

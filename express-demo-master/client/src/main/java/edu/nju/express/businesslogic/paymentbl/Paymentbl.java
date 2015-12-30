@@ -19,7 +19,7 @@ import edu.nju.express.po.Paymentpo;
 import edu.nju.express.vo.BankingAccountVO;
 import edu.nju.express.vo.Paymentvo;
 
-
+import static edu.nju.express.init.RMIHelper.paymentDataservice;
 /**
  * 
  * @author lenovo
@@ -39,8 +39,6 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	/** 收款单VO的列表 */
 	ArrayList<Paymentvo> tempVoList = new ArrayList<Paymentvo>();
 	
-	/** 收款单的数据实现*/
-	Paymentdataservice paymentDataService ;
 	
 	/** 暂时存放的收款单对象 */
 	private Paymentpo temp;
@@ -51,7 +49,6 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	public Paymentbl(BankingInfo account) {
 		// TODO Auto-generated constructor stub
 	
-	paymentDataService =RMIHelper.getPaymentDataService();
 	this.account = account;
 	}
 	
@@ -88,7 +85,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 			LogController.insertLog(new LogMessage("建立收款单", LoginInfo.getUserName()));
 			
 		try {
-			temp =paymentDataService.insert(convertVO(vo));
+			temp =paymentDataservice.insert(convertVO(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,7 +118,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		
 		
 		try {
-		temp=	paymentDataService.find(id);
+		temp=	paymentDataservice.find(id);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -149,7 +146,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		// TODO Auto-generated method stub
 		
 		try {
-			 tempArrayList=paymentDataService.getAll();
+			 tempArrayList=paymentDataservice.getAll();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -176,7 +173,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 		ArrayList<Paymentvo> temps = new ArrayList<>();
 		
 		try {
-			for(Paymentpo po:paymentDataService.viewAllPaymentSubmitted()){
+			for(Paymentpo po:paymentDataservice.viewAllPaymentSubmitted()){
 				temps.add(convertPO(po));
 			}
 		} catch (RemoteException e) {
@@ -194,9 +191,9 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	@Override
 	public void approvePayment(String id){
 		try {
-			Paymentpo po = paymentDataService.find(id);
+			Paymentpo po = paymentDataservice.find(id);
 		    po.approve();
-		    paymentDataService.update(id, po);
+		    paymentDataservice.update(id, po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -244,7 +241,7 @@ public class Paymentbl implements Paymentblservice,PaymentInfo,PaymentApproveInf
 	public ArrayList<String> getOrderListByHall(String HallId) {
 		// TODO Auto-generated method stub
 		try {
-			return paymentDataService.viewAllOrderListByHall(HallId);
+			return paymentDataservice.viewAllOrderListByHall(HallId);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

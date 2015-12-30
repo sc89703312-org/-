@@ -9,7 +9,7 @@ import edu.nju.express.dataservice.*;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.Driverpo;
 import edu.nju.express.vo.Drivervo;
-
+import static edu.nju.express.init.RMIHelper.vehicledataservice;
 /**
  * 
  * @author lenovo
@@ -21,12 +21,10 @@ import edu.nju.express.vo.Drivervo;
 
 public class Vehiclebl implements Vehicleblservice{
 
-	vehicledataservice vehicledataservice ;
 	
 	
 	public Vehiclebl() {
 		// TODO Auto-generated constructor stub
-	vehicledataservice = RMIHelper.getVehicleDataService();
 	}
 	
 	/**

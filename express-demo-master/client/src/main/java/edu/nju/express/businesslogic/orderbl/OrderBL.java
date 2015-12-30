@@ -18,7 +18,7 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.OrderPO;
 import edu.nju.express.vo.LogisticsVO;
 import edu.nju.express.vo.OrderVO;
-
+import static edu.nju.express.init.RMIHelper.orderdataservice;
 
 
 public class OrderBL implements OrderBLService,
@@ -26,14 +26,12 @@ public class OrderBL implements OrderBLService,
                                 OrderToLogisticsInfo
                                 {
 	
-	orderdataservice orderdataservice;
 	
 	
 	
 	public OrderBL(){
 		
 		
-		orderdataservice =RMIHelper.getOrderdataservice();
 	}
 	
 	

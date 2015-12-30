@@ -34,7 +34,7 @@ import edu.nju.express.vo.ComGoodsVO;
 import edu.nju.express.vo.EmployeeVO;
 import edu.nju.express.vo.HallVO;
 import edu.nju.express.vo.StationVO;
-
+import static edu.nju.express.init.RMIHelper.accountdataservice;
 /**
  * 
  * @author lenovo
@@ -54,7 +54,7 @@ public class Accountbl implements Accountblservice{
 	CommodityInfo commoditybl;
 	
 	
-	accountdataservice accountdataservice;
+	
 	
 	
 	
@@ -76,7 +76,7 @@ public class Accountbl implements Accountblservice{
 	
 	
 	    
-	    accountdataservice = RMIHelper.getAccountdataservice();
+	   
 		
 	
 	}

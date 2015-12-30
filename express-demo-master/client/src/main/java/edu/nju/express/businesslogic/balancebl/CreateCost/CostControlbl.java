@@ -1,6 +1,8 @@
 package edu.nju.express.businesslogic.balancebl.CreateCost;
 
 import java.rmi.RemoteException;
+import static edu.nju.express.init.RMIHelper.paymentDataservice;
+import static edu.nju.express.init.RMIHelper.balancedataservice;
 import java.util.ArrayList;
 
 import edu.nju.express.blservice.Balanceblservice;
@@ -33,9 +35,6 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 
 	
     
-	Paymentdataservice paymentdataservice;
-	
-	balancedataservice balancedataservice;
 	/** 银行账户信息 */
 	BankingInfo account;
 	
@@ -45,12 +44,10 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	public CostControlbl(BankingInfo account) {
 		// TODO Auto-generated constructor stub
 	
-	balancedataservice = RMIHelper.getBalanceDataService();
 	
 	this.account = account;
 	
 
-	paymentdataservice = RMIHelper.getPaymentDataService();
 	
 	
 	
@@ -244,7 +241,7 @@ public class CostControlbl implements CostControlService,CostControlInfo,CostApp
 	public double caculatePostManSalary(String id) {
 		// TODO Auto-generated method stub
 		try {
-			return paymentdataservice.caculatePostManSalary(id)*SalarySettingBl.getPostmanWage();
+			return paymentDataservice.caculatePostManSalary(id)*SalarySettingBl.getPostmanWage();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

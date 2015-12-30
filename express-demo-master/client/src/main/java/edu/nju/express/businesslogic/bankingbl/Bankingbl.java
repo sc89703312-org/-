@@ -13,7 +13,7 @@ import edu.nju.express.po.BankingAccountPO;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.BankingAccountVO;
-
+import static edu.nju.express.init.RMIHelper.bankingDataService;
 /**
  * 
  * @author ShiroKo
@@ -26,13 +26,13 @@ import edu.nju.express.vo.BankingAccountVO;
 public class Bankingbl implements BankingBlService, BankingInfo{
 	
 	/* 银行账户模块的数据层接口 */
-	BankingDataService bankingDataService;
+	
 	
 	/*
 	 * 构造方法
 	 */
 	public Bankingbl(){
-		bankingDataService = RMIHelper.getBankingDataService();
+		
 	}
 
 	/*

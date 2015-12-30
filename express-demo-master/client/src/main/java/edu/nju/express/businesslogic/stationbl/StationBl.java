@@ -10,7 +10,8 @@ import edu.nju.express.dataservice.StationDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.StationPO;
 import edu.nju.express.vo.StationVO;
-
+import static edu.nju.express.init.RMIHelper.stationDataService;
+import static edu.nju.express.init.RMIHelper.commodityDataService;
 /**
  * 
  * @author ShiroKo
@@ -22,17 +23,13 @@ import edu.nju.express.vo.StationVO;
 
 public class StationBl implements StationOperationInfo{
 	
-	/* 中转中心模块数据层的接口 */
-	StationDataService stationDataService;
-	/* 仓库模块数据层的接口 */
-	CommodityDataService commodityDataService;
+	
 	
 	/*
 	 * 构造方法
 	 */
 	public StationBl(){
-		stationDataService = RMIHelper.getStationDataService();
-		commodityDataService = RMIHelper.getCommodityDataService();
+
 	}
  
 	/*

@@ -5,7 +5,7 @@ import edu.nju.express.blservice.LogisticsBLService;
 import edu.nju.express.businesslogic.logisticsbl.Info.OrderToLogisticsInfo;
 import edu.nju.express.businesslogic.orderbl.OrderBL;
 import edu.nju.express.vo.LogisticsVO;
-
+import static edu.nju.express.init.RMIHelper.logRecordDataService;
 
 
 

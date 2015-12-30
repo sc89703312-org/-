@@ -7,7 +7,7 @@ import edu.nju.express.dataservice.UserMessageDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.UserMessagePO;
 import edu.nju.express.vo.UserMessageVO;
-
+import static edu.nju.express.init.RMIHelper.userMessageDataService;
 /**
  * 查看管理员任务列表
  * @author Dora
@@ -16,10 +16,7 @@ import edu.nju.express.vo.UserMessageVO;
 
 public class TaskList {
 
-	UserMessageDataService userMessageData;
-
 	public TaskList() {
-		userMessageData = RMIHelper.getUserMessageDataService();
 	}
 	
 	/**
@@ -31,7 +28,7 @@ public class TaskList {
 		ArrayList<UserMessagePO> listPo = null;
 		
 		try {
-			listPo = userMessageData.getAll();
+			listPo = userMessageDataService.getAll();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

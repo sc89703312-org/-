@@ -1,6 +1,7 @@
 package edu.nju.express.businesslogic.hallbl;
 
 import java.rmi.RemoteException;
+import static edu.nju.express.init.RMIHelper.stationDataService;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,7 +28,7 @@ import edu.nju.express.vo.DeliverReceiptVO;
 import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
-
+import static edu.nju.express.init.RMIHelper.hallDataService;
 /**
  * 
  * @author ShiroKo
@@ -52,10 +53,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 	SetOrderSpot setOrderSpot;
 	/* 司机模块的接口，用于管理司机 */
 	Vehiclebl vehiclebl;
-	/* 营业厅模块数据层接口，用于处理营业厅单据相关PO的改动 */
-	HallDataService hallDataService;
-	/* 中转中心模块数据层接口，用于处理中转中心单据相关PO的改动 */
-    StationDataService stationDataService;
+
 	
     /*
      * 构造方法
@@ -65,8 +63,7 @@ public class HallReceiptBL implements HallReceiptBlService, HallApproveInfo{
 		this.vehiclebl = vehiclebl;
 		this.setOrderSpot = setOrderSpot;
 		this.paymentInfo = paymentInfo;
-		hallDataService = RMIHelper.getHallDataService();	
-		stationDataService = RMIHelper.getStationDataService();
+
 	}
 
     /*

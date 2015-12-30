@@ -13,7 +13,7 @@ import edu.nju.express.log.LogController;
 import edu.nju.express.po.LogMessage;
 import edu.nju.express.po.LoginInfo;
 import edu.nju.express.vo.ConstantVO;
-
+import static edu.nju.express.init.RMIHelper.constantDataService;
 
 /**
  * 常量制定的功能实现
@@ -25,7 +25,7 @@ public class ConstantSettingBl implements ConstantSettingBlService,ConstantAddCi
 
 	
 	
-	public static ConstantDataService constantDataService = RMIHelper.getConstantDataService();
+	
 	
 	
 	public ConstantSettingBl() {

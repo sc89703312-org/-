@@ -1,5 +1,7 @@
 package edu.nju.express.businesslogic.login;
 
+import static edu.nju.express.init.RMIHelper.userDataService;
+import static edu.nju.express.init.RMIHelper.loginInfoDataService;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -20,11 +22,6 @@ import edu.nju.express.po.UserPO;
 
 public class Login {
 	
-	/** 用户数据层实现 */
-	UserDataService userDataService;
-	
-	/** 登陆数据层实现 */
-	LoginInfoDataService loginInfoDataService;
 	
 	/** 登陆人员列表*/
     ArrayList<UserPO> users;
@@ -32,8 +29,6 @@ public class Login {
 	public Login() {
 		// TODO Auto-generated constructor stub
 	
-		userDataService = RMIHelper.getUserDataService();
-		loginInfoDataService = RMIHelper.getLoginInfoDataService();
 		users = new ArrayList<>();
 	}
 	

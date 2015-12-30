@@ -26,6 +26,8 @@ import edu.nju.express.vo.ArriveReceiptVO;
 import edu.nju.express.vo.HallTransferReceiptVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.TransferReceiptVO;
+import static edu.nju.express.init.RMIHelper.stationDataService;
+import static edu.nju.express.init.RMIHelper.hallDataService;
 
 /**
  * 
@@ -38,10 +40,6 @@ import edu.nju.express.vo.TransferReceiptVO;
 
 public class StationReceiptBl implements StationReceiptBlService, StationInfo, StationApproveInfo{
 	
-    /* 中转中心模块的数据层接口 */
-	StationDataService stationDataService;
-	/* 营业厅模块的数据层接口 */
-	HallDataService hallDataService;
 	/* 获得订单信息的接口 */
 	OrderInfo orderInfo;
 	/* 设置订单位置的接口 */
@@ -56,8 +54,7 @@ public class StationReceiptBl implements StationReceiptBlService, StationInfo, S
 	 * 构造方法
 	 */
 	public StationReceiptBl(OrderInfo orderInfo, SetOrderSpot setOrderSpot){
-		stationDataService = RMIHelper.getStationDataService();
-		hallDataService = RMIHelper.getHallDataService();
+
 		this.orderInfo= orderInfo;
 		this.setOrderSpot = setOrderSpot;
 	}

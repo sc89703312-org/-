@@ -36,23 +36,20 @@ import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.po.UserPO;
 import edu.nju.express.presentation.loginui.LoginUI;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
+import edu.nju.express.presentation.myUI.WarningDialog;
 import edu.nju.express.vo.Accountvo;
 import edu.nju.express.vo.Balancevo;
 import edu.nju.express.vo.BankingAccountVO;
 import edu.nju.express.vo.OrderVO;
 import edu.nju.express.vo.Paymentvo;
 import edu.nju.express.vo.StationVO;
-
-
-
-
-
-
-
+import static edu.nju.express.init.RMIHelper.checkService;
 
 
 
 public class client {
+	
+	static LoginUI ui ;
 
 	public static void main(String[] s){
 		
@@ -66,12 +63,76 @@ public class client {
 		System.out.println("Client creates!");
 		
 
-
-
-
-		new LoginUI();
+        ui = new LoginUI();
+		
 	
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+				while(true)
+				{
+				
+				
+    			try {
+					checkService.check();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					System.out.println("网断了少年！");
+					WarningDialog.showConnectionError();
+					checkNet();
+					}
+				}
+				
+			}
+		}).start();
 		
 
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+	
+	
+	
+	public static void checkNet()
+	{
+	
+				
+		while (true) {
+
+			
+			try {
+			
+				RMIHelper.init();
+				checkService.check();
+				WarningDialog.showSucessConnect();
+				System.out.println("网好了");
+
+				break;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	
+	
+	
 }

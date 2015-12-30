@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import edu.nju.express.dataservice.LogRecordDataService;
 import edu.nju.express.init.RMIHelper;
 import edu.nju.express.po.LogMessage;
-
+import static edu.nju.express.init.RMIHelper.logRecordDataService;
 /**
  * 
  * @author lenovo
@@ -23,7 +23,6 @@ public class LogController {
 	
 
 	public static final String logFilesName = null;
-	static LogRecordDataService logRecordDataService = RMIHelper.getLogRecordDataService();
 
 	
 	
