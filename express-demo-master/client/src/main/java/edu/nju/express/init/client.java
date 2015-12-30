@@ -34,6 +34,7 @@ import edu.nju.express.po.LoginInfo;
 import edu.nju.express.po.Paymentpo;
 import edu.nju.express.po.TransferReceiptPO;
 import edu.nju.express.po.UserPO;
+import edu.nju.express.presentation.Location;
 import edu.nju.express.presentation.loginui.LoginUI;
 import edu.nju.express.presentation.logisticui.Logistic_Frame;
 import edu.nju.express.presentation.myUI.WarningDialog;
@@ -64,7 +65,7 @@ public class client {
 		
 
         ui = new LoginUI();
-		
+		Location.init();
 	
 		new Thread(new Runnable() {
 			
