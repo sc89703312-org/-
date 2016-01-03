@@ -1,24 +1,12 @@
 package org.server.balancedata;
 
-import static org.junit.Assert.*;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import edu.nju.express.common.Item;
-import edu.nju.express.common.ResultMessage;
-import edu.nju.express.dataimpl.BalanceDataService_Impl;
-import edu.nju.express.po.Balancepo;
 
 
 public class BalanceDataTest {
 
-	
+	/*
 	private BalanceDataService_Impl balanceData;
 	
 	public BalanceDataTest() {
@@ -128,5 +116,5 @@ public class BalanceDataTest {
 		
 	}
 	
-	
+	*/
 }
