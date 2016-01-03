@@ -16,15 +16,20 @@ import edu.nju.express.vo.ReceiptVOBase;
 public class ReceiptController implements ReceiptBlService{
 
 	private ReceiptBlService receiptBL;
+	private static ReceiptController instance;
 	
 	
-	public ReceiptController() {
+	private ReceiptController() {
 		// TODO Auto-generated constructor stub
 	
 	receiptBL = DataFactory.createReceiptBlInstance();
 	
 	}
 	
+	public static ReceiptController getInstance()
+	{
+		return instance = (instance==null)?new ReceiptController():instance;
+	}
 	
 	@Override
 	public ArrayList<ReceiptVOBase> view() {

@@ -17,9 +17,10 @@ public class SalarySettingController implements SalarySettingBlService {
 
 	/**  工资制定的业务逻辑 */
 	private SalarySettingBlService salarySettingBL;
+	private static SalarySettingController instance;
 	
 	
-	public SalarySettingController() {
+	private SalarySettingController() {
 		// TODO Auto-generated constructor stub
 	
 	
@@ -27,6 +28,12 @@ public class SalarySettingController implements SalarySettingBlService {
 	
 	}
 	
+	
+	
+	public static SalarySettingController getInstance()
+	{
+		return instance = (instance==null)?new SalarySettingController():instance;
+	}
 	
 	
 	/**

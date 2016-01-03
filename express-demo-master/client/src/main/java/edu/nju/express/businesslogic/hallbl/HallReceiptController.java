@@ -11,14 +11,21 @@ public class HallReceiptController implements HallReceiptBlService {
 
 	
 	private HallReceiptBlService hallReceiptBL;
+	private static HallReceiptController instance;
 	
-	public HallReceiptController() {
+	private HallReceiptController() {
 		// TODO Auto-generated constructor stub
 	
 	
 		hallReceiptBL = DataFactory.createHallReceiptBLInstance();
 	
 	
+	}
+	
+	
+	public static HallReceiptController getInstance()
+	{
+		return instance = (instance==null)?new HallReceiptController():instance;
 	}
 	
 	

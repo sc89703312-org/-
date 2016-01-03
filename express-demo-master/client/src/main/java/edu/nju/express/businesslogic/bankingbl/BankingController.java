@@ -17,14 +17,23 @@ public class BankingController implements BankingBlService{
 
 	
 	private BankingBlService bankingBL;
+	private static BankingController instance;
 	
-	public BankingController() {
+	private BankingController() {
 		// TODO Auto-generated constructor stub
 	
 		bankingBL = DataFactory.createBankingInstance();
 	
 	
 	}
+	
+	public static BankingController getInstance()
+	{
+		return instance = (instance==null)?new BankingController():instance;
+	}
+	
+	
+	
 	@Override
 	public void addAccount(String name) {
 		// TODO Auto-generated method stub

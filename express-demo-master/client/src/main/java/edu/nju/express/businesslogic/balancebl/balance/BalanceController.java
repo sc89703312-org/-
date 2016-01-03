@@ -23,13 +23,21 @@ public class BalanceController implements Balanceblservice{
 	
 	
 	private Balanceblservice balanceBL;
+	private static BalanceController instance;
 	
-	public BalanceController() {
+	private BalanceController() {
 		// TODO Auto-generated constructor stub
 	
 		balanceBL = DataFactory.createBalanceBLInstance();
 	
 	}
+	
+	
+	 public static BalanceController getInstance() 
+	{
+		return instance = (instance==null)?new BalanceController():instance;
+	}
+	
 	
 	/**
 	 * 查看支出  收入和利润

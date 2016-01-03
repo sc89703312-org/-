@@ -11,7 +11,8 @@ import edu.nju.express.vo.OrderVO;
 public class StationReceiptController implements StationReceiptBlService{
 
 	private StationReceiptBlService stationReceipt;
-	public StationReceiptController() {
+	private static StationReceiptController instance;
+	private StationReceiptController() {
 		// TODO Auto-generated constructor stub
 
 		stationReceipt = DataFactory.createStationReceiptBlInstance();
@@ -19,6 +20,11 @@ public class StationReceiptController implements StationReceiptBlService{
 	
 	}
 	
+	
+	public static StationReceiptController getInstance()
+	{
+		return instance = (instance==null)?new StationReceiptController():instance;
+	}
 	
 	@Override
 	public ArriveReceiptVO creatArriveReceipt(String id) {

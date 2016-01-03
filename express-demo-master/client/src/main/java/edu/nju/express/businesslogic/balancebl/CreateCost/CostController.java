@@ -20,14 +20,19 @@ import edu.nju.express.vo.Balancevo;
 public class CostController implements CostControlService{
 
 	private CostControlService costControlBL;
+	private static CostController instance;
 	
-	public CostController() {
+	private CostController() {
 		// TODO Auto-generated constructor stub
 	
 		costControlBL = DataFactory.createCostInstance();
 	
 	}
 	
+	public static CostController getInstance()
+	{
+		return instance = (instance==null)?new CostController():instance;
+	}
 	
 	@Override
 	public ResultMessage createCost(Balancevo vo) {

@@ -13,14 +13,22 @@ import edu.nju.express.vo.UserMessageVO;
 public class UserController implements UserBlService{
 
 	UserBlService user;
+	private static UserController instance;
 	
 	/**
 	 * @param user
 	 */
-	public UserController() {
+	private UserController() {
 		this.user = DataFactory.createUserBlInstance();
 	}
 
+	
+	
+	public static UserController getInstance()
+	{
+		return instance =(instance==null)?new UserController():instance;
+	}
+	
 	@Override
 	public ResultMessage addUser(String id, String name, Role role, String password) {
 		return user.addUser(id, name, role, password);

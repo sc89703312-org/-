@@ -18,12 +18,18 @@ public class PaymentController implements Paymentblservice {
 
 	
 	Paymentblservice paymentblservice;
+	private static PaymentController instance;
 	
-	public PaymentController() {
+	private PaymentController() {
 		// TODO Auto-generated constructor stub
 	
 		this.paymentblservice = DataFactory.createPaymentBLInstance() ;
 	
+	}
+	
+	public static PaymentController getInstance()
+	{
+		return instance = (instance==null)?new PaymentController():instance;
 	}
 	
 	

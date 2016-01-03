@@ -19,12 +19,22 @@ public class AccountController implements Accountblservice {
 
 	/** Account的业务逻辑 */
 	private Accountblservice accountbl;
+	public static AccountController instance;
 	
-	public AccountController() {
+	private AccountController() {
 		// TODO Auto-generated constructor stub
 	
 	accountbl = DataFactory.createAccountblInstance();
 	}
+	
+	
+	
+	public static AccountController getInstance()
+	{
+		return instance=(instance==null)?new AccountController():instance;
+	}
+	
+	
 
 	/**
 	 * 期初建账

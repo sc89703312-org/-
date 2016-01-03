@@ -15,13 +15,19 @@ import edu.nju.express.vo.TransferReceiptVO;
 public class CommodityController implements CommodityBlService{
 
 	private CommodityBlService commodityBL;
-	public CommodityController() {
+	private static CommodityController instance;
+	
+	private CommodityController() {
 		// TODO Auto-generated constructor stub
 	
 		commodityBL = DataFactory.createCommodityBlInstance();
 	
 	}
 	
+	public static CommodityController getInstance()
+	{
+		return instance = (instance==null)?new CommodityController():instance;
+	}
 	
 	@Override
 	public ArrayList<ArriveReceiptVO> showArriveReceiptList() {

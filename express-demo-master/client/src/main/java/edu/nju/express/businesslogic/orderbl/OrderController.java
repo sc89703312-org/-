@@ -18,14 +18,20 @@ import edu.nju.express.vo.OrderVO;
 public class OrderController implements OrderBLService{
 
 	private OrderBLService orderBL;
+	private static OrderController instance;
 	
 	
-	public OrderController() {
+	private OrderController() {
 		// TODO Auto-generated constructor stub
 
 		orderBL = DataFactory.createOrderBLInstance();
 	
 	
+	}
+	
+	public static OrderController getInstance()
+	{
+		return instance = (instance==null)?new OrderController():instance;
 	}
 	
 	

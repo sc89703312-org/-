@@ -13,16 +13,23 @@ import edu.nju.express.vo.EmployeeVO;
 public class ManagementController implements ManagementBlService{
 
 	ManagementBlService management;
+	private static ManagementController instance;
 	
 	
 	
 	/**
 	 * @param management
 	 */
-	public ManagementController() {
+	private ManagementController() {
 		this.management = DataFactory.createManagementBlInstance();
 	}
 
+	public static ManagementController getInstance()
+	{
+		return instance = (instance==null)?new ManagementController():instance;
+	}
+	
+	
 	@Override
 	public ArrayList<EmployeeVO> viewEmployeeList() {
 		// TODO Auto-generated method stub

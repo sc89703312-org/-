@@ -19,14 +19,24 @@ public class ViewPaymentController implements ViewPaymentService {
 	
 	/** 查看收款单的业务逻辑实现 */
 	private ViewPaymentService viewPaymentbl ;
+	private static ViewPaymentController instance;
 	
-	public ViewPaymentController() {
+	private ViewPaymentController() {
 		// TODO Auto-generated constructor stub
 	
 	
 		viewPaymentbl = DataFactory.createViewPaymentblInstance();
 	
 	}
+	
+	
+	public static ViewPaymentController getInstance()
+	{
+		return instance = (instance==null)?new ViewPaymentController():instance;
+	}
+	
+	
+	
 	@Override
 	public ArrayList<Paymentvo> viewByHall(String number) {
 		// TODO Auto-generated method stub

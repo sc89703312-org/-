@@ -10,8 +10,9 @@ import edu.nju.express.vo.HallVO;
 public class HallController implements HallBLService{
 
 	private HallBLService hallBL;
+	private static HallController instance;
 	
-	public HallController() {
+	private HallController() {
 		// TODO Auto-generated constructor stub
 	
 	
@@ -19,6 +20,10 @@ public class HallController implements HallBLService{
 	
 	}
 	
+	public static HallController getInstance()
+	{
+		return instance = (instance == null)?new HallController():instance;
+	}
 	
 	@Override
 	public ResultMessage addHall(String id, String location) {

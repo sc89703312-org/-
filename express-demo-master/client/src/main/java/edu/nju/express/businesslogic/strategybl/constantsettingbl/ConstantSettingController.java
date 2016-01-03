@@ -17,8 +17,9 @@ public class ConstantSettingController implements ConstantSettingBlService{
 
 	
 	private ConstantSettingBlService constantSettingBL;
+	private static ConstantSettingController instance;
 	
-	public ConstantSettingController() {
+	private ConstantSettingController() {
 		// TODO Auto-generated constructor stub
 	
 	
@@ -27,6 +28,12 @@ public class ConstantSettingController implements ConstantSettingBlService{
 	
 	}
 	
+	
+	
+	public static ConstantSettingController getInstance()
+	{
+		return instance = (instance==null)?new ConstantSettingController():instance;
+	}
 	
 	@Override
 	public ResultMessage setDistance(String id1, String id2, double distance) {

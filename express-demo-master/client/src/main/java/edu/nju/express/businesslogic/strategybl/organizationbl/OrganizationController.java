@@ -13,15 +13,23 @@ import edu.nju.express.vo.StationVO;
 public class OrganizationController implements OrganizationBlService{
 
 	OrganizationBlService organization;
+	private static OrganizationController instance;
 	
 	
 	/**
 	 * @param organization
 	 */
-	public OrganizationController() {
+	private OrganizationController() {
 		this.organization = DataFactory.createOrganizationBl();
 	}
 
+	
+	
+	public static OrganizationController getInstance()
+	{
+		return instance = (instance==null)?new OrganizationController():instance;
+	}
+	
 	@Override
 	public ArrayList<StationVO> viewStationList() {
 		// TODO Auto-generated method stub
